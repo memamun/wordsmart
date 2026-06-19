@@ -1,0 +1,3757 @@
+{
+  "total_drills": 48,
+  "drills": [
+    {
+      "drill_number": 1,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "Because Stan had been preoccupied during his dynamite-juggling demonstration, the jury felt that he was not _______ for the destruction of the audience.",
+          "options": {
+            "a": "decorous",
+            "b": "decimated",
+            "c": "indiscreet",
+            "d": "culpable",
+            "e": "indiscrete"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "Sally was sad because Mr. Reeves, our English teacher, filled the margins of her term paper with _______ remarks about her spelling, grammar, and writing style.",
+          "options": {
+            "a": "fatuous",
+            "b": "heretical",
+            "c": "ineffable",
+            "d": "prepossessing",
+            "e": "derogatory"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "The fans were _______ when the football team lost its fiftieth game in a row.",
+          "options": {
+            "a": "irascible",
+            "b": "despondent",
+            "c": "rapacious",
+            "d": "stigmatized",
+            "e": "precipitous"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "Bill and Harry were given jobs on the stage crew because their voices ruined the sound of the chorus.",
+          "options": {
+            "a": "unremitting",
+            "b": "paternal",
+            "c": "wanton",
+            "d": "laconic",
+            "e": "dissonant"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The baby kittens were so _______ that the nursery school children were able to pick them up, carry them around by the scruffs of their necks, and dress them up in doll clothes.",
+          "options": {
+            "a": "abashed",
+            "b": "peripatetic",
+            "c": "docile",
+            "d": "agrarian",
+            "e": "nefarious"
+          }
+        }
+      ],
+      "answers": {
+        "1": "d",
+        "2": "e",
+        "3": "b",
+        "4": "e",
+        "5": "c"
+      }
+    },
+    {
+      "drill_number": 2,
+      "drill_type": "buddy check",
+      "instructions": "For each question below, match the word on the left with the word most similar in meaning on the right.",
+      "questions": [
+        {
+          "question_number": 1,
+          "left_word": "litigious",
+          "right_choice_letter": "a",
+          "right_word": "ingenuous"
+        },
+        {
+          "question_number": 2,
+          "left_word": "artless",
+          "right_choice_letter": "b",
+          "right_word": "querulous"
+        },
+        {
+          "question_number": 3,
+          "left_word": "taciturn",
+          "right_choice_letter": "c",
+          "right_word": "auspicious"
+        },
+        {
+          "question_number": 4,
+          "left_word": "refute",
+          "right_choice_letter": "d",
+          "right_word": "perennial"
+        },
+        {
+          "question_number": 5,
+          "left_word": "perjure",
+          "right_choice_letter": "e",
+          "right_word": "avow"
+        },
+        {
+          "question_number": 6,
+          "left_word": "allege",
+          "right_choice_letter": "f",
+          "right_word": "reticent"
+        },
+        {
+          "question_number": 7,
+          "left_word": "gauche",
+          "right_choice_letter": "g",
+          "right_word": "impugn"
+        },
+        {
+          "question_number": 8,
+          "left_word": "officious",
+          "right_choice_letter": "h",
+          "right_word": "rebut"
+        },
+        {
+          "question_number": 9,
+          "left_word": "chronic",
+          "right_choice_letter": "i",
+          "right_word": "inept"
+        },
+        {
+          "question_number": 10,
+          "left_word": "propitious",
+          "right_choice_letter": "j",
+          "right_word": "solicitous"
+        }
+      ],
+      "answers": {
+        "1": "b",
+        "2": "a",
+        "3": "f",
+        "4": "h",
+        "5": "g",
+        "6": "e",
+        "7": "i",
+        "8": "j",
+        "9": "d",
+        "10": "c"
+      }
+    },
+    {
+      "drill_number": 3,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "address",
+            "infer",
+            "construe",
+            "extrapolate"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "rigorous",
+            "punctilious",
+            "integral",
+            "painstaking"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "consecrate",
+            "revere",
+            "venerate",
+            "delineate"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "abstain",
+            "relegate",
+            "forbear",
+            "forgo"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "insubordinate",
+            "willful",
+            "didactic",
+            "intransigent"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "labyrinthine",
+            "profane",
+            "secular",
+            "atheistic"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "acrid",
+            "amoral",
+            "sardonic",
+            "virulent"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "analogous",
+            "perfunctory",
+            "cursory",
+            "desultory"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "decadent",
+            "degenerate",
+            "profligate",
+            "magnanimous"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "connoisseur",
+            "virtuoso",
+            "malleable",
+            "aesthete"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "address",
+        "2": "integral",
+        "3": "delineate",
+        "4": "relegate",
+        "5": "didactic",
+        "6": "labyrinthine",
+        "7": "amoral",
+        "8": "analogous",
+        "9": "magnanimous",
+        "10": "malleable"
+      }
+    },
+    {
+      "drill_number": 4,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "sporadic",
+          "word2": "incessant"
+        },
+        {
+          "question_number": 2,
+          "word1": "beget",
+          "word2": "spawn"
+        },
+        {
+          "question_number": 3,
+          "word1": "malaise",
+          "word2": "subversion"
+        },
+        {
+          "question_number": 4,
+          "word1": "coerce",
+          "word2": "compel"
+        },
+        {
+          "question_number": 5,
+          "word1": "peccadillo",
+          "word2": "enormity"
+        },
+        {
+          "question_number": 6,
+          "word1": "charismatic",
+          "word2": "insipid"
+        },
+        {
+          "question_number": 7,
+          "word1": "countenance",
+          "word2": "condone"
+        },
+        {
+          "question_number": 8,
+          "word1": "usurp",
+          "word2": "appropriate"
+        },
+        {
+          "question_number": 9,
+          "word1": "espouse",
+          "word2": "extricate"
+        },
+        {
+          "question_number": 10,
+          "word1": "arbitrate",
+          "word2": "mediate"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "S",
+        "3": "U",
+        "4": "S",
+        "5": "O",
+        "6": "O",
+        "7": "S",
+        "8": "S",
+        "9": "U",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 5,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The applicant's credentials were _______ but I didn't like the color of his necktie so I didn't hire him.",
+          "options": {
+            "a": "irreproachable",
+            "b": "aloof",
+            "c": "domestic",
+            "d": "vitriolic",
+            "e": "histrionic"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "Walter's skin took on a(n) _______ cast after his exposure to the pool of radioactive wastes.",
+          "options": {
+            "a": "artful",
+            "b": "squalid",
+            "c": "luminous",
+            "d": "nebulous",
+            "e": "garrulous"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "The police spent seven months working on the crime case but were never able to determine the identity of the _______.",
+          "options": {
+            "a": "demagogue",
+            "b": "dilettante",
+            "c": "egotist",
+            "d": "malefactor",
+            "e": "patriarch"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The portions at the restaurant were so _______ that immediately after dessert we drove to another restaurant and ordered a second full meal.",
+          "options": {
+            "a": "pertinent",
+            "b": "minuscule",
+            "c": "exhaustive",
+            "d": "futile",
+            "e": "misanthropic"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "Alan thought that throwing some scraps to the bear would _______ it, but instead the beast tore apart our campsite in search of more to eat.",
+          "options": {
+            "a": "accost",
+            "b": "mollify",
+            "c": "preclude",
+            "d": "efface",
+            "e": "tout"
+          }
+        }
+      ],
+      "answers": {
+        "1": "a",
+        "2": "c",
+        "3": "e",
+        "4": "b",
+        "5": "b"
+      }
+    },
+    {
+      "drill_number": 6,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "debacle",
+          "word2": "coup"
+        },
+        {
+          "question_number": 2,
+          "word1": "amenity",
+          "word2": "injunction"
+        },
+        {
+          "question_number": 3,
+          "word1": "cognizant",
+          "word2": "unwitting"
+        },
+        {
+          "question_number": 4,
+          "word1": "emigrate",
+          "word2": "expatriate"
+        },
+        {
+          "question_number": 5,
+          "word1": "concurrent",
+          "word2": "anachronistic"
+        },
+        {
+          "question_number": 6,
+          "word1": "blithe",
+          "word2": "morose"
+        },
+        {
+          "question_number": 7,
+          "word1": "disinterested",
+          "word2": "partial"
+        },
+        {
+          "question_number": 8,
+          "word1": "anachronism",
+          "word2": "archaism"
+        },
+        {
+          "question_number": 9,
+          "word1": "collusion",
+          "word2": "complicity"
+        },
+        {
+          "question_number": 10,
+          "word1": "insular",
+          "word2": "hermetic"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "U",
+        "3": "O",
+        "4": "S",
+        "5": "O",
+        "6": "O",
+        "7": "O",
+        "8": "S",
+        "9": "S",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 7,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "sacrilege",
+            "renaissance",
+            "blasphemy",
+            "desecration"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "ambiguous",
+            "equivocal",
+            "cryptic",
+            "requisite"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "apprehensive",
+            "martial",
+            "contentious",
+            "belligerent"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "arcane",
+            "esoteric",
+            "sacrosanct",
+            "recondite"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "incense",
+            "replenish",
+            "foment",
+            "antagonize"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "exacting",
+            "onerous",
+            "ponderous",
+            "arbitrary"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "circumspect",
+            "eclectic",
+            "scrupulous",
+            "fastidious"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "introverted",
+            "aloof",
+            "reclusive",
+            "elliptical"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "allocate",
+            "relinquish",
+            "capitulate",
+            "succumb"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "effusive",
+            "histrionic",
+            "avuncular",
+            "gesticulating"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "renaissance",
+        "2": "requisite",
+        "3": "apprehensive",
+        "4": "sacrosanct",
+        "5": "replenish",
+        "6": "arbitrary",
+        "7": "eclectic",
+        "8": "elliptical",
+        "9": "allocate",
+        "10": "avuncular"
+      }
+    },
+    {
+      "drill_number": 8,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "abyss",
+          "word2": "chasm"
+        },
+        {
+          "question_number": 2,
+          "word1": "substantive",
+          "word2": "ethereal"
+        },
+        {
+          "question_number": 3,
+          "word1": "loquacious",
+          "word2": "taciturn"
+        },
+        {
+          "question_number": 4,
+          "word1": "doctrinaire",
+          "word2": "dogmatic"
+        },
+        {
+          "question_number": 5,
+          "word1": "colloquial",
+          "word2": "pedantic"
+        },
+        {
+          "question_number": 6,
+          "word1": "encroach",
+          "word2": "transgress"
+        },
+        {
+          "question_number": 7,
+          "word1": "amorphous",
+          "word2": "nebulous"
+        },
+        {
+          "question_number": 8,
+          "word1": "domestic",
+          "word2": "endemic"
+        },
+        {
+          "question_number": 9,
+          "word1": "cogent",
+          "word2": "incisive"
+        },
+        {
+          "question_number": 10,
+          "word1": "lethargic",
+          "word2": "capricious"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "O",
+        "3": "O",
+        "4": "S",
+        "5": "O",
+        "6": "S",
+        "7": "S",
+        "8": "U",
+        "9": "S",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 9,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word or phrase that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "Amanda _______ her daughter for putting the cat in the washing machine.",
+          "options": {
+            "a": "expropriated",
+            "b": "disfranchised",
+            "c": "coerced",
+            "d": "broached",
+            "e": "chastised"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "David's salary was _______ his very limited skills; he was paid nothing.",
+          "options": {
+            "a": "as vapid as",
+            "b": "tenable despite",
+            "c": "vehement in view of",
+            "d": "commensurate with",
+            "e": "acerbic notwithstanding"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "After several decades of peace, the little country grew _______ about defense and let its army slowly drift away.",
+          "options": {
+            "a": "dissolute",
+            "b": "partisan",
+            "c": "catholic",
+            "d": "adamant",
+            "e": "complacent"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "None of us had enough money to undertake the project alone, so we had to depend on the _______ of our parents.",
+          "options": {
+            "a": "postulate",
+            "b": "vilification",
+            "c": "largess",
+            "d": "hedonism",
+            "e": "veracity"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The court ruled that Ursula's covert discussions with the Russian ambassador did not _______ treason.",
+          "options": {
+            "a": "comprise",
+            "b": "abnegate",
+            "c": "libel",
+            "d": "broach",
+            "e": "constitute"
+          }
+        }
+      ],
+      "answers": {
+        "1": "e",
+        "2": "d",
+        "3": "d",
+        "4": "c",
+        "5": "e"
+      }
+    },
+    {
+      "drill_number": 10,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "bureaucracy",
+          "word2": "hierarchy"
+        },
+        {
+          "question_number": 2,
+          "word1": "extrapolate",
+          "word2": "infer"
+        },
+        {
+          "question_number": 3,
+          "word1": "mercurial",
+          "word2": "volatile"
+        },
+        {
+          "question_number": 4,
+          "word1": "impeccable",
+          "word2": "culpable"
+        },
+        {
+          "question_number": 5,
+          "word1": "corroborate",
+          "word2": "refute"
+        },
+        {
+          "question_number": 6,
+          "word1": "expedient",
+          "word2": "utilitarian"
+        },
+        {
+          "question_number": 7,
+          "word1": "censure",
+          "word2": "approbation"
+        },
+        {
+          "question_number": 8,
+          "word1": "propriety",
+          "word2": "decorum"
+        },
+        {
+          "question_number": 9,
+          "word1": "emulate",
+          "word2": "peruse"
+        },
+        {
+          "question_number": 10,
+          "word1": "mandate",
+          "word2": "touchstone"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "S",
+        "3": "S",
+        "4": "O",
+        "5": "O",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "U",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 11,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "ameliorate",
+          "word2": "exacerbate"
+        },
+        {
+          "question_number": 2,
+          "word1": "candor",
+          "word2": "equivocation"
+        },
+        {
+          "question_number": 3,
+          "word1": "caricature",
+          "word2": "parody"
+        },
+        {
+          "question_number": 4,
+          "word1": "scrupulous",
+          "word2": "mendacious"
+        },
+        {
+          "question_number": 5,
+          "word1": "apartheid",
+          "word2": "mentor"
+        },
+        {
+          "question_number": 6,
+          "word1": "bane",
+          "word2": "panacea"
+        },
+        {
+          "question_number": 7,
+          "word1": "facile",
+          "word2": "arduous"
+        },
+        {
+          "question_number": 8,
+          "word1": "philistine",
+          "word2": "erudite"
+        },
+        {
+          "question_number": 9,
+          "word1": "absolute",
+          "word2": "commensurate"
+        },
+        {
+          "question_number": 10,
+          "word1": "kinetic",
+          "word2": "stagnant"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "O",
+        "3": "S",
+        "4": "O",
+        "5": "U",
+        "6": "O",
+        "7": "O",
+        "8": "O",
+        "9": "U",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 12,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "awry",
+            "overt",
+            "salient",
+            "manifest"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "duplicity",
+            "ascendancy",
+            "guile",
+            "chicanery"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "contrition",
+            "remorse",
+            "cadence",
+            "penitence"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "temperance",
+            "sobriety",
+            "celibacy",
+            "oblivion"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "nominal",
+            "amiable",
+            "affable",
+            "congenial"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "choleric",
+            "querulous",
+            "petulant",
+            "equitable"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "dormant",
+            "latent",
+            "nostalgic",
+            "inert"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "astute",
+            "bereft",
+            "sagacious",
+            "prudent"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "copious",
+            "bourgeois",
+            "profuse",
+            "myriad"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "ascetic",
+            "austere",
+            "frugal",
+            "pejorative"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "awry",
+        "2": "ascendancy",
+        "3": "cadence",
+        "4": "oblivion",
+        "5": "nominal",
+        "6": "equitable",
+        "7": "nostalgic",
+        "8": "bereft",
+        "9": "bourgeois",
+        "10": "pejorative"
+      }
+    },
+    {
+      "drill_number": 13,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "serendipitous",
+          "word2": "hapless"
+        },
+        {
+          "question_number": 2,
+          "word1": "lugubrious",
+          "word2": "facetious"
+        },
+        {
+          "question_number": 3,
+          "word1": "espouse",
+          "word2": "appease"
+        },
+        {
+          "question_number": 4,
+          "word1": "qualitative",
+          "word2": "pejorative"
+        },
+        {
+          "question_number": 5,
+          "word1": "exigency",
+          "word2": "periphery"
+        },
+        {
+          "question_number": 6,
+          "word1": "harbinger",
+          "word2": "precursor"
+        },
+        {
+          "question_number": 7,
+          "word1": "profound",
+          "word2": "desecrated"
+        },
+        {
+          "question_number": 8,
+          "word1": "despotic",
+          "word2": "autocratic"
+        },
+        {
+          "question_number": 9,
+          "word1": "engender",
+          "word2": "decimate"
+        },
+        {
+          "question_number": 10,
+          "word1": "pristine",
+          "word2": "unalloyed"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "O",
+        "3": "U",
+        "4": "U",
+        "5": "U",
+        "6": "S",
+        "7": "U",
+        "8": "S",
+        "9": "O",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 14,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "Reginald was as clever as he was unscrupulous, and he knew what he could not obtain by legitimate means he could always obtain through _______.",
+          "options": {
+            "a": "chicanery",
+            "b": "burlesque",
+            "c": "nihilism",
+            "d": "strife",
+            "e": "theology"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "The visiting professor was so _______ in his field that many of our faculty members became nervous in his presence.",
+          "options": {
+            "a": "antithetical",
+            "b": "archetypal",
+            "c": "eminent",
+            "d": "plebeian",
+            "e": "pathological"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "The orator _______ a bizarre economic program whose central tenet was the abolition of all forms of money.",
+          "options": {
+            "a": "scintillated",
+            "b": "espoused",
+            "c": "vacillated",
+            "d": "emulated",
+            "e": "inundated"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "\"Kicking the bucket\" is a humorous _______ for \"dying.\"",
+          "options": {
+            "a": "dictum",
+            "b": "stipulation",
+            "c": "incantation",
+            "d": "conjecture",
+            "e": "euphemism"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The actor, pretending to be inebriated, made a(n) _______ attempt to open his umbrella in a telephone booth.",
+          "options": {
+            "a": "viable",
+            "b": "enigmatic",
+            "c": "farcical",
+            "d": "cognitive",
+            "e": "aphoristic"
+          }
+        }
+      ],
+      "answers": {
+        "1": "a",
+        "2": "c",
+        "3": "b",
+        "4": "e",
+        "5": "c"
+      }
+    },
+    {
+      "drill_number": 15,
+      "drill_type": "buddy check",
+      "instructions": "For each question below, match the word on the left with the word most similar in meaning on the right.",
+      "questions": [
+        {
+          "question_number": 1,
+          "left_word": "opaque",
+          "right_choice_letter": "a",
+          "right_word": "obscure"
+        },
+        {
+          "question_number": 2,
+          "left_word": "ostensible",
+          "right_choice_letter": "b",
+          "right_word": "secular"
+        },
+        {
+          "question_number": 3,
+          "left_word": "avaricious",
+          "right_choice_letter": "c",
+          "right_word": "mellifluous"
+        },
+        {
+          "question_number": 4,
+          "left_word": "mundane",
+          "right_choice_letter": "d",
+          "right_word": "prudent"
+        },
+        {
+          "question_number": 5,
+          "left_word": "judicious",
+          "right_choice_letter": "e",
+          "right_word": "venal"
+        },
+        {
+          "question_number": 6,
+          "left_word": "mercenary",
+          "right_choice_letter": "f",
+          "right_word": "specious"
+        },
+        {
+          "question_number": 7,
+          "left_word": "ramification",
+          "right_choice_letter": "g",
+          "right_word": "rapacious"
+        },
+        {
+          "question_number": 8,
+          "left_word": "saccharine",
+          "right_choice_letter": "i",
+          "right_word": "dearth"
+        },
+        {
+          "question_number": 9,
+          "left_word": "archaic",
+          "right_choice_letter": "j",
+          "right_word": "anachronism"
+        },
+        {
+          "question_number": 10,
+          "left_word": "paucity",
+          "right_choice_letter": "h",
+          "right_word": "repercussion"
+        }
+      ],
+      "answers": {
+        "1": "a",
+        "2": "f",
+        "3": "g",
+        "4": "b",
+        "5": "d",
+        "6": "e",
+        "7": "h",
+        "8": "c",
+        "9": "j",
+        "10": "i"
+      }
+    },
+    {
+      "drill_number": 16,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "belie",
+          "word2": "aggregate"
+        },
+        {
+          "question_number": 2,
+          "word1": "legacy",
+          "word2": "bequest"
+        },
+        {
+          "question_number": 3,
+          "word1": "aptitude",
+          "word2": "propensity"
+        },
+        {
+          "question_number": 4,
+          "word1": "matriculate",
+          "word2": "purport"
+        },
+        {
+          "question_number": 5,
+          "word1": "fatalist",
+          "word2": "cynic"
+        },
+        {
+          "question_number": 6,
+          "word1": "fecund",
+          "word2": "desiccated"
+        },
+        {
+          "question_number": 7,
+          "word1": "exhort",
+          "word2": "admonish"
+        },
+        {
+          "question_number": 8,
+          "word1": "polarize",
+          "word2": "prevail"
+        },
+        {
+          "question_number": 9,
+          "word1": "condescension",
+          "word2": "adulation"
+        },
+        {
+          "question_number": 10,
+          "word1": "discreet",
+          "word2": "blatant"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "S",
+        "3": "S",
+        "4": "U",
+        "5": "U",
+        "6": "O",
+        "7": "S",
+        "8": "U",
+        "9": "O",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 17,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "uniform",
+            "monolithic",
+            "homogeneous",
+            "flaunt"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "malign",
+            "existential",
+            "slander",
+            "libel"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "felicity",
+            "audacity",
+            "temerity",
+            "impetuosity"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "meager",
+            "tenuous",
+            "pivotal",
+            "paltry"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "indulgent",
+            "salutary",
+            "prodigal",
+            "profligate"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "disparate",
+            "incongruous",
+            "heterogeneous",
+            "ubiquitous"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "apprehensive",
+            "diffident",
+            "succinct",
+            "circumspect"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "cogent",
+            "eminent",
+            "potent",
+            "robust"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "farcical",
+            "affected",
+            "contrived",
+            "ostentatious"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "ennui",
+            "satiety",
+            "languor",
+            "volition"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "flaunt",
+        "2": "existential",
+        "3": "felicity",
+        "4": "pivotal",
+        "5": "salutary",
+        "6": "ubiquitous",
+        "7": "succinct",
+        "8": "eminent",
+        "9": "farcical",
+        "10": "volition"
+      }
+    },
+    {
+      "drill_number": 18,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "zealous",
+          "word2": "catholic"
+        },
+        {
+          "question_number": 2,
+          "word1": "aloof",
+          "word2": "nefarious"
+        },
+        {
+          "question_number": 3,
+          "word1": "mitigate",
+          "word2": "assuage"
+        },
+        {
+          "question_number": 4,
+          "word1": "agnostic",
+          "word2": "atheist"
+        },
+        {
+          "question_number": 5,
+          "word1": "clique",
+          "word2": "consensus"
+        },
+        {
+          "question_number": 6,
+          "word1": "coalition",
+          "word2": "faction"
+        },
+        {
+          "question_number": 7,
+          "word1": "husbandry",
+          "word2": "itinerary"
+        },
+        {
+          "question_number": 8,
+          "word1": "coalesce",
+          "word2": "dissipate"
+        },
+        {
+          "question_number": 9,
+          "word1": "slavish",
+          "word2": "subservient"
+        },
+        {
+          "question_number": 10,
+          "word1": "flaunt",
+          "word2": "reproach"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "U",
+        "3": "S",
+        "4": "S",
+        "5": "U",
+        "6": "S",
+        "7": "U",
+        "8": "O",
+        "9": "S",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 19,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The Sandersons viewed the flaming image of the devil, which hovered above their house for thirteen days, as a(n) _______ of evil to come.",
+          "options": {
+            "a": "stratum",
+            "b": "portent",
+            "c": "periphery",
+            "d": "infidelity",
+            "e": "aberration"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "There was nothing _______ about Herbert's scientific theories; in fact, they were quite shallow.",
+          "options": {
+            "a": "sentient",
+            "b": "vociferous",
+            "c": "peremptory",
+            "d": "profound",
+            "e": "nepotistic"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "The _______ author turned out a new book every week of his adult life.",
+          "options": {
+            "a": "prolific",
+            "b": "canine",
+            "c": "dialectical",
+            "d": "implicit",
+            "e": "contiguous"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The _______ boys stubbornly refused to call off their rock fight, despite the pleadings of their mothers.",
+          "options": {
+            "a": "recalcitrant",
+            "b": "pacific",
+            "c": "egalitarian",
+            "d": "exemplary",
+            "e": "fervent"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "Hal's disappointed wife _______ him for being a lazy, foul-smelling, obnoxious slob.",
+          "options": {
+            "a": "instigated",
+            "b": "reproached",
+            "c": "flaunted",
+            "d": "desecrated",
+            "e": "belied"
+          }
+        }
+      ],
+      "answers": {
+        "1": "b",
+        "2": "d",
+        "3": "a",
+        "4": "a",
+        "5": "b"
+      }
+    },
+    {
+      "drill_number": 20,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "profess",
+          "word2": "espouse"
+        },
+        {
+          "question_number": 2,
+          "word1": "extrovert",
+          "word2": "introspective"
+        },
+        {
+          "question_number": 3,
+          "word1": "foible",
+          "word2": "hiatus"
+        },
+        {
+          "question_number": 4,
+          "word1": "caricature",
+          "word2": "touchstone"
+        },
+        {
+          "question_number": 5,
+          "word1": "debilitate",
+          "word2": "enervate"
+        },
+        {
+          "question_number": 6,
+          "word1": "placid",
+          "word2": "frenetic"
+        },
+        {
+          "question_number": 7,
+          "word1": "depravity",
+          "word2": "debauchery"
+        },
+        {
+          "question_number": 8,
+          "word1": "infinitesimal",
+          "word2": "grandiose"
+        },
+        {
+          "question_number": 9,
+          "word1": "grandiloquent",
+          "word2": "rhetorical"
+        },
+        {
+          "question_number": 10,
+          "word1": "malefactor",
+          "word2": "benefactor"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "O",
+        "3": "U",
+        "4": "U",
+        "5": "S",
+        "6": "O",
+        "7": "S",
+        "8": "O",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 21,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "avaricious",
+            "covetous",
+            "parsimonious",
+            "vicarious"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "reprove",
+            "scrutinize",
+            "censure",
+            "rebuke"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "reprehensible",
+            "transient",
+            "ephemeral",
+            "transitory"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "belittle",
+            "depreciate",
+            "disparage",
+            "founder"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "palpable",
+            "resolute",
+            "tenacious",
+            "steadfast"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "absolve",
+            "qualify",
+            "condone",
+            "exculpate"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "civil",
+            "aristocratic",
+            "genteel",
+            "culinary"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "stricture",
+            "reproach",
+            "admonishment",
+            "corollary"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "fidelity",
+            "proximity",
+            "steadfastness",
+            "resolution"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "circumlocutory",
+            "redundant",
+            "tautological",
+            "officious"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "officious",
+        "2": "scrutinize",
+        "3": "reprehensible",
+        "4": "founder",
+        "5": "palpable",
+        "6": "qualify",
+        "7": "culinary",
+        "8": "corollary",
+        "9": "proximity",
+        "10": "vicarious"
+      }
+    },
+    {
+      "drill_number": 22,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "elude",
+          "word2": "circumvent"
+        },
+        {
+          "question_number": 2,
+          "word1": "rustic",
+          "word2": "urbane"
+        },
+        {
+          "question_number": 3,
+          "word1": "circuitous",
+          "word2": "oblique"
+        },
+        {
+          "question_number": 4,
+          "word1": "beset",
+          "word2": "beleaguered"
+        },
+        {
+          "question_number": 5,
+          "word1": "imperial",
+          "word2": "servile"
+        },
+        {
+          "question_number": 6,
+          "word1": "pedestrian",
+          "word2": "prosaic"
+        },
+        {
+          "question_number": 7,
+          "word1": "reprisal",
+          "word2": "reparation"
+        },
+        {
+          "question_number": 8,
+          "word1": "daunt",
+          "word2": "stymie"
+        },
+        {
+          "question_number": 9,
+          "word1": "apotheosis",
+          "word2": "epitome"
+        },
+        {
+          "question_number": 10,
+          "word1": "inaugurate",
+          "word2": "abort"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "O",
+        "3": "S",
+        "4": "S",
+        "5": "O",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 23,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "Sally had already eaten all her cookies, so she _______ some of mine.",
+          "options": {
+            "a": "permeated",
+            "b": "mortified",
+            "c": "protracted",
+            "d": "appropriated",
+            "e": "defamed"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "The country's _______ ruler required her citizens to receive official permission before changing channels on their television sets.",
+          "options": {
+            "a": "definitive",
+            "b": "dubious",
+            "c": "indigenous",
+            "d": "autocratic",
+            "e": "redolent"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "I don't enjoy oysters myself, but I'm not _______ to letting others eat them.",
+          "options": {
+            "a": "innate",
+            "b": "averse",
+            "c": "opaque",
+            "d": "adverse",
+            "e": "oblique"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The president was so _______ by international crises that he found it difficult to watch an entire baseball game without being interrupted.",
+          "options": {
+            "a": "beset",
+            "b": "belittled",
+            "c": "bereaved",
+            "d": "bequeathed",
+            "e": "bemused"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The representative had _______ so many losing causes that he fainted dead away when his proposal was unanimously adopted by the legislature.",
+          "options": {
+            "a": "championed",
+            "b": "caricatured",
+            "c": "misappropriated",
+            "d": "flouted",
+            "e": "mediated"
+          }
+        }
+      ],
+      "answers": {
+        "1": "d",
+        "2": "d",
+        "3": "b",
+        "4": "a",
+        "5": "a"
+      }
+    },
+    {
+      "drill_number": 24,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "preempt",
+          "word2": "usurp"
+        },
+        {
+          "question_number": 2,
+          "word1": "turpitude",
+          "word2": "confluence"
+        },
+        {
+          "question_number": 3,
+          "word1": "incipient",
+          "word2": "culminating"
+        },
+        {
+          "question_number": 4,
+          "word1": "burgeon",
+          "word2": "arbitrate"
+        },
+        {
+          "question_number": 5,
+          "word1": "belittle",
+          "word2": "stymie"
+        },
+        {
+          "question_number": 6,
+          "word1": "dictum",
+          "word2": "paradigm"
+        },
+        {
+          "question_number": 7,
+          "word1": "luminous",
+          "word2": "incandescent"
+        },
+        {
+          "question_number": 8,
+          "word1": "mortified",
+          "word2": "chagrined"
+        },
+        {
+          "question_number": 9,
+          "word1": "precipitate",
+          "word2": "prudent"
+        },
+        {
+          "question_number": 10,
+          "word1": "inscrutable",
+          "word2": "obscure"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "U",
+        "3": "U",
+        "4": "U",
+        "5": "U",
+        "6": "U",
+        "7": "S",
+        "8": "S",
+        "9": "O",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 25,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "intrinsic",
+            "innate",
+            "omnipotent",
+            "inherent"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "fortuitous",
+            "gregarious",
+            "convivial",
+            "amicable"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "clich\u00e9",
+            "verisimilitude",
+            "maxim",
+            "epigram"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "belligerent",
+            "indignant",
+            "pertinent",
+            "contentious"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "inane",
+            "hackneyed",
+            "platitudinous",
+            "conductive"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "vitriolic",
+            "acrimonious",
+            "choleric",
+            "prolific"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "gravity",
+            "austerity",
+            "vicissitude",
+            "sobriety"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "noxious",
+            "obsequious",
+            "pernicious",
+            "deleterious"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "finesse",
+            "competence",
+            "proficiency",
+            "euphemism"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "incorrigible",
+            "recalcitrant",
+            "diffident",
+            "obdurate"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "omnipotent",
+        "2": "fortuitous",
+        "3": "verisimilitude",
+        "4": "pertinent",
+        "5": "conducive",
+        "6": "prolific",
+        "7": "vicissitude",
+        "8": "obsequious",
+        "9": "euphemism",
+        "10": "diffident"
+      }
+    },
+    {
+      "drill_number": 26,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "catalyst",
+          "word2": "coherence"
+        },
+        {
+          "question_number": 2,
+          "word1": "concord",
+          "word2": "dissonance"
+        },
+        {
+          "question_number": 3,
+          "word1": "discord",
+          "word2": "consonant"
+        },
+        {
+          "question_number": 4,
+          "word1": "ingenuous",
+          "word2": "urbane"
+        },
+        {
+          "question_number": 5,
+          "word1": "infatuated",
+          "word2": "beguiled"
+        },
+        {
+          "question_number": 6,
+          "word1": "categorical",
+          "word2": "contingent"
+        },
+        {
+          "question_number": 7,
+          "word1": "novel",
+          "word2": "banal"
+        },
+        {
+          "question_number": 8,
+          "word1": "parsimony",
+          "word2": "munificence"
+        },
+        {
+          "question_number": 9,
+          "word1": "permeate",
+          "word2": "pervade"
+        },
+        {
+          "question_number": 10,
+          "word1": "tentative",
+          "word2": "definitive"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "O",
+        "3": "U",
+        "4": "U",
+        "5": "U",
+        "6": "O",
+        "7": "O",
+        "8": "O",
+        "9": "S",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 27,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The trees, vines, and other plants in the tropical forest were truly remarkable, but it was the exotic _______ that caught the zoologist's attention.",
+          "options": {
+            "a": "accolade",
+            "b": "compendium",
+            "c": "acumen",
+            "d": "fauna",
+            "e": "surfeit"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "Herb hated to pay extra for a fancy name, but he had discovered that he greatly preferred expensive brand-name products to the cheaper _______ ones.",
+          "options": {
+            "a": "generic",
+            "b": "hypothetical",
+            "c": "supercilious",
+            "d": "amorphous",
+            "e": "contentious"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "After several years of disappointing crops, the enormous harvest left the farmers confronting a(n) _______ of soybeans.",
+          "options": {
+            "a": "alacrity",
+            "b": "blight",
+            "c": "glut",
+            "d": "chasm",
+            "e": "debacle"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The previously undefeated team found it difficult to cope with the _______ of defeat.",
+          "options": {
+            "a": "attrition",
+            "b": "ignominy",
+            "c": "prerequisite",
+            "d": "penchant",
+            "e": "neologism"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The darkening sky indicated to all of us that a thunderstorm was _______.",
+          "options": {
+            "a": "ambivalent",
+            "b": "imminent",
+            "c": "conciliatory",
+            "d": "inherent",
+            "e": "lugubrious"
+          }
+        }
+      ],
+      "answers": {
+        "1": "d",
+        "2": "a",
+        "3": "c",
+        "4": "b",
+        "5": "b"
+      }
+    },
+    {
+      "drill_number": 28,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "hegemony",
+          "word2": "heyday"
+        },
+        {
+          "question_number": 2,
+          "word1": "fortuitous",
+          "word2": "nominal"
+        },
+        {
+          "question_number": 3,
+          "word1": "deride",
+          "word2": "venerate"
+        },
+        {
+          "question_number": 4,
+          "word1": "deduce",
+          "word2": "infer"
+        },
+        {
+          "question_number": 5,
+          "word1": "supercilious",
+          "word2": "servile"
+        },
+        {
+          "question_number": 6,
+          "word1": "placid",
+          "word2": "nonchalant"
+        },
+        {
+          "question_number": 7,
+          "word1": "reverence",
+          "word2": "insolence"
+        },
+        {
+          "question_number": 8,
+          "word1": "extraneous",
+          "word2": "extrinsic"
+        },
+        {
+          "question_number": 9,
+          "word1": "levity",
+          "word2": "irony"
+        },
+        {
+          "question_number": 10,
+          "word1": "onerous",
+          "word2": "exacting"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "U",
+        "3": "O",
+        "4": "S",
+        "5": "O",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "S",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 29,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "comprise",
+            "placate",
+            "appease",
+            "mollify"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "beguile",
+            "bemuse",
+            "cajole",
+            "delude"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "provident",
+            "egregious",
+            "flagrant",
+            "unconscionable"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "adept",
+            "adroit",
+            "anecdotal",
+            "dexterous"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "iconoclast",
+            "insurgent",
+            "maverick",
+            "prodigy"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "cadence",
+            "incisiveness",
+            "acumen",
+            "acuity"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "gratuitous",
+            "superfluous",
+            "soporific",
+            "inordinate"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "incongruous",
+            "staunch",
+            "anomalous",
+            "eccentric"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "vacillate",
+            "incense",
+            "foment",
+            "instigate"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "aberration",
+            "vestige",
+            "anomaly",
+            "singularity"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "comprise",
+        "2": "bemuse",
+        "3": "provident",
+        "4": "anecdotal",
+        "5": "prodigy",
+        "6": "cadence",
+        "7": "soporific",
+        "8": "staunch",
+        "9": "vacillate",
+        "10": "vestige"
+      }
+    },
+    {
+      "drill_number": 30,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "mandate",
+          "word2": "martyr"
+        },
+        {
+          "question_number": 2,
+          "word1": "laud",
+          "word2": "defame"
+        },
+        {
+          "question_number": 3,
+          "word1": "belabor",
+          "word2": "complement"
+        },
+        {
+          "question_number": 4,
+          "word1": "disdain",
+          "word2": "supercilious"
+        },
+        {
+          "question_number": 5,
+          "word1": "distinguish",
+          "word2": "distend"
+        },
+        {
+          "question_number": 6,
+          "word1": "eulogize",
+          "word2": "censure"
+        },
+        {
+          "question_number": 7,
+          "word1": "apocalypse",
+          "word2": "covenant"
+        },
+        {
+          "question_number": 8,
+          "word1": "segregate",
+          "word2": "sequester"
+        },
+        {
+          "question_number": 9,
+          "word1": "quixotic",
+          "word2": "utopian"
+        },
+        {
+          "question_number": 10,
+          "word1": "microcosm",
+          "word2": "magnate"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "O",
+        "3": "O",
+        "4": "O",
+        "5": "S",
+        "6": "O",
+        "7": "O",
+        "8": "O",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 31,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The _______ salesperson bowed deeply and said, \"Yes, sir, of course, sir,\" whenever I requested anything.",
+          "options": {
+            "a": "verbose",
+            "b": "incumbent",
+            "c": "evanescent",
+            "d": "malingering",
+            "e": "obsequious"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "Because he had never lost a tennis match, Luther believed himself to be _______ on the court.",
+          "options": {
+            "a": "ascetic",
+            "b": "deleterious",
+            "c": "omnipotent",
+            "d": "inane",
+            "e": "amorous"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "Our teacher was so _______ in his interpretation of the novel that it was difficult to believe he had taken any pleasure in reading it.",
+          "options": {
+            "a": "pedantic",
+            "b": "laudable",
+            "c": "intrepid",
+            "d": "inveterate",
+            "e": "coherent"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The prisoners were all _______ as they were led off to the firing squad, but they were shot all the same.",
+          "options": {
+            "a": "perfunctory",
+            "b": "concise",
+            "c": "virulent",
+            "d": "prosaic",
+            "e": "penitent"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "The divisive issue _______ the community: half the residents seemed to be strongly for it, and half strongly against.",
+          "options": {
+            "a": "circumscribed",
+            "b": "polarized",
+            "c": "assuaged",
+            "d": "castigated",
+            "e": "disseminated"
+          }
+        }
+      ],
+      "answers": {
+        "1": "e",
+        "2": "a",
+        "3": "c",
+        "4": "e",
+        "5": "b"
+      }
+    },
+    {
+      "drill_number": 32,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "reverence",
+          "word2": "disdain"
+        },
+        {
+          "question_number": 2,
+          "word1": "conjure",
+          "word2": "incant"
+        },
+        {
+          "question_number": 3,
+          "word1": "profound",
+          "word2": "superficial"
+        },
+        {
+          "question_number": 4,
+          "word1": "protract",
+          "word2": "curtail"
+        },
+        {
+          "question_number": 5,
+          "word1": "fauna",
+          "word2": "glut"
+        },
+        {
+          "question_number": 6,
+          "word1": "deprecate",
+          "word2": "lament"
+        },
+        {
+          "question_number": 7,
+          "word1": "abridge",
+          "word2": "augment"
+        },
+        {
+          "question_number": 8,
+          "word1": "eccentric",
+          "word2": "orthodox"
+        },
+        {
+          "question_number": 9,
+          "word1": "iconoclast",
+          "word2": "maverick"
+        },
+        {
+          "question_number": 10,
+          "word1": "idiosyncratic",
+          "word2": "conventional"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "S",
+        "3": "O",
+        "4": "O",
+        "5": "U",
+        "6": "S",
+        "7": "O",
+        "8": "O",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 33,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "infamous",
+            "abhorrence",
+            "innocuous",
+            "nefarious"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "assimilate",
+            "abate",
+            "mitigate",
+            "alleviate"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "laconic",
+            "unctuous",
+            "concise",
+            "terse"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "relinquish",
+            "renounce",
+            "forsake",
+            "exult"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "axiom",
+            "maxim",
+            "surrogate",
+            "precept"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "virulent",
+            "adverse",
+            "baneful",
+            "animosity"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "catharsis",
+            "rancor",
+            "affectation",
+            "recrimination"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "idiosyncrasy",
+            "eccentricity",
+            "precedent",
+            "vindicate"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "antecedent",
+            "precursor",
+            "exculpate",
+            "corellary"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "exonerate",
+            "patronize",
+            "resolution",
+            "resolution"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "innocuous",
+        "2": "assimilate",
+        "3": "unctuous",
+        "4": "exult",
+        "5": "surrogate",
+        "6": "tantamount",
+        "7": "catharsis",
+        "8": "complacency",
+        "9": "recrimination",
+        "10": "patronize"
+      }
+    },
+    {
+      "drill_number": 34,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "slothful",
+          "word2": "assiduous"
+        },
+        {
+          "question_number": 2,
+          "word1": "affluent",
+          "word2": "opulent"
+        },
+        {
+          "question_number": 3,
+          "word1": "consummate",
+          "word2": "rudimentary"
+        },
+        {
+          "question_number": 4,
+          "word1": "chastisement",
+          "word2": "amnesty"
+        },
+        {
+          "question_number": 5,
+          "word1": "sycophant",
+          "word2": "cajoler"
+        },
+        {
+          "question_number": 6,
+          "word1": "implication",
+          "word2": "allusion"
+        },
+        {
+          "question_number": 7,
+          "word1": "quantitative",
+          "word2": "qualitative"
+        },
+        {
+          "question_number": 8,
+          "word1": "agenda",
+          "word2": "itinerary"
+        },
+        {
+          "question_number": 9,
+          "word1": "pragmatic",
+          "word2": "quixotic"
+        },
+        {
+          "question_number": 10,
+          "word1": "paradox",
+          "word2": "anomaly"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "S",
+        "3": "O",
+        "4": "O",
+        "5": "S",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "O",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 35,
+      "drill_type": "buddy check",
+      "instructions": "For each question below, match the word on the left with the word most similar in meaning on the right.",
+      "questions": [
+        {
+          "question_number": 1,
+          "left_word": "torpid",
+          "right_choice_letter": "a",
+          "right_word": "subservient"
+        },
+        {
+          "question_number": 2,
+          "left_word": "sublime",
+          "right_choice_letter": "b",
+          "right_word": "astuteness"
+        },
+        {
+          "question_number": 3,
+          "left_word": "recapitulate",
+          "right_choice_letter": "c",
+          "right_word": "ingenuous"
+        },
+        {
+          "question_number": 4,
+          "left_word": "acuity",
+          "right_choice_letter": "d",
+          "right_word": "subtlety"
+        },
+        {
+          "question_number": 5,
+          "left_word": "replete",
+          "right_choice_letter": "e",
+          "right_word": "provincial"
+        },
+        {
+          "question_number": 6,
+          "left_word": "subordinate",
+          "right_choice_letter": "f",
+          "right_word": "inert"
+        },
+        {
+          "question_number": 7,
+          "left_word": "parochial",
+          "right_choice_letter": "g",
+          "right_word": "transcendent"
+        },
+        {
+          "question_number": 8,
+          "left_word": "credulous",
+          "right_choice_letter": "h",
+          "right_word": "reiterate"
+        },
+        {
+          "question_number": 9,
+          "left_word": "recant",
+          "right_choice_letter": "i",
+          "right_word": "sated"
+        },
+        {
+          "question_number": 10,
+          "left_word": "nuance",
+          "right_choice_letter": "j",
+          "right_word": "repudiate"
+        }
+      ],
+      "answers": {
+        "1": "f",
+        "2": "g",
+        "3": "h",
+        "4": "b",
+        "5": "i",
+        "6": "a",
+        "7": "e",
+        "8": "c",
+        "9": "j",
+        "10": "d"
+      }
+    },
+    {
+      "drill_number": 36,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "colloquial",
+          "word2": "contiguous"
+        },
+        {
+          "question_number": 2,
+          "word1": "auspicious",
+          "word2": "portentous"
+        },
+        {
+          "question_number": 3,
+          "word1": "moribund",
+          "word2": "viable"
+        },
+        {
+          "question_number": 4,
+          "word1": "aristocratic",
+          "word2": "patrician"
+        },
+        {
+          "question_number": 5,
+          "word1": "perquisite",
+          "word2": "prerogative"
+        },
+        {
+          "question_number": 6,
+          "word1": "stagnation",
+          "word2": "metamorphosis"
+        },
+        {
+          "question_number": 7,
+          "word1": "ebullient",
+          "word2": "roguish"
+        },
+        {
+          "question_number": 8,
+          "word1": "turpitude",
+          "word2": "sordidness"
+        },
+        {
+          "question_number": 9,
+          "word1": "cosmopolitan",
+          "word2": "urbane"
+        },
+        {
+          "question_number": 10,
+          "word1": "denizen",
+          "word2": "lampoon"
+        }
+      ],
+      "answers": {
+        "1": "U",
+        "2": "O",
+        "3": "O",
+        "4": "S",
+        "5": "S",
+        "6": "O",
+        "7": "U",
+        "8": "S",
+        "9": "S",
+        "10": "U"
+      }
+    },
+    {
+      "drill_number": 37,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The _______ spring weather was a great relief to all of us who had struggled through the long, harsh winter.",
+          "options": {
+            "a": "abortive",
+            "b": "volatile",
+            "c": "temperate",
+            "d": "pragmatic",
+            "e": "intrinsic"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "I made a(n) _______ effort to repair the leak, but my improvised patch didn't hold and I soon realized that I would have to call a plumber.",
+          "options": {
+            "a": "vindictive",
+            "b": "tentative",
+            "c": "pristine",
+            "d": "acrid",
+            "e": "caustic"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "The adoring members of the tribe _______ their old king even though he was blind and senile.",
+          "options": {
+            "a": "squandered",
+            "b": "extrapolated",
+            "c": "beleaguered",
+            "d": "exacerbated",
+            "e": "venerated"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The hikers were _______ by the billions of mosquitoes that descended upon them as soon as they hit the trail.",
+          "options": {
+            "a": "extolled",
+            "b": "vitiated",
+            "c": "palliated",
+            "d": "vexed",
+            "e": "promulgated"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "Seeing the pictures of our old home made us feel _______ and nostalgic.",
+          "options": {
+            "a": "adept",
+            "b": "fastidious",
+            "c": "wistful",
+            "d": "infamous",
+            "e": "impartial"
+          }
+        }
+      ],
+      "answers": {
+        "1": "c",
+        "2": "e",
+        "3": "e",
+        "4": "d",
+        "5": "c"
+      }
+    },
+    {
+      "drill_number": 38,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "ardent",
+          "word2": "indifferent"
+        },
+        {
+          "question_number": 2,
+          "word1": "adherent",
+          "word2": "forsaker"
+        },
+        {
+          "question_number": 3,
+          "word1": "poignant",
+          "word2": "redolent"
+        },
+        {
+          "question_number": 4,
+          "word1": "inundate",
+          "word2": "reconcile"
+        },
+        {
+          "question_number": 5,
+          "word1": "abject",
+          "word2": "exalted"
+        },
+        {
+          "question_number": 6,
+          "word1": "proselytize",
+          "word2": "implement"
+        },
+        {
+          "question_number": 7,
+          "word1": "latent",
+          "word2": "manifest"
+        },
+        {
+          "question_number": 8,
+          "word1": "burgeon",
+          "word2": "accost"
+        },
+        {
+          "question_number": 9,
+          "word1": "immutable",
+          "word2": "static"
+        },
+        {
+          "question_number": 10,
+          "word1": "perfidy",
+          "word2": "piety"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "O",
+        "3": "U",
+        "4": "U",
+        "5": "O",
+        "6": "U",
+        "7": "O",
+        "8": "U",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 39,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "quixotic",
+            "scintillating",
+            "chimerical",
+            "visionary"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "antipathy",
+            "malfeasance",
+            "digression",
+            "malevolence"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "absolute",
+            "unqualified",
+            "categorical",
+            "wistful"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "static",
+            "cerebral",
+            "inert",
+            "immutable"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "destitute",
+            "insolvent",
+            "affable",
+            "indigent"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "altruist",
+            "benevolent",
+            "philanthropic",
+            "ideological"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "vexed",
+            "unequivocal",
+            "unalloyed",
+            "unmitigated"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "comprehensive",
+            "stringent",
+            "rigorous",
+            "exacting"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "abstract",
+            "abstruse",
+            "intangible",
+            "impervious"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "discernment",
+            "tirade",
+            "discrimination",
+            "sagacity"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "scintillating",
+        "2": "digression",
+        "3": "wistful",
+        "4": "cerebral",
+        "5": "affable",
+        "6": "ideological",
+        "7": "vexed",
+        "8": "comprehensive",
+        "9": "impervious",
+        "10": "tirade"
+      }
+    },
+    {
+      "drill_number": 40,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "plethora",
+          "word2": "dearth"
+        },
+        {
+          "question_number": 2,
+          "word1": "autonomy",
+          "word2": "subjugation"
+        },
+        {
+          "question_number": 3,
+          "word1": "aggregate",
+          "word2": "augment"
+        },
+        {
+          "question_number": 4,
+          "word1": "vocation",
+          "word2": "avocation"
+        },
+        {
+          "question_number": 5,
+          "word1": "extraneous",
+          "word2": "intrinsic"
+        },
+        {
+          "question_number": 6,
+          "word1": "implicit",
+          "word2": "inferred"
+        },
+        {
+          "question_number": 7,
+          "word1": "invective",
+          "word2": "eulogy"
+        },
+        {
+          "question_number": 8,
+          "word1": "acerbic",
+          "word2": "caustic"
+        },
+        {
+          "question_number": 9,
+          "word1": "insinuation",
+          "word2": "hyperbole"
+        },
+        {
+          "question_number": 10,
+          "word1": "adulterated",
+          "word2": "unalloyed"
+        }
+      ],
+      "answers": {
+        "1": "O",
+        "2": "O",
+        "3": "S",
+        "4": "O",
+        "5": "O",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "O",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 41,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "An _______ current of dissatisfaction among the soldiers indicated to the ambassador that revolution was becoming a possibility.",
+          "options": {
+            "a": "incipient",
+            "b": "inert",
+            "c": "impervious",
+            "d": "impeccable",
+            "e": "inept"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "The _______ surgeon sewed Lana's finger to her forehead.",
+          "options": {
+            "a": "bucolic",
+            "b": "ursine",
+            "c": "cosmopolitan",
+            "d": "infinitesimal",
+            "e": "incompetent"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "Irene's _______ cure for her husband's snoring was a paper bag tied snugly around his head.",
+          "options": {
+            "a": "agnostic",
+            "b": "congenital",
+            "c": "extrinsic",
+            "d": "ingenious",
+            "e": "diffident"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "Myron looked harmless, but there was nothing _______ about his plan to enslave the human race.",
+          "options": {
+            "a": "terse",
+            "b": "innocuous",
+            "c": "mendacious",
+            "d": "nominal",
+            "e": "preeminent"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "Attempting to bask in reflected glory, the candidate _______ the names of eleven past presidents in his speech to the convention of schoolteachers.",
+          "options": {
+            "a": "absolved",
+            "b": "implied",
+            "c": "litigated",
+            "d": "invoked",
+            "e": "allocated"
+          }
+        }
+      ],
+      "answers": {
+        "1": "a",
+        "2": "b",
+        "3": "d",
+        "4": "b",
+        "5": "d"
+      }
+    },
+    {
+      "drill_number": 42,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "ambience",
+          "word2": "milieu"
+        },
+        {
+          "question_number": 2,
+          "word1": "literal",
+          "word2": "figurative"
+        },
+        {
+          "question_number": 3,
+          "word1": "hypothetical",
+          "word2": "empirical"
+        },
+        {
+          "question_number": 4,
+          "word1": "subjugate",
+          "word2": "enfranchise"
+        },
+        {
+          "question_number": 5,
+          "word1": "taciturn",
+          "word2": "integral"
+        },
+        {
+          "question_number": 6,
+          "word1": "congenital",
+          "word2": "innate"
+        },
+        {
+          "question_number": 7,
+          "word1": "enfetter",
+          "word2": "expedite"
+        },
+        {
+          "question_number": 8,
+          "word1": "peripheral",
+          "word2": "tangential"
+        },
+        {
+          "question_number": 9,
+          "word1": "usurp",
+          "word2": "abdicate"
+        },
+        {
+          "question_number": 10,
+          "word1": "consummate",
+          "word2": "abortive"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "O",
+        "3": "O",
+        "4": "O",
+        "5": "U",
+        "6": "S",
+        "7": "O",
+        "8": "S",
+        "9": "O",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 43,
+      "drill_type": "odd man out",
+      "instructions": "Each question below consists of four words. Three of them are related in meaning. Find the word that does not fit.",
+      "questions": [
+        {
+          "question_number": 1,
+          "words": [
+            "cacophony",
+            "antagonism",
+            "rancor",
+            "antipathy"
+          ]
+        },
+        {
+          "question_number": 2,
+          "words": [
+            "discord",
+            "benefactor",
+            "contention",
+            "incongruity"
+          ]
+        },
+        {
+          "question_number": 3,
+          "words": [
+            "apathy",
+            "indifference",
+            "manifesto",
+            "languor"
+          ]
+        },
+        {
+          "question_number": 4,
+          "words": [
+            "amenable",
+            "tractable",
+            "docile",
+            "reciprocal"
+          ]
+        },
+        {
+          "question_number": 5,
+          "words": [
+            "clandestine",
+            "surreptitious",
+            "provisional",
+            "furtive"
+          ]
+        },
+        {
+          "question_number": 6,
+          "words": [
+            "intrepid",
+            "blithe",
+            "squalid",
+            "equanimous"
+          ]
+        },
+        {
+          "question_number": 7,
+          "words": [
+            "callow",
+            "apocryphal",
+            "dubious",
+            "spurious"
+          ]
+        },
+        {
+          "question_number": 8,
+          "words": [
+            "putative",
+            "overt",
+            "explicit",
+            "patent"
+          ]
+        },
+        {
+          "question_number": 9,
+          "words": [
+            "desultory",
+            "derisory",
+            "cursory",
+            "perfunctory"
+          ]
+        },
+        {
+          "question_number": 10,
+          "words": [
+            "conciliate",
+            "proscribe",
+            "appease",
+            "placate"
+          ]
+        }
+      ],
+      "answers": {
+        "1": "cacophony",
+        "2": "benefactor",
+        "3": "manifesto",
+        "4": "reciprocal",
+        "5": "provisional",
+        "6": "squalid",
+        "7": "callow",
+        "8": "putative",
+        "9": "derisory",
+        "10": "proscribe"
+      }
+    },
+    {
+      "drill_number": 44,
+      "drill_type": "buddy check",
+      "instructions": "For each question below, match the word on the left with the word most nearly its OPPOSITE on the right.",
+      "questions": [
+        {
+          "question_number": 1,
+          "left_word": "deferential",
+          "right_choice_letter": "a",
+          "right_word": "irreverent"
+        },
+        {
+          "question_number": 2,
+          "left_word": "remonstrate",
+          "right_choice_letter": "b",
+          "right_word": "assiduous"
+        },
+        {
+          "question_number": 3,
+          "left_word": "tacit",
+          "right_choice_letter": "c",
+          "right_word": "amorous"
+        },
+        {
+          "question_number": 4,
+          "left_word": "clement",
+          "right_choice_letter": "d",
+          "right_word": "explicit"
+        },
+        {
+          "question_number": 5,
+          "left_word": "indolent",
+          "right_choice_letter": "e",
+          "right_word": "acquiesce"
+        },
+        {
+          "question_number": 6,
+          "left_word": "ambivalent",
+          "right_choice_letter": "f",
+          "right_word": "intemperate"
+        },
+        {
+          "question_number": 7,
+          "left_word": "aloof",
+          "right_choice_letter": "g",
+          "right_word": "aversion"
+        },
+        {
+          "question_number": 8,
+          "left_word": "lucid",
+          "right_choice_letter": "h",
+          "right_word": "antagonist"
+        },
+        {
+          "question_number": 9,
+          "left_word": "partisan",
+          "right_choice_letter": "i",
+          "right_word": "enigmatic"
+        },
+        {
+          "question_number": 10,
+          "left_word": "affinity",
+          "right_choice_letter": "j",
+          "right_word": "resolute"
+        }
+      ],
+      "answers": {
+        "1": "a",
+        "2": "e",
+        "3": "d",
+        "4": "f",
+        "5": "b",
+        "6": "j",
+        "7": "g",
+        "8": "i",
+        "9": "h",
+        "10": "g"
+      }
+    },
+    {
+      "drill_number": 45,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "artifice",
+          "word2": "machination"
+        },
+        {
+          "question_number": 2,
+          "word1": "obtuse",
+          "word2": "myopic"
+        },
+        {
+          "question_number": 3,
+          "word1": "respite",
+          "word2": "premise"
+        },
+        {
+          "question_number": 4,
+          "word1": "exalt",
+          "word2": "laud"
+        },
+        {
+          "question_number": 5,
+          "word1": "dissimilate",
+          "word2": "appreciate"
+        },
+        {
+          "question_number": 6,
+          "word1": "edify",
+          "word2": "obfuscate"
+        },
+        {
+          "question_number": 7,
+          "word1": "pensive",
+          "word2": "ruminating"
+        },
+        {
+          "question_number": 8,
+          "word1": "narcissist",
+          "word2": "egocentric"
+        },
+        {
+          "question_number": 9,
+          "word1": "precipitate",
+          "word2": "stigmatize"
+        },
+        {
+          "question_number": 10,
+          "word1": "polemical",
+          "word2": "contentious"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "S",
+        "3": "U",
+        "4": "S",
+        "5": "U",
+        "6": "O",
+        "7": "S",
+        "8": "S",
+        "9": "U",
+        "10": "S"
+      }
+    },
+    {
+      "drill_number": 46,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The three-year-old was _______ in his refusal to taste the broccoli.",
+          "options": {
+            "a": "recondite",
+            "b": "didactic",
+            "c": "fortuitous",
+            "d": "resolute",
+            "e": "genteel"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "We _______ the fine print in the document but were unable to find the clause the lawyer had mentioned.",
+          "options": {
+            "a": "scrutinized",
+            "b": "reconciled",
+            "c": "exculpated",
+            "d": "cajoled",
+            "e": "accrued"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "A state in which one can see, hear, feel, smell, and taste little or nothing is known as _______ deprivation.",
+          "options": {
+            "a": "aggregate",
+            "b": "subversive",
+            "c": "sensory",
+            "d": "sensual",
+            "e": "sensuous"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The children tried to be _______ about the fact that their parents couldn't afford to give them Christmas presents, but you could tell that they were really quite depressed inside.",
+          "options": {
+            "a": "tangential",
+            "b": "abysmal",
+            "c": "stoic",
+            "d": "disingenuous",
+            "e": "eclectic"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "We felt repeatedly _______ by the impersonal and inflexible bureaucracy in our attempt to win an exemption to the rule.",
+          "options": {
+            "a": "vindicated",
+            "b": "deluged",
+            "c": "stymied",
+            "d": "reiterated",
+            "e": "gesticulated"
+          }
+        }
+      ],
+      "answers": {
+        "1": "d",
+        "2": "a",
+        "3": "c",
+        "4": "c",
+        "5": "c"
+      }
+    },
+    {
+      "drill_number": 47,
+      "drill_type": "relationships",
+      "instructions": "For each question below, decide whether the pair of words are roughly similar (S) in meaning, roughly opposite (O) in meaning, or unrelated (U) to each other.",
+      "questions": [
+        {
+          "question_number": 1,
+          "word1": "clich\u00e9",
+          "word2": "platitude"
+        },
+        {
+          "question_number": 2,
+          "word1": "malevolent",
+          "word2": "macroeconomic"
+        },
+        {
+          "question_number": 3,
+          "word1": "juxtaposed",
+          "word2": "contiguous"
+        },
+        {
+          "question_number": 4,
+          "word1": "defame",
+          "word2": "laud"
+        },
+        {
+          "question_number": 5,
+          "word1": "idyllic",
+          "word2": "bucolic"
+        },
+        {
+          "question_number": 6,
+          "word1": "inexorable",
+          "word2": "irrevocable"
+        },
+        {
+          "question_number": 7,
+          "word1": "despondent",
+          "word2": "sanguine"
+        },
+        {
+          "question_number": 8,
+          "word1": "lethargy",
+          "word2": "zeal"
+        },
+        {
+          "question_number": 9,
+          "word1": "dogma",
+          "word2": "tenet"
+        },
+        {
+          "question_number": 10,
+          "word1": "ebullient",
+          "word2": "stoic"
+        }
+      ],
+      "answers": {
+        "1": "S",
+        "2": "U",
+        "3": "S",
+        "4": "O",
+        "5": "S",
+        "6": "S",
+        "7": "O",
+        "8": "O",
+        "9": "S",
+        "10": "O"
+      }
+    },
+    {
+      "drill_number": 48,
+      "drill_type": "completions",
+      "instructions": "For each question below, choose the word that best completes the meaning of the sentence.",
+      "questions": [
+        {
+          "question_number": 1,
+          "sentence": "The gasoline spill had so thoroughly _______ the town's main well that it was possible to run an automobile on tap water.",
+          "options": {
+            "a": "exulted",
+            "b": "exalted",
+            "c": "engendered",
+            "d": "adulterated",
+            "e": "preempted"
+          }
+        },
+        {
+          "question_number": 2,
+          "sentence": "Mr. Jones _______ the teenagers after they had driven the stolen car into his living room and put a dent in his new color TV.",
+          "options": {
+            "a": "admonished",
+            "b": "usurped",
+            "c": "enervated",
+            "d": "alleged",
+            "e": "professed"
+          }
+        },
+        {
+          "question_number": 3,
+          "sentence": "Henry's legs were so severely injured in the roller-skating accident that he didn't become fully _______ again until more than a year later.",
+          "options": {
+            "a": "decadent",
+            "b": "exemplified",
+            "c": "querulous",
+            "d": "portentous",
+            "e": "ambulatory"
+          }
+        },
+        {
+          "question_number": 4,
+          "sentence": "The kitchen in the new house had an electronic vegetable peeler, an automatic dish scraper, a computerized meat slicer, and dozens of other futuristic _______.",
+          "options": {
+            "a": "proponents",
+            "b": "genres",
+            "c": "amenities",
+            "d": "mendicants",
+            "e": "protagonists"
+          }
+        },
+        {
+          "question_number": 5,
+          "sentence": "When Joe began collecting stamps, he hoped that the value of his collection would _______ rapidly; instead, the collection has slowly become worthless.",
+          "options": {
+            "a": "qualify",
+            "b": "appreciate",
+            "c": "polarize",
+            "d": "belabor",
+            "e": "rebuke"
+          }
+        }
+      ],
+      "answers": {
+        "1": "d",
+        "2": "a",
+        "3": "e",
+        "4": "c",
+        "5": "b"
+      }
+    }
+  ]
+}

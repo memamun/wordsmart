@@ -1,0 +1,2543 @@
+{
+  "total_roots": 186,
+  "roots": [
+    {
+      "root": "A",
+      "meaning": "without",
+      "words": [
+        "agnostic",
+        "amoral",
+        "amorphous",
+        "anomaly",
+        "anonymous",
+        "apathy",
+        "atheist",
+        "atrophy",
+        "atypical"
+      ]
+    },
+    {
+      "root": "AB/ABS",
+      "meaning": "off, away from, apart, down",
+      "words": [
+        "abdicate",
+        "abduct",
+        "aberrant",
+        "abhor",
+        "abjure",
+        "ablution",
+        "abnormal",
+        "abolish",
+        "abominate",
+        "abrogate",
+        "abscond",
+        "absolution",
+        "abstemious",
+        "abstinent",
+        "abstract",
+        "abstruse"
+      ]
+    },
+    {
+      "root": "AC/ACR",
+      "meaning": "sharp, bitter",
+      "words": [
+        "acerbic",
+        "acid",
+        "acrid",
+        "acrimonious",
+        "acumen",
+        "acute",
+        "exacerbate"
+      ]
+    },
+    {
+      "root": "ACT/AG",
+      "meaning": "to do, to drive, to force, to lead",
+      "words": [
+        "act",
+        "agenda",
+        "agent",
+        "agile",
+        "agitate",
+        "cogent",
+        "exacting",
+        "exigent",
+        "litigate",
+        "pedagogue",
+        "prodigal",
+        "prodigious",
+        "synagogue"
+      ]
+    },
+    {
+      "root": "AD/AL",
+      "meaning": "to, toward, near",
+      "words": [
+        "adapt",
+        "addict",
+        "address",
+        "adhere",
+        "adjacent",
+        "adjoin",
+        "administer",
+        "admire",
+        "adore",
+        "adultery",
+        "advice",
+        "advocate",
+        "alloy",
+        "allure"
+      ]
+    },
+    {
+      "root": "AL/ALI/ALTER",
+      "meaning": "other, another",
+      "words": [
+        "alias",
+        "alibi",
+        "alien",
+        "alienation",
+        "allegory",
+        "alter ego",
+        "altercation",
+        "alternative",
+        "altruist"
+      ]
+    },
+    {
+      "root": "AM",
+      "meaning": "love",
+      "words": [
+        "amateur",
+        "amatory",
+        "amiable",
+        "amicable",
+        "amity",
+        "amorous",
+        "enamored",
+        "inamorata",
+        "paramour"
+      ]
+    },
+    {
+      "root": "AMB",
+      "meaning": "to go, to walk",
+      "words": [
+        "ambitious",
+        "amble",
+        "ambulance",
+        "ambulatory",
+        "circumambulate",
+        "perambulator",
+        "preamble"
+      ]
+    },
+    {
+      "root": "AMB/AMPH",
+      "meaning": "around; both, more than one",
+      "words": [
+        "ambidextrous",
+        "ambience",
+        "ambient",
+        "ambiguous",
+        "ambit",
+        "ambivalent",
+        "amphibian",
+        "amphitheater"
+      ]
+    },
+    {
+      "root": "ANIM",
+      "meaning": "life, mind, soul, spirit",
+      "words": [
+        "animosity",
+        "equanimity",
+        "magnanimous",
+        "pusillanimous",
+        "unanimous"
+      ]
+    },
+    {
+      "root": "ANNU/ENNI",
+      "meaning": "year",
+      "words": [
+        "annals",
+        "anniversary",
+        "annual",
+        "annuity",
+        "biannual",
+        "biennial",
+        "centennial",
+        "millennium",
+        "perennial"
+      ]
+    },
+    {
+      "root": "ANTE",
+      "meaning": "before",
+      "words": [
+        "ante",
+        "antebellum",
+        "antecedent",
+        "antedate",
+        "antediluvian",
+        "anterior"
+      ]
+    },
+    {
+      "root": "ANTHRO/ANDR",
+      "meaning": "man, human",
+      "words": [
+        "androgynous",
+        "android",
+        "anthropocentric",
+        "anthropology",
+        "anthropomorphic",
+        "misanthrope",
+        "philander",
+        "philanthropy"
+      ]
+    },
+    {
+      "root": "ANTI",
+      "meaning": "against",
+      "words": [
+        "antidote",
+        "antipathy",
+        "antipodal",
+        "antiseptic"
+      ]
+    },
+    {
+      "root": "APO",
+      "meaning": "away",
+      "words": [
+        "apocalypse",
+        "apocryphal",
+        "apogee",
+        "apology",
+        "apoplexy",
+        "apostasy",
+        "apostle",
+        "apotheosis"
+      ]
+    },
+    {
+      "root": "APT/EPT",
+      "meaning": "skill, fitness, ability",
+      "words": [
+        "adapt",
+        "apt",
+        "aptitude",
+        "inept"
+      ]
+    },
+    {
+      "root": "ARCH/ARCHI",
+      "meaning": "chief, principal",
+      "words": [
+        "archenemy",
+        "archetype",
+        "archipelago",
+        "architect"
+      ]
+    },
+    {
+      "root": "ARCHY",
+      "meaning": "ruler",
+      "words": [
+        "anarchy",
+        "hierarchy",
+        "matriarchy",
+        "monarchy",
+        "oligarchy",
+        "patriarchy"
+      ]
+    },
+    {
+      "root": "ART",
+      "meaning": "skill, craft",
+      "words": [
+        "art",
+        "artful",
+        "artifact",
+        "artifice",
+        "artificial",
+        "artisan",
+        "artless"
+      ]
+    },
+    {
+      "root": "AUC/AUG/AUX",
+      "meaning": "to increase",
+      "words": [
+        "auction",
+        "augment",
+        "august",
+        "auxiliary"
+      ]
+    },
+    {
+      "root": "AUTO",
+      "meaning": "self",
+      "words": [
+        "autocrat",
+        "automatic",
+        "autonomy",
+        "autopsy"
+      ]
+    },
+    {
+      "root": "BEL/BELL",
+      "meaning": "war",
+      "words": [
+        "antebellum",
+        "bellicose",
+        "belligerent",
+        "rebel"
+      ]
+    },
+    {
+      "root": "BEN/BON",
+      "meaning": "good",
+      "words": [
+        "benediction",
+        "benefactor",
+        "beneficent",
+        "beneficiary",
+        "benefit",
+        "benevolent",
+        "benign",
+        "bon vivant",
+        "bona fide",
+        "bonus"
+      ]
+    },
+    {
+      "root": "BI",
+      "meaning": "twice, doubly",
+      "words": [
+        "biannual",
+        "biennial",
+        "bigamy",
+        "bilateral",
+        "bilingual",
+        "binoculars",
+        "bipartisan"
+      ]
+    },
+    {
+      "root": "BRI/BREV",
+      "meaning": "brief, short",
+      "words": [
+        "abbreviate",
+        "abridge",
+        "brevity",
+        "brief"
+      ]
+    },
+    {
+      "root": "CAD/CID",
+      "meaning": "to fall, to happen by chance",
+      "words": [
+        "accident",
+        "cadence",
+        "cascade",
+        "coincidence",
+        "decadent",
+        "recidivism"
+      ]
+    },
+    {
+      "root": "CAND",
+      "meaning": "to burn",
+      "words": [
+        "candle",
+        "candor",
+        "incandescent"
+      ]
+    },
+    {
+      "root": "CANT/CENT/CHANT",
+      "meaning": "to sing",
+      "words": [
+        "accent",
+        "chant",
+        "enchant",
+        "incantation",
+        "incentive",
+        "recant"
+      ]
+    },
+    {
+      "root": "CAP/CAPIT/CIPIT",
+      "meaning": "head, headlong",
+      "words": [
+        "cape",
+        "capital",
+        "capitalism",
+        "capitulate",
+        "captain",
+        "caption",
+        "disciple",
+        "precipice",
+        "precipitate",
+        "precipitation",
+        "precipitous",
+        "principal",
+        "principle",
+        "recapitulate"
+      ]
+    },
+    {
+      "root": "CAP/CIP/CEPT",
+      "meaning": "to take, to get",
+      "words": [
+        "anticipate",
+        "capture",
+        "emancipate",
+        "incipient",
+        "intercept",
+        "percipient",
+        "precept",
+        "recipient",
+        "susceptible"
+      ]
+    },
+    {
+      "root": "CARD/CORD/COUR",
+      "meaning": "heart",
+      "words": [
+        "accord",
+        "cardiac",
+        "concord",
+        "concordance",
+        "cordial",
+        "courage",
+        "discord",
+        "encourage"
+      ]
+    },
+    {
+      "root": "CARN",
+      "meaning": "flesh",
+      "words": [
+        "carnage",
+        "carnal",
+        "carnival",
+        "carnivorous",
+        "incarnation",
+        "reincarnation"
+      ]
+    },
+    {
+      "root": "CAST/CHAST",
+      "meaning": "pure, chaste",
+      "words": [
+        "caste",
+        "castigate",
+        "chaste",
+        "chastise"
+      ]
+    },
+    {
+      "root": "CAUST",
+      "meaning": "to burn",
+      "words": [
+        "caustic",
+        "holocaust"
+      ]
+    },
+    {
+      "root": "CED/CEED/CESS",
+      "meaning": "to go, to yield, to stop",
+      "words": [
+        "abscess",
+        "access",
+        "antecedent",
+        "cede",
+        "cessation",
+        "concede",
+        "exceed",
+        "incessant",
+        "precede",
+        "precedent",
+        "predecessor",
+        "recede",
+        "recess"
+      ]
+    },
+    {
+      "root": "CENTR",
+      "meaning": "center",
+      "words": [
+        "central",
+        "centrifuge",
+        "concentrate",
+        "concentric",
+        "eccentric",
+        "egocentric"
+      ]
+    },
+    {
+      "root": "CERN/CERT/CRET/CRIM/CRIT",
+      "meaning": "to separate, to judge, to distinguish, to decide",
+      "words": [
+        "ascertain",
+        "certitude",
+        "concern",
+        "crime",
+        "criterion",
+        "critic",
+        "discern",
+        "discrete",
+        "discriminate",
+        "hypocrite",
+        "recrimination",
+        "secret"
+      ]
+    },
+    {
+      "root": "CHRON",
+      "meaning": "time",
+      "words": [
+        "anachronism",
+        "chronic",
+        "chronicle",
+        "chronological",
+        "chronology",
+        "chronometer",
+        "synchronize"
+      ]
+    },
+    {
+      "root": "CIRCU",
+      "meaning": "around, on all sides",
+      "words": [
+        "circuit",
+        "circuitous",
+        "circumambulate",
+        "circumference",
+        "circumlocution",
+        "circumnavigate",
+        "circumscribe",
+        "circumspect",
+        "circumstances",
+        "circumvent"
+      ]
+    },
+    {
+      "root": "CIS",
+      "meaning": "to cut",
+      "words": [
+        "concise",
+        "excise",
+        "exorcise",
+        "incision",
+        "incisive",
+        "precise",
+        "scissors"
+      ]
+    },
+    {
+      "root": "CIT",
+      "meaning": "to set in motion",
+      "words": [
+        "excite",
+        "incite",
+        "solicit",
+        "solicitous"
+      ]
+    },
+    {
+      "root": "CLA/CLO/CLU",
+      "meaning": "shut, close",
+      "words": [
+        "claustrophobia",
+        "cloister",
+        "closet",
+        "conclude",
+        "disclose",
+        "enclose",
+        "exclusive",
+        "foreclose",
+        "preclude",
+        "recluse",
+        "seclude"
+      ]
+    },
+    {
+      "root": "CLAIM/CLAM",
+      "meaning": "to shout, to cry out",
+      "words": [
+        "acclaim",
+        "clamor",
+        "declaim",
+        "disclaim",
+        "exclaim",
+        "proclaim",
+        "reclaim"
+      ]
+    },
+    {
+      "root": "CLI",
+      "meaning": "to lean toward",
+      "words": [
+        "climax",
+        "decline",
+        "disinclination",
+        "proclivity",
+        "recline"
+      ]
+    },
+    {
+      "root": "CO/COL/COM/CON",
+      "meaning": "with, together",
+      "words": [
+        "coalesce",
+        "coalition",
+        "coerce",
+        "coherent",
+        "cohesive",
+        "cohort",
+        "collaborate",
+        "commensurate",
+        "compatible",
+        "comply",
+        "concede",
+        "conciliate",
+        "conclave",
+        "confederate",
+        "confide",
+        "confluence",
+        "congenial",
+        "conjugal",
+        "connect",
+        "connubial",
+        "contrite",
+        "convivial"
+      ]
+    },
+    {
+      "root": "COUR/CUR",
+      "meaning": "running, a course",
+      "words": [
+        "concur",
+        "concurrent",
+        "courier",
+        "current",
+        "curriculum",
+        "cursive",
+        "cursory",
+        "discourse",
+        "discursive",
+        "excursion",
+        "incur",
+        "incursion",
+        "occur",
+        "precursor",
+        "recourse",
+        "recur"
+      ]
+    },
+    {
+      "root": "CRAT/CRACY",
+      "meaning": "to govern",
+      "words": [
+        "aristocracy",
+        "autocrat",
+        "bureaucracy",
+        "democracy",
+        "plutocracy",
+        "theocracy"
+      ]
+    },
+    {
+      "root": "CRE/CRESC/CRET",
+      "meaning": "to grow",
+      "words": [
+        "accretion",
+        "accrue",
+        "creation",
+        "crescendo",
+        "increase",
+        "increment"
+      ]
+    },
+    {
+      "root": "CRED",
+      "meaning": "to believe, to trust",
+      "words": [
+        "credence",
+        "credentials",
+        "credibility",
+        "credit",
+        "credo",
+        "credulity",
+        "creed",
+        "incredible",
+        "incredulous"
+      ]
+    },
+    {
+      "root": "CRYP",
+      "meaning": "hidden",
+      "words": [
+        "apocryphal",
+        "crypt",
+        "cryptic",
+        "cryptography"
+      ]
+    },
+    {
+      "root": "CUB/CUMB",
+      "meaning": "to lie down",
+      "words": [
+        "cubicle",
+        "incubate",
+        "incumbent",
+        "recumbent",
+        "succumb"
+      ]
+    },
+    {
+      "root": "CULP",
+      "meaning": "blame",
+      "words": [
+        "culpable",
+        "culprit",
+        "exculpate",
+        "inculpate",
+        "mea culpa"
+      ]
+    },
+    {
+      "root": "DAC/DOC",
+      "meaning": "to teach",
+      "words": [
+        "didactic",
+        "docile",
+        "doctor",
+        "doctrinaire",
+        "doctrine",
+        "indoctrinate"
+      ]
+    },
+    {
+      "root": "DE",
+      "meaning": "away, off, down, completely, reversal",
+      "words": [
+        "decipher",
+        "decry",
+        "deface",
+        "defame",
+        "defer",
+        "deferential",
+        "defile",
+        "defraud",
+        "delineate",
+        "denounce",
+        "deplete",
+        "descend",
+        "detract"
+      ]
+    },
+    {
+      "root": "DEM",
+      "meaning": "people",
+      "words": [
+        "demagogue",
+        "democracy",
+        "demographics",
+        "endemic",
+        "epidemic",
+        "pandemic"
+      ]
+    },
+    {
+      "root": "DI/DIA",
+      "meaning": "apart, through",
+      "words": [
+        "diagnose",
+        "dialectic",
+        "dialogue",
+        "diameter",
+        "diaphanous",
+        "dichotomy",
+        "digress",
+        "dilate",
+        "dilatory"
+      ]
+    },
+    {
+      "root": "DIC/DICT/DIT",
+      "meaning": "to say, to tell, to use words",
+      "words": [
+        "abdicate",
+        "benediction",
+        "contradict",
+        "dictate",
+        "diction",
+        "dictionary",
+        "dictum",
+        "edict",
+        "indict",
+        "indite",
+        "interdict",
+        "malediction",
+        "obiter dictum",
+        "predict",
+        "verdict"
+      ]
+    },
+    {
+      "root": "DIGN",
+      "meaning": "worth",
+      "words": [
+        "condign",
+        "deign",
+        "dignitary",
+        "dignity",
+        "disdain",
+        "indignant",
+        "infra dig",
+        "magnify"
+      ]
+    },
+    {
+      "root": "DIS/DIF",
+      "meaning": "away from, apart, reversal, not",
+      "words": [
+        "diffuse",
+        "disperse",
+        "disseminate",
+        "dissipate",
+        "dissuade"
+      ]
+    },
+    {
+      "root": "DOG/DOX",
+      "meaning": "opinion",
+      "words": [
+        "dogma",
+        "dogmatic",
+        "orthodox",
+        "paradox"
+      ]
+    },
+    {
+      "root": "DOL",
+      "meaning": "suffer, pain",
+      "words": [
+        "condolence",
+        "doleful",
+        "dolorous",
+        "indolence"
+      ]
+    },
+    {
+      "root": "DON/DOT/DOW",
+      "meaning": "to give",
+      "words": [
+        "anecdote",
+        "antidote",
+        "condone",
+        "donate",
+        "donor",
+        "dowry",
+        "endow",
+        "pardon"
+      ]
+    },
+    {
+      "root": "DUB",
+      "meaning": "doubt",
+      "words": [
+        "dubiety",
+        "dubious",
+        "indubitable"
+      ]
+    },
+    {
+      "root": "DUC/DUCT",
+      "meaning": "to lead",
+      "words": [
+        "abduct",
+        "conducive",
+        "conduct",
+        "ductile",
+        "induce",
+        "induct",
+        "seduce"
+      ]
+    },
+    {
+      "root": "DUR",
+      "meaning": "hard",
+      "words": [
+        "dour",
+        "durable",
+        "duress",
+        "endure",
+        "obdurate"
+      ]
+    },
+    {
+      "root": "DYS",
+      "meaning": "faulty",
+      "words": [
+        "dysfunction",
+        "dyslexia",
+        "dyspepsia",
+        "dystopia"
+      ]
+    },
+    {
+      "root": "E/EF/EX",
+      "meaning": "out, out of, from, former, completely",
+      "words": [
+        "evade",
+        "exalt",
+        "exclude",
+        "exhort",
+        "exonerate",
+        "expire",
+        "extort",
+        "extricate"
+      ]
+    },
+    {
+      "root": "EPI",
+      "meaning": "upon",
+      "words": [
+        "epidemic",
+        "epidermis",
+        "epigram",
+        "epilogue",
+        "epistle",
+        "epitaph",
+        "epithet",
+        "epitome"
+      ]
+    },
+    {
+      "root": "EQU",
+      "meaning": "equal, even",
+      "words": [
+        "adequate",
+        "equable",
+        "equanimity",
+        "equation",
+        "equidistant",
+        "equilibrium",
+        "equity",
+        "equivalent",
+        "equivocal",
+        "equivocate",
+        "iniquity"
+      ]
+    },
+    {
+      "root": "ERR",
+      "meaning": "to wander",
+      "words": [
+        "aberrant",
+        "err",
+        "errant",
+        "erratic",
+        "erroneous",
+        "error"
+      ]
+    },
+    {
+      "root": "ESCE",
+      "meaning": "becoming",
+      "words": [
+        "acquiescent",
+        "adolescent",
+        "coalesce",
+        "convalescent",
+        "effervescent",
+        "evanescent",
+        "incandescent",
+        "iridescent",
+        "luminescent",
+        "obsolescent",
+        "quiescent",
+        "reminiscent"
+      ]
+    },
+    {
+      "root": "EU",
+      "meaning": "good, well",
+      "words": [
+        "eugenics",
+        "eulogy",
+        "euphemism",
+        "euphony",
+        "euphoria",
+        "euthanasia"
+      ]
+    },
+    {
+      "root": "FID",
+      "meaning": "faith, trust",
+      "words": [
+        "fidelity"
+      ]
+    },
+    {
+      "root": "GEN",
+      "meaning": "birth, class, kin",
+      "words": [
+        "engender",
+        "genre",
+        "heterogeneous",
+        "homogeneous",
+        "indigenous"
+      ]
+    },
+    {
+      "root": "GI/GNO",
+      "meaning": "to know",
+      "words": [
+        "agnostic",
+        "cognitive",
+        "cognizant",
+        "cognoscenti",
+        "connoisseur",
+        "prognosis"
+      ]
+    },
+    {
+      "root": "GRAD/GRESS",
+      "meaning": "to step",
+      "words": [
+        "aggressive",
+        "degrade",
+        "digress",
+        "egress",
+        "gradual",
+        "graduate",
+        "progress",
+        "regress",
+        "retrograde",
+        "transgress"
+      ]
+    },
+    {
+      "root": "GRAND",
+      "meaning": "big",
+      "words": [
+        "aggrandize",
+        "grand",
+        "grandeur",
+        "grandiloquent",
+        "grandiose"
+      ]
+    },
+    {
+      "root": "GRAT",
+      "meaning": "pleasing",
+      "words": [
+        "grateful",
+        "gratuitous",
+        "gratuity",
+        "ingrate",
+        "ingratiate"
+      ]
+    },
+    {
+      "root": "GRAV/GRIEV",
+      "meaning": "heavy, serious",
+      "words": [
+        "aggrieve",
+        "grave",
+        "gravity",
+        "grief",
+        "grievous"
+      ]
+    },
+    {
+      "root": "GREG",
+      "meaning": "herd",
+      "words": [
+        "aggregation",
+        "congregation",
+        "egregious",
+        "gregarious",
+        "segregation"
+      ]
+    },
+    {
+      "root": "HER/HES",
+      "meaning": "to stick",
+      "words": [
+        "adherent",
+        "adhesive",
+        "coherent",
+        "cohesive",
+        "heterodox",
+        "heterogeneous",
+        "heterosexual",
+        "homeostasis",
+        "homonym",
+        "homosexual",
+        "inherent"
+      ]
+    },
+    {
+      "root": "HETERO",
+      "meaning": "other, different",
+      "words": [
+        "heterodox",
+        "heterogeneous",
+        "heterosexual"
+      ]
+    },
+    {
+      "root": "HOMO",
+      "meaning": "same, alike",
+      "words": [
+        "homeostasis",
+        "homogeneous",
+        "homonym",
+        "homosexual"
+      ]
+    },
+    {
+      "root": "HYPER",
+      "meaning": "over, excessive",
+      "words": [
+        "hyperactive",
+        "hyperbole"
+      ]
+    },
+    {
+      "root": "HYPO",
+      "meaning": "under, beneath, less than",
+      "words": [
+        "hypochondriac",
+        "hypocritical",
+        "hypodermic",
+        "hypothesis"
+      ]
+    },
+    {
+      "root": "ID",
+      "meaning": "one's own",
+      "words": [
+        "idiom",
+        "idiosyncrasy",
+        "idiot"
+      ]
+    },
+    {
+      "root": "IM/IN",
+      "meaning": "not, without",
+      "words": [
+        "impartial",
+        "inactive",
+        "indifferent",
+        "indolence",
+        "inept",
+        "innocuous"
+      ]
+    },
+    {
+      "root": "IM/IN/EM/EN",
+      "meaning": "in, into",
+      "words": [
+        "embrace",
+        "enclose",
+        "implicit",
+        "in",
+        "incarnate",
+        "influx",
+        "ingratiate",
+        "intrinsic"
+      ]
+    },
+    {
+      "root": "INFRA",
+      "meaning": "beneath",
+      "words": [
+        "infrared",
+        "infrasonic",
+        "infrastructure"
+      ]
+    },
+    {
+      "root": "INTER",
+      "meaning": "between, among",
+      "words": [
+        "interim",
+        "interloper",
+        "interlude",
+        "intermittent",
+        "interplay",
+        "intersperse",
+        "interstate",
+        "intervene"
+      ]
+    },
+    {
+      "root": "INTRA",
+      "meaning": "within",
+      "words": [
+        "intramural",
+        "intrastate",
+        "intravenous"
+      ]
+    },
+    {
+      "root": "JECT",
+      "meaning": "to throw, to throw down",
+      "words": [
+        "abject",
+        "conjecture",
+        "dejected",
+        "eject",
+        "inject",
+        "project",
+        "trajectory"
+      ]
+    },
+    {
+      "root": "JOIN/JUNCT",
+      "meaning": "to meet, to join",
+      "words": [
+        "adjoin",
+        "conjugal",
+        "injunction",
+        "joint",
+        "junction",
+        "junta",
+        "rejoinder",
+        "subjugate"
+      ]
+    },
+    {
+      "root": "JUR",
+      "meaning": "to swear",
+      "words": [
+        "abjure",
+        "adjure",
+        "jury",
+        "perjury"
+      ]
+    },
+    {
+      "root": "LECT/LEG",
+      "meaning": "to select, to choose",
+      "words": [
+        "collect",
+        "eclectic",
+        "elect",
+        "electorate",
+        "elegant",
+        "predilection",
+        "select"
+      ]
+    },
+    {
+      "root": "LEV",
+      "meaning": "lift, light, rise",
+      "words": [
+        "alleviate",
+        "elevator",
+        "levee",
+        "lever",
+        "levitate",
+        "levity",
+        "relevant",
+        "relieve"
+      ]
+    },
+    {
+      "root": "LOC/LOG/LOQU",
+      "meaning": "word, speech",
+      "words": [
+        "colloquial",
+        "dialogue",
+        "elocution",
+        "eloquent",
+        "epilogue",
+        "eulogy",
+        "grandiloquent",
+        "interlocutor",
+        "locution",
+        "loquacious",
+        "neologism",
+        "philology",
+        "prologue",
+        "soliloquy",
+        "tautology"
+      ]
+    },
+    {
+      "root": "LUC/LUM/LUS",
+      "meaning": "light",
+      "words": [
+        "elucidate",
+        "illuminate",
+        "illustrate",
+        "illustrious",
+        "lackluster",
+        "lucid",
+        "luminescent",
+        "luminous",
+        "translucent"
+      ]
+    },
+    {
+      "root": "LUD/LUS",
+      "meaning": "to play",
+      "words": [
+        "allude",
+        "collusion",
+        "delude",
+        "elude",
+        "elusive",
+        "illusion",
+        "interlude",
+        "ludicrous",
+        "prelude"
+      ]
+    },
+    {
+      "root": "LUT/LUG/LUV",
+      "meaning": "to wash",
+      "words": [
+        "antediluvian",
+        "deluge",
+        "dilute",
+        "lavatory",
+        "pollute"
+      ]
+    },
+    {
+      "root": "MAG/MAJ/MAX",
+      "meaning": "big",
+      "words": [
+        "magnanimous",
+        "magnate",
+        "magnify",
+        "magniloquent",
+        "magnitude",
+        "majestic",
+        "major",
+        "maxim",
+        "maximum"
+      ]
+    },
+    {
+      "root": "MAL/MALE",
+      "meaning": "bad, ill, evil, wrong",
+      "words": [
+        "dismal",
+        "maladroit",
+        "malaise",
+        "malapropism",
+        "malcontent",
+        "malediction",
+        "malefactor",
+        "malevolent",
+        "malfeasance",
+        "malfunction",
+        "malicious",
+        "malign",
+        "malinger",
+        "malodorous"
+      ]
+    },
+    {
+      "root": "MAN",
+      "meaning": "hand",
+      "words": [
+        "emancipate",
+        "mandate",
+        "mandatory",
+        "manifest",
+        "manifesto",
+        "manual",
+        "manufacture"
+      ]
+    },
+    {
+      "root": "MATER/MATR",
+      "meaning": "woman, mother",
+      "words": [
+        "maternal",
+        "maternity",
+        "matriarch",
+        "matrimony"
+      ]
+    },
+    {
+      "root": "MIN",
+      "meaning": "small; to project, to hang over",
+      "words": [
+        "diminish",
+        "diminution",
+        "eminent",
+        "imminent",
+        "miniature",
+        "minuscule",
+        "minute",
+        "minutiae",
+        "preeminent",
+        "prominent"
+      ]
+    },
+    {
+      "root": "MIS/MIT",
+      "meaning": "to send",
+      "words": [
+        "demise",
+        "emissary",
+        "intermittent",
+        "manumit",
+        "missive",
+        "remission",
+        "remit",
+        "transmit"
+      ]
+    },
+    {
+      "root": "MISC",
+      "meaning": "mixed",
+      "words": [
+        "miscegenation",
+        "miscellaneous",
+        "promiscuous"
+      ]
+    },
+    {
+      "root": "MON/MONIT",
+      "meaning": "to warn",
+      "words": [
+        "admonish",
+        "monitor",
+        "monument",
+        "summons"
+      ]
+    },
+    {
+      "root": "MONSTR",
+      "meaning": "to show",
+      "words": [
+        "remonstrate"
+      ]
+    },
+    {
+      "root": "MORPH",
+      "meaning": "shape",
+      "words": [
+        "amorphous",
+        "anthropomorphic",
+        "metamorphosis",
+        "polymorphous"
+      ]
+    },
+    {
+      "root": "MORT",
+      "meaning": "death",
+      "words": [
+        "immortal",
+        "morbid",
+        "morgue",
+        "moribund",
+        "mortify"
+      ]
+    },
+    {
+      "root": "MUT",
+      "meaning": "change",
+      "words": [
+        "commute",
+        "immutable",
+        "mutant",
+        "mutation",
+        "permutation",
+        "transmutation"
+      ]
+    },
+    {
+      "root": "NAM/NOM/NOUN/NOWN/NYM",
+      "meaning": "rule, order",
+      "words": [
+        "antimony",
+        "astronomy",
+        "autonomy",
+        "economy",
+        "gastronomy",
+        "nom de guerre",
+        "nom de plume",
+        "renown",
+        "taxonomy"
+      ]
+    },
+    {
+      "root": "NAT/NAS/NAI",
+      "meaning": "to be born",
+      "words": [
+        "cognate",
+        "innate",
+        "naive",
+        "nascent",
+        "native",
+        "natural",
+        "renaissance"
+      ]
+    },
+    {
+      "root": "NEC/NIC/NOC/NOX",
+      "meaning": "harm, death",
+      "words": [
+        "innocent",
+        "innocuous",
+        "internecine",
+        "necromancy",
+        "noxious",
+        "obnoxious",
+        "pernicious"
+      ]
+    },
+    {
+      "root": "NOM/NYM/NOUN/NOWN",
+      "meaning": "name",
+      "words": [
+        "acronym",
+        "anonymous",
+        "denomination",
+        "homonym",
+        "ignominy",
+        "misnomer",
+        "nomenclature",
+        "nominal",
+        "nominate",
+        "noun",
+        "pseudonym",
+        "synonym"
+      ]
+    },
+    {
+      "root": "NOUNC/NUNC",
+      "meaning": "to announce",
+      "words": [
+        "announce",
+        "denounce",
+        "pronounce",
+        "renounce"
+      ]
+    },
+    {
+      "root": "NOV/NEO/NOU",
+      "meaning": "new",
+      "words": [
+        "innovate",
+        "neologism",
+        "neophyte",
+        "nouveau riche",
+        "nouvelle cuisine",
+        "novel",
+        "novelty",
+        "novice",
+        "renovate"
+      ]
+    },
+    {
+      "root": "OB/OC/OF/OP",
+      "meaning": "toward, to, against, completely, over",
+      "words": [
+        "obese",
+        "object",
+        "oblivious",
+        "obnoxious",
+        "obsequious",
+        "obstinate",
+        "obstreperous",
+        "obstruct",
+        "obtrude",
+        "opprobrium"
+      ]
+    },
+    {
+      "root": "OMNI",
+      "meaning": "all",
+      "words": [
+        "omnipotent",
+        "omnipresent",
+        "omniscient"
+      ]
+    },
+    {
+      "root": "ONER",
+      "meaning": "burden",
+      "words": [
+        "onerous"
+      ]
+    },
+    {
+      "root": "PAC/PEAC",
+      "meaning": "peace",
+      "words": [
+        "appease",
+        "pacifier",
+        "pacifist",
+        "pacify",
+        "pact",
+        "peace"
+      ]
+    },
+    {
+      "root": "PAN",
+      "meaning": "all, everywhere",
+      "words": [
+        "panacea",
+        "pandemic",
+        "panegyric",
+        "panoply",
+        "panorama",
+        "pantheon"
+      ]
+    },
+    {
+      "root": "PAR",
+      "meaning": "equal",
+      "words": [
+        "disparage",
+        "disparate",
+        "disparity",
+        "par",
+        "parity"
+      ]
+    },
+    {
+      "root": "PARA",
+      "meaning": "next to, beside",
+      "words": [
+        "parable",
+        "paradigm",
+        "paradox",
+        "paragon",
+        "paralegal",
+        "parallel",
+        "paramilitary",
+        "paranoid",
+        "paranormal",
+        "paraphrase",
+        "parapsychology",
+        "parasite",
+        "parody"
+      ]
+    },
+    {
+      "root": "PAS/PAT/PATH",
+      "meaning": "feeling, suffering, disease",
+      "words": [
+        "antipathy",
+        "apathy",
+        "compassion",
+        "compatible",
+        "dispassionate",
+        "empathy",
+        "impassive",
+        "passionate",
+        "pathology",
+        "pathos",
+        "psychopath",
+        "sociopath",
+        "sympathy"
+      ]
+    },
+    {
+      "root": "PATER/PATR",
+      "meaning": "father, support",
+      "words": [
+        "expatriate",
+        "paternal",
+        "paternalism",
+        "patriarch",
+        "patrician",
+        "patrimony",
+        "patron",
+        "patronize"
+      ]
+    },
+    {
+      "root": "PECC",
+      "meaning": "to sin, fault",
+      "words": [
+        "peccadillo"
+      ]
+    },
+    {
+      "root": "PED",
+      "meaning": "child, education",
+      "words": [
+        "encyclopedia",
+        "pedagogue",
+        "pediatrician"
+      ]
+    },
+    {
+      "root": "PED/POD",
+      "meaning": "foot",
+      "words": [
+        "antipodes",
+        "expedient",
+        "expedite",
+        "impede",
+        "impediment",
+        "pedal",
+        "pedestal",
+        "pedestrian",
+        "podiatrist",
+        "podium"
+      ]
+    },
+    {
+      "root": "PEN/PUN",
+      "meaning": "to pay, to compensate",
+      "words": [
+        "impunity",
+        "penal",
+        "penalty",
+        "penance",
+        "penitent",
+        "penitentiary",
+        "punitive",
+        "repent",
+        "repine"
+      ]
+    },
+    {
+      "root": "PEND/PENS",
+      "meaning": "to hang, to weigh, to pay",
+      "words": [
+        "append",
+        "appendage",
+        "appendix",
+        "compensate",
+        "depend",
+        "dispense",
+        "expend",
+        "expenditure",
+        "impending",
+        "indispensable",
+        "penchant",
+        "pendant",
+        "pendulum",
+        "pensive",
+        "ponderous",
+        "propensity",
+        "spend",
+        "stipend",
+        "suspense"
+      ]
+    },
+    {
+      "root": "PER",
+      "meaning": "through, thoroughly, completely, wrongly",
+      "words": [
+        "peremptory",
+        "perennial",
+        "perforate",
+        "perfunctory",
+        "perjury",
+        "permeate",
+        "pernicious",
+        "perplex",
+        "persistent",
+        "perspicacious",
+        "perspire",
+        "pertinacious",
+        "perturb",
+        "peruse",
+        "pervade"
+      ]
+    },
+    {
+      "root": "PERI",
+      "meaning": "around",
+      "words": [
+        "perimeter",
+        "peripatetic",
+        "peripheral",
+        "periscope"
+      ]
+    },
+    {
+      "root": "PET/PIT",
+      "meaning": "to go, to seek, to strive",
+      "words": [
+        "appetite",
+        "compete",
+        "impetuous",
+        "perpetual",
+        "petition",
+        "petulant",
+        "propitious"
+      ]
+    },
+    {
+      "root": "PHIL",
+      "meaning": "love",
+      "words": [
+        "bibliophile",
+        "philanthropy",
+        "philatelist",
+        "philology",
+        "philosophy"
+      ]
+    },
+    {
+      "root": "PHONE",
+      "meaning": "sound",
+      "words": [
+        "cacophony",
+        "euphony",
+        "megaphone",
+        "symphony",
+        "telephone"
+      ]
+    },
+    {
+      "root": "PLAC",
+      "meaning": "to please",
+      "words": [
+        "complacent",
+        "complaisant",
+        "implacable",
+        "placate",
+        "placebo",
+        "placid"
+      ]
+    },
+    {
+      "root": "PLE",
+      "meaning": "to fill",
+      "words": [
+        "complement",
+        "complete",
+        "deplete",
+        "implement",
+        "plethora",
+        "replete",
+        "supplement"
+      ]
+    },
+    {
+      "root": "PLEX/PLIC/PLY",
+      "meaning": "to fold, to twist, to tangle, to bend",
+      "words": [
+        "accomplice",
+        "complex",
+        "complexion",
+        "complicate",
+        "complicity",
+        "comply",
+        "duplex",
+        "duplicity",
+        "explicate",
+        "explicit",
+        "implicate",
+        "implicit",
+        "ply",
+        "replica",
+        "supplicate"
+      ]
+    },
+    {
+      "root": "PO/POV/PAU/PU",
+      "meaning": "few, little, poor",
+      "words": [
+        "impoverish",
+        "paucity",
+        "pauper",
+        "poor",
+        "poverty",
+        "puerile",
+        "pusillanimous"
+      ]
+    },
+    {
+      "root": "PON/POS/POUND",
+      "meaning": "to put, to place",
+      "words": [
+        "component",
+        "compound",
+        "depose",
+        "deposit",
+        "dispose",
+        "expose",
+        "exposition",
+        "expound",
+        "juxtapose",
+        "proponent",
+        "repository",
+        "superimpose",
+        "transpose"
+      ]
+    },
+    {
+      "root": "PORT",
+      "meaning": "to carry",
+      "words": [
+        "deport",
+        "deportment",
+        "disport",
+        "export",
+        "import",
+        "importune",
+        "portable",
+        "porter",
+        "portfolio",
+        "portly",
+        "portmanteau",
+        "purport"
+      ]
+    },
+    {
+      "root": "POST",
+      "meaning": "after",
+      "words": [
+        "ex post facto",
+        "posterior",
+        "posterity",
+        "posthumous"
+      ]
+    },
+    {
+      "root": "PRE",
+      "meaning": "before",
+      "words": [
+        "precarious",
+        "precedent",
+        "precept",
+        "precipitous",
+        "preclude",
+        "precocious",
+        "predilection",
+        "preeminent",
+        "preempt",
+        "prelude",
+        "premeditate",
+        "premonition",
+        "prepossess",
+        "prerequisite",
+        "prerogative",
+        "presage",
+        "presentiment",
+        "presume",
+        "presuppose"
+      ]
+    },
+    {
+      "root": "PREHEND/PRISE",
+      "meaning": "to take, to get, to seize",
+      "words": [
+        "apprehend",
+        "apprehension",
+        "apprise",
+        "comprehend",
+        "comprehensive",
+        "comprise",
+        "enterprise",
+        "impregnable",
+        "reprehensible",
+        "reprisal",
+        "surprise"
+      ]
+    },
+    {
+      "root": "PRO",
+      "meaning": "forward, forth, before, in favor of",
+      "words": [
+        "proclivity",
+        "prodigal",
+        "profligate",
+        "profuse",
+        "proliferate",
+        "prolific",
+        "prolix",
+        "propensity",
+        "propitious",
+        "propound",
+        "protracted",
+        "provident"
+      ]
+    },
+    {
+      "root": "PROB",
+      "meaning": "to prove, to test",
+      "words": [
+        "approbation",
+        "opprobrium",
+        "probation",
+        "probe",
+        "probity",
+        "reprobate"
+      ]
+    },
+    {
+      "root": "PUG",
+      "meaning": "to fight",
+      "words": [
+        "impugn",
+        "pug",
+        "pugilism",
+        "pugnacious",
+        "repugnant"
+      ]
+    },
+    {
+      "root": "PUNC/PUNG/POIGN/POINT",
+      "meaning": "to point, to prick",
+      "words": [
+        "compunction",
+        "expunge",
+        "poignant",
+        "point",
+        "punctilious",
+        "punctual",
+        "punctuate",
+        "puncture",
+        "pungent"
+      ]
+    },
+    {
+      "root": "QUE/QUIS",
+      "meaning": "to seek",
+      "words": [
+        "acquire",
+        "acquisition",
+        "acquisitive",
+        "conquest",
+        "exquisite",
+        "inquest",
+        "inquire",
+        "inquisitive",
+        "perquisite",
+        "query",
+        "request",
+        "requisite"
+      ]
+    },
+    {
+      "root": "QUI",
+      "meaning": "quiet",
+      "words": [
+        "acquiesce",
+        "disquiet",
+        "quiescent",
+        "quiet",
+        "tranquil"
+      ]
+    },
+    {
+      "root": "RID/RIS",
+      "meaning": "to laugh",
+      "words": [
+        "derision",
+        "ridicule",
+        "risible"
+      ]
+    },
+    {
+      "root": "ROG",
+      "meaning": "to ask",
+      "words": [
+        "abrogate",
+        "arrogant",
+        "arrogate",
+        "derogatory",
+        "interrogate",
+        "prerogative",
+        "surrogate"
+      ]
+    },
+    {
+      "root": "SACR/SANCT/SECR",
+      "meaning": "sacred",
+      "words": [
+        "execrable",
+        "sacrament",
+        "sacred",
+        "sacrifice",
+        "sacrilege",
+        "sacrosanct",
+        "sanctify",
+        "sanction",
+        "sanctuary"
+      ]
+    },
+    {
+      "root": "SAL/SIL/SAULT/SULT",
+      "meaning": "to leap, to jump",
+      "words": [
+        "assault",
+        "desultory",
+        "exult",
+        "insult",
+        "resilient",
+        "salient",
+        "somersault"
+      ]
+    },
+    {
+      "root": "SAP/SIP",
+      "meaning": "to taste, to be wise",
+      "words": [
+        "insipid"
+      ]
+    },
+    {
+      "root": "SCI",
+      "meaning": "to know",
+      "words": [
+        "conscience",
+        "conscientious",
+        "conscious",
+        "nescient",
+        "omniscient",
+        "prescient",
+        "science",
+        "unconscionable"
+      ]
+    },
+    {
+      "root": "SCRIBE/SCRIP",
+      "meaning": "to write",
+      "words": [
+        "ascript",
+        "circumscribe",
+        "conscription",
+        "describe",
+        "inscribe",
+        "manuscript",
+        "postscript",
+        "prescribe",
+        "proscribe",
+        "scribble",
+        "scribe",
+        "script",
+        "scripture",
+        "transcript"
+      ]
+    },
+    {
+      "root": "SE",
+      "meaning": "apart",
+      "words": [
+        "secede",
+        "seclude",
+        "sedition",
+        "seduce",
+        "segregate",
+        "select",
+        "separate",
+        "sequester"
+      ]
+    },
+    {
+      "root": "SEC/SEQU",
+      "meaning": "to follow",
+      "words": [
+        "consequence",
+        "inconsequential",
+        "nonsequitur",
+        "obsequious",
+        "prosecute",
+        "second",
+        "sequel",
+        "sequence"
+      ]
+    },
+    {
+      "root": "SED/SESS/SID",
+      "meaning": "to sit, to be still, to plan, to plot",
+      "words": [
+        "assiduous",
+        "dissident",
+        "insidious",
+        "obsession",
+        "preside",
+        "resident",
+        "residual",
+        "sedate",
+        "sedentary",
+        "sediment",
+        "sedulous",
+        "session",
+        "subside",
+        "subsidiary",
+        "subsidy"
+      ]
+    },
+    {
+      "root": "SENS/SENT",
+      "meaning": "to feel, to be aware",
+      "words": [
+        "assent",
+        "consensus",
+        "consent",
+        "dissent",
+        "insensate",
+        "presentiment",
+        "resent",
+        "sense",
+        "sensory",
+        "sensual",
+        "sentient",
+        "sentiment",
+        "sentinel"
+      ]
+    },
+    {
+      "root": "SOL",
+      "meaning": "to loosen, to free",
+      "words": [
+        "absolution",
+        "dissolute",
+        "dissolution",
+        "dissolve",
+        "irresolute",
+        "resolution",
+        "resolve",
+        "soluble",
+        "solve",
+        "solvent"
+      ]
+    },
+    {
+      "root": "SPEC/SPIC/SPIT",
+      "meaning": "to look, to see",
+      "words": [
+        "aspect",
+        "auspicious",
+        "circumspect",
+        "conspicuous",
+        "introspection",
+        "perspective",
+        "perspicacious",
+        "respite",
+        "retrospective",
+        "specimen",
+        "specious",
+        "spectacles",
+        "spectator",
+        "specter",
+        "spectrum",
+        "speculation",
+        "suspicious"
+      ]
+    },
+    {
+      "root": "STA/STI",
+      "meaning": "to stand, to be in a place",
+      "words": [
+        "apostasy",
+        "constant",
+        "constitute",
+        "destitute",
+        "homeostasis",
+        "obstacle",
+        "obstinate",
+        "stagnant",
+        "stalwart",
+        "stasis",
+        "static",
+        "stationary",
+        "status",
+        "status quo"
+      ]
+    },
+    {
+      "root": "SUAV/SUAS",
+      "meaning": "sweet; to advise, to urge",
+      "words": [
+        "assuage",
+        "dissuade",
+        "persuade",
+        "suave"
+      ]
+    },
+    {
+      "root": "SUB/SUP",
+      "meaning": "below",
+      "words": [
+        "subdue",
+        "subjugate",
+        "subliminal",
+        "submissive",
+        "subordinate",
+        "subsidiary",
+        "subterfuge",
+        "subversive",
+        "supposition",
+        "suppress",
+        "sustain"
+      ]
+    },
+    {
+      "root": "SUPER/SUR",
+      "meaning": "above",
+      "words": [
+        "supercilious",
+        "superficial",
+        "superfluous",
+        "superlative",
+        "supersede",
+        "superstition",
+        "surmount",
+        "surpass",
+        "surveillance",
+        "survey"
+      ]
+    },
+    {
+      "root": "TAC/TIC",
+      "meaning": "to be silent",
+      "words": [
+        "reticent",
+        "tacit",
+        "taciturn"
+      ]
+    },
+    {
+      "root": "TAIN/TEN/TENT/TIN",
+      "meaning": "to hold",
+      "words": [
+        "abstention",
+        "contain",
+        "detain",
+        "pertain",
+        "pertinacious",
+        "pertinent",
+        "sustenance",
+        "tenable",
+        "tenacious",
+        "tenant",
+        "tenet",
+        "tenure"
+      ]
+    },
+    {
+      "root": "TEND/TENS/TENT/TENU",
+      "meaning": "to stretch, to thin",
+      "words": [
+        "attenuate",
+        "contend",
+        "contender",
+        "contention",
+        "contentious",
+        "distend",
+        "extend",
+        "extenuating",
+        "tendency",
+        "tendentious",
+        "tendon",
+        "tension",
+        "tent",
+        "tentative",
+        "tenuous"
+      ]
+    },
+    {
+      "root": "THEO",
+      "meaning": "god",
+      "words": [
+        "apotheosis",
+        "atheist",
+        "theocracy",
+        "theology"
+      ]
+    },
+    {
+      "root": "TOM",
+      "meaning": "to cut",
+      "words": [
+        "dichotomy",
+        "epitome",
+        "microtome",
+        "tome"
+      ]
+    },
+    {
+      "root": "TORT",
+      "meaning": "to twist",
+      "words": [
+        "extort",
+        "tort",
+        "tortuous",
+        "torture"
+      ]
+    },
+    {
+      "root": "TRACT",
+      "meaning": "to drag, to pull, to draw",
+      "words": [
+        "abstract",
+        "attract",
+        "contract",
+        "detract",
+        "intractable",
+        "protract",
+        "tract",
+        "tractable",
+        "tractor"
+      ]
+    },
+    {
+      "root": "TRANS",
+      "meaning": "across",
+      "words": [
+        "intransigent",
+        "traduce",
+        "transaction",
+        "transcendent",
+        "transfer",
+        "transgress",
+        "transient",
+        "transition",
+        "transitory",
+        "translucent",
+        "transparent",
+        "transport",
+        "traverse"
+      ]
+    },
+    {
+      "root": "US/UT",
+      "meaning": "to use",
+      "words": [
+        "abuse",
+        "usage",
+        "usurp",
+        "utensil",
+        "utilitarian",
+        "utility"
+      ]
+    },
+    {
+      "root": "VEN/VENT",
+      "meaning": "to come, to move toward",
+      "words": [
+        "advent",
+        "adventure",
+        "avenue",
+        "circumvent",
+        "contravene",
+        "convene",
+        "convenient",
+        "covenant",
+        "event",
+        "intervene",
+        "venturesome"
+      ]
+    },
+    {
+      "root": "VER",
+      "meaning": "truth",
+      "words": [
+        "aver",
+        "veracious",
+        "verdict",
+        "verify",
+        "verisimilitude",
+        "verity"
+      ]
+    },
+    {
+      "root": "VERS/VERT",
+      "meaning": "to turn",
+      "words": [
+        "advert",
+        "aversion",
+        "avert",
+        "controversy",
+        "diverse",
+        "divert",
+        "extrovert",
+        "inadvertent",
+        "introvert",
+        "invert",
+        "overt",
+        "revert",
+        "subvert",
+        "versatile"
+      ]
+    },
+    {
+      "root": "VET",
+      "meaning": "old",
+      "words": [
+        "inveterate"
+      ]
+    },
+    {
+      "root": "VI",
+      "meaning": "life",
+      "words": [
+        "bon vivant",
+        "convivial",
+        "joie de vivre",
+        "viable",
+        "vivacity",
+        "vivid"
+      ]
+    },
+    {
+      "root": "VID/VIS",
+      "meaning": "to see",
+      "words": [
+        "adviser",
+        "evident",
+        "provident",
+        "provision",
+        "survey",
+        "television",
+        "video",
+        "visage",
+        "vision",
+        "visionary",
+        "vista"
+      ]
+    },
+    {
+      "root": "VOC/VOK",
+      "meaning": "to call",
+      "words": [
+        "advocate",
+        "avocation",
+        "convoke",
+        "equivocal",
+        "equivocate",
+        "evocative",
+        "invoke",
+        "irrevocable",
+        "provocative",
+        "revoke",
+        "vocabulary",
+        "vocal",
+        "vocation",
+        "vociferous"
+      ]
+    },
+    {
+      "root": "VOL",
+      "meaning": "to wish",
+      "words": [
+        "benevolent",
+        "malevolent",
+        "volition",
+        "voluntary",
+        "volunteer"
+      ]
+    }
+  ]
+}

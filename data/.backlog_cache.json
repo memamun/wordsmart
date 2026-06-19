@@ -1,0 +1,1719 @@
+{
+  "category_a": {
+    "ABASH": {
+      "abashment": "n"
+    },
+    "ABERRATION": {
+      "aberrant": "adj"
+    },
+    "ABHOR": {
+      "abhorrent": "adj",
+      "abhorrence": "n"
+    },
+    "ABJECT": {
+      "abjectly": "adv",
+      "abjection": "n"
+    },
+    "ABSOLUTE": {
+      "absolutely": "adv",
+      "absolutism": "n"
+    },
+    "ABSTINENT": {
+      "abstinence": "n",
+      "abstain": "v"
+    },
+    "ABSTRACT": {
+      "abstraction": "n",
+      "abstractly": "adv"
+    },
+    "ABSTRUSE": {
+      "abstruseness": "n",
+      "abstrusely": "adv"
+    },
+    "ABYSMAL": {
+      "abysmally": "adv"
+    },
+    "ACRID": {
+      "acridity": "n",
+      "acridly": "adv"
+    },
+    "ACRIMONIOUS": {
+      "acrimony": "n",
+      "acrimoniously": "adv"
+    },
+    "ADDRESS": {
+      "addressee": "n",
+      "addressable": "adj"
+    },
+    "ADROIT": {
+      "adroitly": "adv",
+      "adroitness": "n"
+    },
+    "AESTHETIC": {
+      "aesthetics": "n",
+      "aesthetically": "adv"
+    },
+    "AFFABLE": {
+      "affability": "n",
+      "affably": "adv"
+    },
+    "AGRARIAN": {
+      "agrarianism": "n"
+    },
+    "AGNOSTIC": {
+      "agnosticism": "n"
+    },
+    "ALACRITY": {
+      "alacritous": "adj"
+    },
+    "ALLOY": {
+      "unalloyed": "adj"
+    },
+    "ALLUSION": {
+      "allude": "v",
+      "allusive": "adj"
+    },
+    "ALOOF": {
+      "aloofness": "n"
+    },
+    "AMBIENCE": {
+      "ambient": "adj"
+    },
+    "AMENABLE": {
+      "amenability": "n"
+    },
+    "AMIABLE": {
+      "amiability": "n",
+      "amiably": "adv"
+    },
+    "AMORAL": {
+      "amorality": "n",
+      "amorally": "adv"
+    },
+    "AMOROUS": {
+      "amorously": "adv"
+    },
+    "AMORPHOUS": {
+      "amorphously": "adv",
+      "amorphousness": "n"
+    },
+    "ANACHRONISM": {
+      "anachronistic": "adj"
+    },
+    "ANARCHY": {
+      "anarchic": "adj",
+      "anarchist": "n"
+    },
+    "ANGUISH": {
+      "anguished": "adj"
+    },
+    "ANTIPATHY": {
+      "antipathetic": "adj"
+    },
+    "ANTITHESIS": {
+      "antithetical": "adj",
+      "antithetically": "adv"
+    },
+    "APATHY": {
+      "apathetic": "adj",
+      "apathetically": "adv"
+    },
+    "APHORISM": {
+      "aphoristic": "adj",
+      "aphoristically": "adv"
+    },
+    "APOCALYPSE": {
+      "apocalyptic": "adj",
+      "apocalyptically": "adv"
+    },
+    "APPREHENSIVE": {
+      "apprehension": "n",
+      "apprehensively": "adv"
+    },
+    "ARBITER": {
+      "arbitrate": "v",
+      "arbitration": "n"
+    },
+    "ARBITRARY": {
+      "arbitrarily": "adv",
+      "arbitrariness": "n"
+    },
+    "ARCHAIC": {
+      "archaism": "n",
+      "archaically": "adv"
+    },
+    "ARDUOUS": {
+      "arduously": "adv",
+      "arduousness": "n"
+    },
+    "ASCENDANCY": {
+      "ascend": "v",
+      "ascendant": "adj"
+    },
+    "ASCETIC": {
+      "asceticism": "n",
+      "ascetically": "adv"
+    },
+    "ASSIDUOUS": {
+      "assiduously": "adv",
+      "assiduousness": "n"
+    },
+    "ASTUTE": {
+      "astutely": "adv",
+      "astuteness": "n"
+    },
+    "AUGMENT": {
+      "augmentation": "n",
+      "augmented": "adj"
+    },
+    "AUSPICIOUS": {
+      "auspiciously": "adv",
+      "auspiciousness": "n"
+    },
+    "AUTONOMOUS": {
+      "autonomy": "n",
+      "autonomously": "adv"
+    },
+    "AVARICE": {
+      "avaricious": "adj",
+      "avariciously": "adv"
+    },
+    "AVOW": {
+      "avowal": "n",
+      "avowed": "adj",
+      "avowedly": "adv"
+    },
+    "AXIOM": {
+      "axiomatic": "adj"
+    },
+    "BANAL": {
+      "banality": "n"
+    },
+    "BELABOR": {
+      "belabored": "adj"
+    },
+    "BELEAGUER": {
+      "beleaguered": "adj"
+    },
+    "BELLIGERENT": {
+      "belligerence": "n",
+      "belligerently": "adv"
+    },
+    "BENEVOLENT": {
+      "benevolence": "n",
+      "benevolently": "adv"
+    },
+    "BENIGN": {
+      "benignly": "adv",
+      "benignity": "n"
+    },
+    "BEQUEST": {
+      "bequeath": "v"
+    },
+    "BEREAVED": {
+      "bereavement": "n",
+      "bereave": "v"
+    },
+    "BLATANT": {
+      "blatantly": "adv",
+      "blatancy": "n"
+    },
+    "BLIGHT": {
+      "blighted": "adj"
+    },
+    "BLITHE": {
+      "blithely": "adv",
+      "blitheness": "n"
+    },
+    "BOURGEOIS": {
+      "bourgeoisie": "n"
+    },
+    "BUREAUCRACY": {
+      "bureaucratic": "adj",
+      "bureaucrat": "n",
+      "bureaucratically": "adv"
+    },
+    "BURGEON": {
+      "burgeoning": "adj"
+    },
+    "CACOPHONY": {
+      "cacophonous": "adj"
+    },
+    "CANDOR": {
+      "candid": "adj",
+      "candidly": "adv"
+    },
+    "CAPITALISM": {
+      "capitalist": "n",
+      "capitalistic": "adj",
+      "capitalize": "v"
+    },
+    "CAPRICIOUS": {
+      "capriciously": "adv",
+      "capriciousness": "n",
+      "caprice": "n"
+    },
+    "CARICATURE": {
+      "caricaturist": "n"
+    },
+    "CATALYST": {
+      "catalyze": "v",
+      "catalytic": "adj"
+    },
+    "CATEGORICAL": {
+      "categorically": "adv"
+    },
+    "CATHARSIS": {
+      "cathartic": "adj"
+    },
+    "CAUSTIC": {
+      "caustically": "adv"
+    },
+    "CHARISMA": {
+      "charismatic": "adj"
+    },
+    "CHIMERA": {
+      "chimerical": "adj"
+    },
+    "CHRONIC": {
+      "chronically": "adv"
+    },
+    "CIRCUITOUS": {
+      "circuitously": "adv"
+    },
+    "CIRCUMLOCUTION": {
+      "circumlocutory": "adj"
+    },
+    "CIRCUMSPECT": {
+      "circumspection": "n",
+      "circumspectly": "adv"
+    },
+    "CIRCUMVENT": {
+      "circumvention": "n"
+    },
+    "CIVIL": {
+      "civility": "n",
+      "civilly": "adv"
+    },
+    "CLIQUE": {
+      "cliquish": "adj"
+    },
+    "COERCE": {
+      "coercion": "n",
+      "coercive": "adj"
+    },
+    "COGNIZANT": {
+      "cognizance": "n"
+    },
+    "COHERENT": {
+      "coherence": "n",
+      "coherently": "adv",
+      "cohere": "v"
+    },
+    "COLLOQUIAL": {
+      "colloquially": "adv",
+      "colloquialism": "n"
+    },
+    "COLLUSION": {
+      "collude": "v",
+      "collusive": "adj"
+    },
+    "COMPLEMENT": {
+      "complementary": "adj"
+    },
+    "COMPLICITY": {
+      "complicit": "adj"
+    },
+    "COMPREHENSIVE": {
+      "comprehensively": "adv",
+      "comprehensiveness": "n"
+    },
+    "CONCILIATORY": {
+      "conciliate": "v",
+      "conciliation": "n"
+    },
+    "CONDESCEND": {
+      "condescending": "adj",
+      "condescension": "n"
+    },
+    "CONGENIAL": {
+      "congeniality": "n",
+      "congenially": "adv"
+    },
+    "CONSENSUS": {
+      "consensual": "adj"
+    },
+    "CONSONANT": {
+      "consonance": "n"
+    },
+    "CONSUMMATE": {
+      "consummation": "n",
+      "consummately": "adv"
+    },
+    "CONTENTIOUS": {
+      "contention": "n",
+      "contentiously": "adv"
+    },
+    "CONTIGUOUS": {
+      "contiguity": "n",
+      "contiguously": "adv"
+    },
+    "CONVENTIONAL": {
+      "convention": "n",
+      "conventionally": "adv",
+      "unconventional": "adj"
+    },
+    "CONVIVIAL": {
+      "conviviality": "n",
+      "convivially": "adv"
+    },
+    "COPIOUS": {
+      "copiously": "adv",
+      "copiousness": "n"
+    },
+    "COSMOPOLITAN": {
+      "cosmopolitanism": "n"
+    },
+    "COVET": {
+      "covetous": "adj",
+      "covetously": "adv",
+      "covetousness": "n"
+    },
+    "CRYPTIC": {
+      "cryptically": "adv"
+    },
+    "CULPABLE": {
+      "culpability": "n",
+      "culpably": "adv"
+    },
+    "CURTAIL": {
+      "curtailment": "n"
+    },
+    "CYNIC": {
+      "cynical": "adj",
+      "cynicism": "n",
+      "cynically": "adv"
+    },
+    "DAUNT": {
+      "daunting": "adj",
+      "dauntless": "adj",
+      "undaunted": "adj"
+    },
+    "DECOROUS": {
+      "decorum": "n",
+      "decorously": "adv",
+      "indecorous": "adj"
+    },
+    "DEFINITIVE": {
+      "definitively": "adv"
+    },
+    "DEMAGOGUE": {
+      "demagoguery": "n",
+      "demagogic": "adj"
+    },
+    "DESPOT": {
+      "despotic": "adj",
+      "despotism": "n"
+    },
+    "DESTITUTE": {
+      "destitution": "n"
+    },
+    "DIDACTIC": {
+      "didactically": "adv",
+      "didacticism": "n"
+    },
+    "DILETTANTE": {
+      "dilettantism": "n"
+    },
+    "DISCERN": {
+      "discernment": "n",
+      "discerning": "adj",
+      "discernible": "adj"
+    },
+    "DISCRETE": {
+      "discretely": "adv",
+      "discreteness": "n"
+    },
+    "DISDAIN": {
+      "disdainful": "adj",
+      "disdainfully": "adv"
+    },
+    "DISINTERESTED": {
+      "disinterestedness": "n",
+      "disinterestedly": "adv"
+    },
+    "DISTINGUISH": {
+      "distinguishable": "adj",
+      "distinguished": "adj"
+    },
+    "DOGMATIC": {
+      "dogmatically": "adv",
+      "dogmatism": "n"
+    },
+    "DOMESTIC": {
+      "domesticate": "v",
+      "domesticity": "n",
+      "domestically": "adv"
+    },
+    "DUBIOUS": {
+      "dubiously": "adv",
+      "dubiousness": "n"
+    },
+    "ECCENTRIC": {
+      "eccentricity": "n",
+      "eccentrically": "adv"
+    },
+    "ECLECTIC": {
+      "eclecticism": "n",
+      "eclectically": "adv"
+    },
+    "EDIFY": {
+      "edification": "n",
+      "edifying": "adj"
+    },
+    "EGALITARIAN": {
+      "egalitarianism": "n"
+    },
+    "EGREGIOUS": {
+      "egregiously": "adv",
+      "egregiousness": "n"
+    },
+    "ELUSIVE": {
+      "elusively": "adv",
+      "elusiveness": "n"
+    },
+    "EMINENT": {
+      "eminence": "n",
+      "eminently": "adv"
+    },
+    "EMPIRICAL": {
+      "empiricism": "n",
+      "empirically": "adv"
+    },
+    "ENCROACH": {
+      "encroachment": "n"
+    },
+    "ENIGMA": {
+      "enigmatic": "adj",
+      "enigmatically": "adv"
+    },
+    "EPHEMERAL": {
+      "ephemerality": "n",
+      "ephemerally": "adv"
+    },
+    "EPIGRAM": {
+      "epigrammatic": "adj"
+    },
+    "EPITOME": {
+      "epitomize": "v"
+    },
+    "ESOTERIC": {
+      "esoterically": "adv",
+      "esotericism": "n"
+    },
+    "ETHEREAL": {
+      "ethereally": "adv",
+      "etherealness": "n"
+    },
+    "EUPHEMISM": {
+      "euphemistic": "adj",
+      "euphemistically": "adv"
+    },
+    "EVANESCENT": {
+      "evanescence": "n"
+    },
+    "EXALT": {
+      "exaltation": "n",
+      "exalted": "adj"
+    },
+    "EXEMPLIFY": {
+      "exemplification": "n"
+    },
+    "EXHAUSTIVE": {
+      "exhaustively": "adv",
+      "exhaustiveness": "n"
+    },
+    "EXHORT": {
+      "exhortation": "n"
+    },
+    "EXIGENCY": {
+      "exigent": "adj"
+    },
+    "EXISTENTIAL": {
+      "existentialism": "n",
+      "existentialist": "n",
+      "existentially": "adv"
+    },
+    "EXPLICIT": {
+      "explicitly": "adv",
+      "explicitness": "n"
+    },
+    "EXTRICATE": {
+      "extrication": "n"
+    },
+    "EXTROVERT": {
+      "extroverted": "adj",
+      "extroversion": "n"
+    },
+    "EXULT": {
+      "exultation": "n",
+      "exultant": "adj"
+    },
+    "FACETIOUS": {
+      "facetiously": "adv",
+      "facetiousness": "n"
+    },
+    "FARCICAL": {
+      "farce": "n",
+      "farcically": "adv"
+    },
+    "FASTIDIOUS": {
+      "fastidiously": "adv",
+      "fastidiousness": "n"
+    },
+    "FATALIST": {
+      "fatalism": "n",
+      "fatalistic": "adj"
+    },
+    "FATUOUS": {
+      "fatuously": "adv",
+      "fatuousness": "n"
+    },
+    "FECUND": {
+      "fecundity": "n"
+    },
+    "FERVOR": {
+      "fervent": "adj",
+      "fervently": "adv"
+    },
+    "FIGURATIVE": {
+      "figuratively": "adv"
+    },
+    "FLAGRANT": {
+      "flagrantly": "adv",
+      "flagrancy": "n"
+    },
+    "FORBEAR": {
+      "forbearance": "n"
+    },
+    "FORSAKE": {
+      "forsaken": "adj"
+    },
+    "FORTUITOUS": {
+      "fortuitously": "adv",
+      "fortuity": "n"
+    },
+    "FRENETIC": {
+      "frenetically": "adv"
+    },
+    "FRUGAL": {
+      "frugality": "n",
+      "frugally": "adv"
+    },
+    "FURTIVE": {
+      "furtively": "adv",
+      "furtiveness": "n"
+    },
+    "GARRULOUS": {
+      "garrulously": "adv",
+      "garrulity": "n"
+    },
+    "GENTEEL": {
+      "gentility": "n",
+      "genteelly": "adv"
+    },
+    "GRAVITY": {
+      "grave": "adj",
+      "gravely": "adv"
+    },
+    "GREGARIOUS": {
+      "gregariously": "adv",
+      "gregariousness": "n"
+    },
+    "GUILE": {
+      "guileless": "adj",
+      "guileful": "adj"
+    },
+    "HEGEMONY": {
+      "hegemonic": "adj"
+    },
+    "HERESY": {
+      "heretical": "adj",
+      "heretic": "n"
+    },
+    "HERMETIC": {
+      "hermetically": "adv"
+    },
+    "HIERARCHY": {
+      "hierarchical": "adj",
+      "hierarchically": "adv"
+    },
+    "HISTRIONIC": {
+      "histrionically": "adv",
+      "histrionics": "n"
+    },
+    "HYPERBOLE": {
+      "hyperbolic": "adj",
+      "hyperbolically": "adv"
+    },
+    "HYPOTHETICAL": {
+      "hypothesis": "n",
+      "hypothesize": "v",
+      "hypothetically": "adv"
+    },
+    "ICONOCLAST": {
+      "iconoclastic": "adj",
+      "iconoclasm": "n"
+    },
+    "IDEOLOGY": {
+      "ideological": "adj",
+      "ideologue": "n",
+      "ideologically": "adv"
+    },
+    "IDIOSYNCRASY": {
+      "idiosyncratic": "adj",
+      "idiosyncratically": "adv"
+    },
+    "IDYLLIC": {
+      "idyll": "n",
+      "idyllically": "adv"
+    },
+    "IGNOMINY": {
+      "ignominious": "adj",
+      "ignominiously": "adv"
+    },
+    "ILLICIT": {
+      "illicitly": "adv"
+    },
+    "IMMINENT": {
+      "imminence": "n",
+      "imminently": "adv"
+    },
+    "IMMUTABLE": {
+      "immutability": "n",
+      "immutably": "adv"
+    },
+    "IMPARTIAL": {
+      "impartiality": "n",
+      "impartially": "adv"
+    },
+    "IMPECCABLE": {
+      "impeccability": "n",
+      "impeccably": "adv"
+    },
+    "IMPERVIOUS": {
+      "imperviousness": "n",
+      "imperviously": "adv"
+    },
+    "IMPETUOUS": {
+      "impetuosity": "n",
+      "impetuously": "adv"
+    },
+    "IMPLEMENT": {
+      "implementation": "n"
+    },
+    "IMPOTENT": {
+      "impotence": "n",
+      "impotently": "adv"
+    },
+    "INCANDESCENT": {
+      "incandescence": "n",
+      "incandescently": "adv"
+    },
+    "INCESSANT": {
+      "incessantly": "adv"
+    },
+    "INCORRIGIBLE": {
+      "incorrigibility": "n",
+      "incorrigibly": "adv"
+    },
+    "INCREMENT": {
+      "incremental": "adj",
+      "incrementally": "adv"
+    },
+    "INDIGNANT": {
+      "indignation": "n",
+      "indignantly": "adv"
+    },
+    "INDULGENT": {
+      "indulge": "v",
+      "indulgence": "n",
+      "indulgently": "adv"
+    },
+    "INEFFABLE": {
+      "ineffability": "n",
+      "ineffably": "adv"
+    },
+    "INEPT": {
+      "ineptitude": "n",
+      "ineptly": "adv"
+    },
+    "INERT": {
+      "inertia": "n",
+      "inertly": "adv"
+    },
+    "INFAMOUS": {
+      "infamy": "n",
+      "infamously": "adv"
+    },
+    "INFATUATED": {
+      "infatuation": "n"
+    },
+    "INFER": {
+      "inference": "n",
+      "inferential": "adj"
+    },
+    "INFINITESIMAL": {
+      "infinitesimally": "adv"
+    },
+    "INGENUOUS": {
+      "ingenuously": "adv",
+      "ingenuousness": "n"
+    },
+    "INHERENT": {
+      "inherently": "adv"
+    },
+    "INNATE": {
+      "innately": "adv"
+    },
+    "INNOCUOUS": {
+      "innocuously": "adv"
+    },
+    "INORDINATE": {
+      "inordinately": "adv"
+    },
+    "INSATIABLE": {
+      "insatiability": "n",
+      "insatiably": "adv"
+    },
+    "INSIDIOUS": {
+      "insidiousness": "n",
+      "insidiously": "adv"
+    },
+    "INSIPID": {
+      "insipidity": "n",
+      "insipidly": "adv"
+    },
+    "INSOLENT": {
+      "insolence": "n",
+      "insolently": "adv"
+    },
+    "INTEGRAL": {
+      "integrate": "v",
+      "integration": "n",
+      "integrally": "adv"
+    },
+    "INTRACTABLE": {
+      "intractability": "n",
+      "intractably": "adv"
+    },
+    "INTRINSIC": {
+      "intrinsically": "adv"
+    },
+    "INTROSPECTIVE": {
+      "introspection": "n",
+      "introspectively": "adv"
+    },
+    "IRASCIBLE": {
+      "irascibility": "n",
+      "irascibly": "adv"
+    },
+    "IRONIC": {
+      "irony": "n",
+      "ironically": "adv"
+    },
+    "IRREVOCABLE": {
+      "irrevocably": "adv",
+      "irrevocability": "n"
+    },
+    "ITINERANT": {
+      "itinerary": "n",
+      "itinerancy": "n"
+    },
+    "KINETIC": {
+      "kinetics": "n",
+      "kinetically": "adv"
+    },
+    "LABYRINTH": {
+      "labyrinthine": "adj"
+    },
+    "LACONIC": {
+      "laconically": "adv",
+      "laconism": "n"
+    },
+    "LAMENT": {
+      "lamentation": "n",
+      "lamentable": "adj"
+    },
+    "LATENT": {
+      "latency": "n",
+      "latently": "adv"
+    },
+    "LAUD": {
+      "laudable": "adj",
+      "laudatory": "adj"
+    },
+    "LIBEL": {
+      "libelous": "adj"
+    },
+    "LUCID": {
+      "lucidity": "n",
+      "lucidly": "adv"
+    },
+    "LUGUBRIOUS": {
+      "lugubriously": "adv",
+      "lugubriousness": "n"
+    },
+    "LUMINOUS": {
+      "luminosity": "n",
+      "luminously": "adv"
+    },
+    "MALINGER": {
+      "malingerer": "n"
+    },
+    "MALLEABLE": {
+      "malleability": "n"
+    },
+    "MANDATE": {
+      "mandatory": "adj"
+    },
+    "MANIFEST": {
+      "manifestation": "n",
+      "manifestly": "adv"
+    },
+    "MARTYR": {
+      "martyrdom": "n"
+    },
+    "MELLIFLUOUS": {
+      "mellifluously": "adv",
+      "mellifluousness": "n"
+    },
+    "MENTOR": {
+      "mentorship": "n"
+    },
+    "MERCURIAL": {
+      "mercurially": "adv",
+      "mercuriality": "n"
+    },
+    "METAMORPHOSIS": {
+      "metamorphose": "v",
+      "metamorphic": "adj"
+    },
+    "MICROCOSM": {
+      "microcosmic": "adj"
+    },
+    "MISANTHROPIC": {
+      "misanthrope": "n",
+      "misanthropy": "n"
+    },
+    "MOLLIFY": {
+      "mollification": "n"
+    },
+    "MONOLITHIC": {
+      "monolith": "n"
+    },
+    "MOROSE": {
+      "morosely": "adv",
+      "moroseness": "n"
+    },
+    "MORTIFY": {
+      "mortification": "n",
+      "mortifying": "adj"
+    },
+    "MUNDANE": {
+      "mundanity": "n",
+      "mundanely": "adv"
+    },
+    "NEBULOUS": {
+      "nebulously": "adv",
+      "nebulousness": "n"
+    },
+    "NEFARIOUS": {
+      "nefariously": "adv",
+      "nefariousness": "n"
+    },
+    "NEPOTISM": {
+      "nepotistic": "adj"
+    },
+    "NOMINAL": {
+      "nominally": "adv"
+    },
+    "NOTORIOUS": {
+      "notoriously": "adv",
+      "notoriety": "n"
+    },
+    "NOVEL": {
+      "novelty": "n"
+    },
+    "NUANCE": {
+      "nuanced": "adj"
+    },
+    "OBDURATE": {
+      "obdurately": "adv",
+      "obduracy": "n"
+    },
+    "OBLIQUE": {
+      "obliquely": "adv"
+    },
+    "OBSEQUIOUS": {
+      "obsequiously": "adv",
+      "obsequiousness": "n"
+    },
+    "OBTUSE": {
+      "obtusely": "adv",
+      "obtuseness": "n"
+    },
+    "OPAQUE": {
+      "opacity": "n"
+    },
+    "ORTHODOX": {
+      "orthodoxy": "n"
+    },
+    "OSTENSIBLE": {
+      "ostensibly": "adv"
+    },
+    "OSTENTATIOUS": {
+      "ostentatiously": "adv",
+      "ostentation": "n"
+    },
+    "PAINSTAKING": {
+      "painstakingly": "adv"
+    },
+    "PALPABLE": {
+      "palpably": "adv"
+    },
+    "PALTRY": {
+      "paltriness": "n"
+    },
+    "PARADIGM": {
+      "paradigmatic": "adj",
+      "paradigmatically": "adv"
+    },
+    "PARADOX": {
+      "paradoxical": "adj",
+      "paradoxically": "adv"
+    },
+    "PAROCHIAL": {
+      "parochialism": "n",
+      "parochially": "adv"
+    },
+    "PARSIMONIOUS": {
+      "parsimony": "n",
+      "parsimoniously": "adv"
+    },
+    "PARTISAN": {
+      "partisanship": "n"
+    },
+    "PATENT": {
+      "patently": "adv"
+    },
+    "PATERNAL": {
+      "paternity": "n",
+      "paternally": "adv"
+    },
+    "PATHOLOGY": {
+      "pathologist": "n",
+      "pathological": "adj",
+      "pathologically": "adv"
+    },
+    "PATRIARCH": {
+      "patriarchal": "adj",
+      "patriarchy": "n"
+    },
+    "PEDANTIC": {
+      "pedantry": "n",
+      "pedantically": "adv"
+    },
+    "PEJORATIVE": {
+      "pejoratively": "adv",
+      "pejoration": "n"
+    },
+    "PENITENT": {
+      "penitence": "n",
+      "penitently": "adv"
+    },
+    "PENSIVE": {
+      "pensively": "adv",
+      "pensiveness": "n"
+    },
+    "PEREMPTORY": {
+      "peremptorily": "adv",
+      "peremptoriness": "n"
+    },
+    "PERENNIAL": {
+      "perennially": "adv"
+    },
+    "PERFIDY": {
+      "perfidious": "adj",
+      "perfidiously": "adv"
+    },
+    "PERFUNCTORY": {
+      "perfunctorily": "adv",
+      "perfunctoriness": "n"
+    },
+    "PERNICIOUS": {
+      "perniciously": "adv",
+      "perniciousness": "n"
+    },
+    "PERTINENT": {
+      "pertinence": "n",
+      "pertinently": "adv"
+    },
+    "PERTURB": {
+      "perturbed": "adj",
+      "perturbation": "n"
+    },
+    "PHILISTINE": {
+      "philistine": "adj",
+      "philistinism": "n"
+    },
+    "PIOUS": {
+      "piety": "n",
+      "piously": "adv"
+    },
+    "PIVOTAL": {
+      "pivot": "v",
+      "pivotally": "adv"
+    },
+    "PLAINTIVE": {
+      "plaintively": "adv",
+      "plaintiveness": "n"
+    },
+    "PLATITUDE": {
+      "platitudinous": "adj"
+    },
+    "POLEMIC": {
+      "polemical": "adj",
+      "polemicist": "n"
+    },
+    "PONDEROUS": {
+      "ponderously": "adv",
+      "ponderousness": "n"
+    },
+    "PORTENT": {
+      "portentous": "adj",
+      "portentously": "adv"
+    },
+    "PRECEDENT": {
+      "precede": "v",
+      "unprecedented": "adj"
+    },
+    "PRECLUDE": {
+      "preclusion": "n"
+    },
+    "PREEMINENT": {
+      "preeminence": "n",
+      "preeminently": "adv"
+    },
+    "PREEMPT": {
+      "preemption": "n",
+      "preemptive": "adj"
+    },
+    "PREPOSSESS": {
+      "prepossessing": "adj",
+      "prepossession": "n"
+    },
+    "PREVAIL": {
+      "prevalent": "adj",
+      "prevalence": "n"
+    },
+    "PRODIGAL": {
+      "prodigality": "n",
+      "prodigally": "adv"
+    },
+    "PRODIGIOUS": {
+      "prodigiously": "adv"
+    },
+    "PROFESS": {
+      "profession": "n",
+      "professed": "adj"
+    },
+    "PROFLIGATE": {
+      "profligacy": "n"
+    },
+    "PROFOUND": {
+      "profundity": "n",
+      "profoundly": "adv"
+    },
+    "PROLETARIAT": {
+      "proletarian": "adj"
+    },
+    "PROLIFIC": {
+      "prolifically": "adv"
+    },
+    "PROPITIOUS": {
+      "propitiously": "adv"
+    },
+    "PROSAIC": {
+      "prosaically": "adv"
+    },
+    "PROTRACT": {
+      "protracted": "adj",
+      "protraction": "n"
+    },
+    "PROVIDENT": {
+      "providently": "adv",
+      "providence": "n"
+    },
+    "PROVINCIAL": {
+      "provincialism": "n",
+      "provincially": "adv"
+    },
+    "PROVISIONAL": {
+      "provisionally": "adv"
+    },
+    "PROXIMITY": {
+      "proximate": "adj"
+    },
+    "PURPORTED": {
+      "purportedly": "adv",
+      "purport": "v"
+    },
+    "QUALIFY": {
+      "qualification": "n",
+      "qualified": "adj"
+    },
+    "QUALITATIVE": {
+      "qualitatively": "adv"
+    },
+    "QUERULOUS": {
+      "querulously": "adv",
+      "querulousness": "n"
+    },
+    "QUIXOTIC": {
+      "quixotically": "adv"
+    },
+    "RANCOR": {
+      "rancorous": "adj"
+    },
+    "REBUT": {
+      "rebuttal": "n"
+    },
+    "RECALCITRANT": {
+      "recalcitrance": "n"
+    },
+    "RECANT": {
+      "recantation": "n"
+    },
+    "RECLUSIVE": {
+      "recluse": "n",
+      "reclusiveness": "n"
+    },
+    "RELENTLESS": {
+      "relentlessly": "adv",
+      "relentlessness": "n"
+    },
+    "RELINQUISH": {
+      "relinquishment": "n"
+    },
+    "REPLENISH": {
+      "replenishment": "n"
+    },
+    "REPREHENSIBLE": {
+      "reprehensibly": "adv"
+    },
+    "REPROACH": {
+      "reproachful": "adj",
+      "reproachfully": "adv"
+    },
+    "RHETORIC": {
+      "rhetorical": "adj",
+      "rhetorically": "adv",
+      "rhetorician": "n"
+    },
+    "ROBUST": {
+      "robustly": "adv",
+      "robustness": "n"
+    },
+    "ROGUE": {
+      "roguish": "adj",
+      "roguery": "n"
+    },
+    "RUDIMENTARY": {
+      "rudiment": "n",
+      "rudimentarily": "adv"
+    },
+    "RUSTIC": {
+      "rusticity": "n",
+      "rusticate": "v"
+    },
+    "SACRILEGE": {
+      "sacrilegious": "adj",
+      "sacrilegiously": "adv"
+    },
+    "SALIENT": {
+      "salience": "n",
+      "saliently": "adv"
+    },
+    "SANCTIMONIOUS": {
+      "sanctimony": "n",
+      "sanctimoniously": "adv",
+      "sanctimoniousness": "n"
+    },
+    "SARDONIC": {
+      "sardonically": "adv",
+      "sardonicism": "n"
+    },
+    "SCRUPULOUS": {
+      "scrupulously": "adv",
+      "scrupulousness": "n"
+    },
+    "SECULAR": {
+      "secularism": "n",
+      "secularize": "v"
+    },
+    "SENTIENT": {
+      "sentience": "n"
+    },
+    "SEQUESTER": {
+      "sequestration": "n"
+    },
+    "SINGULAR": {
+      "singularity": "n",
+      "singularly": "adv"
+    },
+    "SLANDER": {
+      "slanderous": "adj",
+      "slanderer": "n"
+    },
+    "SLOTH": {
+      "slothful": "adj",
+      "slothfulness": "n"
+    },
+    "SOLICITOUS": {
+      "solicitude": "n",
+      "solicitously": "adv"
+    },
+    "SORDID": {
+      "sordidness": "n",
+      "sordidly": "adv"
+    },
+    "SPECIOUS": {
+      "speciously": "adv",
+      "speciousness": "n"
+    },
+    "SPORADIC": {
+      "sporadically": "adv"
+    },
+    "SPURIOUS": {
+      "spuriously": "adv",
+      "spuriousness": "n"
+    },
+    "SQUALOR": {
+      "squalid": "adj"
+    },
+    "STAUNCH": {
+      "staunchly": "adv",
+      "staunchness": "n"
+    },
+    "STEADFAST": {
+      "steadfastly": "adv",
+      "steadfastness": "n"
+    },
+    "STIPULATE": {
+      "stipulation": "n"
+    },
+    "STOIC": {
+      "stoicism": "n",
+      "stoical": "adj",
+      "stoically": "adv"
+    },
+    "STRINGENT": {
+      "stringency": "n",
+      "stringently": "adv"
+    },
+    "SUBORDINATE": {
+      "subordination": "n"
+    },
+    "SUBTLE": {
+      "subtlety": "n",
+      "subtly": "adv"
+    },
+    "SUBVERSIVE": {
+      "subvert": "v",
+      "subversion": "n"
+    },
+    "SUCCINCT": {
+      "succinctly": "adv",
+      "succinctness": "n"
+    },
+    "SUPERCILIOUS": {
+      "superciliously": "adv",
+      "superciliousness": "n"
+    },
+    "SUPERFICIAL": {
+      "superficiality": "n",
+      "superficially": "adv"
+    },
+    "SURREPTITIOUS": {
+      "surreptitiously": "adv"
+    },
+    "SURROGATE": {
+      "surrogacy": "n"
+    },
+    "SYCOPHANT": {
+      "sycophantic": "adj",
+      "sycophancy": "n"
+    },
+    "SYNTHESIS": {
+      "synthesize": "v",
+      "synthetic": "adj"
+    },
+    "TACIT": {
+      "tacitly": "adv"
+    },
+    "TACITURN": {
+      "taciturnity": "n"
+    },
+    "TANGENTIAL": {
+      "tangentially": "adv",
+      "tangent": "n"
+    },
+    "TANGIBLE": {
+      "tangibility": "n",
+      "tangibly": "adv"
+    },
+    "TAUTOLOGICAL": {
+      "tautology": "n",
+      "tautologically": "adv"
+    },
+    "TENABLE": {
+      "tenability": "n"
+    },
+    "TENTATIVE": {
+      "tentatively": "adv",
+      "tentativeness": "n"
+    },
+    "TENUOUS": {
+      "tenuously": "adv",
+      "tenuousness": "n"
+    },
+    "TERSE": {
+      "tersely": "adv",
+      "terseness": "n"
+    },
+    "THEOLOGY": {
+      "theological": "adj",
+      "theologian": "n"
+    },
+    "TORPOR": {
+      "torpid": "adj",
+      "torpidity": "n"
+    },
+    "TRANSCEND": {
+      "transcendent": "adj",
+      "transcendence": "n"
+    },
+    "TRANSIENT": {
+      "transience": "n",
+      "transiently": "adv"
+    },
+    "TREPIDATION": {
+      "trepidatious": "adj"
+    },
+    "UNCTUOUS": {
+      "unctuously": "adv",
+      "unctuousness": "n"
+    },
+    "UNIFORM": {
+      "uniformity": "n",
+      "uniformly": "adv"
+    },
+    "UNREMITTING": {
+      "unremittingly": "adv"
+    },
+    "UNWITTING": {
+      "unwittingly": "adv"
+    },
+    "USURP": {
+      "usurpation": "n",
+      "usurper": "n"
+    },
+    "UTILITARIAN": {
+      "utilitarianism": "n"
+    },
+    "UTOPIA": {
+      "utopian": "adj"
+    },
+    "VAPID": {
+      "vapidity": "n",
+      "vapidly": "adv"
+    },
+    "VENAL": {
+      "venality": "n"
+    },
+    "VESTIGE": {
+      "vestigial": "adj"
+    },
+    "VEX": {
+      "vexation": "n",
+      "vexing": "adj"
+    },
+    "VIABLE": {
+      "viability": "n"
+    },
+    "VICARIOUS": {
+      "vicariously": "adv"
+    },
+    "VILIFY": {
+      "vilification": "n",
+      "vilifier": "n"
+    },
+    "VINDICTIVE": {
+      "vindictiveness": "n",
+      "vindictively": "adv"
+    },
+    "VIRTUOSO": {
+      "virtuosity": "n",
+      "virtuosic": "adj"
+    },
+    "VITRIOLIC": {
+      "vitriol": "n"
+    },
+    "VOCATION": {
+      "vocational": "adj",
+      "vocationally": "adv"
+    },
+    "VOCIFEROUS": {
+      "vociferously": "adv",
+      "vociferousness": "n"
+    },
+    "VOLITION": {
+      "volitional": "adj",
+      "volitionally": "adv"
+    },
+    "WANTON": {
+      "wantonly": "adv",
+      "wantonness": "n"
+    },
+    "WILLFUL": {
+      "willfully": "adv",
+      "willfulness": "n"
+    },
+    "WISTFUL": {
+      "wistfully": "adv",
+      "wistfulness": "n"
+    },
+    "ZEALOUS": {
+      "zeal": "n",
+      "zealously": "adv",
+      "zealot": "n"
+    },
+    "CHAGRIN": {
+      "chagrined": "adj"
+    },
+    "ARCANE": {
+      "arcanely": "adv"
+    },
+    "BANE": {
+      "baneful": "adj"
+    },
+    "BESET": {
+      "besetting": "adj"
+    },
+    "CATHOLIC": {
+      "catholicity": "n"
+    },
+    "COMMENSURATE": {
+      "commensurately": "adv"
+    },
+    "COMPENDIUM": {
+      "compendious": "adj"
+    },
+    "CONCORD": {
+      "concordant": "adj"
+    },
+    "CONGENITAL": {
+      "congenitally": "adv"
+    },
+    "DESULTORY": {
+      "desultorily": "adv"
+    },
+    "DIALECTICAL": {
+      "dialectics": "n"
+    },
+    "ELICIT": {
+      "elicitation": "n"
+    },
+    "ELLIPTICAL": {
+      "ellipsis": "n"
+    },
+    "EQUANIMITY": {
+      "equanimous": "adj"
+    },
+    "FETTER": {
+      "unfettered": "adj"
+    },
+    "FORGO": {
+      "forgone": "adj"
+    },
+    "INCANTATION": {
+      "incantatory": "adj"
+    },
+    "NEOLOGISM": {
+      "neologistic": "adj"
+    },
+    "PRECURSOR": {
+      "precursory": "adj"
+    },
+    "PUTATIVE": {
+      "putatively": "adv"
+    },
+    "SUBSTANTIVE": {
+      "substantively": "adv"
+    },
+    "VERISIMILITUDE": {
+      "verisimilar": "adj"
+    }
+  },
+  "category_c": [],
+  "no_derivative_needed": [
+    "MERCENARY",
+    "FOMENT",
+    "STRIFE",
+    "PATRICIAN",
+    "MILIEU",
+    "HEYDAY",
+    "LANGUISH",
+    "PREROGATIVE",
+    "MAXIM",
+    "DEROGATORY",
+    "DOCTRINAIRE",
+    "PERQUISITE",
+    "INCIPIENT",
+    "STATIC",
+    "MAUDLIN",
+    "PROPENSITY",
+    "AMENITY",
+    "PRISTINE",
+    "INDIGENOUS",
+    "FLOUT",
+    "PREMISE",
+    "BASTION",
+    "PRODIGY",
+    "REQUISITE",
+    "MACHINATION",
+    "INVECTIVE",
+    "SURFEIT",
+    "APPROBATION",
+    "MYRIAD",
+    "COUP",
+    "ONEROUS",
+    "FOUNDER",
+    "ACCOST",
+    "TENET",
+    "CULINARY",
+    "MARSHAL",
+    "SQUANDER",
+    "TEMERITY",
+    "LEGACY",
+    "EXACTING",
+    "IMPUGN",
+    "CHASM",
+    "AWRY",
+    "LAMPOON",
+    "ACCOLADE",
+    "RESPITE",
+    "TURPITUDE",
+    "CADENCE",
+    "VERNACULAR",
+    "SACROSANCT",
+    "CONDUCIVE",
+    "FLAUNT",
+    "MALFEASANCE",
+    "ATTRITION",
+    "DICTUM",
+    "APOCRYPHAL",
+    "MANIFESTO",
+    "PENCHANT",
+    "MALAISE",
+    "AGENDA",
+    "APTITUDE",
+    "PERIPATETIC",
+    "MAGNATE",
+    "AMNESTY",
+    "INVETERATE",
+    "APARTHEID",
+    "PANACEA",
+    "SENSORY",
+    "REPRISAL",
+    "CHOLERIC",
+    "ACUMEN",
+    "ANTECEDENT",
+    "ENGENDER",
+    "AVUNCULAR",
+    "PROTAGONIST",
+    "ARTIFICE",
+    "MORIBUND",
+    "CHARLATAN",
+    "DEARTH",
+    "EXTRANEOUS",
+    "SUCCUMB",
+    "BUCOLIC",
+    "APOTHEOSIS",
+    "DELETERIOUS",
+    "SANGUINE",
+    "MAVERICK",
+    "VISIONARY",
+    "DISSOLUTION",
+    "TOUCHSTONE",
+    "CRITERION",
+    "PREDILECTION",
+    "MINUSCULE",
+    "DENIZEN",
+    "RENAISSANCE",
+    "LARGESS",
+    "REPARATION",
+    "PRECEPT",
+    "PECCADILLO",
+    "HOMILY",
+    "FIDELITY",
+    "HACKNEYED",
+    "ENORMITY",
+    "TIRADE",
+    "PEDESTRIAN",
+    "BURLESQUE",
+    "FAUNA",
+    "HIATUS",
+    "MENDICANT",
+    "PAUCITY",
+    "FOIBLE",
+    "RECONDITE",
+    "CONNOISSEUR",
+    "BROACH",
+    "BEGET",
+    "SOPORIFIC",
+    "COVENANT",
+    "EXTOL",
+    "VICISSITUDE",
+    "ANIMOSITY",
+    "GENRE",
+    "CEREBRAL",
+    "MARTIAL",
+    "SACCHARINE",
+    "BREVITY",
+    "INJUNCTION",
+    "PLETHORA",
+    "CALLOW",
+    "AFFINITY",
+    "SPAWN",
+    "ENDEMIC",
+    "BOVINE",
+    "STRICTURE",
+    "HARBINGER",
+    "NOXIOUS",
+    "BENEFACTOR",
+    "CHICANERY",
+    "CONFLUENCE",
+    "GLUT",
+    "TANTAMOUNT",
+    "COROLLARY",
+    "PROPONENT",
+    "HAPLESS",
+    "SALUTARY",
+    "REPERCUSSION",
+    "FINESSE",
+    "TOUT",
+    "PLEBEIAN"
+  ]
+}

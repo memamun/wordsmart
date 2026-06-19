@@ -1,0 +1,1248 @@
+{
+  "chapters": [
+    {
+      "chapter_number": 7,
+      "chapter_title": "Common Usage Errors",
+      "entries": [
+        {
+          "term": "ALL RIGHT",
+          "definition": "Not \"alright.\"",
+          "examples": []
+        },
+        {
+          "term": "AMONG/BETWEEN",
+          "definition": "Among is used with three or more; between is used with two.",
+          "examples": [
+            "The tin-can telephone line ran between the two houses.",
+            "Among the twelve members of the committee were only three women.",
+            "Mrs. Downs distributed the candy among the four of us.",
+            "\"Between you and I\" is incorrect; between you and me is correct."
+          ]
+        },
+        {
+          "term": "ANXIOUS",
+          "definition": "This word properly means \"filled with anxiety,\" not \"eager.\" Don't say you're anxious for school to end unless the ending of school makes you feel fearful.",
+          "examples": []
+        },
+        {
+          "term": "AS FAR AS...IS CONCERNED",
+          "definition": "Not a very stylish expression, but if you use it, don't leave out the is concerned. It is not correct to say, \"As far as money, I'd like to be rich.\" Instead, you should say, \"As far as money is concerned, I'd like to be rich.\"",
+          "examples": []
+        },
+        {
+          "term": "AS/LIKE",
+          "definition": "You can run like a fox, but you can't run like a fox runs. Like is used only with nouns, pronouns, and grammatical constructions that act like nouns.",
+          "examples": [
+            "Joe runs like a fox.",
+            "Joe runs as a fox runs.",
+            "Joe runs the way a fox runs."
+          ]
+        },
+        {
+          "term": "BIWEEKLY, ETC.",
+          "definition": "Biweekly means either twice a week or once every two weeks, depending on who is using it. Likewise with bimonthly. If you need to be precise, use a less ambiguous expression, such as \"twice a week\" or \"every two weeks.\" Semimonthly means twice a month; semiweekly means twice a week.",
+          "examples": []
+        },
+        {
+          "term": "COMPRISE",
+          "definition": "Comprise means to contain, to include, or to be composed of. The whole comprises the parts; the parts do not comprise the whole. It is never correct to say \"is comprised of.\"",
+          "examples": [
+            "The United States comprises fifty states.",
+            "Fifty states compose (or make up) the United States."
+          ]
+        },
+        {
+          "term": "CONTINUAL/CONTINUOUS",
+          "definition": "Continual means happening over and over again; continuous means happening without interruption.",
+          "examples": [
+            "The continual tolling of the church bell drove me crazy.",
+            "The continuous roar of the waterfall made it difficult to hear what anyone was saying."
+          ]
+        },
+        {
+          "term": "DISINTERESTED",
+          "definition": "Disinterested means unbiased, neutral, or impartial. Uninterested means not interested. A referee should be disinterested; an apathetic student is uninterested.",
+          "examples": []
+        },
+        {
+          "term": "EFFECT/AFFECT",
+          "definition": "Effect is usually a noun, meaning a result. Affect is usually a verb, meaning to influence.",
+          "examples": [
+            "The medicine had a powerful effect on his cough.",
+            "The cold weather affected his throat.",
+            "To effect (verb) means to bring about or accomplish. The new manager hoped to effect a change in company policy."
+          ]
+        },
+        {
+          "term": "FARTHER/FURTHER",
+          "definition": "Farther is used for literal distance; further is used for figurative distance or to mean \"additional.\"",
+          "examples": [
+            "He walked farther down the road than I did.",
+            "We discussed the issue further.",
+            "For further information, call our office."
+          ]
+        },
+        {
+          "term": "FEWER/LESS",
+          "definition": "Fewer is used with countable items; less is used with bulk or quantity.",
+          "examples": [
+            "He has fewer books than I have.",
+            "He has less money than I have.",
+            "Eat fewer calories, drink less water."
+          ]
+        },
+        {
+          "term": "IMPLY/INFER A",
+          "definition": "speaker implies; a listener infers. To imply is to hint or suggest; to infer is to conclude from evidence.",
+          "examples": [
+            "The manager's tone implied that I was about to be fired.",
+            "From the manager's tone I inferred that I was about to be fired."
+          ]
+        },
+        {
+          "term": "IRREGARDLESS",
+          "definition": "Not a word. Use regardless.",
+          "examples": []
+        },
+        {
+          "term": "LAY/LIE",
+          "definition": "Lay means to put or place, and it always takes an object. Lie means to recline or remain, and it never takes an object.",
+          "examples": [
+            "Lay the book on the table. (Present)",
+            "He laid the book on the table. (Past)",
+            "He has laid the book on the table. (Past participle)",
+            "Lie down on the bed. (Present)",
+            "He lay down on the bed. (Past)",
+            "He has lain down on the bed. (Past participle)",
+            "By the way, the past tense of lie (to recline) is lay. This is what causes most of the confusion. The past tense of lie (to tell a falsehood) is lied."
+          ]
+        },
+        {
+          "term": "PLURALS AND",
+          "definition": "SINGULARS",
+          "examples": [
+            "both",
+            "criteria",
+            "data",
+            "media",
+            "phenomena",
+            "criterion",
+            "datum",
+            "each",
+            "either",
+            "every, everybody, everyone, etc.",
+            "medium",
+            "neither",
+            "none, no one, nobody, etc.",
+            "phenomenon"
+          ]
+        },
+        {
+          "term": "PRESENTLY",
+          "definition": "Presently means \"soon,\" not \"now\" or \"currently.\"",
+          "examples": [
+            "The mailman should be here presently; in fact, he should be here in about five minutes.",
+            "The mailman is here now."
+          ]
+        },
+        {
+          "term": "STATIONARY/STATIONERY",
+          "definition": "Stationary means not moving; stationery is notepaper.",
+          "examples": []
+        },
+        {
+          "term": "THAT/WHICH",
+          "definition": "Most people confuse these two words. Many people who know the difference have trouble remembering it. Here's a simple rule that will almost always work: that can never have a comma in front of it; which always will.",
+          "examples": [
+            "There is the car that ran over my foot.",
+            "Ed's car, which ran over my foot, is over there.",
+            "I like sandwiches that are dripping with mustard.",
+            "My sandwich, which was dripping with mustard, was the kind I like.",
+            "Which is used in place of that if it follows another that: \"We were fond of that feeling of contentment which follows victory.\""
+          ]
+        },
+        {
+          "term": "WHETHER OR NOT",
+          "definition": "You can almost always just say whether. \"I can't decide whether to go to the grocery store\" uses fewer words to convey the same meaning as \"I can't decide whether or not to go to the grocery store.\"",
+          "examples": []
+        }
+      ]
+    },
+    {
+      "chapter_number": 8,
+      "chapter_title": "Abbreviations",
+      "entries": [
+        {
+          "term": "ACT",
+          "definition": "American College Testing Program"
+        },
+        {
+          "term": "ASAP",
+          "definition": "As soon as possible"
+        },
+        {
+          "term": "Assn.",
+          "definition": "Association"
+        },
+        {
+          "term": "Assoc.",
+          "definition": "Associates"
+        },
+        {
+          "term": "asst.",
+          "definition": "Assistant"
+        },
+        {
+          "term": "attn.",
+          "definition": "To the attention of"
+        },
+        {
+          "term": "aux.",
+          "definition": "Auxiliary"
+        },
+        {
+          "term": "AWOL",
+          "definition": "Absent without leave"
+        },
+        {
+          "term": "B.A.",
+          "definition": "Bachelor of Arts"
+        },
+        {
+          "term": "BMOC",
+          "definition": "Big man on campus"
+        },
+        {
+          "term": "B.S.",
+          "definition": "Bachelor of Science"
+        },
+        {
+          "term": "BW",
+          "definition": "Black and white"
+        },
+        {
+          "term": "C",
+          "definition": "Celsius, centigrade"
+        },
+        {
+          "term": "c/o",
+          "definition": "In care of"
+        },
+        {
+          "term": "cc",
+          "definition": "Cubic centimeter; carbon copy"
+        },
+        {
+          "term": "CEEB",
+          "definition": "College Entrance Examination Board"
+        },
+        {
+          "term": "cf.",
+          "definition": "[Latin - *Confer*] See also"
+        },
+        {
+          "term": "CO",
+          "definition": "Commanding officer"
+        },
+        {
+          "term": "Co.",
+          "definition": "Company"
+        },
+        {
+          "term": "COD",
+          "definition": "Cash on delivery"
+        },
+        {
+          "term": "Corp.",
+          "definition": "Corporation"
+        },
+        {
+          "term": "CPA",
+          "definition": "Certified public accountant"
+        },
+        {
+          "term": "CRT",
+          "definition": "Cathode ray tube"
+        },
+        {
+          "term": "DA",
+          "definition": "District Attorney"
+        },
+        {
+          "term": "db",
+          "definition": "Decibels"
+        },
+        {
+          "term": "D.D.S.",
+          "definition": "Doctor of Dental Science"
+        },
+        {
+          "term": "dept.",
+          "definition": "Department"
+        },
+        {
+          "term": "DI",
+          "definition": "Drill instructor"
+        },
+        {
+          "term": "DJ",
+          "definition": "Disk jockey"
+        },
+        {
+          "term": "D.M.D.",
+          "definition": "Doctor of Dental Medicine"
+        },
+        {
+          "term": "DOA",
+          "definition": "Dead on arrival"
+        },
+        {
+          "term": "e.g.",
+          "definition": "[Latin - *Exempli gratia*] For example"
+        },
+        {
+          "term": "EKG",
+          "definition": "Electrocardiogram"
+        },
+        {
+          "term": "EP",
+          "definition": "Extended-play record"
+        },
+        {
+          "term": "ESP",
+          "definition": "Extrasensory perception"
+        },
+        {
+          "term": "et al.",
+          "definition": "[Latin - *Et alii*] And others"
+        },
+        {
+          "term": "et seq.",
+          "definition": "[Latin - *Et sequens*] And following"
+        },
+        {
+          "term": "ETA",
+          "definition": "Estimated time of arrival"
+        },
+        {
+          "term": "etc.",
+          "definition": "[Latin - *Et cetera*] And so on"
+        },
+        {
+          "term": "ETS",
+          "definition": "Educational Testing Service"
+        },
+        {
+          "term": "F",
+          "definition": "Fahrenheit"
+        },
+        {
+          "term": "FF",
+          "definition": "Fred Flintstone"
+        },
+        {
+          "term": "ff.",
+          "definition": "And following pages"
+        },
+        {
+          "term": "FYI",
+          "definition": "For your information"
+        },
+        {
+          "term": "GI",
+          "definition": "Government issue"
+        },
+        {
+          "term": "govt.",
+          "definition": "Government"
+        },
+        {
+          "term": "i.e.",
+          "definition": "[Latin - *Id est*] That is"
+        },
+        {
+          "term": "ibid.",
+          "definition": "[Latin - *Ibidem*] In the same place"
+        },
+        {
+          "term": "Inc.",
+          "definition": "Incorporated"
+        },
+        {
+          "term": "IQ",
+          "definition": "Intelligence quotient"
+        },
+        {
+          "term": "IV",
+          "definition": "Intravenous"
+        },
+        {
+          "term": "K",
+          "definition": "[Latin - *kilo*] Thousand"
+        },
+        {
+          "term": "km",
+          "definition": "Kilometer"
+        },
+        {
+          "term": "LP",
+          "definition": "Long-playing record"
+        },
+        {
+          "term": "LPG",
+          "definition": "Liquefied petroleum gas"
+        },
+        {
+          "term": "M.A.",
+          "definition": "Master of Arts"
+        },
+        {
+          "term": "MC",
+          "definition": "Master of Ceremonies"
+        },
+        {
+          "term": "M.D.",
+          "definition": "Doctor of Medicine"
+        },
+        {
+          "term": "Messrs.",
+          "definition": "[French - *Messieurs*] Gentlemen"
+        },
+        {
+          "term": "MIA",
+          "definition": "Missing in action"
+        },
+        {
+          "term": "mm",
+          "definition": "Millimeter"
+        },
+        {
+          "term": "MS",
+          "definition": "Manuscript"
+        },
+        {
+          "term": "M.S.",
+          "definition": "Master of Science"
+        },
+        {
+          "term": "MSS",
+          "definition": "Manuscripts"
+        },
+        {
+          "term": "MVP",
+          "definition": "Most valuable player"
+        },
+        {
+          "term": "op. cit.",
+          "definition": "[Latin - *Opere citato*] In the work previously cited"
+        },
+        {
+          "term": "p.",
+          "definition": "Page"
+        },
+        {
+          "term": "P.S.",
+          "definition": "[Latin - *Postscriptum*] Postscript"
+        },
+        {
+          "term": "PA",
+          "definition": "Public address"
+        },
+        {
+          "term": "PC",
+          "definition": "Personal computer"
+        },
+        {
+          "term": "Ph.D.",
+          "definition": "Doctor of Philosophy"
+        },
+        {
+          "term": "POW",
+          "definition": "Prisoner of war"
+        },
+        {
+          "term": "pp.",
+          "definition": "Pages"
+        },
+        {
+          "term": "QED",
+          "definition": "[Latin - *Quod erat demonstrandum*] Which was to be demonstrated"
+        },
+        {
+          "term": "R & D",
+          "definition": "Research and development"
+        },
+        {
+          "term": "RAM",
+          "definition": "Random access memory"
+        },
+        {
+          "term": "Rep.",
+          "definition": "Representative"
+        },
+        {
+          "term": "RGB",
+          "definition": "Red-green-blue"
+        },
+        {
+          "term": "ROM",
+          "definition": "Read-only memory"
+        },
+        {
+          "term": "ROTC",
+          "definition": "Reserve Officers' Training Corps"
+        },
+        {
+          "term": "RSVP",
+          "definition": "[French - *Répondez s'il vous plaît*] Please reply"
+        },
+        {
+          "term": "SAT",
+          "definition": "Ahem"
+        },
+        {
+          "term": "SDI",
+          "definition": "Strategic Defense Initiative"
+        },
+        {
+          "term": "SRO",
+          "definition": "Standing room only"
+        },
+        {
+          "term": "SWAK",
+          "definition": "Sealed with a kiss"
+        },
+        {
+          "term": "TCB",
+          "definition": "Taking care of business"
+        },
+        {
+          "term": "TKO",
+          "definition": "Technical knockout"
+        },
+        {
+          "term": "TLC",
+          "definition": "Tender loving care"
+        },
+        {
+          "term": "UFO",
+          "definition": "Unidentified flying object"
+        },
+        {
+          "term": "VCR",
+          "definition": "Video-cassette recorder"
+        },
+        {
+          "term": "VIP",
+          "definition": "Very important person ---"
+        }
+      ]
+    },
+    {
+      "chapter_number": 9,
+      "chapter_title": "The Arts",
+      "entries": [
+        {
+          "term": "ABSTRACT EXPRESSIONISM",
+          "definition": "A twentieth-century movement in painting in which the artistic focus is more on the paint itself than on anything it portrays. Jackson Pollock's enormous drip paintings are examples of abstract expressionism."
+        },
+        {
+          "term": "ALLITERATION",
+          "definition": "A poetic device involving the use of two or more words with the same initial consonant sounds. Big Bird is an alliterative name."
+        },
+        {
+          "term": "BAUHAUS",
+          "definition": "A German school of art and architecture founded in 1919. Bauhaus style is characterized by harsh geometric form and great austerity of detail."
+        },
+        {
+          "term": "BLANK VERSE",
+          "definition": "Unrhymed verse, especially iambic pentameter."
+        },
+        {
+          "term": "CHAMBER MUSIC",
+          "definition": "Music written for and performed by small ensembles of players. The string quartet (two violins, viola, and cello) is the most influential form of chamber music ensemble."
+        },
+        {
+          "term": "CHIAROSCURO",
+          "definition": "An artistic technique in which form is conveyed by light and dark only, not by color."
+        },
+        {
+          "term": "CONCERTO",
+          "definition": "A musical composition for an orchestra and one or more soloists. **CUBISM An early-twentieth-century artistic movement involving, among other things, the fragmented portrayal of three-dimensional objects, and given its highest expression by Pablo Picasso."
+        },
+        {
+          "term": "DECONSTRUCTIONISM",
+          "definition": "A recent movement in literary criticism whose popularity on college campuses markedly exceeds its usefulness in the analysis of literary texts."
+        },
+        {
+          "term": "FREE VERSE",
+          "definition": "Unrhymed and unmetered (or irregularly rhymed and metered) poetry."
+        },
+        {
+          "term": "IMPRESSIONISM",
+          "definition": "A nineteenth-century French movement in painting that was aimed at capturing the immediate \"impression\" of a scene, especially through the use of light and color. Claude Monet was a leading Impressionist."
+        },
+        {
+          "term": "MELODRAMA",
+          "definition": "A drama characterized by exaggerated emotion and stereotypical characters."
+        },
+        {
+          "term": "METAPHOR",
+          "definition": "A figure of speech in which one thing is spoken of as if it were another. To call someone's nose a beak is to use a metaphor."
+        },
+        {
+          "term": "MINIMALISM",
+          "definition": "An artistic movement of the late twentieth century characterized by extreme austerity of detail and form."
+        },
+        {
+          "term": "MOTIF",
+          "definition": "A recurring theme or element in a work of art or literature."
+        },
+        {
+          "term": "NOVELA",
+          "definition": "A short novel."
+        },
+        {
+          "term": "OPERA",
+          "definition": "A theatrical drama in which the text is sung to orchestral accompaniment."
+        },
+        {
+          "term": "ORATORIO",
+          "definition": "A major musical composition for orchestra, chorus, and soloists, usually based on a religious theme, and performed without costumes or staging."
+        },
+        {
+          "term": "RENAISSANCE",
+          "definition": "The capital R Renaissance was a great blossoming of art, literature, science, and culture in general that transformed Europe between the fourteenth and seventeenth centuries."
+        },
+        {
+          "term": "ROMAN À CLEF",
+          "definition": "A novel in which the characters and events are disguised versions of real people and events."
+        },
+        {
+          "term": "ROMANTICISM",
+          "definition": "An anticlassical literary and artistic movement that began in Europe in the late eighteenth century. William Wordsworth and John Keats were perhaps the preeminent Romantic poets."
+        },
+        {
+          "term": "SIMILE",
+          "definition": "A figure of speech in which one thing is likened to something else. To call someone's nose a beak is to use a metaphor; to say that someone's nose is like a beak is to use a simile. A simile will always contain the word like or as."
+        },
+        {
+          "term": "SONATA",
+          "definition": "An instrumental musical composition consisting of several movements."
+        },
+        {
+          "term": "SONNET",
+          "definition": "A verse form consisting of fourteen lines of iambic pentameter rhymed in a strict scheme or, occasionally, unrhymed."
+        },
+        {
+          "term": "STILL LIFE",
+          "definition": "An artistic depiction of arranged objects."
+        },
+        {
+          "term": "STREAM OF CONSCIOUSNESS",
+          "definition": "A literary technique in which an author attempts to reproduce in prose the unstructured rush of real human thought. James Joyce and William Faulkner were among the technique's more successful practitioners."
+        },
+        {
+          "term": "SURREALISM",
+          "definition": "A primarily French artistic and literary movement of the early twentieth century that attempted to incorporate imagery from dreams and the unconscious into works of art."
+        },
+        {
+          "term": "SYMPHONY",
+          "definition": "A major work for orchestra, usually consisting of several movements. ---"
+        }
+      ]
+    },
+    {
+      "chapter_number": 10,
+      "chapter_title": "Computers",
+      "entries": [
+        {
+          "term": "ASCII",
+          "definition": "(pronounced Asky) American National Code of Information Interchange. This is a standard system that assigns a specific number code to each possible keyboard character. Representing data in ASCII code can make it possible to transfer them between otherwise incompatible computer systems."
+        },
+        {
+          "term": "ASSEMBLY LANGUAGE",
+          "definition": "A programming language for professionals only."
+        },
+        {
+          "term": "BASIC",
+          "definition": "A relatively simple programming language."
+        },
+        {
+          "term": "BINARY",
+          "definition": "The number system on which all computer operation is based. In a binary system there are only two digits, 0 and 1, which are used to represent all possible numbers. (The number system we use in our regular lives is the decimal system, which has ten digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.)"
+        },
+        {
+          "term": "BIT",
+          "definition": "A single binary digit."
+        },
+        {
+          "term": "BOOT",
+          "definition": "To start a computer or a program."
+        },
+        {
+          "term": "BUG",
+          "definition": "A programming error that causes a program to malfunction."
+        },
+        {
+          "term": "BYTE",
+          "definition": "Eight bits."
+        },
+        {
+          "term": "CATHODE RAY TUBE",
+          "definition": "A television screen is a cathode ray tube, or CRT. So is a computer monitor."
+        },
+        {
+          "term": "CHIP",
+          "definition": "The small modules of silicon and who-knows-what-else that are the building blocks of any computer."
+        },
+        {
+          "term": "COBOL",
+          "definition": "A relatively simple programming language."
+        },
+        {
+          "term": "COMPATIBILITY",
+          "definition": "The ability of one computer to run programs written for another."
+        },
+        {
+          "term": "CORRESPONDENCE QUALITY",
+          "definition": "A term used to describe print that is of high enough quality to be used in business correspondence."
+        },
+        {
+          "term": "CURSOR",
+          "definition": "A flashing square or line of light on a computer screen that indicates where the next character will appear."
+        },
+        {
+          "term": "DATA BASE",
+          "definition": "An organized collection of information, such as a mailing list or a telephone directory."
+        },
+        {
+          "term": "DISK",
+          "definition": "A magnetic storage device. Floppy disks are small, flexible, and relatively cheap; hard disks are larger, rigid, more expensive, and capable of storing much more information."
+        },
+        {
+          "term": "DOT-MATRIX PRINTER",
+          "definition": "A printer that forms characters out of small dots."
+        },
+        {
+          "term": "FORTRAN",
+          "definition": "A programming language used primarily by scientists and engineers."
+        },
+        {
+          "term": "HARD COPY",
+          "definition": "Print on paper (as opposed to text on a computer screen)."
+        },
+        {
+          "term": "HARDWARE",
+          "definition": "The physical components of a computer system, such as the keyboard, monitor, and disk drives."
+        },
+        {
+          "term": "INTEGRATED CIRCUIT",
+          "definition": "A single chip containing thousands of tiny electronic components."
+        },
+        {
+          "term": "INTERACTIVE COMPUTER SYSTEM",
+          "definition": "A system that allows the user to communicate with the computer while a program is running."
+        },
+        {
+          "term": "INTERFACE",
+          "definition": "The connection between two pieces of hardware, or between a user and a computer program."
+        },
+        {
+          "term": "K",
+          "definition": "An abbreviation for kilo, or thousand. In computer terminology, K usually refers to 1,024 bytes of memory. A 64K computer has roughly 64,000 bytes of memory."
+        },
+        {
+          "term": "LASER PRINTER",
+          "definition": "A printer that uses a laser beam to form characters on paper. Laser printers are quiet, fast, and capable of producing print of very high quality."
+        },
+        {
+          "term": "MAINFRAME COMPUTER",
+          "definition": "An enormous, expensive computer used by large corporations and institutions."
+        },
+        {
+          "term": "LETTER-QUALITY PRINTER",
+          "definition": "A printer that produces print indistinguishable from that produced by a typewriter."
+        },
+        {
+          "term": "MICROCOMPUTER",
+          "definition": "A small computer designed for use by a single individual; a personal computer."
+        },
+        {
+          "term": "MICROPROCESSOR",
+          "definition": "An integrated circuit that contains the central brain of the computer."
+        },
+        {
+          "term": "MODEM",
+          "definition": "A \"modulator/demodulator\"—a device that enables one computer to communicate with another using ordinary telephone lines."
+        },
+        {
+          "term": "MONITOR",
+          "definition": "A computer screen or cathode ray tube."
+        },
+        {
+          "term": "MOUSE",
+          "definition": "A hand-held device for moving a computer cursor and entering simple information."
+        },
+        {
+          "term": "NEAR LETTER-QUALITY PRINTER",
+          "definition": "A printer that comes close to achieving typewriter quality."
+        },
+        {
+          "term": "PASCAL",
+          "definition": "A relatively simple programming language."
+        },
+        {
+          "term": "PERIPHERAL",
+          "definition": "An accessory, such as a printer or modem, that is attached to a computer."
+        },
+        {
+          "term": "PORTABLE COMPUTER",
+          "definition": "A computer small enough to be carried from one place to another. The earliest portable computers weren't terribly portable by today's standards."
+        },
+        {
+          "term": "PROGRAM",
+          "definition": "The set of instructions that causes a computer to do something, such as manipulate a data base."
+        },
+        {
+          "term": "PROGRAMMING LANGUAGE",
+          "definition": "An organized system of commands that enables a computer user to create programs."
+        },
+        {
+          "term": "RANDOM ACCESS MEMORY",
+          "definition": "Known as RAM. This is the part of the computer's memory that the user can add to and delete from."
+        },
+        {
+          "term": "READ-ONLY MEMORY",
+          "definition": "Known as ROM. A permanent part of a computer's memory, which the user can neither add to nor delete from."
+        },
+        {
+          "term": "SOFTWARE",
+          "definition": "Computer programs."
+        },
+        {
+          "term": "SPREADSHEET",
+          "definition": "A traditional accounting tool whose electronic counterpart is the basis for some of the most popular business programs."
+        },
+        {
+          "term": "WINCHESTER",
+          "definition": "A hard disk drive."
+        },
+        {
+          "term": "WORD PROCESSING",
+          "definition": "Using a computer to manipulate text. In the olden days, it was known as writing. ---"
+        }
+      ]
+    },
+    {
+      "chapter_number": 11,
+      "chapter_title": "Finance",
+      "entries": [
+        {
+          "term": "ANNUAL PERCENTAGE RATE (APR)",
+          "definition": "A loan's annual percentage rate is the loan's true interest rate when all the costs of borrowing are taken into account. Before lending you $10,000 at a nominal interest rate of 12 percent, a bank may charge you a fee of several hundred dollars. The effective interest rate on the loan—its APR—would include the cost of paying this fee and would thus be somewhat higher than 12 percent."
+        },
+        {
+          "term": "ASSET",
+          "definition": "An asset is something you own. A liability is something you owe."
+        },
+        {
+          "term": "BANKRUPTCY",
+          "definition": "A procedure by which a deeply indebted person or company sacrifices most or all remaining assets in exchange for being relieved of the obligation to repay any remaining debts."
+        },
+        {
+          "term": "BEAR MARKET",
+          "definition": "A falling stock market."
+        },
+        {
+          "term": "BONDS",
+          "definition": "When you buy a bond you are, in effect, lending money to the city, company, or other entity that issued it. In return, the issuer pays you interest. There are many different kinds of bonds. U.S. government bonds are bonds issued by the federal government. When you buy a government bond, you're helping to finance the federal deficit. Municipal bonds are bonds issued by cities, counties, and states. They are often issued to finance specific projects, such as the construction of a highway or an athletic stadium. Corporate bonds are bonds issued by companies. Junk bonds are high-interest, high-risk corporate bonds used to finance corporate takeovers."
+        },
+        {
+          "term": "BULL MARKET",
+          "definition": "A rising stock market."
+        },
+        {
+          "term": "CAPITAL",
+          "definition": "Wealth in the form of money or property that can be used to generate more wealth."
+        },
+        {
+          "term": "COMMODITIES",
+          "definition": "Raw materials, such as wheat, gold, oil, and pork bellies, traded on a commodities exchange."
+        },
+        {
+          "term": "COMMON STOCK",
+          "definition": "Shares of ownership in a corporation. Holders of common stock are entitled to vote for corporate directors and receive dividends if the company makes money. Preferred stock is stock that gives its holders a prior claim on dividends and assets, but usually no voting rights."
+        },
+        {
+          "term": "DIVIDEND",
+          "definition": "A portion of a corporation's profits paid to shareholders."
+        },
+        {
+          "term": "EQUITY",
+          "definition": "The value of an asset net of any debts secured by it. If your house is worth $100,000 and you owe $60,000 on your mortgage, your equity in the house is $40,000."
+        },
+        {
+          "term": "INSIDER TRADING",
+          "definition": "The illegal practice of buying or selling securities on the basis of confidential information."
+        },
+        {
+          "term": "LIABILITY",
+          "definition": "A debt or obligation."
+        },
+        {
+          "term": "LIQUIDITY",
+          "definition": "The ease with which an asset can be converted into cash. Cash is perfectly liquid; a house is highly illiquid, since it can take many months to sell."
+        },
+        {
+          "term": "MUTUAL FUND",
+          "definition": "An investment company that pools money from many investors and uses it to buy a diversified portfolio of stocks or bonds."
+        },
+        {
+          "term": "OPTION",
+          "definition": "The right to buy or sell a security at a specific price within a specific period of time."
+        },
+        {
+          "term": "PORTFOLIO",
+          "definition": "The collection of investments held by an individual or institution."
+        },
+        {
+          "term": "PRIME RATE",
+          "definition": "The interest rate that commercial banks charge their most creditworthy corporate customers."
+        },
+        {
+          "term": "PRINCIPAL",
+          "definition": "The amount of money borrowed or invested (as opposed to interest)."
+        },
+        {
+          "term": "SECURITIES",
+          "definition": "Financial instruments, such as stocks and bonds, that represent ownership or debt."
+        },
+        {
+          "term": "SHORT SELLING",
+          "definition": "The practice of selling borrowed stock in the hope that the price will fall, allowing the seller to buy the same number of shares later, when the price has fallen. What happens if the price doesn't fall? You lose money."
+        },
+        {
+          "term": "STOCK SPLIT",
+          "definition": "When a stock \"splits two for one,\" shareholders are issued an additional share for every share they own at the time of the split. The effect is to halve the price per share, since each share is now worth half of what it was worth when there were only half as many. Companies generally split their stocks in order to knock the share price down to a level where, the company hopes, it will be more attractive to investors. Stock splits are sometimes referred to as stock dividends. But a stock dividend isn't really a dividend at all, since it doesn't have any value."
+        },
+        {
+          "term": "TAX SHELTER",
+          "definition": "Any investment that permits the investor to protect income from taxation. Recent tax reform eliminated most of these. Tax shelters that sound too good to be true tend to be not only too good to be true but also illegal. There are still a lot of humbler tax shelters, though. Buying a house is one: interest on mortgage payments is deductible, and the resulting tax savings amounts to a federal housing subsidy for people wealthy enough to buy their own homes."
+        },
+        {
+          "term": "WARRANT",
+          "definition": "An option to buy a certain amount of stock at a certain price within a certain period of time."
+        },
+        {
+          "term": "YIELD",
+          "definition": "The annual income generated by an investment expressed as a percentage of its cost. If a stock has a yield of 4 percent, it pays dividends equal to 4 percent of purchase price of a share of its stock. ---"
+        }
+      ]
+    },
+    {
+      "chapter_number": 12,
+      "chapter_title": "Foreign Words and Phrases",
+      "entries": [
+        {
+          "term": "À PROPOS",
+          "definition": "(ah pruh POH, ap ruh POH) adj [French - \"to the purpose\"] to the point; pertinent * A comment is à propos (or apropos) if it is exactly appropriate for the situation."
+        },
+        {
+          "term": "AD HOC",
+          "definition": "(ad HAHK) adj [Latin - \"for this\"] for a particular purpose; only for the matter at hand * An ad hoc committee is a committee established for a particular purpose, or to deal with a particular problem."
+        },
+        {
+          "term": "AFICIONADO",
+          "definition": "(uh fish yuh NAH doh, ah fee syow NAH doh) n [Spanish - \"affectionate one\"] fan * An aficionado of football is a football fan. An aficionado of theater is a theater fan."
+        },
+        {
+          "term": "AL FRESCO",
+          "definition": "(al FRES koh) adj [Italian - \"in the fresh air\"] outside; in the fresh air * An al fresco meal is a picnic."
+        },
+        {
+          "term": "AU COURANT",
+          "definition": "(oh koo RAWN) adj [French - \"in the current\"] up to date; informed * To be au courant is to know all the latest information."
+        },
+        {
+          "term": "BÊTE NOIRE",
+          "definition": "(bet NWAR) n [French - \"black beast\"] something or someone that one avoids or strongly dislikes * If you absolutely despised your landlord, he would be your bête noire."
+        },
+        {
+          "term": "CARTE BLANCHE",
+          "definition": "(kahrt BLANSH) n [French - \"white paper\"] unconditional authority; freedom to do whatever one wants * The wealthy father gave his daughter carte blanche in selecting her wedding gown."
+        },
+        {
+          "term": "DE FACTO",
+          "definition": "(dee FAK toh) adj [Latin - \"from the fact\"] in fact; actual, though not officially recognized * Although Bert was the nominal chairman, Sue was the de facto ruler of the committee."
+        },
+        {
+          "term": "DE JURE",
+          "definition": "(dee JOOR ee) adj [Latin - \"by right\"] legally; according to law * Segregation by law is de jure segregation; segregation in fact is de facto segregation."
+        },
+        {
+          "term": "FAUX PAS",
+          "definition": "(foh PAH) n [French - \"false step\"] a social blunder; an embarrassing mistake * Belching during the quietest part of the church service was a flagrant faux pas."
+        },
+        {
+          "term": "INCOGNITO",
+          "definition": "(in kahg NEE toh, in KAHG nuh toh) adj [Italian - \"unknown\"] disguised; using a false identity * The movie star traveled incognito to avoid her fans."
+        },
+        {
+          "term": "MODUS OPERANDI",
+          "definition": "(moh dus ahp uh RAN dee) n [Latin - \"manner of working\"] method of operating; way of doing things * The detective recognized the burglar's modus operandi, or M.O."
+        },
+        {
+          "term": "NON SEQUITUR",
+          "definition": "(nahn SEK wuh tur) n [Latin - \"it does not follow\"] a statement that does not follow logically from what was said before * \"I love horses; therefore, the moon is made of green cheese\" is a non sequitur."
+        },
+        {
+          "term": "OUTRÉ",
+          "definition": "(oo TRAY) adj [French - \"extravagant\"] bizarre; unconventional * An outré fashion is an unconventional, bizarre fashion."
+        },
+        {
+          "term": "QUID PRO QUO",
+          "definition": "(kwid proh KWOH) n [Latin - \"something for something\"] something given or done in return for something else * The politician said he would do what we had asked him to do, but there was a quid pro quo: he said we had to bribe him first."
+        },
+        {
+          "term": "RAISON D'ÊTRE",
+          "definition": "(ray zohn DET, ray zohn DET ruh) n [French - \"reason to be\"] reason for being * Money was the greedy rich man's raison d'être."
+        },
+        {
+          "term": "RENDEZVOUS",
+          "definition": "(RAHN day voo, RAHN duh voo) n [French - \"present yourselves\"] a meeting; a meeting place * The young couple met behind the bleachers for a discreet rendezvous."
+        },
+        {
+          "term": "SAVOIR-FAIRE",
+          "definition": "(sav wahr FER) n [French - \"to know how to do\"] tact; ability arising from experience"
+        },
+        {
+          "term": "SEMPER FIDELIS",
+          "definition": "(sem pur fi DAY lis) n [Latin - \"always loyal\"] always loyal * The motto of the United States Marine Corps."
+        },
+        {
+          "term": "SINE QUA NON",
+          "definition": "(sin ay kwoh NOHN, sye nee kway NAHN) n [Latin - \"without which not\"] something essential * Understanding is the sine qua non of a successful marriage."
+        },
+        {
+          "term": "STATUS QUO",
+          "definition": "(stayt us KWOH, stat us KWOH) n [Latin - \"state in which\"] the current state of affairs * The status quo is the way things are now."
+        },
+        {
+          "term": "SUI GENERIS",
+          "definition": "(soo ee JEN ur is) adj [Latin - \"of one's own kind\"] unique; in a class of one's own * To be sui generis is to be unlike anyone else."
+        },
+        {
+          "term": "TÊTE-À-TÊTE",
+          "definition": "(tayt ah TAYT) n [French - \"head to head\"] a private conversation between two people"
+        },
+        {
+          "term": "VIS-À-VIS",
+          "definition": "(vee zuh VEE) prep [French - \"face to face\"] in relation to; compared with * The students' relationship vis-à-vis the administration was one of confrontation."
+        },
+        {
+          "term": "ZEITGEIST",
+          "definition": "(TSYTE gyste) n [German - \"time spirit\"] the spirit of the times * Bill was always out of step with the zeitgeist; he had short hair in 1970 and long hair in 1980. ---"
+        }
+      ]
+    },
+    {
+      "chapter_number": 13,
+      "chapter_title": "Science",
+      "entries": [
+        {
+          "term": "ABSOLUTE ZERO",
+          "definition": "The temperature at which atoms become so cold they stop moving around: -459.67°F or -273.15°C. This is theoretically the lowest possible temperature."
+        },
+        {
+          "term": "ANTIBODY",
+          "definition": "The key part of the immune system. An antibody is a protein produced by the body in response to invasion of the body by a virus, bacterium, or other threatening substance. The antibody attacks the invader and then remains in the bloodstream, providing continuing immunity."
+        },
+        {
+          "term": "ANTIMATTER",
+          "definition": "In effect, the mirror image of ordinary matter. Each of the elementary particles has a corresponding antiparticle, with an opposite electrical charge. When matter and antimatter collide, both are annihilated and energy is released."
+        },
+        {
+          "term": "ARTIFICIAL INTELLIGENCE",
+          "definition": "The general name for attempts to reproduce human mental processes with computers."
+        },
+        {
+          "term": "BEHAVIORISM",
+          "definition": "A branch of psychology whose principal tenet is that all behavior consists of reflexive responses to external stimuli."
+        },
+        {
+          "term": "BIG BANG",
+          "definition": "A massive explosion that theoretically began the universe between 10 billion and 20 billion years ago."
+        },
+        {
+          "term": "BLACK HOLE",
+          "definition": "The theoretical remnant of a dead star in which the dense collapsed core exerts such a strong gravitational pull that nothing, including light, can escape from it."
+        },
+        {
+          "term": "CHROMOSOME",
+          "definition": "A structure in the nucleus of a cell that consists of genes and carries genetic information."
+        },
+        {
+          "term": "COSMOLOGY",
+          "definition": "The study of the origins, structure, and future of the universe."
+        },
+        {
+          "term": "CREATIONISM",
+          "definition": "A fallacious theory holding that the book of Genesis contains a literally accurate account of the beginning of the universe and the origins of human beings."
+        },
+        {
+          "term": "DNA",
+          "definition": "An abbreviation for deoxyribonucleic acid, the substance that is the principal component of genes and, hence, chromosomes."
+        },
+        {
+          "term": "ELECTROMAGNETIC RADIATION",
+          "definition": "Visible light, radio signals, microwaves, ultraviolet light, and X rays are all examples of electromagnetic radiation, which is energy radiated in waves from certain electrically charged elementary particles."
+        },
+        {
+          "term": "ELECTRON MICROSCOPE",
+          "definition": "A device that uses streams of electrons to provide greatly magnified images of objects far too small to be seen by the human eye or even by ordinary optical microscopes."
+        },
+        {
+          "term": "ELEMENTARY PARTICLES",
+          "definition": "The tiny particles that make up atoms and are thus the building blocks of all matter. Protons, neutrons, and electrons were once believed to be the only elementary particles, but it is now known that these particles are themselves made up of smaller particles and that the list of elementary particles is quite long. Among the newer additions to the list are quarks, muons, pions, gluons, positrons, and neutrinos."
+        },
+        {
+          "term": "ENDORPHIN",
+          "definition": "Sometimes referred to as the body's own narcotics, endorphins are substances produced by the pituitary gland that can reduce pain, alter moods, and have other effects."
+        },
+        {
+          "term": "ENZYME",
+          "definition": "Any of a large number of substances in organisms that speed up or make possible various biological processes."
+        },
+        {
+          "term": "GENE",
+          "definition": "Genes are the building blocks of chromosomes. They are made of DNA and govern the inheritance of all biological structures and functions."
+        },
+        {
+          "term": "GENETIC ENGINEERING",
+          "definition": "A relatively new science devoted to altering genes in order to produce organisms with more desirable characteristics, such as resistance to disease."
+        },
+        {
+          "term": "GREENHOUSE EFFECT",
+          "definition": "The phenomenon whereby the earth's atmosphere (especially when altered by the addition of various pollutants) traps some of the heat of the sun and warms the surface of the earth."
+        },
+        {
+          "term": "HOLOGRAM",
+          "definition": "A three-dimensional image produced by a photographic process called holography, which involves lasers."
+        },
+        {
+          "term": "HYDROCARBON",
+          "definition": "Any of a large number of organic compounds composed of hydrogen and carbon. Butane, methane, and propane are three of the lighter hydrocarbons. Gasoline, kerosene, and asphalt are all mixtures of (mostly relatively heavy) hydrocarbons."
+        },
+        {
+          "term": "IN VITRO FERTILIZATION",
+          "definition": "The fertilization of an egg outside the mother's body."
+        },
+        {
+          "term": "ISOTOPE",
+          "definition": "An atom with the same number of protons as a second atom but a different number of neutrons is said to be an isotope of that second atom."
+        },
+        {
+          "term": "LASER",
+          "definition": "A device that produces an extraordinarily intense beam of light. The word laser is an acronym for Light Amplification by Simulated Emission of Radiation."
+        },
+        {
+          "term": "LIGHT-YEAR",
+          "definition": "The distance that light travels in a year, or approximately 5,878,000,000,000 miles."
+        },
+        {
+          "term": "NATURAL SELECTION",
+          "definition": "The theory that species originate and become differentiated one from another as certain characteristics of organisms prove more valuable than others at enabling those organisms to reproduce. These valuable characteristics are in effect \"selected\" by nature for preservation in succeeding generations, while other characteristics disappear. Natural selection was a key element in Charles Darwin's monumental theory of evolution."
+        },
+        {
+          "term": "NEBULA",
+          "definition": "Enormous cloud of dust and gas in outer space."
+        },
+        {
+          "term": "NUCLEAR ENERGY",
+          "definition": "The vast energy locked in the infinitesimal nucleus of an atom. This energy can be released through fission (the splitting of certain atomic nuclei) and fusion (the combining of certain atomic nuclei). It is also released naturally in a few elements through a process of decomposition called radioactivity. Fission, fusion, and radioactivity are all processes involving the conversion of small amounts of matter into enormous amounts of energy. The release of this energy is the basis of nuclear weapons (such as atomic bombs and hydrogen bombs) and nuclear reactors used in the production of electricity."
+        },
+        {
+          "term": "NUCLEAR WINTER",
+          "definition": "A hypothetical chilling of the earth resulting from the contamination of the atmosphere by radioactive materials, dust, and other substances in the aftermath of a nuclear war."
+        },
+        {
+          "term": "OSMOSIS",
+          "definition": "The equalization of fluid concentrations on both sides of a permeable membrane."
+        },
+        {
+          "term": "OZONE LAYER",
+          "definition": "Ozone is a compound of oxygen. The ozone layer is a part of the atmosphere that, among other things, filters out radiation that is harmful to human beings. In recent years the ozone layer has been found to be decomposing at an alarming rate, owing in large part to the release into the atmosphere of certain man-made pollutants."
+        },
+        {
+          "term": "PASTEURIZATION",
+          "definition": "A sterilization process in which foods are heated in order to kill harmful organisms in them. The process is named for Louis Pasteur, the nineteenth-century French scientist who developed it."
+        },
+        {
+          "term": "PERIODIC TABLE",
+          "definition": "A chart depicting the known elements arranged according to certain characteristics. If you are a student, there is probably a periodic table in your chemistry classroom."
+        },
+        {
+          "term": "PHEROMONE",
+          "definition": "Substances secreted by animals that influence the behavior of other animals, primarily through the sense of smell."
+        },
+        {
+          "term": "PHOTON",
+          "definition": "The smallest unit of electromagnetic radiation."
+        },
+        {
+          "term": "PHOTOSYNTHESIS",
+          "definition": "The process whereby green plants transform energy from the sun into food."
+        },
+        {
+          "term": "PLATE TECTONICS",
+          "definition": "A revolutionary geological theory holding that the earth's crust consists of enormous moving plates that are constantly shifting position and, among other things, altering the shape and arrangement of the continents."
+        },
+        {
+          "term": "PULSAR",
+          "definition": "Any of a number of less than thoroughly understood objects in outer space that emit regular pulses of radio waves."
+        },
+        {
+          "term": "QUASAR",
+          "definition": "Any of a number of starlike objects believed to occupy the very farthest fringes of the universe."
+        },
+        {
+          "term": "RADIO TELESCOPE",
+          "definition": "A large antenna capable of receiving the radio waves naturally emitted by stars and other objects in outer space. A radio telescope is a telescope capable of \"seeing\" forms of electromagnetic radiation not visible to the human eye or to an ordinary optical telescope."
+        },
+        {
+          "term": "RELATIVITY",
+          "definition": "Albert Einstein's monumental theory, which holds, among a great many other things, that space and time are not separate entities but elements of a single continuum called space-time."
+        },
+        {
+          "term": "RNA",
+          "definition": "An abbreviation for ribonucleic acid, a substance similar to DNA that is a crucial element in the synthesis of proteins."
+        },
+        {
+          "term": "SEISMOLOGY",
+          "definition": "The study of earthquakes and other tremors (including man-made ones) in the earth's crust."
+        },
+        {
+          "term": "SOCIOBIOLOGY",
+          "definition": "A relatively new scientific field, which holds that behavior evolves and is inherited in the same way that physical characteristics are."
+        },
+        {
+          "term": "SPEED OF LIGHT",
+          "definition": "The speed at which light travels through a vacuum, or 186,282 miles per second."
+        },
+        {
+          "term": "SUPERCONDUCTIVITY",
+          "definition": "The ability of certain substances to conduct electricity unusually readily. Superconductivity has usually been produced by cooling certain substances to temperatures approaching absolute zero. More recently, scientists have discovered materials that become superconductive at vastly warmer temperatures."
+        },
+        {
+          "term": "THERMODYNAMICS",
+          "definition": "A branch of science concerned with heat and the conversion of heat into other forms of energy."
+        },
+        {
+          "term": "VACCINE",
+          "definition": "A substance that, when introduced into an organism, causes the organism to produce antibodies against, and hence immunity to, a particular disease. ---"
+        }
+      ]
+    }
+  ]
+}
