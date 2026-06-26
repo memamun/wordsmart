@@ -1350,7 +1350,7 @@
           "autonomy",
           "bridge",
           "mild",
-          "mild"
+          "severe"
         ],
         "correct_answer": "mild"
       },
@@ -1833,7 +1833,7 @@
           "steadfast",
           "deter",
           "praise",
-          "praise"
+          "scold"
         ],
         "correct_answer": "praise"
       },
@@ -6097,7 +6097,7 @@
           "withhold",
           "monotone",
           "common",
-          "common"
+          "noble"
         ],
         "correct_answer": "common"
       },
@@ -9476,7 +9476,7 @@
           "euphony",
           "clear",
           "synchronism",
-          "clear"
+          "dissonant"
         ],
         "correct_answer": "euphony"
       },
@@ -10850,7 +10850,7 @@
           "limited",
           "expert",
           "order",
-          "limited"
+          "quack"
         ],
         "correct_answer": "expert"
       },

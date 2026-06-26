@@ -138,8 +138,8 @@ Return the result strictly as a JSON object with keys:
     raise RuntimeError("Failed to fetch story from all Gemini models.")
 
 def is_generic_story(story_english):
-    # Placeholders have this generic pattern
-    return "protagonist had to navigate" in story_english or "In this chapter, the protagonist" in story_english
+    # Placeholders have this generic pattern (case-insensitive)
+    return "protagonist" in story_english.lower()
 
 def main():
     api_key = load_api_key()

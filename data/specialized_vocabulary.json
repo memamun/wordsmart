@@ -165,6 +165,31 @@
           "term": "WHETHER OR NOT",
           "definition": "You can almost always just say whether. \"I can't decide whether to go to the grocery store\" uses fewer words to convey the same meaning as \"I can't decide whether or not to go to the grocery store.\"",
           "examples": []
+        },
+        {
+          "term": "COMPLEMENT/COMPLIMENT",
+          "definition": "Complement means to go well with or complete. Compliment is a polite expression of praise or admiration.",
+          "examples": [
+            "The red wine was a perfect complement to the steak dinner.",
+            "He paid her a lovely compliment on her speech."
+          ]
+        },
+        {
+          "term": "LOOSE/LOSE",
+          "definition": "Loose means not tight or free from confinement. Lose means to be deprived of or cease to have something.",
+          "examples": [
+            "The dog broke loose from its leash.",
+            "Do not lose your keys in the sand."
+          ]
+        },
+        {
+          "term": "THEIR/THERE/THEY'RE",
+          "definition": "Their is a possessive pronoun meaning belonging to them. There indicates a place or position. They're is a contraction of they are.",
+          "examples": [
+            "They drove their car to the stadium.",
+            "Please put the box over there.",
+            "They're going to arrive in ten minutes."
+          ]
         }
       ]
     },
@@ -535,6 +560,34 @@
         {
           "term": "VIP",
           "definition": "Very important person ---"
+        },
+        {
+          "term": "AI",
+          "definition": "Artificial Intelligence"
+        },
+        {
+          "term": "API",
+          "definition": "Application Programming Interface"
+        },
+        {
+          "term": "GDP",
+          "definition": "Gross Domestic Product"
+        },
+        {
+          "term": "HTTP/HTTPS",
+          "definition": "Hypertext Transfer Protocol / Secure"
+        },
+        {
+          "term": "LLM",
+          "definition": "Large Language Model"
+        },
+        {
+          "term": "SaaS",
+          "definition": "Software as a Service"
+        },
+        {
+          "term": "STEM",
+          "definition": "Science, Technology, Engineering, and Mathematics"
         }
       ]
     },
@@ -831,6 +884,26 @@
         {
           "term": "WORD PROCESSING",
           "definition": "Using a computer to manipulate text. In the olden days, it was known as writing. ---"
+        },
+        {
+          "term": "ALGORITHM",
+          "definition": "A precise, step-by-step procedure or set of rules for solving a problem or performing a task on a computer."
+        },
+        {
+          "term": "BANDWIDTH",
+          "definition": "The capacity of a network connection to transmit data in a given amount of time; also used figuratively to describe cognitive capacity."
+        },
+        {
+          "term": "CRYPTOGRAPHY",
+          "definition": "The science of securing communication through codes and encryption, vital for online privacy and security."
+        },
+        {
+          "term": "GENERATIVE AI",
+          "definition": "A branch of artificial intelligence focused on creating new content, such as text, images, or code, based on patterns learned from training data."
+        },
+        {
+          "term": "HEURISTICS",
+          "definition": "Practical, experience-based techniques or rules of thumb for problem-solving that are not guaranteed to be optimal but are sufficient for immediate goals."
         }
       ]
     },

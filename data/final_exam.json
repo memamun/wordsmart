@@ -1658,7 +1658,7 @@
         }
       ],
       "answers": {
-        "1": "officious",
+        "1": "vicarious",
         "2": "scrutinize",
         "3": "reprehensible",
         "4": "founder",
@@ -1667,7 +1667,7 @@
         "7": "culinary",
         "8": "corollary",
         "9": "proximity",
-        "10": "vicarious"
+        "10": "officious"
       }
     },
     {
@@ -1924,7 +1924,7 @@
             "inane",
             "hackneyed",
             "platitudinous",
-            "conductive"
+            "conducive"
           ]
         },
         {
@@ -2565,7 +2565,7 @@
             "virulent",
             "adverse",
             "baneful",
-            "animosity"
+            "tantamount"
           ]
         },
         {
@@ -2582,8 +2582,8 @@
           "words": [
             "idiosyncrasy",
             "eccentricity",
-            "precedent",
-            "vindicate"
+            "complacency",
+            "singularity"
           ]
         },
         {
@@ -2591,17 +2591,17 @@
           "words": [
             "antecedent",
             "precursor",
-            "exculpate",
-            "corellary"
+            "corollary",
+            "recrimination"
           ]
         },
         {
           "question_number": 10,
           "words": [
             "exonerate",
-            "patronize",
-            "resolution",
-            "resolution"
+            "absolve",
+            "acquit",
+            "patronize"
           ]
         }
       ],

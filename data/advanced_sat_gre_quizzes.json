@@ -2756,8 +2756,7 @@
         {
           "question_number": 9,
           "sentence": "Writing a long book report requires great _______, keeping it short and to the point.",
-          "options": ["brevity", "benignity", "bureaucracy", "brevity"],
-          "options": ["brevity", "brevity", "cadence", "candor"],
+          "options": ["brevity", "benignity", "cadence", "candor"],
           "correct_answer": "brevity",
           "explanation": "Brevity means concise and exact use of words in writing or speech.",
           "bengali_explanation": "বড় রিভিউ রিপোর্ট লেখার ক্ষেত্রে brevity (সংক্ষিপ্ততা/সংক্ষেপণ) একটি বড় গুণ যা সরাসরি মূল ভাব তুলে ধরে।"
