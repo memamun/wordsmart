@@ -62,9 +62,12 @@ gantt
 
 ### Phase 7: Vertical Slices Feature Development (Current Milestone)
 *   **Mantra:** *"No more horizontal architecture work. From now on, every session should deliver one complete vertical feature."*
+*   **Slice 0: Dependency Injection (DI) & Composition Root**
+    *   Set up service locator/dependency injection framework (e.g. using Riverpod ProviderScope or GetIt) to build the dependency graph.
+    *   Assemble all DataSources, Repositories, and UseCases statelessly at the Composition Root.
 *   **Slice 1: Search Feature (End-to-End)**
     *   Implement `SearchWordsUseCase` & `GetSearchSuggestionsUseCase`.
-    *   Set up dependency injection and Riverpod providers.
+    *   Set up search state notifier/notifier and Riverpod providers.
     *   Build complete Search UI Screen.
 *   **Slice 2: Word Details Feature (End-to-End)**
     *   Implement `GetWordDetailsUseCase`.
