@@ -9,7 +9,7 @@ from collections import defaultdict
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 IGNORE_FILES = {".gemini_cache.json", ".advanced_cache.json"}
 REPORT_LINES = []
 ERROR_COUNT = 0

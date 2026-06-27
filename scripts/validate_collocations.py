@@ -15,7 +15,7 @@ import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-CORE_PATH = os.path.join(PROJECT_ROOT, "data", "core_vocabulary.json")
+CORE_PATH = os.path.join(PROJECT_ROOT, "data", "source", "core_vocabulary.json")
 
 def clean_stem(word):
     # Get the word stem to check for presence in collocations

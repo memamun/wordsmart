@@ -3,7 +3,7 @@ import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 OUTPUT_PATH = os.path.join(PROJECT_ROOT, "docs", "root_derivative_audit_report.md")
 
 def main():

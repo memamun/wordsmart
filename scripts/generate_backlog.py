@@ -8,7 +8,7 @@ import urllib.error
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 ENV_PATH = os.path.join(PROJECT_ROOT, ".env")
 OUTPUT_PATH = os.path.join(PROJECT_ROOT, "docs", "derivative_enrichment_backlog.md")
 
@@ -60,7 +60,7 @@ def main():
     print(f"Candidates for A/C: {len(no_deriv_words)}")
 
     # Load cache
-    cache_path = os.path.join(DATA_DIR, ".backlog_cache.json")
+    cache_path = os.path.join(PROJECT_ROOT, "archive", "cache", ".backlog_cache.json")
     cache = {}
     if os.path.exists(cache_path):
         try:

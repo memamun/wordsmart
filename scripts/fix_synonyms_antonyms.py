@@ -9,9 +9,9 @@ import urllib.error
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 ENV_PATH = os.path.join(PROJECT_ROOT, ".env")
-CACHE_PATH = os.path.join(DATA_DIR, ".synonyms_antonyms_cache.json")
+CACHE_PATH = os.path.join(PROJECT_ROOT, "archive", "cache", ".synonyms_antonyms_cache.json")
 
 # Database Paths
 DB_PATHS = {

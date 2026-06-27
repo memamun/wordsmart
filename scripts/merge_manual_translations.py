@@ -5,8 +5,8 @@ import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-CACHE_PATH = os.path.join(DATA_DIR, ".example_translation_cache.json")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
+CACHE_PATH = os.path.join(PROJECT_ROOT, "archive", "cache", ".example_translation_cache.json")
 
 def clean_sentence(s):
     return re.sub(r"\s+", " ", s.replace("**", "").replace("*", "")).strip().lower()

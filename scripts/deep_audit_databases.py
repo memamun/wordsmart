@@ -4,7 +4,7 @@ import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 REPORT_PATH = os.path.join(PROJECT_ROOT, "docs", "database_audit_report.md")
 
 def check_spaces(text):

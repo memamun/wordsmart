@@ -2,7 +2,7 @@
 
 **Generated:** Automated scan
 
-**Scope:** All 14 JSON files in `/home/mamun/wordsmart/data`
+**Scope:** All 14 JSON files in `/home/mamun/wordsmart/data/source`
 
 **Checks:** JSON validity, field completeness, cross-file word consistency, spelling (Bengali + English), mnemonic validity, answer accuracy
 

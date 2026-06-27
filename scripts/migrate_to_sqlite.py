@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Script to migrate JSON database files into a single structured, normalized SQLite database (data/wordsmart.db)."""
+"""Script to migrate JSON database files into a single structured, normalized SQLite database (data/database/wordsmart.db)."""
 
 import json
 import os
@@ -7,8 +7,8 @@ import sqlite3
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-DB_PATH = os.path.join(DATA_DIR, "wordsmart.db")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
+DB_PATH = os.path.join(PROJECT_ROOT, "data", "database", "wordsmart.db")
 
 def main():
     print("🚀 Starting SQLite Database Migration...")
@@ -637,7 +637,7 @@ def main():
     conn.commit()
     conn.close()
     
-    print("\n🎉 SQLite Database Rebuild Complete! Created: data/wordsmart.db")
+    print("\n🎉 SQLite Database Rebuild Complete! Created: data/database/wordsmart.db")
 
 if __name__ == "__main__":
     main()

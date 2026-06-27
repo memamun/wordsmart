@@ -8,7 +8,7 @@ import time
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 ENV_PATH = os.path.join(PROJECT_ROOT, ".env")
 OUTPUT_PATH = os.path.join(PROJECT_ROOT, "docs", "root_accuracy_audit_report.md")
 
@@ -171,7 +171,7 @@ Here are the words and their current roots:
         f.write("\n".join(report_lines))
 
     # Save details as cache for programmatical correction
-    cache_path = os.path.join(DATA_DIR, ".root_audit_cache.json")
+    cache_path = os.path.join(PROJECT_ROOT, "archive", "cache", ".root_audit_cache.json")
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(audit_results, f, indent=2, ensure_ascii=False)
 

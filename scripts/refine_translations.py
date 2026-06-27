@@ -6,7 +6,7 @@ import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
 ENV_PATH = os.path.join(PROJECT_ROOT, ".env")
 
 def load_working_keys():
@@ -49,8 +49,8 @@ def main():
         return
     print(f"Loaded {len(api_keys)} working API keys.")
 
-    draft_path = os.path.join(DATA_DIR, "draft_translations.json")
-    refined_path = os.path.join(DATA_DIR, "refined_translations.json")
+    draft_path = os.path.join(PROJECT_ROOT, "archive", "cache", "draft_translations.json")
+    refined_path = os.path.join(PROJECT_ROOT, "archive", "cache", "refined_translations.json")
 
     if not os.path.exists(draft_path):
         print(f"❌ Draft translations file not found at {draft_path}.")

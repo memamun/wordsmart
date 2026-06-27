@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Script to validate the normalized SQLite database (data/wordsmart.db) integrity and row counts against original JSON files."""
+"""Script to validate the normalized SQLite database (data/database/wordsmart.db) integrity and row counts against original JSON files."""
 
 import json
 import os
@@ -8,8 +8,8 @@ import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-DB_PATH = os.path.join(DATA_DIR, "wordsmart.db")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data", "source")
+DB_PATH = os.path.join(PROJECT_ROOT, "data", "database", "wordsmart.db")
 
 def count_json_entries(filename, key=None, subkey=None):
     filepath = os.path.join(DATA_DIR, filename)
