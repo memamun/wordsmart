@@ -43,3 +43,17 @@ This document outlines the invariants (business rules that must always hold true
 10. **Word is immutable**
     - **Rule:** All properties of the `Word` class must be marked `final`.
     - **Reason:** Prevents runtime side effects, facilitates safe multithreading, and allows Flutter to optimize widget rebuilding.
+
+---
+
+## ⚠️ Runtime Validation Note (Assertion vs Exceptions)
+In the development environment, constructor invariants are enforced using Dart's `assert` statements. Note that in Dart production/release builds, `assert` statements are compiled away and do not execute. For enterprise runtime safety, future updates will introduce a domain validation layer that throws custom exceptions (e.g., `InvalidWordIdException`) rather than relying solely on assertions.
+
+---
+
+## 🔍 Definition of a Stub Word (`isStub`)
+A **Stub Word** is defined strictly by the absence of its core dictionary content:
+* **Rule:** A word is considered a stub if and only if its primary definition (`definition`) is null or blank.
+* **Distinction from Incomplete Words:** 
+  * **Stub Word:** A word that exists in the database solely as a relational bridge (e.g., as a synonym or antonym reference for a main word) but has no definition of its own.
+  * **Incomplete Word:** A core vocabulary word that has a definition but might be missing optional auxiliary metadata (like pronunciation, audio file path, or mnemonics). An incomplete word is **not** a stub word.
