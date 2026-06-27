@@ -4,40 +4,108 @@
 The flagship learning page of WordSmart, displaying comprehensive vocabulary details under the progressive disclosure paradigm.
 
 ## 🏆 User Goal
-Read meaning, listen to audio, examine contextual examples, etymology roots, and related derivatives.
+Read meaning, listen to audio, examine contextual examples, etymology roots, related derivatives, and update word study status.
 
 ## 🧭 Entry & Exit Points
-*   **Entry:** Selecting any word from Home, Search Results, Bookmarks, or Quiz.
+*   **Entry:** Selecting any word from Home (01_home), Search Results (02_search), Bookmarks, or Quiz.
 *   **Exit:** Tapping Back arrow $(<)$ returns to the previous screen in the stack trace.
 
+---
+
+## 📐 Layout Structure (Top-to-Bottom)
+
+The details page follows a clean, single-column scrollable sheet structured for scan readability:
+
+```
+[ Collapsible Sliver App Bar ]
+              ↓
+[ Word | Pronunciation | POS Chip | Difficulty Rating | Audio (🔊) | Bookmark (⭐) ]
+              ↓
+───────────────────────────────────────────── (Thin Divider)
+[ Bengali Meaning | English Definition ]
+              ↓
+─────────────────────────────────────────────
+[ Mnemonic Box ]
+              ↓
+─────────────────────────────────────────────
+[ Example Sentences Stack ]
+              ↓
+─────────────────────────────────────────────
+[ Synonyms Chip Row ]
+              ↓
+─────────────────────────────────────────────
+[ Antonyms Chip Row ]
+              ↓
+─────────────────────────────────────────────
+[ Collocations List ]
+              ↓
+─────────────────────────────────────────────
+[ Derivatives List ]
+              ↓
+─────────────────────────────────────────────
+[ Roots & Etymology Panel ]
+              ↓
+─────────────────────────────────────────────
+[ Study Actions: (Mark as Mastered) | (Review Again) ]
+```
+
+---
+
 ## 🧩 Components
-1.  **Sliver App Bar:** Collapsible bar with a Back button and Bookmark toggle.
-2.  **Word Header:** Large Outfit vocabulary word, phonetics, and audio play button.
-3.  **Meanings Card:** Translucent card with Bengali meaning and English definition.
-4.  **Collocations List:** Common word partnerships.
-5.  **Examples Stack:** English example sentences paired with Bengali translations.
-6.  **Relationships Chips:** Synonym and Antonym tag rows.
-7.  **Derivatives List:** List of suffixes/spelling variants.
-8.  **Roots & Etymology Panel:** Origin card indicating root families.
+
+1.  **Sliver Header Wrapper:** Houses the scroll-responsive pinned title and global actions.
+2.  **Word Header Block:** Large Outfit Bold headword (`48sp`), phonetic guide (`16sp`), uppercase POS label chip (e.g. `VERB`), and a subtitle difficulty rating tag (e.g. `GRE High Frequency`).
+3.  **Core Meanings Card:** Level 1 surface showing translation in Hind Siliguri (`17sp`) and description in Inter Medium (`17sp`).
+4.  **Mnemonic Card:** Translucent block with a soft Amber outline summarizing memory association hooks.
+5.  **Examples Section:** Ordered list containing English sample sentences paired with muted Bengali translation text block-by-block.
+6.  **Synonym & Antonym Rows:** Scrollable horizontal chip lists.
+7.  **Roots Panel:** Root tag box (e.g. `Origin: Latin 'ab' meaning away`).
+8.  **Study Actions Bar:** A bottom-anchored persistent button row:
+    *   *Primary Action:* Teal-filled `Mark as Mastered` button.
+    *   *Secondary Action:* Outlined `Review Again` button.
+
+---
 
 ## 🔄 Lifecycle States
-*   **Loading:** Shimmer loader matches Card shapes.
-*   **Loaded:** Content transitions in with fade.
-*   **Audio Playing:** Play button changes state to dynamic visual ripple.
-*   **Bookmark Toggle:** Star changes active/inactive status immediately.
+*   **Loading:** Skeletons pulse in shape of cards and details paragraphs.
+*   **Loaded:** Details fade in over `200ms` using `easeOutCubic`.
+*   **Audio Loading:** Spinner replaces audio volume icon.
+*   **Audio Playing:** Volume waves pulse dynamically in sync with audio length.
+*   **State Updated:** Success toast pops when study action (e.g. Mastered) is clicked.
+
+---
 
 ## 🖐️ Interactions & Gestures
-*   **Vertical Scrolling:** Collapses the large headword into a smaller text label inside the pinned sliver app bar.
-*   **Tap related word:** Opens the details screen recursively for the tapped synonym or root word.
+*   **Vertical Scroll:** Translates and scales the large headword from the content canvas into a smaller text label inside the pinned sliver app bar.
+*   **Tap Related Chip:** Recursively pushes a new `03_word_details` instance for the clicked synonym or antonym onto the navigation stack.
+
+---
 
 ## 🎬 Animations
-*   **Hero transition:** The headword Outfit text translates smoothly from the list item to the header title.
-*   **Microinteractions:** Bookmark toggle scales `0.8x` $\rightarrow$ `1.2x` $\rightarrow$ `1.0x` with haptic click.
+*   **Word Hero:** Headword Outfit text morphs size and coordinates from lists directly to header.
+*   **Bookmark Toggle:** Star scale bounce (`0.8x` to `1.2x` to `1.0x` over `150ms`).
+
+---
 
 ## ♿ Accessibility
-*   Bengali Hind Siliguri text scale uses distinct line-height padding (+20%).
-*   Audio button maintains a clean `48dp` touch target.
+*   All text uses scalable `sp` units to honor system text magnification settings.
+*   Bengali Hind Siliguri text utilizes a dedicated line-height modifier (`+20%` padding) to prevent vowel overlap.
+*   All buttons have touch target sizes exceeding `48dp` x `48dp`.
+
+---
 
 ## 🛠️ Flutter Implementation Notes
 *   Use `SliverAppBar` with `flexibleSpace` to handle headword collapse.
-*   Utilize parallel Named-Future execution (`Future.wait`) in `WordRepositoryImpl` to load secondary relations simultaneously without positional coupling.
+*   Use `RichText` or standard column layouts for Example segments to keep the widget tree flat and performant.
+*   Bind study actions directly to SQLite progress transactions via providers.
+
+---
+
+## ✅ Screen Success Criteria
+
+A successful Word Details screen should allow users to:
+*   Read and understand the primary meaning/definition in **< 1 second** of page load.
+*   Play the pronunciation audio with **1 tap** on the volume icon.
+*   Toggle bookmarks with **1 tap** on the star icon.
+*   Navigate to related synonym details with **1 tap** on chips.
+*   Update study mastery status (e.g. Mastered) with **1 tap** on the bottom action bar.
