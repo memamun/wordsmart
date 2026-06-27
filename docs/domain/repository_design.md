@@ -18,6 +18,9 @@ This document outlines architectural design decisions, future roadmap notes, and
 - **Current Design:** `Map<int, String> translations` maps an example ID to a single translation string.
 - **Design Note:** If requirements expand tomorrow to support multiple translations per example (e.g., English -> Bangla + Japanese), this map shape will break. We will evolve this into a dedicated `TranslationBundle` or list of values when multi-language support is requested.
 
+### 4. Hydration Complexity and Repository Growth (Future Refactoring)
+- **Design Note:** As the repository grows to support search, bookmarks, and spaced repetition, the mapping and hydration orchestration inside `WordRepositoryImpl` will become complex. In the future, we will extract this orchestration into a dedicated `WordAggregateBuilder` or `WordHydrator` class. The repository will remain a pure orchestrator, delegating mapping details to the builder (SRP).
+
 ---
 
 ## 🎯 Repository Business Rules
