@@ -81,3 +81,25 @@ Ensures consistent UI rendering in the Flutter application (e.g., allowing speci
 
 ### Trade-off
 Requires validation scripts to enforce formatting constraints on all example translations.
+
+---
+
+## ADR-006: Word Domain Entity Structure and Class Invariants
+
+### Status
+Accepted
+
+### Decision
+1. **Semi-Rich Domain Model:** Design the `Word` domain entity to encapsulate self-contained business logic (e.g. `hasAudio`, `hasMnemonic`, `isAdvanced`, `hasSynonyms`) utilizing only its own internal properties. Do not allow network, database, or external package dependencies (such as Flutter-specific elements or Audio Player packages) in the entity.
+2. **Nullable Core Fields for Stubs:** Make `definition` and `bengaliMeaning` nullable (`String?`) to accommodate "stub words" (vocabulary items appearing only as synonyms/antonyms/roots with no full dictionary definitions).
+3. **Class Invariants Validation:** Enforce constructor-level assertions (`assert(id > 0)`, `assert(word.trim().isNotEmpty)`) to guarantee the object's integrity.
+4. **Lazy Loading Representation:** Represent unloaded relationships (e.g., synonyms, antonyms, collocations) as `null`, while loaded-but-empty relationships are represented as `[]`.
+
+### Reason
+- **Encapsulation:** Promotes self-documenting code and prevents logic duplication across presentation widgets.
+- **Robustness:** Constructor assertions fail-fast if corrupted data enters the domain layer.
+- **Relational Integrity:** Allows stub entries to exist as first-class domain entities without requiring placeholder definitions.
+- **Clear Lazy Loading State:** Standardizes how the repository signals that a field has not been loaded, avoiding separate load-state management variables.
+
+### Trade-off
+UI developers must handle potential null values when presenting definitions or meanings, and we must explicitly handle lazy-loading state checks.
