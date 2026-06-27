@@ -10,6 +10,7 @@ import '../datasources/word_local_data_source.dart';
 import '../mappers/word_mapper.dart';
 import '../models/word_derivative_model.dart';
 import '../models/word_example_model.dart';
+import '../models/word_model.dart';
 import '../models/word_root_model.dart';
 
 class WordRepositoryImpl implements WordRepository {
@@ -20,54 +21,23 @@ class WordRepositoryImpl implements WordRepository {
   @override
   Future<Either<Failure, Word>> getWordDetails(int id) async {
     try {
-      // 1. Fetch core word storage model
+      // 1. Load data from source
       final wordModel = await localDataSource.getWordById(id);
+      final relations = await _loadRelations(id);
 
-      // 2. Fetch all lazy-loaded relationships in parallel for performance optimization
-      final results = await Future.wait([
-        localDataSource.getSynonymsForWord(id),
-        localDataSource.getAntonymsForWord(id),
-        localDataSource.getCollocationsForWord(id),
-        localDataSource.getExamplesForWord(id),
-        localDataSource.getExampleTranslationsForWord(id),
-        localDataSource.getDerivativesForWord(id),
-        localDataSource.getRootsForWord(id),
-      ]);
-
-      final synonyms = results[0] as List<String>;
-      final antonyms = results[1] as List<String>;
-      final collocations = results[2] as List<String>;
-      final exampleModels = results[3] as List<WordExampleModel>;
-      final exampleTranslations = results[4] as Map<int, String>;
-      final derivativeModels = results[5] as List<WordDerivativeModel>;
-      final rootModels = results[6] as List<WordRootModel>;
-
-      // 3. Map list storage models to bilingual domain entity collections
-      final examples = exampleModels.map((e) {
-        final translation = exampleTranslations[e.id];
-        return e.toEntity(translation: translation);
-      }).toList();
-
-      final derivatives = derivativeModels.map((d) => d.toEntity()).toList();
-      final roots = rootModels.map((r) => r.toEntity()).toList();
-
-      // 4. Map the core word model to the domain entity and hydrate the collections
-      final wordEntity = wordModel.toEntity(
-        synonyms: synonyms,
-        antonyms: antonyms,
-        collocations: collocations,
-        examples: examples,
-        derivatives: derivatives,
-        roots: roots,
-      );
+      // 2. Hydrate storage models into domain entities
+      final wordEntity = _hydrateWord(wordModel, relations);
 
       return Right(wordEntity);
     } on DomainException catch (e) {
       // Catch business invariant violations (corrupted data) and wrap in ValidationFailure
       return Left(ValidationFailure(e.message));
     } on Exception catch (e) {
-      // Catch any low-level database/driver exceptions and wrap in DatabaseFailure
-      return Left(DatabaseFailure('Database error: ${e.toString()}'));
+      // Catch any low-level database/driver exceptions, log internally (e),
+      // and return a safe, user-friendly Failure to the UI (preventing exception leaking).
+      return const Left(DatabaseFailure(
+        'Unable to load word details. Please try again.',
+      ));
     }
   }
 
@@ -76,4 +46,78 @@ class WordRepositoryImpl implements WordRepository {
     // Unimplemented for Sprint 1
     throw UnimplementedError();
   }
+
+  /// Loads all lazy-loaded relationships in parallel, avoiding positional coupling.
+  Future<_WordRelations> _loadRelations(int wordId) async {
+    // Storing futures in named variables prevents index-based positional coupling bugs
+    final synonymsFuture = localDataSource.getSynonymsForWord(wordId);
+    final antonymsFuture = localDataSource.getAntonymsForWord(wordId);
+    final collocationsFuture = localDataSource.getCollocationsForWord(wordId);
+    final examplesFuture = localDataSource.getExamplesForWord(wordId);
+    final translationsFuture = localDataSource.getExampleTranslationsForWord(wordId);
+    final derivativesFuture = localDataSource.getDerivativesForWord(wordId);
+    final rootsFuture = localDataSource.getRootsForWord(wordId);
+
+    // Run all queries in parallel
+    await Future.wait([
+      synonymsFuture,
+      antonymsFuture,
+      collocationsFuture,
+      examplesFuture,
+      translationsFuture,
+      derivativesFuture,
+      rootsFuture,
+    ]);
+
+    return _WordRelations(
+      synonyms: await synonymsFuture,
+      antonyms: await antonymsFuture,
+      collocations: await collocationsFuture,
+      examples: await examplesFuture,
+      translations: await translationsFuture,
+      derivatives: await derivativesFuture,
+      roots: await rootsFuture,
+    );
+  }
+
+  /// Hydrates the Word domain entity from model representations.
+  Word _hydrateWord(WordModel wordModel, _WordRelations relations) {
+    final examples = relations.examples.map((e) {
+      final translation = relations.translations[e.id];
+      return e.toEntity(translation: translation);
+    }).toList();
+
+    final derivatives = relations.derivatives.map((d) => d.toEntity()).toList();
+    final roots = relations.roots.map((r) => r.toEntity()).toList();
+
+    return wordModel.toEntity(
+      synonyms: relations.synonyms,
+      antonyms: relations.antonyms,
+      collocations: relations.collocations,
+      examples: examples,
+      derivatives: derivatives,
+      roots: roots,
+    );
+  }
+}
+
+/// Helper class to bundle lazy-loaded relations data
+class _WordRelations {
+  final List<String> synonyms;
+  final List<String> antonyms;
+  final List<String> collocations;
+  final List<WordExampleModel> examples;
+  final Map<int, String> translations;
+  final List<WordDerivativeModel> derivatives;
+  final List<WordRootModel> roots;
+
+  const _WordRelations({
+    required this.synonyms,
+    required this.antonyms,
+    required this.collocations,
+    required this.examples,
+    required this.translations,
+    required this.derivatives,
+    required this.roots,
+  });
 }

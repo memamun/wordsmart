@@ -14,6 +14,10 @@ This document outlines architectural design decisions, future roadmap notes, and
 - **Current Signature:** `Future<Either<Failure, List<String>>> getSearchSuggestions(String query)`
 - **Design Note:** Currently, autocomplete suggestions return simple `List<String>`. If we want to enrich search results with matching types (e.g. synonym match, exact match), frequency scores, or derivative info, we will refactor the return type to a dedicated `SearchSuggestion` Value Object.
 
+### 3. Domain Evolution of Example Translations (Future Proofing)
+- **Current Design:** `Map<int, String> translations` maps an example ID to a single translation string.
+- **Design Note:** If requirements expand tomorrow to support multiple translations per example (e.g., English -> Bangla + Japanese), this map shape will break. We will evolve this into a dedicated `TranslationBundle` or list of values when multi-language support is requested.
+
 ---
 
 ## 🎯 Repository Business Rules
@@ -30,3 +34,16 @@ This document outlines architectural design decisions, future roadmap notes, and
 ### 3. Spaced-Repetition Review Selection (`getDueWordsForReview`)
 - **Rule:** Spaced repetition queries must fetch words where `next_review_at` is less than or equal to the current device timestamp (`DateTime.now()`), ordered by review priority (e.g. lowest mastery score first).
 - **Type Safety:** The learning status is restricted to the type-safe `LearningStatus` enum (`unlearned`, `learning`, `mastered`, `review`), preventing database spelling typos from corrupting logic.
+
+---
+
+## 🛡️ Error Tolerance & Partial Data Failures
+- **Rule:** If a secondary relationship (like `roots` or `derivatives`) fails to load due to database corruption, should the entire detail query fail?
+- **Decision:** As a dictionary app, definitions and phonetic spellings are critical; roots and derivatives are nice-to-have. If secondary tables fail, the repository should fallback gracefully by injecting empty collections (`[]`) for those relations and logging the error rather than failing the whole screen.
+
+---
+
+## 🔒 Developer Error vs User Error (Logger Isolation)
+- **Rule:** The repository implementation must catch low-level runtime exceptions (like `SQLiteException`) and log them internally using a logging client. It must **never** expose technical database error details to the Presentation layer or UI screen.
+- **User Message:** The UI must receive a clean, friendly message like: *"Unable to load word details. Please try again."*
+- **Developer Message:** The logs must receive the exact trace, e.g., *"SQLiteException: no such table: word_synonyms near column..."*
