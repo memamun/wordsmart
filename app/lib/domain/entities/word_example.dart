@@ -5,19 +5,36 @@ class WordExample {
   final String sentence;
   final String translation;
 
-  WordExample({
+  const WordExample._({
     required this.id,
     required this.sentence,
     required this.translation,
+  });
+
+  factory WordExample({
+    required int id,
+    required String sentence,
+    required String translation,
   }) {
     if (id <= 0) {
-      throw const InvalidWordExampleException('ID must be a positive integer.');
+      throw InvalidWordExampleException(
+        'WordExample id must be greater than zero. Received: $id',
+      );
     }
     if (sentence.trim().isEmpty) {
-      throw const InvalidWordExampleException('Sentence cannot be empty.');
+      throw const InvalidWordExampleException(
+        'WordExample sentence cannot be empty.',
+      );
     }
     if (translation.trim().isEmpty) {
-      throw const InvalidWordExampleException('Translation cannot be empty.');
+      throw const InvalidWordExampleException(
+        'WordExample translation cannot be empty.',
+      );
     }
+    return WordExample._(
+      id: id,
+      sentence: sentence,
+      translation: translation,
+    );
   }
 }

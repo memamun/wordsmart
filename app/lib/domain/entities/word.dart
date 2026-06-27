@@ -24,7 +24,7 @@ class Word {
   final List<WordDerivative>? derivatives;
   final List<WordRoot>? roots;
 
-  Word({
+  const Word._({
     required this.id,
     required this.word,
     this.definition,
@@ -40,13 +40,52 @@ class Word {
     this.examples,
     this.derivatives,
     this.roots,
+  });
+
+  factory Word({
+    required int id,
+    required String word,
+    String? definition,
+    String? bengaliMeaning,
+    String? pronunciation,
+    String? partOfSpeech,
+    String? level,
+    String? audioPath,
+    String? mnemonic,
+    List<String>? synonyms,
+    List<String>? antonyms,
+    List<String>? collocations,
+    List<WordExample>? examples,
+    List<WordDerivative>? derivatives,
+    List<WordRoot>? roots,
   }) {
     if (id <= 0) {
-      throw const InvalidWordException('ID must be a positive integer.');
+      throw InvalidWordException(
+        'Word id must be greater than zero. Received: $id',
+      );
     }
     if (word.trim().isEmpty) {
-      throw const InvalidWordException('Word spelling cannot be empty.');
+      throw InvalidWordException(
+        'Word spelling cannot be empty. Received: "$word"',
+      );
     }
+    return Word._(
+      id: id,
+      word: word,
+      definition: definition,
+      bengaliMeaning: bengaliMeaning,
+      pronunciation: pronunciation,
+      partOfSpeech: partOfSpeech,
+      level: level,
+      audioPath: audioPath,
+      mnemonic: mnemonic,
+      synonyms: synonyms,
+      antonyms: antonyms,
+      collocations: collocations,
+      examples: examples,
+      derivatives: derivatives,
+      roots: roots,
+    );
   }
 
   // Word CAN (Intrinsic Business Logic getters utilizing only internal fields)
