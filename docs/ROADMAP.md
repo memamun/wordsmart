@@ -53,21 +53,33 @@ gantt
 
 ## ⏳ Future Milestones (Mobile Client)
 
-### Phase 6: Flutter Architecture
-*   Initialize Flutter mobile project directory `app/` in root.
-*   Set up state management (e.g. Riverpod / BLoC) and dependency injection.
-*   Implement local asset loading to copy the built `wordsmart.db` file from assets to client app documents directory on first boot.
-*   Configure local database adapters (e.g., using `sqflite` plugin).
+### Phase 6: Flutter Architecture & Foundation (Frozen & Stabilized) ✅
+*   Initialize core folder structures (`app/lib/domain` and `app/lib/data`).
+*   Establish Domain Entities with strict invariants validation.
+*   Setup custom Exceptions for runtime safety in production.
+*   Design Repository contracts and implement `WordRepositoryImpl` for `getWordDetails`.
+*   Establish Unit Test structure under `app/test/` to validate critical repository execution paths.
 
-### Phase 7: Repository Layer
-*   Write interfaces and SQLite repository implementations:
-    *   `WordRepository`: offline search, random word, detailed entry lookup.
-    *   `QuizRepository`: loading quizzes, tracking test scores.
-    *   `StoryRepository`: loading dual-language reading passages.
-    *   `ProgressRepository`: saving user bookmarks, recall scores, study analytics.
+### Phase 7: Vertical Slices Feature Development (Current Milestone)
+*   **Mantra:** *"No more horizontal architecture work. From now on, every session should deliver one complete vertical feature."*
+*   **Slice 1: Search Feature (End-to-End)**
+    *   Implement `SearchWordsUseCase` & `GetSearchSuggestionsUseCase`.
+    *   Set up dependency injection and Riverpod providers.
+    *   Build complete Search UI Screen.
+*   **Slice 2: Word Details Feature (End-to-End)**
+    *   Implement `GetWordDetailsUseCase`.
+    *   Set up Riverpod StateNotifier/ChangeNotifier for details hydration.
+    *   Build Details Screen (pronunciation audio players, derivatives, collocations, etymology roots).
+*   **Slice 3: Bookmark Feature (End-to-End)**
+    *   Implement Bookmark Use Cases.
+    *   Build Bookmark toggle buttons in Details Screen and Bookmark listing UI.
+*   **Slice 4: Spaced-Repetition Progress Feature (End-to-End)**
+    *   Implement progress update & due reviews Use Cases.
+    *   Build card swipe recall UI and learning analytics dashboard.
 
-### Phase 8: UI Development & Launch
-*   Build clean, modern search interface with pronunciation audio players.
-*   Build flashcards swipe panel with bilingual mnemonics toggle.
-*   Build matching quiz game client and mock exam simulation screens.
-*   Deploy app packaging (Android APK/Bundle, iOS IPA).
+### Phase 8: Quiz, Stories Slices & Launch
+*   **Slice 5: Vocabulary Quizzes (End-to-End)**
+    *   Implement MCQ, spelling, and matching drills Use Cases and UI.
+*   **Slice 6: Dual-Language Stories (End-to-End)**
+    *   Implement dual-language story loading and reading UI.
+*   **App Release Packaging:** Deploy production Android Bundle/APK & iOS IPA.
