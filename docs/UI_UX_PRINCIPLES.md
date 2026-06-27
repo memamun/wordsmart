@@ -1,4 +1,4 @@
-# WordSmart UI/UX Principles v1.0
+# WordSmart UI/UX Principles v1.1
 
 This document defines the foundational visual, interaction, and performance principles for WordSmart. Every screen and component designed for the platform must comply with these guidelines.
 
@@ -104,12 +104,95 @@ Every completed screen must be fully functional and map cleanly to the backend:
 
 ---
 
-## 📋 16. Design Quality Checklist
-Before implementing a design, it must satisfy this checklist:
-*   **Purpose:** Does the screen have one primary goal?
-*   **Hierarchy:** Is the most important information obvious?
-*   **Simplicity:** Can anything be removed?
-*   **Consistency:** Does it follow the design system?
-*   **Flutter Compatibility:** Can this be built efficiently with Material 3?
-*   **Accessibility:** Is it usable by everyone?
-*   **Performance:** Will it remain smooth on mid-range Android devices?
+## 🔄 17. Screen State Principles
+Every screen design must account for its lifecycle states. A screen design is incomplete if it only shows the "ideal" loaded state.
+*   **Search States:** Initial $\rightarrow$ Typing $\rightarrow$ Searching $\rightarrow$ Results $\rightarrow$ No Results $\rightarrow$ Offline $\rightarrow$ Error.
+*   **Details States:** Loading $\rightarrow$ Loaded $\rightarrow$ Audio Loading $\rightarrow$ Bookmarked/Not Bookmarked $\rightarrow$ Error.
+*   **Flashcards States:** Front $\rightarrow$ Back $\rightarrow$ Completed $\rightarrow$ Review Again.
+
+---
+
+## ⏳ 18. Loading Experience (Perceived Performance)
+Never display raw, spinning progress indicators for primary screen transitions.
+*   **Skeletons & Shimmer:** Use soft gray skeletons (`#1E1E1E` pulsing to `#262626`) that match the exact shape of incoming content cards.
+*   **Transition:** Fade-in loaded content over `200ms` rather than instantly snapping.
+
+---
+
+## 📐 19. Responsive Layout Rules
+WordSmart scales responsively across form factors:
+*   **< 600dp (Phone):** Single-column layout, full screen margins at `24dp`.
+*   **600–840dp (Tablet / Foldables):** Two-column layout (e.g. word card on left, relations on right).
+*   **> 840dp (Desktop / Wide Screen):** Centered editorial reading layout with maximum content width capped at `800dp`.
+
+---
+
+## 🖐️ 20. Interaction & Gestures
+*   **Allowed Gestures:**
+    *   *Tap:* Primary selection, link navigation, page transitions.
+    *   *Swipe (Horizontal):* Allowed only on Flashcards (Left = Still Learning, Right = Mastered).
+    *   *Long Press:* Word Card $\rightarrow$ Triggers lightweight definition overlay/sheet preview.
+*   **Disallowed Gestures:** No multi-touch or complex multi-finger gestures.
+
+---
+
+## 📳 21. Haptic Feedback & Sound Design
+*   **Haptic Feedback Rules:**
+    *   *Light Click:* Toggling bookmarks, tab changes, button taps.
+    *   *Success Haptic:* Correct quiz answer, card swiped Mastered.
+    *   *Warning Haptic:* Incorrect quiz answer, operation error.
+*   **Sound Design Rules:** Pronunciation audio is the only sound permitted. Interface interactions must remain completely silent to avoid distraction.
+
+---
+
+## 💫 22. Animation Choreography
+*   **Transition Mapping:**
+    *   *Home to Search:* Horizontal Slide transition (`200ms`).
+    *   *Search to Word Details:* Hero transition on the headword.
+    *   *Bookmark Star Toggle:* Scale bounce (`0.8x` to `1.2x` to `1.0x` over `150ms`).
+    *   *Card Swipe:* Dismiss slide off-screen with rotation factor.
+
+---
+
+## 💎 23. Design Tokens (Visual Constants)
+*   **Corner Radii:** Cards = `16dp`, Buttons = `20dp`, Search input = `28dp`.
+*   **Spacing Grid:** Base = `8dp` (Multiples: `8dp`, `16dp`, `24dp`, `32dp`).
+*   **Stroke Width:** Outer outlines = `1dp` at `8%` white opacity. Active outlines = `2dp` solid.
+*   **Avatar Sizes:** Header profile = `32dp` diameter.
+
+---
+
+## 🛡️ 24. Error UX Design
+Errors must be presented constructively, encouraging retry.
+*   **Components:** Small editorial illustration (no child-like drawings), clear user-friendly explanation, and a prominent `Retry` button.
+*   **Never** display raw technical stack traces (SQLite exceptions) to the user.
+
+---
+
+## 📝 25. Editorial Writing Style
+The tone of WordSmart must be professional, friendly, and academic.
+*   **Strict Rules:** Never use childish, sarcastic, or gamified gaming language.
+*   *Correct:* *"Well done. You mastered this word."*
+*   *Incorrect:* *"Awesome! Level Up! You rock!"*
+
+---
+
+## 📋 26. Complete Design Review Checklist
+Before any screen enters Flutter implementation, it must pass these questions:
+
+### Visual & Brand
+*   [ ] Does the screen have one primary goal?
+*   [ ] Is the typography hierarchy Outfit (headers) and Inter (body) correct?
+*   [ ] Does it strictly follow the minimal color palette (Amber/Teal/Red/Gray)?
+*   [ ] Is it free of corporate dashboard clutter?
+
+### UX & Interaction
+*   [ ] Is the next action obvious within 3 seconds?
+*   [ ] Are all touch targets at least `48dp` x `48dp`?
+*   [ ] Are the correct haptic feedbacks defined?
+*   [ ] Are error states, empty states, and shimmer loading designed?
+
+### Technical & Performance
+*   [ ] Can this be built efficiently with standard Material 3 widgets?
+*   [ ] Are we avoiding heavy clip path structures and excessive blur?
+*   [ ] Is the widget tree optimized for lazy loading?
