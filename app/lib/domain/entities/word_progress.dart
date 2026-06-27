@@ -1,4 +1,5 @@
 import '../exceptions/exceptions.dart';
+import 'learning_status.dart';
 
 class WordProgress {
   final int wordId;
@@ -8,7 +9,7 @@ class WordProgress {
   final int correctCount;
   final int incorrectCount;
   final int masteryScore;
-  final String status;
+  final LearningStatus status;
   final DateTime? lastReviewedAt;
   final DateTime? nextReviewAt;
 
@@ -33,7 +34,7 @@ class WordProgress {
     required int correctCount,
     required int incorrectCount,
     required int masteryScore,
-    required String status,
+    required LearningStatus status,
     DateTime? lastReviewedAt,
     DateTime? nextReviewAt,
   }) {
@@ -60,11 +61,6 @@ class WordProgress {
     if (masteryScore < 0 || masteryScore > 100) {
       throw InvalidWordException(
         'WordProgress masteryScore must be between 0 and 100. Received: $masteryScore',
-      );
-    }
-    if (status.trim().isEmpty) {
-      throw InvalidWordException(
-        'WordProgress status cannot be empty.',
       );
     }
     return WordProgress._(
