@@ -39,13 +39,13 @@ extension WordModelMapper on WordModel {
 }
 
 extension WordExampleModelMapper on WordExampleModel {
-  /// Maps example storage model to bilingual Domain Entity.
-  /// Falls back if SQLite is missing corresponding Bengali translation records.
-  WordExample toEntity({String? fallbackTranslation}) {
+  /// Maps example storage model to Domain Entity.
+  /// Maps translation directly without injecting business fallback strings.
+  WordExample toEntity({String? translation}) {
     return WordExample(
       id: id,
       sentence: exampleText,
-      translation: fallbackTranslation ?? 'অনুবাদ পাওয়া যায়নি',
+      translation: translation,
     );
   }
 }

@@ -3,18 +3,18 @@ import '../exceptions/exceptions.dart';
 class WordExample {
   final int id;
   final String sentence;
-  final String translation;
+  final String? translation; // Nullable, as translation may be missing in SQLite storage
 
   const WordExample._({
     required this.id,
     required this.sentence,
-    required this.translation,
+    this.translation,
   });
 
   factory WordExample({
     required int id,
     required String sentence,
-    required String translation,
+    String? translation,
   }) {
     if (id <= 0) {
       throw InvalidWordExampleException(
@@ -26,9 +26,9 @@ class WordExample {
         'WordExample sentence cannot be empty.',
       );
     }
-    if (translation.trim().isEmpty) {
+    if (translation != null && translation.trim().isEmpty) {
       throw const InvalidWordExampleException(
-        'WordExample translation cannot be empty.',
+        'WordExample translation cannot be empty if provided.',
       );
     }
     return WordExample._(
