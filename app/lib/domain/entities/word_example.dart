@@ -1,13 +1,23 @@
+import '../exceptions/exceptions.dart';
+
 class WordExample {
   final int id;
   final String sentence;
   final String translation;
 
-  const WordExample({
+  WordExample({
     required this.id,
     required this.sentence,
     required this.translation,
-  }) : assert(id > 0, 'ID must be a positive integer.'),
-       assert(sentence.length > 0, 'Sentence cannot be empty.'),
-       assert(translation.length > 0, 'Translation cannot be empty.');
+  }) {
+    if (id <= 0) {
+      throw const InvalidWordExampleException('ID must be a positive integer.');
+    }
+    if (sentence.trim().isEmpty) {
+      throw const InvalidWordExampleException('Sentence cannot be empty.');
+    }
+    if (translation.trim().isEmpty) {
+      throw const InvalidWordExampleException('Translation cannot be empty.');
+    }
+  }
 }

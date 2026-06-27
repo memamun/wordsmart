@@ -1,3 +1,4 @@
+import '../exceptions/exceptions.dart';
 import 'word_example.dart';
 import 'word_derivative.dart';
 import 'word_root.dart';
@@ -23,7 +24,7 @@ class Word {
   final List<WordDerivative>? derivatives;
   final List<WordRoot>? roots;
 
-  const Word({
+  Word({
     required this.id,
     required this.word,
     this.definition,
@@ -39,8 +40,14 @@ class Word {
     this.examples,
     this.derivatives,
     this.roots,
-  }) : assert(id > 0, 'ID must be a positive integer.'),
-       assert(word.length > 0, 'Word spelling cannot be empty.');
+  }) {
+    if (id <= 0) {
+      throw const InvalidWordException('ID must be a positive integer.');
+    }
+    if (word.trim().isEmpty) {
+      throw const InvalidWordException('Word spelling cannot be empty.');
+    }
+  }
 
   // Word CAN (Intrinsic Business Logic getters utilizing only internal fields)
 

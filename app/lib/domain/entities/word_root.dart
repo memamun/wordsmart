@@ -1,10 +1,18 @@
+import '../exceptions/exceptions.dart';
+
 class WordRoot {
   final String root;
   final String meaning;
 
-  const WordRoot({
+  WordRoot({
     required this.root,
     required this.meaning,
-  }) : assert(root.length > 0, 'Root cannot be empty.'),
-       assert(meaning.length > 0, 'Root meaning cannot be empty.');
+  }) {
+    if (root.trim().isEmpty) {
+      throw const InvalidWordRootException('Root cannot be empty.');
+    }
+    if (meaning.trim().isEmpty) {
+      throw const InvalidWordRootException('Root meaning cannot be empty.');
+    }
+  }
 }

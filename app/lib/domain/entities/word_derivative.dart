@@ -1,10 +1,18 @@
+import '../exceptions/exceptions.dart';
+
 class WordDerivative {
   final String derivative;
   final String partOfSpeech;
 
-  const WordDerivative({
+  WordDerivative({
     required this.derivative,
     required this.partOfSpeech,
-  }) : assert(derivative.length > 0, 'Derivative spelling cannot be empty.'),
-       assert(partOfSpeech.length > 0, 'Part of speech cannot be empty.');
+  }) {
+    if (derivative.trim().isEmpty) {
+      throw const InvalidWordDerivativeException('Derivative spelling cannot be empty.');
+    }
+    if (partOfSpeech.trim().isEmpty) {
+      throw const InvalidWordDerivativeException('Part of speech cannot be empty.');
+    }
+  }
 }
