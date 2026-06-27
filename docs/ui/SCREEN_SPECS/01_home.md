@@ -37,9 +37,6 @@ The Home screen is organized in a clean vertical stack.
 |  | Review Due: 15 words     (Est: 4 min)       |  | <- Review Due Card
 |  +---------------------------------------------+  |
 +---------------------------------------------------+
-|  RECENT WORDS                                     | <- Section Header
-|  • ABASH (v.)  • ABERRATION (n.)  • ABDICATE (v.) | <- Horizontal scroll list
-+---------------------------------------------------+
 |  WORD OF THE DAY                                  | <- Section Header
 |  +---------------------------------------------+  |
 |  |  ABATE                                 (🔊) |  | <- display-word (Outfit Bold)
@@ -52,6 +49,9 @@ The Home screen is organized in a clean vertical stack.
 |  QUICK PRACTICE                                   | <- Section Header
 |  [ Quiz (Primary) ]   [ Flashcards (Primary) ]    | <- Prominent study buttons
 |  Stories (Muted text)   Bookmarks (Muted text)    | <- Muted secondary options
++---------------------------------------------------+
+|  RECENT WORDS                                     | <- Section Header
+|  • ABASH (v.)  • ABERRATION (n.)  • ABDICATE (v.) | <- Horizontal scroll list
 +---------------------------------------------------+
 |  HIT PARADE (HIGH FREQUENCY)                      | <- Section Header
 |  1. ABASH      (v.)  To embarrass or make...  (>) | <- Row 1
@@ -72,7 +72,8 @@ The Home screen is organized in a clean vertical stack.
 4.  **Review Due Card:** Level 1 card indicating due review counts and estimated completion duration.
 5.  **Word of the Day Card:** Translucent card featuring large display word, part of speech chip, Bengali Hind Siliguri translation, English Inter definition, play button, and star bookmark toggle.
 6.  **Quick Practice Row:** Row with primary filled buttons (Quiz, Cards) and secondary text buttons (Stories, Saved).
-7.  **Hit Parade List:** List capped at 3 high-frequency words with a `See All` CTA text button.
+7.  **Recent Words:** A horizontal scrollable list displaying recently reviewed vocabulary words for quick recall.
+8.  **Hit Parade List:** List capped at 3 high-frequency words with a `See All` CTA text button.
 
 ## 🔄 Lifecycle States
 *   **Initial:** Home loads instantly showing personalized welcome message and cached Word of Day.
