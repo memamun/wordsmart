@@ -1,71 +1,125 @@
-# WordSmart Design System Specifications
+# WordSmart Design System v2
 
-This document outlines the visual foundation, branding guide, and styling rules for WordSmart.
-
----
-
-## 🎨 Visual Identity & Style
-
-WordSmart's design is centered on **Enlightened Learning**. The visual tone targets sophisticated adult learners preparing for exams like GRE, SAT, and IELTS. It avoids playful or child-like illustrations, opting instead for a premium, clean, and highly focused aesthetic.
-
-### Creative North Star: "The Tonal Sanctuary"
-*   **Minimalism:** Avoid structural borders, boxes, and heavy dividers. Use padding and white space to separate logic blocks.
-*   **Glassmorphism:** Use semi-transparent layers with high backdrop-blur and subtle borders at low opacity to create depth.
-*   **Luminescence:** Elements emerge from a dark canvas through subtle variations in surface light and soft, atmospheric glows around active items.
+*   **Version:** 2.0
+*   **Platform:** Flutter (Material 3)
+*   **Target OS:** Android 16+ (SDK 36+), iOS 18+
+*   **Theme Concept:** Premium Editorial Learning Experience
 
 ---
 
-## 🌈 Color Palette & Tonal Surface Tiers
+## 🏛️ Design Philosophy
 
-| Token Name | Hex Code | Opacity | UI Role / Usage |
-| :--- | :--- | :--- | :--- |
-| **Primary Accent** | `#FFB900` | 100% | Amber. Used for the vocabulary word, primary active buttons, and selected states. |
-| **Secondary Accent** | `#26A69A` | 100% | Muted Teal. Used for definitions, phonetic markings, correct answers, and progress. |
-| **Canvas Background**| `#121212` | 100% | Base canvas. Deep charcoal to minimize eye fatigue in low-light environments. |
-| **Surface Tier 1** | `#1E1E1E` | 100% | Card backings, dialogs, inputs, and floating containers. |
-| **Surface Tier 2** | `#2C2C2C` | 100% | Hover/active states, active list item selections. |
-| **Text Primary** | `#F5F5F5` | 100% | High-readability off-white for all primary text and headers. |
-| **Text Secondary** | `#B0B0B0` | 100% | Muted light gray for subtitles, tags, and secondary metadata. |
+WordSmart is not a dashboard. WordSmart is not a productivity tracker.
+
+WordSmart is a premium vocabulary reading and learning experience. Every screen should feel calm, focused, elegant, and distraction-free. The vocabulary itself is the hero; the interface should disappear behind the content. The user should always know: *"I opened this app to learn words."*
 
 ---
 
-## 📐 Typography & Bengali Integration
+## 🎯 UX Principles
 
-WordSmart utilizes three specific font pairings to maintain high contrast and editorial styling:
+### 1. Search First
+Search is the primary action. Everything else is secondary. The search bar is the visual anchor of the Home screen.
 
-1.  **Outfit (Latin Display & Titles):**
-    *   **Display Word:** `fontSize: 48px`, `fontWeight: 700`, `letterSpacing: -0.02em` (Mobile: `fontSize: 38px`).
-    *   **Headline Large:** `fontSize: 32px`, `fontWeight: 600`, `lineHeight: 1.3`.
-2.  **Inter (Latin Body & Labels):**
-    *   **Body Large:** `fontSize: 18px`, `fontWeight: 400`, `lineHeight: 1.6`.
-    *   **Body Medium:** `fontSize: 16px`, `fontWeight: 400`, `lineHeight: 1.5`.
-3.  **Hind Siliguri (Bengali Content):**
-    *   Integrated seamlessly for Bengali definitions and meanings.
-    *   **Metric Adjustment:** Hind Siliguri text line-height must be increased by **20%** compared to Latin text to accommodate the script's ascenders and descenders.
+### 2. Content First
+Typography has higher priority than cards. Cards should never overpower words. The vocabulary word itself should always be the largest visual element.
 
----
+### 3. Progressive Disclosure
+Never overwhelm the learner. Show only essential information first, revealing more details through interaction.
+*   **Discovery Flow:** Word $\rightarrow$ Pronunciation $\rightarrow$ Bengali Meaning $\rightarrow$ Definition $\rightarrow$ Examples $\rightarrow$ Roots $\rightarrow$ Derivatives $\rightarrow$ Collocations.
 
-## 📏 Layout & Spacing Rules
+### 4. Visual Rhythm
+Use generous whitespace. Maintain an 8dp spacing grid. Avoid visual clutter and let every section breathe.
 
-WordSmart follows a strict **8dp Baseline Grid** to maintain engineering alignment:
-
-*   **Primary Padding:** Cards and screens use `base * 3` (**24dp**) side margins on mobile.
-*   **Gap Scale:**
-    *   `element-gap`: **16dp** (vertical gaps between standard list items/inputs).
-    *   `section-gap`: **32dp** (vertical gaps between distinct content blocks like card definitions and examples).
-*   **List Items:** List items must be borderless. Spacing is maintained using `list-item-padding` (**16dp**) and tonal color shifts on tap/hover.
+### 5. Low Cognitive Load
+Avoid excessive icons, unnecessary borders, and bright colors. Reduce decision friction and highlight only critical actions.
 
 ---
 
-## 🛡️ Shapes & Radii
+## 🎨 Visual Identity
 
-*   **Containers & Cards:** Use a uniform corner radius of `0.5rem` (**8dp**) for all content cards, search bars, and progress panels to maintain structural alignment.
-*   **Interactive Components:** Pill-shaped elements (buttons, filter tags) use `rounded-xl` (**24dp**) or fully circular frames.
+| Style Attributes | Avoid (Anti-patterns) | Inspiration |
+| :--- | :--- | :--- |
+| Premium Editorial | Gaming UI / Gamified Badges | Readwise Reader |
+| Minimal Material 3 | Neon / Vibrant Highlights | Apple Books |
+| Subtle Glass Surfaces | Heavy/Aggressive Glassmorphism | Apple Dictionary |
+| Elegant Typography | Dashboard-like layouts | Notion |
+| Calm & Luxurious Reading | Crypto-style cards / shadows | Kindle |
 
 ---
 
-## 💾 Elevation & Shadows
+## 🌈 Color Palette
 
-*   **Tonal Elevations:** Instead of drop shadows, elevation is represented by shifting surface colors (Base `#121212` -> Card `#1E1E1E` -> Active `#2C2C2C`).
-*   **Atmospheric Glow:** The active word details card features a soft Amber outer drop shadow to create a light-emitting feel:
-    *   `box-shadow: 0 10px 30px rgba(255, 185, 0, 0.08)`
+```yaml
+background: '#121212'
+surface: '#1E1E1E'
+surface-elevated: '#262626'
+primary: '#FFB900'          # Amber (attention guide)
+secondary: '#26A69A'        # Teal (learning status)
+accent: '#80D8FF'           # Accent highlights
+error: '#FF6B6B'            # Alert states
+text-primary: '#F5F5F5'     # High contrast off-white
+text-secondary: '#B0B0B0'   # Muted metadata gray
+divider: 'rgba(255, 255, 255, 0.08)'
+```
+
+---
+
+## 🔤 Typography & Script Hierarchy
+
+*   **Display Word:** Outfit Bold · `48sp` (Main vocabulary word).
+*   **Headline:** Outfit SemiBold · `28sp` (Section titles & screen headers).
+*   **Body Text:** Inter · `16sp` (Examples, collocations, descriptions).
+*   **Definition:** Inter Medium · `17sp` (English definitions).
+*   **Bengali Text:** Hind Siliguri · `17sp` (Bengali translations, relaxed line-height).
+*   **Label:** JetBrains Mono · `12sp` (Metadata, part of speech tags).
+
+---
+
+## 📐 Elevation & Corner Radii
+
+### Elevation
+Never use heavy shadows. Rely on Material 3 tonal elevations (color overlays). A very subtle Amber outer glow is permitted exclusively for the active "Word of the Day" hero container.
+
+### Corners
+*   **Cards:** `16dp` (rounded-2xl)
+*   **Buttons:** `20dp` (rounded-xl)
+*   **Search Input:** `28dp` (pill-shaped)
+*   **Avatar:** Circular (`50%` radius)
+
+### Motion
+*   **Duration:** `250ms`
+*   **Curve:** `easeOutCubic`
+*   **Style:** No exaggerated or bouncy animations. Transitions must feel natural and physical.
+
+---
+
+## 🧩 Core Components list
+1.  **Search Bar:** Centered, pill-shaped visual anchor.
+2.  **Word Card:** Tonal glass surface containing headword and definition.
+3.  **Section Header:** Bold Outfit typography, generous top margin.
+4.  **Chip:** Low-opacity background capsule for tags.
+5.  **Audio Button:** Circular glass tactile play button.
+6.  **Bookmark Button:** Hollow outline to solid Amber fill star.
+7.  **Progress Indicator:** Muted track with secondary Teal fill.
+8.  **Empty State:** Distraction-free typography warning.
+9.  **Loading Skeleton:** Soft pulsing level-2 tonal surfaces.
+10. **Bottom Navigation:** M3 NavigationBar with flat surfaces.
+
+---
+
+## 🛠️ Flutter Compatibility & ThemeData mapping
+All components are designed to map directly to standard Flutter Material 3 widgets:
+*   `ColorScheme` maps colors directly (e.g. `primary` $\rightarrow$ `#FFB900`, `surface` $\rightarrow$ `#1E1E1E`).
+*   `SearchBar` represents the Home search anchor.
+*   `Card` utilizes `shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))`.
+*   `FilledButton` and `OutlinedButton` map directly to standard Material buttons with `20dp` border radius.
+*   `NavigationBar` implements bottom navigation.
+*   `SliverAppBar` handles editorial parallax headers in scrollable list screens.
+
+---
+
+## ♿ Accessibility & Dark Mode
+*   **Touch Targets:** Minimum `48dp` x `48dp` for all interactive elements.
+*   **Contrast:** Fully compliant with WCAG AA+ guidelines.
+*   **Dynamic Text:** Font scaling supported out of the box using `sp` units.
+*   **Dark Mode:** Native Dark theme by default, future light mode adaptation maps to high-contrast paper tones.
