@@ -1,6 +1,6 @@
 # WordSmart Learning Engine Architecture Specification
 
-Version: 1.1  
+Version: 1.2  
 Category: Learning & Recommendation Architecture
 
 WordSmart transitions from a traditional dictionary lookup tool into a personalized, learning-centric vocabulary platform. This document defines the components, schemas, and algorithms of the three primary engine blocks: the **Learning Engine**, **Recommendation Engine**, and **Progress Engine**.
@@ -81,9 +81,9 @@ Memory retrieval strength is computed dynamically when a user answers questions 
 ### B. Recommendation Engine
 
 #### 1. Content Scoring Algorithm
-At Home screen launch, candidate activities are scored using the following multiplicative formula:
+At Home screen launch, candidate activities are scored using the following weighted multiplicative formula:
 
-$$\text{Recommendation Score} = \text{Urgency} \times \text{Importance} \times \text{Confidence} \times \text{Freshness}$$
+$$\text{Recommendation Score} = \text{Urgency}^{0.40} \times \text{Importance}^{0.20} \times \text{Confidence}^{0.30} \times \text{Freshness}^{0.10}$$
 
 *   **Urgency:** Time elapsed since the word was last reviewed (higher reviews due = higher score).
 *   **Importance:** Weighted frequency priority (e.g. GRE/SAT Hit Parade tier words rank higher).
@@ -101,10 +101,10 @@ $$\text{Recommendation Score} = \text{Urgency} \times \text{Importance} \times \
 
 ### C. Study Session & Milestones Engine
 Tracks daily progress against concrete learning metrics rather than childish gamified XP values.
-*   **Streak Metrics:** Streak increments when the user achieves daily goals:
+*   **Streak Mechanics:** Streak increments when the user achieves daily goals:
     *   `target_reviews` / `completed_reviews`
     *   `target_words` / `completed_words`
-    *   `study_minutes` (tracked via active session timers).
+    *   `target_minutes` / `studied_minutes` (tracked via active session timers).
 *   **Milestones:** Replaces gamified achievements with reading/learning benchmarks:
     *   *100 Words Learned*
     *   *First Story Finished*
@@ -117,17 +117,16 @@ Tracks daily progress against concrete learning metrics rather than childish gam
 
 To support these tracking capabilities, the SQLite database is extended with the following tables:
 
-### 1. `learning_profile` (Core Analytics Registry)
+### 1. `learning_profile` (User Preferences & Streak State)
+Stores persistent configuration properties. Derived analytics (e.g. average accuracy or weakest categories) are computed at runtime.
 ```sql
 CREATE TABLE learning_profile (
     user_id INTEGER PRIMARY KEY,
     preferred_learning_mode TEXT,        -- 'flashcards', 'quiz', 'stories'
-    average_accuracy REAL DEFAULT 0.0,
-    average_response_time REAL DEFAULT 0.0,
+    preferred_story_language TEXT DEFAULT 'English',
+    audio_autoplay BOOLEAN DEFAULT 0,
     current_streak INTEGER DEFAULT 0,
     longest_streak INTEGER DEFAULT 0,
-    strongest_category TEXT,
-    weakest_category TEXT,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -164,7 +163,8 @@ CREATE TABLE search_history (
 CREATE TABLE story_progress (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     story_id INTEGER REFERENCES contextual_stories(quiz_id) ON DELETE CASCADE,
-    reading_position TEXT DEFAULT '0.0', -- Store as scroll offset percentage
+    last_paragraph_index INTEGER DEFAULT 0,
+    last_character_offset INTEGER DEFAULT 0, -- Identifies exact reading position
     is_completed BOOLEAN DEFAULT 0,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -178,6 +178,8 @@ CREATE TABLE quiz_attempts (
     quiz_type TEXT NOT NULL,             -- 'mcq', 'quick', 'advanced', 'mock_exam'
     score INTEGER NOT NULL,
     total_questions INTEGER NOT NULL,
+    accuracy REAL,                       -- Percentage score (0.0 to 1.0)
+    duration_seconds INTEGER DEFAULT 0,
     attempted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -189,6 +191,7 @@ CREATE TABLE learning_events (
     user_id INTEGER NOT NULL,
     event_type TEXT NOT NULL,            -- 'word_opened', 'word_read', 'story_started', 'story_finished', 'review_completed', 'quiz_completed', 'bookmark_added'
     reference_id INTEGER NOT NULL,       -- Matches word_id, story_id, or quiz_id
+    reference_type TEXT NOT NULL,        -- 'WORD', 'STORY', 'QUIZ', 'ROOT'
     logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
@@ -197,6 +200,7 @@ CREATE TABLE learning_events (
 ```sql
 CREATE TABLE weak_word_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_id INTEGER REFERENCES study_sessions(id) ON DELETE SET NULL,
     word_id INTEGER REFERENCES words(id) ON DELETE CASCADE,
     reason TEXT NOT NULL,                -- 'SPELLING', 'MEANING', 'SYNONYM', 'PRONUNCIATION', 'ROOT'
     occurred_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -212,7 +216,7 @@ CREATE TABLE daily_goals (
     target_words INTEGER DEFAULT 10,
     completed_words INTEGER DEFAULT 0,
     target_minutes INTEGER DEFAULT 15,
-    completed_minutes INTEGER DEFAULT 0,
+    studied_minutes INTEGER DEFAULT 0,   -- Time spent reviewing words
     is_completed BOOLEAN DEFAULT 0
 );
 ```
