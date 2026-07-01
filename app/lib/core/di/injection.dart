@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import '../../domain/usecases/search_words.dart';
-import '../../domain/repositories/word_repository.dart';
+import '../../features/dictionary/domain/usecases/search_words.dart';
+import '../../features/dictionary/domain/repositories/word_repository.dart';
 import '../repositories/word_repository_impl.dart';
 
 final sl = GetIt.instance;

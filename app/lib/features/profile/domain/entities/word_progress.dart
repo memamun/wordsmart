@@ -1,5 +1,5 @@
-import '../exceptions/exceptions.dart';
-import 'learning_status.dart';
+import '../../../../core/error/exceptions.dart';
+import './learning_status.dart';
 
 class WordProgress {
   final int wordId;

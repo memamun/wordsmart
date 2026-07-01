@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'core/di/injection.dart' as di;
-import 'app.dart';
+import './core/di/injection.dart' as di;
+import './app.dart';
 
 void main() async {
   // Ensure Flutter engine bindings are initialized prior to dependency injection setup

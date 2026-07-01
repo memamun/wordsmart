@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import '../../core/error/failures.dart';
-import '../entities/word.dart';
+import '../../../../core/error/failures.dart';
+import '../../../dictionary/domain/entities/word.dart';
 
 abstract class BookmarkRepository {
   /// Checks if a word is bookmarked by the user.

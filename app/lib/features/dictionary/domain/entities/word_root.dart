@@ -1,4 +1,4 @@
-import '../exceptions/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 
 class WordRoot {
   final String root;

@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../lib/core/error/failures.dart';
-import '../../../lib/data/datasources/word_local_data_source.dart';
-import '../../../lib/data/models/word_derivative_model.dart';
-import '../../../lib/data/models/word_example_model.dart';
-import '../../../lib/data/models/word_model.dart';
-import '../../../lib/data/models/word_root_model.dart';
-import '../../../lib/data/repositories/word_repository_impl.dart';
-import '../../../lib/domain/entities/word.dart';
-import '../../../lib/domain/exceptions/exceptions.dart';
+import '../../../lib/features/dictionary/data/datasources/word_local_data_source.dart';
+import '../../../lib/features/dictionary/data/models/word_derivative_model.dart';
+import '../../../lib/features/dictionary/data/models/word_example_model.dart';
+import '../../../lib/features/dictionary/data/models/word_model.dart';
+import '../../../lib/features/dictionary/data/models/word_root_model.dart';
+import '../../../lib/features/dictionary/data/repositories/word_repository_impl.dart';
+import '../../../lib/features/dictionary/domain/entities/word.dart';
+import '../../../lib/core/error/exceptions.dart';
 
 // Manual Mock implementation for WordLocalDataSource to keep tests dependency-free
 class MockWordLocalDataSource implements WordLocalDataSource {

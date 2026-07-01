@@ -1,7 +1,7 @@
-import '../exceptions/exceptions.dart';
-import 'word_example.dart';
-import 'word_derivative.dart';
-import 'word_root.dart';
+import '../../../../core/error/exceptions.dart';
+import './word_example.dart';
+import './word_derivative.dart';
+import './word_root.dart';
 
 class Word {
   final int id;

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/word.dart';
 import '../../domain/entities/word_derivative.dart';
 import '../../domain/entities/word_example.dart';
 import '../../domain/entities/word_root.dart';
-import '../../domain/exceptions/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../datasources/word_local_data_source.dart';
 import '../mappers/word_mapper.dart';

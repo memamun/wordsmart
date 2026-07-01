@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 import '../entities/learning_status.dart';
-import '../entities/word.dart';
+import '../../../dictionary/domain/entities/word.dart';
 import '../entities/word_progress.dart';
 
 abstract class ProgressRepository {

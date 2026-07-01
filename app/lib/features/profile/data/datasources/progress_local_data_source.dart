@@ -1,4 +1,4 @@
-import '../models/word_model.dart';
+import '../../../dictionary/data/models/word_model.dart';
 import '../models/word_progress_model.dart';
 
 abstract class ProgressLocalDataSource {

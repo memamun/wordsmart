@@ -1,4 +1,4 @@
-import '../../core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/word.dart';
 
 class SearchState {

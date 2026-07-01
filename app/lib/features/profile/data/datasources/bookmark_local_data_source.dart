@@ -1,4 +1,4 @@
-import '../models/word_model.dart';
+import '../../../dictionary/data/models/word_model.dart';
 
 abstract class BookmarkLocalDataSource {
   /// Checks if a word is bookmarked in local storage.
