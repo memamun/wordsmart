@@ -1,121 +1,140 @@
 # Screen Specification: 02_search
 
 ## 🎯 Purpose
-Provide an instant, simple, and distraction-free search experience for dictionary lookups, giving absolute priority to exact matches.
+Provide an instant, simple, and distraction-free search experience for dictionary lookups, giving absolute priority to exact headword matches. The layout behaves as a strict state-machine, showing only relevant widgets for the user's active search phase.
 
 ## 🏆 User Goal
-Type a query, view autocomplete suggestions, locate an exact word match instantly, and explore related search results.
+Type a query, navigate autocomplete suggestions, locate an exact word match instantly, and explore related search results.
 
 ## 🧭 Entry / Exit
-*   **Entry:** Tapping the search bar on Home screen (01_home).
+*   **Entry:** Tapping the search bar on Home screen ([01_home](file:///home/mamun/wordsmart/docs/ui/screen_specs/01_home.md)).
 *   **Exit:** 
-    *   Tapping Back arrow $(<)$ $\rightarrow$ Returns to Home (01_home).
-    *   Selecting a word suggestion, exact match, or search result $\rightarrow$ Opens Word Details (03_word_details).
+    *   Tapping the Back arrow $(<)$ returns to Home ([01_home](file:///home/mamun/wordsmart/docs/ui/screen_specs/01_home.md)).
+    *   Selecting a word suggestion, exact match, or search result opens Word Details ([03_word_details](file:///home/mamun/wordsmart/docs/ui/screen_specs/03_word_details.md)).
 
 ## 📊 Information Priority
-*   **Tier 1 (Critical Focus):** Active Search Input Field (with trailing clear and placeholder voice mic indicators).
-*   **Tier 2 (Secondary Context):** Suggestions autocomplete dropdowns (while typing), Exact Match Card (highlighted at the top of results list).
-*   **Tier 3 (Supporting Actions):** Recent Searches / Popular Searches lists, Related Results list.
+*   **Tier 1 (Critical Focus):** Active Search Input Field (Back arrow, input, clear button).
+*   **Tier 2 (Secondary Context):** Suggestions autocomplete lists (during typing state), Exact Match Card (highlighted at the top of submitted results).
+*   **Tier 3 (Supporting Actions):** Recent Searches / Discover Section (initial state), Related Results list (submitted state).
 
 ## 📐 Layout Structure
-The search screen features a layout that dynamically adjusts based on typing status.
+The search screen is built as a state-based layout. Pinned components stay anchored at the top, while content views scroll underneath.
 
 ```
 [ Pinned Active Search Input Bar ]
   - Leading: Back arrow (<)
   - Center: Query input text
-  - Trailing: Clear (X) | Future Mic icon
+  - Trailing: Clear (X)
                ↓
 +---------------------------------------------+
-| RECENT SEARCHES                             | <- When input is empty
+| STATE A: INITIAL / EMPTY STATE              |
+|                                             |
+| RECENT SEARCHES                             |
 | • abase (x)   • aberration (x)              |
 | [ Clear All ]                               |
+|                                             |
+| DISCOVER                                    |
+| • Popular searches: GRE, SAT, Academic      |
+| • Random Word recommendation                |
+| • Recently Added list                       |
 +---------------------------------------------+
-| SUGGESTIONS (Autocomplete list)             | <- While typing, before submit
+| STATE B: TYPING STATE                       |
+|                                             |
+| SUGGESTIONS (Autocomplete dropdown list)     |
 | • ab...                                     |
 | • aba...                                    |
+| • abat...                                   |
+| (Arrow keys select, Enter submits query)    |
 +---------------------------------------------+
-| EXACT MATCH (Highlighted Separately)        | <- Search results loaded
+| STATE C: SUBMITTED RESULTS STATE            |
+|                                             |
+| EXACT MATCH (Highlighted Card Component)    |
 | +-----------------------------------------+ |
-| | ABATE (v.) [uh-bayt]                    | | <- Standard Featured Card component
-| | definition preview | Bengali Meaning    | |
+| | ABATE (verb)                            | | <- Lean card component ⭐
+| | বাংলা: প্রশমিত হওয়া                        | |
+| | to reduce or subside                    | |
 | +-----------------------------------------+ |
-+---------------------------------------------+
-| RELATED RESULTS                             | <- Broad matches ranked listing
-| 1. abash (v.) /əˈbæʃ/                       |
-| 2. abdicate (v.) /ˈæbdɪkeɪt/                |
+|                                             |
+| RELATED RESULTS (Ranked matches listing)    |
+| 1. abash (verb) - to embarrass            | | <- No duplicates of exact match ⭐
+| 2. abdicate (verb) - to give up power      | | <- Lean details (no phonetics) ⭐
 +---------------------------------------------+
 ```
 
 ## 🧩 Components
-1.  **Active Search Input:** Focused text field with clear $(X)$ button, leading back arrow $(<)$, and a disabled/placeholder microphone icon reserving UI space for future voice search.
-2.  **Recent Searches List:** Displays a maximum of **10 items** ordered newest first. Each row features a trailing delete button. A "Clear All" text button sits at the footer.
-    *   *Empty History State:* If history is empty, recent searches are replaced by a grouped list of **Popular Searches**, **Hit Parade** terms, and a **Random Word** recommendation.
-3.  **Exact Match Card:** Employs the standard WordSmart **Featured Card** component from the Design System. Placed at the top of results when query matches a headword exactly.
-4.  **Related Results List:** Vertical list showing related vocabulary matches. Result item layout displays: *Word $\rightarrow$ Pronunciation $\rightarrow$ POS Chip $\rightarrow$ Definition $\rightarrow$ Bengali Meaning (optional)*.
-5.  **No Results Panel:** Typography-only empty state.
+1.  **Active Search Input Bar:** Focused text field displaying a leading Back arrow $(<)$, query text input box, and trailing Clear $(X)$ button. (Placeholder microphone icons are hidden).
+2.  **Recent Searches List:** Displays a maximum of **10 latest items** ordered newest first (caching up to 50 items in local database history). Each row features a trailing delete button. Tapping `Delete` removes the history item and spawns an Undo toast with a `3-second` buffer. A "Clear All" text button sits at the footer.
+3.  **Discover Panel:** Rendered when history is empty:
+    *   *Popular Tags:* Horizontal chips (e.g. GRE, SAT, Academic).
+    *   *Random Word:* Displays a fresh word headword and meaning block.
+    *   *Recently Added:* Displays 3 recently imported words.
+4.  **Suggestions List (Autocomplete):** Vertical overlay listing query completions.
+    *   **Keyboard Navigation Rule:** Suggestion lists support arrow key highlights (Up/Down) and selection (Enter) via Flutter's `Shortcuts`, `Actions`, and `FocusTraversal` systems.
+5.  **Exact Match Card:** Renders the standard WordSmart **Featured Card** component when the query matches a headword exactly.
+6.  **Related Results List:** Vertical list showing related vocabulary matches. Result item layout displays spelling, POS chip, Bengali translation, and definition snippets. (Phonetics and pronunciation audio are moved to the details screen to maintain a lean, scan-friendly search layout).
+7.  **No Results Panel:** Displays: *"No matches found. Check spelling."*
+
+## 🧱 Search Behavior Rules
+The Search screen acts as a strict local query engine:
+*   **Debounced Queries:** Queries execute after a **300ms debounce** to protect SQLite read limits.
+*   **No Simultaneous Views:** Suggestions autocomplete lists and results lists are mutually exclusive. Once results are submitted, suggestions disappear.
+*   **Optimistic sqlite Search:** Queries execute locally. Optimistic updates are used with no shimmer overlays or spinners.
+*   **Duplicate Prevention:** The exact match item is removed from the related results list.
+*   **Keyboard Retention:** The software keyboard remains open when query results update.
+*   **Session Persistence:** Query string, scroll coordinates, and search results lists are cached in memory during active sessions. Navigating back from Details restores this state instantly.
 
 ## 🔄 Lifecycle States
-*   **Initial:** Keyboard is open; shows recent searches (or popular list fallback).
-*   **Typing:** Autocomplete suggestions update continuously in real-time. Results update continuously in the background. No loading indicators or pulsing skeletons are shown during normal typing to preserve the feeling of instant local lookup.
-*   **Results:** Displays the **Exact Match** card (if found) followed by the **Related Results** list (capped at a maximum of **20 visible results** using lazy loading).
-*   **No Results:** Displays: *"No matches found. Check spelling."*
-*   **Offline:** Uses cached search index from SQLite; hides network suggestion overlays.
+*   **Initial:** Query is empty; renders recent searches / Discover panel. Keyboard is open.
+*   **Typing:** Shows autocomplete suggestions dropdown list only.
+*   **Results (Submitted):** Shows exact match card and related results list.
+*   **No Results:** Shows spelling recommendations fallback panel.
+*   **Error:** Shows: *"Query lookup failed. Tap to retry."*
 
 ## 🖐️ Interactions
-*   **Query Input:** Triggers query search with **300ms debouncing** to protect local SQLite database performance.
-*   **Recent Swipe/Delete:** Swiping left on a recent search item removes it from local history.
-*   **Clear Button:** Tapping $(X)$ clears text instantly, resets results state, and retains keyboard focus.
-*   **History Addition Rule:** A search term is added to the user's history **only** when they tap and open its Word Details screen, never while typing.
+*   **Clear query:** Tapping $(X)$ clears text, resets state to Initial, and retains keyboard focus.
+*   **Open Details:** History updates **only** when a word details screen is opened, never during autocomplete typing loops.
 
 ## 🎬 Animations
-*   **Screen Morph:** The Search Bar dummy container from the Home screen morphs into the active Search Input via a **Hero animation**.
-*   **Fade-In Results:** Results list and Exact Match card fade in over `150ms`.
+*   **Search Hero Morph:** Morph transition morphs search bars on entry.
+*   **State CrossFade:** Changing between Initial, Typing, and Submitted states executes a `CrossFade` animation over `150ms`.
 
 ## 📐 Responsive Behavior
-*   **Phone (<600dp):** Full-screen search layout, results lists scroll vertically in single-column.
-*   **Tablet & Desktop (>600dp):** Search results list and Exact Match card display in a centered layout with a maximum width of `800dp` to maintain optimal scanning width.
+*   **Phones (<600dp):** Full-screen list views.
+*   **Tablets & Desktops (>600dp):** Capped card container width locked to `800dp` centered on screen.
 
 ## ♿ Accessibility
-*   Autofocus activates the soft keyboard automatically on entry.
-*   Announces *"X results found"* via screen reader accessibility triggers whenever the results list updates.
-*   Touch targets for all list rows are at least `48dp` high.
+*   Autofocus requests keyboard focus instantly on page entry.
+*   Screen readers announce: *"X results found"* whenever results list updates.
 
-## 🛠️ Flutter Notes
-*   Manage search state using `SearchState` and Riverpod providers.
-*   **Repository Responsibilities:**
-    *   Resolve exact headword match.
-    *   Resolve related matches.
-    *   Return ranked search results.
-*   Ensure text field automatically triggers focus via `FocusNode.requestFocus()` on page entry.
-*   Use `keyboardType: TextInputType.text` and `textInputAction: TextInputAction.search`.
+## 🛠️ Flutter & Riverpod Clean State Architecture
+*   **Sealed State Pattern:** Manage states using Dart sealed classes:
+    ```dart
+    sealed class SearchState {}
+    class SearchInitial extends SearchState { final List<String> history; }
+    class SearchTyping extends SearchState { final List<String> suggestions; }
+    class SearchResults extends SearchState { final Word? exactMatch; final List<Word> relatedResults; }
+    class SearchNoResults extends SearchState {}
+    class SearchError extends SearchState { final String message; }
+    ```
+*   **Unidirectional Flow:**
+    `SearchController` $\rightarrow$ `Debouncer` $\rightarrow$ `SearchUseCase` $\rightarrow$ `VocabularyRepository` $\rightarrow$ `SQLiteDataSource`.
+*   Ensure suggestions select highlights map to `FocusNode` traversals.
 
----
-
-## 🗂️ Search Ranking Rules
-Matches must be returned ordered strictly by relevance:
-1.  **Exact Headword Match** (e.g. Query "abate" matches "abate")
-2.  **Prefix Match** (e.g. Query "aba" matches "abash", "abate")
-3.  **Whole Word Match** (e.g. Query word matches compound word parts)
-4.  **Derivative Match** (e.g. Query matches derivative form suffixes)
-5.  **Synonym Match** (e.g. Query matches related synonym metadata)
-6.  **Definition Match** (e.g. Query word is found in English/Bengali descriptions)
-7.  **Fuzzy Match (Future)** (e.g. Minor spelling typos corrected automatically)
-
----
+## 🗂️ Search Scope (Future Ready)
+*   **Current default:** All Vocabulary index.
+*   **Future scopes:** Collections, Stories, Bookmarks, Roots (reserved in repository layers).
 
 ## ⏱️ Performance Targets
 *   **Keyboard Appears:** $< 100\text{ms}$
-*   **Suggestions Load:** $< 100\text{ms}$
-*   **Results Load:** $< 150\text{ms}$
+*   **Local SQLite suggestions lookup:** $< 100\text{ms}$
+*   **Local SQLite results lookup:** $< 150\text{ms}$
 *   **Details Navigation:** $< 200\text{ms}$
-
----
+*   **Frame rate:** Capped at `60fps` (or maximum `120fps`) during scroll sweeps.
 
 ## ✅ Success Criteria
-A successful Search screen should allow users to:
-*   Start typing immediately upon transition (zero latency focus).
-*   Locate and open the exact match within **1 tap** from typing.
-*   Find the desired word using no more than **3 to 4 keystrokes** on average.
-*   Reset the search screen with **1 tap** on the clear button.
-*   Retrieve and render search suggestions/results within **150ms** after debouncing.
+The Search screen should allow users to:
+1.  Begin typing immediately upon entry.
+2.  Navigate suggestion items using software keyboard arrows.
+3.  Verify that search inputs, scroll coordinates, and lists persist when returning from Details.
+4.  Remove history items and recover them instantly via a 3-second Undo snackbar.
+5.  Locate exact matches within **1 tap** from typing.

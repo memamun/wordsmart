@@ -1,123 +1,215 @@
 # Screen Specification: 01_home
 
 ## 🎯 Purpose
-The landing page and primary visual center of the application. It establishes the calm, reading-focused vocabulary experience immediately upon launch, greeting the personalized user session.
+The landing page and primary visual center of the application. It establishes a calm, reading-focused vocabulary experience immediately upon launch. The layout is built as a dynamic composition of sections that adjusts to the user's current learning state, guiding them directly to their next high-priority activity.
 
 ## 🏆 User Goal
-Search for a word, view the daily word, check learning progress, view recent study history, and launch review drills.
+Search for a word, instantly see their next study task, check daily streak momentum, review the Featured Word of the Day, and browse vocabulary collections.
 
 ## 🧭 Entry / Exit
-*   **Entry:** App boot/launch, or tapping the "Home" tab on BottomNavBar.
-*   **Exit:** 
-    *   Tapping Search Bar $\rightarrow$ Instantly pops active suggestions panel (02_search).
-    *   Tapping Word of the Day or Recent Words $\rightarrow$ Opens Word Details (03_word_details).
-    *   Tapping Quick Practice $\rightarrow$ Opens Flashcards (04_flashcards) or Quiz (05_quiz).
+*   **Entry:** App boot/launch, or tapping the "Home" tab on the bottom navigation bar.
+*   **Exit:**
+    *   Tapping the Search Bar transitions to Search Suggestions ([02_search](file:///home/mamun/wordsmart/docs/ui/screen_specs/02_search.md)).
+    *   Tapping the Featured Word, recent words, or collection cards opens Word Details ([03_word_details](file:///home/mamun/wordsmart/docs/ui/screen_specs/03_word_details.md)).
+    *   Tapping study action buttons launches Review Sessions ([04_review_session](file:///home/mamun/wordsmart/docs/ui/screen_specs/04_review_session.md)) or Study Sessions ([05_study_session](file:///home/mamun/wordsmart/docs/ui/screen_specs/05_study_session.md)).
 
 ## 📊 Information Priority
-*   **Tier 1 (Critical Focus):** Active Search Bar, Continue Learning (Daily Goal progress), Review Due.
-*   **Tier 2 (Secondary Context):** Word of the Day (Featured Card), Quick Practice (Quick Quiz & Flashcards emphasis).
-*   **Tier 3 (Supporting Actions):** Recent Words, Hit Parade list, Stories & Bookmarks menu links.
+*   **Tier 1 (Critical Focus):** Compact personalized greeting, smart search bar, Priority Section (Merged Goal + Momentum Card).
+*   **Tier 2 (Secondary Context):** Today's Word (Featured Card), Quick Actions row, conditional Featured Section.
+*   **Tier 3 (Supporting Actions):** Tap-friendly Recent Words (with descriptive recency labels), Curated Collections list, Bottom Navigation Bar.
 
 ## 📐 Layout Structure
-The Home screen is organized in a clean vertical stack.
+The screen is managed via a single `CustomScrollView` supporting a pull-to-refresh `RefreshIndicator` gesture. Margin padding is `24dp` on mobile screens.
 
 ```
 +---------------------------------------------------+
-|  [Good Morning/Afternoon/Evening, User]  (Avatar) | <- Personalized Top App Bar
+|  Good morning, Mamun                              | <- Compact greeting ⭐
+|  🔥 12-day streak • 412 words mastered            | <- Streak & Words summary (High priority) ⭐
+|  Ready to continue?                               |
 +---------------------------------------------------+
-|                                                   |
-|      [   Search 1,900+ vocabulary words...   ]    | <- Search Bar (readOnly = true)
-|                                                   |
+|  [ Search "capricious"...                       ] | <- Smart Search (Rotated Hint Loop) ⭐
 +---------------------------------------------------+
-|  +---------------------------------------------+  |
-|  | Today's Goal: 8 / 20 words     ██████░░░░   |  | <- Continue Learning Card (Featured Card)
-|  | [Resume]                                    |  |
-|  +---------------------------------------------+  |
+|  PRIORITY SECTION (Goal + Momentum + Progress)    | <- Section Header
+|  ┌─────────────────────────────────────────────┐  |
+|  | Today's Goal                                |  | <- Title
+|  | Keep your learning streak alive.            |  | <- Streak motivation subtitle ⭐
+|  | ██████░░░░ 40%                              |  | <- Goals bar
+|  | 8 of 20 completed                           |  |
+|  | Next Review • 15 words ready                |  | <- Review reminder
+|  |                                             |  |
+|  | [ Start Review ]                            |  | <- Primary Action Button (Solid Amber)
+|  └─────────────────────────────────────────────┘  |
 +---------------------------------------------------+
-|  +---------------------------------------------+  |
-|  | Review Due: 15 words     ≈ 4 minutes        |  | <- Review Due Card
-|  | [Start Review]                              |  | <- Urgency Action CTA
-|  +---------------------------------------------+  |
+|  TODAY'S WORD                                     | <- Section Header (Apple Books Style)
+|  ┌─────────────────────────────────────────────┐  |
+|  |  ABATE                     [GRE] [Advanced] |  | <- Headword & Badges (badges optional) ⭐
+|  |                                             |  |
+|  |  বাংলা অর্থ: প্রশমিত হওয়া                     |  | <- Meaning First
+|  |                                             |  |
+|  |  English Definition: to reduce or subside   |  | <- Definition Second
+|  |  ─────────────────────────────────────────  |  | <- Divider
+|  |  /əˈbeɪt/    VERB                            |  | <- Metadata Last
+|  |                                             |  |
+|  |  (🔊) Pronounce             (⭐) Save        |  | <- Action Buttons
+|  └─────────────────────────────────────────────┘  | <- Tapping card opens Details ⭐
 +---------------------------------------------------+
-|  Word of the Day                                  | <- Section Header (Outfit 18sp SemiBold)
-|  +---------------------------------------------+  |
-|  |  ABATE                                      |  | <- Word (Outfit Bold)
-|  |  [uh-bayt] • verb                           |  | <- Pronunciation • POS (Inter)
-|  |  অনুবাদ: প্রশমিত হওয়া                          |  | <- Hind Siliguri Bengali
-|  |  Definition: to subside; to reduce          |  | <- English Definition (Inter)
-|  |  (🔊) Audio                 (⭐) Bookmark     |  | <- Inline action text buttons
-|  +---------------------------------------------+  | <- Standard WordSmart Card
+|  QUICK ACTIONS                                    | <- Section Header
+|  [ Practice ]       [ Review Session ]            | <- Primary buttons (Row) ⭐
+|  ─────────────────────────────────────            | <- Divider line
+|  Stories            Saved Words                   | <- Secondary text links (Row)
 +---------------------------------------------------+
-|  Quick Practice                                   | <- Section Header (Outfit 18sp SemiBold)
-|  [ Quick Quiz (Primary) ]  [ Flashcards (Primary) ] <- Prominent study buttons
-|  Stories (Muted text)      Bookmarks (Muted text)  <- Muted secondary options
+|  FEATURED SECTION (Dynamic Slot)                  | <- Generic Dynamic Section Header
+|  ┌─────────────────────────────────────────────┐  |
+|  | Story 12: Echoes of the Past                |  | <- Continue Reading (or Quiz challenge, etc.)
+|  | ██████░░░░ 42% Complete                     |  |
+|  | [ Resume Reading ]                          |  |
+|  └─────────────────────────────────────────────┘  |
 +---------------------------------------------------+
-|  Recent Words                                     | <- Section Header (Outfit 18sp SemiBold)
-|  • ABASH (v.)  • ABERRATION (n.)  • ABDICATE (v.) | <- Horizontal scroll list
+|  CONTINUE WHERE YOU LEFT OFF                      | <- Section Header
+|  ┌──────────────┐ ┌──────────────┐ ┌───────────┐  |
+|  | ABATE        | | ABASH        | |ABERRATION |  | <- Mini Card Grid
+|  | Reviewed 2h  | | Opened y'day | | Opened 3d |  | <- Descriptive recency labels ⭐
+|  └──────────────┘ └──────────────┘ └───────────┘  |
 +---------------------------------------------------+
-|  Hit Parade                                       | <- Section Header (Outfit 18sp SemiBold)
-|  1. ABASH      (v.)  To embarrass or make...  (>) | <- Row 1 (Sorted by frequency)
-|  2. ABDICATE   (v.)  To step down from a...   (>) | <- Row 2
-|  3. ABERRATION (n.)  A deviation from standard (>) | <- Row 3
-|  [ See All ]                                      | <- Max 3 items + See All CTA
+|  WORD COLLECTIONS                                 | <- Section Header
+|  ┌─────────────────────────────────────────────┐  |
+|  | • 📚 GRE High Frequency                     |  | <- Collection list with icons ⭐
+|  | • 📘 SAT Essentials                         |  |
+|  | • 🧠 Academic Vocabulary                    |  |
+|  |                                             |  |
+|  | [ See All Collections → ]                   |  | <- Expand Trigger
+|  └─────────────────────────────────────────────┘  |
 +---------------------------------------------------+
-|  [Home]  [Study]  [Bookmarks]  [Profile]         | <- bottom navigation bar
+|  [Home]  [Study]  [Library]  [Profile]             | <- Bottom Navigation Bar (Tab 3 Library) ⭐
 +---------------------------------------------------+
 ```
-*   **Above the Fold:** Search Bar, Continue Learning Card, Review Due Card, and Word of the Day header.
-*   **Below the Fold:** Quick Practice, Recent Words, and Hit Parade list.
 
-## 🧩 Components
-1.  **Top App Bar:** Personalized greeting based on system clock (*Good Morning*, *Good Afternoon*, *Good Evening*) and circular Profile avatar.
-2.  **Search Bar:** Material 3 `SearchBar` configured with `readOnly = true` and dynamic hints.
-3.  **Continue Learning Card:** Standard WordSmart Card. Shows progress as numerical value `8 / 20 words` with a horizontal Teal block progress bar `██████░░░░` with `Resume` CTA.
-    *   *First-time User Empty State:* If there is no study history, displays *"No learning progress yet."* with a prominent `Start Learning` button.
-4.  **Review Due Card:** Standard WordSmart Card. Displays due reviews count (`15 words`) paired with an estimated completion time (`≈ 4 minutes`) and a clear `Start Review` action button.
-    *   *Empty State:* If zero reviews are due, displays: *"All caught up! Next review tomorrow."*
-5.  **Word of the Day Card:** Standard WordSmart Card component. Displays Word $\rightarrow$ Pronunciation • POS $\rightarrow$ বাংলা অর্থ $\rightarrow$ English Definition $\rightarrow$ Audio / Bookmark inline action text buttons.
-6.  **Quick Practice Row:** Row with primary filled buttons (`Quick Quiz`, `Flashcards`) and secondary muted text buttons (`Stories`, `Bookmarks`).
-7.  **Recent Words:** A horizontal scrollable list displaying a maximum of **10 words** ordered newest first.
-8.  **Hit Parade List:** List capped at 3 words sorted strictly **by frequency** (not alphabetically) with a `See All` CTA text button.
+## 🧱 Home Composition Rules
+The Home screen layout is adaptive and data-driven. The composition adheres to the following guidelines:
+*   **Single Hero Cap:** Never display more than one Hero card above the fold.
+*   **CTA Button Limits:** Never stack more than two call-to-action buttons together.
+*   **Dynamic Collapse:** Featured and dynamic sections collapse completely when no progress/target data exists.
+*   **Urgency Reordering:** Sections may reorder based on active study urgency (e.g. prioritizing overdue review lists over routine daily goal items).
+*   **No Scroll Default:** The user should never need to scroll to discover the next recommended learning action.
+
+## 🏛️ Component Tree
+The layout is constructed by compiling these modular section containers and components:
+```text
+HomePage
+│
+├── GreetingSection
+│
+├── SearchSection
+│
+├── PriorityCard
+│
+├── FeaturedWordCard
+│
+├── QuickActions
+│
+├── FeaturedSlot
+│
+├── RecentWordsCarousel
+│
+├── CollectionsList
+│
+└── BottomNavigation
+```
+
+## 🧩 Sections Composition
+1.  **GreetingSection:**
+    *   Greeting banner:
+        ```
+        Good morning, Mamun
+        🔥 12-day streak • 412 words mastered
+        Ready to continue?
+        ```
+    *   Dynamic momentum summary text. Displays active streak count and total mastered words.
+2.  **SearchSection:**
+    *   Material 3 capsule input with a read-only search action.
+    *   **Search Pinning Rule:** When the keyboard opens, the search field remains pinned at the top of the viewport, with suggestion items scrolling underneath.
+    *   Uses a rotated search suggestion loop:
+        1.  *Recent search:* `Search "abate"`
+        2.  *Saved words:* `Search your bookmarked words...`
+        3.  *Popular collection:* `Search GRE words...`
+        4.  *Fallback default:* `Search any word...`
+3.  **PrioritySection (PriorityCard Component):**
+    *   Consolidates daily progress statistics and immediate study targets into a single card.
+    *   Layout features: Today's Goal text, streak motivation subtitle (*"Keep your learning streak alive."*), graphical horizontal goal progress bar (`██████░░░░ 40%`), number of completed words (`8 of 20 completed`), next review status details (`Next Review • 15 words ready`), and the primary solid Amber `Start Review` action button.
+    *   **Urgent > Routine rule:** If reviews are due, the primary button points to Spaced Review. If reviews are caught up, it prompts routine learning drills.
+    *   **Empty State (Welcome Mode):** Shown for new users:
+        ```
+        Welcome to WordSmart
+        Start with today's word.
+        [ Start Learning ]
+        ```
+4.  **FeaturedWordSection (FeaturedWordCard Component):**
+    *   Editorial featured widget (labeled *"Today's Word"*).
+    *   Hierarchy details: spelling headword (Outfit Bold, `48sp`), optional difficulty/exam tags (e.g. `[GRE]`, `[Advanced]` - *rendered only when available*), Bengali meaning (`20sp`), English Definition (`16sp`), horizontal divider line, phonetic pronunciation, POS, and action button bar (Audio, Save status).
+    *   **Micro Interaction Rule:** Circular Audio play buttons and Bookmark star status toggles remain fixed, but tapping anywhere else on the card opens Word Details ([03_word_details](file:///home/mamun/wordsmart/docs/ui/screen_specs/03_word_details.md)).
+5.  **QuickActionsSection:**
+    *   Renders study launchers grouped by priority:
+        *   *Primary Row:* `Practice` (quizzes) and `Review Session` (SRS) buttons.
+        *   *Horizontal Divider:* Thin hairline spacer.
+        *   *Secondary Row:* `Stories` (Story Library) and `Saved Words` (Saved Library) text buttons.
+6.  **FeaturedSection (FeaturedSlot Component):**
+    *   A generic container slot reserved for dynamic content. Only one widget is rendered based on system priorities:
+        *   *Slot A (Continue Reading):* Story cover card showing completed percentages (`42% Complete`) and a `Resume` trigger. (Only visible if `hasStoryProgress == true`).
+        *   *Slot B (Daily Challenge):* Custom spelling quiz.
+        *   *Slot C (AI Recommendations):* Tailored word highlights.
+7.  **RecentWordsSection (RecentWordsCarousel Component):**
+    *   Horizontal scroll list of tap-friendly mini card widgets displaying recently reviewed terms (e.g. ABATE, ABASH).
+    *   Displays descriptive recency labels (`Reviewed 2h ago`, `Opened yesterday`, `Opened 3 days ago`) rather than learning mastery badges.
+8.  **CollectionsSection (CollectionsList Component):**
+    *   Clean stacked card with icons prepended:
+        *   `📚 GRE High Frequency`
+        *   `📘 SAT Essentials`
+        *   `🧠 Academic Vocabulary`
+    *   Capped to display only the top 3 collections, followed by a `[See All Collections →]` link.
+9.  **BottomNavigation:**
+    *   Tab 1: **Home** (this screen).
+    *   Tab 2: **Study** (accesses review sessions and practice quizzes).
+    *   Tab 3: **Library** (hosts Stories Library ([06_story_library](file:///home/mamun/wordsmart/docs/ui/screen_specs/06_story_library.md)), Saved Library ([07_saved_library](file:///home/mamun/wordsmart/docs/ui/screen_specs/07_saved_library.md)), and Collections).
+    *   Tab 4: **Profile** (launches Profile summary and Dashboard stats ([08_learning_dashboard](file:///home/mamun/wordsmart/docs/ui/screen_specs/08_learning_dashboard.md)) containing Settings shortcut ([09_preferences](file:///home/mamun/wordsmart/docs/ui/screen_specs/09_preferences.md))).
 
 ## 🔄 Lifecycle States
-*   **Initial:** Home loads instantly showing personalized welcome message and cached Word of Day.
-*   **Loading:** Pulsing shimmers match search, streak card, and Word of Day templates.
-*   **Offline:** Displays cached SQLite database values, hiding the cloud sync indicators.
-*   **Error:** Shows: *"Unable to load today's progress."* with `Retry` and `Continue Offline` actions.
+*   **Initial Loading:** Skeleton placeholders mimic the priority card and featured word blocks.
+*   **Loaded:** Renders the dynamic segments structure, syncing statistics instantly.
+*   **Offline/Error:** Reverts to cached values, displaying retry banners if local data queries fail.
 
 ## 🖐️ Interactions
-*   **Tap Search:** Triggers Hero transition to SearchSuggestions.
-*   **Tap Word Card:** Tapping Word of Day opens Details.
-*   **Tap Bookmark Star:** Instantly toggles bookmark with haptic click.
-*   **Long Press Word of the Day:** Shows a quick definition popup bottom sheet.
+*   **Pull-to-Refresh:** Pull down gesture triggers a `RefreshIndicator` update.
+    *   **Performance Rule:** Refresh *only* WOTD details, greeting stats, and goal progress. Do NOT rebuild the entire page structure on refresh.
+*   **Tap Search:** Opens active Search Suggestions.
+*   **Tap Cards:** Initiates route navigation transitions.
 
 ## 🎬 Animations
-*   **Search Hero:** Morph transition expands the Search Bar container on tap.
-*   **Word of Day Hero:** Outfit display text translates to Details header.
-*   **Bookmark Toggle:** Star scale bounce (`0.8x` to `1.2x` to `1.0x` over `150ms`).
+*   **Fade Through Transition:** Flicking states or swapping components inside the Priority Section uses an `AnimatedSwitcher` executing a `FadeThroughTransition` over `250ms`.
+*   **Morphing Search:** The search input capsule transitions smoothly to full-page inputs.
 
 ## 📐 Responsive Behavior
-*   **Phone (<600dp):** Vertical scroll stack with full `24dp` margins.
-*   **Tablet (600–840dp):** Two-column layout:
-    *   *Left Column:* Search Bar, Continue Learning Card, Review Due Card, Word of the Day Card.
-    *   *Right Column:* Recent Words, Quick Practice, Hit Parade.
-*   **Desktop (>840dp):** Centered reading width capped at `800dp` with generous side gutters.
+*   **Phone (<600dp):** Vertical scroll stack.
+*   **Tablets & Desktops (>600dp):** Centered layout capped at `800dp` maximum width.
 
 ## ♿ Accessibility
-*   Interactive buttons maintain a minimum tap target of `48dp`.
-*   All progress bars and streak icons have descriptive semantic text mapping for screen readers.
+*   Buttons maintain a minimum tap target height of `48dp`.
+*   Text scale multipliers scale typography boundaries gracefully up to 200%.
 
-## 🛠️ Flutter Notes
-*   Use `SliverList` and `SliverToBoxAdapter` inside a single `CustomScrollView` for smooth scrolling.
-*   Wrap the Word of the Day Hero card in a `KeepAlive` wrapper to prevent rebuilds on scroll.
-*   Persist Home scroll position using `PageStorageKey`.
-*   Mark all layout containers and static spacers as `const` widgets to minimize repaint boundaries.
+## 🛠️ Flutter & Riverpod Structure
+*   **AutomaticKeepAliveClientMixin:** Scrolling sections (RecentWords, Collections) are built using lazy Slivers wrapped in keep-alive states to prevent layout shifts on rebuild.
+*   The page utilizes a single `CustomScrollView` with a `RefreshIndicator` and independent Riverpod provider listeners.
+
+## ⚡ Performance Budget
+*   **First Meaningful Paint:** `< 300ms` on baseline devices.
+*   **First Interaction latency:** `< 100ms`.
+*   **Search morph transition:** `< 200ms`.
+*   **Minimum Frame Rate:** `60fps` (or maximum `120fps`) during scroll sweeps.
+*   **Initial memory footprint:** `< 100MB`.
 
 ## ✅ Success Criteria
-A successful Home screen should allow users to:
-*   Start searching within **2 seconds** of launch.
-*   Resume learning within **1 tap** from the landing page.
-*   Access today's review without scrolling (above the fold).
-*   Identify the Word of the Day immediately upon landing.
-*   Reach any primary study mode within **2 taps**.
-*   Understand what to do next within **3 seconds** of landing.
+The Home screen should answer these questions within `3 seconds` of landing:
+1.  **What should I study now?** (Visible in the merged Priority card above the fold).
+2.  **How am I doing today?** (Streak 🔥 and goal completion totals visible instantly in the header and card).
+3.  **What is today's featured word?** (Today's Word card highlighted).
+4.  **Can I search immediately?** (Search capsule available above the fold).
+5.  **Can I view my overall stats dashboard?** (Tab 4 "Profile" bottom navigation tab visible).

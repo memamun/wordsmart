@@ -7,7 +7,7 @@ The flagship learning page of WordSmart, displaying comprehensive vocabulary det
 Read meaning, listen to audio, examine contextual examples, etymology roots, related derivatives, and update word study status.
 
 ## 🧭 Entry / Exit
-*   **Entry:** Selecting any word from Home (01_home), Search Results (02_search), Bookmarks, or Quiz.
+*   **Entry:** Selecting any word from Home (01_home), Search Results (02_search), Saved Words ([07_saved_library](file:///home/mamun/wordsmart/docs/ui/screen_specs/07_saved_library.md)), or Study Session ([05_study_session](file:///home/mamun/wordsmart/docs/ui/screen_specs/05_study_session.md)).
 *   **Exit:** Tapping Back arrow $(<)$ returns to the previous screen in the stack trace.
 
 ## 📊 Information Priority
