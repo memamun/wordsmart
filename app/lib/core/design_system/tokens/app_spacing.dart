@@ -28,15 +28,21 @@ abstract final class AppSpacing {
   static const double hero = 48;
 
   // ── Border Radius ─────────────────────────────────────────────
-  /// 8.0 — small rounded corners (chips, tags)
-  static const double radiusSm = 8;
+  /// 4.0 — small rounded corners (checkboxes, inline tags)
+  static const double radiusSm = 4;
 
-  /// 12.0 — standard rounded corners (cards, tiles)
-  static const double radiusMd = 12;
+  /// 8.0 — medium rounded corners (etymology panels, search rows)
+  static const double radiusMd = 8;
 
-  /// 16.0 — large rounded corners (modals, sheets)
-  static const double radiusLg = 16;
+  /// 12.0 — standard rounded corners (dialog overlays, filter chips)
+  static const double radiusLg = 12;
 
-  /// 24.0 — pill shapes (buttons, badges)
-  static const double radiusXl = 24;
+  /// 16.0 — large rounded corners (standard cards)
+  static const double radiusXl = 16;
+
+  /// 20.0 — primary filled/outlined buttons capsule shape
+  static const double radiusXxl = 20;
+
+  /// 28.0 — pill-shaped search input bar
+  static const double radiusFull = 28;
 }
