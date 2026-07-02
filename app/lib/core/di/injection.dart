@@ -22,8 +22,19 @@ import '../../features/review/domain/usecases/get_learning_metrics.dart';
 import '../../features/review/domain/usecases/get_progress_summary.dart';
 import '../../features/review/domain/usecases/start_review_session.dart';
 import '../../features/review/domain/usecases/submit_card_review.dart';
+import '../../features/practice/data/datasources/practice_local_data_source.dart';
+import '../../features/practice/data/datasources/sqlite_practice_local_data_source.dart';
+import '../../features/practice/data/repositories/practice_repository_impl.dart';
+import '../../features/practice/domain/repositories/practice_repository.dart';
+import '../../features/practice/domain/services/distractors/distractor_provider.dart';
+import '../../features/practice/domain/services/factory/question_generator_factory.dart';
+import '../../features/practice/domain/services/builders/practice_session_builder.dart';
+import '../../features/practice/domain/usecases/finish_practice_session.dart';
+import '../../features/practice/domain/usecases/get_practice_session.dart';
+import '../../features/practice/domain/usecases/submit_practice_answer.dart';
 
 final sl = GetIt.instance;
+
 
 Future<void> init() async {
   // Database client
@@ -74,4 +85,26 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FinishReviewSessionUseCase(sl()));
   sl.registerLazySingleton(() => GetLearningMetricsUseCase(sl()));
   sl.registerLazySingleton(() => GetProgressSummaryUseCase(sl()));
+
+  // Practice Feature
+  // Practice Services
+  sl.registerLazySingleton<DistractorProvider>(() => const BasicDistractorProvider());
+  sl.registerLazySingleton(() => QuestionGeneratorFactory(distractorProvider: sl()));
+  sl.registerLazySingleton(() => PracticeSessionBuilder(generatorFactory: sl()));
+
+  // Practice Data Sources
+  sl.registerLazySingleton<PracticeLocalDataSource>(
+    () => SQLitePracticeLocalDataSource(appDatabase: sl()),
+  );
+
+  // Practice Repositories
+  sl.registerLazySingleton<PracticeRepository>(
+    () => PracticeRepositoryImpl(localDataSource: sl()),
+  );
+
+  // Practice Use Cases
+  sl.registerLazySingleton(() => GetPracticeSessionUseCase(repository: sl(), builder: sl()));
+  sl.registerLazySingleton(() => SubmitPracticeAnswerUseCase(submitCardReviewUseCase: sl()));
+  sl.registerLazySingleton(() => FinishPracticeSessionUseCase(finishReviewSessionUseCase: sl()));
 }
+
