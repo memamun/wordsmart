@@ -25,3 +25,30 @@
 ### 7. কোন widget ভবিষ্যতে Home screen-এ reuse হবে?
 *   `FeaturedWordCard`: হোম স্ক্রিনের "Word of the Day ⭐" ব্লকে শব্দটিকে হাইলাইট করতে ব্যবহৃত হবে।
 *   `WordSearchBar`: হোম স্ক্রিনের শীর্ষে সার্চ ট্রিগার করার জন্য রিইউজ করা হবে।
+
+---
+
+# Vertical Slice Retrospective - Slice 2 (Review Engine)
+
+### 1. What should remain unchanged?
+- The decoupled **pure Dart domain model** strategy (`SM2Engine`, `LearningSignalAnalyzer`, `ReviewScheduler`, `ReviewQueueBuilder`) has zero Flutter/Riverpod/SQLite references. It is highly testable and must remain unchanged.
+
+### 2. What became reusable?
+- The `QueuePolicy` strategy interface and `DailyReviewPolicy` are reusable. We can create SAT, GRE, or Weak Words focus policies without changing `ReviewQueueBuilder`.
+- The `ReviewRating` enum (quality scores 0-5) is reusable across quiz attempts and other vertical slices.
+
+### 3. What should move to core?
+- **Failure classes**: `DatabaseFailure` should be standardized in `core/error/failures.dart`.
+- The **3D perspective rotation matrix utility** (`Matrix4.identity()..setEntry(3, 2, 0.001)..rotateY(value)`) should be moved to a shared design system animation utility class.
+
+### 4. What slowed development?
+- Distinguishing between "new words" (never reviewed) and "scheduled cards" in SQLite left joins. Standardizing a flat `ReviewCardModel` database read mapping resolved this complexity.
+
+### 5. Which abstractions proved unnecessary?
+- Creating a separate `DashboardRepository` or `DashboardEntity` was avoided. Composing dynamic stats inside the presentation layer from single-responsibility use cases worked perfectly.
+
+### 6. What should Slice 3 inherit?
+- The use case structure returns clean `Either<Failure, TResult>` responses.
+- The separation of raw SQL strings into a dedicated queries file (`ReviewQueries`) for auditability.
+- AutoDispose state-machine Riverpod Notifiers that orchestrate UI flow without containing mathematical formula calculations.
+
