@@ -1,0 +1,27 @@
+# Vertical Slice Retrospective - Slice 1 (Search & Word Details)
+
+### 1. Search screen-এ কোন component reuse করা গেল?
+*   `WordSearchBar` (সার্চ ইনপুট ও স্টেট হ্যান্ডলিং)।
+*   `SectionHeader` (হেডার সেকশন লেবেল)।
+*   `FeaturedWordCard` (এক্সাক্ট ম্যাচ প্রদর্শনের মূল কার্ড)।
+*   `WordListTile` (সার্চ রেজাল্ট লিস্ট আইটেম)।
+
+### 2. Word Details-এ কোন widget generic করা যায়?
+*   `BookmarkButton` এবং `AudioButton` সম্পূর্ণ জেনেরিক করা হয়েছে। এগুলো যেকোনো ওয়ার্ড ভিউ বা কার্ডে সরাসরি ব্যবহারযোগ্য।
+*   `PrimaryButton` (ফিল্ড এবং আউটলাইন্ড স্টাইল সাপোর্ট করে যা স্টাডি ও কুইজ সেশনে সরাসরি রিইউজ হবে)।
+
+### 3. কোন provider অন্য feature-এ ব্যবহারযোগ্য?
+*   `wordDetailsNotifierProvider`: এটি পরবর্তী ফিচার স্লাইসগুলোতে (যেমন: Stories রিডার বা Study Session Drills) যেকোনো শব্দ ট্যাপ করলে ডিটেইলস পপআপ বা বটমশিট লোড করার জন্য সরাসরি রিইউজ করা যাবে।
+
+### 4. Design System-এ নতুন token যোগ করা দরকার?
+*   ১০% হোয়াইট ওভারলে সহ ব্যাকড্রপ ব্লার (10px) ও গ্লাস ইফেক্ট টোকেনটি গ্লোবাল ডিজাইন সিস্টেমে অফিসিয়ালি যুক্ত করা প্রয়োজন।
+
+### 5. কোন API awkward লাগছে?
+*   শুরুতে ডাটাবেজে উদাহরণ বাক্যের অনুবাদের জন্য আলাদা কুয়েরি (`getExampleTranslationsForWord`) চালানো হচ্ছিল। ডাটাবেজ মাইগ্রেশন আপডেট করে সরাসরি `word_examples` টেবিলে `translation` কলাম যোগ করার ফলে ডাটা লোডিং অত্যন্ত স্বাভাবিক ও ক্লিন হয়েছে।
+
+### 6. কোন repository method split করা উচিত?
+*   `WordRepository`-এর `getRandomCoreWord` মেথডটি ভবিষ্যতে `StudyRepository` বা `ReviewRepository`-তে সরানো যেতে পারে যদি আমরা ডিকশনারি রিপোজিটরির দায়ভার শুধুমাত্র শব্দ খোঁজার মধ্যে সীমাবদ্ধ রাখতে চাই। তবে প্রাথমিক বিল্ডের জন্য এটি এখানে রাখা উপযুক্ত।
+
+### 7. কোন widget ভবিষ্যতে Home screen-এ reuse হবে?
+*   `FeaturedWordCard`: হোম স্ক্রিনের "Word of the Day ⭐" ব্লকে শব্দটিকে হাইলাইট করতে ব্যবহৃত হবে।
+*   `WordSearchBar`: হোম স্ক্রিনের শীর্ষে সার্চ ট্রিগার করার জন্য রিইউজ করা হবে।
