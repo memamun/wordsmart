@@ -8,10 +8,10 @@ class ReviewRatingBar extends StatelessWidget {
   final bool isSubmitting;
 
   const ReviewRatingBar({
-    Key? key,
+    super.key,
     required this.onRatingSelected,
     required this.isSubmitting,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

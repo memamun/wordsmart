@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/navigation/app_navigator.dart';
-import '../../../../core/design_system/tokens/app_colors.dart';
 import '../../../../core/design_system/tokens/app_spacing.dart';
 import '../../../../core/design_system/buttons/primary_button.dart';
 import '../providers/providers.dart';
@@ -14,7 +13,7 @@ import '../widgets/review_progress_header.dart';
 import '../widgets/review_rating_bar.dart';
 
 class ReviewSessionPage extends ConsumerStatefulWidget {
-  const ReviewSessionPage({Key? key}) : super(key: key);
+  const ReviewSessionPage({super.key});
 
   @override
   ConsumerState<ReviewSessionPage> createState() => _ReviewSessionPageState();

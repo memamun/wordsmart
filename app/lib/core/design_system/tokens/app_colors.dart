@@ -49,10 +49,10 @@ abstract final class AppColors {
 
   // Preserve some legacy tags temporarily to prevent compilation errors
   // but mark them as deprecated/to-be-removed.
-  @deprecated
+  @Deprecated('Use AppColors.primary instead')
   static const Color teal = AppPalette.teal;
-  @deprecated
+  @Deprecated('Use AppColors.warning instead')
   static const Color amber = AppPalette.amber;
-  @deprecated
+  @Deprecated('Use AppColors.error instead')
   static const Color coral = AppPalette.coral;
 }

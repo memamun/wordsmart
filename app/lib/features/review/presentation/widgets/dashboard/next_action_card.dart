@@ -8,10 +8,10 @@ class NextActionCard extends StatelessWidget {
   final VoidCallback onActionPressed;
 
   const NextActionCard({
-    Key? key,
+    super.key,
     required this.dueCount,
     required this.onActionPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

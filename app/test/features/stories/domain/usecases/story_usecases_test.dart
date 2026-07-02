@@ -50,7 +50,7 @@ class MockStoryRepository implements StoryRepository {
 void main() {
   late MockStoryRepository mockRepo;
   final now = DateTime(2026, 7, 2);
-  final tStory = Story(
+  const tStory = Story(
     id: 1,
     title: 'Quiz #1',
     wordsCovered: ['ABATE'],
@@ -80,7 +80,7 @@ void main() {
       mockRepo.storyResult = tStory;
       final usecase = GetStoryUseCase(mockRepo);
       final result = await usecase(1);
-      expect(result, Right(tStory));
+      expect(result, const Right(tStory));
     });
   });
 

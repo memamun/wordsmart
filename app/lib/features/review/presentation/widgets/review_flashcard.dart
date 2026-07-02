@@ -11,11 +11,11 @@ class ReviewFlashcard extends StatefulWidget {
   final VoidCallback onTap;
 
   const ReviewFlashcard({
-    Key? key,
+    super.key,
     required this.card,
     required this.isFront,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<ReviewFlashcard> createState() => _ReviewFlashcardState();

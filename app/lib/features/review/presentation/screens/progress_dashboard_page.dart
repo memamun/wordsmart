@@ -12,7 +12,7 @@ import '../widgets/dashboard/next_action_card.dart';
 import '../widgets/dashboard/progress_summary_card.dart';
 
 class ProgressDashboardPage extends ConsumerStatefulWidget {
-  const ProgressDashboardPage({Key? key}) : super(key: key);
+  const ProgressDashboardPage({super.key});
 
   @override
   ConsumerState<ProgressDashboardPage> createState() =>

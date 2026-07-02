@@ -10,24 +10,24 @@ import '../../../../../lib/features/stories/domain/services/story_completion_pol
 import '../../../../../lib/features/stories/domain/services/vocabulary_exposure_analyzer.dart';
 
 void main() {
-  final tStory = Story(
+  const tStory = Story(
     id: 1,
     title: 'Quiz #1',
     wordsCovered: ['ABATE', 'ABASH'],
     paragraphs: [
-      const StoryParagraph(
+      StoryParagraph(
           index: 0,
           englishText: 'The storm began to **abate**.',
           bengaliText: ''),
-      const StoryParagraph(
+      StoryParagraph(
           index: 1, englishText: 'He felt **abashed**.', bengaliText: ''),
-      const StoryParagraph(
+      StoryParagraph(
           index: 2, englishText: 'Finally peace returned.', bengaliText: ''),
     ],
     highlightedWords: [
-      const HighlightedWord(
+      HighlightedWord(
           word: 'ABATE', definition: 'to subside', bengaliMeaning: 'কমানো'),
-      const HighlightedWord(
+      HighlightedWord(
           word: 'ABASH',
           definition: 'to embarrass',
           bengaliMeaning: 'লজ্জিত করা'),
