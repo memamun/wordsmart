@@ -24,7 +24,10 @@ class PracticeQueries {
       p.repetitions, 
       p.learning_state
     FROM words w
-    INNER JOIN progress p ON w.id = p.word_id;
+    LEFT JOIN progress p ON w.id = p.word_id
+    ORDER BY
+      CASE WHEN p.word_id IS NULL THEN 0 ELSE 1 END,
+      p.next_review_at ASC;
   ''';
 
   static const String selectDictionaryPool = '''
