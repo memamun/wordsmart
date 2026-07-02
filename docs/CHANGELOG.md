@@ -2,6 +2,18 @@
 
 All notable changes to the WordSmart Vocabulary codebase will be documented in this file.
 
+## [1.2.0] - 2026-07-02
+### Added
+- **Practice Engine Domain**: Added polymorphic `QuestionGenerator` interface with 5 concrete strategies (Definition MCQ, Synonym, Antonym, Spelling, Sentence Completion) and POS-aware `BasicDistractorProvider` for intelligent MCQ option generation.
+- **Practice Session Builder**: Domain service assembling balanced practice sessions with cyclical question distribution, multi-level fallback recovery, and `PracticeMode` enum for session type selection.
+- **Unified Learning Pipeline**: Practice answers flow through the existing `SubmitCardReviewUseCase → LearningSignalAnalyzer → SM2Engine → ReviewRepository` pipeline, eliminating duplicate progress tracking.
+- **Practice Repository Adapters**: Implemented `PracticeRepositoryImpl` and `SQLitePracticeLocalDataSource` with isolated SQL queries, reusing existing `progress` and `study_sessions` tables.
+- **Practice Use Cases**: Added `GetPracticeSessionUseCase`, `SubmitPracticeAnswerUseCase`, and `FinishPracticeSessionUseCase` orchestrating session lifecycle without business logic duplication.
+- **Practice State Management**: Built auto-dispose `PracticeSessionNotifier` with sealed states (Initial, Loading, Active, Completed, Failure) and GetIt DI registrations.
+- **Practice UI**: Created `PracticeSessionPage` with `QuestionRenderer` abstraction dispatching to MCQ option tiles and spelling input cards, plus `PracticeSummaryPage` with accuracy score card and metrics grid.
+- **Architecture**: Published `ADR-012_practice_engine.md` defining shared SM-2 pipeline, strategy pattern generators, and practice session lifecycle.
+- **Verification Tests**: Added domain entity tests, generator strategy tests, session builder tests, repository tests, use case tests, provider tests, and widget tests.
+
 ## [1.1.0] - 2026-07-02
 ### Added
 - **Domain Spaced Repetition**: Added pure Dart immutable `SM2Engine` and `LearningSignalAnalyzer` mapping user correctness, response delays, and hint signals to `ReviewRating`.

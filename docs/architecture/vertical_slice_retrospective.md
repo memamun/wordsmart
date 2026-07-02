@@ -52,3 +52,33 @@
 - The separation of raw SQL strings into a dedicated queries file (`ReviewQueries`) for auditability.
 - AutoDispose state-machine Riverpod Notifiers that orchestrate UI flow without containing mathematical formula calculations.
 
+---
+
+# Vertical Slice Retrospective - Slice 3 (Practice Engine)
+
+### 1. What should remain unchanged?
+- The **QuestionGenerator → DistractorProvider → QuestionGeneratorFactory** strategy chain is perfectly decoupled. Adding new question types requires only a new strategy class and a factory switch case.
+- The unified SM-2 learning pipeline: Practice answers flow through `SubmitCardReviewUseCase → LearningSignalAnalyzer → SM2Engine → ReviewRepository`, ensuring a single source of truth for all learning metrics.
+
+### 2. What became reusable?
+- `QuestionGeneratorFactory` and `BasicDistractorProvider` are reusable across any future learning mode (e.g. Story Quizzes, Root Matching).
+- The `PracticeMode` enum can be extended for adaptive or AI-generated sessions without touching existing generators.
+- `QuestionRenderer` widget abstracts away question type rendering, making new UI renderers trivial to add.
+
+### 3. What should move to core?
+- **`QuestionRenderer` pattern**: The strategy-to-widget mapping pattern could become a `core/design_system/renderers/` pattern for future features.
+- **Exit confirmation dialog**: The "discard progress" dialog should be a shared utility in `core/design_system/dialogs/`.
+
+### 4. What slowed development?
+- Connecting Practice answers back to the Review SM-2 pipeline required creating a stub `ReviewCard` inside the notifier. A shared `LearningEvent` value object at the domain level would simplify this in future slices.
+
+### 5. Which abstractions proved unnecessary?
+- Separate `PracticeProgressNotifier` and `PracticeResultNotifier` were not needed at this stage. The `PracticeSessionNotifier` handles session lifecycle cleanly within the 150-line guideline.
+- No separate `practice_progress` database table was created, validating the "single progress table" architectural decision.
+
+### 6. What should Slice 4 inherit?
+- The Strategy Pattern for content generation (generators can become `StoryQuestionGenerator` etc.).
+- The `QuestionRenderer` widget pattern for polymorphic UI rendering.
+- The cross-feature Use Case delegation pattern (`SubmitPracticeAnswerUseCase` → `SubmitCardReviewUseCase`).
+
+
