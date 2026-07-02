@@ -1,4 +1,4 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 
 class PracticeProgressHeader extends StatelessWidget {
   final int currentIndex;
@@ -20,7 +20,7 @@ class PracticeProgressHeader extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.between,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
                 key: const Key('exit_practice_button'),
@@ -29,9 +29,10 @@ class PracticeProgressHeader extends StatelessWidget {
               ),
               Text(
                 'Question ${currentIndex + 1} of $totalQuestions',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              const SizedBox(width: 48), 
+              const SizedBox(width: 48),
             ],
           ),
           const SizedBox(height: 8),
@@ -40,7 +41,8 @@ class PracticeProgressHeader extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress,
               backgroundColor: Colors.grey[300],
-              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
               minHeight: 6,
             ),
           ),

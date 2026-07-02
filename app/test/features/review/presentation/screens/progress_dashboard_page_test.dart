@@ -7,7 +7,6 @@ import '../../../../../lib/features/review/domain/entities/learning_metrics.dart
 import '../../../../../lib/features/review/domain/entities/value_objects.dart';
 import '../../../../../lib/features/review/domain/usecases/get_learning_metrics.dart';
 import '../../../../../lib/features/review/presentation/providers/providers.dart';
-import '../../../../../lib/features/review/presentation/providers/progress_notifier.dart';
 import '../../../../../lib/features/review/presentation/screens/progress_dashboard_page.dart';
 
 class MockGetLearningMetricsUseCase implements GetLearningMetricsUseCase {
@@ -22,7 +21,9 @@ class MockGetLearningMetricsUseCase implements GetLearningMetricsUseCase {
 }
 
 void main() {
-  testWidgets('should render progress dashboard elements when loaded successfully', (WidgetTester tester) async {
+  testWidgets(
+      'should render progress dashboard elements when loaded successfully',
+      (WidgetTester tester) async {
     final mockUseCase = MockGetLearningMetricsUseCase();
     final metrics = LearningMetrics(
       streak: StudyStreak(current: 3, longest: 7),
@@ -31,8 +32,9 @@ void main() {
       reviewingWords: 10,
       dueToday: 4,
       studyMinutesToday: 8,
-      accuracy: const Accuracy(88.0),
-      retentionRate: const RetentionRate(90.0),
+      sessionsToday: 2,
+      accuracy: Accuracy(88.0),
+      retentionRate: RetentionRate(90.0),
     );
     mockUseCase.result = Right(metrics);
 

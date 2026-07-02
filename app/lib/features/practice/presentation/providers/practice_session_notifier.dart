@@ -57,24 +57,26 @@ class PracticeSessionNotifier extends StateNotifier<PracticeSessionState> {
 
   Future<void> submitAnswer(DateTime now) async {
     final activeState = state;
-    if (activeState is! PracticeSessionActive || activeState.isSubmitting) return;
+    if (activeState is! PracticeSessionActive || activeState.isSubmitting)
+      return;
 
     final question = activeState.currentQuestion;
     final isSpelling = question.type == QuestionType.spelling;
-    
-    final answerText = isSpelling 
+
+    final answerText = isSpelling
         ? (activeState.spellingInput ?? '').trim().toLowerCase()
         : (activeState.selectedAnswer ?? '');
 
     final isCorrect = answerText == question.correctAnswer.toLowerCase().trim();
-    final responseTime = _questionStartTime != null 
-        ? now.difference(_questionStartTime!) 
+    final responseTime = _questionStartTime != null
+        ? now.difference(_questionStartTime!)
         : const Duration(seconds: 5);
 
-    state = activeState.copyWith(isSubmitting: true, isAnswerCorrect: isCorrect);
+    state =
+        activeState.copyWith(isSubmitting: true, isAnswerCorrect: isCorrect);
 
     // Create a mock/stub ReviewCard context from Word to submit SM-2 update
-    final mockCard = ReviewCard(
+    final mockCard = LearningCard(
       word: question.word,
       learningState: LearningState.learning,
       isDue: true,
@@ -101,7 +103,8 @@ class PracticeSessionNotifier extends StateNotifier<PracticeSessionState> {
       },
       (_) {
         activeState.session.answerQuestion(answerText, isCorrect, responseTime);
-        state = activeState.copyWith(isSubmitting: false, isAnswerCorrect: isCorrect);
+        state = activeState.copyWith(
+            isSubmitting: false, isAnswerCorrect: isCorrect);
       },
     );
   }
@@ -118,7 +121,8 @@ class PracticeSessionNotifier extends StateNotifier<PracticeSessionState> {
       final duration = finishedAt.difference(activeState.session.startedAt);
 
       final finishResult = await finishPracticeSessionUseCase(
-        FinishPracticeSessionParams(session: activeState.session, finishedAt: finishedAt),
+        FinishPracticeSessionParams(
+            session: activeState.session, finishedAt: finishedAt),
       );
 
       finishResult.fold(
@@ -129,9 +133,11 @@ class PracticeSessionNotifier extends StateNotifier<PracticeSessionState> {
             totalQuestions: activeState.session.questions.length,
             correctAnswers: activeState.session.correctAnswersCount,
             incorrectAnswers: activeState.session.incorrectAnswersCount,
-            accuracy: activeState.session.questions.isEmpty 
-                ? 0.0 
-                : (activeState.session.correctAnswersCount / activeState.session.questions.length) * 100,
+            accuracy: activeState.session.questions.isEmpty
+                ? 0.0
+                : (activeState.session.correctAnswersCount /
+                        activeState.session.questions.length) *
+                    100,
             totalDuration: duration,
           );
           state = PracticeSessionCompleted(summary);

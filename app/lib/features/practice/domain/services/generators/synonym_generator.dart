@@ -11,12 +11,13 @@ class SynonymQuestionGenerator implements QuestionGenerator {
   @override
   PracticeQuestion generate(Word word, List<Word> pool) {
     if (word.synonyms == null || word.synonyms!.isEmpty) {
-      throw UnsupportedError('Word "${word.word}" has no synonyms to generate synonym question.');
+      throw UnsupportedError(
+          'Word "${word.word}" has no synonyms to generate synonym question.');
     }
 
     final correct = word.synonyms!.first;
     final distractors = distractorProvider.getSynonymDistractors(word, pool, 3);
-    
+
     final options = [correct, ...distractors]..shuffle();
 
     return PracticeQuestion(

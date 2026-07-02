@@ -11,7 +11,8 @@ class VocabularyExposureAnalyzer {
       return const {};
     }
 
-    final paragraph = story.paragraphs[paragraphIndex].englishText.toLowerCase();
+    final paragraph =
+        story.paragraphs[paragraphIndex].englishText.toLowerCase();
     final exposed = <String>{};
     for (final highlight in story.highlightedWords) {
       if (paragraph.contains(highlight.word.toLowerCase())) {

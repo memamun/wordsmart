@@ -11,7 +11,7 @@ class ProgressNotifier extends StateNotifier<ProgressState> {
   Future<void> loadMetrics({required DateTime now}) async {
     state = const ProgressLoading();
     final result = await getLearningMetricsUseCase(now: now);
-    
+
     state = result.fold(
       (failure) => ProgressFailure(failure),
       (metrics) => ProgressLoaded(metrics),

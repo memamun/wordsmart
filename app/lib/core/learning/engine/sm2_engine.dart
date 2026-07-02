@@ -48,7 +48,8 @@ class SM2Engine {
     if (q < 3) {
       state = LearningState.relearning;
     } else {
-      state = repetitions >= 4 ? LearningState.mastered : LearningState.reviewing;
+      state =
+          repetitions >= 4 ? LearningState.mastered : LearningState.reviewing;
     }
 
     // Mastery formula bounded 0 to 100 based on repetitions and score

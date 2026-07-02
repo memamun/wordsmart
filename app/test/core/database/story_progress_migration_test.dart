@@ -1,11 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  sqfliteFfiInit();
+
   group('Database Migration story_progress', () {
     late Database db;
 
     setUp(() async {
+      databaseFactory = databaseFactoryFfi;
       db = await openDatabase(
         inMemoryDatabasePath,
         version: 1,
@@ -39,7 +42,8 @@ void main() {
       expect(tables, isEmpty);
     });
 
-    test('should create story_progress table via CREATE TABLE IF NOT EXISTS', () async {
+    test('should create story_progress table via CREATE TABLE IF NOT EXISTS',
+        () async {
       await db.execute('''
         CREATE TABLE IF NOT EXISTS story_progress (
           id TEXT PRIMARY KEY,
@@ -70,10 +74,20 @@ void main() {
         );
       ''');
 
-      final List<Map<String, dynamic>> columns = await db.rawQuery('PRAGMA table_info(story_progress);');
+      final List<Map<String, dynamic>> columns =
+          await db.rawQuery('PRAGMA table_info(story_progress);');
       final columnNames = columns.map((c) => c['name'] as String).toList();
 
-      expect(columnNames, containsAll(['id', 'story_id', 'chapter', 'paragraph', 'offset', 'last_studied_at']));
+      expect(
+          columnNames,
+          containsAll([
+            'id',
+            'story_id',
+            'chapter',
+            'paragraph',
+            'offset',
+            'last_studied_at'
+          ]));
     });
 
     test('should insert and upsert story_progress rows', () async {
@@ -106,7 +120,8 @@ void main() {
         ['story-1', 1, 0, 5, 0, '2026-07-02T10:05:00'],
       );
 
-      final rows = await db.rawQuery('SELECT * FROM story_progress WHERE story_id = 1');
+      final rows =
+          await db.rawQuery('SELECT * FROM story_progress WHERE story_id = 1');
       expect(rows.length, 1);
       expect(rows.first['paragraph'], 5);
       expect(rows.first['last_studied_at'], '2026-07-02T10:05:00');
@@ -133,7 +148,8 @@ void main() {
         ['story-2', 2, 0, 1, 0, '2026-07-02T10:00:00'],
       );
 
-      final rows = await db.rawQuery('SELECT * FROM story_progress WHERE story_id = ?', [1]);
+      final rows = await db
+          .rawQuery('SELECT * FROM story_progress WHERE story_id = ?', [1]);
       expect(rows.length, 1);
       expect(rows.first['id'], 'story-1');
     });

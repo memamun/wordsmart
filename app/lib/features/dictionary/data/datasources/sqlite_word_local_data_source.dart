@@ -1,4 +1,3 @@
-import 'package:sqflite/sqflite.dart';
 import '../../../../core/database/database.dart';
 import '../models/word_derivative_model.dart';
 import '../models/word_example_model.dart';

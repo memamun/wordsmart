@@ -49,7 +49,7 @@ class _LoadingSkeletonState extends State<LoadingSkeleton>
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(_animation.value),
+            color: Colors.white.withValues(alpha: _animation.value),
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
         );

@@ -15,11 +15,12 @@ class MockGetPracticeSessionUseCase implements GetPracticeSessionUseCase {
   Failure? failure;
 
   @override
-  Future<Either<Failure, PracticeSession>> call(GetPracticeSessionParams params) async {
+  Future<Either<Failure, PracticeSession>> call(
+      GetPracticeSessionParams params) async {
     if (failure != null) return Left(failure!);
     return Right(sessionResult!);
   }
-  
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
@@ -29,7 +30,7 @@ class MockSubmitPracticeAnswerUseCase implements SubmitPracticeAnswerUseCase {
   Future<Either<Failure, void>> call(SubmitPracticeAnswerParams params) async {
     return const Right(null);
   }
-  
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
@@ -39,7 +40,7 @@ class MockFinishPracticeSessionUseCase implements FinishPracticeSessionUseCase {
   Future<Either<Failure, void>> call(FinishPracticeSessionParams params) async {
     return const Right(null);
   }
-  
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
@@ -75,32 +76,41 @@ void main() {
 
   group('PracticeSessionNotifier Provider Unit Tests', () {
     test('should progress from Loading to Active on startSession', () async {
-      final session = PracticeSession(id: 's1', questions: [question], startedAt: now);
+      final session =
+          PracticeSession(id: 's1', questions: [question], startedAt: now);
       mockGetSessionUseCase.sessionResult = session;
 
       final states = <PracticeSessionState>[];
       notifier.addListener((state) => states.add(state));
 
-      await notifier.startSession(id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
+      await notifier.startSession(
+          id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
 
-      expect(states[0], isA<PracticeSessionLoading>());
-      expect(states[1], isA<PracticeSessionActive>());
-      expect((states[1] as PracticeSessionActive).currentQuestion.word.word, 'ABATE');
+      expect(states[1], isA<PracticeSessionLoading>());
+      expect(states[2], isA<PracticeSessionActive>());
+      expect((states[2] as PracticeSessionActive).currentQuestion.word.word,
+          'ABATE');
     });
 
     test('should update selected answer on selectAnswer', () async {
-      final session = PracticeSession(id: 's1', questions: [question], startedAt: now);
+      final session =
+          PracticeSession(id: 's1', questions: [question], startedAt: now);
       mockGetSessionUseCase.sessionResult = session;
-      await notifier.startSession(id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
+      await notifier.startSession(
+          id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
 
       notifier.selectAnswer('to reduce');
-      expect((notifier.state as PracticeSessionActive).selectedAnswer, 'to reduce');
+      expect((notifier.state as PracticeSessionActive).selectedAnswer,
+          'to reduce');
     });
 
-    test('should transition to Completed on submitting final question', () async {
-      final session = PracticeSession(id: 's1', questions: [question], startedAt: now);
+    test('should transition to Completed on submitting final question',
+        () async {
+      final session =
+          PracticeSession(id: 's1', questions: [question], startedAt: now);
       mockGetSessionUseCase.sessionResult = session;
-      await notifier.startSession(id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
+      await notifier.startSession(
+          id: 's1', limit: 5, mode: PracticeMode.definition, now: now);
 
       notifier.selectAnswer('to reduce');
       await notifier.submitAnswer(now);

@@ -70,7 +70,7 @@ class _WordSearchBarState extends State<WordSearchBar> {
         border: Border.all(
           color: _isFocused
               ? const Color(0xFFFFB900) // Amber on focus
-              : Colors.white.withOpacity(0.08),
+              : Colors.white.withValues(alpha: 0.08),
           width: 1.2,
         ),
       ),
@@ -93,7 +93,6 @@ class _WordSearchBarState extends State<WordSearchBar> {
                 size: 22,
               ),
             ),
-          
           Expanded(
             child: TextField(
               controller: _controller,
@@ -119,7 +118,6 @@ class _WordSearchBarState extends State<WordSearchBar> {
               ),
             ),
           ),
-          
           if (_showClear)
             IconButton(
               icon: const Icon(

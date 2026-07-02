@@ -61,7 +61,6 @@ import '../../features/recommendation/domain/usecases/complete_recommendation.da
 
 final sl = GetIt.instance;
 
-
 Future<void> init() async {
   // Database client
   sl.registerLazySingleton<AppDatabase>(() => AppDatabase());
@@ -122,9 +121,12 @@ Future<void> init() async {
 
   // Practice Feature
   // Practice Services
-  sl.registerLazySingleton<DistractorProvider>(() => const BasicDistractorProvider());
-  sl.registerLazySingleton(() => QuestionGeneratorFactory(distractorProvider: sl()));
-  sl.registerLazySingleton(() => PracticeSessionBuilder(generatorFactory: sl()));
+  sl.registerLazySingleton<DistractorProvider>(
+      () => const BasicDistractorProvider());
+  sl.registerLazySingleton(
+      () => QuestionGeneratorFactory(distractorProvider: sl()));
+  sl.registerLazySingleton(
+      () => PracticeSessionBuilder(generatorFactory: sl()));
 
   // Practice Data Sources
   sl.registerLazySingleton<PracticeLocalDataSource>(
@@ -137,9 +139,12 @@ Future<void> init() async {
   );
 
   // Practice Use Cases
-  sl.registerLazySingleton(() => GetPracticeSessionUseCase(repository: sl(), builder: sl()));
-  sl.registerLazySingleton(() => SubmitPracticeAnswerUseCase(submitLearningResultUseCase: sl()));
-  sl.registerLazySingleton(() => FinishPracticeSessionUseCase(finishReviewSessionUseCase: sl()));
+  sl.registerLazySingleton(
+      () => GetPracticeSessionUseCase(repository: sl(), builder: sl()));
+  sl.registerLazySingleton(
+      () => SubmitPracticeAnswerUseCase(submitLearningResultUseCase: sl()));
+  sl.registerLazySingleton(
+      () => FinishPracticeSessionUseCase(finishReviewSessionUseCase: sl()));
 
   // Stories Feature
   // Story Services

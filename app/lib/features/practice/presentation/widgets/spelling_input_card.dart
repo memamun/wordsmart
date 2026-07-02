@@ -83,7 +83,9 @@ class _SpellingInputCardState extends State<SpellingInputCard> {
               children: [
                 const Text(
                   'Correct Spelling: ',
-                  style: TextStyle(fontWeight: FontWeight.w500, color: AppColors.textSecondary),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textSecondary),
                 ),
                 Text(
                   widget.correctAnswer.toUpperCase(),

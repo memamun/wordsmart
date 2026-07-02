@@ -8,7 +8,8 @@ void main() {
     'words_covered': '["ABATE", "ABASH"]',
     'story_english': 'The storm began to **abate**.\n\nHe felt **abashed**.',
     'story_bengali': 'ঝড় কমতে শুরু করল।\n\nসে লজ্জিত বোধ করল।',
-    'vocabulary_mapping': '[{"word":"ABATE","definition":"to subside","bengali_meaning":"কমানো"},{"word":"ABASH","definition":"to embarrass","bengali_meaning":"লজ্জিত করা"}]',
+    'vocabulary_mapping':
+        '[{"word":"ABATE","definition":"to subside","bengali_meaning":"কমানো"},{"word":"ABASH","definition":"to embarrass","bengali_meaning":"লজ্জিত করা"}]',
   };
 
   group('StoryModel', () {

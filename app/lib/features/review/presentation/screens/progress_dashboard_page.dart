@@ -13,7 +13,8 @@ class ProgressDashboardPage extends ConsumerStatefulWidget {
   const ProgressDashboardPage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ProgressDashboardPage> createState() => _ProgressDashboardPageState();
+  ConsumerState<ProgressDashboardPage> createState() =>
+      _ProgressDashboardPageState();
 }
 
 class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
@@ -68,11 +69,15 @@ class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, color: Colors.redAccent, size: 64),
+              const Icon(Icons.error_outline,
+                  color: Colors.redAccent, size: 64),
               const SizedBox(height: 16),
               const Text(
                 "Failed to Load Progress Stats",
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Text(
@@ -110,7 +115,7 @@ class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
           ),
           const SizedBox(height: 20),
           DailyGoalCard(
-            completed: metrics.sessions.length,
+            completed: metrics.sessionsToday,
             target: 2, // Default daily sessions target
           ),
           const SizedBox(height: 20),

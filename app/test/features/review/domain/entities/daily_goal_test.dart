@@ -3,7 +3,8 @@ import '../../../../../lib/features/review/domain/entities/daily_goal.dart';
 
 void main() {
   group('DailyGoal Invariant Validation & Metrics', () {
-    test('should construct a valid DailyGoal and verify completion details', () {
+    test('should construct a valid DailyGoal and verify completion details',
+        () {
       final goal = DailyGoal(
         targetReviews: 20,
         completedReviews: 18,
@@ -29,7 +30,8 @@ void main() {
       expect(goal.minutesCompletionPercentage, closeTo(133.33, 0.01));
     });
 
-    test('should throw ArgumentError when target reviews is zero or negative', () {
+    test('should throw ArgumentError when target reviews is zero or negative',
+        () {
       expect(
         () => DailyGoal(
           targetReviews: 0,

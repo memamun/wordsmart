@@ -5,7 +5,7 @@ import '../../features/review/presentation/screens/progress_dashboard_page.dart'
 import '../../features/review/presentation/screens/review_session_page.dart';
 import '../../features/practice/presentation/screens/practice_session_page.dart';
 import '../../features/stories/presentation/screens/story_reader_page.dart';
-import '../../features/recommendation/presentation/providers/recommendation_notifier.dart';
+import '../../features/recommendation/presentation/providers/providers.dart';
 import '../../features/recommendation/presentation/widgets/recommendation_list.dart';
 import '../design_system/tokens/app_colors.dart';
 
@@ -13,7 +13,7 @@ class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends ConsumerState<HomePage> {

@@ -12,7 +12,9 @@ class LearningSignalAnalyzer {
       if (responseTime.inSeconds > 10) {
         return ReviewRating.completeBlackout; // 0
       }
-      return hintUsed ? ReviewRating.incorrect : ReviewRating.difficult; // 1 or 2
+      return hintUsed
+          ? ReviewRating.incorrect
+          : ReviewRating.difficult; // 1 or 2
     } else {
       if (hintUsed) {
         return ReviewRating.hard; // 3

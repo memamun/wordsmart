@@ -10,7 +10,7 @@ import '../../../../../lib/features/practice/domain/services/generators/sentence
 
 void main() {
   const distractorProvider = BasicDistractorProvider();
-  
+
   final tWord1 = Word(
     id: 1,
     word: 'ABATE',
@@ -20,13 +20,23 @@ void main() {
     examples: [WordExample(id: 1, sentence: 'The storm began to abate.')],
   );
 
-  final tWord2 = Word(id: 2, word: 'ABHOR', definition: 'to hate', partOfSpeech: 'verb');
-  final tWord3 = Word(id: 3, word: 'ACME', definition: 'highest point', partOfSpeech: 'noun');
-  final pool = [tWord1, tWord2, tWord3];
+  final tWord2 =
+      Word(id: 2, word: 'ABHOR', definition: 'to hate', partOfSpeech: 'verb');
+  final tWord3 = Word(
+      id: 3, word: 'ACME', definition: 'highest point', partOfSpeech: 'noun');
+  final tWord4 = Word(
+      id: 4,
+      word: 'ACRE',
+      definition: 'unit of land area',
+      partOfSpeech: 'noun');
+  final pool = [tWord1, tWord2, tWord3, tWord4];
 
   group('Question Generators Strategy Tests', () {
-    test('DefinitionQuestionGenerator should generate MCQ definition match with 4 unique options', () {
-      final generator = DefinitionQuestionGenerator(distractorProvider: distractorProvider);
+    test(
+        'DefinitionQuestionGenerator should generate MCQ definition match with 4 unique options',
+        () {
+      final generator =
+          DefinitionQuestionGenerator(distractorProvider: distractorProvider);
       final question = generator.generate(tWord1, pool);
 
       expect(question.type, QuestionType.definitionMCQ);
@@ -44,8 +54,11 @@ void main() {
       expect(question.correctAnswer, 'abate');
     });
 
-    test('SentenceCompletionQuestionGenerator should blank correct spelling match', () {
-      final generator = SentenceCompletionQuestionGenerator(distractorProvider: distractorProvider);
+    test(
+        'SentenceCompletionQuestionGenerator should blank correct spelling match',
+        () {
+      final generator = SentenceCompletionQuestionGenerator(
+          distractorProvider: distractorProvider);
       final question = generator.generate(tWord1, pool);
 
       expect(question.type, QuestionType.sentenceCompletion);
@@ -53,8 +66,11 @@ void main() {
       expect(question.options.contains('ABATE'), true);
     });
 
-    test('SynonymQuestionGenerator should throw UnsupportedError if word has no synonyms', () {
-      final generator = SynonymQuestionGenerator(distractorProvider: distractorProvider);
+    test(
+        'SynonymQuestionGenerator should throw UnsupportedError if word has no synonyms',
+        () {
+      final generator =
+          SynonymQuestionGenerator(distractorProvider: distractorProvider);
       expect(() => generator.generate(tWord2, pool), throwsUnsupportedError);
     });
   });

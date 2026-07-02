@@ -43,7 +43,8 @@ class StoryReaderLoaded extends StoryReaderState {
       story: story ?? this.story,
       session: session ?? this.session,
       statistics: statistics ?? this.statistics,
-      selectedWord: clearSelectedWord ? null : selectedWord ?? this.selectedWord,
+      selectedWord:
+          clearSelectedWord ? null : selectedWord ?? this.selectedWord,
     );
   }
 }

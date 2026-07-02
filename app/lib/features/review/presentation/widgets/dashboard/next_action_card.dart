@@ -26,7 +26,8 @@ class NextActionCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: (hasDue ? Colors.indigoAccent : Colors.greenAccent).withOpacity(0.1),
+              color: (hasDue ? Colors.indigoAccent : Colors.greenAccent)
+                  .withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -50,8 +51,8 @@ class NextActionCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  hasDue 
-                      ? "You have $dueCount words due for review." 
+                  hasDue
+                      ? "You have $dueCount words due for review."
                       : "Awesome! You have no pending reviews.",
                   style: TextStyle(
                     color: Colors.grey[400],

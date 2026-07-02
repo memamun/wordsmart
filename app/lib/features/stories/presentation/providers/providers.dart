@@ -11,7 +11,9 @@ import '../../domain/usecases/save_reading_position.dart';
 import 'story_reader_notifier.dart';
 import 'story_reader_state.dart';
 
-final storyReaderProvider = StateNotifierProvider.autoDispose<StoryReaderNotifier, StoryReaderState>((ref) {
+final storyReaderProvider =
+    StateNotifierProvider.autoDispose<StoryReaderNotifier, StoryReaderState>(
+        (ref) {
   return StoryReaderNotifier(
     getStoryUseCase: sl<GetStoryUseCase>(),
     continueStoryUseCase: sl<ContinueStoryUseCase>(),

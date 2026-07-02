@@ -15,13 +15,22 @@ void main() {
     title: 'Quiz #1',
     wordsCovered: ['ABATE', 'ABASH'],
     paragraphs: [
-      const StoryParagraph(index: 0, englishText: 'The storm began to **abate**.', bengaliText: ''),
-      const StoryParagraph(index: 1, englishText: 'He felt **abashed**.', bengaliText: ''),
-      const StoryParagraph(index: 2, englishText: 'Finally peace returned.', bengaliText: ''),
+      const StoryParagraph(
+          index: 0,
+          englishText: 'The storm began to **abate**.',
+          bengaliText: ''),
+      const StoryParagraph(
+          index: 1, englishText: 'He felt **abashed**.', bengaliText: ''),
+      const StoryParagraph(
+          index: 2, englishText: 'Finally peace returned.', bengaliText: ''),
     ],
     highlightedWords: [
-      const HighlightedWord(word: 'ABATE', definition: 'to subside', bengaliMeaning: 'কমানো'),
-      const HighlightedWord(word: 'ABASH', definition: 'to embarrass', bengaliMeaning: 'লজ্জিত করা'),
+      const HighlightedWord(
+          word: 'ABATE', definition: 'to subside', bengaliMeaning: 'কমানো'),
+      const HighlightedWord(
+          word: 'ABASH',
+          definition: 'to embarrass',
+          bengaliMeaning: 'লজ্জিত করা'),
     ],
   );
 
@@ -50,14 +59,16 @@ void main() {
 
     test('should not be complete at first paragraph', () {
       expect(
-        policy.isComplete(story: tStory, position: const ReadingPosition(paragraph: 0)),
+        policy.isComplete(
+            story: tStory, position: const ReadingPosition(paragraph: 0)),
         false,
       );
     });
 
     test('should be complete at last paragraph', () {
       expect(
-        policy.isComplete(story: tStory, position: const ReadingPosition(paragraph: 2)),
+        policy.isComplete(
+            story: tStory, position: const ReadingPosition(paragraph: 2)),
         true,
       );
     });
@@ -81,13 +92,15 @@ void main() {
     const analyzer = VocabularyExposureAnalyzer();
 
     test('should detect highlighted words in paragraph', () {
-      final words = analyzer.exposedWordsForParagraph(story: tStory, paragraphIndex: 0);
+      final words =
+          analyzer.exposedWordsForParagraph(story: tStory, paragraphIndex: 0);
       expect(words, contains('ABATE'));
       expect(words.length, 1);
     });
 
     test('should return empty for out-of-bounds paragraph', () {
-      final words = analyzer.exposedWordsForParagraph(story: tStory, paragraphIndex: 99);
+      final words =
+          analyzer.exposedWordsForParagraph(story: tStory, paragraphIndex: 99);
       expect(words, isEmpty);
     });
   });

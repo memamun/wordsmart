@@ -21,7 +21,8 @@ class DatabaseInitializer {
 
       // Copy database bytes from root assets bundle
       final ByteData data = await rootBundle.load(join('assets', _dbName));
-      final List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      final List<int> bytes =
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       // Write atomically to device database path
       await File(path).writeAsBytes(bytes, flush: true);
@@ -38,15 +39,22 @@ class DatabaseInitializer {
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 2) {
           // 1. Alter progress table
-          await db.execute('ALTER TABLE progress ADD COLUMN ease_factor REAL DEFAULT 2.5;');
-          await db.execute('ALTER TABLE progress ADD COLUMN interval_days INTEGER DEFAULT 0;');
-          await db.execute('ALTER TABLE progress ADD COLUMN repetitions INTEGER DEFAULT 0;');
-          await db.execute('ALTER TABLE progress ADD COLUMN learning_state TEXT DEFAULT "newCard";');
+          await db.execute(
+              'ALTER TABLE progress ADD COLUMN ease_factor REAL DEFAULT 2.5;');
+          await db.execute(
+              'ALTER TABLE progress ADD COLUMN interval_days INTEGER DEFAULT 0;');
+          await db.execute(
+              'ALTER TABLE progress ADD COLUMN repetitions INTEGER DEFAULT 0;');
+          await db.execute(
+              'ALTER TABLE progress ADD COLUMN learning_state TEXT DEFAULT "newCard";');
 
           // 2. Create progress indexes
-          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_next_review_at ON progress(next_review_at);');
-          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_learning_state ON progress(learning_state);');
-          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_word_id ON progress(word_id);');
+          await db.execute(
+              'CREATE INDEX IF NOT EXISTS idx_progress_next_review_at ON progress(next_review_at);');
+          await db.execute(
+              'CREATE INDEX IF NOT EXISTS idx_progress_learning_state ON progress(learning_state);');
+          await db.execute(
+              'CREATE INDEX IF NOT EXISTS idx_progress_word_id ON progress(word_id);');
 
           // 3. Create study_sessions table & index
           await db.execute('''
@@ -61,7 +69,8 @@ class DatabaseInitializer {
               duration_seconds INTEGER NOT NULL
             );
           ''');
-          await db.execute('CREATE INDEX IF NOT EXISTS idx_study_sessions_started_at ON study_sessions(started_at);');
+          await db.execute(
+              'CREATE INDEX IF NOT EXISTS idx_study_sessions_started_at ON study_sessions(started_at);');
 
           // 4. Create learning_events table & index
           await db.execute('''
@@ -74,7 +83,8 @@ class DatabaseInitializer {
               reference_type TEXT
             );
           ''');
-          await db.execute('CREATE INDEX IF NOT EXISTS idx_learning_events_logged_at ON learning_events(logged_at);');
+          await db.execute(
+              'CREATE INDEX IF NOT EXISTS idx_learning_events_logged_at ON learning_events(logged_at);');
 
           // 5. Create other required tables
           await db.execute('''

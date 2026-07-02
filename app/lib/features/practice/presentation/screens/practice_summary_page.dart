@@ -1,4 +1,4 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 import '../../../../core/navigation/app_navigator.dart';
 import '../../domain/entities/practice_summary.dart';
 import '../widgets/summary_score_card.dart';
@@ -15,7 +15,7 @@ class PracticeSummaryPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
@@ -24,7 +24,7 @@ class PracticeSummaryPage extends StatelessWidget {
               // Title
               const Text(
                 'Session Complete',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.black),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 32),
 
@@ -78,7 +78,7 @@ class PracticeSummaryPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Spacer(),
+              const SizedBox(height: 24),
 
               // Action buttons
               SizedBox(
@@ -88,11 +88,14 @@ class PracticeSummaryPage extends StatelessWidget {
                   key: const Key('practice_again_button'),
                   onPressed: () => AppNavigator.pop(context),
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     backgroundColor: Theme.of(context).primaryColor,
                     foregroundColor: Colors.white,
                   ),
-                  child: const Text('Practice Again', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: const Text('Practice Again',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 12),
@@ -103,9 +106,12 @@ class PracticeSummaryPage extends StatelessWidget {
                   key: const Key('back_home_button'),
                   onPressed: () => AppNavigator.popToHome(context),
                   style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text('Back to Home', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  child: const Text('Back to Home',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -134,7 +140,8 @@ class PracticeSummaryPage extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: valueColor),
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: valueColor),
           ),
           const SizedBox(height: 4),
           Text(

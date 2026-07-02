@@ -1,9 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/word.dart';
-import '../../domain/entities/word_derivative.dart';
-import '../../domain/entities/word_example.dart';
-import '../../domain/entities/word_root.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../datasources/word_local_data_source.dart';
@@ -32,7 +29,7 @@ class WordRepositoryImpl implements WordRepository {
     } on DomainException catch (e) {
       // Catch business invariant violations (corrupted data) and wrap in ValidationFailure
       return Left(ValidationFailure(e.message));
-    } on Exception catch (e) {
+    } on Exception {
       // Catch any low-level database/driver exceptions, log internally (e),
       // and return a safe, user-friendly Failure to the UI (preventing exception leaking).
       return const Left(DatabaseFailure(
@@ -54,7 +51,8 @@ class WordRepositoryImpl implements WordRepository {
     final antonymsFuture = localDataSource.getAntonymsForWord(wordId);
     final collocationsFuture = localDataSource.getCollocationsForWord(wordId);
     final examplesFuture = localDataSource.getExamplesForWord(wordId);
-    final translationsFuture = localDataSource.getExampleTranslationsForWord(wordId);
+    final translationsFuture =
+        localDataSource.getExampleTranslationsForWord(wordId);
     final derivativesFuture = localDataSource.getDerivativesForWord(wordId);
     final rootsFuture = localDataSource.getRootsForWord(wordId);
 

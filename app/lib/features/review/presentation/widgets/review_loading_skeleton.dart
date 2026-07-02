@@ -26,7 +26,8 @@ class ReviewLoadingSkeleton extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color(0xFF1E1E1E), // AppColors.surface
                   borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: const Color(0x14FFFFFF)), // AppColors.divider
+                  border: Border.all(
+                      color: const Color(0x14FFFFFF)), // AppColors.divider
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),

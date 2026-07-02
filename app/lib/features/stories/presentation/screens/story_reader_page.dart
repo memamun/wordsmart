@@ -56,7 +56,8 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
 
   Widget _buildBody(StoryReaderState state) {
     if (state is StoryReaderLoading || state is StoryReaderInitial) {
-      return const Center(child: CircularProgressIndicator(color: AppColors.teal));
+      return const Center(
+          child: CircularProgressIndicator(color: AppColors.teal));
     }
 
     if (state is StoryReaderFailure) {
@@ -65,7 +66,8 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
         title: 'Story unavailable',
         description: state.failure.message,
         actionLabel: 'Retry',
-        onActionPressed: () => ref.read(storyReaderProvider.notifier).loadStory(widget.storyId),
+        onActionPressed: () =>
+            ref.read(storyReaderProvider.notifier).loadStory(widget.storyId),
       );
     }
 
@@ -103,14 +105,17 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
             child: ElevatedButton(
               onPressed: loaded.isComplete
                   ? null
-                  : () => ref.read(storyReaderProvider.notifier).nextParagraph(),
+                  : () =>
+                      ref.read(storyReaderProvider.notifier).nextParagraph(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.teal,
                 foregroundColor: AppColors.textPrimary,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
               ),
-              child: Text(loaded.isComplete ? 'Story Complete' : 'Continue Reading'),
+              child: Text(
+                  loaded.isComplete ? 'Story Complete' : 'Continue Reading'),
             ),
           ),
         ],

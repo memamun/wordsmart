@@ -12,7 +12,6 @@ import '../../../../../lib/features/review/domain/entities/review_session.dart';
 import '../../../../../lib/features/review/domain/usecases/finish_review_session.dart';
 import '../../../../../lib/features/review/domain/usecases/start_review_session.dart';
 import '../../../../../lib/features/review/presentation/providers/providers.dart';
-import '../../../../../lib/features/review/presentation/providers/review_session_notifier.dart';
 import '../../../../../lib/features/review/presentation/screens/review_session_page.dart';
 import '../../../../../lib/features/review/presentation/widgets/review_loading_skeleton.dart';
 
@@ -22,7 +21,10 @@ class MockStartReviewSessionUseCase implements StartReviewSessionUseCase {
   late final repository = throw UnimplementedError();
 
   @override
-  Future<Either<Failure, ReviewSession>> call({required String sessionId, required int limit, required DateTime now}) async {
+  Future<Either<Failure, ReviewSession>> call(
+      {required String sessionId,
+      required int limit,
+      required DateTime now}) async {
     return result ?? const Left(DatabaseFailure('Error'));
   }
 }
@@ -75,13 +77,16 @@ void main() {
     mode: ReviewMode.newCard,
   );
 
-  testWidgets('should render loading skeleton initially when session is starting', (WidgetTester tester) async {
+  testWidgets(
+      'should render loading skeleton initially when session is starting',
+      (WidgetTester tester) async {
     final mockStart = MockStartReviewSessionUseCase();
     final mockSubmit = MockSubmitLearningResultUseCase();
     final mockFinish = MockFinishReviewSessionUseCase();
 
     final queue = ReviewQueue(id: 'q1', createdAt: now, cards: [tCard]);
-    mockStart.result = Right(ReviewSession(id: 's1', queue: queue, startedAt: now));
+    mockStart.result =
+        Right(ReviewSession(id: 's1', queue: queue, startedAt: now));
 
     await tester.pumpWidget(
       ProviderScope(

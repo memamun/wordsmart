@@ -1,4 +1,4 @@
-class ReviewCardModel {
+class LearningCardModel {
   final int wordId;
   final String word;
   final String? definition;
@@ -23,7 +23,7 @@ class ReviewCardModel {
   final int? repetitions;
   final String? learningState;
 
-  const ReviewCardModel({
+  const LearningCardModel({
     required this.wordId,
     required this.word,
     this.definition,
@@ -48,8 +48,8 @@ class ReviewCardModel {
     this.learningState,
   });
 
-  factory ReviewCardModel.fromMap(Map<String, dynamic> map) {
-    return ReviewCardModel(
+  factory LearningCardModel.fromMap(Map<String, dynamic> map) {
+    return LearningCardModel(
       wordId: map['word_id'] as int,
       word: map['word'] as String,
       definition: map['definition'] as String?,

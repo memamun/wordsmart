@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design_system/tokens/app_colors.dart';
 import '../actions/recommendation_action_mapper.dart';
-import '../providers/recommendation_notifier.dart';
+import '../providers/providers.dart';
 import 'recommendation_card.dart';
 
 class RecommendationList extends ConsumerWidget {

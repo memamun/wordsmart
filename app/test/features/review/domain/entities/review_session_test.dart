@@ -9,7 +9,7 @@ void main() {
   final tWord1 = Word(id: 1, word: 'ABATE');
   final tWord2 = Word(id: 2, word: 'ABHOR');
 
-  final tCard1 = ReviewCard(
+  final tCard1 = LearningCard(
     word: tWord1,
     learningState: LearningState.newCard,
     isDue: true,
@@ -20,7 +20,7 @@ void main() {
     mode: ReviewMode.newCard,
   );
 
-  final tCard2 = ReviewCard(
+  final tCard2 = LearningCard(
     word: tWord2,
     learningState: LearningState.reviewing,
     isDue: true,
@@ -56,7 +56,9 @@ void main() {
       expect(session.currentCard, tCard1);
     });
 
-    test('should progress session and collect correct statistics upon answering cards', () {
+    test(
+        'should progress session and collect correct statistics upon answering cards',
+        () {
       final session = ReviewSession(
         id: 'session-123',
         queue: tQueue,
@@ -74,7 +76,8 @@ void main() {
       expect(session2.isCompleted, false);
 
       // Answer second card incorrectly (rating 1)
-      final session3 = session2.answerCard(ReviewRating.incorrect, now: DateTime(2026, 7, 2, 10, 5));
+      final session3 = session2.answerCard(ReviewRating.incorrect,
+          now: DateTime(2026, 7, 2, 10, 5));
 
       expect(session3.currentIndex, 2);
       expect(session3.reviewedCount, 2);
@@ -84,7 +87,8 @@ void main() {
       expect(session3.finishedAt, DateTime(2026, 7, 2, 10, 5));
     });
 
-    test('should throw StateError when getting card from completed session', () {
+    test('should throw StateError when getting card from completed session',
+        () {
       final session = ReviewSession(
         id: 'session-123',
         queue: tQueue,
@@ -97,7 +101,8 @@ void main() {
 
       expect(completedSession.isCompleted, true);
       expect(() => completedSession.currentCard, throwsStateError);
-      expect(() => completedSession.answerCard(ReviewRating.good), throwsStateError);
+      expect(() => completedSession.answerCard(ReviewRating.good),
+          throwsStateError);
     });
 
     test('should reject invalid constructor statistics', () {

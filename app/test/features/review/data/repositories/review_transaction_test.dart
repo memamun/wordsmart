@@ -1,12 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../../../../../lib/features/review/data/datasources/review_queries.dart';
 
 void main() {
+  sqfliteFfiInit();
+
   group('Database Transaction Integrity & Rollbacks', () {
     late Database db;
 
     setUp(() async {
+      databaseFactory = databaseFactoryFfi;
       db = await openDatabase(
         inMemoryDatabasePath,
         version: 2,
@@ -47,7 +50,9 @@ void main() {
       await db.close();
     });
 
-    test('should rollback progress table update if study_session insert fails due to constraint error', () async {
+    test(
+        'should rollback progress table update if study_session insert fails due to constraint error',
+        () async {
       // 1. Insert initial dummy data
       await db.rawInsert('''
         INSERT INTO progress (word_id, review_count, ease_factor, interval_days, repetitions)
@@ -55,7 +60,8 @@ void main() {
       ''');
 
       // Verify initial setup
-      var results = await db.rawQuery('SELECT review_count FROM progress WHERE word_id = 1;');
+      var results = await db
+          .rawQuery('SELECT review_count FROM progress WHERE word_id = 1;');
       expect(results.first['review_count'], 0);
 
       // 2. Perform transactional update where the second step fails (violates primary key constraint of study_sessions)
@@ -64,13 +70,26 @@ void main() {
           // Step 1: Update progress
           await txn.rawInsert(
             ReviewQueries.upsertProgress,
-            [1, 1, 1, 0, 80, 'learning', '2026-07-02', '2026-07-08', 2.5, 6, 1, 'learning'],
+            [
+              1,
+              1,
+              1,
+              0,
+              80,
+              'learning',
+              '2026-07-02',
+              '2026-07-08',
+              2.5,
+              6,
+              1,
+              'learning'
+            ],
           );
 
           // Step 2: Insert study session with null PK (violating PRIMARY KEY NOT NULL constraint)
           await txn.rawInsert(
             'INSERT INTO study_sessions (id, mode) VALUES (?, ?);',
-            [null, null], 
+            [null, null],
           );
         });
         fail('Transaction should have failed and thrown an exception');
@@ -79,8 +98,10 @@ void main() {
       }
 
       // 3. Verify that progress table updates were completely rolled back
-      final postResults = await db.rawQuery('SELECT review_count FROM progress WHERE word_id = 1;');
-      expect(postResults.first['review_count'], 0, reason: 'Progress update must be rolled back on transaction error');
+      final postResults = await db
+          .rawQuery('SELECT review_count FROM progress WHERE word_id = 1;');
+      expect(postResults.first['review_count'], 0,
+          reason: 'Progress update must be rolled back on transaction error');
     });
   });
 }

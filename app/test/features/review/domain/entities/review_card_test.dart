@@ -6,8 +6,8 @@ import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 void main() {
   final tWord = Word(id: 1, word: 'ABATE');
 
-  group('ReviewCard Invariant Validation', () {
-    test('should construct a valid ReviewCard when parameters are valid', () {
+  group('LearningCard Invariant Validation', () {
+    test('should construct a valid LearningCard when parameters are valid', () {
       final card = LearningCard(
         word: tWord,
         learningState: LearningState.newCard,
@@ -25,7 +25,8 @@ void main() {
       expect(card.repetitionCount, 0);
     });
 
-    test('should throw ArgumentError when easiness factor is less than 1.3', () {
+    test('should throw ArgumentError when easiness factor is less than 1.3',
+        () {
       expect(
         () => LearningCard(
           word: tWord,

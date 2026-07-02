@@ -12,12 +12,14 @@ class RecommendationRanker {
     return scored.map((e) => e.$1).toList();
   }
 
-  List<RecommendationCandidate> deduplicate(List<RecommendationCandidate> ranked) {
+  List<RecommendationCandidate> deduplicate(
+      List<RecommendationCandidate> ranked) {
     final seen = <String>{};
     return ranked.where((c) => seen.add(c.id)).toList();
   }
 
-  List<RecommendationCandidate> cap(List<RecommendationCandidate> ranked, {int max = 5}) {
+  List<RecommendationCandidate> cap(List<RecommendationCandidate> ranked,
+      {int max = 5}) {
     return ranked.take(max).toList();
   }
 

@@ -1,17 +1,18 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../../../../../lib/core/error/failures.dart';
-import '../../../../../lib/features/practice/data/datasources/practice_local_data_source.dart';
-import '../../../../../lib/features/practice/data/repositories/practice_repository_impl.dart';
-import '../../../../../lib/features/review/data/models/review_card_model.dart';
+import 'package:wordsmart/core/error/failures.dart';
+import 'package:wordsmart/core/learning/entities/learning_card.dart';
+import 'package:wordsmart/core/learning/entities/learning_value_objects.dart';
+import 'package:wordsmart/core/domain/entities/word.dart';
+import 'package:wordsmart/features/practice/data/datasources/practice_local_data_source.dart';
+import 'package:wordsmart/features/practice/data/repositories/practice_repository_impl.dart';
 
 class MockPracticeLocalDataSource implements PracticeLocalDataSource {
-  List<ReviewCardModel>? cardsResult;
+  List<LearningCard>? cardsResult;
   List<Map<String, dynamic>>? poolResult;
   Exception? dbException;
 
   @override
-  Future<List<ReviewCardModel>> getPracticeCards() async {
+  Future<List<LearningCard>> getPracticeCards() async {
     if (dbException != null) throw dbException!;
     return cardsResult ?? [];
   }
@@ -36,10 +37,15 @@ void main() {
   group('PracticeRepositoryImpl Unit Tests', () {
     test('should load practice cards correctly', () async {
       mockDataSource.cardsResult = [
-        const ReviewCardModel(
-          wordId: 1,
-          word: 'ABATE',
-          learningState: 'learning',
+        LearningCard(
+          word: Word(id: 1, word: 'ABATE'),
+          learningState: LearningState.learning,
+          isDue: true,
+          priority: ReviewPriority.medium,
+          easinessFactor: 2.5,
+          intervalDays: 1,
+          repetitionCount: 1,
+          mode: ReviewMode.newCard,
         ),
       ];
 
@@ -55,7 +61,8 @@ void main() {
       );
     });
 
-    test('should return DatabaseFailure on local datasource exception', () async {
+    test('should return DatabaseFailure on local datasource exception',
+        () async {
       mockDataSource.dbException = Exception('Disk error');
 
       final result = await repository.loadDictionaryPool();

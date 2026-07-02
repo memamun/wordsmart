@@ -8,6 +8,7 @@ class LearningMetrics {
   final int reviewingWords;
   final int dueToday;
   final int studyMinutesToday;
+  final int sessionsToday;
   final Accuracy accuracy;
   final RetentionRate retentionRate;
 
@@ -18,6 +19,7 @@ class LearningMetrics {
     required this.reviewingWords,
     required this.dueToday,
     required this.studyMinutesToday,
+    required this.sessionsToday,
     required this.accuracy,
     required this.retentionRate,
   });
@@ -34,6 +36,7 @@ class LearningMetrics {
     int totalReviewed = 0;
     int totalCorrect = 0;
     int minutesToday = 0;
+    int sessionsToday = 0;
 
     final localToday = DateTime(today.year, today.month, today.day);
 
@@ -48,12 +51,12 @@ class LearningMetrics {
       );
       if (localStarted.difference(localToday).inDays == 0) {
         minutesToday += session.duration.inMinutes;
+        sessionsToday++;
       }
     }
 
-    final double calculatedAccuracy = totalReviewed > 0
-        ? (totalCorrect / totalReviewed) * 100.0
-        : 0.0;
+    final double calculatedAccuracy =
+        totalReviewed > 0 ? (totalCorrect / totalReviewed) * 100.0 : 0.0;
 
     return LearningMetrics(
       streak: streak,
@@ -62,6 +65,7 @@ class LearningMetrics {
       reviewingWords: reviewingWords,
       dueToday: dueToday,
       studyMinutesToday: minutesToday,
+      sessionsToday: sessionsToday,
       accuracy: Accuracy(calculatedAccuracy),
       retentionRate: RetentionRate(calculatedAccuracy),
     );

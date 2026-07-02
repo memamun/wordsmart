@@ -1,4 +1,4 @@
-import '../../../domain/entities/word.dart';
+import 'package:wordsmart/core/domain/entities/word.dart';
 import 'learning_value_objects.dart';
 
 class LearningCard {
@@ -40,13 +40,16 @@ class LearningCard {
     DateTime? nextReviewAt,
   }) {
     if (easinessFactor < 1.3) {
-      throw ArgumentError('Easiness factor cannot be less than 1.3. Received: $easinessFactor');
+      throw ArgumentError(
+          'Easiness factor cannot be less than 1.3. Received: $easinessFactor');
     }
     if (intervalDays < 0) {
-      throw ArgumentError('Interval days cannot be negative. Received: $intervalDays');
+      throw ArgumentError(
+          'Interval days cannot be negative. Received: $intervalDays');
     }
     if (repetitionCount < 0) {
-      throw ArgumentError('Repetition count cannot be negative. Received: $repetitionCount');
+      throw ArgumentError(
+          'Repetition count cannot be negative. Received: $repetitionCount');
     }
     return LearningCard._(
       word: word,

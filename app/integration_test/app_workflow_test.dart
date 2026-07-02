@@ -4,13 +4,14 @@ import 'package:integration_test/integration_test.dart';
 import 'package:wordsmart/features/dictionary/presentation/screens/search_page.dart';
 import 'package:wordsmart/features/dictionary/presentation/screens/word_details_page.dart';
 import 'package:wordsmart/features/dictionary/presentation/widgets/featured_word_card.dart';
-import 'package:wordsmart/core/design_system/inputs/word_search_bar.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Slice 1 - E2E Integration Workflow', () {
-    testWidgets('Flow 1 & 2: Search -> Exact Match -> Details -> Bookmark State Sync', (tester) async {
+    testWidgets(
+        'Flow 1 & 2: Search -> Exact Match -> Details -> Bookmark State Sync',
+        (tester) async {
       // 1. Launch Search Screen
       await tester.pumpWidget(
         const MaterialApp(
@@ -49,7 +50,8 @@ void main() {
       expect(find.byIcon(Icons.star_rounded), findsOneWidget);
     });
 
-    testWidgets('Flow 3: Query Input -> Delete -> Refill stability check', (tester) async {
+    testWidgets('Flow 3: Query Input -> Delete -> Refill stability check',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: SearchPage(),
@@ -58,11 +60,11 @@ void main() {
       await tester.pumpAndSettle();
 
       final searchTextField = find.byType(TextField);
-      
+
       // Type
       await tester.enterText(searchTextField, 'aba');
       await tester.pump(const Duration(milliseconds: 100));
-      
+
       // Delete
       await tester.enterText(searchTextField, '');
       await tester.pump(const Duration(milliseconds: 100));

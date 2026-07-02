@@ -1,4 +1,5 @@
 import 'value_objects.dart';
+import 'review_card.dart';
 import '../../../../core/learning/entities/learning_card.dart';
 
 abstract class QueuePolicy {
@@ -6,8 +7,8 @@ abstract class QueuePolicy {
   int get maxMinutes;
   bool get includeNewWords;
   bool get includeDecaying;
-  
-  bool shouldInclude(ReviewCard card);
+
+  bool shouldInclude(LearningCard card);
 }
 
 class DailyReviewPolicy implements QueuePolicy {
@@ -28,7 +29,7 @@ class DailyReviewPolicy implements QueuePolicy {
   });
 
   @override
-  bool shouldInclude(ReviewCard card) {
+  bool shouldInclude(LearningCard card) {
     if (!includeDecaying && card.learningState == LearningState.decaying) {
       return false;
     }

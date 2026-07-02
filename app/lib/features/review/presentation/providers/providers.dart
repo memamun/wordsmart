@@ -7,13 +7,19 @@ import 'review_session_state.dart';
 import 'progress_notifier.dart';
 import 'progress_state.dart';
 
-final reviewQueueProvider = StateNotifierProvider.autoDispose<ReviewQueueNotifier, ReviewQueueState>((ref) {
+export 'progress_notifier.dart';
+export 'review_session_notifier.dart';
+
+final reviewQueueProvider =
+    StateNotifierProvider.autoDispose<ReviewQueueNotifier, ReviewQueueState>(
+        (ref) {
   return ReviewQueueNotifier(
     getDailyQueueUseCase: sl(),
   );
 });
 
-final reviewSessionProvider = StateNotifierProvider.autoDispose<ReviewSessionNotifier, ReviewSessionState>((ref) {
+final reviewSessionProvider = StateNotifierProvider.autoDispose<
+    ReviewSessionNotifier, ReviewSessionState>((ref) {
   return ReviewSessionNotifier(
     startReviewSessionUseCase: sl(),
     submitLearningResultUseCase: sl(),
@@ -21,7 +27,8 @@ final reviewSessionProvider = StateNotifierProvider.autoDispose<ReviewSessionNot
   );
 });
 
-final progressProvider = StateNotifierProvider.autoDispose<ProgressNotifier, ProgressState>((ref) {
+final progressProvider =
+    StateNotifierProvider.autoDispose<ProgressNotifier, ProgressState>((ref) {
   return ProgressNotifier(
     getLearningMetricsUseCase: sl(),
   );

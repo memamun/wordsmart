@@ -10,11 +10,13 @@ class MockSearchRepository implements SearchRepository {
 
   @override
   Future<Either<Failure, List<Word>>> searchWords(String query) async {
-    return searchWordsResult ?? const Left(DatabaseFailure('No mock configured'));
+    return searchWordsResult ??
+        const Left(DatabaseFailure('No mock configured'));
   }
 
   @override
-  Future<Either<Failure, List<String>>> getSearchSuggestions(String query) async {
+  Future<Either<Failure, List<String>>> getSearchSuggestions(
+      String query) async {
     throw UnimplementedError();
   }
 }
@@ -28,7 +30,8 @@ void main() {
     useCase = SearchWordsUseCase(mockRepository);
   });
 
-  test('should return list of words from repository when search is successful', () async {
+  test('should return list of words from repository when search is successful',
+      () async {
     // Arrange
     final tWords = [Word(id: 1, word: 'ABATE')];
     mockRepository.searchWordsResult = Right(tWords);

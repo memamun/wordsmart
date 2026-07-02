@@ -43,7 +43,8 @@ class SearchNotifier extends StateNotifier<SearchState> {
 }
 
 // Riverpod Provider definitions bridging dependency graph from sl
-final searchNotifierProvider = StateNotifierProvider<SearchNotifier, SearchState>((ref) {
+final searchNotifierProvider =
+    StateNotifierProvider<SearchNotifier, SearchState>((ref) {
   return SearchNotifier(
     searchWordsUseCase: sl<SearchWordsUseCase>(),
     searchRepository: sl<SearchRepository>(),

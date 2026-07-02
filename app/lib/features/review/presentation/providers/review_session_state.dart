@@ -25,7 +25,7 @@ class ReviewSessionActive extends ReviewSessionState {
     this.isSubmitting = false,
   });
 
-  ReviewCard get currentCard => session.currentCard;
+  LearningCard get currentCard => session.currentCard;
   int get currentIndex => session.currentIndex;
   int get remainingCards => session.queue.cards.length - session.currentIndex;
 

@@ -2,8 +2,8 @@ import '../models/review_card_model.dart';
 import '../models/study_session_model.dart';
 
 abstract class ReviewLocalDataSource {
-  Future<List<ReviewCardModel>> getAllCardsWithProgress();
-  
+  Future<List<LearningCardModel>> getAllCardsWithProgress();
+
   Future<void> saveReviewProgress({
     required int wordId,
     required double easeFactor,

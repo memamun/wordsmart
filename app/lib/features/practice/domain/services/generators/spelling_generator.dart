@@ -8,7 +8,7 @@ class SpellingQuestionGenerator implements QuestionGenerator {
   @override
   PracticeQuestion generate(Word word, List<Word> pool) {
     final definition = word.definition ?? 'No definition available';
-    
+
     return PracticeQuestion(
       word: word,
       type: QuestionType.spelling,

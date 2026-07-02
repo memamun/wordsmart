@@ -12,7 +12,8 @@ class ReviewProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double percentage = totalCount > 0 ? (currentIndex / totalCount) : 0.0;
+    final double percentage =
+        totalCount > 0 ? (currentIndex / totalCount) : 0.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -52,7 +52,8 @@ class DailyGoalCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress > 1.0 ? 1.0 : progress,
               backgroundColor: Colors.grey[850],
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+              valueColor:
+                  const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
               minHeight: 8,
             ),
           ),

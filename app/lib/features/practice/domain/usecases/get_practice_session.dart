@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
-import '../../../../core/learning/entities/learning_card.dart';
 import '../entities/practice_question.dart';
 import '../entities/practice_session.dart';
 import '../repositories/practice_repository.dart';
@@ -29,7 +28,8 @@ class GetPracticeSessionUseCase {
     required this.builder,
   });
 
-  Future<Either<Failure, PracticeSession>> call(GetPracticeSessionParams params) async {
+  Future<Either<Failure, PracticeSession>> call(
+      GetPracticeSessionParams params) async {
     // 1. Load active cards for practice
     final cardsResult = await repository.loadPracticeCards(
       limit: params.limit,

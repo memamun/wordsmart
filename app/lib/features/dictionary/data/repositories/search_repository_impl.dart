@@ -13,7 +13,19 @@ class SearchRepositoryImpl implements SearchRepository {
   Future<Either<Failure, List<Word>>> searchWords(String query) async {
     try {
       final wordModels = await localDataSource.searchWords(query);
-      final wordEntities = wordModels.map((model) => model.toEntity()).toList();
+      final wordEntities = wordModels
+          .map((model) => Word(
+                id: model.id,
+                word: model.word,
+                pronunciation: model.pronunciation,
+                partOfSpeech: model.partOfSpeech,
+                definition: model.definition,
+                bengaliMeaning: model.bengaliMeaning,
+                mnemonic: model.mnemonic,
+                level: model.level,
+                audioPath: model.audioPath,
+              ))
+          .toList();
       return Right(wordEntities);
     } catch (e) {
       return const Left(DatabaseFailure(
@@ -23,7 +35,8 @@ class SearchRepositoryImpl implements SearchRepository {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getSearchSuggestions(String query) async {
+  Future<Either<Failure, List<String>>> getSearchSuggestions(
+      String query) async {
     try {
       final suggestions = await localDataSource.getSearchSuggestions(query);
       return Right(suggestions);

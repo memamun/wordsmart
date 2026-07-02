@@ -18,10 +18,12 @@ class DailyGoal {
     required int completedMinutes,
   }) {
     if (targetReviews <= 0) {
-      throw ArgumentError('Target reviews must be greater than zero. Received: $targetReviews');
+      throw ArgumentError(
+          'Target reviews must be greater than zero. Received: $targetReviews');
     }
     if (targetMinutes <= 0) {
-      throw ArgumentError('Target minutes must be greater than zero. Received: $targetMinutes');
+      throw ArgumentError(
+          'Target minutes must be greater than zero. Received: $targetMinutes');
     }
     if (completedReviews < 0) {
       throw ArgumentError('Completed reviews cannot be negative');
@@ -39,6 +41,8 @@ class DailyGoal {
 
   bool get isCompleted => completedReviews >= targetReviews;
 
-  double get reviewCompletionPercentage => (completedReviews / targetReviews) * 100.0;
-  double get minutesCompletionPercentage => (completedMinutes / targetMinutes) * 100.0;
+  double get reviewCompletionPercentage =>
+      (completedReviews / targetReviews) * 100.0;
+  double get minutesCompletionPercentage =>
+      (completedMinutes / targetMinutes) * 100.0;
 }

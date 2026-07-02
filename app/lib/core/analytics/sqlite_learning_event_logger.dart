@@ -15,7 +15,8 @@ class SQLiteLearningEventLogger implements LearningEventLogger {
     String? referenceType,
   }) async {
     final db = await appDatabase.database;
-    final eventId = 'event-$eventType-$wordId-${timestamp.millisecondsSinceEpoch}';
+    final eventId =
+        'event-$eventType-$wordId-${timestamp.millisecondsSinceEpoch}';
 
     await db.rawInsert(
       '''

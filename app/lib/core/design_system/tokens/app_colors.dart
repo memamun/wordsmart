@@ -13,8 +13,9 @@ abstract final class AppPalette {
   static const Color lightGrey = Color(0xFFB0B0B0);
   static const Color mediumGrey = Color(0xFF888888);
   static const Color darkGrey = Color(0xFF555555);
-  static const Color borderOverlay = Color(0x14FFFFFF); // 8% transparent white overlay
-  
+  static const Color borderOverlay =
+      Color(0x14FFFFFF); // 8% transparent white overlay
+
   // Legacy/utility palette elements
   static const Color grey61 = Color(0xFF616161);
   static const Color sandBiege = Color(0xFFD5C4AB);
@@ -25,7 +26,7 @@ abstract final class AppColors {
   static const Color canvas = AppPalette.canvas;
   static const Color surface = AppPalette.surface;
   static const Color surfaceHigh = AppPalette.surfaceHigh;
-  
+
   /// Primary brand actions and triggers
   static const Color primary = AppPalette.teal;
 
@@ -33,16 +34,16 @@ abstract final class AppColors {
   /// They remain separate semantic tokens so they can diverge later
   /// without changing widget code.
   static const Color success = AppPalette.teal;
-  
+
   static const Color error = AppPalette.coral; // Soft Red
   static const Color warning = AppPalette.amber;
   static const Color divider = AppPalette.borderOverlay;
-  
+
   static const Color textPrimary = AppPalette.offWhite;
   static const Color textSecondary = AppPalette.lightGrey;
   static const Color textMuted = AppPalette.mediumGrey;
   static const Color textDark = AppPalette.darkGrey;
-  
+
   static const Color disabled = AppPalette.grey61;
   static const Color mnemonicText = AppPalette.sandBiege;
 

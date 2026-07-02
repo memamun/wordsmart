@@ -58,7 +58,8 @@ class ReviewRatingBar extends StatelessWidget {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: color.withOpacity(0.3), width: 1.5),
+                side:
+                    BorderSide(color: color.withValues(alpha: 0.3), width: 1.5),
               ),
             ),
             child: Text(

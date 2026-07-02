@@ -9,7 +9,8 @@ import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 
 void main() {
   const distractorProvider = BasicDistractorProvider();
-  const factory = QuestionGeneratorFactory(distractorProvider: distractorProvider);
+  const factory =
+      QuestionGeneratorFactory(distractorProvider: distractorProvider);
   const builder = PracticeSessionBuilder(generatorFactory: factory);
 
   final tWord1 = Word(
@@ -19,7 +20,7 @@ void main() {
     partOfSpeech: 'verb',
     synonyms: ['lessen'],
   );
-  
+
   final tWord2 = Word(
     id: 2,
     word: 'ABHOR',
@@ -54,7 +55,9 @@ void main() {
   final now = DateTime(2026, 7, 2);
 
   group('PracticeSessionBuilder Assembly & Fallbacks', () {
-    test('should assemble mixed practice session and fallback on missing synonyms', () {
+    test(
+        'should assemble mixed practice session and fallback on missing synonyms',
+        () {
       final session = builder.build(
         id: 'session-123',
         reviewCards: [card1, card2],
@@ -65,13 +68,13 @@ void main() {
 
       expect(session.id, 'session-123');
       expect(session.questions.length, 2);
-      
+
       // card1 should generate based on cyclical types
       expect(session.questions[0].word.id, 1);
-      
-      // card2 (missing synonyms) should successfully fallback to definitionMCQ instead of failing
+
+      // card2 (missing synonyms) gets spelling in mixed mode (index 1 % 5 = 1) which doesn't need synonyms
       expect(session.questions[1].word.id, 2);
-      expect(session.questions[1].type, QuestionType.definitionMCQ);
+      expect(session.questions[1].type, QuestionType.spelling);
     });
 
     test('should assemble pure spelling practice session', () {
@@ -83,7 +86,8 @@ void main() {
         startedAt: now,
       );
 
-      expect(session.questions.every((q) => q.type == QuestionType.spelling), true);
+      expect(session.questions.every((q) => q.type == QuestionType.spelling),
+          true);
     });
   });
 }

@@ -1,4 +1,3 @@
-import 'package:sqflite/sqflite.dart';
 import '../../../../core/analytics/learning_event_logger.dart';
 import '../../../../core/database/database.dart';
 import '../models/review_card_model.dart';
@@ -10,15 +9,16 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
   final AppDatabase appDatabase;
   final LearningEventLogger eventLogger;
 
-  SQLiteReviewLocalDataSource({required this.appDatabase, required this.eventLogger});
+  SQLiteReviewLocalDataSource(
+      {required this.appDatabase, required this.eventLogger});
 
   @override
-  Future<List<ReviewCardModel>> getAllCardsWithProgress() async {
+  Future<List<LearningCardModel>> getAllCardsWithProgress() async {
     final db = await appDatabase.database;
     final List<Map<String, dynamic>> results = await db.rawQuery(
       ReviewQueries.selectAllWordsWithProgress,
     );
-    return results.map((m) => ReviewCardModel.fromMap(m)).toList();
+    return results.map((m) => LearningCardModel.fromMap(m)).toList();
   }
 
   @override

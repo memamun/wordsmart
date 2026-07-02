@@ -63,8 +63,10 @@ class StoryModel {
     return List.generate(maxLength, (index) {
       return StoryParagraph(
         index: index,
-        englishText: index < englishParagraphs.length ? englishParagraphs[index] : '',
-        bengaliText: index < bengaliParagraphs.length ? bengaliParagraphs[index] : '',
+        englishText:
+            index < englishParagraphs.length ? englishParagraphs[index] : '',
+        bengaliText:
+            index < bengaliParagraphs.length ? bengaliParagraphs[index] : '',
       );
     });
   }

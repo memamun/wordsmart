@@ -6,7 +6,9 @@ void main() {
   const analyzer = LearningSignalAnalyzer();
 
   group('LearningSignalAnalyzer Rules', () {
-    test('should resolve ReviewRating.easy for fast correct answers with no hints', () {
+    test(
+        'should resolve ReviewRating.easy for fast correct answers with no hints',
+        () {
       final rating = analyzer.analyze(
         isCorrect: true,
         responseTime: const Duration(seconds: 3),
@@ -16,7 +18,9 @@ void main() {
       expect(rating, ReviewRating.easy);
     });
 
-    test('should resolve ReviewRating.good for correct answers with moderate duration and no hints', () {
+    test(
+        'should resolve ReviewRating.good for correct answers with moderate duration and no hints',
+        () {
       final rating = analyzer.analyze(
         isCorrect: true,
         responseTime: const Duration(seconds: 8),
@@ -26,7 +30,9 @@ void main() {
       expect(rating, ReviewRating.good);
     });
 
-    test('should resolve ReviewRating.hard for correct answers where hints were used', () {
+    test(
+        'should resolve ReviewRating.hard for correct answers where hints were used',
+        () {
       final rating = analyzer.analyze(
         isCorrect: true,
         responseTime: const Duration(seconds: 4),
@@ -36,7 +42,9 @@ void main() {
       expect(rating, ReviewRating.hard);
     });
 
-    test('should resolve ReviewRating.completeBlackout for slow incorrect answers', () {
+    test(
+        'should resolve ReviewRating.completeBlackout for slow incorrect answers',
+        () {
       final rating = analyzer.analyze(
         isCorrect: false,
         responseTime: const Duration(seconds: 12),
@@ -46,7 +54,9 @@ void main() {
       expect(rating, ReviewRating.completeBlackout);
     });
 
-    test('should resolve ReviewRating.incorrect for incorrect answers where hints were used', () {
+    test(
+        'should resolve ReviewRating.incorrect for incorrect answers where hints were used',
+        () {
       final rating = analyzer.analyze(
         isCorrect: false,
         responseTime: const Duration(seconds: 5),

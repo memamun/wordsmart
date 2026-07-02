@@ -74,7 +74,8 @@ class RecommendationCard extends StatelessWidget {
               backgroundColor: AppColors.teal,
               foregroundColor: AppColors.textPrimary,
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
             ),
             child: Text(
               recommendation.actionLabel,

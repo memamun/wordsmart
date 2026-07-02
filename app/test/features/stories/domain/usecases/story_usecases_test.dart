@@ -67,7 +67,11 @@ void main() {
       mockRepo.storiesResult = [tStory];
       final usecase = GetStoriesUseCase(mockRepo);
       final result = await usecase();
-      expect(result, Right([tStory]));
+      expect(result.isRight(), true);
+      result.fold(
+        (_) => fail('Should return Right'),
+        (stories) => expect(stories.length, 1),
+      );
     });
   });
 

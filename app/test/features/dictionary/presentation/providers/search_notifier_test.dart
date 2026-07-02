@@ -10,10 +10,12 @@ class MockSearchRepository implements SearchRepository {
   Either<Failure, List<String>>? suggestionsResult;
 
   @override
-  Future<Either<Failure, List<Word>>> searchWords(String query) => throw UnimplementedError();
+  Future<Either<Failure, List<Word>>> searchWords(String query) =>
+      throw UnimplementedError();
 
   @override
-  Future<Either<Failure, List<String>>> getSearchSuggestions(String query) async {
+  Future<Either<Failure, List<String>>> getSearchSuggestions(
+      String query) async {
     return suggestionsResult ?? const Left(DatabaseFailure('Error'));
   }
 }
@@ -57,7 +59,7 @@ void main() {
 
     // Act & Assert (state changes sequence)
     final future = notifier.search('abate');
-    
+
     // During search state should be loading
     expect(notifier.state.isLoading, true);
     expect(notifier.state.query, 'abate');

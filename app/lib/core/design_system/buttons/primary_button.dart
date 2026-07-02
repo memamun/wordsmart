@@ -52,7 +52,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
             border: widget.isFilled
                 ? null
                 : Border.all(
-                    color: widget.color.withOpacity(0.5),
+                    color: widget.color.withValues(alpha: 0.5),
                     width: 1.5,
                   ),
           ),

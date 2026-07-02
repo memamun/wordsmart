@@ -5,13 +5,23 @@ import '../../../../../lib/features/stories/domain/entities/story_paragraph.dart
 
 void main() {
   final tParagraphs = [
-    const StoryParagraph(index: 0, englishText: 'The storm began to **abate**.', bengaliText: 'ঝড় কমতে শুরু করল।'),
-    const StoryParagraph(index: 1, englishText: 'He felt **abashed**.', bengaliText: 'সে লজ্জিত বোধ করল।'),
+    const StoryParagraph(
+        index: 0,
+        englishText: 'The storm began to **abate**.',
+        bengaliText: 'ঝড় কমতে শুরু করল।'),
+    const StoryParagraph(
+        index: 1,
+        englishText: 'He felt **abashed**.',
+        bengaliText: 'সে লজ্জিত বোধ করল।'),
   ];
 
   final tHighlights = [
-    const HighlightedWord(word: 'ABATE', definition: 'to subside', bengaliMeaning: 'কমানো'),
-    const HighlightedWord(word: 'ABASH', definition: 'to embarrass', bengaliMeaning: 'লজ্জিত করা'),
+    const HighlightedWord(
+        word: 'ABATE', definition: 'to subside', bengaliMeaning: 'কমানো'),
+    const HighlightedWord(
+        word: 'ABASH',
+        definition: 'to embarrass',
+        bengaliMeaning: 'লজ্জিত করা'),
   ];
 
   final tStory = Story(

@@ -11,12 +11,13 @@ class AntonymQuestionGenerator implements QuestionGenerator {
   @override
   PracticeQuestion generate(Word word, List<Word> pool) {
     if (word.antonyms == null || word.antonyms!.isEmpty) {
-      throw UnsupportedError('Word "${word.word}" has no antonyms to generate antonym question.');
+      throw UnsupportedError(
+          'Word "${word.word}" has no antonyms to generate antonym question.');
     }
 
     final correct = word.antonyms!.first;
     final distractors = distractorProvider.getAntonymDistractors(word, pool, 3);
-    
+
     final options = [correct, ...distractors]..shuffle();
 
     return PracticeQuestion(

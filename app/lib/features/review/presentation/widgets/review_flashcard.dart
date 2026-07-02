@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/learning/entities/learning_card.dart';
 
 class ReviewFlashcard extends StatefulWidget {
-  final ReviewCard card;
+  final LearningCard card;
   final bool isFront;
   final VoidCallback onTap;
 
@@ -18,7 +18,8 @@ class ReviewFlashcard extends StatefulWidget {
   State<ReviewFlashcard> createState() => _ReviewFlashcardState();
 }
 
-class _ReviewFlashcardState extends State<ReviewFlashcard> with SingleTickerProviderStateMixin {
+class _ReviewFlashcardState extends State<ReviewFlashcard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -92,7 +93,7 @@ class _ReviewFlashcardState extends State<ReviewFlashcard> with SingleTickerProv
         border: Border.all(color: Colors.grey[850]!, width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(alpha: 0.4),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -163,7 +164,7 @@ class _ReviewFlashcardState extends State<ReviewFlashcard> with SingleTickerProv
         border: Border.all(color: Colors.grey[850]!, width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(alpha: 0.4),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),

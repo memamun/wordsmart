@@ -7,6 +7,7 @@ import '../../../../../lib/core/learning/usecases/submit_learning_result.dart';
 import '../../../../../lib/features/dictionary/domain/entities/word.dart';
 import '../../../../../lib/features/review/domain/entities/learning_metrics.dart';
 import '../../../../../lib/features/review/domain/entities/review_queue.dart';
+import '../../../../../lib/features/review/domain/entities/review_session.dart';
 import '../../../../../lib/features/review/domain/entities/study_session.dart';
 import '../../../../../lib/features/review/domain/usecases/finish_review_session.dart';
 import '../../../../../lib/features/review/domain/usecases/get_daily_queue.dart';
@@ -25,7 +26,8 @@ class MockGetDailyQueueUseCase implements GetDailyQueueUseCase {
   late final repository = throw UnimplementedError();
 
   @override
-  Future<Either<Failure, ReviewQueue>> call({required int limit, required DateTime now}) async {
+  Future<Either<Failure, ReviewQueue>> call(
+      {required int limit, required DateTime now}) async {
     return result ?? const Left(DatabaseFailure('Error'));
   }
 }
@@ -36,7 +38,10 @@ class MockStartReviewSessionUseCase implements StartReviewSessionUseCase {
   late final repository = throw UnimplementedError();
 
   @override
-  Future<Either<Failure, ReviewSession>> call({required String sessionId, required int limit, required DateTime now}) async {
+  Future<Either<Failure, ReviewSession>> call(
+      {required String sessionId,
+      required int limit,
+      required DateTime now}) async {
     return result ?? const Left(DatabaseFailure('Error'));
   }
 }
@@ -107,7 +112,7 @@ void main() {
       mockUseCase.result = Right(queue);
 
       final notifier = ReviewQueueNotifier(getDailyQueueUseCase: mockUseCase);
-      
+
       expect(notifier.state, isA<ReviewQueueInitial>());
 
       final future = notifier.loadQueue(limit: 5, now: now);
@@ -126,7 +131,8 @@ void main() {
       final mockFinish = MockFinishReviewSessionUseCase();
 
       final queue = ReviewQueue(id: 'q1', createdAt: now, cards: [tCard]);
-      final session = ReviewSession(id: 'session-123', queue: queue, startedAt: now);
+      final session =
+          ReviewSession(id: 'session-123', queue: queue, startedAt: now);
       mockStart.result = Right(session);
 
       final notifier = ReviewSessionNotifier(
@@ -156,8 +162,9 @@ void main() {
         reviewingWords: 6,
         dueToday: 3,
         studyMinutesToday: 5,
-        accuracy: const Accuracy(90.0),
-        retentionRate: const RetentionRate(90.0),
+        sessionsToday: 1,
+        accuracy: Accuracy(90.0),
+        retentionRate: RetentionRate(90.0),
       );
       mockMetrics.result = Right(metrics);
 

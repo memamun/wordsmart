@@ -21,7 +21,8 @@ void main() {
       expect(session.duration.inMinutes, 15);
     });
 
-    test('should throw ArgumentError when finished date is before started date', () {
+    test('should throw ArgumentError when finished date is before started date',
+        () {
       expect(
         () => StudySession(
           id: 'session-invalid',
@@ -37,7 +38,9 @@ void main() {
       );
     });
 
-    test('should throw ArgumentError when correct answers count exceeds reviewed cards count', () {
+    test(
+        'should throw ArgumentError when correct answers count exceeds reviewed cards count',
+        () {
       expect(
         () => StudySession(
           id: 'session-invalid',
@@ -53,7 +56,9 @@ void main() {
       );
     });
 
-    test('should throw ArgumentError when correct and incorrect answers sum exceeds reviewed cards count', () {
+    test(
+        'should throw ArgumentError when correct and incorrect answers sum exceeds reviewed cards count',
+        () {
       expect(
         () => StudySession(
           id: 'session-invalid',

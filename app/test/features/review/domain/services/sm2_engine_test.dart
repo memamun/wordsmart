@@ -77,7 +77,9 @@ void main() {
       expect(result.repetitionCount, 3);
     });
 
-    test('should decrease EF and reset repetitions to 0 on failure (< 3 rating)', () {
+    test(
+        'should decrease EF and reset repetitions to 0 on failure (< 3 rating)',
+        () {
       final card = LearningCard(
         word: tWord,
         learningState: LearningState.mastered,
@@ -126,7 +128,7 @@ void main() {
   group('SM2Engine Property-Based Invariant Verification (1000 reviews)', () {
     test('should verify invariants across 1000 simulated reviews', () {
       final random = Random(42);
-      
+
       LearningCard currentCard = LearningCard(
         word: tWord,
         learningState: LearningState.newCard,
@@ -152,12 +154,18 @@ void main() {
         );
 
         // Verify Invariants
-        expect(result.easinessFactor, >= 1.3, reason: 'EF must never fall below 1.3');
-        expect(result.intervalDays, >= 0, reason: 'Interval days must never be negative');
-        expect(result.repetitionCount, >= 0, reason: 'Repetition count must never be negative');
-        expect(result.nextReviewAt.isAfter(reviewDate), true, reason: 'Next review must be in the future');
-        expect(result.masteryScore, >= 0, reason: 'Mastery score cannot be negative');
-        expect(result.masteryScore, <= 100, reason: 'Mastery score cannot exceed 100');
+        expect(result.easinessFactor, greaterThanOrEqualTo(1.3),
+            reason: 'EF must never fall below 1.3');
+        expect(result.intervalDays, greaterThanOrEqualTo(0),
+            reason: 'Interval days must never be negative');
+        expect(result.repetitionCount, greaterThanOrEqualTo(0),
+            reason: 'Repetition count must never be negative');
+        expect(result.nextReviewAt.isAfter(reviewDate), true,
+            reason: 'Next review must be in the future');
+        expect(result.masteryScore, greaterThanOrEqualTo(0),
+            reason: 'Mastery score cannot be negative');
+        expect(result.masteryScore, lessThanOrEqualTo(100),
+            reason: 'Mastery score cannot exceed 100');
 
         // Advance card for next simulation step
         currentCard = LearningCard(

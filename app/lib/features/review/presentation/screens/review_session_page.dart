@@ -65,11 +65,15 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, color: Colors.redAccent, size: 64),
+              const Icon(Icons.error_outline,
+                  color: Colors.redAccent, size: 64),
               const SizedBox(height: 16),
               const Text(
                 "Failed to Load Queue",
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Text(
@@ -81,7 +85,8 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
               ElevatedButton(
                 onPressed: () {
                   notifier.startSession(
-                    sessionId: 'session-${DateTime.now().millisecondsSinceEpoch}',
+                    sessionId:
+                        'session-${DateTime.now().millisecondsSinceEpoch}',
                     limit: 20,
                     now: DateTime.now(),
                   );
@@ -107,7 +112,8 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
         return EmptyState(
           icon: Icons.check_circle_outline,
           title: "All Caught Up!",
-          description: "You have completed all scheduled card reviews for today. Check back tomorrow or search for new words to learn!",
+          description:
+              "You have completed all scheduled card reviews for today. Check back tomorrow or search for new words to learn!",
           actionLabel: "Back to Home",
           onActionPressed: () => AppNavigator.pop(context),
         );

@@ -70,7 +70,8 @@ void main() {
   late MockFinishReviewSessionUseCase mockFinishReviewUseCase;
 
   const distractorProvider = BasicDistractorProvider();
-  const factory = QuestionGeneratorFactory(distractorProvider: distractorProvider);
+  const factory =
+      QuestionGeneratorFactory(distractorProvider: distractorProvider);
   const builder = PracticeSessionBuilder(generatorFactory: factory);
 
   final tWord1 = Word(id: 1, word: 'ABATE', definition: 'to reduce');
@@ -106,12 +107,15 @@ void main() {
   });
 
   group('Practice Use Cases Unit Tests', () {
-    test('GetPracticeSessionUseCase should return a practice session successfully', () async {
+    test(
+        'GetPracticeSessionUseCase should return a practice session successfully',
+        () async {
       mockRepository.cardsResult = [card1];
       mockRepository.poolResult = [tWord1];
 
       final result = await getSessionUseCase(
-        GetPracticeSessionParams(id: 's1', limit: 5, mode: PracticeMode.definition, now: now),
+        GetPracticeSessionParams(
+            id: 's1', limit: 5, mode: PracticeMode.definition, now: now),
       );
 
       expect(result.isRight(), true);
@@ -124,19 +128,29 @@ void main() {
       );
     });
 
-    test('SubmitPracticeAnswerUseCase should delegate correct call to SubmitLearningResultUseCase', () async {
+    test(
+        'SubmitPracticeAnswerUseCase should delegate correct call to SubmitLearningResultUseCase',
+        () async {
       final result = await submitAnswerUseCase(
-        SubmitPracticeAnswerParams(card: card1, isCorrect: true, responseTime: const Duration(seconds: 4), now: now, sessionId: 's1'),
+        SubmitPracticeAnswerParams(
+            card: card1,
+            isCorrect: true,
+            responseTime: const Duration(seconds: 4),
+            now: now,
+            sessionId: 's1'),
       );
 
       expect(result.isRight(), true);
       expect(mockSubmitCardUseCase.called, true);
     });
 
-    test('FinishPracticeSessionUseCase should delegate correct call to FinishReviewSessionUseCase', () async {
+    test(
+        'FinishPracticeSessionUseCase should delegate correct call to FinishReviewSessionUseCase',
+        () async {
       final session = PracticeSession(id: 's1', questions: [], startedAt: now);
       final result = await finishSessionUseCase(
-        FinishPracticeSessionParams(session: session, finishedAt: now.add(const Duration(seconds: 10))),
+        FinishPracticeSessionParams(
+            session: session, finishedAt: now.add(const Duration(seconds: 10))),
       );
 
       expect(result.isRight(), true);

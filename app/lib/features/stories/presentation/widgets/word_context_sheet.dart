@@ -39,7 +39,8 @@ class WordContextSheet extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onClose,
-                icon: const Icon(Icons.close_rounded, color: AppColors.textSecondary),
+                icon: const Icon(Icons.close_rounded,
+                    color: AppColors.textSecondary),
               ),
             ],
           ),

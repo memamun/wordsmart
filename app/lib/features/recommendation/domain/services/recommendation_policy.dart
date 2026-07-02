@@ -11,7 +11,8 @@ class RecommendationPolicy {
     this.cooldown = const Duration(hours: 4),
   });
 
-  bool isWithinCooldown(Recommendation recommendation, DateTime lastDismissedAt, DateTime now) {
+  bool isWithinCooldown(
+      Recommendation recommendation, DateTime lastDismissedAt, DateTime now) {
     return now.difference(lastDismissedAt) < cooldown;
   }
 

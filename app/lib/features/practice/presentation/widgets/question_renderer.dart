@@ -1,4 +1,4 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 import '../../domain/entities/practice_question.dart';
 import '../widgets/mcq_option_tile.dart';
 import '../widgets/spelling_input_card.dart';
@@ -49,7 +49,8 @@ class QuestionRenderer extends StatelessWidget {
     return Column(
       children: question.options.map((option) {
         final isSelected = selectedAnswer == option;
-        final isCorrectOption = option.toLowerCase().trim() == question.correctAnswer.toLowerCase().trim();
+        final isCorrectOption = option.toLowerCase().trim() ==
+            question.correctAnswer.toLowerCase().trim();
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),

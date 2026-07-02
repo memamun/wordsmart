@@ -21,7 +21,6 @@ class SearchPage extends ConsumerStatefulWidget {
 class _SearchPageState extends ConsumerState<SearchPage> {
   Timer? _debounceTimer;
   List<String> _suggestions = [];
-  bool _isSearching = false;
   bool _submitted = false;
 
   void _onSearchChanged(String query) {
@@ -36,7 +35,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
     _debounceTimer = Timer(const Duration(milliseconds: 300), () async {
       if (!mounted) return;
-      
+
       // Fetch suggestions for autocomplete state
       if (!_submitted) {
         final notifier = ref.read(searchNotifierProvider.notifier);
@@ -119,7 +118,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       return const EmptyState(
         icon: Icons.search_rounded,
         title: 'Focused Enlightenment',
-        description: 'Type words above to explore definitions, roots, mnemonics, and synonyms.',
+        description:
+            'Type words above to explore definitions, roots, mnemonics, and synonyms.',
       );
     }
 
@@ -130,7 +130,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         itemBuilder: (context, index) {
           final suggestion = _suggestions[index];
           return ListTile(
-            leading: const Icon(Icons.history_toggle_off_rounded, color: Colors.white24),
+            leading: const Icon(Icons.history_toggle_off_rounded,
+                color: Colors.white24),
             title: Text(
               suggestion,
               style: const TextStyle(
@@ -139,7 +140,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 color: AppColors.textPrimary,
               ),
             ),
-            trailing: const Icon(Icons.arrow_outward_rounded, color: Colors.white24, size: 18),
+            trailing: const Icon(Icons.arrow_outward_rounded,
+                color: Colors.white24, size: 18),
             onTap: () => _onSearchSubmitted(suggestion),
           );
         },
@@ -152,7 +154,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         return EmptyState(
           icon: Icons.find_in_page_outlined,
           title: 'No Matches Found',
-          description: 'We could not find "${searchState.query}" in the dictionary.',
+          description:
+              'We could not find "${searchState.query}" in the dictionary.',
           actionLabel: 'Search Again',
           onActionPressed: () => _onSearchChanged(''),
         );
@@ -164,10 +167,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       );
 
       final hasExactMatch = exactMatchIndex != -1;
-      final exactWord = hasExactMatch ? searchState.results[exactMatchIndex] : null;
+      final exactWord =
+          hasExactMatch ? searchState.results[exactMatchIndex] : null;
 
       final relatedWords = hasExactMatch
-          ? List.from(searchState.results)..removeAt(exactMatchIndex)
+          ? (List.from(searchState.results)..removeAt(exactMatchIndex))
           : searchState.results;
 
       return ListView(
@@ -180,7 +184,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 color: Colors.transparent,
                 child: FeaturedWordCard(
                   word: exactWord,
-                  isBookmarked: false, // Default false, synced inside details page
+                  isBookmarked:
+                      false, // Default false, synced inside details page
                   onBookmarkToggle: (val) {},
                   onAudioPressed: () {
                     // Quick feedback audio
@@ -191,7 +196,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
             ),
             const SizedBox(height: 16),
           ],
-          
           if (relatedWords.isNotEmpty) ...[
             const SectionHeader(title: 'Related Results'),
             ...relatedWords.map(
@@ -212,7 +216,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return ListView(
       children: [
         const SectionHeader(title: 'Searching'),
-        const LoadingSkeleton(width: double.infinity, height: 180, borderRadius: 16),
+        const LoadingSkeleton(
+            width: double.infinity, height: 180, borderRadius: 16),
         const SizedBox(height: 20),
         const SectionHeader(title: 'Related'),
         ...List.generate(

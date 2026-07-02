@@ -10,7 +10,6 @@ void main() {
   final tWord1 = Word(id: 1, word: 'ABATE');
   final tWord2 = Word(id: 2, word: 'ABHOR');
   final tWord3 = Word(id: 3, word: 'ACME');
-  final tWord4 = Word(id: 4, word: 'BOON');
 
   const builder = ReviewQueueBuilder();
   final now = DateTime(2026, 7, 2, 12, 0);
@@ -28,7 +27,7 @@ void main() {
     });
 
     test('should deduplicate cards matching the same word ID', () {
-      final card1 = ReviewCard(
+      final card1 = LearningCard(
         word: tWord1,
         learningState: LearningState.newCard,
         isDue: true,
@@ -39,7 +38,7 @@ void main() {
         mode: ReviewMode.newCard,
       );
 
-      final card2 = ReviewCard(
+      final card2 = LearningCard(
         word: tWord1, // Duplicate word ID
         learningState: LearningState.learning,
         isDue: true,
@@ -61,7 +60,7 @@ void main() {
     });
 
     test('should filter cards based on policy rules', () {
-      final cardNew = ReviewCard(
+      final cardNew = LearningCard(
         word: tWord1,
         learningState: LearningState.newCard,
         isDue: true,
@@ -72,7 +71,7 @@ void main() {
         mode: ReviewMode.newCard,
       );
 
-      final cardDue = ReviewCard(
+      final cardDue = LearningCard(
         word: tWord2,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -97,7 +96,7 @@ void main() {
     });
 
     test('should sort cards correctly (Overdue > Due > New)', () {
-      final cardNew = ReviewCard(
+      final cardNew = LearningCard(
         word: tWord1,
         learningState: LearningState.newCard,
         isDue: true,
@@ -108,7 +107,7 @@ void main() {
         mode: ReviewMode.newCard,
       );
 
-      final cardDue = ReviewCard(
+      final cardDue = LearningCard(
         word: tWord2,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -117,10 +116,11 @@ void main() {
         intervalDays: 5,
         repetitionCount: 2,
         mode: ReviewMode.review,
-        nextReviewAt: now.add(const Duration(hours: 2)), // due in future hours today
+        nextReviewAt:
+            now.add(const Duration(hours: 2)), // due in future hours today
       );
 
-      final cardOverdue = ReviewCard(
+      final cardOverdue = LearningCard(
         word: tWord3,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -130,7 +130,8 @@ void main() {
         repetitionCount: 2,
         mode: ReviewMode.review,
         lastReviewedAt: now.subtract(const Duration(days: 6)),
-        nextReviewAt: now.subtract(const Duration(days: 2)), // overdue by 2 days
+        nextReviewAt:
+            now.subtract(const Duration(days: 2)), // overdue by 2 days
       );
 
       final queue = builder.build(
@@ -147,7 +148,7 @@ void main() {
     });
 
     test('should sort overdue cards by highest overdue ratio secondarily', () {
-      final cardLessOverdue = ReviewCard(
+      final cardLessOverdue = LearningCard(
         word: tWord1,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -157,10 +158,11 @@ void main() {
         repetitionCount: 2,
         mode: ReviewMode.review,
         lastReviewedAt: now.subtract(const Duration(days: 5)),
-        nextReviewAt: now.subtract(const Duration(days: 1)), // 1 day overdue on 4 day interval = 0.25
+        nextReviewAt: now.subtract(
+            const Duration(days: 1)), // 1 day overdue on 4 day interval = 0.25
       );
 
-      final cardMoreOverdue = ReviewCard(
+      final cardMoreOverdue = LearningCard(
         word: tWord2,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -170,7 +172,8 @@ void main() {
         repetitionCount: 2,
         mode: ReviewMode.review,
         lastReviewedAt: now.subtract(const Duration(days: 4)),
-        nextReviewAt: now.subtract(const Duration(days: 2)), // 2 days overdue on 2 day interval = 1.0
+        nextReviewAt: now.subtract(
+            const Duration(days: 2)), // 2 days overdue on 2 day interval = 1.0
       );
 
       final queue = builder.build(
@@ -187,7 +190,7 @@ void main() {
     test('should limit output card count to policy.maxCards', () {
       final cards = List.generate(
         10,
-        (index) => ReviewCard(
+        (index) => LearningCard(
           word: Word(id: index + 1, word: 'WORD$index'),
           learningState: LearningState.reviewing,
           isDue: true,
@@ -210,22 +213,26 @@ void main() {
   });
 
   group('ReviewQueueBuilder Property-Based Deck Verification', () {
-    test('should verify uniqueness and constraints on 1000 simulated random decks', () {
+    test(
+        'should verify uniqueness and constraints on 1000 simulated random decks',
+        () {
       final random = Random(42);
 
       for (int t = 0; t < 100; t++) {
         // Generate random collection of cards (some duplicate words)
         final cardsCount = random.nextInt(50) + 10;
-        final List<ReviewCard> cardsInput = [];
-        
+        final List<LearningCard> cardsInput = [];
+
         for (int c = 0; c < cardsCount; c++) {
           final wordId = random.nextInt(20) + 1; // Duplicates occur naturally
           final isDue = random.nextBool();
-          final state = LearningState.values[random.nextInt(LearningState.values.length)];
-          final mode = ReviewMode.values[random.nextInt(ReviewMode.values.length)];
-          
+          final state =
+              LearningState.values[random.nextInt(LearningState.values.length)];
+          final mode =
+              ReviewMode.values[random.nextInt(ReviewMode.values.length)];
+
           cardsInput.add(
-            ReviewCard(
+            LearningCard(
               word: Word(id: wordId, word: 'WORD$wordId'),
               learningState: state,
               isDue: isDue,
@@ -234,7 +241,8 @@ void main() {
               intervalDays: random.nextInt(30),
               repetitionCount: random.nextInt(10),
               mode: mode,
-              lastReviewedAt: now.subtract(Duration(days: random.nextInt(10) + 5)),
+              lastReviewedAt:
+                  now.subtract(Duration(days: random.nextInt(10) + 5)),
               nextReviewAt: now.add(Duration(days: random.nextInt(10) - 5)),
             ),
           );
@@ -250,11 +258,13 @@ void main() {
         );
 
         // Verify Invariants
-        expect(queue.cards.length, <= limit, reason: 'Queue count cannot exceed policy cap');
-        
+        expect(queue.cards.length, lessThanOrEqualTo(limit),
+            reason: 'Queue count cannot exceed policy cap');
+
         final uniqueIds = <int>{};
         for (final card in queue.cards) {
-          expect(uniqueIds.add(card.word.id), true, reason: 'Queue must contain unique word IDs');
+          expect(uniqueIds.add(card.word.id), true,
+              reason: 'Queue must contain unique word IDs');
         }
       }
     });

@@ -5,9 +5,9 @@ import './app.dart';
 void main() async {
   // Ensure Flutter engine bindings are initialized prior to dependency injection setup
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Assemble Object Graph at Composition Root
   await di.init();
-  
+
   runApp(const WordSmartApp());
 }

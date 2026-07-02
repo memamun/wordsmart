@@ -9,7 +9,7 @@ void main() {
   final tWord2 = Word(id: 2, word: 'ABHOR');
   final tWord3 = Word(id: 3, word: 'ACME');
 
-  final tCard1 = ReviewCard(
+  final tCard1 = LearningCard(
     word: tWord1,
     learningState: LearningState.newCard,
     isDue: true,
@@ -20,7 +20,7 @@ void main() {
     mode: ReviewMode.newCard,
   );
 
-  final tCard2 = ReviewCard(
+  final tCard2 = LearningCard(
     word: tWord2,
     learningState: LearningState.reviewing,
     isDue: true,
@@ -31,7 +31,7 @@ void main() {
     mode: ReviewMode.review,
   );
 
-  final tCard3 = ReviewCard(
+  final tCard3 = LearningCard(
     word: tWord3,
     learningState: LearningState.relearning,
     isDue: true,
@@ -43,7 +43,9 @@ void main() {
   );
 
   group('ReviewQueue Invariant Validation & Statistics', () {
-    test('should construct a valid ReviewQueue and calculate correct statistics', () {
+    test(
+        'should construct a valid ReviewQueue and calculate correct statistics',
+        () {
       final queue = ReviewQueue(
         id: 'queue-123',
         createdAt: DateTime(2026, 7, 2),

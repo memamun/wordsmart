@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import '../../../core/error/failures.dart';
 import '../entities/learning_card.dart';
+import '../entities/learning_value_objects.dart';
 import '../repositories/learning_repository.dart';
 import '../engine/learning_signal_analyzer.dart';
 import '../engine/sm2_engine.dart';

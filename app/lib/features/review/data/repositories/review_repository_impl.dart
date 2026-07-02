@@ -28,7 +28,8 @@ class ReviewRepositoryImpl implements ReviewRepository {
   }) async {
     try {
       final cardModels = await localDataSource.getAllCardsWithProgress();
-      final cards = cardModels.map((m) => ReviewCardMapper.toEntity(m, now)).toList();
+      final cards =
+          cardModels.map((m) => LearningCardMapper.toEntity(m, now)).toList();
 
       final queue = queueBuilder.build(
         cards: cards,
@@ -60,7 +61,8 @@ class ReviewRepositoryImpl implements ReviewRepository {
       final sessionModel = StudySessionModel(
         id: sessionId,
         mode: sessionMode,
-        startedAt: now.subtract(Duration(milliseconds: durationMs)).toIso8601String(),
+        startedAt:
+            now.subtract(Duration(milliseconds: durationMs)).toIso8601String(),
         finishedAt: now.toIso8601String(),
         reviewedCards: 1,
         correctAnswers: score >= 3 ? 1 : 0,
@@ -92,11 +94,13 @@ class ReviewRepositoryImpl implements ReviewRepository {
   }) async {
     try {
       final sessionModels = await localDataSource.getStudySessions();
-      final sessions = sessionModels.map((m) => StudySessionMapper.toEntity(m)).toList();
+      final sessions =
+          sessionModels.map((m) => StudySessionMapper.toEntity(m)).toList();
 
       // Retrieve all cards to dynamically calculate counts
       final cardModels = await localDataSource.getAllCardsWithProgress();
-      final cards = cardModels.map((m) => ReviewCardMapper.toEntity(m, now)).toList();
+      final cards =
+          cardModels.map((m) => LearningCardMapper.toEntity(m, now)).toList();
 
       int masteredCount = 0;
       int learningCount = 0;

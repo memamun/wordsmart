@@ -10,7 +10,8 @@ class MockWordRepository implements WordRepository {
 
   @override
   Future<Either<Failure, Word>> getWordDetails(int id) async {
-    return getWordDetailsResult ?? const Left(DatabaseFailure('No mock configured'));
+    return getWordDetailsResult ??
+        const Left(DatabaseFailure('No mock configured'));
   }
 
   @override

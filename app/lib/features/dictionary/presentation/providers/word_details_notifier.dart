@@ -24,7 +24,8 @@ class WordDetailsNotifier extends StateNotifier<WordDetailsState> {
 }
 
 // Riverpod Provider definitions bridging dependency graph from sl
-final wordDetailsNotifierProvider = StateNotifierProvider<WordDetailsNotifier, WordDetailsState>((ref) {
+final wordDetailsNotifierProvider =
+    StateNotifierProvider<WordDetailsNotifier, WordDetailsState>((ref) {
   return WordDetailsNotifier(
     getWordDetailsUseCase: sl<GetWordDetailsUseCase>(),
   );

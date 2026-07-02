@@ -49,7 +49,7 @@ class ReviewSessionNotifier extends StateNotifier<ReviewSessionState> {
     final currentState = state;
     if (currentState is ReviewSessionActive) {
       state = currentState.copyWith(isSubmitting: true);
-      
+
       final session = currentState.session;
       final currentCard = session.currentCard;
 
@@ -68,23 +68,23 @@ class ReviewSessionNotifier extends StateNotifier<ReviewSessionState> {
         (failure) => state = ReviewSessionFailure(failure),
         (_) async {
           // Track answer correct metrics on the active session entity
-          session.answer(isCorrect: isCorrect);
+          var updatedSession = session.answer(isCorrect: isCorrect);
 
-          if (session.isFinished) {
+          if (updatedSession.isFinished) {
             // Log study session completion
             final finishResult = await finishReviewSessionUseCase(
-              session.toStudySession(now),
+              updatedSession.toStudySession(now),
             );
 
             finishResult.fold(
               (failure) => state = ReviewSessionFailure(failure),
-              (_) => state = ReviewSessionCompleted(session),
+              (_) => state = ReviewSessionCompleted(updatedSession),
             );
           } else {
             // Progress to next card in deck
-            session.nextCard();
+            updatedSession = updatedSession.nextCard();
             state = ReviewSessionActive(
-              session: session,
+              session: updatedSession,
               isFrontSide: true,
               isSubmitting: false,
             );

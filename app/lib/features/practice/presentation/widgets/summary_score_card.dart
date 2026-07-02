@@ -1,4 +1,4 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 
 class SummaryScoreCard extends StatelessWidget {
   final double accuracy;
@@ -21,25 +21,28 @@ class SummaryScoreCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.06),
+        color: color.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.2), width: 2),
+        border: Border.all(color: color.withValues(alpha: 0.2), width: 2),
       ),
       child: Column(
         children: [
           Text(
             isGood ? 'Great Job! 🎉' : 'Keep Practicing! 👍',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color),
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: color),
           ),
           const SizedBox(height: 16),
           Text(
             '${accuracy.toStringAsFixed(0)}%',
-            style: TextStyle(fontSize: 48, fontWeight: FontWeight.black, color: color),
+            style: TextStyle(
+                fontSize: 48, fontWeight: FontWeight.w900, color: color),
           ),
           const SizedBox(height: 8),
           Text(
             'Accuracy ($correctAnswers of $totalQuestions correct)',
-            style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.w500),
+            style: const TextStyle(
+                fontSize: 14, color: Colors.grey, fontWeight: FontWeight.w500),
           ),
         ],
       ),

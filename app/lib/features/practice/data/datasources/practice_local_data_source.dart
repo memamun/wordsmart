@@ -1,6 +1,6 @@
-import '../../../review/data/models/review_card_model.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 
 abstract class PracticeLocalDataSource {
-  Future<List<ReviewCardModel>> getPracticeCards();
+  Future<List<LearningCard>> getPracticeCards();
   Future<List<Map<String, dynamic>>> getDictionaryPool();
 }

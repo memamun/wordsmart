@@ -107,7 +107,8 @@ class StoryReaderNotifier extends StateNotifier<StoryReaderState> {
     final current = state;
     if (current is! StoryReaderLoaded) return;
     final cleaned = rawWord.replaceAll(RegExp(r'[^A-Za-z]'), '');
-    state = current.copyWith(selectedWord: current.story.findHighlight(cleaned));
+    state =
+        current.copyWith(selectedWord: current.story.findHighlight(cleaned));
   }
 
   void clearSelectedWord() {

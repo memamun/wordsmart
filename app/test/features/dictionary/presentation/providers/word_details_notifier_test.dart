@@ -8,9 +8,11 @@ import '../../../../../lib/features/dictionary/presentation/providers/word_detai
 
 class MockWordRepository implements WordRepository {
   @override
-  Future<Either<Failure, Word>> getWordDetails(int id) => throw UnimplementedError();
+  Future<Either<Failure, Word>> getWordDetails(int id) =>
+      throw UnimplementedError();
   @override
-  Future<Either<Failure, Word>> getRandomCoreWord() => throw UnimplementedError();
+  Future<Either<Failure, Word>> getRandomCoreWord() =>
+      throw UnimplementedError();
 }
 
 class MockGetWordDetailsUseCase extends GetWordDetailsUseCase {

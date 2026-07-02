@@ -43,12 +43,16 @@ class _BookmarkButtonState extends State<BookmarkButton> {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.04),
+            color: Colors.white.withValues(alpha: 0.04),
             shape: BoxShape.circle,
           ),
           child: Icon(
-            widget.isBookmarked ? Icons.star_rounded : Icons.star_outline_rounded,
-            color: widget.isBookmarked ? const Color(0xFFFFB900) : const Color(0xFF888888),
+            widget.isBookmarked
+                ? Icons.star_rounded
+                : Icons.star_outline_rounded,
+            color: widget.isBookmarked
+                ? const Color(0xFFFFB900)
+                : const Color(0xFF888888),
             size: 24,
             shadows: widget.isBookmarked
                 ? [

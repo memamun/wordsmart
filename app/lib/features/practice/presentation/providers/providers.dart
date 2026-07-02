@@ -6,7 +6,8 @@ import '../../domain/usecases/submit_practice_answer.dart';
 import 'practice_session_notifier.dart';
 import 'practice_session_state.dart';
 
-final practiceSessionNotifierProvider = StateNotifierProvider.autoDispose<PracticeSessionNotifier, PracticeSessionState>((ref) {
+final practiceSessionNotifierProvider = StateNotifierProvider.autoDispose<
+    PracticeSessionNotifier, PracticeSessionState>((ref) {
   return PracticeSessionNotifier(
     getPracticeSessionUseCase: sl<GetPracticeSessionUseCase>(),
     submitPracticeAnswerUseCase: sl<SubmitPracticeAnswerUseCase>(),

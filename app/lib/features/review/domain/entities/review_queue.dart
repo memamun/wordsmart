@@ -1,10 +1,10 @@
-import 'review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import 'value_objects.dart';
 
 class ReviewQueue {
   final String id;
   final DateTime createdAt;
-  final List<ReviewCard> cards;
+  final List<LearningCard> cards;
   final QueueStatistics statistics;
   final Duration estimatedDuration;
 
@@ -19,14 +19,14 @@ class ReviewQueue {
   factory ReviewQueue({
     required String id,
     required DateTime createdAt,
-    required List<ReviewCard> cards,
+    required List<LearningCard> cards,
   }) {
     if (id.isEmpty) {
       throw ArgumentError('Queue ID cannot be empty');
     }
-    
+
     final stats = QueueStatistics.calculate(cards);
-    
+
     // Estimate 30 seconds per card
     final duration = Duration(seconds: cards.length * 30);
 

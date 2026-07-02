@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/core/error/failures.dart';
 import '../../../../../lib/features/review/data/datasources/review_local_data_source.dart';
@@ -8,12 +7,12 @@ import '../../../../../lib/features/review/data/repositories/review_repository_i
 import '../../../../../lib/features/review/domain/services/review_queue_builder.dart';
 
 class MockReviewLocalDataSource implements ReviewLocalDataSource {
-  List<ReviewCardModel>? cardsResult;
+  List<LearningCardModel>? cardsResult;
   List<StudySessionModel>? sessionsResult;
   Exception? dbException;
 
   @override
-  Future<List<ReviewCardModel>> getAllCardsWithProgress() async {
+  Future<List<LearningCardModel>> getAllCardsWithProgress() async {
     if (dbException != null) throw dbException!;
     return cardsResult ?? [];
   }
@@ -57,7 +56,7 @@ void main() {
     test('should build and return daily queue successfully', () async {
       // Arrange
       mockDataSource.cardsResult = [
-        const ReviewCardModel(
+        const LearningCardModel(
           wordId: 1,
           word: 'ABATE',
           learningState: 'newCard',
@@ -78,7 +77,9 @@ void main() {
       );
     });
 
-    test('should return DatabaseFailure on datasource exception during queue building', () async {
+    test(
+        'should return DatabaseFailure on datasource exception during queue building',
+        () async {
       // Arrange
       mockDataSource.dbException = Exception('Disk read error');
 

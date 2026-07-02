@@ -37,7 +37,8 @@ class SQLiteStoryLocalDataSource implements StoryLocalDataSource {
   Future<StoryProgressModel?> getProgress(int storyId) async {
     await _ensureSchema();
     final db = await appDatabase.database;
-    final rows = await db.rawQuery(StoryQueries.selectProgressByStoryId, [storyId]);
+    final rows =
+        await db.rawQuery(StoryQueries.selectProgressByStoryId, [storyId]);
     if (rows.isEmpty) return null;
     return StoryProgressModel.fromMap(rows.first);
   }

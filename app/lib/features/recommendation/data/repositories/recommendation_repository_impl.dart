@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import '../../../review/domain/usecases/get_daily_queue.dart';
 import '../../../review/domain/usecases/get_learning_metrics.dart';
 import '../../../review/domain/usecases/get_progress_summary.dart';
@@ -52,12 +53,13 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
     return Right(allCandidates);
   }
 
-  Future<Either<Failure, List<RecommendationCandidate>>> _loadReviewCandidates(DateTime now) async {
+  Future<Either<Failure, List<RecommendationCandidate>>> _loadReviewCandidates(
+      DateTime now) async {
     final queueResult = await getDailyQueueUseCase(limit: 50, now: now);
     return queueResult.fold(
       (failure) => Left(failure),
       (queue) {
-        final candidates = queue.cards.map((card) {
+        final candidates = queue.cards.map((LearningCard card) {
           final overdueDays = card.nextReviewAt != null
               ? now.difference(card.nextReviewAt!).inDays
               : 0;
@@ -71,7 +73,8 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
     );
   }
 
-  Future<Either<Failure, List<RecommendationCandidate>>> _loadStoryCandidates() async {
+  Future<Either<Failure, List<RecommendationCandidate>>>
+      _loadStoryCandidates() async {
     final storiesResult = await storyRepository.getStories();
     return storiesResult.fold(
       (failure) => Left(failure),
@@ -103,7 +106,8 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
     );
   }
 
-  Future<Either<Failure, List<RecommendationCandidate>>> _loadGoalCandidates(DateTime now) async {
+  Future<Either<Failure, List<RecommendationCandidate>>> _loadGoalCandidates(
+      DateTime now) async {
     final metricsResult = await getLearningMetricsUseCase(now: now);
     return metricsResult.fold(
       (failure) => Left(failure),

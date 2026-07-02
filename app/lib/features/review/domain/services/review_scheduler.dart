@@ -1,17 +1,12 @@
 import '../../../../core/learning/entities/learning_card.dart';
 
-enum SchedulingStatus {
-  due,
-  overdue,
-  decaying,
-  future
-}
+enum SchedulingStatus { due, overdue, decaying, future }
 
 class ReviewScheduler {
   const ReviewScheduler();
 
   SchedulingStatus getStatus({
-    required ReviewCard card,
+    required LearningCard card,
     required DateTime nextReviewAt,
     required DateTime now,
   }) {
@@ -23,7 +18,7 @@ class ReviewScheduler {
       }
       return SchedulingStatus.overdue;
     }
-    
+
     if (diff.inHours <= 24) {
       return SchedulingStatus.due;
     }
@@ -38,7 +33,7 @@ class ReviewScheduler {
   }) {
     final totalInterval = nextReviewAt.difference(lastReviewedAt).inSeconds;
     if (totalInterval <= 0) return 1.0;
-    
+
     final delay = now.difference(nextReviewAt).inSeconds;
     if (delay <= 0) return 0.0;
 

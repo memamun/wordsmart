@@ -25,12 +25,12 @@ class GetProgressSummaryUseCase {
     required DateTime now,
   }) async {
     final metricsResult = await repository.getLearningMetrics(now: now);
-    
+
     return metricsResult.map((metrics) => ProgressSummary(
-      dueToday: metrics.dueToday,
-      mastered: metrics.masteredWords,
-      learning: metrics.learningWords,
-      streakDays: metrics.streak.current,
-    ));
+          dueToday: metrics.dueToday,
+          mastered: metrics.masteredWords,
+          learning: metrics.learningWords,
+          streakDays: metrics.streak.current,
+        ));
   }
 }

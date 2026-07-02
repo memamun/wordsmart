@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../features/dictionary/presentation/screens/word_details_page.dart';
-import '../../../features/review/presentation/screens/review_session_page.dart';
-import '../../../features/stories/presentation/screens/story_reader_page.dart';
+import '../../features/dictionary/presentation/screens/word_details_page.dart';
+import '../../features/review/presentation/screens/review_session_page.dart';
+import '../../features/stories/presentation/screens/story_reader_page.dart';
 
 class AppNavigator {
   static Future<void> pushWordDetails(BuildContext context, int wordId) {

@@ -3,8 +3,8 @@ import '../../../../core/learning/entities/learning_card.dart';
 import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../models/review_card_model.dart';
 
-class ReviewCardMapper {
-  static LearningCard toEntity(ReviewCardModel model, DateTime now) {
+class LearningCardMapper {
+  static LearningCard toEntity(LearningCardModel model, DateTime now) {
     final word = Word(
       id: model.wordId,
       word: model.word,
@@ -17,13 +17,12 @@ class ReviewCardMapper {
       mnemonic: model.mnemonic,
     );
 
-    final lastReviewed = model.lastReviewedAt != null 
-        ? DateTime.parse(model.lastReviewedAt!) 
+    final lastReviewed = model.lastReviewedAt != null
+        ? DateTime.parse(model.lastReviewedAt!)
         : null;
-        
-    final nextReview = model.nextReviewAt != null 
-        ? DateTime.parse(model.nextReviewAt!) 
-        : null;
+
+    final nextReview =
+        model.nextReviewAt != null ? DateTime.parse(model.nextReviewAt!) : null;
 
     LearningState state = LearningState.newCard;
     if (model.learningState != null) {
@@ -46,7 +45,8 @@ class ReviewCardMapper {
     if (nextReview != null) {
       final diff = nextReview.difference(now);
       if (diff.isNegative) {
-        priority = -diff.inDays > 3 ? ReviewPriority.critical : ReviewPriority.high;
+        priority =
+            -diff.inDays > 3 ? ReviewPriority.critical : ReviewPriority.high;
       } else if (diff.inHours <= 24) {
         priority = ReviewPriority.medium;
       }

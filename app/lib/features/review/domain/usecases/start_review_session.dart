@@ -14,11 +14,11 @@ class StartReviewSessionUseCase {
     required DateTime now,
   }) async {
     final queueResult = await repository.getDailyQueue(limit: limit, now: now);
-    
+
     return queueResult.map((queue) => ReviewSession(
-      id: sessionId,
-      queue: queue,
-      startedAt: now,
-    ));
+          id: sessionId,
+          queue: queue,
+          startedAt: now,
+        ));
   }
 }

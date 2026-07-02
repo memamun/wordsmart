@@ -152,8 +152,10 @@ void main() {
     });
 
     test('fromWeakWord should scale urgency by mastery gap', () {
-      final low = factory.fromWeakWord(wordId: 1, masteryScore: 10.0, incorrectCount: 5);
-      final mid = factory.fromWeakWord(wordId: 2, masteryScore: 30.0, incorrectCount: 5);
+      final low = factory.fromWeakWord(
+          wordId: 1, masteryScore: 10.0, incorrectCount: 5);
+      final mid = factory.fromWeakWord(
+          wordId: 2, masteryScore: 30.0, incorrectCount: 5);
       expect(low.urgency, greaterThan(mid.urgency));
     });
   });

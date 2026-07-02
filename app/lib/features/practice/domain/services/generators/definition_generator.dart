@@ -11,14 +11,16 @@ class DefinitionQuestionGenerator implements QuestionGenerator {
   @override
   PracticeQuestion generate(Word word, List<Word> pool) {
     final correct = word.definition ?? 'No definition';
-    final distractors = distractorProvider.getDefinitionDistractors(word, pool, 3);
-    
+    final distractors =
+        distractorProvider.getDefinitionDistractors(word, pool, 3);
+
     final options = [correct, ...distractors]..shuffle();
 
     return PracticeQuestion(
       word: word,
       type: QuestionType.definitionMCQ,
-      prompt: 'What is the correct definition of the word "${word.word.toUpperCase()}"?',
+      prompt:
+          'What is the correct definition of the word "${word.word.toUpperCase()}"?',
       options: options,
       correctAnswer: correct,
     );

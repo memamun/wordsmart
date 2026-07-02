@@ -35,11 +35,11 @@ class WordProgressModel {
       incorrectCount: map['incorrect_count'] as int? ?? 0,
       masteryScore: map['mastery_score'] as int? ?? 0,
       status: map['status'] as String? ?? 'unlearned',
-      lastReviewedAt: map['last_reviewed_at'] != null 
-          ? DateTime.tryParse(map['last_reviewed_at'] as String) 
+      lastReviewedAt: map['last_reviewed_at'] != null
+          ? DateTime.tryParse(map['last_reviewed_at'] as String)
           : null,
-      nextReviewAt: map['next_review_at'] != null 
-          ? DateTime.tryParse(map['next_review_at'] as String) 
+      nextReviewAt: map['next_review_at'] != null
+          ? DateTime.tryParse(map['next_review_at'] as String)
           : null,
     );
   }

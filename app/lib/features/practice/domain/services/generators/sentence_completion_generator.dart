@@ -11,7 +11,8 @@ class SentenceCompletionQuestionGenerator implements QuestionGenerator {
   @override
   PracticeQuestion generate(Word word, List<Word> pool) {
     if (word.examples == null || word.examples!.isEmpty) {
-      throw UnsupportedError('Word "${word.word}" has no examples to generate sentence completion.');
+      throw UnsupportedError(
+          'Word "${word.word}" has no examples to generate sentence completion.');
     }
 
     final sentence = word.examples!.first.sentence;
@@ -20,7 +21,8 @@ class SentenceCompletionQuestionGenerator implements QuestionGenerator {
 
     final correct = word.word.toUpperCase();
     final distractors = distractorProvider.getSynonymDistractors(word, pool, 3);
-    final options = [correct, ...distractors.map((d) => d.toUpperCase())]..shuffle();
+    final options = [correct, ...distractors.map((d) => d.toUpperCase())]
+      ..shuffle();
 
     return PracticeQuestion(
       word: word,

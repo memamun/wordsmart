@@ -109,7 +109,7 @@ class LearningMetricsCard extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
-              fontWeight: FontWeight.black,
+              fontWeight: FontWeight.w900,
             ),
           ),
           const SizedBox(height: 4),

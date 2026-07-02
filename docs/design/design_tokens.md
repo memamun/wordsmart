@@ -13,6 +13,8 @@ All paddings and layout coordinates are built around an **8dp baseline grid**.
 *   `spacing-lg`: `24dp` (primary screen outer edge margins)
 *   `spacing-xl`: `32dp` (large vertical breaks between page sections)
 *   `spacing-xxl`: `48dp` (top headers margin spacing)
+*   `spacing-xxxl` (Extended/Legacy): `32dp` (page-level margins; maps to `spacing-xl` in implementation)
+*   `spacing-hero` (Extended/Legacy): `48dp` (hero spacing; maps to `spacing-xxl` in implementation)
 
 ---
 

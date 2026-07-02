@@ -41,13 +41,16 @@ class StudySession {
       throw ArgumentError('Reviewed cards cannot be negative');
     }
     if (correctAnswers < 0 || correctAnswers > reviewedCards) {
-      throw ArgumentError('Correct answers count ($correctAnswers) cannot exceed reviewed cards count ($reviewedCards)');
+      throw ArgumentError(
+          'Correct answers count ($correctAnswers) cannot exceed reviewed cards count ($reviewedCards)');
     }
     if (incorrectAnswers < 0 || incorrectAnswers > reviewedCards) {
-      throw ArgumentError('Incorrect answers count ($incorrectAnswers) cannot exceed reviewed cards count ($reviewedCards)');
+      throw ArgumentError(
+          'Incorrect answers count ($incorrectAnswers) cannot exceed reviewed cards count ($reviewedCards)');
     }
     if (correctAnswers + incorrectAnswers > reviewedCards) {
-      throw ArgumentError('Sum of correct and incorrect answers cannot exceed reviewed cards');
+      throw ArgumentError(
+          'Sum of correct and incorrect answers cannot exceed reviewed cards');
     }
     return StudySession._(
       id: id,

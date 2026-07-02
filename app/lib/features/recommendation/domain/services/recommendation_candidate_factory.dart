@@ -1,12 +1,12 @@
 import '../../../../core/learning/entities/learning_card.dart';
-import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../../domain/entities/recommendation.dart';
 import '../../domain/entities/recommendation_candidate.dart';
 
 class RecommendationCandidateFactory {
   const RecommendationCandidateFactory();
 
-  RecommendationCandidate fromDueReviewCard(LearningCard card, {required int overdueDays}) {
+  RecommendationCandidate fromDueReviewCard(LearningCard card,
+      {required int overdueDays}) {
     return RecommendationCandidate(
       id: 'review-${card.word.id}',
       type: RecommendationType.dueReview,
@@ -64,7 +64,8 @@ class RecommendationCandidateFactory {
     required int incorrectCount,
     required int totalAttempted,
   }) {
-    final errorRate = totalAttempted > 0 ? incorrectCount / totalAttempted : 0.0;
+    final errorRate =
+        totalAttempted > 0 ? incorrectCount / totalAttempted : 0.0;
     return RecommendationCandidate(
       id: 'practice-gap-$incorrectCount',
       type: RecommendationType.practiceSession,

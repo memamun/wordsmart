@@ -81,15 +81,19 @@ class PracticeSessionPage extends ConsumerWidget {
                   context: context,
                   builder: (ctx) => AlertDialog(
                     title: const Text('Exit Practice?'),
-                    content: const Text('Your progress in this session will be lost.'),
+                    content: const Text(
+                        'Your progress in this session will be lost.'),
                     actions: [
-                      TextButton(onPressed: () => AppNavigator.pop(ctx), child: const Text('Cancel')),
+                      TextButton(
+                          onPressed: () => AppNavigator.pop(ctx),
+                          child: const Text('Cancel')),
                       TextButton(
                         onPressed: () {
                           AppNavigator.pop(ctx);
                           AppNavigator.pop(context);
                         },
-                        child: const Text('Exit', style: TextStyle(color: Colors.red)),
+                        child: const Text('Exit',
+                            style: TextStyle(color: Colors.red)),
                       ),
                     ],
                   ),
@@ -100,7 +104,8 @@ class PracticeSessionPage extends ConsumerWidget {
             // Scrollable body
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -119,8 +124,10 @@ class PracticeSessionPage extends ConsumerWidget {
                       isFeedbackMode: isFeedbackMode,
                       isSubmitting: state.isSubmitting,
                       onSelectOption: (option) => notifier.selectAnswer(option),
-                      onSpellingChanged: (input) => notifier.updateSpellingInput(input),
-                      onSpellingSubmit: () => notifier.submitAnswer(DateTime.now()),
+                      onSpellingChanged: (input) =>
+                          notifier.updateSpellingInput(input),
+                      onSpellingSubmit: () =>
+                          notifier.submitAnswer(DateTime.now()),
                     ),
                     const SizedBox(height: 16),
 
@@ -137,8 +144,12 @@ class PracticeSessionPage extends ConsumerWidget {
 
             // Footer action button
             SessionFooter(
-              buttonText: isFeedbackMode ? 'Next' : (isSpelling ? 'Check Spelling' : 'Submit'),
-              isButtonEnabled: isFeedbackMode || state.selectedAnswer != null || (isSpelling && (state.spellingInput ?? '').isNotEmpty),
+              buttonText: isFeedbackMode
+                  ? 'Next'
+                  : (isSpelling ? 'Check Spelling' : 'Submit'),
+              isButtonEnabled: isFeedbackMode ||
+                  state.selectedAnswer != null ||
+                  (isSpelling && (state.spellingInput ?? '').isNotEmpty),
               isSubmitting: state.isSubmitting,
               onPressed: () {
                 if (isFeedbackMode) {

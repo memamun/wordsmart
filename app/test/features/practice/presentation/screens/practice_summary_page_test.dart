@@ -1,11 +1,12 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/features/practice/domain/entities/practice_summary.dart';
 import '../../../../../lib/features/practice/presentation/screens/practice_summary_page.dart';
 
 void main() {
   group('PracticeSummaryPage Widget Tests', () {
-    testWidgets('should render accuracy, metrics grid, and action buttons', (tester) async {
+    testWidgets('should render accuracy, metrics grid, and action buttons',
+        (tester) async {
       const summary = PracticeSummary(
         sessionId: 's1',
         totalQuestions: 10,

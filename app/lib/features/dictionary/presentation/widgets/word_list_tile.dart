@@ -44,7 +44,7 @@ class WordListTile extends StatelessWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.teal.withOpacity(0.08),
+                            color: AppColors.teal.withValues(alpha: 0.08),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(

@@ -11,11 +11,9 @@ import '../../../../../lib/features/review/domain/repositories/review_repository
 import '../../../../../lib/core/learning/engine/learning_signal_analyzer.dart';
 import '../../../../../lib/core/learning/engine/sm2_engine.dart';
 import '../../../../../lib/features/review/domain/usecases/get_daily_queue.dart';
-import '../../../../../lib/features/review/domain/usecases/get_learning_metrics.dart';
 import '../../../../../lib/features/review/domain/usecases/get_progress_summary.dart';
 import '../../../../../lib/features/review/domain/usecases/start_review_session.dart';
 import '../../../../../lib/core/learning/usecases/submit_learning_result.dart';
-import '../../../../../lib/features/review/domain/usecases/finish_review_session.dart';
 
 class MockReviewRepository implements ReviewRepository {
   Either<Failure, ReviewQueue>? queueResult;
@@ -23,7 +21,8 @@ class MockReviewRepository implements ReviewRepository {
   Either<Failure, void>? saveResult;
 
   @override
-  Future<Either<Failure, ReviewQueue>> getDailyQueue({required int limit, required DateTime now}) async {
+  Future<Either<Failure, ReviewQueue>> getDailyQueue(
+      {required int limit, required DateTime now}) async {
     return queueResult ?? const Left(DatabaseFailure('Error'));
   }
 
@@ -45,7 +44,8 @@ class MockReviewRepository implements ReviewRepository {
   }
 
   @override
-  Future<Either<Failure, LearningMetrics>> getLearningMetrics({required DateTime now}) async {
+  Future<Either<Failure, LearningMetrics>> getLearningMetrics(
+      {required DateTime now}) async {
     return metricsResult ?? const Left(DatabaseFailure('Error'));
   }
 
@@ -59,7 +59,7 @@ void main() {
   late MockReviewRepository mockRepository;
   final now = DateTime(2026, 7, 2, 12, 0);
   final tWord = Word(id: 1, word: 'ABATE');
-  
+
   final tCard = LearningCard(
     word: tWord,
     learningState: LearningState.newCard,
@@ -93,7 +93,8 @@ void main() {
       final queue = ReviewQueue(id: 'q1', createdAt: now, cards: [tCard]);
       mockRepository.queueResult = Right(queue);
 
-      final result = await usecase(sessionId: 'session-123', limit: 5, now: now);
+      final result =
+          await usecase(sessionId: 'session-123', limit: 5, now: now);
 
       expect(result.isRight(), true);
       result.fold(
@@ -107,7 +108,9 @@ void main() {
   });
 
   group('SubmitLearningResultUseCase', () {
-    test('should analyze signals, compute spacing, and save results via repository', () async {
+    test(
+        'should analyze signals, compute spacing, and save results via repository',
+        () async {
       final usecase = SubmitLearningResultUseCase(
         repository: mockRepository,
         signalAnalyzer: const LearningSignalAnalyzer(),
@@ -129,7 +132,8 @@ void main() {
   });
 
   group('GetProgressSummaryUseCase', () {
-    test('should fetch metrics and map lightweight progress summary correctly', () async {
+    test('should fetch metrics and map lightweight progress summary correctly',
+        () async {
       final usecase = GetProgressSummaryUseCase(mockRepository);
       final metrics = LearningMetrics(
         streak: StudyStreak(current: 4, longest: 10),
@@ -138,8 +142,9 @@ void main() {
         reviewingWords: 10,
         dueToday: 8,
         studyMinutesToday: 12,
-        accuracy: const Accuracy(85.0),
-        retentionRate: const RetentionRate(85.0),
+        sessionsToday: 2,
+        accuracy: Accuracy(85.0),
+        retentionRate: RetentionRate(85.0),
       );
       mockRepository.metricsResult = Right(metrics);
 

@@ -24,7 +24,7 @@ class PracticeSessionBuilder {
     for (int i = 0; i < reviewCards.length; i++) {
       final card = reviewCards[i];
       final targetType = _getTargetType(mode, i, rand);
-      
+
       try {
         final generator = generatorFactory.getGenerator(targetType);
         final question = generator.generate(card.word, pool);
@@ -32,13 +32,15 @@ class PracticeSessionBuilder {
       } catch (_) {
         // Fallback Step 1: Try Definition MCQ
         try {
-          final generator = generatorFactory.getGenerator(QuestionType.definitionMCQ);
+          final generator =
+              generatorFactory.getGenerator(QuestionType.definitionMCQ);
           final question = generator.generate(card.word, pool);
           questions.add(question);
         } catch (_) {
           // Fallback Step 2: Try Spelling (guaranteed to succeed since every word spelling exists)
           try {
-            final generator = generatorFactory.getGenerator(QuestionType.spelling);
+            final generator =
+                generatorFactory.getGenerator(QuestionType.spelling);
             final question = generator.generate(card.word, pool);
             questions.add(question);
           } catch (_) {

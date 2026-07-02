@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wordsmart/features/recommendation/domain/entities/recommendation.dart';
-import 'package:wordsmart/features/recommendation/presentation/providers/recommendation_notifier.dart';
+import 'package:wordsmart/features/recommendation/presentation/providers/providers.dart';
 import 'package:wordsmart/features/recommendation/presentation/widgets/recommendation_card.dart';
 import 'package:wordsmart/features/recommendation/presentation/widgets/recommendation_list.dart';
 
@@ -25,12 +25,16 @@ class MockRecommendationNotifier extends StateNotifier<RecommendationState>
   Future<void> complete(String id) async {
     state = const RecommendationEmpty();
   }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => null;
 }
 
 Widget buildTestWidget(RecommendationState state) {
   return ProviderScope(
     overrides: [
-      recommendationProvider.overrideWith((ref) => MockRecommendationNotifier(state)),
+      recommendationProvider
+          .overrideWith((ref) => MockRecommendationNotifier(state)),
     ],
     child: const MaterialApp(
       home: Scaffold(
@@ -70,7 +74,8 @@ void main() {
       expect(find.text('Review'), findsOneWidget);
     });
 
-    testWidgets('should call onAction when action button tapped', (tester) async {
+    testWidgets('should call onAction when action button tapped',
+        (tester) async {
       bool actionCalled = false;
       const recommendation = Recommendation(
         id: 'test-1',
@@ -138,7 +143,8 @@ void main() {
       ];
 
       await tester.pumpWidget(
-        buildTestWidget(const RecommendationLoaded(recommendations: recommendations)),
+        buildTestWidget(
+            const RecommendationLoaded(recommendations: recommendations)),
       );
       await tester.pump();
 

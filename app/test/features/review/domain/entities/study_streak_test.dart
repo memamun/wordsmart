@@ -26,7 +26,9 @@ void main() {
       );
     });
 
-    test('should increment streak when next study date is exactly one day later', () {
+    test(
+        'should increment streak when next study date is exactly one day later',
+        () {
       final streak = StudyStreak(
         current: 3,
         longest: 5,
@@ -40,7 +42,9 @@ void main() {
       expect(updated.lastStudyDate, DateTime(2026, 7, 2));
     });
 
-    test('should increment streak and update longest streak when new current exceeds longest', () {
+    test(
+        'should increment streak and update longest streak when new current exceeds longest',
+        () {
       final streak = StudyStreak(
         current: 5,
         longest: 5,
@@ -53,7 +57,8 @@ void main() {
       expect(updated.longest, 6);
     });
 
-    test('should reset current streak to 1 when a gap of study days occurs', () {
+    test('should reset current streak to 1 when a gap of study days occurs',
+        () {
       final streak = StudyStreak(
         current: 3,
         longest: 5,
@@ -68,7 +73,9 @@ void main() {
       expect(updated.lastStudyDate, DateTime(2026, 7, 5));
     });
 
-    test('should keep streak unchanged when studying multiple times on the same day', () {
+    test(
+        'should keep streak unchanged when studying multiple times on the same day',
+        () {
       final streak = StudyStreak(
         current: 3,
         longest: 5,

@@ -27,18 +27,18 @@ class FeaturedWordCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.surface.withOpacity(0.8),
+          color: AppColors.surface.withValues(alpha: 0.8),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: AppColors.amber.withOpacity(0.06),
+              color: AppColors.amber.withValues(alpha: 0.06),
               blurRadius: 20,
               spreadRadius: 2,
               offset: const Offset(0, 4),
             ),
           ],
           border: Border.all(
-            color: Colors.white.withOpacity(0.05),
+            color: Colors.white.withValues(alpha: 0.05),
             width: 1,
           ),
         ),
@@ -62,7 +62,7 @@ class FeaturedWordCard extends StatelessWidget {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.teal.withOpacity(0.1),
+                            color: AppColors.teal.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -77,7 +77,7 @@ class FeaturedWordCard extends StatelessWidget {
                         )
                       else
                         const SizedBox.shrink(),
-                      
+
                       // Actions (Audio & Bookmark)
                       Row(
                         children: [
@@ -92,7 +92,7 @@ class FeaturedWordCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Word Headword
                   Text(
                     word.word.toUpperCase(),
@@ -104,7 +104,7 @@ class FeaturedWordCard extends StatelessWidget {
                       letterSpacing: -0.5,
                     ),
                   ),
-                  
+
                   // Phonetic Guide
                   if (word.pronunciation != null) ...[
                     const SizedBox(height: 4),
@@ -118,11 +118,11 @@ class FeaturedWordCard extends StatelessWidget {
                       ),
                     ),
                   ],
-                  
+
                   const SizedBox(height: 16),
                   const Divider(color: Colors.white10, height: 1),
                   const SizedBox(height: 16),
-                  
+
                   // Bengali Meaning
                   if (word.bengaliMeaning != null) ...[
                     Text(
@@ -136,7 +136,7 @@ class FeaturedWordCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                   ],
-                  
+
                   // English Definition
                   if (word.definition != null)
                     Text(

@@ -4,7 +4,8 @@ import '../../../../../lib/features/review/domain/entities/study_session.dart';
 import '../../../../../lib/features/review/domain/entities/value_objects.dart';
 
 void main() {
-  final streak = StudyStreak(current: 2, longest: 4, lastStudyDate: DateTime(2026, 7, 2));
+  final streak =
+      StudyStreak(current: 2, longest: 4, lastStudyDate: DateTime(2026, 7, 2));
 
   final session1 = StudySession(
     id: 's1',
@@ -44,7 +45,8 @@ void main() {
       expect(metrics.learningWords, 8);
       expect(metrics.dueToday, 5);
       expect(metrics.studyMinutesToday, 15); // 10 + 5 minutes
-      expect(metrics.accuracy.value, 80.0); // (12 + 4) / (15 + 5) = 16 / 20 = 80.0%
+      expect(metrics.accuracy.value,
+          80.0); // (12 + 4) / (15 + 5) = 16 / 20 = 80.0%
       expect(metrics.retentionRate.value, 80.0);
     });
 

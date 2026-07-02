@@ -15,7 +15,8 @@ class QuestionGeneratorFactory {
   QuestionGenerator getGenerator(QuestionType type) {
     switch (type) {
       case QuestionType.definitionMCQ:
-        return DefinitionQuestionGenerator(distractorProvider: distractorProvider);
+        return DefinitionQuestionGenerator(
+            distractorProvider: distractorProvider);
       case QuestionType.synonymMCQ:
         return SynonymQuestionGenerator(distractorProvider: distractorProvider);
       case QuestionType.antonymMCQ:
@@ -23,7 +24,8 @@ class QuestionGeneratorFactory {
       case QuestionType.spelling:
         return const SpellingQuestionGenerator();
       case QuestionType.sentenceCompletion:
-        return SentenceCompletionQuestionGenerator(distractorProvider: distractorProvider);
+        return SentenceCompletionQuestionGenerator(
+            distractorProvider: distractorProvider);
     }
   }
 }
