@@ -9,22 +9,22 @@ abstract final class AppSpacing {
   /// 8.0 — small gaps, icon padding
   static const double sm = 8;
 
-  /// 12.0 — medium internal spacing
-  static const double md = 12;
+  /// 16.0 — standard gap between list tiles and cards
+  static const double md = 16;
 
-  /// 16.0 — standard content padding
-  static const double lg = 16;
+  /// 24.0 — primary screen outer edge margins
+  static const double lg = 24;
 
-  /// 20.0 — section gaps
-  static const double xl = 20;
+  /// 32.0 — large vertical breaks between page sections
+  static const double xl = 32;
 
-  /// 24.0 — large section padding
-  static const double xxl = 24;
+  /// 48.0 — top headers margin spacing
+  static const double xxl = 48;
 
-  /// 32.0 — page-level top/bottom margins
+  /// 32.0 — legacy/extended page-level top/bottom margins
   static const double xxxl = 32;
 
-  /// 48.0 — hero spacing
+  /// 48.0 — legacy/extended hero spacing
   static const double hero = 48;
 
   // ── Border Radius ─────────────────────────────────────────────
