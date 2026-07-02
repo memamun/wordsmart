@@ -70,6 +70,7 @@ def main():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         word_id INTEGER NOT NULL,
         example_text TEXT NOT NULL,
+        translation TEXT,
         FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE
     );
     """)
@@ -354,11 +355,14 @@ def main():
             ))
             
             # Populate 1:N attributes
-            for ex in w.get("examples", []):
+            examples = w.get("examples", [])
+            translations = w.get("example_translations", [])
+            for idx, ex in enumerate(examples):
+                trans = translations[idx] if idx < len(translations) else ""
                 cursor.execute("""
-                INSERT INTO word_examples (word_id, example_text)
-                VALUES (?, ?)
-                """, (w_id, ex))
+                INSERT INTO word_examples (word_id, example_text, translation)
+                VALUES (?, ?, ?)
+                """, (w_id, ex, trans))
                 
             for syn in w.get("synonyms", []):
                 cursor.execute("""
