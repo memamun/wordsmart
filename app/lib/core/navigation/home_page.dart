@@ -275,7 +275,8 @@ class _HomeSearchContentState extends ConsumerState<_HomeSearchContent> {
                   isBookmarked: false,
                   onBookmarkToggle: (val) {},
                   onAudioPressed: () {},
-                  onTap: () => AppNavigator.pushWordDetails(context, exactWord.id),
+                  onTap: () =>
+                      AppNavigator.pushWordDetails(context, exactWord.id),
                 ),
               ),
             ),

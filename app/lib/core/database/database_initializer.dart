@@ -149,12 +149,16 @@ class DatabaseInitializer {
         }
         if (oldVersion < 3) {
           // Fix UNIQUE constraint on progress table (was UNIQUE(user_id, word_id), should be UNIQUE(word_id))
-          await db.execute('CREATE TABLE IF NOT EXISTS progress_v3 AS SELECT * FROM progress WHERE 1=0');
-          final hasUserId = await db.rawQuery("PRAGMA table_info(progress)").then((cols) => cols.any((c) => c['name'] == 'user_id'));
+          await db.execute(
+              'CREATE TABLE IF NOT EXISTS progress_v3 AS SELECT * FROM progress WHERE 1=0');
+          final hasUserId = await db
+              .rawQuery("PRAGMA table_info(progress)")
+              .then((cols) => cols.any((c) => c['name'] == 'user_id'));
           if (hasUserId) {
             try {
               await db.execute('DROP TABLE IF EXISTS progress_backup');
-              await db.execute('ALTER TABLE progress RENAME TO progress_backup');
+              await db
+                  .execute('ALTER TABLE progress RENAME TO progress_backup');
               await db.execute('''
                 CREATE TABLE progress (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -176,13 +180,19 @@ class DatabaseInitializer {
                   UNIQUE(word_id)
                 );
               ''');
-              await db.execute('INSERT OR REPLACE INTO progress (id, user_id, word_id, is_read, is_reviewed, review_count, correct_count, incorrect_count, mastery_score, status, last_reviewed_at, next_review_at, ease_factor, interval_days, repetitions, learning_state) SELECT id, user_id, word_id, is_read, is_reviewed, review_count, correct_count, incorrect_count, mastery_score, status, last_reviewed_at, next_review_at, ease_factor, interval_days, repetitions, learning_state FROM progress_backup');
+              await db.execute(
+                  'INSERT OR REPLACE INTO progress (id, user_id, word_id, is_read, is_reviewed, review_count, correct_count, incorrect_count, mastery_score, status, last_reviewed_at, next_review_at, ease_factor, interval_days, repetitions, learning_state) SELECT id, user_id, word_id, is_read, is_reviewed, review_count, correct_count, incorrect_count, mastery_score, status, last_reviewed_at, next_review_at, ease_factor, interval_days, repetitions, learning_state FROM progress_backup');
               await db.execute('DROP TABLE IF EXISTS progress_backup');
-              await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_next_review_at ON progress(next_review_at);');
-              await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_learning_state ON progress(learning_state);');
-              await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_word_id ON progress(word_id);');
-              await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_user_word ON progress(user_id, word_id);');
-              await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_status ON progress(status);');
+              await db.execute(
+                  'CREATE INDEX IF NOT EXISTS idx_progress_next_review_at ON progress(next_review_at);');
+              await db.execute(
+                  'CREATE INDEX IF NOT EXISTS idx_progress_learning_state ON progress(learning_state);');
+              await db.execute(
+                  'CREATE INDEX IF NOT EXISTS idx_progress_word_id ON progress(word_id);');
+              await db.execute(
+                  'CREATE INDEX IF NOT EXISTS idx_progress_user_word ON progress(user_id, word_id);');
+              await db.execute(
+                  'CREATE INDEX IF NOT EXISTS idx_progress_status ON progress(status);');
             } catch (_) {}
           }
           await db.execute('DROP TABLE IF EXISTS progress_v3');
