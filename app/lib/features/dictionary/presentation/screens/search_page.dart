@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/search_notifier.dart';
-import '../widgets/empty_state.dart';
+import '../../../../core/design_system/states/empty_state.dart';
 import '../widgets/featured_word_card.dart';
-import '../widgets/loading_skeleton.dart';
-import '../widgets/search_bar.dart';
-import '../widgets/section_header.dart';
+import '../../../../core/design_system/states/loading_skeleton.dart';
+import '../../../../core/design_system/inputs/word_search_bar.dart';
+import '../../../../core/design_system/typography/section_header.dart';
 import '../widgets/word_list_tile.dart';
 import 'word_details_page.dart';
 

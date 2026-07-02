@@ -4,7 +4,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:wordsmart/features/dictionary/presentation/screens/search_page.dart';
 import 'package:wordsmart/features/dictionary/presentation/screens/word_details_page.dart';
 import 'package:wordsmart/features/dictionary/presentation/widgets/featured_word_card.dart';
-import 'package:wordsmart/features/dictionary/presentation/widgets/search_bar.dart';
+import 'package:wordsmart/core/design_system/inputs/word_search_bar.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

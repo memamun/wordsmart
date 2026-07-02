@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../domain/entities/word.dart';
-import 'audio_button.dart';
-import 'bookmark_button.dart';
+import '../../../../core/design_system/buttons/audio_button.dart';
+import '../../../../core/design_system/buttons/bookmark_button.dart';
 
 class FeaturedWordCard extends StatelessWidget {
   final Word word;

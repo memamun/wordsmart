@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/word_details_notifier.dart';
-import '../widgets/bookmark_button.dart';
-import '../widgets/empty_state.dart';
-import '../widgets/loading_skeleton.dart';
-import '../widgets/primary_button.dart';
-import '../widgets/section_header.dart';
+import '../../../../core/design_system/buttons/bookmark_button.dart';
+import '../../../../core/design_system/states/empty_state.dart';
+import '../../../../core/design_system/states/loading_skeleton.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
+import '../../../../core/design_system/typography/section_header.dart';
 
 class WordDetailsPage extends ConsumerStatefulWidget {
   final int wordId;
