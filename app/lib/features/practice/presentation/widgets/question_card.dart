@@ -1,4 +1,5 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
 
 class QuestionCard extends StatelessWidget {
   final String title;
@@ -16,9 +17,9 @@ class QuestionCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.grey[50],
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey[200]!),
+        border: Border.all(color: AppColors.divider),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,10 +27,10 @@ class QuestionCard extends StatelessWidget {
           if (subtitle != null) ...[
             Text(
               subtitle!.toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
+                color: AppColors.primary,
                 letterSpacing: 1.2,
               ),
             ),
@@ -41,6 +42,7 @@ class QuestionCard extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               height: 1.4,
+              color: AppColors.textPrimary,
             ),
           ),
         ],

@@ -1,4 +1,5 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
 
 class McqOptionTile extends StatelessWidget {
   final String optionText;
@@ -18,23 +19,23 @@ class McqOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color cardColor = Colors.white;
-    Color borderColor = Colors.grey[300]!;
+    Color cardColor = AppColors.surface;
+    Color borderColor = AppColors.divider;
     Widget? trailing;
 
     if (isFeedbackMode) {
       if (isCorrect) {
-        cardColor = Colors.green[50]!;
-        borderColor = Colors.green;
-        trailing = const Icon(Icons.check_circle, color: Colors.green);
+        cardColor = AppColors.success.withValues(alpha: 0.12);
+        borderColor = AppColors.success;
+        trailing = const Icon(Icons.check_circle, color: AppColors.success);
       } else if (isSelected) {
-        cardColor = Colors.red[50]!;
-        borderColor = Colors.red;
-        trailing = const Icon(Icons.cancel, color: Colors.red);
+        cardColor = AppColors.error.withValues(alpha: 0.12);
+        borderColor = AppColors.error;
+        trailing = const Icon(Icons.cancel, color: AppColors.error);
       }
     } else if (isSelected) {
-      cardColor = Theme.of(context).primaryColor.withOpacity(0.05);
-      borderColor = Theme.of(context).primaryColor;
+      cardColor = AppColors.primary.withValues(alpha: 0.08);
+      borderColor = AppColors.primary;
     }
 
     return InkWell(
@@ -53,7 +54,11 @@ class McqOptionTile extends StatelessWidget {
             Expanded(
               child: Text(
                 optionText,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.textPrimary,
+                ),
               ),
             ),
             if (trailing != null) trailing,
