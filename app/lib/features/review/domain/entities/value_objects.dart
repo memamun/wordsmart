@@ -1,40 +1,16 @@
-enum LearningState {
-  newCard,
-  discovered,
-  learning,
-  reviewing,
-  mastered,
-  decaying,
-  relearning
-}
+import '../../../../core/learning/entities/learning_value_objects.dart';
 
-enum ReviewMode {
-  newCard,
-  review,
-  relearn
-}
+// Re-export shared value objects from core/learning/
+export '../../../../core/learning/entities/learning_value_objects.dart'
+    show
+        LearningState,
+        ReviewMode,
+        ReviewPriority,
+        ReviewRating,
+        ReviewRatingExtension,
+        MasteryScore;
 
-enum ReviewPriority {
-  low,
-  medium,
-  high,
-  critical
-}
-
-enum ReviewRating {
-  completeBlackout, // 0
-  incorrect,        // 1
-  difficult,        // 2
-  hard,             // 3
-  good,             // 4
-  easy,             // 5
-}
-
-extension ReviewRatingExtension on ReviewRating {
-  int get score => index;
-  bool get isCorrect => index >= 3;
-  bool get isPerfect => index == 5;
-}
+// ── Review-specific value objects ──────────────────────────────────
 
 class QueueStatistics {
   final int totalCount;
@@ -55,7 +31,6 @@ class QueueStatistics {
     int rl = 0;
 
     for (final card in cards) {
-      // Dynamic matching depends on card mode property
       final mode = card.mode;
       if (mode == ReviewMode.newCard) n++;
       if (mode == ReviewMode.review) r++;
@@ -106,7 +81,6 @@ class StudyStreak {
       );
     }
     
-    // Normalize dates to calculate date difference safely in days
     final localLastDate = DateTime(lastStudyDate!.year, lastStudyDate!.month, lastStudyDate!.day);
     final localStudyDate = DateTime(studyDate.year, studyDate.month, studyDate.day);
     final diff = localStudyDate.difference(localLastDate).inDays;
@@ -125,7 +99,6 @@ class StudyStreak {
         lastStudyDate: studyDate,
       );
     }
-    // Same day study or past date: streak remains unchanged
     return this;
   }
 
@@ -176,16 +149,6 @@ class ReviewCount {
   const ReviewCount(this.value) {
     if (value < 0) {
       throw ArgumentError('Review count cannot be negative. Received: $value');
-    }
-  }
-}
-
-class MasteryScore {
-  final int value;
-
-  const MasteryScore(this.value) {
-    if (value < 0 || value > 100) {
-      throw ArgumentError('Mastery score must be between 0 and 100. Received: $value');
     }
   }
 }

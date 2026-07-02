@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/features/dictionary/domain/entities/word.dart';
-import '../../../../../lib/features/review/domain/entities/review_card.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
-import '../../../../../lib/features/review/domain/services/sm2_engine.dart';
+import '../../../../../lib/core/learning/entities/learning_card.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
+import '../../../../../lib/core/learning/engine/sm2_engine.dart';
 
 void main() {
   final tWord = Word(id: 1, word: 'ABATE');
@@ -11,7 +11,7 @@ void main() {
 
   group('SM2Engine Calculation Rules', () {
     test('should calculate correct first review interval as 1 day', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.newCard,
         isDue: true,
@@ -34,7 +34,7 @@ void main() {
     });
 
     test('should calculate correct second review interval as 6 days', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -56,7 +56,7 @@ void main() {
     });
 
     test('should calculate correct third review interval scaled by EF', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.reviewing,
         isDue: true,
@@ -78,7 +78,7 @@ void main() {
     });
 
     test('should decrease EF and reset repetitions to 0 on failure (< 3 rating)', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.mastered,
         isDue: true,
@@ -102,7 +102,7 @@ void main() {
     });
 
     test('should never drop EF below 1.3', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.learning,
         isDue: true,
@@ -127,7 +127,7 @@ void main() {
     test('should verify invariants across 1000 simulated reviews', () {
       final random = Random(42);
       
-      ReviewCard currentCard = ReviewCard(
+      LearningCard currentCard = LearningCard(
         word: tWord,
         learningState: LearningState.newCard,
         isDue: true,
@@ -160,7 +160,7 @@ void main() {
         expect(result.masteryScore, <= 100, reason: 'Mastery score cannot exceed 100');
 
         // Advance card for next simulation step
-        currentCard = ReviewCard(
+        currentCard = LearningCard(
           word: tWord,
           learningState: result.learningState,
           isDue: true,

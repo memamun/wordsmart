@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../../domain/entities/review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 
 class ReviewFlashcard extends StatefulWidget {
   final ReviewCard card;

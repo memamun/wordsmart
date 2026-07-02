@@ -16,7 +16,7 @@ final reviewQueueProvider = StateNotifierProvider.autoDispose<ReviewQueueNotifie
 final reviewSessionProvider = StateNotifierProvider.autoDispose<ReviewSessionNotifier, ReviewSessionState>((ref) {
   return ReviewSessionNotifier(
     startReviewSessionUseCase: sl(),
-    submitCardReviewUseCase: sl(),
+    submitLearningResultUseCase: sl(),
     finishReviewSessionUseCase: sl(),
   );
 });

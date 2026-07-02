@@ -1,4 +1,4 @@
-import '../entities/review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import '../entities/review_queue.dart';
 import '../entities/queue_policy.dart';
 import '../entities/value_objects.dart';

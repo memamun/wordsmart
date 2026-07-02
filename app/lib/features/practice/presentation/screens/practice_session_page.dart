@@ -1,5 +1,6 @@
 import 'package:flutter/material';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/navigation/app_navigator.dart';
 import '../../domain/entities/practice_question.dart';
 import '../providers/practice_session_state.dart';
 import '../providers/providers.dart';
@@ -28,7 +29,7 @@ class PracticeSessionPage extends ConsumerWidget {
       return Scaffold(
         body: PracticeEmptyState(
           message: 'Could not load practice session.\n${state.failure.toString()}',
-          onRetry: () => Navigator.of(context).pop(),
+          onRetry: () => AppNavigator.pop(context),
         ),
       );
     }
@@ -79,11 +80,11 @@ class PracticeSessionPage extends ConsumerWidget {
                     title: const Text('Exit Practice?'),
                     content: const Text('Your progress in this session will be lost.'),
                     actions: [
-                      TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+                      TextButton(onPressed: () => AppNavigator.pop(ctx), child: const Text('Cancel')),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(ctx);
-                          Navigator.of(context).pop();
+                          AppNavigator.pop(ctx);
+                          AppNavigator.pop(context);
                         },
                         child: const Text('Exit', style: TextStyle(color: Colors.red)),
                       ),

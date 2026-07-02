@@ -1,4 +1,5 @@
 import 'package:flutter/material';
+import '../../../../core/navigation/app_navigator.dart';
 import '../../domain/entities/practice_summary.dart';
 import '../widgets/summary_score_card.dart';
 
@@ -85,7 +86,7 @@ class PracticeSummaryPage extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   key: const Key('practice_again_button'),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => AppNavigator.pop(context),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     backgroundColor: Theme.of(context).primaryColor,
@@ -100,7 +101,7 @@ class PracticeSummaryPage extends StatelessWidget {
                 height: 52,
                 child: OutlinedButton(
                   key: const Key('back_home_button'),
-                  onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+                  onPressed: () => AppNavigator.popToHome(context),
                   style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),

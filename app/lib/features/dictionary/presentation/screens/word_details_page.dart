@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
 import '../providers/word_details_notifier.dart';
 import '../../../../core/design_system/buttons/bookmark_button.dart';
 import '../../../../core/design_system/states/empty_state.dart';
@@ -39,7 +40,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
         content: Text('Playing pronunciation audio...'),
         duration: Duration(seconds: 1),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Color(0xFF26A69A),
+        backgroundColor: AppColors.teal,
       ),
     );
   }
@@ -49,7 +50,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
     final state = ref.watch(wordDetailsNotifierProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // base Level 0 canvas
+      backgroundColor: AppColors.canvas, // base Level 0 canvas
       body: _buildBody(state),
     );
   }
@@ -87,7 +88,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
               expandedHeight: 120.0,
               floating: false,
               pinned: true,
-              backgroundColor: const Color(0xFF121212),
+              backgroundColor: AppColors.canvas,
               elevation: 0,
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
@@ -97,7 +98,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                     fontFamily: 'Outfit',
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFFFFB900), // Amber
+                    color: AppColors.amber, // Amber
                     letterSpacing: -0.5,
                   ),
                 ),
@@ -145,11 +146,11 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                               children: [
                                 Text(
                                   word.word.toUpperCase(),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Outfit',
                                     fontSize: 44,
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xFFFFB900),
+                                    color: AppColors.amber,
                                     letterSpacing: -1.0,
                                   ),
                                 ),
@@ -159,11 +160,11 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                                     if (word.pronunciation != null)
                                       Text(
                                         word.pronunciation!,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontFamily: 'Inter',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xFF26A69A), // Teal
+                                          color: AppColors.teal, // Teal
                                         ),
                                       ),
                                     if (word.pronunciation != null && word.level != null)
@@ -172,10 +173,10 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                                 if (word.level != null)
                                   Text(
                                     word.level!,
-                                    style: const TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 14,
-                                      color: Color(0xFF888888),
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 14,
+                                        color: AppColors.textMuted,
                                     ),
                                   ),
                               ],
@@ -192,17 +193,17 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                         child: Container(
                           width: 56,
                           height: 56,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF26A69A).withOpacity(0.08),
+                              decoration: BoxDecoration(
+                            color: AppColors.teal.withOpacity(0.08),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xFF26A69A).withOpacity(0.2),
+                              color: AppColors.teal.withOpacity(0.2),
                               width: 1,
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.volume_up_rounded,
-                            color: Color(0xFF26A69A),
+                            color: AppColors.teal,
                             size: 26,
                           ),
                         ),
@@ -216,7 +217,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                     width: double.infinity,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E1E1E), // Level 1 surface
+                      color: AppColors.surface, // Level 1 surface
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: Colors.white.withOpacity(0.04),
@@ -229,11 +230,11 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                         if (word.bengaliMeaning != null) ...[
                           Text(
                             word.bengaliMeaning!,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Hind Siliguri',
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFFF5F5F5), // off-white
+                              color: AppColors.textPrimary, // off-white
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -243,10 +244,10 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                         if (word.definition != null)
                           Text(
                             word.definition!,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Inter',
                               fontSize: 16,
-                              color: Color(0xFFB0B0B0), // secondary definition
+                              color: AppColors.textSecondary, // secondary definition
                               height: 1.5,
                             ),
                           ),
@@ -262,29 +263,29 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFFB900).withOpacity(0.03),
+                        color: AppColors.amber.withOpacity(0.03),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: const Color(0xFFFFB900).withOpacity(0.15),
+                          color: AppColors.amber.withOpacity(0.15),
                           width: 1.2,
                         ),
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.lightbulb_outline_rounded,
-                            color: Color(0xFFFFB900),
+                            color: AppColors.amber,
                             size: 20,
                           ),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               word.mnemonic!,
-                              style: const TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 14,
-                                color: Color(0xFFD5C4AB),
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 14,
+                                  color: AppColors.mnemonicText,
                                 height: 1.4,
                               ),
                             ),
@@ -313,10 +314,10 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                             children: [
                               Text(
                                 ex.sentence,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontSize: 15,
-                                  color: Color(0xFFF5F5F5),
+                                  color: AppColors.textPrimary,
                                   height: 1.4,
                                 ),
                               ),
@@ -324,10 +325,10 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                                 const SizedBox(height: 8),
                                 Text(
                                   ex.translation!,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Hind Siliguri',
                                     fontSize: 14,
-                                    color: Color(0xFF26A69A), // Teal Bengali translation
+                                    color: AppColors.teal, // Teal Bengali translation
                                   ),
                                 ),
                               ],
@@ -349,7 +350,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 12,
-                          color: Color(0xFF888888),
+                          color: AppColors.textMuted,
                         ),
                         child: Text('SYNONYMS'),
                       ),
@@ -360,15 +361,15 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                           return Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF26A69A).withOpacity(0.08),
+                              color: AppColors.teal.withOpacity(0.08),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Text(
                               syn,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 13,
-                                color: Color(0xFF26A69A),
+                                color: AppColors.teal,
                               ),
                             ),
                           );
@@ -382,7 +383,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 12,
-                          color: Color(0xFF888888),
+                          color: AppColors.textMuted,
                         ),
                         child: Text('ANTONYMS'),
                       ),
@@ -393,15 +394,15 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                           return Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFFF8A80).withOpacity(0.08),
+                              color: AppColors.coral.withOpacity(0.08),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Text(
                               ant,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 13,
-                                color: Color(0xFFFF8A80),
+                                color: AppColors.coral,
                               ),
                             ),
                           );
@@ -433,21 +434,21 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                             children: [
                               Text(
                                 rt.root.toUpperCase(),
-                                style: const TextStyle(
-                                  fontFamily: 'Outfit',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFFFFB900),
+                                  style: TextStyle(
+                                    fontFamily: 'Outfit',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.amber,
                                   letterSpacing: 1.0,
                                 ),
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 rt.meaning,
-                                style: const TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 14,
-                                  color: Color(0xFFB0B0B0),
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 14,
+                                    color: AppColors.textSecondary,
                                 ),
                               ),
                             ],
@@ -476,20 +477,20 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                             children: [
                               Text(
                                 der.derivative,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontSize: 13,
-                                  color: Color(0xFFF5F5F5),
+                                  color: AppColors.textPrimary,
                                 ),
                               ),
                               if (der.partOfSpeech != null) ...[
                                 const SizedBox(width: 4),
                                 Text(
                                   '(${der.partOfSpeech})',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Inter',
                                     fontSize: 11,
-                                    color: Color(0xFF888888),
+                                    color: AppColors.textMuted,
                                   ),
                                 ),
                               ],
@@ -515,9 +516,9 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  const Color(0xFF121212).withOpacity(0),
-                  const Color(0xFF121212).withOpacity(0.95),
-                  const Color(0xFF121212),
+                  AppColors.canvas.withOpacity(0),
+                  AppColors.canvas.withOpacity(0.95),
+                  AppColors.canvas,
                 ],
               ),
             ),
@@ -527,7 +528,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                   child: PrimaryButton(
                     text: 'Review Again',
                     isFilled: false,
-                    color: const Color(0xFFB0B0B0),
+                    color: AppColors.textSecondary,
                     onPressed: () {
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -545,7 +546,7 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                   child: PrimaryButton(
                     text: 'Mark as Mastered',
                     isFilled: true,
-                    color: const Color(0xFF26A69A),
+                    color: AppColors.teal,
                     onPressed: () {
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(

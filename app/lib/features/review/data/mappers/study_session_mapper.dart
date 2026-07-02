@@ -1,5 +1,5 @@
 import '../../domain/entities/study_session.dart';
-import '../../domain/entities/value_objects.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../models/study_session_model.dart';
 
 class StudySessionMapper {

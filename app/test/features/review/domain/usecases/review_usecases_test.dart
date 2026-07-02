@@ -3,18 +3,18 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/core/error/failures.dart';
 import '../../../../../lib/features/dictionary/domain/entities/word.dart';
 import '../../../../../lib/features/review/domain/entities/learning_metrics.dart';
-import '../../../../../lib/features/review/domain/entities/review_card.dart';
+import '../../../../../lib/core/learning/entities/learning_card.dart';
 import '../../../../../lib/features/review/domain/entities/review_queue.dart';
 import '../../../../../lib/features/review/domain/entities/study_session.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 import '../../../../../lib/features/review/domain/repositories/review_repository.dart';
-import '../../../../../lib/features/review/domain/services/learning_signal_analyzer.dart';
-import '../../../../../lib/features/review/domain/services/sm2_engine.dart';
+import '../../../../../lib/core/learning/engine/learning_signal_analyzer.dart';
+import '../../../../../lib/core/learning/engine/sm2_engine.dart';
 import '../../../../../lib/features/review/domain/usecases/get_daily_queue.dart';
 import '../../../../../lib/features/review/domain/usecases/get_learning_metrics.dart';
 import '../../../../../lib/features/review/domain/usecases/get_progress_summary.dart';
 import '../../../../../lib/features/review/domain/usecases/start_review_session.dart';
-import '../../../../../lib/features/review/domain/usecases/submit_card_review.dart';
+import '../../../../../lib/core/learning/usecases/submit_learning_result.dart';
 import '../../../../../lib/features/review/domain/usecases/finish_review_session.dart';
 
 class MockReviewRepository implements ReviewRepository {
@@ -60,7 +60,7 @@ void main() {
   final now = DateTime(2026, 7, 2, 12, 0);
   final tWord = Word(id: 1, word: 'ABATE');
   
-  final tCard = ReviewCard(
+  final tCard = LearningCard(
     word: tWord,
     learningState: LearningState.newCard,
     isDue: true,
@@ -106,9 +106,9 @@ void main() {
     });
   });
 
-  group('SubmitCardReviewUseCase', () {
+  group('SubmitLearningResultUseCase', () {
     test('should analyze signals, compute spacing, and save results via repository', () async {
-      final usecase = SubmitCardReviewUseCase(
+      final usecase = SubmitLearningResultUseCase(
         repository: mockRepository,
         signalAnalyzer: const LearningSignalAnalyzer(),
         sm2Engine: const SM2Engine(),

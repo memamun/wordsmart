@@ -1,5 +1,5 @@
 import '../../../../core/error/failures.dart';
-import '../../domain/entities/review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import '../../domain/entities/review_session.dart';
 
 abstract class ReviewSessionState {

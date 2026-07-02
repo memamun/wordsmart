@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/navigation/app_navigator.dart';
 import '../providers/providers.dart';
 import '../providers/progress_state.dart';
 import '../widgets/dashboard/activity_timeline.dart';
@@ -7,7 +8,6 @@ import '../widgets/dashboard/daily_goal_card.dart';
 import '../widgets/dashboard/learning_metrics_card.dart';
 import '../widgets/dashboard/next_action_card.dart';
 import '../widgets/dashboard/progress_summary_card.dart';
-import 'review_session_page.dart';
 
 class ProgressDashboardPage extends ConsumerStatefulWidget {
   const ProgressDashboardPage({Key? key}) : super(key: key);
@@ -102,10 +102,7 @@ class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
           NextActionCard(
             dueCount: metrics.dueToday,
             onActionPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ReviewSessionPage()),
-              ).then((_) {
+              AppNavigator.pushReviewSession(context).then((_) {
                 // Refresh dashboard stats on return from review
                 notifier.loadMetrics(now: DateTime.now());
               });

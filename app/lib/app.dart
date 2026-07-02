@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'core/design_system/tokens/app_colors.dart';
+import 'core/navigation/home_page.dart';
 
 class WordSmartApp extends StatelessWidget {
   const WordSmartApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'WordSmart',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            'WordSmart Foundation Ready',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: AppColors.canvas,
+        colorScheme: ColorScheme.dark(
+          primary: AppColors.teal,
+          secondary: AppColors.amber,
+          surface: AppColors.surface,
         ),
       ),
+      home: const HomePage(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/navigation/app_navigator.dart';
 import '../providers/search_notifier.dart';
 import '../../../../core/design_system/states/empty_state.dart';
 import '../widgets/featured_word_card.dart';
@@ -8,7 +10,6 @@ import '../../../../core/design_system/states/loading_skeleton.dart';
 import '../../../../core/design_system/inputs/word_search_bar.dart';
 import '../../../../core/design_system/typography/section_header.dart';
 import '../widgets/word_list_tile.dart';
-import 'word_details_page.dart';
 
 class SearchPage extends ConsumerStatefulWidget {
   const SearchPage({super.key});
@@ -57,12 +58,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   }
 
   void _navigateToWordDetails(int wordId) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => WordDetailsPage(wordId: wordId),
-      ),
-    );
+    AppNavigator.pushWordDetails(context, wordId);
   }
 
   @override
@@ -76,7 +72,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final searchState = ref.watch(searchNotifierProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // base Level 0 canvas
+      backgroundColor: AppColors.canvas, // base Level 0 canvas
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
@@ -88,7 +84,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 autofocus: true,
                 onChanged: _onSearchChanged,
                 onSubmitted: _onSearchSubmitted,
-                onBackTap: () => Navigator.maybePop(context),
+                onBackTap: () => AppNavigator.popToHome(context),
               ),
               const SizedBox(height: 16),
 
@@ -140,7 +136,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               style: const TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 16,
-                color: Color(0xFFF5F5F5),
+                color: AppColors.textPrimary,
               ),
             ),
             trailing: const Icon(Icons.arrow_outward_rounded, color: Colors.white24, size: 18),

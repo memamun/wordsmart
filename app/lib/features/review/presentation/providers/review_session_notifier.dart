@@ -1,17 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/learning/usecases/submit_learning_result.dart';
 import '../../domain/usecases/start_review_session.dart';
-import '../../domain/usecases/submit_card_review.dart';
 import '../../domain/usecases/finish_review_session.dart';
 import 'review_session_state.dart';
 
 class ReviewSessionNotifier extends StateNotifier<ReviewSessionState> {
   final StartReviewSessionUseCase startReviewSessionUseCase;
-  final SubmitCardReviewUseCase submitCardReviewUseCase;
+  final SubmitLearningResultUseCase submitLearningResultUseCase;
   final FinishReviewSessionUseCase finishReviewSessionUseCase;
 
   ReviewSessionNotifier({
     required this.startReviewSessionUseCase,
-    required this.submitCardReviewUseCase,
+    required this.submitLearningResultUseCase,
     required this.finishReviewSessionUseCase,
   }) : super(const ReviewSessionInitial());
 
@@ -54,7 +54,7 @@ class ReviewSessionNotifier extends StateNotifier<ReviewSessionState> {
       final currentCard = session.currentCard;
 
       // Submit card review to persistence layer
-      final result = await submitCardReviewUseCase(
+      final result = await submitLearningResultUseCase(
         card: currentCard,
         isCorrect: isCorrect,
         responseTime: responseTime,

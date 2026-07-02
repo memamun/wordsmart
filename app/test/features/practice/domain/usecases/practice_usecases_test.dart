@@ -11,18 +11,18 @@ import '../../../../../lib/features/practice/domain/services/factory/question_ge
 import '../../../../../lib/features/practice/domain/usecases/finish_practice_session.dart';
 import '../../../../../lib/features/practice/domain/usecases/get_practice_session.dart';
 import '../../../../../lib/features/practice/domain/usecases/submit_practice_answer.dart';
-import '../../../../../lib/features/review/domain/entities/review_card.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
+import '../../../../../lib/core/learning/entities/learning_card.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 import '../../../../../lib/features/review/domain/usecases/finish_review_session.dart';
-import '../../../../../lib/features/review/domain/usecases/submit_card_review.dart';
+import '../../../../../lib/core/learning/usecases/submit_learning_result.dart';
 
 class MockPracticeRepository implements PracticeRepository {
-  List<ReviewCard>? cardsResult;
+  List<LearningCard>? cardsResult;
   List<Word>? poolResult;
   Failure? failure;
 
   @override
-  Future<Either<Failure, List<ReviewCard>>> loadPracticeCards({
+  Future<Either<Failure, List<LearningCard>>> loadPracticeCards({
     required int limit,
     required DateTime now,
   }) async {
@@ -37,7 +37,7 @@ class MockPracticeRepository implements PracticeRepository {
   }
 }
 
-class MockSubmitCardReviewUseCase implements SubmitCardReviewUseCase {
+class MockSubmitLearningResultUseCase implements SubmitLearningResultUseCase {
   bool called = false;
   @override
   dynamic noSuchMethod(Invocation invocation) {
@@ -66,7 +66,7 @@ void main() {
   late GetPracticeSessionUseCase getSessionUseCase;
   late SubmitPracticeAnswerUseCase submitAnswerUseCase;
   late FinishPracticeSessionUseCase finishSessionUseCase;
-  late MockSubmitCardReviewUseCase mockSubmitCardUseCase;
+  late MockSubmitLearningResultUseCase mockSubmitCardUseCase;
   late MockFinishReviewSessionUseCase mockFinishReviewUseCase;
 
   const distractorProvider = BasicDistractorProvider();
@@ -74,7 +74,7 @@ void main() {
   const builder = PracticeSessionBuilder(generatorFactory: factory);
 
   final tWord1 = Word(id: 1, word: 'ABATE', definition: 'to reduce');
-  final card1 = ReviewCard(
+  final card1 = LearningCard(
     word: tWord1,
     learningState: LearningState.learning,
     isDue: true,
@@ -94,9 +94,9 @@ void main() {
       builder: builder,
     );
 
-    mockSubmitCardUseCase = MockSubmitCardReviewUseCase();
+    mockSubmitCardUseCase = MockSubmitLearningResultUseCase();
     submitAnswerUseCase = SubmitPracticeAnswerUseCase(
-      submitCardReviewUseCase: mockSubmitCardUseCase,
+      submitLearningResultUseCase: mockSubmitCardUseCase,
     );
 
     mockFinishReviewUseCase = MockFinishReviewSessionUseCase();
@@ -124,7 +124,7 @@ void main() {
       );
     });
 
-    test('SubmitPracticeAnswerUseCase should delegate correct call to SubmitCardReviewUseCase', () async {
+    test('SubmitPracticeAnswerUseCase should delegate correct call to SubmitLearningResultUseCase', () async {
       final result = await submitAnswerUseCase(
         SubmitPracticeAnswerParams(card: card1, isCorrect: true, responseTime: const Duration(seconds: 4), now: now, sessionId: 's1'),
       );

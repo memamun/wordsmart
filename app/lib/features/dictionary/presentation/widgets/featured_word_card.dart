@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
 import '../../domain/entities/word.dart';
 import '../../../../core/design_system/buttons/audio_button.dart';
 import '../../../../core/design_system/buttons/bookmark_button.dart';
@@ -26,11 +27,11 @@ class FeaturedWordCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF1E1E1E).withOpacity(0.8),
+          color: AppColors.surface.withOpacity(0.8),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFFFB900).withOpacity(0.06),
+              color: AppColors.amber.withOpacity(0.06),
               blurRadius: 20,
               spreadRadius: 2,
               offset: const Offset(0, 4),
@@ -61,7 +62,7 @@ class FeaturedWordCard extends StatelessWidget {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF26A69A).withOpacity(0.1),
+                            color: AppColors.teal.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -70,7 +71,7 @@ class FeaturedWordCard extends StatelessWidget {
                               fontFamily: 'JetBrains Mono',
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF26A69A),
+                              color: AppColors.teal,
                             ),
                           ),
                         )
@@ -99,7 +100,7 @@ class FeaturedWordCard extends StatelessWidget {
                       fontFamily: 'Outfit',
                       fontSize: 40,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFFFFB900), // Amber
+                      color: AppColors.amber, // Amber
                       letterSpacing: -0.5,
                     ),
                   ),
@@ -113,7 +114,7 @@ class FeaturedWordCard extends StatelessWidget {
                         fontFamily: 'Inter',
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF26A69A), // Teal
+                        color: AppColors.teal, // Teal
                       ),
                     ),
                   ],
@@ -130,7 +131,7 @@ class FeaturedWordCard extends StatelessWidget {
                         fontFamily: 'Hind Siliguri',
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFFF5F5F5), // off-white
+                        color: AppColors.textPrimary, // off-white
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -143,7 +144,7 @@ class FeaturedWordCard extends StatelessWidget {
                       style: const TextStyle(
                         fontFamily: 'Inter',
                         fontSize: 14,
-                        color: Color(0xFFB0B0B0), // muted definition
+                        color: AppColors.textSecondary, // muted definition
                         height: 1.4,
                       ),
                     ),

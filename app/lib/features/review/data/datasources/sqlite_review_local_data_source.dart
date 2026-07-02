@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+import '../../../../core/analytics/learning_event_logger.dart';
 import '../../../../core/database/database.dart';
 import '../models/review_card_model.dart';
 import '../models/study_session_model.dart';
@@ -7,8 +8,9 @@ import 'review_queries.dart';
 
 class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
   final AppDatabase appDatabase;
+  final LearningEventLogger eventLogger;
 
-  SQLiteReviewLocalDataSource({required this.appDatabase});
+  SQLiteReviewLocalDataSource({required this.appDatabase, required this.eventLogger});
 
   @override
   Future<List<ReviewCardModel>> getAllCardsWithProgress() async {
@@ -94,18 +96,13 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
         ],
       );
 
-      // 4. Log Learning Event
-      final eventId = 'event-${session.id}-$wordId';
-      await txn.rawInsert(
-        ReviewQueries.insertLearningEvent,
-        [
-          eventId,
-          wordId,
-          'review',
-          lastReviewedAt,
-          session.id,
-          'study_session',
-        ],
+      // 4. Log Learning Event via abstraction
+      await eventLogger.logEvent(
+        wordId: wordId.toString(),
+        eventType: 'review',
+        timestamp: DateTime.parse(lastReviewedAt),
+        referenceId: session.id,
+        referenceType: 'study_session',
       );
 
       // 5. Log Weak Word Event if difficulty is high

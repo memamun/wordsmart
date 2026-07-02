@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
-import '../../../../../lib/features/review/domain/services/learning_signal_analyzer.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
+import '../../../../../lib/core/learning/engine/learning_signal_analyzer.dart';
 
 void main() {
   const analyzer = LearningSignalAnalyzer();

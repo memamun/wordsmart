@@ -1,4 +1,4 @@
-import '../entities/review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 
 enum SchedulingStatus {
   due,

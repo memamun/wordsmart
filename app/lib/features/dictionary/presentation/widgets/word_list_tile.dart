@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
 import '../../domain/entities/word.dart';
 
 class WordListTile extends StatelessWidget {
@@ -32,7 +33,7 @@ class WordListTile extends StatelessWidget {
                           fontFamily: 'Outfit',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFFF5F5F5), // off-white
+                          color: AppColors.textPrimary,
                         ),
                       ),
                       if (word.partOfSpeech != null) ...[
@@ -43,7 +44,7 @@ class WordListTile extends StatelessWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF26A69A).withOpacity(0.08),
+                            color: AppColors.teal.withOpacity(0.08),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -52,7 +53,7 @@ class WordListTile extends StatelessWidget {
                               fontFamily: 'JetBrains Mono',
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF26A69A), // Teal POS text
+                              color: AppColors.teal,
                             ),
                           ),
                         ),
@@ -67,7 +68,7 @@ class WordListTile extends StatelessWidget {
                     style: const TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
-                      color: Color(0xFFB0B0B0), // muted description text
+                      color: AppColors.textSecondary,
                     ),
                   ),
                 ],
@@ -75,7 +76,7 @@ class WordListTile extends StatelessWidget {
             ),
             const Icon(
               Icons.chevron_right_rounded,
-              color: Color(0xFF555555),
+              color: AppColors.textDark,
               size: 20,
             ),
           ],

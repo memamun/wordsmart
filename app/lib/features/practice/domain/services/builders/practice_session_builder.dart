@@ -1,5 +1,5 @@
 import 'dart:math';
-import '../../../review/domain/entities/review_card.dart';
+import '../../../../../core/learning/entities/learning_card.dart';
 import '../../entities/practice_question.dart';
 import '../../entities/practice_session.dart';
 import '../factory/question_generator_factory.dart';
@@ -12,7 +12,7 @@ class PracticeSessionBuilder {
 
   PracticeSession build({
     required String id,
-    required List<ReviewCard> reviewCards,
+    required List<LearningCard> reviewCards,
     required PracticeMode mode,
     required List<Word> pool,
     required DateTime startedAt,

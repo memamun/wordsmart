@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../../domain/entities/learning_metrics.dart';
 import '../../domain/entities/queue_policy.dart';
 import '../../domain/entities/review_queue.dart';
 import '../../domain/entities/study_session.dart';
-import '../../domain/entities/value_objects.dart';
 import '../../domain/repositories/review_repository.dart';
 import '../../domain/services/review_queue_builder.dart';
 import '../datasources/review_local_data_source.dart';

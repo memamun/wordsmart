@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/features/dictionary/domain/entities/word.dart';
-import '../../../../../lib/features/review/domain/entities/review_card.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
+import '../../../../../lib/core/learning/entities/learning_card.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 
 void main() {
   final tWord = Word(id: 1, word: 'ABATE');
 
   group('ReviewCard Invariant Validation', () {
     test('should construct a valid ReviewCard when parameters are valid', () {
-      final card = ReviewCard(
+      final card = LearningCard(
         word: tWord,
         learningState: LearningState.newCard,
         isDue: true,
@@ -27,7 +27,7 @@ void main() {
 
     test('should throw ArgumentError when easiness factor is less than 1.3', () {
       expect(
-        () => ReviewCard(
+        () => LearningCard(
           word: tWord,
           learningState: LearningState.learning,
           isDue: true,
@@ -43,7 +43,7 @@ void main() {
 
     test('should throw ArgumentError when interval days is negative', () {
       expect(
-        () => ReviewCard(
+        () => LearningCard(
           word: tWord,
           learningState: LearningState.learning,
           isDue: true,
@@ -59,7 +59,7 @@ void main() {
 
     test('should throw ArgumentError when repetition count is negative', () {
       expect(
-        () => ReviewCard(
+        () => LearningCard(
           word: tWord,
           learningState: LearningState.learning,
           isDue: true,

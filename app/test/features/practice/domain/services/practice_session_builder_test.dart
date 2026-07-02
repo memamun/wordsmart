@@ -4,8 +4,8 @@ import '../../../../../lib/features/practice/domain/entities/practice_question.d
 import '../../../../../lib/features/practice/domain/services/builders/practice_session_builder.dart';
 import '../../../../../lib/features/practice/domain/services/distractors/distractor_provider.dart';
 import '../../../../../lib/features/practice/domain/services/factory/question_generator_factory.dart';
-import '../../../../../lib/features/review/domain/entities/review_card.dart';
-import '../../../../../lib/features/review/domain/entities/value_objects.dart';
+import '../../../../../lib/core/learning/entities/learning_card.dart';
+import '../../../../../lib/core/learning/entities/learning_value_objects.dart';
 
 void main() {
   const distractorProvider = BasicDistractorProvider();
@@ -28,7 +28,7 @@ void main() {
     // Missing synonyms -> triggers fallback
   );
 
-  final card1 = ReviewCard(
+  final card1 = LearningCard(
     word: tWord1,
     learningState: LearningState.learning,
     isDue: true,
@@ -39,7 +39,7 @@ void main() {
     mode: ReviewMode.newCard,
   );
 
-  final card2 = ReviewCard(
+  final card2 = LearningCard(
     word: tWord2,
     learningState: LearningState.learning,
     isDue: true,

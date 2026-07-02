@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
-import '../../../review/domain/entities/review_card.dart';
-import '../../../review/domain/usecases/submit_card_review.dart';
+import '../../../../core/learning/entities/learning_card.dart';
+import '../../../../core/learning/usecases/submit_learning_result.dart';
 
 class SubmitPracticeAnswerParams {
-  final ReviewCard card;
+  final LearningCard card;
   final bool isCorrect;
   final Duration responseTime;
   final DateTime now;
@@ -20,12 +20,12 @@ class SubmitPracticeAnswerParams {
 }
 
 class SubmitPracticeAnswerUseCase {
-  final SubmitCardReviewUseCase submitCardReviewUseCase;
+  final SubmitLearningResultUseCase submitLearningResultUseCase;
 
-  SubmitPracticeAnswerUseCase({required this.submitCardReviewUseCase});
+  SubmitPracticeAnswerUseCase({required this.submitLearningResultUseCase});
 
   Future<Either<Failure, void>> call(SubmitPracticeAnswerParams params) async {
-    return submitCardReviewUseCase(
+    return submitLearningResultUseCase(
       card: params.card,
       isCorrect: params.isCorrect,
       responseTime: params.responseTime,

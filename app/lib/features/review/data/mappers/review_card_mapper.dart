@@ -1,10 +1,10 @@
 import '../../../dictionary/domain/entities/word.dart';
-import '../../domain/entities/review_card.dart';
-import '../../domain/entities/value_objects.dart';
+import '../../../../core/learning/entities/learning_card.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../models/review_card_model.dart';
 
 class ReviewCardMapper {
-  static ReviewCard toEntity(ReviewCardModel model, DateTime now) {
+  static LearningCard toEntity(ReviewCardModel model, DateTime now) {
     final word = Word(
       id: model.wordId,
       word: model.word,
@@ -54,7 +54,7 @@ class ReviewCardMapper {
 
     final isCardDue = nextReview == null ? true : nextReview.isBefore(now);
 
-    return ReviewCard(
+    return LearningCard(
       word: word,
       learningState: state,
       isDue: isCardDue,

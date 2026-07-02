@@ -1,5 +1,5 @@
 import 'value_objects.dart';
-import 'review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 
 abstract class QueuePolicy {
   int get maxCards;

@@ -1,5 +1,5 @@
 import 'study_session.dart';
-import 'value_objects.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 
 class LearningMetrics {
   final StudyStreak streak;

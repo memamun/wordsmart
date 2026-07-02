@@ -2,6 +2,62 @@
 
 All notable changes to the WordSmart Vocabulary codebase will be documented in this file.
 
+## [0.5.1] - 2026-07-02
+### Changed
+- **Architecture Audit**: Completed end-to-end audit verifying dependency direction, domain boundaries, and no duplicate models.
+- **Word Entity Relocated**: Moved `Word`, `WordExample`, `WordDerivative`, `WordRoot` from `features/dictionary/domain/` to `core/domain/entities/`. Dictionary entities now re-export from core for backward compatibility.
+- **Navigation Abstraction Extended**: Added `pop()`, `popToHome()`, `maybePop()` methods to `AppNavigator`. Routed all 10 direct `Navigator.pop`/`popUntil` calls through `AppNavigator` across 4 screen files.
+- **Dependency Graph Cleaned**: Fixed inverted `core/learning → features/dictionary` dependency. All feature dependencies now flow upward to core.
+
+### Added
+- **Architecture Overview**: Published `docs/architecture/overview.md` with system architecture, dependency graph, and feature responsibilities.
+- **ADR Index**: Published `docs/architecture/ADR/INDEX.md` cataloging all 15 ADRs.
+- **Performance Baseline**: Published `docs/performance/baseline.md` with targets and measurement methodology.
+
+## [0.5.0] - 2026-07-02
+### Added
+- **Recommendation Engine**: Added orchestration layer coordinating Dictionary, Stories, Review, Practice, and Dashboard features.
+- **Recommendation Domain**: Added `Recommendation`, `RecommendationCandidate`, `RecommendationType` entities.
+- **Recommendation Services**: Added `RecommendationScorer` (weighted scoring), `RecommendationRanker` (sort/dedup/cap), `RecommendationPolicy` (cooldown/daily cap), and `RecommendationCandidateFactory` (maps domain objects to candidates).
+- **Recommendation Repository**: Added `RecommendationRepositoryImpl` with graceful degradation — fails only when all sources fail.
+- **Recommendation Use Cases**: Added `GetRecommendationsUseCase`, `DismissRecommendationUseCase`, `CompleteRecommendationUseCase`.
+- **Recommendation Provider**: Added `RecommendationNotifier` with cached state and load/refresh/dismiss/complete operations.
+- **Recommendation UI**: Added `RecommendationCard` and `RecommendationList` widgets integrated into Home screen.
+- **Recommendation Actions**: Added `RecommendationActionMapper` for presentation-layer navigation.
+- **Home Screen Integration**: Updated `HomePage` with recommendation-driven layout and 5-tab navigation.
+- **DI Registration**: Registered all Recommendation Engine services in `injection.dart`.
+- **Tests**: Added repository tests, service tests, and widget tests for the Recommendation Engine.
+- **Architecture**: Published `ADR-015_recommendation_engine.md` documenting the Recommendation Engine architecture.
+
+## [0.4.0] - 2026-07-02
+### Added
+- **Stories Domain**: Added `Story`, `StoryParagraph`, `HighlightedWord`, `ReadingPosition`, `StoryProgress`, `ReadingSession`, and `ReadingStatistics` entities.
+- **Reading Engine**: Added pure Dart services — `ReadingPositionTracker`, `StoryCompletionPolicy`, `VocabularyExposureAnalyzer`, `ReadingStatisticsCalculator`.
+- **Story Repository**: Added `StoryRepository` abstract contract and `SQLiteStoryLocalDataSource` with `story_progress` table created via runtime migration.
+- **Story Use Cases**: Added `GetStoryUseCase`, `GetStoriesUseCase`, `ContinueStoryUseCase`, and `SaveReadingPositionUseCase`.
+- **Story Provider**: Added `StoryReaderNotifier` with loading/active/completed/failure states.
+- **Story UI**: Created `StoryReaderPage` with paragraph rendering, `ReadingProgressBar`, and `WordContextSheet` inline bottom sheet for highlighted word taps.
+- **Clock Abstraction**: Added `Clock` interface, `SystemClock`, and `FakeClock` in `core/learning/time/` for deterministic testing.
+- **Navigation Integration**: Added `pushStoryReader` to `AppNavigator` and `storyReader` route to `AppRoutes`.
+- **Home Screen**: Added `HomePage` with 5-tab `NavigationBar` connecting Dictionary, Stories, Review, Practice, and Progress Dashboard.
+- **App Theme**: Configured `MaterialApp` with dark theme using `AppColors` tokens.
+- **Migration Tests**: Added `story_progress_migration_test.dart` verifying table creation, column schema, insert/upsert, and query operations.
+- **Tests**: Added domain entity tests, reading service tests, story model tests, and use case tests.
+- **Architecture**: Published `ADR-014_story_engine.md` documenting the Story Engine architecture.
+
+## [0.3.1] - 2026-07-02
+### Changed
+- **Learning Engine Extraction**: Moved shared learning domain classes from `features/review/domain/` to `core/learning/` — `SM2Engine`, `LearningSignalAnalyzer`, `LearningCard` (renamed from `ReviewCard`), `LearningResult` (renamed from `ReviewResult`), and shared value objects (`LearningState`, `ReviewRating`, `ReviewMode`, `ReviewPriority`, `MasteryScore`).
+- **Analytics Abstraction**: Introduced `LearningEventLogger` abstract interface in `core/analytics/` with `SQLiteLearningEventLogger` implementation, replacing direct `INSERT INTO learning_events` SQL in review data source.
+- **Design Token Centralization**: Added `AppAnimation` token file. Added `mnemonicText` color to `AppColors`. Replaced 49+ scattered `Color(0xFF...)` literals across dictionary widget files with centralized `AppColors` references.
+- **Navigation Layer**: Created `AppRoutes` and `AppNavigator` in `core/navigation/`, encapsulating all `Navigator.push`/`maybePop` calls. All screen files now use `AppNavigator` instead of direct Flutter navigation.
+- **Backward Compatibility**: `ReviewCard`, `ReviewResult`, `SM2Engine`, `LearningSignalAnalyzer`, and `SubmitCardReviewUseCase` (renamed to `SubmitLearningResultUseCase`) maintain typedef/re-export aliases for zero-breakage migration.
+
+### Added
+- **Property Tests**: Added 10,000-iteration SM-2 engine property test verifying EF >= 1.3, interval >= 0, repetition >= 0, valid LearningState transitions, and correct first/second review intervals.
+- **Generator Property Tests**: Added 10,000-iteration question generator property tests for Definition MCQ, Spelling, Sentence Completion, Synonym MCQ, and Antonym MCQ — asserting no duplicate options, correct answer always present, no empty questions, and POS consistency.
+- **Architecture**: Published `ADR-013_learning_engine_extraction.md` documenting the extraction decision, dependency direction, and backward compatibility strategy.
+
 ## [1.2.0] - 2026-07-02
 ### Added
 - **Practice Engine Domain**: Added polymorphic `QuestionGenerator` interface with 5 concrete strategies (Definition MCQ, Synonym, Antonym, Spelling, Sentence Completion) and POS-aware `BasicDistractorProvider` for intelligent MCQ option generation.

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../review/domain/entities/review_card.dart';
-import '../../../review/domain/entities/value_objects.dart';
+import '../../../../core/learning/entities/learning_card.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 import '../../domain/entities/practice_question.dart';
 import '../../domain/entities/practice_summary.dart';
 import '../../domain/usecases/finish_practice_session.dart';

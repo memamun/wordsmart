@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/navigation/app_navigator.dart';
 import '../providers/providers.dart';
 import '../providers/review_session_state.dart';
 import '../widgets/review_completion_summary.dart';
@@ -43,7 +44,7 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => AppNavigator.pop(context),
         ),
       ),
       body: SafeArea(
@@ -96,7 +97,7 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
     if (state is ReviewSessionCompleted) {
       return ReviewCompletionSummary(
         session: state.session,
-        onContinue: () => Navigator.pop(context),
+        onContinue: () => AppNavigator.pop(context),
       );
     }
 
@@ -104,7 +105,7 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
       final session = state.session;
       if (session.queue.cards.isEmpty) {
         return ReviewEmptyState(
-          onHomePressed: () => Navigator.pop(context),
+          onHomePressed: () => AppNavigator.pop(context),
         );
       }
 

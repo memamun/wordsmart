@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
-import '../../../review/domain/entities/review_card.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import '../entities/practice_question.dart';
 import '../entities/practice_session.dart';
 import '../repositories/practice_repository.dart';

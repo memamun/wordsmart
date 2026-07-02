@@ -1,4 +1,4 @@
-import 'value_objects.dart';
+import '../../../../core/learning/entities/learning_value_objects.dart';
 
 class StudySession {
   final String id;

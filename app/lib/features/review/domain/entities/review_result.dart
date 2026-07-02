@@ -1,19 +1,4 @@
-import 'value_objects.dart';
+import '../../../../core/learning/entities/learning_result.dart';
 
-class ReviewResult {
-  final double easinessFactor;
-  final int intervalDays;
-  final int repetitionCount;
-  final DateTime nextReviewAt;
-  final LearningState learningState;
-  final int masteryScore;
-
-  const ReviewResult({
-    required this.easinessFactor,
-    required this.intervalDays,
-    required this.repetitionCount,
-    required this.nextReviewAt,
-    required this.learningState,
-    required this.masteryScore,
-  });
-}
+/// Backward-compatible alias. New code should use [LearningResult] directly.
+typedef ReviewResult = LearningResult;

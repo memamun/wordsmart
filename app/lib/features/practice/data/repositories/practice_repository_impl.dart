@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 import '../../../../features/dictionary/domain/entities/word.dart';
 import '../../../review/data/mappers/review_card_mapper.dart';
-import '../../../review/domain/entities/review_card.dart';
 import '../../domain/repositories/practice_repository.dart';
 import '../datasources/practice_local_data_source.dart';
 
@@ -12,7 +12,7 @@ class PracticeRepositoryImpl implements PracticeRepository {
   PracticeRepositoryImpl({required this.localDataSource});
 
   @override
-  Future<Either<Failure, List<ReviewCard>>> loadPracticeCards({
+  Future<Either<Failure, List<LearningCard>>> loadPracticeCards({
     required int limit,
     required DateTime now,
   }) async {
