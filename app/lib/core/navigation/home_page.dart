@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/dictionary/presentation/screens/search_page.dart';
 import '../../features/review/presentation/screens/progress_dashboard_page.dart';
@@ -78,7 +79,10 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget _buildNavBar() {
     return NavigationBar(
       selectedIndex: _currentIndex,
-      onDestinationSelected: (index) => setState(() => _currentIndex = index),
+      onDestinationSelected: (index) {
+        HapticFeedback.lightImpact().catchError((_) {});
+        setState(() => _currentIndex = index);
+      },
       backgroundColor: AppColors.surface,
       indicatorColor: AppColors.teal.withValues(alpha: 0.2),
       destinations: const [

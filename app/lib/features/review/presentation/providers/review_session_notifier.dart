@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/learning/usecases/submit_learning_result.dart';
 import '../../domain/usecases/start_review_session.dart';
@@ -48,6 +49,11 @@ class ReviewSessionNotifier extends StateNotifier<ReviewSessionState> {
   }) async {
     final currentState = state;
     if (currentState is ReviewSessionActive) {
+      if (isCorrect) {
+        HapticFeedback.vibrate().catchError((_) {});
+      } else {
+        HapticFeedback.heavyImpact().catchError((_) {});
+      }
       state = currentState.copyWith(isSubmitting: true);
 
       final session = currentState.session;

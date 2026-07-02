@@ -38,31 +38,47 @@ class McqOptionTile extends StatelessWidget {
       borderColor = AppColors.primary;
     }
 
-    return InkWell(
-      onTap: isFeedbackMode ? null : onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 56),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: cardColor,
-          border: Border.all(color: borderColor, width: 2),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                optionText,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
+    String semanticLabel = optionText;
+    if (isFeedbackMode) {
+      if (isCorrect) {
+        semanticLabel = "$optionText, correct answer";
+      } else if (isSelected) {
+        semanticLabel = "$optionText, incorrect selection";
+      }
+    } else if (isSelected) {
+      semanticLabel = "$optionText, selected";
+    }
+
+    return Semantics(
+      label: semanticLabel,
+      button: true,
+      selected: isSelected,
+      child: InkWell(
+        onTap: isFeedbackMode ? null : onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 56),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: cardColor,
+            border: Border.all(color: borderColor, width: 2),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  optionText,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
               ),
-            ),
-            if (trailing != null) trailing,
-          ],
+              if (trailing != null) trailing,
+            ],
+          ),
         ),
       ),
     );

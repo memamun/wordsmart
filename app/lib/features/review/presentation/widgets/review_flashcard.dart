@@ -61,28 +61,39 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: AnimatedBuilder(
-        animation: _animation,
-        builder: (context, child) {
-          final transformValue = _animation.value * pi;
-          final isBack = transformValue >= pi / 2;
+    final String cardSideText = widget.isFront
+        ? "Front side of card"
+        : "Back side of card, showing definition";
 
-          return Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateY(transformValue),
-            alignment: Alignment.center,
-            child: isBack
-                ? Transform(
-                    transform: Matrix4.identity()..rotateY(pi),
-                    alignment: Alignment.center,
-                    child: _buildBackCard(),
-                  )
-                : _buildFrontCard(),
-          );
-        },
+    return Semantics(
+      label: "$cardSideText. ${widget.card.word.word}",
+      hint: widget.isFront
+          ? "Double tap to reveal definition"
+          : "Showing details",
+      button: true,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) {
+            final transformValue = _animation.value * pi;
+            final isBack = transformValue >= pi / 2;
+
+            return Transform(
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.001)
+                ..rotateY(transformValue),
+              alignment: Alignment.center,
+              child: isBack
+                  ? Transform(
+                      transform: Matrix4.identity()..rotateY(pi),
+                      alignment: Alignment.center,
+                      child: _buildBackCard(),
+                    )
+                  : _buildFrontCard(),
+            );
+          },
+        ),
       ),
     );
   }

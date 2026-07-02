@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/learning/entities/learning_card.dart';
 import '../../../../core/learning/entities/learning_value_objects.dart';
@@ -68,6 +69,11 @@ class PracticeSessionNotifier extends StateNotifier<PracticeSessionState> {
         : (activeState.selectedAnswer ?? '');
 
     final isCorrect = answerText == question.correctAnswer.toLowerCase().trim();
+    if (isCorrect) {
+      HapticFeedback.vibrate().catchError((_) {});
+    } else {
+      HapticFeedback.heavyImpact().catchError((_) {});
+    }
     final responseTime = _questionStartTime != null
         ? now.difference(_questionStartTime!)
         : const Duration(seconds: 5);

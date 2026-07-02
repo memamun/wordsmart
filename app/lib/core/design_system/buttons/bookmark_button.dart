@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../tokens/app_colors.dart';
 
 class BookmarkButton extends StatefulWidget {
@@ -24,6 +25,7 @@ class _BookmarkButtonState extends State<BookmarkButton> {
 
   void _onTapUp(TapUpDetails details) {
     setState(() => _scale = 1.0);
+    HapticFeedback.lightImpact().catchError((_) {});
     widget.onToggle(!widget.isBookmarked);
   }
 
