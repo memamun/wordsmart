@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/navigation/app_navigator.dart';
 import '../../domain/entities/practice_summary.dart';
 import '../widgets/summary_score_card.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 
 class PracticeSummaryPage extends StatelessWidget {
   final PracticeSummary summary;
@@ -83,35 +84,20 @@ class PracticeSummaryPage extends StatelessWidget {
               // Action buttons
               SizedBox(
                 width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
+                child: PrimaryButton(
                   key: const Key('practice_again_button'),
+                  text: 'Practice Again',
                   onPressed: () => AppNavigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Theme.of(context).primaryColor,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Practice Again',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 12),
               SizedBox(
                 width: double.infinity,
-                height: 52,
-                child: OutlinedButton(
+                child: PrimaryButton(
                   key: const Key('back_home_button'),
+                  text: 'Back to Home',
+                  isFilled: false,
                   onPressed: () => AppNavigator.popToHome(context),
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  child: const Text('Back to Home',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],

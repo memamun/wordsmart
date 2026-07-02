@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 import '../../../../core/design_system/states/empty_state.dart';
 import '../../../../core/navigation/app_navigator.dart';
 import '../providers/providers.dart';
@@ -57,7 +59,7 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
   Widget _buildBody(StoryReaderState state) {
     if (state is StoryReaderLoading || state is StoryReaderInitial) {
       return const Center(
-          child: CircularProgressIndicator(color: AppColors.teal));
+          child: CircularProgressIndicator(color: AppColors.primary));
     }
 
     if (state is StoryReaderFailure) {
@@ -75,7 +77,8 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
     final paragraph = loaded.story.paragraphs[loaded.currentParagraphIndex];
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(18, 16, 18, 20),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md, vertical: AppSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -88,9 +91,9 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
               color: AppColors.textPrimary,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
           ReadingProgressBar(percent: loaded.statistics.completionPercent),
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.md),
           Expanded(
             child: SingleChildScrollView(
               child: StoryParagraphBlock(
@@ -99,23 +102,15 @@ class _StoryReaderPageState extends ConsumerState<StoryReaderPage> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.md),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
+            child: PrimaryButton(
+              text: loaded.isComplete ? 'Story Complete' : 'Continue Reading',
               onPressed: loaded.isComplete
-                  ? null
+                  ? () {}
                   : () =>
                       ref.read(storyReaderProvider.notifier).nextParagraph(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.teal,
-                foregroundColor: AppColors.textPrimary,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-              ),
-              child: Text(
-                  loaded.isComplete ? 'Story Complete' : 'Continue Reading'),
             ),
           ),
         ],

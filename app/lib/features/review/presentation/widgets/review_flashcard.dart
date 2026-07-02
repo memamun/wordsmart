@@ -1,5 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/tokens/app_animation.dart';
 import '../../../../core/learning/entities/learning_card.dart';
 
 class ReviewFlashcard extends StatefulWidget {
@@ -28,10 +31,10 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: AppAnimation.cardFlip,
     );
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic),
+      CurvedAnimation(parent: _controller, curve: AppAnimation.defaultCurve),
     );
     if (!widget.isFront) {
       _controller.value = 1.0;
@@ -88,9 +91,9 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
     return Container(
       key: const ValueKey('front'),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.grey[850]!, width: 1.5),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+        border: Border.all(color: AppColors.divider, width: 1.5),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.4),
@@ -99,7 +102,7 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
           ),
         ],
       ),
-      padding: const EdgeInsets.all(28.0),
+      padding: const EdgeInsets.all(AppSpacing.lg),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -108,44 +111,45 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
             style: const TextStyle(
               fontSize: 36,
               fontWeight: FontWeight.w900,
-              color: Colors.white,
+              color: AppColors.textPrimary,
               letterSpacing: -0.5,
             ),
           ),
           if (widget.card.word.pronunciation != null) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             Text(
               "/${widget.card.word.pronunciation}/",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontStyle: FontStyle.italic,
-                color: Colors.indigoAccent[100],
+                color: AppColors.primary,
               ),
             ),
           ],
           if (widget.card.word.partOfSpeech != null) ...[
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.md),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md, vertical: AppSpacing.sm),
               decoration: BoxDecoration(
-                color: Colors.grey[850],
-                borderRadius: BorderRadius.circular(20),
+                color: AppColors.surfaceHigh,
+                borderRadius: BorderRadius.circular(AppSpacing.radiusXxl),
               ),
               child: Text(
                 widget.card.word.partOfSpeech!.toLowerCase(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey[400],
+                  color: AppColors.textSecondary,
                 ),
               ),
             ),
           ],
-          const SizedBox(height: 48),
-          Text(
+          const SizedBox(height: AppSpacing.xxl),
+          const Text(
             "Tap to Reveal Definition",
             style: TextStyle(
-              color: Colors.grey[600],
+              color: AppColors.textMuted,
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
@@ -159,9 +163,9 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
     return Container(
       key: const ValueKey('back'),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.grey[850]!, width: 1.5),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+        border: Border.all(color: AppColors.divider, width: 1.5),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.4),
@@ -170,7 +174,7 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
           ),
         ],
       ),
-      padding: const EdgeInsets.all(28.0),
+      padding: const EdgeInsets.all(AppSpacing.lg),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,66 +184,66 @@ class _ReviewFlashcardState extends State<ReviewFlashcard>
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w900,
-                color: Colors.white,
+                color: AppColors.textPrimary,
               ),
             ),
-            const Divider(color: Colors.grey, height: 32),
+            const Divider(color: AppColors.divider, height: AppSpacing.xl),
             const Text(
               "DEFINITION",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.bold,
-                color: Colors.indigoAccent,
+                color: AppColors.primary,
                 letterSpacing: 1.0,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: AppSpacing.sm),
             Text(
               widget.card.word.definition ?? "No definition available",
               style: const TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: AppColors.textPrimary,
                 height: 1.4,
               ),
             ),
             if (widget.card.word.bengaliMeaning != null) ...[
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.md),
               const Text(
                 "BENGALI MEANING",
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: Colors.purpleAccent,
+                  color: AppColors.primary,
                   letterSpacing: 1.0,
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: AppSpacing.sm),
               Text(
                 widget.card.word.bengaliMeaning!,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: AppColors.textPrimary,
                 ),
               ),
             ],
             if (widget.card.word.mnemonic != null) ...[
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.md),
               const Text(
                 "MNEMONIC / MEMORY HELP",
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: Colors.amberAccent,
+                  color: AppColors.warning,
                   letterSpacing: 1.0,
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: AppSpacing.sm),
               Text(
                 widget.card.word.mnemonic!,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
-                  color: Colors.grey[300],
+                  color: AppColors.textSecondary,
                   fontStyle: FontStyle.italic,
                   height: 1.4,
                 ),

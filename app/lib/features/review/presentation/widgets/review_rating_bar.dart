@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
 
 class ReviewRatingBar extends StatelessWidget {
   final Function(bool isCorrect) onRatingSelected;
@@ -17,22 +20,22 @@ class ReviewRatingBar extends StatelessWidget {
       children: [
         _buildRatingButton(
           label: "Again",
-          color: Colors.redAccent,
+          color: AppColors.error,
           onTap: () => onRatingSelected(false),
         ),
         _buildRatingButton(
           label: "Hard",
-          color: Colors.orangeAccent,
+          color: AppColors.warning,
           onTap: () => onRatingSelected(true),
         ),
         _buildRatingButton(
           label: "Good",
-          color: Colors.indigoAccent,
+          color: AppColors.primary,
           onTap: () => onRatingSelected(true),
         ),
         _buildRatingButton(
           label: "Easy",
-          color: Colors.greenAccent,
+          color: AppColors.success,
           onTap: () => onRatingSelected(true),
         ),
       ],
@@ -46,30 +49,13 @@ class ReviewRatingBar extends StatelessWidget {
   }) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
-        child: Opacity(
-          opacity: isSubmitting ? 0.6 : 1.0,
-          child: ElevatedButton(
-            onPressed: isSubmitting ? null : onTap,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey[900],
-              foregroundColor: color,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side:
-                    BorderSide(color: color.withValues(alpha: 0.3), width: 1.5),
-              ),
-            ),
-            child: Text(
-              label,
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+        child: PrimaryButton(
+          text: label,
+          onPressed: onTap,
+          isFilled: false,
+          color: color,
+          isLoading: isSubmitting,
         ),
       ),
     );

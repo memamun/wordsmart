@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tokens/app_colors.dart';
 
 class BookmarkButton extends StatefulWidget {
   final bool isBookmarked;
@@ -50,14 +51,13 @@ class _BookmarkButtonState extends State<BookmarkButton> {
             widget.isBookmarked
                 ? Icons.star_rounded
                 : Icons.star_outline_rounded,
-            color: widget.isBookmarked
-                ? const Color(0xFFFFB900)
-                : const Color(0xFF888888),
+            color:
+                widget.isBookmarked ? AppColors.warning : AppColors.textMuted,
             size: 24,
             shadows: widget.isBookmarked
                 ? [
-                    const Shadow(
-                      color: Color(0x4DFFB900),
+                    Shadow(
+                      color: AppColors.warning.withValues(alpha: 0.3),
                       blurRadius: 8,
                     )
                   ]

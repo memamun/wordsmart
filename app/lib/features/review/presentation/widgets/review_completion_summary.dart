@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/review_session.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 
 class ReviewCompletionSummary extends StatelessWidget {
   final ReviewSession session;
@@ -57,15 +60,15 @@ class ReviewCompletionSummary extends StatelessWidget {
                 color: Colors.grey[400],
               ),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: AppSpacing.xxl),
             // Statistics Grid Card
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.grey[850]!),
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(AppSpacing.radiusXxl),
+                border: Border.all(color: AppColors.divider),
               ),
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppSpacing.lg),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -84,22 +87,10 @@ class ReviewCompletionSummary extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 48),
-            ElevatedButton(
+            const SizedBox(height: AppSpacing.xxl),
+            PrimaryButton(
               onPressed: onContinue,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigoAccent,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                "Continue",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+              text: "Continue",
             ),
           ],
         ),

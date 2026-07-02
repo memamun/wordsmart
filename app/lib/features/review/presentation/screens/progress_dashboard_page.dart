@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/navigation/app_navigator.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 import '../providers/providers.dart';
 import '../providers/progress_state.dart';
 import '../widgets/dashboard/activity_timeline.dart';
@@ -85,10 +87,10 @@ class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey[400], fontSize: 14),
               ),
-              const SizedBox(height: 24),
-              ElevatedButton(
+              const SizedBox(height: AppSpacing.md),
+              PrimaryButton(
                 onPressed: () => notifier.loadMetrics(now: DateTime.now()),
-                child: const Text("Retry"),
+                text: "Retry",
               ),
             ],
           ),
@@ -100,10 +102,10 @@ class _ProgressDashboardPageState extends ConsumerState<ProgressDashboardPage> {
       final metrics = state.metrics;
 
       return ListView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(AppSpacing.md),
         children: [
           ProgressSummaryCard(metrics: metrics),
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.md),
           NextActionCard(
             dueCount: metrics.dueToday,
             onActionPressed: () {

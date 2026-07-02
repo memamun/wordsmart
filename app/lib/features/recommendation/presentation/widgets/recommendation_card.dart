@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
 import '../../domain/entities/recommendation.dart';
 
 class RecommendationCard extends StatelessWidget {
@@ -17,11 +18,14 @@ class RecommendationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
+      padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
         border: Border.all(color: AppColors.divider),
       ),
       child: Row(
@@ -30,16 +34,16 @@ class RecommendationCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: AppColors.teal.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(12),
+              color: AppColors.primary.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
             ),
             child: Icon(
               _iconForType(recommendation.type),
-              color: AppColors.teal,
+              color: AppColors.primary,
               size: 22,
             ),
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,15 +71,19 @@ class RecommendationCard extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AppSpacing.sm),
           TextButton(
             onPressed: onAction,
             style: TextButton.styleFrom(
-              backgroundColor: AppColors.teal,
+              backgroundColor: AppColors.primary,
               foregroundColor: AppColors.textPrimary,
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+              ),
             ),
             child: Text(
               recommendation.actionLabel,

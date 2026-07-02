@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tokens/app_colors.dart';
 
 class AudioButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -38,16 +39,16 @@ class _AudioButtonState extends State<AudioButton> {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: const Color(0xFF26A69A).withValues(alpha: 0.08),
+            color: AppColors.primary.withValues(alpha: 0.08),
             shape: BoxShape.circle,
             border: Border.all(
-              color: const Color(0xFF26A69A).withValues(alpha: 0.15),
+              color: AppColors.primary.withValues(alpha: 0.15),
               width: 1,
             ),
           ),
           child: const Icon(
             Icons.volume_up_rounded,
-            color: Color(0xFF26A69A),
+            color: AppColors.primary,
             size: 20,
           ),
         ),

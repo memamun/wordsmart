@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../tokens/app_colors.dart';
 
 class EmptyState extends StatelessWidget {
   final IconData icon;
@@ -37,7 +38,7 @@ class EmptyState extends StatelessWidget {
                 fontFamily: 'Outfit',
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFFF5F5F5), // off-white
+                color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 8),
@@ -47,7 +48,7 @@ class EmptyState extends StatelessWidget {
               style: const TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 14,
-                color: Color(0xFF888888), // muted gray
+                color: AppColors.textMuted,
                 height: 1.4,
               ),
             ),
@@ -56,12 +57,12 @@ class EmptyState extends StatelessWidget {
               TextButton(
                 onPressed: onActionPressed,
                 style: TextButton.styleFrom(
-                  foregroundColor: const Color(0xFF26A69A), // Teal action text
+                  foregroundColor: AppColors.primary,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: Color(0xFF26A69A), width: 1),
+                    side: const BorderSide(color: AppColors.primary, width: 1),
                   ),
                 ),
                 child: Text(

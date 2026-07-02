@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 
 class SessionFooter extends StatelessWidget {
   final String buttonText;
@@ -17,37 +20,23 @@ class SessionFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.grey[200]!)),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.md,
+      ),
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        border: Border(top: BorderSide(color: AppColors.divider)),
       ),
       child: SafeArea(
         child: SizedBox(
           width: double.infinity,
-          height: 52,
-          child: ElevatedButton(
+          child: PrimaryButton(
             key: const Key('session_footer_button'),
-            onPressed: (isButtonEnabled && !isSubmitting) ? onPressed : null,
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              backgroundColor: Theme.of(context).primaryColor,
-              foregroundColor: Colors.white,
-              elevation: 0,
-            ),
-            child: isSubmitting
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                        strokeWidth: 2, color: Colors.white),
-                  )
-                : Text(
-                    buttonText,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+            text: buttonText,
+            onPressed: onPressed,
+            isLoading: isSubmitting,
+            isDisabled: !isButtonEnabled,
           ),
         ),
       ),

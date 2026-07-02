@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/navigation/app_navigator.dart';
+import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
+import '../../../../core/design_system/buttons/primary_button.dart';
 import '../providers/providers.dart';
 import '../providers/review_session_state.dart';
 import '../widgets/review_completion_summary.dart';
@@ -122,7 +125,8 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
       final currentCard = state.currentCard;
 
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg, vertical: AppSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -130,7 +134,7 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
               currentIndex: state.currentIndex + 1,
               totalCount: session.queue.cards.length,
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: AppSpacing.xl),
             Expanded(
               child: ReviewFlashcard(
                 card: currentCard,
@@ -138,24 +142,11 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
                 onTap: () => notifier.flipCard(),
               ),
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: AppSpacing.xl),
             if (state.isFrontSide) ...[
-              ElevatedButton(
+              PrimaryButton(
+                text: "Reveal Definition",
                 onPressed: () => notifier.flipCard(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey[900],
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: BorderSide(color: Colors.grey[850]!),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  "Tap Card to Reveal Definition",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
               ),
             ] else ...[
               ReviewRatingBar(

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
 import '../../domain/entities/story_paragraph.dart';
 
 class StoryParagraphBlock extends StatelessWidget {
@@ -17,10 +18,10 @@ class StoryParagraphBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXxl),
         border: Border.all(color: AppColors.divider),
       ),
       child: Column(
@@ -36,9 +37,9 @@ class StoryParagraphBlock extends StatelessWidget {
             ),
           ),
           if (paragraph.bengaliText.isNotEmpty) ...[
-            const SizedBox(height: 18),
+            const SizedBox(height: AppSpacing.md),
             const Divider(color: AppColors.divider),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             Text(
               paragraph.bengaliText.replaceAll('**', ''),
               style: const TextStyle(
@@ -67,10 +68,10 @@ class StoryParagraphBlock extends StatelessWidget {
       spans.add(TextSpan(
         text: word,
         style: const TextStyle(
-          color: AppColors.amber,
+          color: AppColors.warning,
           fontWeight: FontWeight.w700,
           decoration: TextDecoration.underline,
-          decorationColor: AppColors.amber,
+          decorationColor: AppColors.warning,
         ),
         recognizer: TapGestureRecognizer()..onTap = () => onWordTap(word),
       ));

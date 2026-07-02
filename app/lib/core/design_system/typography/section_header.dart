@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../tokens/app_colors.dart';
+import '../tokens/app_spacing.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -8,7 +10,7 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
       child: Text(
         title.toUpperCase(),
         style: const TextStyle(
@@ -16,7 +18,7 @@ class SectionHeader extends StatelessWidget {
           fontSize: 13,
           fontWeight: FontWeight.w600,
           letterSpacing: 1.5,
-          color: Color(0xFFB0B0B0), // muted secondary text color
+          color: AppColors.textSecondary, // muted secondary text color
         ),
       ),
     );

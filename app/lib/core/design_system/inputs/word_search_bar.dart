@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../tokens/app_colors.dart';
+import '../tokens/app_spacing.dart';
 
 class WordSearchBar extends StatefulWidget {
   final ValueChanged<String> onChanged;
@@ -65,12 +67,12 @@ class _WordSearchBarState extends State<WordSearchBar> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E), // Level 1 surface
-        borderRadius: BorderRadius.circular(24),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusFull),
         border: Border.all(
           color: _isFocused
-              ? const Color(0xFFFFB900) // Amber on focus
-              : Colors.white.withValues(alpha: 0.08),
+              ? AppColors.warning // Amber on focus
+              : AppColors.divider,
           width: 1.2,
         ),
       ),
@@ -80,7 +82,7 @@ class _WordSearchBarState extends State<WordSearchBar> {
             IconButton(
               icon: const Icon(
                 Icons.arrow_back_rounded,
-                color: Color(0xFFB0B0B0),
+                color: AppColors.textSecondary,
               ),
               onPressed: widget.onBackTap,
             )
@@ -89,7 +91,7 @@ class _WordSearchBarState extends State<WordSearchBar> {
               padding: EdgeInsets.only(left: 16.0, right: 8.0),
               child: Icon(
                 Icons.search_rounded,
-                color: Color(0xFFB0B0B0),
+                color: AppColors.textSecondary,
                 size: 22,
               ),
             ),
@@ -103,14 +105,14 @@ class _WordSearchBarState extends State<WordSearchBar> {
               style: const TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 16,
-                color: Color(0xFFF5F5F5), // off-white
+                color: AppColors.textPrimary,
               ),
               decoration: InputDecoration(
                 hintText: widget.placeholder,
                 hintStyle: const TextStyle(
                   fontFamily: 'Inter',
                   fontSize: 15,
-                  color: Color(0xFF888888), // muted hint
+                  color: AppColors.textMuted, // muted hint
                 ),
                 border: InputBorder.none,
                 isDense: true,
@@ -122,7 +124,7 @@ class _WordSearchBarState extends State<WordSearchBar> {
             IconButton(
               icon: const Icon(
                 Icons.close_rounded,
-                color: Color(0xFFB0B0B0),
+                color: AppColors.textSecondary,
                 size: 20,
               ),
               onPressed: _clearSearch,

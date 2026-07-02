@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../core/design_system/tokens/app_spacing.dart';
 import '../../domain/entities/highlighted_word.dart';
 
 class WordContextSheet extends StatelessWidget {
@@ -15,10 +16,16 @@ class WordContextSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.lg,
+        AppSpacing.md,
+        AppSpacing.lg,
+        AppSpacing.xl,
+      ),
       decoration: const BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius:
+            BorderRadius.vertical(top: Radius.circular(AppSpacing.radiusXxl)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -33,7 +40,7 @@ class WordContextSheet extends StatelessWidget {
                     fontFamily: 'Outfit',
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.amber,
+                    color: AppColors.warning,
                   ),
                 ),
               ),
@@ -44,7 +51,7 @@ class WordContextSheet extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
           Text(
             word.definition,
             style: const TextStyle(
@@ -55,25 +62,25 @@ class WordContextSheet extends StatelessWidget {
             ),
           ),
           if (word.bengaliMeaning.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             Text(
               word.bengaliMeaning,
               style: const TextStyle(
                 fontFamily: 'Hind Siliguri',
                 fontSize: 16,
-                color: AppColors.teal,
+                color: AppColors.primary,
                 height: 1.45,
               ),
             ),
           ],
-          const SizedBox(height: 18),
+          const SizedBox(height: AppSpacing.md),
           OutlinedButton.icon(
             onPressed: onClose,
             icon: const Icon(Icons.menu_book_rounded),
             label: const Text('Continue Reading'),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.textPrimary,
-              side: const BorderSide(color: AppColors.teal),
+              side: const BorderSide(color: AppColors.primary),
             ),
           ),
         ],

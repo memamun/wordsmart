@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/design_system/buttons/primary_button.dart';
+import '../../../../../core/design_system/tokens/app_colors.dart';
+import '../../../../../core/design_system/tokens/app_spacing.dart';
 
 class NextActionCard extends StatelessWidget {
   final int dueCount;
@@ -16,27 +19,27 @@ class NextActionCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey[850]!),
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXxl),
+        border: Border.all(color: AppColors.divider),
       ),
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: (hasDue ? Colors.indigoAccent : Colors.greenAccent)
+              color: (hasDue ? AppColors.primary : AppColors.success)
                   .withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
               hasDue ? Icons.alarm : Icons.done_all,
-              color: hasDue ? Colors.indigoAccent : Colors.greenAccent,
+              color: hasDue ? AppColors.primary : AppColors.success,
               size: 28,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +47,7 @@ class NextActionCard extends StatelessWidget {
                 Text(
                   hasDue ? "Reviews Ready" : "Up to Date",
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -54,29 +57,19 @@ class NextActionCard extends StatelessWidget {
                   hasDue
                       ? "You have $dueCount words due for review."
                       : "Awesome! You have no pending reviews.",
-                  style: TextStyle(
-                    color: Colors.grey[400],
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
                     fontSize: 13,
                   ),
                 ),
               ],
             ),
           ),
-          ElevatedButton(
+          PrimaryButton(
+            width: 100,
+            text: hasDue ? "Review" : "Explore",
             onPressed: onActionPressed,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: hasDue ? Colors.indigoAccent : Colors.grey[850],
-              foregroundColor: Colors.white,
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            child: Text(
-              hasDue ? "Review" : "Explore",
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            color: hasDue ? AppColors.primary : AppColors.surfaceHigh,
           ),
         ],
       ),
