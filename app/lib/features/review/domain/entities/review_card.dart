@@ -11,6 +11,9 @@ class ReviewCard {
   final int repetitionCount;
   final ReviewMode mode;
 
+  final DateTime? lastReviewedAt;
+  final DateTime? nextReviewAt;
+
   const ReviewCard._({
     required this.word,
     required this.learningState,
@@ -20,6 +23,8 @@ class ReviewCard {
     required this.intervalDays,
     required this.repetitionCount,
     required this.mode,
+    this.lastReviewedAt,
+    this.nextReviewAt,
   });
 
   factory ReviewCard({
@@ -31,6 +36,8 @@ class ReviewCard {
     required int intervalDays,
     required int repetitionCount,
     required ReviewMode mode,
+    DateTime? lastReviewedAt,
+    DateTime? nextReviewAt,
   }) {
     if (easinessFactor < 1.3) {
       throw ArgumentError('Easiness factor cannot be less than 1.3. Received: $easinessFactor');
@@ -50,6 +57,8 @@ class ReviewCard {
       intervalDays: intervalDays,
       repetitionCount: repetitionCount,
       mode: mode,
+      lastReviewedAt: lastReviewedAt,
+      nextReviewAt: nextReviewAt,
     );
   }
 }
