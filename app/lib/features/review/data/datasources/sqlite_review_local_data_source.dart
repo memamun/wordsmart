@@ -96,15 +96,6 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
         ],
       );
 
-      // 4. Log Learning Event via abstraction
-      await eventLogger.logEvent(
-        wordId: wordId.toString(),
-        eventType: 'review',
-        timestamp: DateTime.parse(lastReviewedAt),
-        referenceId: session.id,
-        referenceType: 'study_session',
-      );
-
       // 5. Log Weak Word Event if difficulty is high
       if (easeFactor < 1.8) {
         final weakEventId = 'weak-${session.id}-$wordId';
@@ -119,6 +110,15 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
         );
       }
     });
+
+    // 4. Log Learning Event via abstraction (called outside transaction to prevent deadlocks)
+    await eventLogger.logEvent(
+      wordId: wordId.toString(),
+      eventType: 'review',
+      timestamp: DateTime.parse(lastReviewedAt),
+      referenceId: session.id,
+      referenceType: 'study_session',
+    );
   }
 
   @override
