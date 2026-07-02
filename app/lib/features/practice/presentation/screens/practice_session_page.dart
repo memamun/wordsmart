@@ -13,11 +13,30 @@ import '../widgets/question_renderer.dart';
 import '../widgets/session_footer.dart';
 import 'practice_summary_page.dart';
 
-class PracticeSessionPage extends ConsumerWidget {
+class PracticeSessionPage extends ConsumerStatefulWidget {
   const PracticeSessionPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PracticeSessionPage> createState() =>
+      _PracticeSessionPageState();
+}
+
+class _PracticeSessionPageState extends ConsumerState<PracticeSessionPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(practiceSessionNotifierProvider.notifier).startSession(
+            id: 'practice-${DateTime.now().millisecondsSinceEpoch}',
+            limit: 10,
+            mode: PracticeMode.mixed,
+            now: DateTime.now(),
+          );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(practiceSessionNotifierProvider);
     final notifier = ref.read(practiceSessionNotifierProvider.notifier);
 
