@@ -30,10 +30,111 @@ class DatabaseInitializer {
     // Open connection
     final db = await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onConfigure: (db) async {
         // Enforce SQLite constraints on every connection open
         await db.execute('PRAGMA foreign_keys = ON;');
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          // 1. Alter progress table
+          await db.execute('ALTER TABLE progress ADD COLUMN ease_factor REAL DEFAULT 2.5;');
+          await db.execute('ALTER TABLE progress ADD COLUMN interval_days INTEGER DEFAULT 0;');
+          await db.execute('ALTER TABLE progress ADD COLUMN repetitions INTEGER DEFAULT 0;');
+          await db.execute('ALTER TABLE progress ADD COLUMN learning_state TEXT DEFAULT "newCard";');
+
+          // 2. Create progress indexes
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_next_review_at ON progress(next_review_at);');
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_learning_state ON progress(learning_state);');
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_progress_word_id ON progress(word_id);');
+
+          // 3. Create study_sessions table & index
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS study_sessions (
+              id TEXT PRIMARY KEY,
+              mode TEXT NOT NULL,
+              started_at TEXT NOT NULL,
+              finished_at TEXT NOT NULL,
+              reviewed_cards INTEGER NOT NULL,
+              correct_answers INTEGER NOT NULL,
+              incorrect_answers INTEGER NOT NULL,
+              duration_seconds INTEGER NOT NULL
+            );
+          ''');
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_study_sessions_started_at ON study_sessions(started_at);');
+
+          // 4. Create learning_events table & index
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS learning_events (
+              id TEXT PRIMARY KEY,
+              word_id INTEGER NOT NULL,
+              event_type TEXT NOT NULL,
+              logged_at TEXT NOT NULL,
+              reference_id TEXT,
+              reference_type TEXT
+            );
+          ''');
+          await db.execute('CREATE INDEX IF NOT EXISTS idx_learning_events_logged_at ON learning_events(logged_at);');
+
+          // 5. Create other required tables
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS quiz_attempts (
+              id TEXT PRIMARY KEY,
+              score REAL NOT NULL,
+              started_at TEXT NOT NULL,
+              finished_at TEXT NOT NULL
+            );
+          ''');
+
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS story_progress (
+              id TEXT PRIMARY KEY,
+              story_id INTEGER NOT NULL,
+              chapter INTEGER NOT NULL,
+              paragraph INTEGER NOT NULL,
+              offset INTEGER NOT NULL,
+              last_studied_at TEXT NOT NULL
+            );
+          ''');
+
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS daily_goals (
+              id TEXT PRIMARY KEY,
+              date TEXT UNIQUE NOT NULL,
+              target_reviews INTEGER NOT NULL,
+              completed_reviews INTEGER NOT NULL,
+              target_minutes INTEGER NOT NULL,
+              completed_minutes INTEGER NOT NULL
+            );
+          ''');
+
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS learning_profile (
+              id TEXT PRIMARY KEY,
+              preferred_learning_mode TEXT NOT NULL,
+              daily_goal INTEGER NOT NULL,
+              preferred_story_language TEXT NOT NULL,
+              audio_autoplay INTEGER NOT NULL
+            );
+          ''');
+
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS weak_word_events (
+              id TEXT PRIMARY KEY,
+              word_id INTEGER NOT NULL,
+              weakness_reason TEXT NOT NULL,
+              logged_at TEXT NOT NULL
+            );
+          ''');
+
+          await db.execute('''
+            CREATE TABLE IF NOT EXISTS milestones (
+              id TEXT PRIMARY KEY,
+              name TEXT NOT NULL,
+              completed_at TEXT NOT NULL
+            );
+          ''');
+        }
       },
     );
 
