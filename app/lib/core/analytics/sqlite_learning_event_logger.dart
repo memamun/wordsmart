@@ -20,7 +20,7 @@ class SQLiteLearningEventLogger implements LearningEventLogger {
 
     await db.rawInsert(
       '''
-      INSERT INTO learning_events (
+      INSERT OR IGNORE INTO learning_events (
         id, word_id, event_type, logged_at, reference_id, reference_type
       ) VALUES (?, ?, ?, ?, ?, ?);
       ''',

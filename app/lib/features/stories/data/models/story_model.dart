@@ -35,8 +35,9 @@ class StoryModel {
     final words = (jsonDecode(wordsCoveredJson) as List<dynamic>)
         .map((value) => value.toString())
         .toList();
-    final mapping = (jsonDecode(vocabularyMappingJson) as List<dynamic>)
-        .cast<Map<String, dynamic>>();
+    final mapping = (jsonDecode(vocabularyMappingJson) as List)
+        .map((item) => Map<String, dynamic>.from(item as Map))
+        .toList();
 
     return Story(
       id: id,

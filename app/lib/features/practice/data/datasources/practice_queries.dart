@@ -8,7 +8,7 @@ class PracticeQueries {
       w.pronunciation, 
       w.part_of_speech, 
       w.level, 
-      w.audio_path, 
+      w.audio as audio_path, 
       w.mnemonic,
       p.is_read, 
       p.is_reviewed, 
@@ -36,7 +36,7 @@ class PracticeQueries {
       w.pronunciation, 
       w.part_of_speech, 
       w.level, 
-      w.audio_path, 
+      w.audio as audio_path, 
       w.mnemonic
     FROM words w;
   ''';

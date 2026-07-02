@@ -19,6 +19,7 @@ import '../../features/review/domain/repositories/review_repository.dart';
 import '../learning/engine/learning_signal_analyzer.dart';
 import '../learning/engine/sm2_engine.dart';
 import '../learning/usecases/submit_learning_result.dart';
+import '../learning/repositories/learning_repository.dart';
 import '../../features/review/domain/services/review_queue_builder.dart';
 import '../../features/review/domain/services/review_scheduler.dart';
 import '../../features/review/domain/usecases/finish_review_session.dart';
@@ -105,6 +106,9 @@ Future<void> init() async {
   // Review Repositories
   sl.registerLazySingleton<ReviewRepository>(
     () => ReviewRepositoryImpl(localDataSource: sl(), queueBuilder: sl()),
+  );
+  sl.registerLazySingleton<LearningRepository>(
+    () => sl<ReviewRepository>(),
   );
 
   // Review Use Cases

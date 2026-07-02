@@ -1,4 +1,5 @@
 import '../../../../core/learning/entities/learning_value_objects.dart';
+import '../../../../core/learning/entities/learning_card.dart';
 
 // Re-export ALL value objects from core/learning/
 export '../../../../core/learning/entities/learning_value_objects.dart';
@@ -18,7 +19,7 @@ class QueueStatistics {
     required this.relearnCount,
   });
 
-  factory QueueStatistics.calculate(List<dynamic> cards) {
+  factory QueueStatistics.calculate(List<LearningCard> cards) {
     int n = 0;
     int r = 0;
     int rl = 0;

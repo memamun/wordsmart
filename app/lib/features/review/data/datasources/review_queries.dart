@@ -8,7 +8,7 @@ class ReviewQueries {
       w.pronunciation, 
       w.part_of_speech, 
       w.level, 
-      w.audio_path, 
+      w.audio as audio_path, 
       w.mnemonic,
       p.is_read, 
       p.is_reviewed, 
@@ -88,7 +88,13 @@ class ReviewQueries {
       correct_answers, 
       incorrect_answers, 
       duration_seconds
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      finished_at = excluded.finished_at,
+      reviewed_cards = reviewed_cards + excluded.reviewed_cards,
+      correct_answers = correct_answers + excluded.correct_answers,
+      incorrect_answers = incorrect_answers + excluded.incorrect_answers,
+      duration_seconds = duration_seconds + excluded.duration_seconds;
   ''';
 
   static const String selectAllStudySessions = '''
@@ -105,7 +111,7 @@ class ReviewQueries {
   ''';
 
   static const String insertLearningEvent = '''
-    INSERT INTO learning_events (
+    INSERT OR IGNORE INTO learning_events (
       id, 
       word_id, 
       event_type, 
@@ -116,7 +122,7 @@ class ReviewQueries {
   ''';
 
   static const String insertWeakWordEvent = '''
-    INSERT INTO weak_word_events (
+    INSERT OR IGNORE INTO weak_word_events (
       id, 
       word_id, 
       weakness_reason, 
