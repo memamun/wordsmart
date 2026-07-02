@@ -1,11 +1,11 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/navigation/app_navigator.dart';
 import '../../domain/entities/practice_question.dart';
 import '../providers/practice_session_state.dart';
 import '../providers/providers.dart';
 import '../widgets/answer_feedback_card.dart';
-import '../widgets/practice_empty_state.dart';
+import '../../../../core/design_system/states/empty_state.dart';
 import '../widgets/practice_loading_skeleton.dart';
 import '../widgets/practice_progress_header.dart';
 import '../widgets/question_card.dart';
@@ -27,9 +27,12 @@ class PracticeSessionPage extends ConsumerWidget {
 
     if (state is PracticeSessionFailure) {
       return Scaffold(
-        body: PracticeEmptyState(
-          message: 'Could not load practice session.\n${state.failure.toString()}',
-          onRetry: () => AppNavigator.pop(context),
+        body: EmptyState(
+          icon: Icons.error_outline,
+          title: 'Error loading session',
+          description: state.failure.toString(),
+          actionLabel: 'Back to Home',
+          onActionPressed: () => AppNavigator.pop(context),
         ),
       );
     }

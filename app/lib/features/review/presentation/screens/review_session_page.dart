@@ -4,7 +4,7 @@ import '../../../../core/navigation/app_navigator.dart';
 import '../providers/providers.dart';
 import '../providers/review_session_state.dart';
 import '../widgets/review_completion_summary.dart';
-import '../widgets/review_empty_state.dart';
+import '../../../../core/design_system/states/empty_state.dart';
 import '../widgets/review_flashcard.dart';
 import '../widgets/review_loading_skeleton.dart';
 import '../widgets/review_progress_header.dart';
@@ -104,8 +104,12 @@ class _ReviewSessionPageState extends ConsumerState<ReviewSessionPage> {
     if (state is ReviewSessionActive) {
       final session = state.session;
       if (session.queue.cards.isEmpty) {
-        return ReviewEmptyState(
-          onHomePressed: () => AppNavigator.pop(context),
+        return EmptyState(
+          icon: Icons.check_circle_outline,
+          title: "All Caught Up!",
+          description: "You have completed all scheduled card reviews for today. Check back tomorrow or search for new words to learn!",
+          actionLabel: "Back to Home",
+          onActionPressed: () => AppNavigator.pop(context),
         );
       }
 
