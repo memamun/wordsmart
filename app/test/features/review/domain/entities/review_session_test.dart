@@ -64,7 +64,7 @@ void main() {
       );
 
       // Answer first card correctly (rating 4)
-      final session2 = session.answerCard(const ReviewRating(4));
+      final session2 = session.answerCard(ReviewRating.good);
 
       expect(session2.currentIndex, 1);
       expect(session2.reviewedCount, 1);
@@ -74,7 +74,7 @@ void main() {
       expect(session2.isCompleted, false);
 
       // Answer second card incorrectly (rating 1)
-      final session3 = session2.answerCard(const ReviewRating(1), now: DateTime(2026, 7, 2, 10, 5));
+      final session3 = session2.answerCard(ReviewRating.incorrect, now: DateTime(2026, 7, 2, 10, 5));
 
       expect(session3.currentIndex, 2);
       expect(session3.reviewedCount, 2);
@@ -92,12 +92,12 @@ void main() {
       );
 
       final completedSession = session
-          .answerCard(const ReviewRating(5))
-          .answerCard(const ReviewRating(2));
+          .answerCard(ReviewRating.easy)
+          .answerCard(ReviewRating.difficult);
 
       expect(completedSession.isCompleted, true);
       expect(() => completedSession.currentCard, throwsStateError);
-      expect(() => completedSession.answerCard(const ReviewRating(4)), throwsStateError);
+      expect(() => completedSession.answerCard(ReviewRating.good), throwsStateError);
     });
 
     test('should reject invalid constructor statistics', () {

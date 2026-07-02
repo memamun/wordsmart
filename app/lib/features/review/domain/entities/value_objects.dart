@@ -21,17 +21,19 @@ enum ReviewPriority {
   critical
 }
 
-class ReviewRating {
-  final int value;
+enum ReviewRating {
+  completeBlackout, // 0
+  incorrect,        // 1
+  difficult,        // 2
+  hard,             // 3
+  good,             // 4
+  easy,             // 5
+}
 
-  const ReviewRating(this.value) {
-    if (value < 0 || value > 5) {
-      throw ArgumentError('Review rating must be between 0 and 5. Received: $value');
-    }
-  }
-
-  bool get isCorrect => value >= 3;
-  bool get isPerfect => value == 5;
+extension ReviewRatingExtension on ReviewRating {
+  int get score => index;
+  bool get isCorrect => index >= 3;
+  bool get isPerfect => index == 5;
 }
 
 class QueueStatistics {
