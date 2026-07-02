@@ -8,6 +8,15 @@ enum QuestionType {
   sentenceCompletion,
 }
 
+enum PracticeMode {
+  mixed,
+  definition,
+  synonym,
+  antonym,
+  spelling,
+  sentenceCompletion,
+}
+
 class PracticeQuestion {
   final Word word;
   final QuestionType type;
