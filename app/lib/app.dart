@@ -14,8 +14,8 @@ class WordSmartApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColors.canvas,
         colorScheme: ColorScheme.dark(
-          primary: AppColors.teal,
-          secondary: AppColors.amber,
+          primary: AppColors.primary,
+          secondary: AppColors.warning,
           surface: AppColors.surface,
         ),
       ),

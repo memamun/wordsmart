@@ -1,62 +1,57 @@
 import 'package:flutter/material.dart';
 
-/// Centralized color tokens for the WordSmart design system.
-///
-/// All color literals should reference these tokens instead of
-/// inline `Color(0xFF...)` values. This ensures visual consistency
-/// and makes theme updates a single-file change.
-abstract final class AppColors {
-  // ── Canvas & Surface ──────────────────────────────────────────
-  /// Level 0 background canvas
+/// Raw hex colors defined by the brand guidelines.
+/// Features and widgets must NEVER reference this class directly.
+abstract final class AppPalette {
   static const Color canvas = Color(0xFF121212);
-
-  /// Level 1 elevated surface (cards, sheets)
   static const Color surface = Color(0xFF1E1E1E);
-
-  /// Level 2 elevated surface (dialogs, popovers)
   static const Color surfaceHigh = Color(0xFF2C2C2C);
-
-  // ── Brand ─────────────────────────────────────────────────────
-  /// Primary accent — teal
   static const Color teal = Color(0xFF26A69A);
-
-  /// Secondary accent — amber/gold
   static const Color amber = Color(0xFFFFB900);
-
-  /// Tertiary accent — coral/salmon
   static const Color coral = Color(0xFFFF8A80);
+  static const Color offWhite = Color(0xFFF5F5F5);
+  static const Color lightGrey = Color(0xFFB0B0B0);
+  static const Color mediumGrey = Color(0xFF888888);
+  static const Color darkGrey = Color(0xFF555555);
+  static const Color borderOverlay = Color(0x14FFFFFF); // 8% transparent white overlay
+  
+  // Legacy/utility palette elements
+  static const Color grey61 = Color(0xFF616161);
+  static const Color sandBiege = Color(0xFFD5C4AB);
+}
 
-  // ── Text ──────────────────────────────────────────────────────
-  /// Primary text (headings, titles)
-  static const Color textPrimary = Color(0xFFF5F5F5);
+/// Semantic colors used by widgets throughout the application.
+abstract final class AppColors {
+  static const Color canvas = AppPalette.canvas;
+  static const Color surface = AppPalette.surface;
+  static const Color surfaceHigh = AppPalette.surfaceHigh;
+  
+  /// Primary brand actions and triggers
+  static const Color primary = AppPalette.teal;
 
-  /// Secondary text (subtitles, descriptions)
-  static const Color textSecondary = Color(0xFFB0B0B0);
+  /// Intentionally identical to primary in v0.5.x.
+  /// They remain separate semantic tokens so they can diverge later
+  /// without changing widget code.
+  static const Color success = AppPalette.teal;
+  
+  static const Color error = AppPalette.coral; // Soft Red
+  static const Color warning = AppPalette.amber;
+  static const Color divider = AppPalette.borderOverlay;
+  
+  static const Color textPrimary = AppPalette.offWhite;
+  static const Color textSecondary = AppPalette.lightGrey;
+  static const Color textMuted = AppPalette.mediumGrey;
+  static const Color textDark = AppPalette.darkGrey;
+  
+  static const Color disabled = AppPalette.grey61;
+  static const Color mnemonicText = AppPalette.sandBiege;
 
-  /// Muted text (hints, timestamps)
-  static const Color textMuted = Color(0xFF888888);
-
-  /// Dark text for light surfaces
-  static const Color textDark = Color(0xFF555555);
-
-  // ── Feedback ──────────────────────────────────────────────────
-  /// Success / correct answer
-  static const Color success = Color(0xFF66BB6A);
-
-  /// Error / incorrect answer
-  static const Color error = Color(0xFFEF5350);
-
-  /// Warning / attention
-  static const Color warning = Color(0xFFFFA726);
-
-  // ── Utility ───────────────────────────────────────────────────
-  /// Divider / border
-  static const Color divider = Color(0xFF333333);
-
-  /// Disabled state
-  static const Color disabled = Color(0xFF616161);
-
-  // ── Semantic ──────────────────────────────────────────────────
-  /// Mnemonic / memory aid text
-  static const Color mnemonicText = Color(0xFFD5C4AB);
+  // Preserve some legacy tags temporarily to prevent compilation errors
+  // but mark them as deprecated/to-be-removed.
+  @deprecated
+  static const Color teal = AppPalette.teal;
+  @deprecated
+  static const Color amber = AppPalette.amber;
+  @deprecated
+  static const Color coral = AppPalette.coral;
 }
