@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/design_system/states/loading_skeleton.dart';
 
 class ReviewLoadingSkeleton extends StatelessWidget {
   const ReviewLoadingSkeleton({Key? key}) : super(key: key);
@@ -13,43 +14,35 @@ class ReviewLoadingSkeleton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Skeleton progress header
-            Container(
+            const LoadingSkeleton(
               height: 20,
-              decoration: BoxDecoration(
-                color: Colors.grey[850],
-                borderRadius: BorderRadius.circular(10),
-              ),
+              width: double.infinity,
+              borderRadius: 10,
             ),
             const SizedBox(height: 48),
             // Large Skeleton Card
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
+                  color: const Color(0xFF1E1E1E), // AppColors.surface
                   borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: Colors.grey[850]!),
+                  border: Border.all(color: const Color(0x14FFFFFF)), // AppColors.divider
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
+                      const LoadingSkeleton(
                         width: 150,
                         height: 32,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[850],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                        borderRadius: 8,
                       ),
                       const SizedBox(height: 16),
-                      Container(
+                      const LoadingSkeleton(
                         width: 100,
                         height: 16,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[850],
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                        borderRadius: 4,
                       ),
                     ],
                   ),
@@ -62,13 +55,10 @@ class ReviewLoadingSkeleton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(
                 4,
-                (index) => Container(
+                (index) => const LoadingSkeleton(
                   width: 70,
                   height: 48,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                  borderRadius: 12,
                 ),
               ),
             ),

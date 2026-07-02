@@ -1,4 +1,5 @@
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
+import '../../../../core/design_system/states/loading_skeleton.dart';
 
 class PracticeLoadingSkeleton extends StatelessWidget {
   const PracticeLoadingSkeleton({super.key});
@@ -12,25 +13,25 @@ class PracticeLoadingSkeleton extends StatelessWidget {
         children: [
           const SizedBox(height: 16),
           // Skeleton Bar for Header
-          Container(
+          const LoadingSkeleton(
             height: 24,
             width: 150,
-            decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(4)),
+            borderRadius: 4,
           ),
           const SizedBox(height: 24),
           // Skeleton card for Question
-          Container(
+          const LoadingSkeleton(
             height: 120,
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(16)),
+            borderRadius: 16,
           ),
           const SizedBox(height: 32),
           // MCQ options skeletons
           for (int i = 0; i < 4; i++) ...[
-            Container(
+            const LoadingSkeleton(
               height: 56,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(12)),
+              borderRadius: 12,
             ),
             const SizedBox(height: 12),
           ],
