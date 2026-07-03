@@ -25,6 +25,7 @@ class PracticeQueries {
       p.learning_state
     FROM words w
     LEFT JOIN progress p ON w.id = p.word_id
+    WHERE w.definition IS NOT NULL AND w.definition != ''
     ORDER BY
       CASE WHEN p.word_id IS NULL THEN 0 ELSE 1 END,
       p.next_review_at ASC;
@@ -41,6 +42,7 @@ class PracticeQueries {
       w.level, 
       w.audio as audio_path, 
       w.mnemonic
-    FROM words w;
+    FROM words w
+    WHERE w.definition IS NOT NULL AND w.definition != '';
   ''';
 }

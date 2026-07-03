@@ -69,6 +69,21 @@ class StubStoryRepository implements StoryRepository {
   @override
   Future<Either<Failure, int?>> findWordId(String word) async =>
       throw UnimplementedError();
+  @override
+  Future<Either<Failure, Map<int, StoryProgress>>> getAllProgress() async {
+    if (_progressResult != null) {
+      return _progressResult!.fold(
+        (failure) => Left(failure),
+        (progress) {
+          if (progress != null) {
+            return Right({progress.storyId: progress});
+          }
+          return const Right({});
+        },
+      );
+    }
+    return const Right({});
+  }
 }
 
 class MockGetProgressSummaryUseCase extends Mock

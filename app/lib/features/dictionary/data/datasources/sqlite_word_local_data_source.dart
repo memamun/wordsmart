@@ -1,4 +1,7 @@
 import '../../../../core/database/database.dart';
+import '../models/flashcard_model.dart';
+import '../models/hit_parade_model.dart';
+import '../models/specialized_vocab_model.dart';
 import '../models/word_derivative_model.dart';
 import '../models/word_example_model.dart';
 import '../models/word_model.dart';
@@ -63,10 +66,12 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
       }
     }
 
+    const stubFilter = ' AND definition IS NOT NULL AND definition != \'\'';
+
     // 1. Exact Headword Match
     final exact = await db.query(
       'words',
-      where: 'UPPER(word) = ?',
+      where: 'UPPER(word) = ?$stubFilter',
       whereArgs: [sanitizedQuery],
     );
     addResults(exact);
@@ -74,7 +79,7 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
     // 2. Prefix Match
     final prefix = await db.query(
       'words',
-      where: 'word LIKE ? AND UPPER(word) != ?',
+      where: 'word LIKE ? AND UPPER(word) != ?$stubFilter',
       whereArgs: ['$query%', sanitizedQuery],
       limit: 50,
     );
@@ -83,7 +88,7 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
     // 3. Whole Word Substring Match
     final substring = await db.query(
       'words',
-      where: 'word LIKE ? AND word NOT LIKE ?',
+      where: 'word LIKE ? AND word NOT LIKE ?$stubFilter',
       whereArgs: ['%$query%', '$query%'],
       limit: 50,
     );
@@ -94,6 +99,7 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
       SELECT w.* FROM words w
       INNER JOIN word_derivatives d ON w.id = d.word_id
       WHERE d.derivative_word LIKE ?
+      AND w.definition IS NOT NULL AND w.definition != ''
       LIMIT 30
     ''', ['%$query%']);
     addResults(derivative);
@@ -103,6 +109,7 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
       SELECT w.* FROM words w
       INNER JOIN word_synonyms s ON w.id = s.word_id
       WHERE s.synonym LIKE ?
+      AND w.definition IS NOT NULL AND w.definition != ''
       LIMIT 30
     ''', ['%$query%']);
     addResults(synonym);
@@ -110,7 +117,7 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
     // 6. Definition Match
     final definition = await db.query(
       'words',
-      where: 'definition LIKE ?',
+      where: 'definition LIKE ?$stubFilter',
       whereArgs: ['%$query%'],
       limit: 30,
     );
@@ -128,7 +135,8 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
     final List<Map<String, dynamic>> maps = await db.query(
       'words',
       columns: ['word'],
-      where: 'word LIKE ?',
+      where:
+          'word LIKE ? AND definition IS NOT NULL AND definition != \'\'',
       whereArgs: ['$sanitizedQuery%'],
       orderBy: 'word ASC',
       limit: 10,
@@ -221,5 +229,42 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
       WHERE wr.word_id = ?
     ''', [wordId]);
     return maps.map((row) => WordRootModel.fromDatabase(row)).toList();
+  }
+
+  @override
+  Future<FlashcardModel?> getFlashcard(int wordId) async {
+    final db = await databaseClient.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'flashcards',
+      where: 'word_id = ?',
+      whereArgs: [wordId],
+      limit: 1,
+    );
+    if (maps.isEmpty) return null;
+    return FlashcardModel.fromDatabase(maps.first);
+  }
+
+  @override
+  Future<List<HitParadeModel>> getHitParades() async {
+    final db = await databaseClient.database;
+    final List<Map<String, dynamic>> maps = await db.rawQuery('''
+      SELECT h.list_name, h.word_id, h.rank, w.word
+      FROM hit_parades h
+      INNER JOIN words w ON w.id = h.word_id
+      WHERE w.definition IS NOT NULL AND w.definition != ''
+      ORDER BY h.list_name, h.rank
+    ''');
+    return maps.map((row) => HitParadeModel.fromDatabase(row)).toList();
+  }
+
+  @override
+  Future<List<SpecializedVocabModel>> getSpecializedVocabulary() async {
+    final db = await databaseClient.database;
+    final List<Map<String, dynamic>> maps = await db.rawQuery('''
+      SELECT chapter_number, chapter_title, term, definition, examples
+      FROM specialized_vocabulary
+      ORDER BY chapter_number
+    ''');
+    return maps.map((row) => SpecializedVocabModel.fromDatabase(row)).toList();
   }
 }

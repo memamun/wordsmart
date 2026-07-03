@@ -136,7 +136,8 @@ class ReviewRepositoryImpl implements ReviewRepository {
   @override
   Future<Either<Failure, void>> logStudySession(StudySession session) async {
     try {
-      // Stub: Repository can implement standalone session logging if needed
+      final model = StudySessionMapper.toModel(session);
+      await localDataSource.saveStudySession(model);
       return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));

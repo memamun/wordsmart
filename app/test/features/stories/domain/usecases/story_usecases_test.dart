@@ -45,6 +45,11 @@ class MockStoryRepository implements StoryRepository {
   Future<Either<Failure, int?>> findWordId(String word) async {
     return const Right(null);
   }
+
+  @override
+  Future<Either<Failure, Map<int, StoryProgress>>> getAllProgress() async {
+    return const Right({});
+  }
 }
 
 void main() {

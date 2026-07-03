@@ -37,6 +37,11 @@ class MockReviewLocalDataSource implements ReviewLocalDataSource {
     if (dbException != null) throw dbException!;
     return sessionsResult ?? [];
   }
+
+  @override
+  Future<void> saveStudySession(StudySessionModel session) async {
+    if (dbException != null) throw dbException!;
+  }
 }
 
 void main() {

@@ -30,6 +30,11 @@ class StoryQueries {
     LIMIT 1;
   ''';
 
+  static const String selectAllProgress = '''
+    SELECT id, story_id, chapter, paragraph, offset, last_studied_at
+    FROM story_progress;
+  ''';
+
   static const String upsertProgress = '''
     INSERT INTO story_progress (id, story_id, chapter, paragraph, offset, last_studied_at)
     VALUES (?, ?, ?, ?, ?, ?)

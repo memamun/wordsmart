@@ -17,4 +17,6 @@ abstract class ReviewLocalDataSource {
   });
 
   Future<List<StudySessionModel>> getStudySessions();
+
+  Future<void> saveStudySession(StudySessionModel session);
 }

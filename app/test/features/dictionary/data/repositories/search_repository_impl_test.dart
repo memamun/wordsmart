@@ -1,6 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../../lib/core/error/failures.dart';
 import '../../../../../lib/features/dictionary/data/datasources/word_local_data_source.dart';
+import '../../../../../lib/features/dictionary/data/models/flashcard_model.dart';
+import '../../../../../lib/features/dictionary/data/models/hit_parade_model.dart';
+import '../../../../../lib/features/dictionary/data/models/specialized_vocab_model.dart';
 import '../../../../../lib/features/dictionary/data/models/word_model.dart';
 import '../../../../../lib/features/dictionary/data/models/word_example_model.dart';
 import '../../../../../lib/features/dictionary/data/models/word_derivative_model.dart';
@@ -57,6 +60,21 @@ class MockWordLocalDataSource implements WordLocalDataSource {
   @override
   Future<List<WordRootModel>> getRootsForWord(int wordId) =>
       throw UnimplementedError();
+
+  @override
+  Future<FlashcardModel?> getFlashcard(int wordId) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<HitParadeModel>> getHitParades() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<SpecializedVocabModel>> getSpecializedVocabulary() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {

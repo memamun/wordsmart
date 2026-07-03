@@ -5,6 +5,11 @@ import 'package:wordsmart/core/learning/entities/learning_value_objects.dart';
 import 'package:wordsmart/core/domain/entities/word.dart';
 import 'package:wordsmart/features/practice/data/datasources/practice_local_data_source.dart';
 import 'package:wordsmart/features/practice/data/repositories/practice_repository_impl.dart';
+import 'package:wordsmart/features/practice/data/models/vocab_drill_model.dart';
+import 'package:wordsmart/features/practice/data/models/mcq_quiz_model.dart';
+import 'package:wordsmart/features/practice/data/models/quick_quiz_model.dart';
+import 'package:wordsmart/features/practice/data/models/advanced_quiz_model.dart';
+import 'package:wordsmart/features/practice/data/models/final_exam_model.dart';
 
 class MockPracticeLocalDataSource implements PracticeLocalDataSource {
   List<LearningCard>? cardsResult;
@@ -21,6 +26,31 @@ class MockPracticeLocalDataSource implements PracticeLocalDataSource {
   Future<List<Map<String, dynamic>>> getDictionaryPool() async {
     if (dbException != null) throw dbException!;
     return poolResult ?? [];
+  }
+
+  @override
+  Future<VocabDrillModel?> getVocabDrill(int wordId) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<McqQuizModel>> getMcqQuizzes() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<QuickQuizModel>> getQuickQuizzes() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AdvancedQuizModel>> getAdvancedQuizzes() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<FinalExamModel>> getFinalExams() {
+    throw UnimplementedError();
   }
 }
 

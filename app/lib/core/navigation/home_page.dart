@@ -1,16 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/dictionary/presentation/screens/hit_parades_page.dart';
 import '../../features/dictionary/presentation/screens/search_page.dart';
-import '../../features/dictionary/presentation/providers/search_notifier.dart';
-import '../../features/dictionary/presentation/widgets/featured_word_card.dart';
-import '../../features/dictionary/presentation/widgets/word_list_tile.dart';
-import '../../core/navigation/app_navigator.dart';
-import '../../core/design_system/states/empty_state.dart';
-import '../../core/design_system/states/loading_skeleton.dart';
-import '../../core/design_system/inputs/word_search_bar.dart';
-import '../../core/design_system/typography/section_header.dart';
+import '../../features/dictionary/presentation/screens/specialized_vocab_page.dart';
+import '../../features/practice/presentation/screens/quizzes_list_page.dart';
 import '../../features/review/presentation/screens/progress_dashboard_page.dart';
 import '../../features/review/presentation/screens/review_session_page.dart';
 import '../../features/practice/presentation/screens/practice_session_page.dart';
@@ -18,6 +12,8 @@ import '../../features/stories/presentation/screens/story_reader_page.dart';
 import '../../features/recommendation/presentation/providers/providers.dart';
 import '../../features/recommendation/presentation/widgets/recommendation_list.dart';
 import '../design_system/tokens/app_colors.dart';
+import '../design_system/tokens/app_spacing.dart';
+import 'app_navigator.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -29,14 +25,6 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   int _currentIndex = 0;
 
-  final _featurePages = const [
-    SearchPage(),
-    StoryReaderPage(),
-    ReviewSessionPage(),
-    PracticeSessionPage(),
-    ProgressDashboardPage(),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -47,31 +35,17 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_currentIndex == 0) {
-      return _buildHomeWithRecommendations();
-    }
-
     return Scaffold(
+      backgroundColor: AppColors.canvas,
       body: IndexedStack(
         index: _currentIndex,
-        children: _featurePages,
-      ),
-      bottomNavigationBar: _buildNavBar(),
-    );
-  }
-
-  Widget _buildHomeWithRecommendations() {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            // SearchPage content without its own Scaffold/SafeArea wrapper
-            const Expanded(
-              child: _HomeSearchContent(),
-            ),
-            const RecommendationList(),
-          ],
-        ),
+        children: [
+          const _HomeDashboard(),
+          const StoryReaderPage(),
+          const ReviewSessionPage(),
+          const PracticeSessionPage(),
+          const ProgressDashboardPage(),
+        ],
       ),
       bottomNavigationBar: _buildNavBar(),
     );
@@ -85,31 +59,31 @@ class _HomePageState extends ConsumerState<HomePage> {
         setState(() => _currentIndex = index);
       },
       backgroundColor: AppColors.surface,
-      indicatorColor: AppColors.teal.withValues(alpha: 0.2),
+      indicatorColor: AppColors.primary.withValues(alpha: 0.2),
       destinations: const [
         NavigationDestination(
           icon: Icon(Icons.home_outlined, color: AppColors.textMuted),
-          selectedIcon: Icon(Icons.home, color: AppColors.teal),
+          selectedIcon: Icon(Icons.home, color: AppColors.primary),
           label: 'Home',
         ),
         NavigationDestination(
           icon: Icon(Icons.auto_stories_outlined, color: AppColors.textMuted),
-          selectedIcon: Icon(Icons.auto_stories, color: AppColors.teal),
+          selectedIcon: Icon(Icons.auto_stories, color: AppColors.primary),
           label: 'Stories',
         ),
         NavigationDestination(
           icon: Icon(Icons.psychology_outlined, color: AppColors.textMuted),
-          selectedIcon: Icon(Icons.psychology, color: AppColors.teal),
+          selectedIcon: Icon(Icons.psychology, color: AppColors.primary),
           label: 'Review',
         ),
         NavigationDestination(
           icon: Icon(Icons.fitness_center_outlined, color: AppColors.textMuted),
-          selectedIcon: Icon(Icons.fitness_center, color: AppColors.teal),
+          selectedIcon: Icon(Icons.fitness_center, color: AppColors.primary),
           label: 'Practice',
         ),
         NavigationDestination(
           icon: Icon(Icons.dashboard_outlined, color: AppColors.textMuted),
-          selectedIcon: Icon(Icons.dashboard, color: AppColors.teal),
+          selectedIcon: Icon(Icons.dashboard, color: AppColors.primary),
           label: 'Progress',
         ),
       ],
@@ -117,219 +91,471 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-class _HomeSearchContent extends ConsumerStatefulWidget {
-  const _HomeSearchContent();
+// ─── Home Dashboard ─────────────────────────────────────────────
+
+class _HomeDashboard extends ConsumerWidget {
+  const _HomeDashboard();
 
   @override
-  ConsumerState<_HomeSearchContent> createState() => _HomeSearchContentState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hour = DateTime.now().hour;
+    final greeting = hour < 12
+        ? 'Good Morning'
+        : hour < 17
+            ? 'Good Afternoon'
+            : 'Good Evening';
 
-class _HomeSearchContentState extends ConsumerState<_HomeSearchContent> {
-  Timer? _debounceTimer;
-  List<String> _suggestions = [];
-  bool _submitted = false;
-
-  void _onSearchChanged(String query) {
-    _debounceTimer?.cancel();
-    if (query.trim().isEmpty) {
-      setState(() {
-        _suggestions = [];
-        _submitted = false;
-      });
-      return;
-    }
-
-    _debounceTimer = Timer(const Duration(milliseconds: 300), () async {
-      if (!mounted) return;
-      if (!_submitted) {
-        final notifier = ref.read(searchNotifierProvider.notifier);
-        final suggestions = await notifier.getSuggestions(query);
-        setState(() {
-          _suggestions = suggestions;
-        });
-      }
-    });
-  }
-
-  void _onSearchSubmitted(String query) {
-    _debounceTimer?.cancel();
-    setState(() {
-      _submitted = true;
-      _suggestions = [];
-    });
-    ref.read(searchNotifierProvider.notifier).search(query);
-  }
-
-  @override
-  void dispose() {
-    _debounceTimer?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final searchState = ref.watch(searchNotifierProvider);
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          WordSearchBar(
-            autofocus: true,
-            onChanged: _onSearchChanged,
-            onSubmitted: _onSearchSubmitted,
-            onBackTap: () => AppNavigator.popToHome(context),
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          // ── Header ──────────────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg, AppSpacing.lg, AppSpacing.lg, AppSpacing.sm),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    greeting,
+                    style: const TextStyle(
+                      fontFamily: 'Outfit',
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textPrimary,
+                      height: 1.2,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'Ready to expand your vocabulary?',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 14,
+                      color: AppColors.textMuted,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: _buildContent(searchState),
+
+          // ── Search Bar (tappable, navigates to SearchPage) ──
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.lg, vertical: AppSpacing.sm),
+              child: GestureDetector(
+                onTap: () {
+                  HapticFeedback.lightImpact().catchError((_) {});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchPage()),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    borderRadius:
+                        BorderRadius.circular(AppSpacing.radiusFull),
+                    border: Border.all(color: AppColors.divider, width: 1.2),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.search_rounded,
+                          color: AppColors.textMuted, size: 22),
+                      SizedBox(width: 12),
+                      Text(
+                        'Search GRE / SAT vocabulary...',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 15,
+                          color: AppColors.textMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // ── Quick Actions ───────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg, AppSpacing.md, AppSpacing.lg, AppSpacing.xs),
+              child: Text(
+                'QUICK ACTIONS',
+                style: TextStyle(
+                  fontFamily: 'Outfit',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.5,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 148,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSpacing.lg - 6),
+                children: [
+                  _QuickActionCard(
+                    icon: Icons.psychology_rounded,
+                    label: 'Review',
+                    subtitle: 'Spaced repetition',
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF26A69A), Color(0xFF00796B)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ReviewSessionPage()),
+                    ),
+                  ),
+                  _QuickActionCard(
+                    icon: Icons.fitness_center_rounded,
+                    label: 'Practice',
+                    subtitle: 'Quiz yourself',
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFFB900), Color(0xFFE69500)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const PracticeSessionPage()),
+                    ),
+                  ),
+                  _QuickActionCard(
+                    icon: Icons.auto_stories_rounded,
+                    label: 'Stories',
+                    subtitle: 'Learn in context',
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF7C4DFF), Color(0xFF5C35CC)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const StoryReaderPage()),
+                    ),
+                  ),
+                  _QuickActionCard(
+                    icon: Icons.dashboard_rounded,
+                    label: 'Progress',
+                    subtitle: 'Your stats',
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFF8A80), Color(0xFFD32F2F)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ProgressDashboardPage()),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // ── Recommendations ─────────────────────────────────
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(top: AppSpacing.sm),
+              child: RecommendationList(),
+            ),
+          ),
+
+          // ── More Resources ──────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.lg,
+                AppSpacing.md,
+                AppSpacing.lg,
+                0,
+              ),
+              child: Text(
+                'More Resources',
+                style: TextStyle(
+                  fontFamily: 'Outfit',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 120,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSpacing.lg - 6),
+                children: [
+                  _ResourceCard(
+                    icon: Icons.quiz_rounded,
+                    label: 'Quizzes',
+                    subtitle: 'MCQ, Match & More',
+                    color: const Color(0xFF7C4DFF),
+                    onTap: () =>
+                        AppNavigator.pushQuizzesList(context),
+                  ),
+                  _ResourceCard(
+                    icon: Icons.library_books_rounded,
+                    label: 'SAT/GRE Lists',
+                    subtitle: 'Hit parades',
+                    color: const Color(0xFF26A69A),
+                    onTap: () =>
+                        AppNavigator.pushHitParades(context),
+                  ),
+                  _ResourceCard(
+                    icon: Icons.auto_stories_rounded,
+                    label: 'Thematic Vocab',
+                    subtitle: 'By chapter',
+                    color: const Color(0xFFFFB900),
+                    onTap: () =>
+                        AppNavigator.pushSpecializedVocab(context),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // ── Bottom padding ──────────────────────────────────
+          const SliverToBoxAdapter(
+            child: SizedBox(height: AppSpacing.lg),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildContent(searchState) {
-    if (searchState.isLoading) {
-      return _buildLoadingState();
-    }
+// ─── Resource Card ──────────────────────────────────────────────
 
-    if (searchState.failure != null) {
-      return EmptyState(
-        icon: Icons.error_outline_rounded,
-        title: 'Search Error',
-        description: searchState.failure!.message,
-        actionLabel: 'Retry',
-        onActionPressed: () => _onSearchSubmitted(searchState.query),
-      );
-    }
+class _ResourceCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String subtitle;
+  final Color color;
+  final VoidCallback onTap;
 
-    if (searchState.query.isEmpty && !_submitted) {
-      return const EmptyState(
-        icon: Icons.search_rounded,
-        title: 'Focused Enlightenment',
-        description:
-            'Type words above to explore definitions, roots, mnemonics, and synonyms.',
-      );
-    }
+  const _ResourceCard({
+    required this.icon,
+    required this.label,
+    required this.subtitle,
+    required this.color,
+    required this.onTap,
+  });
 
-    if (_suggestions.isNotEmpty && !_submitted) {
-      return ListView.builder(
-        itemCount: _suggestions.length,
-        itemBuilder: (context, index) {
-          final suggestion = _suggestions[index];
-          return ListTile(
-            leading: const Icon(Icons.history_toggle_off_rounded,
-                color: Colors.white24),
-            title: Text(
-              suggestion,
-              style: const TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 16,
-                color: AppColors.textPrimary,
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            HapticFeedback.lightImpact().catchError((_) {});
+            onTap();
+          },
+          borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+          child: Ink(
+            width: 140,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [color, color.withValues(alpha: 0.7)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
-            ),
-            trailing: const Icon(Icons.arrow_outward_rounded,
-                color: Colors.white24, size: 18),
-            onTap: () => _onSearchSubmitted(suggestion),
-          );
-        },
-      );
-    }
-
-    if (_submitted) {
-      if (searchState.results.isEmpty) {
-        return EmptyState(
-          icon: Icons.find_in_page_outlined,
-          title: 'No Matches Found',
-          description:
-              'We could not find "${searchState.query}" in the dictionary.',
-          actionLabel: 'Search Again',
-          onActionPressed: () => _onSearchChanged(''),
-        );
-      }
-
-      final exactMatchIndex = searchState.results.indexWhere(
-        (w) => w.word.toUpperCase() == searchState.query.toUpperCase(),
-      );
-
-      final hasExactMatch = exactMatchIndex != -1;
-      final exactWord =
-          hasExactMatch ? searchState.results[exactMatchIndex] : null;
-
-      final relatedWords = hasExactMatch
-          ? (List.from(searchState.results)..removeAt(exactMatchIndex))
-          : searchState.results;
-
-      return ListView(
-        children: [
-          if (exactWord != null) ...[
-            const SectionHeader(title: 'Exact Match'),
-            Hero(
-              tag: 'word-card-${exactWord.id}',
-              child: Material(
-                color: Colors.transparent,
-                child: FeaturedWordCard(
-                  word: exactWord,
-                  isBookmarked: false,
-                  onBookmarkToggle: (val) {},
-                  onAudioPressed: () {},
-                  onTap: () =>
-                      AppNavigator.pushWordDetails(context, exactWord.id),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-          if (relatedWords.isNotEmpty) ...[
-            const SectionHeader(title: 'Related Results'),
-            ...relatedWords.map(
-              (w) => WordListTile(
-                word: w,
-                onTap: () => AppNavigator.pushWordDetails(context, w.id),
-              ),
-            ),
-          ],
-        ],
-      );
-    }
-
-    return const SizedBox.shrink();
-  }
-
-  Widget _buildLoadingState() {
-    return ListView(
-      children: [
-        const SectionHeader(title: 'Searching'),
-        const LoadingSkeleton(
-            width: double.infinity, height: 180, borderRadius: 16),
-        const SizedBox(height: 20),
-        const SectionHeader(title: 'Related'),
-        ...List.generate(
-          4,
-          (index) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const LoadingSkeleton(width: 120, height: 16),
-                      const SizedBox(height: 8),
-                      LoadingSkeleton(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        height: 14,
-                      ),
-                    ],
-                  ),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.3),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius:
+                          BorderRadius.circular(AppSpacing.radiusMd),
+                    ),
+                    child: Icon(icon, color: Colors.white, size: 18),
+                  ),
+                  const SizedBox(height: 4),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontFamily: 'Outfit',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 1),
+                        Text(
+                          subtitle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 10,
+                            color: Colors.white.withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ],
+      ),
+    );
+  }
+}
+
+// ─── Quick Action Card ──────────────────────────────────────────
+
+class _QuickActionCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String subtitle;
+  final LinearGradient gradient;
+  final VoidCallback onTap;
+
+  const _QuickActionCard({
+    required this.icon,
+    required this.label,
+    required this.subtitle,
+    required this.gradient,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            HapticFeedback.lightImpact().catchError((_) {});
+            onTap();
+          },
+          borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+          child: Ink(
+            width: 155,
+            decoration: BoxDecoration(
+              gradient: gradient,
+              borderRadius: BorderRadius.circular(AppSpacing.radiusXl),
+              boxShadow: [
+                BoxShadow(
+                  color: gradient.colors.first.withValues(alpha: 0.4),
+                  blurRadius: 16,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 6),
+                ),
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius:
+                          BorderRadius.circular(AppSpacing.radiusMd),
+                    ),
+                    child: Icon(icon, color: Colors.white, size: 24),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontFamily: 'Outfit',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            height: 1.2,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          subtitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 12,
+                            height: 1.3,
+                            color: Colors.white.withValues(alpha: 0.85),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

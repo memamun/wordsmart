@@ -5,6 +5,10 @@ import '../../../../../lib/features/dictionary/domain/entities/word.dart';
 import '../../../../../lib/features/dictionary/domain/repositories/word_repository.dart';
 import '../../../../../lib/features/dictionary/domain/usecases/get_word_details.dart';
 import '../../../../../lib/features/dictionary/presentation/providers/word_details_notifier.dart';
+import '../../../../../lib/features/profile/data/datasources/progress_local_data_source.dart';
+import '../../../../../lib/features/profile/data/datasources/bookmark_local_data_source.dart';
+import '../../../../../lib/features/profile/data/models/word_progress_model.dart';
+import '../../../../../lib/features/dictionary/data/models/word_model.dart';
 
 class MockWordRepository implements WordRepository {
   @override
@@ -12,6 +16,32 @@ class MockWordRepository implements WordRepository {
       throw UnimplementedError();
   @override
   Future<Either<Failure, Word>> getRandomCoreWord() =>
+      throw UnimplementedError();
+}
+
+class MockProgressLocalDataSource implements ProgressLocalDataSource {
+  @override
+  Future<WordProgressModel> getProgress(int wordId) =>
+      throw UnimplementedError();
+  @override
+  Future<void> updateProgress(WordProgressModel progress) async {}
+  @override
+  Future<List<WordModel>> getWordsByStatus(String status) =>
+      throw UnimplementedError();
+  @override
+  Future<List<WordModel>> getDueWordsForReview() =>
+      throw UnimplementedError();
+}
+
+class MockBookmarkLocalDataSource implements BookmarkLocalDataSource {
+  @override
+  Future<bool> isBookmarked(int wordId) async => false;
+  @override
+  Future<void> addBookmark(int wordId) async {}
+  @override
+  Future<void> removeBookmark(int wordId) async {}
+  @override
+  Future<List<WordModel>> getBookmarkedWords() =>
       throw UnimplementedError();
 }
 
@@ -32,7 +62,11 @@ void main() {
 
   setUp(() {
     mockUseCase = MockGetWordDetailsUseCase();
-    notifier = WordDetailsNotifier(getWordDetailsUseCase: mockUseCase);
+    notifier = WordDetailsNotifier(
+      getWordDetailsUseCase: mockUseCase,
+      progressDataSource: MockProgressLocalDataSource(),
+      bookmarkDataSource: MockBookmarkLocalDataSource(),
+    );
   });
 
   test('should return initial word details state', () {

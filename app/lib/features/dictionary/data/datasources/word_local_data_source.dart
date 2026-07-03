@@ -1,3 +1,6 @@
+import '../models/flashcard_model.dart';
+import '../models/hit_parade_model.dart';
+import '../models/specialized_vocab_model.dart';
 import '../models/word_derivative_model.dart';
 import '../models/word_example_model.dart';
 import '../models/word_model.dart';
@@ -37,4 +40,13 @@ abstract class WordLocalDataSource {
 
   /// Fetches etymology roots for a specific word.
   Future<List<WordRootModel>> getRootsForWord(int wordId);
+
+  /// Fetches additional flashcard data (extra examples, mnemonics) for a word.
+  Future<FlashcardModel?> getFlashcard(int wordId);
+
+  /// Fetches all SAT/GRE hit parade word lists.
+  Future<List<HitParadeModel>> getHitParades();
+
+  /// Fetches all specialized/thematic vocabulary.
+  Future<List<SpecializedVocabModel>> getSpecializedVocabulary();
 }

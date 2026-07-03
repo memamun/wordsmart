@@ -5,6 +5,7 @@ abstract class StoryLocalDataSource {
   Future<List<StoryModel>> getStories();
   Future<StoryModel> getStory(int id);
   Future<StoryProgressModel?> getProgress(int storyId);
+  Future<Map<int, StoryProgressModel>> getAllProgress();
   Future<void> saveReadingPosition({
     required int storyId,
     required int chapter,

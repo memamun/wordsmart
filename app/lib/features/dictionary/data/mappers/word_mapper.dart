@@ -17,6 +17,9 @@ extension WordModelMapper on WordModel {
     List<WordExample>? examples,
     List<WordDerivative>? derivatives,
     List<WordRoot>? roots,
+    String? additionalExample,
+    String? additionalExampleBengali,
+    String? mnemonicHint,
   }) {
     return Word(
       id: id,
@@ -34,6 +37,9 @@ extension WordModelMapper on WordModel {
       examples: examples,
       derivatives: derivatives,
       roots: roots,
+      additionalExample: additionalExample,
+      additionalExampleBengali: additionalExampleBengali,
+      mnemonicHint: mnemonicHint,
     );
   }
 }

@@ -13,6 +13,9 @@ class Word {
   final String? level;
   final String? audioPath;
   final String? mnemonic;
+  final String? additionalExample;
+  final String? additionalExampleBengali;
+  final String? mnemonicHint;
   final List<String>? synonyms;
   final List<String>? antonyms;
   final List<String>? collocations;
@@ -30,6 +33,9 @@ class Word {
     this.level,
     this.audioPath,
     this.mnemonic,
+    this.additionalExample,
+    this.additionalExampleBengali,
+    this.mnemonicHint,
     this.synonyms,
     this.antonyms,
     this.collocations,
@@ -48,6 +54,9 @@ class Word {
     String? level,
     String? audioPath,
     String? mnemonic,
+    String? additionalExample,
+    String? additionalExampleBengali,
+    String? mnemonicHint,
     List<String>? synonyms,
     List<String>? antonyms,
     List<String>? collocations,
@@ -75,6 +84,9 @@ class Word {
       level: level,
       audioPath: audioPath,
       mnemonic: mnemonic,
+      additionalExample: additionalExample,
+      additionalExampleBengali: additionalExampleBengali,
+      mnemonicHint: mnemonicHint,
       synonyms: synonyms,
       antonyms: antonyms,
       collocations: collocations,

@@ -28,23 +28,41 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref
-          .read(wordDetailsNotifierProvider.notifier)
-          .loadWordDetails(widget.wordId);
+    Future.microtask(() async {
+      final notifier = ref.read(wordDetailsNotifierProvider.notifier);
+      await notifier.loadWordDetails(widget.wordId);
+      final bookmarked = await notifier.checkBookmarkStatus(widget.wordId);
+      if (mounted) {
+        setState(() {
+          _detailsState.isBookmarked = bookmarked;
+        });
+      }
     });
   }
 
   void _playPronunciation() {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Playing pronunciation audio...'),
-        duration: Duration(seconds: 1),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: AppColors.teal,
-      ),
-    );
+    final state = ref.read(wordDetailsNotifierProvider);
+    final word = state.word;
+    if (word != null && word.audioPath != null && word.audioPath!.isNotEmpty) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Playing audio...'),
+          duration: Duration(seconds: 1),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: AppColors.teal,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No audio available'),
+          duration: Duration(seconds: 1),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 
   @override
@@ -112,22 +130,27 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                   padding: const EdgeInsets.only(right: 12.0),
                   child: BookmarkButton(
                     isBookmarked: _detailsState.isBookmarked,
-                    onToggle: (val) {
-                      setState(() {
-                        _detailsState.isBookmarked = val;
-                      });
-                      ScaffoldMessenger.of(context).clearSnackBars();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            val
-                                ? 'Word saved to bookmarks.'
-                                : 'Word removed from bookmarks.',
+                    onToggle: (val) async {
+                      final notifier =
+                          ref.read(wordDetailsNotifierProvider.notifier);
+                      final newVal = await notifier.toggleBookmark(word.id);
+                      if (mounted) {
+                        setState(() {
+                          _detailsState.isBookmarked = newVal;
+                        });
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              newVal
+                                  ? 'Word saved to bookmarks.'
+                                  : 'Word removed from bookmarks.',
+                            ),
+                            duration: const Duration(seconds: 1),
+                            behavior: SnackBarBehavior.floating,
                           ),
-                          duration: const Duration(seconds: 1),
-                          behavior: SnackBarBehavior.floating,
-                        ),
-                      );
+                        );
+                      }
                     },
                   ),
                 ),
@@ -548,6 +571,9 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                     isFilled: false,
                     color: AppColors.textSecondary,
                     onPressed: () {
+                      ref
+                          .read(wordDetailsNotifierProvider.notifier)
+                          .scheduleForReview(word.id);
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -566,6 +592,9 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                     isFilled: true,
                     color: AppColors.teal,
                     onPressed: () {
+                      ref
+                          .read(wordDetailsNotifierProvider.notifier)
+                          .markAsMastered(word.id);
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

@@ -42,6 +42,20 @@ class StoryRepositoryImpl implements StoryRepository {
   }
 
   @override
+  Future<Either<Failure, Map<int, StoryProgress>>> getAllProgress() async {
+    try {
+      final models = await localDataSource.getAllProgress();
+      final entities = <int, StoryProgress>{};
+      for (final entry in models.entries) {
+        entities[entry.key] = entry.value.toEntity();
+      }
+      return Right(entities);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, void>> saveReadingPosition({
     required int storyId,
     required ReadingPosition position,

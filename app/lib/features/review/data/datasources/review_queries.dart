@@ -24,7 +24,8 @@ class ReviewQueries {
       p.repetitions, 
       p.learning_state
     FROM words w
-    LEFT JOIN progress p ON w.id = p.word_id;
+    LEFT JOIN progress p ON w.id = p.word_id
+    WHERE w.definition IS NOT NULL AND w.definition != '';
   ''';
 
   static const String selectWordProgress = '''

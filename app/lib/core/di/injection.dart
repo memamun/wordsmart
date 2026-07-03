@@ -7,6 +7,10 @@ import '../../features/dictionary/domain/repositories/search_repository.dart';
 import '../../features/dictionary/domain/repositories/word_repository.dart';
 import '../../features/dictionary/domain/usecases/get_word_details.dart';
 import '../../features/dictionary/domain/usecases/search_words.dart';
+import '../../features/profile/data/datasources/bookmark_local_data_source.dart';
+import '../../features/profile/data/datasources/progress_local_data_source.dart';
+import '../../features/profile/data/datasources/sqlite_bookmark_local_data_source.dart';
+import '../../features/profile/data/datasources/sqlite_progress_local_data_source.dart';
 import '../database/database.dart';
 import '../analytics/learning_event_logger.dart';
 import '../analytics/sqlite_learning_event_logger.dart';
@@ -89,6 +93,14 @@ Future<void> init() async {
   // Data Sources
   sl.registerLazySingleton<WordLocalDataSource>(
     () => SQLiteWordLocalDataSource(databaseClient: sl()),
+  );
+
+  // Profile Data Sources
+  sl.registerLazySingleton<ProgressLocalDataSource>(
+    () => SQLiteProgressLocalDataSource(appDatabase: sl()),
+  );
+  sl.registerLazySingleton<BookmarkLocalDataSource>(
+    () => SQLiteBookmarkLocalDataSource(appDatabase: sl()),
   );
 
   // Review Feature

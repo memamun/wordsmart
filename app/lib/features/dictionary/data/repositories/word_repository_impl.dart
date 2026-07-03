@@ -5,6 +5,7 @@ import '../../../../core/error/exceptions.dart';
 import '../../domain/repositories/word_repository.dart';
 import '../datasources/word_local_data_source.dart';
 import '../mappers/word_mapper.dart';
+import '../models/flashcard_model.dart';
 import '../models/word_derivative_model.dart';
 import '../models/word_example_model.dart';
 import '../models/word_model.dart';
@@ -39,14 +40,19 @@ class WordRepositoryImpl implements WordRepository {
   }
 
   @override
-  Future<Either<Failure, Word>> getRandomCoreWord() {
-    // Unimplemented for Sprint 1
-    throw UnimplementedError();
+  Future<Either<Failure, Word>> getRandomCoreWord() async {
+    try {
+      final wordModel = await localDataSource.getRandomCoreWord();
+      return Right(wordModel.toEntity());
+    } on Exception {
+      return const Left(DatabaseFailure(
+        'Unable to load random word.',
+      ));
+    }
   }
 
   /// Loads all lazy-loaded relationships in parallel, avoiding positional coupling.
   Future<_WordRelations> _loadRelations(int wordId) async {
-    // Storing futures in named variables prevents index-based positional coupling bugs
     final synonymsFuture = localDataSource.getSynonymsForWord(wordId);
     final antonymsFuture = localDataSource.getAntonymsForWord(wordId);
     final collocationsFuture = localDataSource.getCollocationsForWord(wordId);
@@ -55,8 +61,8 @@ class WordRepositoryImpl implements WordRepository {
         localDataSource.getExampleTranslationsForWord(wordId);
     final derivativesFuture = localDataSource.getDerivativesForWord(wordId);
     final rootsFuture = localDataSource.getRootsForWord(wordId);
+    final flashcardFuture = localDataSource.getFlashcard(wordId);
 
-    // Run all queries in parallel
     await Future.wait([
       synonymsFuture,
       antonymsFuture,
@@ -65,6 +71,7 @@ class WordRepositoryImpl implements WordRepository {
       translationsFuture,
       derivativesFuture,
       rootsFuture,
+      flashcardFuture,
     ]);
 
     return _WordRelations(
@@ -75,6 +82,7 @@ class WordRepositoryImpl implements WordRepository {
       translations: await translationsFuture,
       derivatives: await derivativesFuture,
       roots: await rootsFuture,
+      flashcard: await flashcardFuture,
     );
   }
 
@@ -95,6 +103,9 @@ class WordRepositoryImpl implements WordRepository {
       examples: examples,
       derivatives: derivatives,
       roots: roots,
+      additionalExample: relations.flashcard?.additionalExample,
+      additionalExampleBengali: relations.flashcard?.additionalExampleBengali,
+      mnemonicHint: relations.flashcard?.mnemonicHint,
     );
   }
 }
@@ -108,6 +119,7 @@ class _WordRelations {
   final Map<int, String> translations;
   final List<WordDerivativeModel> derivatives;
   final List<WordRootModel> roots;
+  final FlashcardModel? flashcard;
 
   const _WordRelations({
     required this.synonyms,
@@ -117,5 +129,6 @@ class _WordRelations {
     required this.translations,
     required this.derivatives,
     required this.roots,
+    this.flashcard,
   });
 }

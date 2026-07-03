@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/learning/entities/learning_card.dart';
 import '../../../review/domain/usecases/get_daily_queue.dart';
+import '../../../stories/domain/entities/story_progress.dart';
 import '../../../review/domain/usecases/get_learning_metrics.dart';
 import '../../../review/domain/usecases/get_progress_summary.dart';
 import '../../../stories/domain/repositories/story_repository.dart';
@@ -15,6 +16,8 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
   final GetProgressSummaryUseCase getProgressSummaryUseCase;
   final StoryRepository storyRepository;
   final RecommendationCandidateFactory candidateFactory;
+  final Set<String> _dismissedIds = {};
+  final Set<String> _completedIds = {};
 
   RecommendationRepositoryImpl({
     required this.getDailyQueueUseCase,
@@ -76,30 +79,30 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
   Future<Either<Failure, List<RecommendationCandidate>>>
       _loadStoryCandidates() async {
     final storiesResult = await storyRepository.getStories();
+    final progressResult = await storyRepository.getAllProgress();
     return storiesResult.fold(
       (failure) => Left(failure),
-      (stories) async {
+      (stories) {
+        final progressMap = progressResult.fold(
+          (_) => <int, StoryProgress>{},
+          (map) => map,
+        );
         final candidates = <RecommendationCandidate>[];
         for (final story in stories) {
-          final progressResult = await storyRepository.getProgress(story.id);
-          progressResult.fold(
-            (_) {},
-            (progress) {
-              if (progress != null) {
-                final totalParagraphs = story.paragraphs.length;
-                final currentParagraph = progress.position.paragraph;
-                final percentComplete = totalParagraphs > 0
-                    ? (currentParagraph / totalParagraphs) * 100.0
-                    : 0.0;
-                if (percentComplete < 100) {
-                  candidates.add(candidateFactory.fromStoryProgress(
-                    storyId: story.id,
-                    percentComplete: percentComplete,
-                  ));
-                }
-              }
-            },
-          );
+          final progress = progressMap[story.id];
+          if (progress != null) {
+            final totalParagraphs = story.paragraphs.length;
+            final currentParagraph = progress.position.paragraph;
+            final percentComplete = totalParagraphs > 0
+                ? (currentParagraph / totalParagraphs) * 100.0
+                : 0.0;
+            if (percentComplete < 100) {
+              candidates.add(candidateFactory.fromStoryProgress(
+                storyId: story.id,
+                percentComplete: percentComplete,
+              ));
+            }
+          }
         }
         return Right(candidates);
       },
@@ -123,13 +126,21 @@ class RecommendationRepositoryImpl implements RecommendationRepository {
 
   @override
   Future<Either<Failure, void>> dismissRecommendation(String id) async {
-    // TODO: Store dismissed recommendations in SharedPreferences or SQLite
-    return const Right(null);
+    try {
+      _dismissedIds.add(id);
+      return const Right(null);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
   }
 
   @override
   Future<Either<Failure, void>> completeRecommendation(String id) async {
-    // TODO: Store completed recommendations for analytics
-    return const Right(null);
+    try {
+      _completedIds.add(id);
+      return const Right(null);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
   }
 }

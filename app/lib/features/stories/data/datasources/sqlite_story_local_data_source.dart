@@ -44,6 +44,19 @@ class SQLiteStoryLocalDataSource implements StoryLocalDataSource {
   }
 
   @override
+  Future<Map<int, StoryProgressModel>> getAllProgress() async {
+    await _ensureSchema();
+    final db = await appDatabase.database;
+    final rows = await db.rawQuery(StoryQueries.selectAllProgress);
+    final map = <int, StoryProgressModel>{};
+    for (final row in rows) {
+      final model = StoryProgressModel.fromMap(row);
+      map[model.storyId] = model;
+    }
+    return map;
+  }
+
+  @override
   Future<void> saveReadingPosition({
     required int storyId,
     required int chapter,

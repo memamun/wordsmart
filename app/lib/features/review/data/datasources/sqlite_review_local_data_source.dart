@@ -62,6 +62,24 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
         currentIncorrectCount += 1;
       }
 
+      // Map learningState to a proper status value
+      String _mapStatus(String ls) {
+        switch (ls) {
+          case 'newCard':
+            return 'unlearned';
+          case 'learning':
+          case 'reviewing':
+          case 'relearning':
+          case 'decaying':
+            return 'learning';
+          case 'mastered':
+            return 'mastered';
+          default:
+            return 'unlearned';
+        }
+      }
+      final statusValue = _mapStatus(learningState);
+
       // 2. Upsert progress record
       await txn.rawInsert(
         ReviewQueries.upsertProgress,
@@ -71,7 +89,7 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
           currentCorrectCount,
           currentIncorrectCount,
           masteryScore,
-          learningState,
+          statusValue,
           lastReviewedAt,
           nextReviewAt,
           easeFactor,
@@ -118,6 +136,24 @@ class SQLiteReviewLocalDataSource implements ReviewLocalDataSource {
       timestamp: DateTime.parse(lastReviewedAt),
       referenceId: session.id,
       referenceType: 'study_session',
+    );
+  }
+
+  @override
+  Future<void> saveStudySession(StudySessionModel session) async {
+    final db = await appDatabase.database;
+    await db.rawInsert(
+      ReviewQueries.insertStudySession,
+      [
+        session.id,
+        session.mode,
+        session.startedAt,
+        session.finishedAt,
+        session.reviewedCards,
+        session.correctAnswers,
+        session.incorrectAnswers,
+        session.durationSeconds,
+      ],
     );
   }
 
