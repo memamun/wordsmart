@@ -92,6 +92,11 @@ class MockWordLocalDataSource implements WordLocalDataSource {
   Future<List<SpecializedVocabModel>> getSpecializedVocabulary() async {
     return [];
   }
+
+  @override
+  Future<List<WordModel>> getAllWords() async {
+    return [];
+  }
 }
 
 void main() {

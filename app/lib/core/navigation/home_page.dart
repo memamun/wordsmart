@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/dictionary/presentation/screens/hit_parades_page.dart';
 import '../../features/dictionary/presentation/screens/search_page.dart';
 import '../../features/dictionary/presentation/screens/specialized_vocab_page.dart';
+import '../../features/dictionary/presentation/screens/word_list_page.dart';
 import '../../features/practice/presentation/screens/quizzes_list_page.dart';
 import '../../features/review/presentation/screens/progress_dashboard_page.dart';
 import '../../features/review/presentation/screens/review_session_page.dart';
@@ -309,6 +310,17 @@ class _HomeDashboard extends ConsumerWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSpacing.lg - 6),
                 children: [
+                  _ResourceCard(
+                    icon: Icons.menu_book_rounded,
+                    label: 'Word List',
+                    subtitle: 'Browse all words',
+                    color: const Color(0xFFE91E63),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const WordListPage()),
+                    ),
+                  ),
                   _ResourceCard(
                     icon: Icons.quiz_rounded,
                     label: 'Quizzes',

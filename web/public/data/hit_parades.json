@@ -1,0 +1,2221 @@
+{
+  "gre_hit_parade": [
+    {
+      "word": "MANIFEST",
+      "definition": "visible; evident",
+      "rank": 1
+    },
+    {
+      "word": "CONVENTIONAL",
+      "definition": "common; customary; unexceptional",
+      "rank": 2
+    },
+    {
+      "word": "PARTISAN",
+      "definition": "one who supports a particular person, cause, or idea",
+      "rank": 3
+    },
+    {
+      "word": "CONTENTIOUS",
+      "definition": "argumentative; quarrelsome",
+      "rank": 4
+    },
+    {
+      "word": "LAMENT",
+      "definition": "to mourn",
+      "rank": 5
+    },
+    {
+      "word": "ALLUSION",
+      "definition": "an indirect reference (often to a literary work); a hint",
+      "rank": 6
+    },
+    {
+      "word": "ARBITER",
+      "definition": "one who decides; a judge",
+      "rank": 7
+    },
+    {
+      "word": "INHERENT",
+      "definition": "part of the essential nature of something; intrinsic",
+      "rank": 8
+    },
+    {
+      "word": "PARADOX",
+      "definition": "a true statement or phenomenon that nonetheless seems to contradict itself; an untrue statement or phenomenon that nonetheless seems logical",
+      "rank": 9
+    },
+    {
+      "word": "CYNIC",
+      "definition": "one who deeply distrusts human nature; one who believes humans are motivated only by selfishness",
+      "rank": 10
+    },
+    {
+      "word": "EXPOSITION",
+      "definition": null,
+      "rank": 11
+    },
+    {
+      "word": "CONSENSUS",
+      "definition": "unanimity or general agreement",
+      "rank": 12
+    },
+    {
+      "word": "COMPREHENSIVE",
+      "definition": "covering or including everything",
+      "rank": 13
+    },
+    {
+      "word": "SAGACIOUS",
+      "definition": "discerning; shrewd; keen in judgment; wise",
+      "rank": 14
+    },
+    {
+      "word": "PRECIPITATE",
+      "definition": "to cause to happen abruptly",
+      "rank": 15
+    },
+    {
+      "word": "PERVADE",
+      "definition": "to spread throughout",
+      "rank": 16
+    },
+    {
+      "word": "DISCOURSE",
+      "definition": null,
+      "rank": 17
+    },
+    {
+      "word": "CONJURE",
+      "definition": "to summon or bring into being as if by magic",
+      "rank": 18
+    },
+    {
+      "word": "SANCTION",
+      "definition": null,
+      "rank": 19
+    },
+    {
+      "word": "GENIAL",
+      "definition": null,
+      "rank": 20
+    },
+    {
+      "word": "INDULGENT",
+      "definition": "lenient; yielding to desire",
+      "rank": 21
+    },
+    {
+      "word": "INERT",
+      "definition": "inactive; sluggish; not reacting chemically",
+      "rank": 22
+    },
+    {
+      "word": "LEVEE",
+      "definition": null,
+      "rank": 23
+    },
+    {
+      "word": "ERRATIC",
+      "definition": null,
+      "rank": 24
+    },
+    {
+      "word": "LUMINOUS",
+      "definition": "giving off light; glowing; bright",
+      "rank": 25
+    },
+    {
+      "word": "ABSTINENT",
+      "definition": "abstaining; voluntarily not doing something, especially something pleasant that is bad for you or has a bad reputation",
+      "rank": 26
+    },
+    {
+      "word": "PLACID",
+      "definition": null,
+      "rank": 27
+    },
+    {
+      "word": "EXUBERANT",
+      "definition": null,
+      "rank": 28
+    },
+    {
+      "word": "IMPEDE",
+      "definition": null,
+      "rank": 29
+    },
+    {
+      "word": "PERMEATE",
+      "definition": "to spread or seep through; to penetrate",
+      "rank": 30
+    },
+    {
+      "word": "AUDACITY",
+      "definition": "boldness; reckless daring; impertinence",
+      "rank": 31
+    },
+    {
+      "word": "INDIGNANT",
+      "definition": "angry, especially as a result of something unjust or unworthy; insulted",
+      "rank": 32
+    },
+    {
+      "word": "IMPLICIT",
+      "definition": null,
+      "rank": 33
+    },
+    {
+      "word": "SUPERFLUOUS",
+      "definition": "extra; unnecessary; redundant",
+      "rank": 34
+    },
+    {
+      "word": "LITIGATE",
+      "definition": "to try in court; to engage in legal proceedings",
+      "rank": 35
+    },
+    {
+      "word": "VEX",
+      "definition": "to annoy; to pester; to confuse",
+      "rank": 36
+    },
+    {
+      "word": "ANOMALY",
+      "definition": "an aberration; an irregularity; a deviation",
+      "rank": 37
+    },
+    {
+      "word": "BEREAVE",
+      "definition": null,
+      "rank": 38
+    },
+    {
+      "word": "CONNOISSEUR",
+      "definition": "an expert, particularly in matters of art or taste",
+      "rank": 39
+    },
+    {
+      "word": "CORROBORATE",
+      "definition": "to confirm; to back up with evidence",
+      "rank": 40
+    },
+    {
+      "word": "FRENETIC",
+      "definition": "frantic; frenzied",
+      "rank": 41
+    },
+    {
+      "word": "POLEMIC",
+      "definition": "a powerful argument often made to attack or refute a controversial issue",
+      "rank": 42
+    },
+    {
+      "word": "SYNTHESIS",
+      "definition": "the combining of parts to form a whole",
+      "rank": 43
+    },
+    {
+      "word": "FEASIBLE",
+      "definition": null,
+      "rank": 44
+    },
+    {
+      "word": "FORBEAR",
+      "definition": "to refrain from; to abstain",
+      "rank": 45
+    },
+    {
+      "word": "GENRE",
+      "definition": "a type or category, especially of art or writing",
+      "rank": 46
+    },
+    {
+      "word": "VINDICATE",
+      "definition": null,
+      "rank": 47
+    },
+    {
+      "word": "CONCILIATORY",
+      "definition": "making peace; attempting to resolve a dispute through goodwill",
+      "rank": 48
+    },
+    {
+      "word": "SQUALID",
+      "definition": null,
+      "rank": 49
+    },
+    {
+      "word": "INEPT",
+      "definition": "clumsy; incompetent; gauche",
+      "rank": 50
+    },
+    {
+      "word": "MANDATORY",
+      "definition": null,
+      "rank": 51
+    },
+    {
+      "word": "DISSEMINATE",
+      "definition": "to spread the seeds of something; to scatter; to make widely known",
+      "rank": 52
+    },
+    {
+      "word": "ECLECTIC",
+      "definition": "choosing the best from many sources; drawn from many sources",
+      "rank": 53
+    },
+    {
+      "word": "IDYLLIC",
+      "definition": "charming in a rustic way; naturally peaceful",
+      "rank": 54
+    },
+    {
+      "word": "PRISTINE",
+      "definition": "original; unspoiled; pure",
+      "rank": 55
+    },
+    {
+      "word": "PRODIGY",
+      "definition": "an extremely talented child; an extraordinary accomplishment or occurrence",
+      "rank": 56
+    },
+    {
+      "word": "FRUGAL",
+      "definition": "economical; penny-pinching",
+      "rank": 57
+    },
+    {
+      "word": "QUALIFY",
+      "definition": "to modify or restrict",
+      "rank": 58
+    },
+    {
+      "word": "DECOROUS",
+      "definition": "proper; in good taste; orderly",
+      "rank": 59
+    },
+    {
+      "word": "INFER",
+      "definition": "to conclude; to deduce",
+      "rank": 60
+    },
+    {
+      "word": "OSTENTATIOUS",
+      "definition": "excessively conspicuous; showing off",
+      "rank": 61
+    },
+    {
+      "word": "PATHOLOGY",
+      "definition": "the science of diseases",
+      "rank": 62
+    },
+    {
+      "word": "PLUMB",
+      "definition": null,
+      "rank": 63
+    },
+    {
+      "word": "SPURIOUS",
+      "definition": "false; fake",
+      "rank": 64
+    },
+    {
+      "word": "SUBJUGATE",
+      "definition": "to subdue and dominate; to enslave",
+      "rank": 65
+    },
+    {
+      "word": "VISIONARY",
+      "definition": "a dreamer; someone with impractical goals or ideas about the future",
+      "rank": 66
+    },
+    {
+      "word": "RECIPROCAL",
+      "definition": "mutual; shared; interchangeable",
+      "rank": 67
+    },
+    {
+      "word": "ANTIPATHY",
+      "definition": "firm dislike; a dislike",
+      "rank": 68
+    },
+    {
+      "word": "DISSONANT",
+      "definition": null,
+      "rank": 69
+    },
+    {
+      "word": "PALLIATE",
+      "definition": "to relieve or alleviate something without getting rid of the problem; to assuage; to mitigate",
+      "rank": 70
+    },
+    {
+      "word": "SUBSTANTIVE",
+      "definition": "having substance; real; essential; solid; substantial",
+      "rank": 71
+    },
+    {
+      "word": "SURREPTITIOUS",
+      "definition": "sneaky; secret",
+      "rank": 72
+    },
+    {
+      "word": "EQUIVOCAL",
+      "definition": "ambiguous; intentionally confusing; capable of being interpreted in more than one way",
+      "rank": 73
+    },
+    {
+      "word": "FLIPPANT",
+      "definition": null,
+      "rank": 74
+    },
+    {
+      "word": "IMPERVIOUS",
+      "definition": "not allowing anything to pass through; impenetrable",
+      "rank": 75
+    },
+    {
+      "word": "JUDICIOUS",
+      "definition": "exercising sound judgment",
+      "rank": 76
+    },
+    {
+      "word": "LACONIC",
+      "definition": "using few words, especially to the point of seeming rude",
+      "rank": 77
+    },
+    {
+      "word": "PIQUANT",
+      "definition": null,
+      "rank": 78
+    },
+    {
+      "word": "SATIRIC",
+      "definition": null,
+      "rank": 79
+    },
+    {
+      "word": "SULLEN",
+      "definition": null,
+      "rank": 80
+    },
+    {
+      "word": "TACIT",
+      "definition": "implied; not spoken",
+      "rank": 81
+    },
+    {
+      "word": "TRACTABLE",
+      "definition": null,
+      "rank": 82
+    },
+    {
+      "word": "IMPROMPTU",
+      "definition": null,
+      "rank": 83
+    },
+    {
+      "word": "PARALLEL",
+      "definition": null,
+      "rank": 84
+    },
+    {
+      "word": "STERILE",
+      "definition": null,
+      "rank": 85
+    },
+    {
+      "word": "DEBAUCHERY",
+      "definition": "wild living; excessive intemperance",
+      "rank": 86
+    },
+    {
+      "word": "DELETERIOUS",
+      "definition": "harmful",
+      "rank": 87
+    },
+    {
+      "word": "DISINTERESTED",
+      "definition": "not taking sides; unbiased",
+      "rank": 88
+    },
+    {
+      "word": "FECUND",
+      "definition": "fertile; productive",
+      "rank": 89
+    },
+    {
+      "word": "HERMETIC",
+      "definition": "impervious to external influence; airtight",
+      "rank": 90
+    },
+    {
+      "word": "SALUBRIOUS",
+      "definition": null,
+      "rank": 91
+    },
+    {
+      "word": "FOSTER",
+      "definition": null,
+      "rank": 92
+    },
+    {
+      "word": "TRANSITORY",
+      "definition": null,
+      "rank": 93
+    },
+    {
+      "word": "CACOPHONY",
+      "definition": "harsh-sounding mixture of words, voices, or sounds",
+      "rank": 94
+    },
+    {
+      "word": "GOAD",
+      "definition": null,
+      "rank": 95
+    },
+    {
+      "word": "IMPLEMENT",
+      "definition": "to carry out",
+      "rank": 96
+    },
+    {
+      "word": "INGENUOUS",
+      "definition": "frank; without deception; simple; artless; charmingly naive",
+      "rank": 97
+    },
+    {
+      "word": "MALLEABLE",
+      "definition": "easy to shape or bend",
+      "rank": 98
+    },
+    {
+      "word": "PUNGENT",
+      "definition": null,
+      "rank": 99
+    },
+    {
+      "word": "SAVOR",
+      "definition": null,
+      "rank": 100
+    },
+    {
+      "word": "CORRELATE",
+      "definition": null,
+      "rank": 101
+    },
+    {
+      "word": "FACETIOUS",
+      "definition": "humorous; not serious; clumsily humorous",
+      "rank": 102
+    },
+    {
+      "word": "KINSHIP",
+      "definition": null,
+      "rank": 103
+    },
+    {
+      "word": "PETULANT",
+      "definition": "rude; cranky; ill-tempered",
+      "rank": 104
+    },
+    {
+      "word": "RAMPART",
+      "definition": null,
+      "rank": 105
+    },
+    {
+      "word": "TEMERITY",
+      "definition": "boldness; recklessness; audacity",
+      "rank": 106
+    },
+    {
+      "word": "TRUCULENT",
+      "definition": null,
+      "rank": 107
+    },
+    {
+      "word": "INCISIVE",
+      "definition": "cutting right to the heart of the matter",
+      "rank": 108
+    },
+    {
+      "word": "ABERRATION",
+      "definition": "something not typical; a deviation from the standard",
+      "rank": 109
+    },
+    {
+      "word": "ABSTEMIOUS",
+      "definition": null,
+      "rank": 110
+    },
+    {
+      "word": "ALACRITY",
+      "definition": "cheerful eagerness or readiness to respond",
+      "rank": 111
+    },
+    {
+      "word": "ALLOCATE",
+      "definition": "to distribute; to assign; to allot",
+      "rank": 112
+    },
+    {
+      "word": "ARID",
+      "definition": null,
+      "rank": 113
+    },
+    {
+      "word": "BEGET",
+      "definition": "to give birth to; to create; to lead to; to cause",
+      "rank": 114
+    },
+    {
+      "word": "CONUNDRUM",
+      "definition": null,
+      "rank": 115
+    },
+    {
+      "word": "DEBACLE",
+      "definition": "violent breakdown; sudden overthrow; overwhelming defeat",
+      "rank": 116
+    },
+    {
+      "word": "DOGGEREL",
+      "definition": null,
+      "rank": 117
+    },
+    {
+      "word": "EXORBITANCE",
+      "definition": null,
+      "rank": 118
+    },
+    {
+      "word": "GARRULOUS",
+      "definition": "talkative; chatty",
+      "rank": 119
+    },
+    {
+      "word": "INTRANSIGENT",
+      "definition": "uncompromising; stubborn",
+      "rank": 120
+    },
+    {
+      "word": "MAVERICK",
+      "definition": "a nonconformist; a rebel",
+      "rank": 121
+    },
+    {
+      "word": "TURPITUDE",
+      "definition": "shameful wickedness; depravity",
+      "rank": 122
+    },
+    {
+      "word": "AXIOM",
+      "definition": "a self-evident rule or truth; a widely accepted saying",
+      "rank": 123
+    },
+    {
+      "word": "BENEFICENT",
+      "definition": null,
+      "rank": 124
+    },
+    {
+      "word": "CAPRICIOUS",
+      "definition": "unpredictable; likely to change at any moment",
+      "rank": 125
+    },
+    {
+      "word": "CIRCUMLOCUTION",
+      "definition": "an indirect expression; use of wordy or evasive language",
+      "rank": 126
+    },
+    {
+      "word": "IMPUGN",
+      "definition": "to attack, especially to attack the truth or integrity of something",
+      "rank": 127
+    },
+    {
+      "word": "INCURSION",
+      "definition": null,
+      "rank": 128
+    },
+    {
+      "word": "PLACATE",
+      "definition": "to pacify; to appease; to soothe.",
+      "rank": 129
+    },
+    {
+      "word": "TEMPERAMENT",
+      "definition": null,
+      "rank": 130
+    },
+    {
+      "word": "ANTISEPTIC",
+      "definition": null,
+      "rank": 131
+    },
+    {
+      "word": "LAX",
+      "definition": null,
+      "rank": 132
+    },
+    {
+      "word": "ACCOLADE",
+      "definition": "an award; an honor",
+      "rank": 133
+    },
+    {
+      "word": "ASSIDUOUS",
+      "definition": "hardworking; busy; quite diligent",
+      "rank": 134
+    },
+    {
+      "word": "BROOK",
+      "definition": null,
+      "rank": 135
+    },
+    {
+      "word": "DESICCATE",
+      "definition": "to dry out",
+      "rank": 136
+    },
+    {
+      "word": "ERUDITE",
+      "definition": "scholarly; deeply learned",
+      "rank": 137
+    },
+    {
+      "word": "FLAG",
+      "definition": null,
+      "rank": 138
+    },
+    {
+      "word": "IMPUDENT",
+      "definition": null,
+      "rank": 139
+    },
+    {
+      "word": "BALEFUL",
+      "definition": null,
+      "rank": 140
+    },
+    {
+      "word": "DIVERGENT",
+      "definition": null,
+      "rank": 141
+    },
+    {
+      "word": "EFFLUVIUM",
+      "definition": null,
+      "rank": 142
+    },
+    {
+      "word": "EVANESCENT",
+      "definition": "fleeting; vanishing; happening for only the briefest period",
+      "rank": 143
+    },
+    {
+      "word": "EXIGENT",
+      "definition": null,
+      "rank": 144
+    },
+    {
+      "word": "EXONERATE",
+      "definition": "to free completely from blame; to exculpate",
+      "rank": 145
+    },
+    {
+      "word": "FLAUNT",
+      "definition": "to show off; to display ostentatiously",
+      "rank": 146
+    },
+    {
+      "word": "IMPROVIDENT",
+      "definition": null,
+      "rank": 147
+    },
+    {
+      "word": "INELUCTABLE",
+      "definition": null,
+      "rank": 148
+    },
+    {
+      "word": "MELLIFLUOUS",
+      "definition": "sweetly flowing",
+      "rank": 149
+    },
+    {
+      "word": "OSCILLATE",
+      "definition": null,
+      "rank": 150
+    },
+    {
+      "word": "OSSIFY",
+      "definition": null,
+      "rank": 151
+    },
+    {
+      "word": "PROBITY",
+      "definition": null,
+      "rank": 152
+    },
+    {
+      "word": "PROSELYTIZE",
+      "definition": "to convert (someone) from one religion or doctrine to another; to recruit converts to a religion or doctrine",
+      "rank": 153
+    },
+    {
+      "word": "PUNDIT",
+      "definition": null,
+      "rank": 154
+    },
+    {
+      "word": "RECONDITE",
+      "definition": "hard to understand; over one's head",
+      "rank": 155
+    },
+    {
+      "word": "SPENDTHRIFT",
+      "definition": null,
+      "rank": 156
+    },
+    {
+      "word": "VACUOUS",
+      "definition": null,
+      "rank": 157
+    },
+    {
+      "word": "CODA",
+      "definition": null,
+      "rank": 158
+    },
+    {
+      "word": "PENCHANT",
+      "definition": "a strong taste or liking for something; a predilection",
+      "rank": 159
+    },
+    {
+      "word": "ABSTRUSE",
+      "definition": "hard to understand",
+      "rank": 160
+    },
+    {
+      "word": "COGNIZANT",
+      "definition": "aware; conscious",
+      "rank": 161
+    },
+    {
+      "word": "GAINSAY",
+      "definition": null,
+      "rank": 162
+    },
+    {
+      "word": "GARNER",
+      "definition": null,
+      "rank": 163
+    },
+    {
+      "word": "OBDURATE",
+      "definition": "stubborn and insensitive",
+      "rank": 164
+    },
+    {
+      "word": "PROPINQUITY",
+      "definition": null,
+      "rank": 165
+    },
+    {
+      "word": "RIBALD",
+      "definition": null,
+      "rank": 166
+    },
+    {
+      "word": "SINUOUS",
+      "definition": null,
+      "rank": 167
+    },
+    {
+      "word": "VERACITY",
+      "definition": "truthfulness",
+      "rank": 168
+    },
+    {
+      "word": "CHRONOLOGY",
+      "definition": null,
+      "rank": 169
+    },
+    {
+      "word": "ECONOMICAL",
+      "definition": null,
+      "rank": 170
+    },
+    {
+      "word": "CONJOIN",
+      "definition": null,
+      "rank": 171
+    },
+    {
+      "word": "PANEGYRIC",
+      "definition": null,
+      "rank": 172
+    },
+    {
+      "word": "PEDAGOGUE",
+      "definition": null,
+      "rank": 173
+    },
+    {
+      "word": "REPROBATE",
+      "definition": null,
+      "rank": 174
+    },
+    {
+      "word": "UNTOWARD",
+      "definition": null,
+      "rank": 175
+    },
+    {
+      "word": "WELTER",
+      "definition": null,
+      "rank": 176
+    },
+    {
+      "word": "INCHOATE",
+      "definition": null,
+      "rank": 177
+    },
+    {
+      "word": "PROBLEMATIC",
+      "definition": null,
+      "rank": 178
+    },
+    {
+      "word": "TIMBRE",
+      "definition": null,
+      "rank": 179
+    },
+    {
+      "word": "DISAVOW",
+      "definition": null,
+      "rank": 180
+    },
+    {
+      "word": "GERRYMANDER",
+      "definition": null,
+      "rank": 181
+    },
+    {
+      "word": "REPUGNANT",
+      "definition": null,
+      "rank": 182
+    },
+    {
+      "word": "TAUT",
+      "definition": null,
+      "rank": 183
+    },
+    {
+      "word": "CAJOLE",
+      "definition": "to persuade someone to do something he or she doesn't want to do",
+      "rank": 184
+    },
+    {
+      "word": "DISCOMFIT",
+      "definition": null,
+      "rank": 185
+    },
+    {
+      "word": "ACCRETE",
+      "definition": null,
+      "rank": 186
+    },
+    {
+      "word": "CONTUMACIOUS",
+      "definition": null,
+      "rank": 187
+    },
+    {
+      "word": "FULSOME",
+      "definition": null,
+      "rank": 188
+    },
+    {
+      "word": "HOMEOSTASIS",
+      "definition": null,
+      "rank": 189
+    },
+    {
+      "word": "HONE",
+      "definition": null,
+      "rank": 190
+    },
+    {
+      "word": "INSOLVENT",
+      "definition": null,
+      "rank": 191
+    },
+    {
+      "word": "LIGNEOUS",
+      "definition": null,
+      "rank": 192
+    },
+    {
+      "word": "MOTILITY",
+      "definition": null,
+      "rank": 193
+    },
+    {
+      "word": "MUNIFICENT",
+      "definition": "very generous; lavish",
+      "rank": 194
+    },
+    {
+      "word": "NEOPHYTE",
+      "definition": null,
+      "rank": 195
+    },
+    {
+      "word": "RIVET",
+      "definition": null,
+      "rank": 196
+    },
+    {
+      "word": "SATURNINE",
+      "definition": null,
+      "rank": 197
+    },
+    {
+      "word": "VISCOUS",
+      "definition": null,
+      "rank": 198
+    }
+  ],
+  "sat_hit_parade": [
+    {
+      "word": "INDIFFERENT",
+      "definition": "not caring one way or the other; apathetic; mediocre",
+      "rank": 1
+    },
+    {
+      "word": "APATHY",
+      "definition": "lack of interest; lack of feeling",
+      "rank": 2
+    },
+    {
+      "word": "OBSCURE",
+      "definition": "unknown; hard to understand; dark",
+      "rank": 3
+    },
+    {
+      "word": "IMPARTIAL",
+      "definition": "fair; not favoring one side or the other; unbiased",
+      "rank": 4
+    },
+    {
+      "word": "OBJECTIVE",
+      "definition": null,
+      "rank": 5
+    },
+    {
+      "word": "REVERE",
+      "definition": "to respect highly; to honor",
+      "rank": 6
+    },
+    {
+      "word": "DISCRIMINATE",
+      "definition": "to notice or point out the difference between two or more things; to discern; to differentiate",
+      "rank": 7
+    },
+    {
+      "word": "DENOUNCE",
+      "definition": null,
+      "rank": 8
+    },
+    {
+      "word": "INNOVATE",
+      "definition": null,
+      "rank": 9
+    },
+    {
+      "word": "RELEVANT",
+      "definition": null,
+      "rank": 10
+    },
+    {
+      "word": "CANDID",
+      "definition": null,
+      "rank": 11
+    },
+    {
+      "word": "DISCERNMENT",
+      "definition": null,
+      "rank": 12
+    },
+    {
+      "word": "DISDAIN",
+      "definition": "arrogant scorn; contempt",
+      "rank": 13
+    },
+    {
+      "word": "ABSTRACT",
+      "definition": "theoretical; impersonal",
+      "rank": 14
+    },
+    {
+      "word": "TEMPERATE",
+      "definition": "mild; moderate; restrained",
+      "rank": 15
+    },
+    {
+      "word": "ENIGMA",
+      "definition": "a mystery",
+      "rank": 16
+    },
+    {
+      "word": "INEVITABLE",
+      "definition": null,
+      "rank": 17
+    },
+    {
+      "word": "ECCENTRIC",
+      "definition": "not conventional; a little kooky; irregular",
+      "rank": 18
+    },
+    {
+      "word": "PROVINCIAL",
+      "definition": "limited in outlook to one's own small corner of the world; narrow",
+      "rank": 19
+    },
+    {
+      "word": "FUTILE",
+      "definition": "useless; hopeless",
+      "rank": 20
+    },
+    {
+      "word": "DIVERSE",
+      "definition": null,
+      "rank": 21
+    },
+    {
+      "word": "BENEVOLENT",
+      "definition": "generous; kind; doing good deeds",
+      "rank": 22
+    },
+    {
+      "word": "PIOUS",
+      "definition": "reverent or devout; outwardly (and sometimes falsely) reverent or devout; hypocritical",
+      "rank": 23
+    },
+    {
+      "word": "CONCILIATORY",
+      "definition": "making peace; attempting to resolve a dispute through goodwill",
+      "rank": 24
+    },
+    {
+      "word": "RESIGNATION",
+      "definition": null,
+      "rank": 25
+    },
+    {
+      "word": "RESOLUTE",
+      "definition": "determined; firm; unwavering",
+      "rank": 26
+    },
+    {
+      "word": "SERVILE",
+      "definition": "submissive and subservient; like a servant",
+      "rank": 27
+    },
+    {
+      "word": "ACUTE",
+      "definition": "sharp; shrewd",
+      "rank": 28
+    },
+    {
+      "word": "RETICENT",
+      "definition": "quiet; restrained; reluctant to speak, especially about oneself",
+      "rank": 29
+    },
+    {
+      "word": "ANARCHY",
+      "definition": "absence of government or control; lawlessness; disorder",
+      "rank": 30
+    },
+    {
+      "word": "VIRULENT",
+      "definition": "extremely poisonous; malignant; full of hate",
+      "rank": 31
+    },
+    {
+      "word": "SCRUTINIZE",
+      "definition": "to examine very carefully",
+      "rank": 32
+    },
+    {
+      "word": "DISCORD",
+      "definition": null,
+      "rank": 33
+    },
+    {
+      "word": "REPUDIATE",
+      "definition": "to reject; to renounce; to disown; to have nothing to do with",
+      "rank": 34
+    },
+    {
+      "word": "DILIGENT",
+      "definition": null,
+      "rank": 35
+    },
+    {
+      "word": "SUPERFICIAL",
+      "definition": "on the surface only; shallow; not thorough",
+      "rank": 36
+    },
+    {
+      "word": "CONTEMPT",
+      "definition": null,
+      "rank": 37
+    },
+    {
+      "word": "LUCID",
+      "definition": "clear; easy to understand",
+      "rank": 38
+    },
+    {
+      "word": "AESTHETIC",
+      "definition": "having to do with artistic beauty; artistic",
+      "rank": 39
+    },
+    {
+      "word": "PRODIGAL",
+      "definition": "wastefully extravagant",
+      "rank": 40
+    },
+    {
+      "word": "AUGMENT",
+      "definition": "to make bigger; to add to; to increase",
+      "rank": 41
+    },
+    {
+      "word": "COMPLACENT",
+      "definition": "self-satisfied; overly pleased with oneself; contented to a fault",
+      "rank": 42
+    },
+    {
+      "word": "GUILE",
+      "definition": "cunning; duplicity; artfulness",
+      "rank": 43
+    },
+    {
+      "word": "SQUANDER",
+      "definition": "to waste",
+      "rank": 44
+    },
+    {
+      "word": "INCESSANT",
+      "definition": "unceasing",
+      "rank": 45
+    },
+    {
+      "word": "LAUDABLE",
+      "definition": null,
+      "rank": 46
+    },
+    {
+      "word": "DETER",
+      "definition": null,
+      "rank": 47
+    },
+    {
+      "word": "REDUNDANT",
+      "definition": "unnecessarily repetitive; excessive; excessively wordy",
+      "rank": 48
+    },
+    {
+      "word": "INFAMOUS",
+      "definition": "shamefully wicked; having an extremely bad reputation; disgraceful",
+      "rank": 49
+    },
+    {
+      "word": "PROVOCATIVE",
+      "definition": null,
+      "rank": 50
+    },
+    {
+      "word": "DEPRAVITY",
+      "definition": "extreme wickedness or corruption",
+      "rank": 51
+    },
+    {
+      "word": "GRAVITY",
+      "definition": "seriousness",
+      "rank": 52
+    },
+    {
+      "word": "BANAL",
+      "definition": "unoriginal; ordinary",
+      "rank": 53
+    },
+    {
+      "word": "EXTOL",
+      "definition": "to praise highly; to laud",
+      "rank": 54
+    },
+    {
+      "word": "EUPHONY",
+      "definition": null,
+      "rank": 55
+    },
+    {
+      "word": "DERIDE",
+      "definition": "to ridicule; to laugh at contemptuously",
+      "rank": 56
+    },
+    {
+      "word": "INSIPID",
+      "definition": "dull; bland; banal",
+      "rank": 57
+    },
+    {
+      "word": "AUSTERE",
+      "definition": "unadorned; stern; forbidding; without excess",
+      "rank": 58
+    },
+    {
+      "word": "EXPEDITE",
+      "definition": "to speed up or ease the progress of",
+      "rank": 59
+    },
+    {
+      "word": "HERESY",
+      "definition": "any belief that is strongly opposed to established beliefs",
+      "rank": 60
+    },
+    {
+      "word": "NOVEL",
+      "definition": "new; original",
+      "rank": 61
+    },
+    {
+      "word": "PHILANTHROPY",
+      "definition": "love of mankind, especially by doing good deeds",
+      "rank": 62
+    },
+    {
+      "word": "TENTATIVE",
+      "definition": "experimental; temporary; uncertain",
+      "rank": 63
+    },
+    {
+      "word": "DEFERENCE",
+      "definition": "submission to another's will; respect; courtesy",
+      "rank": 64
+    },
+    {
+      "word": "VACILLATE",
+      "definition": "to be indecisive; to waver",
+      "rank": 65
+    },
+    {
+      "word": "FERVOR",
+      "definition": "great warmth or earnestness; ardor; zeal",
+      "rank": 66
+    },
+    {
+      "word": "DISPASSIONATE",
+      "definition": null,
+      "rank": 67
+    },
+    {
+      "word": "PRAGMATIC",
+      "definition": "practical; down to earth; based on experience rather than theory",
+      "rank": 68
+    },
+    {
+      "word": "RIGOROUS",
+      "definition": "strict; harsh; severe",
+      "rank": 69
+    },
+    {
+      "word": "SOLEMN",
+      "definition": null,
+      "rank": 70
+    },
+    {
+      "word": "ALLEVIATE",
+      "definition": "to relieve, usually temporarily or incompletely; to make bearable; to lessen",
+      "rank": 71
+    },
+    {
+      "word": "NEGLIGENCE",
+      "definition": null,
+      "rank": 72
+    },
+    {
+      "word": "CONSPICUOUS",
+      "definition": null,
+      "rank": 73
+    },
+    {
+      "word": "ADVOCATE",
+      "definition": null,
+      "rank": 74
+    },
+    {
+      "word": "ASCETIC",
+      "definition": "hermitlike; practicing self-denial",
+      "rank": 75
+    },
+    {
+      "word": "PROFOUND",
+      "definition": "deep (in several senses)",
+      "rank": 76
+    },
+    {
+      "word": "IRONIC",
+      "definition": "meaning the opposite of what you seem to say; using words to mean something other than what they seem to mean",
+      "rank": 77
+    },
+    {
+      "word": "DOGMATIC",
+      "definition": "arrogantly assertive of unproven ideas; stubbornly claiming that something (often a system of beliefs) is beyond dispute",
+      "rank": 78
+    },
+    {
+      "word": "CONDONE",
+      "definition": "to overlook; to permit to happen",
+      "rank": 79
+    },
+    {
+      "word": "DISSENT",
+      "definition": null,
+      "rank": 80
+    },
+    {
+      "word": "VOLITION",
+      "definition": "will; conscious choice",
+      "rank": 81
+    },
+    {
+      "word": "VOLUNTARY",
+      "definition": null,
+      "rank": 82
+    },
+    {
+      "word": "DIDACTIC",
+      "definition": "intended to teach; morally instructive; pedantic",
+      "rank": 83
+    },
+    {
+      "word": "DISPARATE",
+      "definition": "different; incompatible; unequal",
+      "rank": 84
+    },
+    {
+      "word": "DISPARAGE",
+      "definition": "to belittle; to say uncomplimentary things about, usually in a somewhat indirect way",
+      "rank": 85
+    },
+    {
+      "word": "EPHEMERAL",
+      "definition": "lasting a very short time",
+      "rank": 86
+    },
+    {
+      "word": "COMPLIANT",
+      "definition": null,
+      "rank": 87
+    },
+    {
+      "word": "PROSAIC",
+      "definition": "dull; unimaginative; like prose (as opposed to poetry)",
+      "rank": 88
+    },
+    {
+      "word": "PROFUSE",
+      "definition": "flowing; extravagant",
+      "rank": 89
+    },
+    {
+      "word": "EXPEDIENT",
+      "definition": "providing an immediate advantage; serving one's immediate self-interest; practical",
+      "rank": 90
+    },
+    {
+      "word": "FASTIDIOUS",
+      "definition": "meticulous; demanding; finicky",
+      "rank": 91
+    },
+    {
+      "word": "BELLIGERENT",
+      "definition": "combative; quarrelsome; waging war",
+      "rank": 92
+    },
+    {
+      "word": "ASTUTE",
+      "definition": "shrewd; keen in judgment",
+      "rank": 93
+    },
+    {
+      "word": "LANGUISH",
+      "definition": "to become weak, listless, or depressed",
+      "rank": 94
+    },
+    {
+      "word": "CENSURE",
+      "definition": "to condemn severely for doing something bad",
+      "rank": 95
+    },
+    {
+      "word": "STAGNATION",
+      "definition": "motionlessness; inactivity",
+      "rank": 96
+    },
+    {
+      "word": "MITIGATE",
+      "definition": "to moderate the effect of something",
+      "rank": 97
+    },
+    {
+      "word": "REPREHENSIBLE",
+      "definition": "worthy of blame or censure",
+      "rank": 98
+    },
+    {
+      "word": "ENGENDER",
+      "definition": "to bring into existence; to create; to cause",
+      "rank": 99
+    },
+    {
+      "word": "EXEMPLARY",
+      "definition": null,
+      "rank": 100
+    },
+    {
+      "word": "NEUTRAL",
+      "definition": null,
+      "rank": 101
+    },
+    {
+      "word": "RELEGATE",
+      "definition": "to banish; to send away",
+      "rank": 102
+    },
+    {
+      "word": "ANECDOTE",
+      "definition": "a short account of a humorous or revealing incident",
+      "rank": 103
+    },
+    {
+      "word": "SCANTY",
+      "definition": null,
+      "rank": 104
+    },
+    {
+      "word": "FALLACIOUS",
+      "definition": null,
+      "rank": 105
+    },
+    {
+      "word": "ACCLAIM",
+      "definition": null,
+      "rank": 106
+    },
+    {
+      "word": "UNIFORM",
+      "definition": "consistent; unchanging; the same for everyone",
+      "rank": 107
+    },
+    {
+      "word": "INCOHERENT",
+      "definition": null,
+      "rank": 108
+    },
+    {
+      "word": "REPRESS",
+      "definition": null,
+      "rank": 109
+    },
+    {
+      "word": "ARTICULATE",
+      "definition": null,
+      "rank": 110
+    },
+    {
+      "word": "SOLICIT",
+      "definition": null,
+      "rank": 111
+    },
+    {
+      "word": "REPROACH",
+      "definition": "to scold, usually in disappointment; to blame; to disgrace",
+      "rank": 112
+    },
+    {
+      "word": "CONDESCEND",
+      "definition": "to stoop to someone else's level, usually in an offensive way; to patronize",
+      "rank": 113
+    },
+    {
+      "word": "ORTHODOX",
+      "definition": "conventional; adhering to established principles or doctrines, especially in religion; by the book",
+      "rank": 114
+    },
+    {
+      "word": "INDOLENCE",
+      "definition": null,
+      "rank": 115
+    },
+    {
+      "word": "CONGENIAL",
+      "definition": "agreeably suitable; pleasant",
+      "rank": 116
+    },
+    {
+      "word": "PRECLUDE",
+      "definition": "to prevent something from ever happening",
+      "rank": 117
+    },
+    {
+      "word": "APPREHENSIVE",
+      "definition": "worried; anxious",
+      "rank": 118
+    },
+    {
+      "word": "ELABORATE",
+      "definition": null,
+      "rank": 119
+    },
+    {
+      "word": "ARROGANT",
+      "definition": null,
+      "rank": 120
+    },
+    {
+      "word": "ELUSIVE",
+      "definition": "hard to pin down; evasive",
+      "rank": 121
+    },
+    {
+      "word": "EFFACE",
+      "definition": "to erase; to rub away the features of",
+      "rank": 122
+    },
+    {
+      "word": "TACITURN",
+      "definition": "untalkative by nature",
+      "rank": 123
+    },
+    {
+      "word": "AMELIORATE",
+      "definition": "to make better or more tolerable",
+      "rank": 124
+    },
+    {
+      "word": "ACQUIESCE",
+      "definition": "to comply passively; to accept; to assent; to agree",
+      "rank": 125
+    },
+    {
+      "word": "ATROPHY",
+      "definition": null,
+      "rank": 126
+    },
+    {
+      "word": "DUBIOUS",
+      "definition": "full of doubt; uncertain",
+      "rank": 127
+    },
+    {
+      "word": "FLAGRANT",
+      "definition": "glaringly bad; notorious; scandalous",
+      "rank": 128
+    },
+    {
+      "word": "CONCISE",
+      "definition": "brief and to the point; succinct",
+      "rank": 129
+    },
+    {
+      "word": "IMMUTABLE",
+      "definition": "unchangeable",
+      "rank": 130
+    },
+    {
+      "word": "STATIC",
+      "definition": "stationary; not changing or moving",
+      "rank": 131
+    },
+    {
+      "word": "CREDULOUS",
+      "definition": "eager to believe; gullible",
+      "rank": 132
+    },
+    {
+      "word": "BLASPHEMY",
+      "definition": "irreverence; an insult to something held sacred; profanity",
+      "rank": 133
+    },
+    {
+      "word": "COALESCE",
+      "definition": "to come together as one; to fuse; to unite",
+      "rank": 134
+    },
+    {
+      "word": "LAX",
+      "definition": null,
+      "rank": 135
+    },
+    {
+      "word": "CRYPTIC",
+      "definition": "mysterious; mystifying",
+      "rank": 136
+    },
+    {
+      "word": "LEVITY",
+      "definition": "lightness; frivolity; unseriousness",
+      "rank": 137
+    },
+    {
+      "word": "AMBIVALENT",
+      "definition": "undecided; neutral; wishy-washy",
+      "rank": 138
+    },
+    {
+      "word": "INNATE",
+      "definition": "existing since birth; inborn; inherent",
+      "rank": 139
+    },
+    {
+      "word": "SYCOPHANT",
+      "definition": "one who sucks up to others",
+      "rank": 140
+    },
+    {
+      "word": "AMIABLE",
+      "definition": "friendly; agreeable",
+      "rank": 141
+    },
+    {
+      "word": "ESOTERIC",
+      "definition": "hard to understand; understood by only a select few; peculiar",
+      "rank": 142
+    },
+    {
+      "word": "EXTRANEOUS",
+      "definition": "unnecessary; irrelevant; extra",
+      "rank": 143
+    },
+    {
+      "word": "TEDIOUS",
+      "definition": null,
+      "rank": 144
+    },
+    {
+      "word": "CAUSTIC",
+      "definition": "like acid; corrosive",
+      "rank": 145
+    },
+    {
+      "word": "INADVERTENT",
+      "definition": null,
+      "rank": 146
+    },
+    {
+      "word": "EXHAUSTIVE",
+      "definition": "thorough; rigorous; complete; painstaking",
+      "rank": 147
+    },
+    {
+      "word": "BELITTLE",
+      "definition": "to make to seem little; to put someone down",
+      "rank": 148
+    },
+    {
+      "word": "UNPRECEDENTED",
+      "definition": null,
+      "rank": 149
+    },
+    {
+      "word": "DIGRESS",
+      "definition": "to stray from the main subject",
+      "rank": 150
+    },
+    {
+      "word": "APPEASE",
+      "definition": "to soothe; to pacify by giving in to",
+      "rank": 151
+    },
+    {
+      "word": "FRIVOLOUS",
+      "definition": null,
+      "rank": 152
+    },
+    {
+      "word": "INSTIGATE",
+      "definition": "to provoke; to stir up",
+      "rank": 153
+    },
+    {
+      "word": "SAGE",
+      "definition": null,
+      "rank": 154
+    },
+    {
+      "word": "PREDECESSOR",
+      "definition": null,
+      "rank": 155
+    },
+    {
+      "word": "JEOPARDY",
+      "definition": null,
+      "rank": 156
+    },
+    {
+      "word": "TANGIBLE",
+      "definition": "touchable; palpable",
+      "rank": 157
+    },
+    {
+      "word": "INDULGENT",
+      "definition": "lenient; yielding to desire",
+      "rank": 158
+    },
+    {
+      "word": "REMORSE",
+      "definition": null,
+      "rank": 159
+    },
+    {
+      "word": "PIVOTAL",
+      "definition": "crucial...",
+      "rank": 160
+    },
+    {
+      "word": "SCRUPULOUS",
+      "definition": "strict; careful; hesitant for ethical reasons",
+      "rank": 161
+    },
+    {
+      "word": "REFUTE",
+      "definition": "to prove to be false; to disprove",
+      "rank": 162
+    },
+    {
+      "word": "RESPITE",
+      "definition": "a period of rest or relief",
+      "rank": 163
+    },
+    {
+      "word": "STOIC",
+      "definition": "indifferent (at least outwardly) to pleasure or pain, to joy or grief, to fortune or misfortune",
+      "rank": 164
+    },
+    {
+      "word": "VOLATILE",
+      "definition": "quick to evaporate; highly unstable; explosive",
+      "rank": 165
+    },
+    {
+      "word": "PERIPHERAL",
+      "definition": null,
+      "rank": 166
+    },
+    {
+      "word": "HEDONISTIC",
+      "definition": null,
+      "rank": 167
+    },
+    {
+      "word": "IDIOM",
+      "definition": null,
+      "rank": 168
+    },
+    {
+      "word": "BENEFACTOR",
+      "definition": "one who provides help, especially in the form of a gift or donation",
+      "rank": 169
+    },
+    {
+      "word": "BREVITY",
+      "definition": "briefness",
+      "rank": 170
+    },
+    {
+      "word": "APOCRYPHAL",
+      "definition": "of dubious authenticity; fictitious; spurious",
+      "rank": 171
+    },
+    {
+      "word": "VIRTUOSO",
+      "definition": "a masterful musician; a masterful practitioner in some other field",
+      "rank": 172
+    },
+    {
+      "word": "SLANDER",
+      "definition": "to speak badly about someone publicly; to defame; to spread malicious rumor.",
+      "rank": 173
+    },
+    {
+      "word": "ANIMOSITY",
+      "definition": "resentment; hostility; ill will",
+      "rank": 174
+    },
+    {
+      "word": "DEPLETE",
+      "definition": null,
+      "rank": 175
+    },
+    {
+      "word": "AMITY",
+      "definition": null,
+      "rank": 176
+    },
+    {
+      "word": "STRINGENT",
+      "definition": "strict; restrictive",
+      "rank": 177
+    },
+    {
+      "word": "VOLUMINOUS",
+      "definition": null,
+      "rank": 178
+    },
+    {
+      "word": "AUSPICIOUS",
+      "definition": "favorable; promising; pointing to a good result",
+      "rank": 179
+    },
+    {
+      "word": "FICKLE",
+      "definition": null,
+      "rank": 180
+    },
+    {
+      "word": "LETHARGY",
+      "definition": "sluggishness; laziness; drowsiness; indifference",
+      "rank": 181
+    },
+    {
+      "word": "HACKNEYED",
+      "definition": "overused; trite; stale",
+      "rank": 182
+    },
+    {
+      "word": "AMASS",
+      "definition": null,
+      "rank": 183
+    },
+    {
+      "word": "WILLFUL",
+      "definition": "deliberate; obstinate; insistent on having one's way",
+      "rank": 184
+    },
+    {
+      "word": "BASTION",
+      "definition": "stronghold; fortress; fortified place",
+      "rank": 185
+    },
+    {
+      "word": "TREPIDATION",
+      "definition": "fear; apprehension; nervous trembling",
+      "rank": 186
+    },
+    {
+      "word": "DESECRATE",
+      "definition": null,
+      "rank": 187
+    },
+    {
+      "word": "FORTUITOUS",
+      "definition": "accidental; occurring by chance",
+      "rank": 188
+    },
+    {
+      "word": "VEHEMENT",
+      "definition": "intense; forceful; violent",
+      "rank": 189
+    },
+    {
+      "word": "ASSUAGE",
+      "definition": "to soothe; to pacify; to ease the pain of; to relieve",
+      "rank": 190
+    },
+    {
+      "word": "PRODIGIOUS",
+      "definition": "extraordinary; enormous",
+      "rank": 191
+    },
+    {
+      "word": "TORPOR",
+      "definition": "sluggishness; inactivity; apathy",
+      "rank": 192
+    },
+    {
+      "word": "FURTIVE",
+      "definition": "secretive; sly",
+      "rank": 193
+    },
+    {
+      "word": "SUPERCILIOUS",
+      "definition": "haughty; patronizing",
+      "rank": 194
+    },
+    {
+      "word": "PRUDENT",
+      "definition": "careful; having foresight",
+      "rank": 195
+    },
+    {
+      "word": "VERBOSE",
+      "definition": "using too many words; not succinct; circumlocutory",
+      "rank": 196
+    },
+    {
+      "word": "PEDESTRIAN",
+      "definition": "unimaginative; banal",
+      "rank": 197
+    },
+    {
+      "word": "INNOCUOUS",
+      "definition": "harmless; banal",
+      "rank": 198
+    },
+    {
+      "word": "FANATIC",
+      "definition": null,
+      "rank": 199
+    },
+    {
+      "word": "ENHANCE",
+      "definition": null,
+      "rank": 200
+    },
+    {
+      "word": "RETRACT",
+      "definition": null,
+      "rank": 201
+    },
+    {
+      "word": "AMBIGUOUS",
+      "definition": "unclear in meaning; confusing; capable of being interpreted in different ways",
+      "rank": 202
+    },
+    {
+      "word": "PAUCITY",
+      "definition": "scarcity",
+      "rank": 203
+    },
+    {
+      "word": "RESCIND",
+      "definition": null,
+      "rank": 204
+    },
+    {
+      "word": "SUBTLE",
+      "definition": "not obvious; able to make fine distinctions; ingenious; crafty",
+      "rank": 205
+    },
+    {
+      "word": "ZEALOUS",
+      "definition": "enthusiastically devoted to something; fervent",
+      "rank": 206
+    },
+    {
+      "word": "BENIGN",
+      "definition": "gentle; not harmful; kind; mild",
+      "rank": 207
+    },
+    {
+      "word": "EMULATE",
+      "definition": "to strive to equal or excel, usually through imitation",
+      "rank": 209
+    },
+    {
+      "word": "INNUMERABLE",
+      "definition": null,
+      "rank": 210
+    },
+    {
+      "word": "MEANDER",
+      "definition": null,
+      "rank": 211
+    },
+    {
+      "word": "AUTHORITARIAN",
+      "definition": null,
+      "rank": 212
+    },
+    {
+      "word": "BRAWN",
+      "definition": null,
+      "rank": 213
+    },
+    {
+      "word": "CONTRITE",
+      "definition": "admitting guilt; especially feeling remorseful",
+      "rank": 214
+    },
+    {
+      "word": "EXEMPLIFY",
+      "definition": "to illustrate by example; to serve as a good example",
+      "rank": 215
+    },
+    {
+      "word": "FACILITATE",
+      "definition": null,
+      "rank": 216
+    },
+    {
+      "word": "HYPOTHETICAL",
+      "definition": "uncertain; unproven",
+      "rank": 217
+    },
+    {
+      "word": "RECALCITRANT",
+      "definition": "stubbornly defiant of authority or control; disobedient",
+      "rank": 218
+    },
+    {
+      "word": "AMBULATORY",
+      "definition": null,
+      "rank": 219
+    },
+    {
+      "word": "DIFFIDENT",
+      "definition": "timid; lacking in self-confidence",
+      "rank": 220
+    },
+    {
+      "word": "DRONE",
+      "definition": null,
+      "rank": 221
+    },
+    {
+      "word": "GULLIBLE",
+      "definition": null,
+      "rank": 222
+    },
+    {
+      "word": "MARRED",
+      "definition": null,
+      "rank": 223
+    },
+    {
+      "word": "NULLIFY",
+      "definition": null,
+      "rank": 224
+    },
+    {
+      "word": "PARSIMONY",
+      "definition": null,
+      "rank": 225
+    },
+    {
+      "word": "PROPRIETY",
+      "definition": "properness; good manners",
+      "rank": 226
+    },
+    {
+      "word": "REJUVENATE",
+      "definition": null,
+      "rank": 227
+    },
+    {
+      "word": "SKEPTICAL",
+      "definition": null,
+      "rank": 228
+    },
+    {
+      "word": "TENACIOUS",
+      "definition": "persistent; stubborn; not letting go",
+      "rank": 229
+    },
+    {
+      "word": "ANIMATED",
+      "definition": null,
+      "rank": 230
+    },
+    {
+      "word": "AUTHENTIC",
+      "definition": null,
+      "rank": 231
+    },
+    {
+      "word": "BIAS",
+      "definition": null,
+      "rank": 232
+    },
+    {
+      "word": "BLITHE",
+      "definition": "carefree; cheerful",
+      "rank": 233
+    },
+    {
+      "word": "DEARTH",
+      "definition": "lack; scarcity",
+      "rank": 234
+    },
+    {
+      "word": "DIVERT",
+      "definition": null,
+      "rank": 235
+    },
+    {
+      "word": "ENTHALL",
+      "definition": null,
+      "rank": 236
+    },
+    {
+      "word": "HEED",
+      "definition": null,
+      "rank": 237
+    },
+    {
+      "word": "HINDRANCE",
+      "definition": null,
+      "rank": 238
+    },
+    {
+      "word": "IRASCIBLE",
+      "definition": "easily angered or provoked; irritable",
+      "rank": 239
+    },
+    {
+      "word": "MERGER",
+      "definition": null,
+      "rank": 240
+    },
+    {
+      "word": "NOSTALGIA",
+      "definition": "sentimental longing for the past; homesickness",
+      "rank": 241
+    },
+    {
+      "word": "PRETENTIOUS",
+      "definition": null,
+      "rank": 242
+    },
+    {
+      "word": "SACCHARINE",
+      "definition": "sweet; excessively or disgustingly sweet",
+      "rank": 243
+    },
+    {
+      "word": "STANZA",
+      "definition": null,
+      "rank": 244
+    },
+    {
+      "word": "VENERATE",
+      "definition": "to revere; to treat as something holy, especially because of great age",
+      "rank": 245
+    },
+    {
+      "word": "VILIFY",
+      "definition": "to say vile things about; to defame",
+      "rank": 246
+    }
+  ]
+}

@@ -75,6 +75,11 @@ class MockWordLocalDataSource implements WordLocalDataSource {
   Future<List<SpecializedVocabModel>> getSpecializedVocabulary() {
     throw UnimplementedError();
   }
+
+  @override
+  Future<List<WordModel>> getAllWords() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {

@@ -7,6 +7,8 @@ import '../../../../core/design_system/states/empty_state.dart';
 import '../../../../core/design_system/states/loading_skeleton.dart';
 import '../../../../core/design_system/buttons/primary_button.dart';
 import '../../../../core/design_system/typography/section_header.dart';
+import '../../../../core/di/injection.dart';
+import '../../../practice/data/datasources/practice_local_data_source.dart';
 
 class WordDetailsPage extends ConsumerStatefulWidget {
   final int wordId;
@@ -63,6 +65,39 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
         ),
       );
     }
+  }
+
+  Future<void> _showQuickPractice(BuildContext context, int wordId) async {
+    final ds = sl<PracticeLocalDataSource>();
+    final drill = await ds.getVocabDrill(wordId);
+    if (drill == null || !mounted) return;
+
+    final questions = <Map<String, dynamic>>[
+      ...drill.definitionMcqQuestions,
+      ...drill.synonymMcqQuestions,
+      ...drill.antonymMcqQuestions,
+      ...drill.sentenceCompletionQuestions,
+    ];
+
+    if (questions.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No practice questions available for this word.'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => _QuickPracticeSheet(questions: questions),
+    );
   }
 
   @override
@@ -327,6 +362,75 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                     const SizedBox(height: 24),
                   ],
 
+                  // Additional Example (from flashcard data)
+                  if (word.additionalExample != null &&
+                      word.additionalExample!.isNotEmpty) ...[
+                    const SectionHeader(title: 'Additional Example'),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.02),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            word.additionalExample!,
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 15,
+                              color: AppColors.textPrimary,
+                              height: 1.4,
+                            ),
+                          ),
+                          if (word.additionalExampleBengali != null &&
+                              word.additionalExampleBengali!.isNotEmpty) ...[
+                            const SizedBox(height: 8),
+                            Text(
+                              word.additionalExampleBengali!,
+                              style: const TextStyle(
+                                fontFamily: 'Hind Siliguri',
+                                fontSize: 14,
+                                color: AppColors.teal,
+                              ),
+                            ),
+                          ],
+                          if (word.mnemonicHint != null &&
+                              word.mnemonicHint!.isNotEmpty) ...[
+                            const SizedBox(height: 10),
+                            const Divider(color: Colors.white10, height: 1),
+                            const SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Icon(
+                                  Icons.lightbulb_outline_rounded,
+                                  color: AppColors.amber,
+                                  size: 18,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    word.mnemonicHint!,
+                                    style: const TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 13,
+                                      color: AppColors.mnemonicText,
+                                      height: 1.4,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+
                   // Examples Section
                   if (word.examples != null && word.examples!.isNotEmpty) ...[
                     const SectionHeader(title: 'Example Sentences'),
@@ -541,6 +645,64 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                       }).toList(),
                     ),
                   ],
+
+                  // Quick Practice (from vocab drill data)
+                  const SizedBox(height: 16),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Colors.white.withValues(alpha: 0.04),
+                        width: 1,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Row(
+                          children: [
+                            Icon(
+                              Icons.quiz_outlined,
+                              color: AppColors.teal,
+                              size: 20,
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              'QUICK PRACTICE',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.5,
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          'Test your knowledge with interactive drills for this word.',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            color: AppColors.textMuted,
+                            height: 1.4,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        PrimaryButton(
+                          text: 'Practice This Word',
+                          isFilled: true,
+                          color: AppColors.teal,
+                          onPressed: () =>
+                              _showQuickPractice(context, word.id),
+                        ),
+                      ],
+                    ),
+                  ),
                 ]),
               ),
             ),
@@ -636,6 +798,271 @@ class _WordDetailsPageState extends ConsumerState<WordDetailsPage> {
                 width: double.infinity, height: 80, borderRadius: 12),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _QuickPracticeSheet extends StatefulWidget {
+  final List<Map<String, dynamic>> questions;
+
+  const _QuickPracticeSheet({required this.questions});
+
+  @override
+  State<_QuickPracticeSheet> createState() => _QuickPracticeSheetState();
+}
+
+class _QuickPracticeSheetState extends State<_QuickPracticeSheet> {
+  int _currentIndex = 0;
+  int _score = 0;
+  int? _selectedAnswer;
+  bool _showResult = false;
+
+  void _selectAnswer(int index) {
+    if (_selectedAnswer != null) return;
+    final answer = widget.questions[_currentIndex]['answer'];
+    setState(() {
+      _selectedAnswer = index;
+      if (index == answer) _score++;
+    });
+  }
+
+  void _nextQuestion() {
+    if (_currentIndex < widget.questions.length - 1) {
+      setState(() {
+        _currentIndex++;
+        _selectedAnswer = null;
+      });
+    } else {
+      setState(() => _showResult = true);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_showResult) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(24, 32, 24, 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.check_circle_outline_rounded,
+              color: AppColors.teal,
+              size: 56,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Practice Complete!',
+              style: TextStyle(
+                fontFamily: 'Outfit',
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: AppColors.textPrimary,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'You scored $_score / ${widget.questions.length}',
+              style: const TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 16,
+                color: AppColors.textSecondary,
+              ),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: PrimaryButton(
+                text: 'Close',
+                isFilled: true,
+                color: AppColors.teal,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final question = widget.questions[_currentIndex];
+    final options = question['options'] as List<dynamic>;
+    final hasSentence = question['sentence'] != null;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.quiz_outlined,
+                color: AppColors.teal,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'QUICK PRACTICE',
+                style: const TextStyle(
+                  fontFamily: 'Outfit',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.5,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                '${_currentIndex + 1} / ${widget.questions.length}',
+                style: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 13,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          if (hasSentence) ...[
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.03),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.06),
+                  width: 1,
+                ),
+              ),
+              child: Text(
+                question['sentence'] as String,
+                style: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  color: AppColors.textPrimary,
+                  height: 1.4,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+          Text(
+            question['question'] as String,
+            style: const TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textPrimary,
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 16),
+          ...options.asMap().entries.map((entry) {
+            final idx = entry.key;
+            final opt = entry.value as String;
+            final isSelected = _selectedAnswer == idx;
+            final isAnswer = idx == (question['answer'] as int);
+            Color? bgColor;
+            Color? borderColor;
+            Color textColor = AppColors.textPrimary;
+
+            if (_selectedAnswer != null) {
+              if (isAnswer) {
+                bgColor = AppColors.teal.withValues(alpha: 0.12);
+                borderColor = AppColors.teal;
+                textColor = AppColors.teal;
+              } else if (isSelected && !isAnswer) {
+                bgColor = AppColors.coral.withValues(alpha: 0.12);
+                borderColor = AppColors.coral;
+                textColor = AppColors.coral;
+              }
+            }
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: GestureDetector(
+                onTap: () => _selectAnswer(idx),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: bgColor ?? Colors.white.withValues(alpha: 0.02),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: borderColor ??
+                          Colors.white.withValues(alpha: 0.06),
+                      width: 1.2,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 24,
+                        height: 24,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _selectedAnswer != null && isAnswer
+                              ? AppColors.teal
+                              : isSelected && !isAnswer
+                                  ? AppColors.coral
+                                  : Colors.white.withValues(alpha: 0.08),
+                        ),
+                        child: Text(
+                          String.fromCharCode(65 + idx),
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: _selectedAnswer != null
+                                ? Colors.black
+                                : AppColors.textMuted,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          opt,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: 14,
+                            color: textColor,
+                            height: 1.3,
+                          ),
+                        ),
+                      ),
+                      if (_selectedAnswer != null && isAnswer)
+                        const Icon(Icons.check_circle,
+                            color: AppColors.teal, size: 18),
+                      if (_selectedAnswer != null && isSelected && !isAnswer)
+                        const Icon(Icons.cancel,
+                            color: AppColors.coral, size: 18),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+          if (_selectedAnswer != null) ...[
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: PrimaryButton(
+                text: _currentIndex < widget.questions.length - 1
+                    ? 'Next Question'
+                    : 'See Results',
+                isFilled: true,
+                color: AppColors.teal,
+                onPressed: _nextQuestion,
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

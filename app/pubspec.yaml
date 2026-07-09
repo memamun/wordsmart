@@ -1,0 +1,45 @@
+name: wordsmart
+description: An offline-first vocabulary learning platform with spaced repetition, practice quizzes, contextual stories, and intelligent recommendations.
+publish_to: 'none'
+version: 0.5.1+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.0
+  
+  # Dependency Injection
+  get_it: ^7.6.0
+  
+  # Functional Programming
+  dartz: ^0.10.1
+  
+  # SQLite Database
+  sqflite: ^2.3.0
+  path: ^1.8.0
+  
+  # UI
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  flutter_lints: ^3.0.0
+  mockito: ^5.4.0
+  build_runner: ^2.4.0
+  integration_test:
+    sdk: flutter
+  sqflite_common_ffi: ^2.3.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/wordsmart.db

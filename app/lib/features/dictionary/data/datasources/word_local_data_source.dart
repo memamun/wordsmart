@@ -47,6 +47,9 @@ abstract class WordLocalDataSource {
   /// Fetches all SAT/GRE hit parade word lists.
   Future<List<HitParadeModel>> getHitParades();
 
+  /// Fetches all non-stub words ordered alphabetically.
+  Future<List<WordModel>> getAllWords();
+
   /// Fetches all specialized/thematic vocabulary.
   Future<List<SpecializedVocabModel>> getSpecializedVocabulary();
 }

@@ -245,6 +245,17 @@ class SQLiteWordLocalDataSource implements WordLocalDataSource {
   }
 
   @override
+  Future<List<WordModel>> getAllWords() async {
+    final db = await databaseClient.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'words',
+      where: 'definition IS NOT NULL AND definition != \'\'',
+      orderBy: 'word ASC',
+    );
+    return maps.map((m) => WordModel.fromDatabase(m)).toList();
+  }
+
+  @override
   Future<List<HitParadeModel>> getHitParades() async {
     final db = await databaseClient.database;
     final List<Map<String, dynamic>> maps = await db.rawQuery('''
