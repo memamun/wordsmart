@@ -138,7 +138,7 @@ export default function App() {
           borderRadius: '50%',
           animation: 'spin 1s linear infinite'
         }}></div>
-        <h3 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: '600' }}>Initializing Prep Arena</h3>
+        <h3 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: '600' }}>Loading WordSmart</h3>
         <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Loading vocabulary databases...</p>
         <style>{`
           @keyframes spin { to { transform: rotate(360deg); } }

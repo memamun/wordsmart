@@ -17,14 +17,14 @@ const DEFAULT_STATE = {
 export const PREP_STAGES = [
   { id: 1, name: 'Beginner Foundations I', desc: 'Core beginner vocabulary foundations', xpRequired: 0 },
   { id: 2, name: 'Beginner Foundations II', desc: 'Core beginner vocabulary mastery', xpRequired: 500 },
-  { id: 3, name: 'Beginner & Intermediate Transition', desc: 'Transitional preparation for mid-tier words', xpRequired: 1200 },
+  { id: 3, name: 'Beginner & Intermediate Bridge', desc: 'Transition into mid-tier vocabulary', xpRequired: 1200 },
   { id: 4, name: 'Intermediate Core I', desc: 'Key intermediate-level words for verbal capacity', xpRequired: 2200 },
   { id: 5, name: 'Intermediate Core II', desc: 'Expanding mid-tier vocabulary and usage precision', xpRequired: 3500 },
-  { id: 6, name: 'Intermediate & Advanced Transition', desc: 'Transitional preparation for high-frequency advanced words', xpRequired: 5000 },
+  { id: 6, name: 'Intermediate & Advanced Bridge', desc: 'Build toward high-frequency advanced vocabulary', xpRequired: 5000 },
   { id: 7, name: 'Advanced Mastery I', desc: 'Core advanced vocabulary and essay writing registers', xpRequired: 7000 },
   { id: 8, name: 'Advanced Mastery II', desc: 'Expanding high-frequency advanced vocabulary', xpRequired: 9500 },
   { id: 9, name: 'Advanced Mastery III', desc: 'High-level vocabulary and logical connection drills', xpRequired: 12500 },
-  { id: 10, name: 'Advanced Mastery IV', desc: 'Top-tier vocabulary mastery for the Dream Job!', xpRequired: 16000 },
+  { id: 10, name: 'Advanced Mastery IV', desc: 'Top-tier vocabulary mastery', xpRequired: 16000 },
 ];
 
 export function useGameState() {

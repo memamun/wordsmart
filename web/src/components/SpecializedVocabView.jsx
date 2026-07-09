@@ -172,7 +172,7 @@ export default function SpecializedVocabView({ wordsData }) {
                 {activeChapter.chapter_title}
               </h1>
               <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.90rem', marginTop: '0.25rem' }}>
-                Mastering specific vocabulary and terms for Bangladesh Bank AD.
+                Mastering specialized vocabulary across multiple domains.
               </p>
             </div>
             <span style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', fontWeight: '600' }}>

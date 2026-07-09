@@ -4,11 +4,8 @@ import {
   Volume2, 
   Bookmark, 
   BookmarkCheck, 
-  HelpCircle, 
   Award,
-  ChevronRight,
   ArrowRight,
-  BookOpen,
   CheckCircle,
   AlertCircle,
   Info
@@ -175,7 +172,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
         <div>
           <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)' }}>Unit {state.unlockedLevel}.{selectedUnit || 1} Study Quest</h1>
           <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem' }}>
-            Learn spelling, audio pronunciation, Bengali meaning, and mnemonics.
+            Master spelling, pronunciation, meaning, and mnemonics for every word.
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
@@ -213,7 +210,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             Unit {state.unlockedLevel}.{selectedUnit || 1} Vocab Completed!
           </h2>
           <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
-            Congratulations! You have studied all the high-frequency words for this preparation unit. Prove your skills in the Unit Quiz or Stage Cumulative Exam to unlock the next levels.
+            Congratulations! You have mastered all the words in this unit. Prove your skills in the Unit Quiz or Stage Cumulative Exam to unlock the next levels.
           </p>
           <button 
             onClick={() => setActiveView('quizzes')}

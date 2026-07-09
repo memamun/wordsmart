@@ -3,14 +3,14 @@
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Premium HSL Color Palette (Deep Midnight Slate & Emerald/Teal Financial accents) */
+  /* Premium HSL Color Palette (Deep Midnight Slate & Emerald accents) */
   --bg-canvas: 224 45% 6%;       /* Deep dark void blue-slate */
   --bg-surface: 224 30% 10%;     /* Rich dark surface */
   --bg-surface-elevated: 224 25% 15%; /* Lighter surface for active items */
   --border-muted: 224 20% 14%;   /* Muted divider border */
   
   /* Brand / Gamification Accents */
-  --primary-rgb: 16, 185, 129;   /* Emerald Green (representing Bank/Success) */
+  --primary-rgb: 16, 185, 129;   /* Emerald Green (representing Success/Mastery) */
   --primary: 155 85% 48%;        /* Accent Emerald */
   --primary-glow: 155 85% 48% / 0.15;
   --secondary: 42 100% 53%;      /* Gold/Amber (Streaks/Coins) */
@@ -507,7 +507,7 @@ h1, h2, h3, h4, h5 {
   flex-direction: column;
   z-index: 9999;
   box-shadow: -12px 0 48px rgba(0, 0, 0, 0.7);
-  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   isolation: isolate;
 }
 
@@ -533,6 +533,71 @@ h1, h2, h3, h4, h5 {
 .detail-panel-close:hover {
   background: hsla(0,0%,100%,0.12);
   color: white;
+}
+
+.detail-icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: hsla(var(--primary), 0.1);
+  border: 1px solid hsla(var(--primary), 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: hsl(var(--primary));
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.detail-icon-btn:hover {
+  background: hsla(var(--primary), 0.2);
+  border-color: hsla(var(--primary), 0.35);
+  transform: scale(1.05);
+}
+
+.detail-card {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+}
+.detail-card-amber {
+  background: linear-gradient(135deg, hsla(var(--secondary), 0.08) 0%, hsla(var(--secondary), 0.02) 100%);
+  border: 1px solid hsla(var(--secondary), 0.12);
+}
+.detail-card-emerald {
+  background: linear-gradient(135deg, hsla(var(--primary), 0.06) 0%, hsla(var(--primary), 0.02) 100%);
+  border: 1px solid hsla(var(--primary), 0.1);
+}
+.detail-card-purple {
+  background: linear-gradient(135deg, hsla(var(--accent-purple), 0.06) 0%, hsla(var(--accent-purple), 0.02) 100%);
+  border: 1px solid hsla(var(--accent-purple), 0.1);
+}
+
+.detail-tag {
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.detail-tag:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+.detail-tag-green {
+  background: rgba(16, 185, 129, 0.1);
+  color: hsl(142, 70%, 55%);
+}
+.detail-tag-red {
+  background: rgba(239, 68, 68, 0.1);
+  color: hsl(350, 80%, 65%);
+}
+.detail-tag-purple {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: hsla(var(--accent-purple), 0.1);
+  color: hsl(var(--accent-purple));
+  font-weight: 500;
+  border: 1px solid hsla(var(--accent-purple), 0.15);
 }
 
 @keyframes slideInRight {
@@ -567,7 +632,7 @@ h1, h2, h3, h4, h5 {
     border-left: none;
     border-radius: 0;
     animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 
   .detail-panel-backdrop {

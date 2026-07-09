@@ -14,13 +14,13 @@ import {
 } from 'lucide-react';
 import { PREP_STAGES } from '../hooks/useGameState';
 
-const BB_PREP_TIPS = [
-  "Bangladesh Bank Recruitment Prelims allocate a heavy weight to English vocabulary (15-20% of total score).",
-  "Sentence completion questions in BB tests require understanding the secondary definitions and grammatical collocations.",
-  "Analogies test your logical connections. Make sure to establish a clear sentence relating the two words in the base pair.",
-  "Make flashcards a daily habit! Spaced repetition is the only proven way to retain 1,900+ high-frequency GRE/BB words.",
-  "Written Exams feature a translation section (English to Bangla & Bangla to English). Knowing precise meanings is essential.",
-  "Look up mnemonics for words that just won't stick. Memory anchors save precious seconds in exam conditions."
+const STUDY_TIPS = [
+  "Spaced repetition is the only proven way to retain 1,900+ high-frequency words long-term.",
+  "Create mnemonics for words that don't stick — memory anchors reinforce recall.",
+  "Active recall through quizzes and flashcards beats passive reading every time.",
+  "Study in focused 25-minute sessions with short breaks for best retention.",
+  "Use the review feature to revisit words you're learning — repetition builds mastery.",
+  "Learning word roots helps decode unfamiliar vocabulary and expands your range."
 ];
 
 export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
@@ -35,7 +35,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
 
   // Selected random tip
   const randomTip = React.useMemo(() => {
-    return BB_PREP_TIPS[Math.floor(Math.random() * BB_PREP_TIPS.length)];
+    return STUDY_TIPS[Math.floor(Math.random() * STUDY_TIPS.length)];
   }, []);
 
   return (
@@ -51,10 +51,10 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
       }}>
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
-            Road to Bangladesh Bank AD
+            Master 1,900+ High-Frequency Words
           </h1>
           <p style={{ color: 'hsl(var(--text-secondary))', lineHeight: '1.5', maxWidth: '600px' }}>
-            Prepare systematically for the central bank recruitment. Unlock 10 stages of specialized exam-prep, earn budget coins for hints, and master {wordsData.words.length || 1913} high-frequency words.
+            Progress through 10 stages of vocabulary mastery. Use flashcards, spaced repetition, and quizzes to retain every word long-term. Earn coins for hints and climb the leaderboard.
           </p>
         </div>
         <div className="motivation-card" style={{
@@ -66,7 +66,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'hsl(var(--primary))', fontWeight: '700', fontSize: '0.85rem' }}>
             <Brain size={16} />
-            <span>EXAM PREP MOTIVATION</span>
+            <span>STUDY TIP</span>
           </div>
           <p style={{ fontSize: '0.85rem', color: 'hsl(var(--text-secondary))', fontStyle: 'italic', lineHeight: '1.4' }}>
             "{randomTip}"
@@ -158,13 +158,13 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
         <div style={{ flex: 1, minWidth: '250px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--accent-purple))', fontWeight: '700', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
             <Book size={16} />
-            <span>SPECIALIZED RECRUITMENT DECK</span>
+            <span>SPECIALIZED VOCABULARY</span>
           </div>
           <h2 style={{ fontSize: '1.35rem', fontFamily: 'var(--font-title)', color: 'white' }}>
-            Bangladesh Bank AD Grammar & Usage Guide
+            Grammar, Usage & Specialized Terms
           </h2>
           <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.85rem', marginTop: '0.25rem', lineHeight: '1.4' }}>
-            Master common usage errors, abbreviations, foreign expressions, and register terminology (Finance, Arts, Computer, and Science lists) with definitions and example sentences.
+            Master common usage errors, abbreviations, foreign expressions, and register terminology across multiple domains with definitions and example sentences.
           </p>
         </div>
         <button 
@@ -186,7 +186,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
       <div className="glass-panel roadmap-panel" style={{ padding: '2rem' }}>
         <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Award color="hsl(var(--primary))" />
-          Exam Preparation Roadmap
+          Vocabulary Mastery Roadmap
         </h2>
         
         <div style={{

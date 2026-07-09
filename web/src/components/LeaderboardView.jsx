@@ -21,7 +21,7 @@ export default function LeaderboardView({ state }) {
   // Create user's entry dynamically based on their live XP
   const userEntry = {
     id: 'user',
-    name: 'You (Central Bank Aspirant)',
+    name: 'You (WordSmart Learner)',
     xp: state.xp,
     level: state.unlockedLevel,
     streak: state.streak,
@@ -44,7 +44,7 @@ export default function LeaderboardView({ state }) {
             <Trophy color="hsl(var(--secondary))" /> Aspirants Leaderboard
           </h1>
           <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem' }}>
-            Compete with simulated Bangladesh Bank exam candidates. Gain XP to climb the ranks!
+            Compete with simulated learners. Gain XP to climb the ranks!
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
