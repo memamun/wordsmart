@@ -141,7 +141,7 @@ export default function TimeBlitzView({ state, wordsData }) {
   }, []);
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }} className="animate-fade">
+    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }} className="animate-fade timeblitz-view-container">
       {/* View Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>

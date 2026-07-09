@@ -151,6 +151,12 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   const levelMasteredCount = levelWords.filter(w => state.masteredWordIds.includes(w.id)).length;
   const levelProgressPercent = Math.round((levelMasteredCount / levelWords.length) * 100);
 
+  useEffect(() => {
+    if (levelProgressPercent >= 100) {
+      setDetailWord(null);
+    }
+  }, [levelProgressPercent]);
+
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
       {/* View Navigation Header */}
@@ -306,6 +312,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                       e.stopPropagation();
                       state.toggleBookmark(word.id);
                     }}
+                    className="min-touch"
                     style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))' }}
                   >
                     {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
@@ -324,9 +331,10 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                     </span>
                     <button 
                       onClick={(e) => speakWord(word.word, e)}
+                      className="min-touch"
                       style={{
-                        width: '32px',
-                        height: '32px',
+                        width: '44px',
+                        height: '44px',
                         borderRadius: '50%',
                         backgroundColor: 'hsla(var(--primary), 0.1)',
                         border: '1px solid hsla(var(--primary), 0.2)',
@@ -338,7 +346,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                       }}
                       title="Listen Pronunciation"
                     >
-                      <Volume2 size={16} />
+                      <Volume2 size={18} />
                     </button>
                   </div>
                 </div>
@@ -363,6 +371,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                         e.stopPropagation();
                         setDetailWord(word);
                       }}
+                      className="min-touch"
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
                       title="View Details & Mnemonic"
                     >

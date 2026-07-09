@@ -53,13 +53,10 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setSidebarOpen(true)}
-          className="mobile-menu-btn btn btn-secondary"
+          className="mobile-menu-btn btn btn-secondary min-touch"
           style={{ 
             display: 'none', 
-            padding: '0.5rem', 
             borderRadius: 'var(--radius-md)',
-            alignItems: 'center',
-            justifyContent: 'center'
           }}
         >
           <Menu size={20} />
@@ -90,7 +87,8 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           {/* Progress bar */}
           <div style={{ 
             height: '4px', 
-            width: '150px', 
+            width: '100%', 
+            maxWidth: '150px',
             backgroundColor: 'hsl(var(--border-muted))', 
             borderRadius: '2px', 
             marginTop: '0.25rem', 

@@ -70,7 +70,7 @@ export default function SearchView({ state, wordsData }) {
   };
 
   return (
-    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '850px', margin: '0 auto' }} className="animate-fade">
+    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '850px', margin: '0 auto' }} className="animate-fade search-view-container">
       {/* View Header */}
       <div>
         <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -115,35 +115,35 @@ export default function SearchView({ state, wordsData }) {
         <button 
           onClick={() => setFilterMode('all')}
           className="btn"
-          style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', backgroundColor: filterMode === 'all' ? 'hsla(var(--primary), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'all' ? '1px solid hsl(var(--primary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'all' ? 'hsl(var(--primary))' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.82rem', minHeight: '38px', backgroundColor: filterMode === 'all' ? 'hsla(var(--primary), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'all' ? '1px solid hsl(var(--primary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'all' ? 'hsl(var(--primary))' : 'hsl(var(--text-secondary))' }}
         >
           All Words ({wordsData.words.length})
         </button>
         <button 
           onClick={() => setFilterMode('bookmarked')}
           className="btn"
-          style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', backgroundColor: filterMode === 'bookmarked' ? 'rgba(245, 158, 11, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'bookmarked' ? '1px solid hsl(var(--secondary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'bookmarked' ? 'hsl(var(--secondary))' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'bookmarked' ? 'rgba(245, 158, 11, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'bookmarked' ? '1px solid hsl(var(--secondary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'bookmarked' ? 'hsl(var(--secondary))' : 'hsl(var(--text-secondary))' }}
         >
           Bookmarked ({state.bookmarkedWordIds.length})
         </button>
         <button 
           onClick={() => setFilterMode('mastered')}
           className="btn"
-          style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', backgroundColor: filterMode === 'mastered' ? 'hsla(var(--success), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'mastered' ? '1px solid hsl(var(--success))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'mastered' ? 'hsl(var(--primary))' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'mastered' ? 'hsla(var(--success), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'mastered' ? '1px solid hsl(var(--success))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'mastered' ? 'hsl(var(--primary))' : 'hsl(var(--text-secondary))' }}
         >
           Mastered ({Object.values(state.wordProgress).filter(p => p.status === 'mastered').length})
         </button>
         <button 
           onClick={() => setFilterMode('learning')}
           className="btn"
-          style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', backgroundColor: filterMode === 'learning' ? 'rgba(99, 102, 241, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'learning' ? '1px solid #6366F1' : '1px solid hsl(var(--border-muted))', color: filterMode === 'learning' ? '#818CF8' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'learning' ? 'rgba(99, 102, 241, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'learning' ? '1px solid #6366F1' : '1px solid hsl(var(--border-muted))', color: filterMode === 'learning' ? '#818CF8' : 'hsl(var(--text-secondary))' }}
         >
           Learning ({Object.values(state.wordProgress).filter(p => p.status === 'learning' || p.status === 'reviewing' || p.status === 'relearning').length})
         </button>
         <button 
           onClick={() => setFilterMode('hit_parades')}
           className="btn"
-          style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', backgroundColor: filterMode === 'hit_parades' ? 'rgba(56, 189, 248, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'hit_parades' ? '1px solid #0EA5E9' : '1px solid hsl(var(--border-muted))', color: filterMode === 'hit_parades' ? '#38BDF8' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'hit_parades' ? 'rgba(56, 189, 248, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'hit_parades' ? '1px solid #0EA5E9' : '1px solid hsl(var(--border-muted))', color: filterMode === 'hit_parades' ? '#38BDF8' : 'hsl(var(--text-secondary))' }}
         >
           SAT Hit Parade
         </button>

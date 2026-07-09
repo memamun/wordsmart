@@ -94,7 +94,7 @@ export default function StoriesView({ state, wordsData }) {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '850px', margin: '0 auto' }} className="animate-fade">
+    <div style={{ padding: '2rem', maxWidth: '850px', margin: '0 auto' }} className="animate-fade stories-view-container">
       {/* 1. STORIES LIST VIEW */}
       {!activeStory && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -229,9 +229,10 @@ export default function StoriesView({ state, wordsData }) {
             }}>
               <button 
                 onClick={() => setSelectedWord(null)}
+                className="min-touch"
                 style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', color: 'hsl(var(--text-muted))', cursor: 'pointer' }}
               >
-                <X size={18} />
+                <X size={20} />
               </button>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
@@ -239,9 +240,10 @@ export default function StoriesView({ state, wordsData }) {
                 <span style={{ fontStyle: 'italic', color: 'hsl(var(--text-secondary))' }}>({selectedWord.part_of_speech})</span>
                 <button 
                   onClick={() => speakWord(selectedWord.word)}
+                  className="min-touch"
                   style={{ background: 'none', border: 'none', color: 'hsl(var(--primary))', cursor: 'pointer' }}
                 >
-                  <Volume2 size={16} />
+                  <Volume2 size={20} />
                 </button>
               </div>
 

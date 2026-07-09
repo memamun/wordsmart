@@ -68,7 +68,7 @@ export default function Sidebar({ activeView, setActiveView, state, wordsData, s
           <div>
             <h2 style={{ fontSize: '1.15rem', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>WordSmart</h2>
             <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))', fontWeight: '700', letterSpacing: '0.05em' }}>
-              BB AD RECRUITMENT
+              VOCABULARY MASTERY
             </span>
           </div>
         </div>
@@ -76,14 +76,12 @@ export default function Sidebar({ activeView, setActiveView, state, wordsData, s
         {/* Close Button on Mobile Drawer */}
         <button
           onClick={() => setSidebarOpen(false)}
-          className="mobile-close-btn btn btn-secondary"
+          className="mobile-close-btn btn btn-secondary min-touch"
           style={{
             display: 'none',
-            padding: '0.35rem',
-            borderRadius: 'var(--radius-sm)'
           }}
         >
-          <X size={16} />
+          <X size={18} />
         </button>
       </div>
 

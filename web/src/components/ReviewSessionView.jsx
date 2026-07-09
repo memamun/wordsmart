@@ -175,7 +175,7 @@ export default function ReviewSessionView({ state, wordsData }) {
   const activeProgress = state.wordProgress[word?.id] || {};
 
   return (
-    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', maxWidth: '800px', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealDetails ? 'detail-open' : ''}`}>
+    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', maxWidth: '800px', margin: '0 auto' }} className={`animate-fade review-view-container ${revealDetails ? 'detail-open' : ''}`}>
       {/* Header Info */}
       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
@@ -380,17 +380,17 @@ export default function ReviewSessionView({ state, wordsData }) {
       )}
 
       {/* SM-2 Cognitive Rating Buttons (Only visible when flipped) */}
-      <div style={{ width: '100%', maxWidth: '600px', height: '80px', position: 'relative' }}>
+      <div style={{ width: '100%', maxWidth: '600px', position: 'relative' }}>
         {flipped ? (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700', letterSpacing: '0.05em' }}>
               HOW WELL DID YOU RECALL THIS WORD?
             </span>
-            <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
+            <div style={{ display: 'flex', gap: '0.4rem', width: '100%', flexWrap: 'wrap', justifyContent: 'center' }}>
               <button 
                 onClick={(e) => { e.stopPropagation(); triggerRate('left', 0); }}
                 className="btn"
-                style={{ flex: 1, padding: '0.65rem 0.25rem', fontSize: '0.75rem', backgroundColor: 'rgba(239, 68, 68, 0.15)', color: 'hsl(var(--danger))', border: '1px solid hsla(var(--danger), 0.3)' }}
+                style={{ flex: 1, padding: '0.7rem 0.35rem', fontSize: '0.75rem', minHeight: '42px', backgroundColor: 'rgba(239, 68, 68, 0.15)', color: 'hsl(var(--danger))', border: '1px solid hsla(var(--danger), 0.3)' }}
                 title="Forgot completely (Blackout)"
               >
                 Blackout (0)
@@ -398,7 +398,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               <button 
                 onClick={(e) => { e.stopPropagation(); triggerRate('left', 2); }}
                 className="btn"
-                style={{ flex: 1, padding: '0.65rem 0.25rem', fontSize: '0.75rem', backgroundColor: 'rgba(245, 158, 11, 0.1)', color: '#F59E0B', border: '1px solid rgba(245, 158, 11, 0.3)' }}
+                style={{ flex: 1, padding: '0.7rem 0.35rem', fontSize: '0.75rem', minHeight: '42px', backgroundColor: 'rgba(245, 158, 11, 0.1)', color: '#F59E0B', border: '1px solid rgba(245, 158, 11, 0.3)' }}
                 title="Incorrect, but recognized once shown"
               >
                 Forgot (2)
@@ -406,7 +406,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               <button 
                 onClick={(e) => { e.stopPropagation(); triggerRate('right', 3); }}
                 className="btn"
-                style={{ flex: 1, padding: '0.65rem 0.25rem', fontSize: '0.75rem', backgroundColor: 'rgba(56, 189, 248, 0.1)', color: '#0EA5E9', border: '1px solid rgba(56, 189, 248, 0.3)' }}
+                style={{ flex: 1, padding: '0.7rem 0.35rem', fontSize: '0.75rem', minHeight: '42px', backgroundColor: 'rgba(56, 189, 248, 0.1)', color: '#0EA5E9', border: '1px solid rgba(56, 189, 248, 0.3)' }}
                 title="Correct, with extreme effort"
               >
                 Hard (3)
@@ -414,7 +414,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               <button 
                 onClick={(e) => { e.stopPropagation(); triggerRate('right', 4); }}
                 className="btn"
-                style={{ flex: 1, padding: '0.65rem 0.25rem', fontSize: '0.75rem', backgroundColor: 'rgba(99, 102, 241, 0.1)', color: '#6366F1', border: '1px solid rgba(99, 102, 241, 0.3)' }}
+                style={{ flex: 1, padding: '0.7rem 0.35rem', fontSize: '0.75rem', minHeight: '42px', backgroundColor: 'rgba(99, 102, 241, 0.1)', color: '#6366F1', border: '1px solid rgba(99, 102, 241, 0.3)' }}
                 title="Correct, after slight hesitation"
               >
                 Good (4)
@@ -422,7 +422,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               <button 
                 onClick={(e) => { e.stopPropagation(); triggerRate('right', 5); }}
                 className="btn"
-                style={{ flex: 1, padding: '0.65rem 0.25rem', fontSize: '0.75rem', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: 'hsl(var(--primary))', border: '1px solid hsla(var(--primary), 0.3)' }}
+                style={{ flex: 1, padding: '0.7rem 0.35rem', fontSize: '0.75rem', minHeight: '42px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: 'hsl(var(--primary))', border: '1px solid hsla(var(--primary), 0.3)' }}
                 title="Perfect, instant recall"
               >
                 Easy (5)

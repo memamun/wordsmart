@@ -224,6 +224,26 @@ button, input, select {
   background-color: hsla(var(--danger), 0.25);
 }
 
+/* Form Controls */
+.form-control {
+  background-color: hsl(var(--bg-surface));
+  border: 1px solid hsl(var(--border-muted));
+  color: hsl(var(--text-primary));
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: var(--transition-fast);
+}
+.form-control::placeholder {
+  color: hsl(var(--text-muted));
+}
+.form-control:focus {
+  border-color: hsla(var(--primary), 0.4);
+  box-shadow: 0 0 0 3px hsla(var(--primary), 0.08);
+}
+
 /* Typographical Styles */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-title);
@@ -333,6 +353,15 @@ h1, h2, h3, h4, h5 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+}
+
+/* Increase touch targets for interactive icon buttons */
+.min-touch {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Mobile Responsiveness Rules (up to 768px viewports) */
@@ -488,6 +517,46 @@ h1, h2, h3, h4, h5 {
   .unit-quiz-banner button, .cumulative-exam-banner button {
     width: 100% !important;
   }
+
+  /* Search view mobile */
+  .search-view-container {
+    padding: 1rem !important;
+  }
+
+  /* Stories view mobile */
+  .stories-view-container {
+    padding: 1rem !important;
+  }
+
+  /* Leaderboard view mobile */
+  .leaderboard-view-container {
+    padding: 1rem !important;
+  }
+
+  /* Analogy view mobile */
+  .analogy-view-container {
+    padding: 1rem !important;
+  }
+
+  /* TimeBlitz view mobile */
+  .timeblitz-view-container {
+    padding: 1rem !important;
+  }
+
+  /* Specialized vocab view mobile */
+  .specialized-vocab-container {
+    padding: 1rem !important;
+  }
+
+  /* Review session view mobile */
+  .review-view-container {
+    padding: 1rem !important;
+  }
+
+  /* General view padding fallback for views without specific class */
+  .view-container {
+    padding: 1rem !important;
+  }
 }
 
 /* ========== Word Detail Panel ========== */
@@ -523,8 +592,8 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   transition: background 0.15s;
   flex-shrink: 0;
@@ -536,8 +605,10 @@ h1, h2, h3, h4, h5 {
 }
 
 .detail-icon-btn {
-  width: 30px;
-  height: 30px;
+  min-width: 36px;
+  min-height: 36px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: hsla(var(--primary), 0.1);
   border: 1px solid hsla(var(--primary), 0.2);

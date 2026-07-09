@@ -91,7 +91,7 @@ export default function AnalogyView({ state, wordsData }) {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade">
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade analogy-view-container">
       {/* Quiz Header */}
       {!quizFinished && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

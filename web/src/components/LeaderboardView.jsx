@@ -36,7 +36,7 @@ export default function LeaderboardView({ state }) {
   const userRankIndex = leaderboardList.findIndex(item => item.id === 'user') + 1;
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '750px', margin: '0 auto' }} className="animate-fade">
+    <div style={{ padding: '2rem', maxWidth: '750px', margin: '0 auto' }} className="animate-fade leaderboard-view-container">
       {/* View Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>

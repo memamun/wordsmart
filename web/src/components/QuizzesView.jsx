@@ -376,12 +376,12 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
             <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
               💡 PREP BUDGET HINTS:
             </span>
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <button 
                 onClick={buyFiftyFifty}
                 disabled={fiftyFiftyUsed || isAnswered || state.coins < 15}
                 className="btn btn-secondary"
-                style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
                 <Coins size={12} color="#FBBF24" /> 50/50 (-15c)
               </button>
@@ -389,7 +389,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 onClick={buyBengaliClue}
                 disabled={bengaliClueUsed || isAnswered || state.coins < 10}
                 className="btn btn-secondary"
-                style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
                 <Coins size={12} color="#FBBF24" /> Show Bengali (-10c)
               </button>
@@ -397,7 +397,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 onClick={buyMnemonic}
                 disabled={mnemonicUsed || isAnswered || state.coins < 20}
                 className="btn btn-secondary"
-                style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
                 <Coins size={12} color="#FBBF24" /> Mnemonic (-20c)
               </button>
