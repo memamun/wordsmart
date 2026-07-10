@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Sparkles, X, Volume2, BookOpen, Lightbulb, Hash, Layers } from 'lucide-react';
 
 const SectionHeader = ({ icon, label, color }) => (
@@ -11,6 +11,9 @@ const SectionHeader = ({ icon, label, color }) => (
 export default function WordDetailPanel({ word, onClose }) {
   if (!word) return null;
 
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
+  const [deltaY, setDeltaY] = useState(0);
+
   const speakWord = (text) => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
@@ -21,21 +24,76 @@ export default function WordDetailPanel({ word, onClose }) {
     }
   };
 
+  const handleTouchStart = (e) => {
+    // Only allow swipe down gesture on mobile views
+    if (window.innerWidth >= 768) return;
+    setTouchStart({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    });
+    setDeltaY(0);
+  };
+
+  const handleTouchMove = (e) => {
+    if (window.innerWidth >= 768) return;
+    const currentY = e.targetTouches[0].clientY;
+    const diffY = currentY - touchStart.y;
+    
+    // Only allow downward dragging
+    if (diffY > 0) {
+      setDeltaY(diffY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (window.innerWidth >= 768) return;
+    if (deltaY > 100) {
+      onClose();
+    } else {
+      setDeltaY(0); // Snap back to place
+    }
+  };
+
+  const dragStyle = deltaY > 0 ? {
+    transform: `translateY(${deltaY}px)`,
+    transition: 'none'
+  } : {
+    transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+  };
+
   return (
     <>
       <div className="detail-panel-backdrop" onClick={onClose} />
 
-      <div className="detail-panel animate-fade">
+      <div 
+        className="detail-panel" 
+        style={dragStyle}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Mobile bottom sheet drag indicator */}
+        <div style={{
+          width: '36px',
+          height: '4px',
+          backgroundColor: 'var(--text-muted)',
+          borderRadius: '99px',
+          margin: '-0.75rem auto 1rem auto',
+          opacity: 0.4,
+          display: 'block'
+        }} className="mobile-drag-handle" />
+
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem', flexShrink: 0 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '1.35rem', fontWeight: '800', color: 'white', letterSpacing: '-0.02em', lineHeight: '1.2' }}>{word.word}</span>
+              <span style={{ fontSize: '1.35rem', fontWeight: '800', color: 'hsl(var(--text-primary))', letterSpacing: '-0.02em', lineHeight: '1.2' }}>{word.word}</span>
               <span style={{ fontSize: '0.7rem', padding: '2px 10px', borderRadius: '99px', background: 'hsla(var(--primary), 0.12)', color: 'hsl(var(--primary))', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', border: '1px solid hsla(var(--primary), 0.2)' }}>
                 {word.part_of_speech}
               </span>
               <button
                 onClick={() => speakWord(word.word)}
                 title="Listen pronunciation"
+                aria-label="Listen pronunciation"
                 className="detail-icon-btn"
               >
                 <Volume2 size={14} />
@@ -47,7 +105,7 @@ export default function WordDetailPanel({ word, onClose }) {
               </span>
             )}
           </div>
-          <button onClick={onClose} className="detail-panel-close" style={{ marginLeft: '0.5rem', flexShrink: 0 }}>
+          <button onClick={onClose} aria-label="Close word details" className="detail-panel-close" style={{ marginLeft: '0.5rem', flexShrink: 0 }}>
             <X size={18} />
           </button>
         </div>
@@ -77,65 +135,36 @@ export default function WordDetailPanel({ word, onClose }) {
           {word.examples && word.examples.length > 0 && (
             <div className="detail-card detail-card-emerald">
               <SectionHeader icon={<BookOpen size={13} color="hsl(var(--primary))" />} color="hsl(var(--primary))" label="Example" />
-              <p style={{ fontSize: '0.9rem', color: 'hsl(var(--text-secondary))', lineHeight: '1.6', margin: 0 }}>
-                "{word.examples[0].split(/(\*\*.*?\*\*)/g).map((part, i) => {
-                  if (part.startsWith('**') && part.endsWith('**')) {
-                    return <strong key={i} style={{ color: 'hsl(var(--primary))', fontWeight: '700' }}>{part.replace(/\*\*/g, '')}</strong>;
-                  }
-                  return part;
-                })}"
-              </p>
-              {word.example_translations && word.example_translations[0] && (
-                <p style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', lineHeight: '1.5', margin: '0.6rem 0 0', paddingTop: '0.6rem', borderTop: '1px solid hsla(var(--primary), 0.08)' }}>
-                  {word.example_translations[0]}
-                </p>
-              )}
-            </div>
-          )}
-
-          {(word.synonyms?.length > 0 || word.antonyms?.length > 0) && (
-            <div className="detail-card" style={{ padding: '0.85rem 1rem', borderRadius: '12px', background: 'hsla(0,0%,100%,0.02)', border: '1px solid hsla(0,0%,100%,0.05)', display: 'flex', gap: '0.75rem' }}>
-              {word.synonyms?.length > 0 && (
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'hsl(142, 70%, 50%)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>Synonyms</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                    {word.synonyms.slice(0, 5).map((s, i) => (
-                      <span key={i} className="detail-tag detail-tag-green">{s}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {word.antonyms?.length > 0 && (
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'hsl(350, 80%, 60%)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>Antonyms</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                    {word.antonyms.slice(0, 5).map((a, i) => (
-                      <span key={i} className="detail-tag detail-tag-red">{a}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {word.collocations?.length > 0 && (
-            <div className="detail-card detail-card-purple">
-              <SectionHeader icon={<Layers size={13} color="hsl(var(--accent-purple))" />} color="hsl(var(--accent-purple))" label="Common Collocations" />
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                {word.collocations.slice(0, 5).map((c, i) => (
-                  <span key={i} className="detail-tag detail-tag-purple">{c}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {word.examples.map((ex, index) => (
+                  <p key={index} style={{ fontSize: '0.88rem', color: 'hsl(var(--text-secondary))', lineHeight: '1.5', margin: 0, borderLeft: '2px solid hsla(var(--primary), 0.3)', paddingLeft: '0.5rem' }}>
+                    "{ex}"
+                  </p>
                 ))}
               </div>
             </div>
           )}
 
-          {word.derivatives && Object.keys(word.derivatives).length > 0 && (
-            <div className="detail-card" style={{ padding: '0.85rem 1rem', borderRadius: '12px', background: 'hsla(0,0%,100%,0.02)', border: '1px solid hsla(0,0%,100%,0.05)' }}>
-              <SectionHeader icon={<Layers size={13} color="hsl(var(--text-muted))" />} color="hsl(var(--text-muted))" label="Derivatives" />
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-                {Object.entries(word.derivatives).map(([form, pos], i) => (
-                  <span key={i} style={{ fontSize: '0.78rem', padding: '4px 12px', borderRadius: '8px', background: 'hsla(0,0%,100%,0.04)', color: 'hsl(var(--text-secondary))', fontWeight: '500', border: '1px solid hsla(0,0%,100%,0.06)' }}>
-                    {form} <span style={{ color: 'hsl(var(--text-muted))', fontStyle: 'italic', fontSize: '0.7rem' }}>({pos})</span>
+          {word.synonyms && word.synonyms.length > 0 && (
+            <div className="detail-card detail-card-blue">
+              <SectionHeader icon={<Layers size={13} color="#1E88E5" />} color="#1E88E5" label="Synonyms" />
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.25rem' }}>
+                {word.synonyms.map((syn, index) => (
+                  <span key={index} style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '6px', background: 'rgba(30, 136, 229, 0.08)', color: '#1E88E5', fontWeight: '700', border: '1px solid rgba(30, 136, 229, 0.15)' }}>
+                    {syn}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {word.antonyms && word.antonyms.length > 0 && (
+            <div className="detail-card detail-card-pink">
+              <SectionHeader icon={<X size={13} color="#D81B60" />} color="#D81B60" label="Antonyms" />
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.25rem' }}>
+                {word.antonyms.map((ant, index) => (
+                  <span key={index} style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '6px', background: 'rgba(216, 27, 96, 0.08)', color: '#D81B60', fontWeight: '700', border: '1px solid rgba(216, 27, 96, 0.15)' }}>
+                    {ant}
                   </span>
                 ))}
               </div>

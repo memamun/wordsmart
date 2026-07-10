@@ -104,7 +104,7 @@ export default function AnalogyView({ state, wordsData }) {
                 Question {currentQIndex + 1} of {questions.length}
               </h2>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#FBBF24', fontWeight: '700' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--coin))', fontWeight: '700' }}>
               <Coins size={18} />
               <span>{state.coins} Coins</span>
             </div>
@@ -124,7 +124,7 @@ export default function AnalogyView({ state, wordsData }) {
           <div className="glass-panel" style={{
             padding: '2.5rem 2rem',
             textAlign: 'center',
-            background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(56, 189, 248, 0.05) 100%)',
+            background: 'linear-gradient(135deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--accent-blue), 0.05) 100%)',
             border: '1px solid hsla(var(--accent-blue), 0.2)'
           }}>
             <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: '800', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
@@ -133,7 +133,7 @@ export default function AnalogyView({ state, wordsData }) {
             <h1 style={{
               fontSize: '2.5rem',
               fontFamily: 'var(--font-title)',
-              color: 'white',
+              color: 'hsl(var(--text-primary))',
               letterSpacing: '0.05em',
               margin: '0.5rem 0 1.5rem',
               textShadow: '0 4px 12px rgba(0,0,0,0.5)'
@@ -209,7 +209,7 @@ export default function AnalogyView({ state, wordsData }) {
         <div className="glass-panel animate-fade" style={{
           padding: '3rem',
           textAlign: 'center',
-          background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(56, 189, 248, 0.05) 100%)',
+          background: 'linear-gradient(145deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--accent-blue), 0.05) 100%)',
           border: '1px solid hsla(var(--accent-blue), 0.2)',
           maxWidth: '550px',
           margin: '2rem auto'

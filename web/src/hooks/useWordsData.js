@@ -6,6 +6,9 @@ export function useWordsData() {
   const [stories, setStories] = useState([]);
   const [hitParades, setHitParades] = useState(null);
   const [specializedVocab, setSpecializedVocab] = useState([]);
+  const [vocabDrills, setVocabDrills] = useState([]);
+  const [quickQuizzes, setQuickQuizzes] = useState([]);
+  const [advancedQuizzes, setAdvancedQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,11 +35,14 @@ export function useWordsData() {
         const vocabData = await vocabRes.json();
 
         // Load the rest in parallel, gracefully falling back on failure
-        const [quizData, storyData, hitData, specData] = await Promise.all([
+        const [quizData, storyData, hitData, specData, vocabDrillsData, quickQuizzesData, advancedQuizzesData] = await Promise.all([
           fetchJson('/data/mcq_quizzes.json', 'MCQ Quizzes'),
           fetchJson('/data/contextual_stories.json', 'Contextual Stories'),
           fetchJson('/data/hit_parades.json', 'Hit Parades'),
           fetchJson('/data/specialized_vocabulary.json', 'Specialized Vocab'),
+          fetchJson('/data/vocab_drills.json', 'Vocab Drills'),
+          fetchJson('/data/quick_quizzes.json', 'Quick Quizzes'),
+          fetchJson('/data/advanced_quizzes.json', 'Advanced Quizzes'),
         ]);
 
         setWords(vocabData.words || []);
@@ -44,6 +50,9 @@ export function useWordsData() {
         setStories(storyData?.stories || []);
         setHitParades(hitData || {});
         setSpecializedVocab(specData?.chapters || []);
+        setVocabDrills(vocabDrillsData || []);
+        setQuickQuizzes(quickQuizzesData || []);
+        setAdvancedQuizzes(advancedQuizzesData || []);
         setError(null);
       } catch (err) {
         console.error('Error loading Wordsmart data:', err);
@@ -231,6 +240,9 @@ export function useWordsData() {
     stories,
     hitParades,
     specializedVocab,
+    vocabDrills,
+    quickQuizzes,
+    advancedQuizzes,
     loading,
     error,
     getWordsForLevel,

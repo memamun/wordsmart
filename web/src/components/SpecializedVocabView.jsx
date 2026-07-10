@@ -6,9 +6,9 @@ const META = {
   'Abbreviations':          { icon: BookOpenCheck, accent: 'var(--accent-purple)', label: 'Reference list' },
   'The Arts':               { icon: Palette,       accent: 'var(--secondary)',     label: 'Reference list' },
   'Computers':              { icon: Cpu,           accent: 'var(--accent-blue)',   label: 'Reference list' },
-  'Finance':                { icon: DollarSign,    accent: 'hsl(142,70%,45%)',     label: 'Reference list' },
-  'Foreign Words and Phrases': { icon: Globe,      accent: 'hsl(262,90%,70%)',    label: 'Reference list' },
-  'Science':                { icon: FlaskConical,  accent: 'hsl(350,80%,60%)',     label: 'Reference list' },
+  'Finance':                { icon: DollarSign,    accent: 'var(--primary)',       label: 'Reference list' },
+  'Foreign Words and Phrases': { icon: Globe,      accent: 'var(--accent-purple)', label: 'Reference list' },
+  'Science':                { icon: FlaskConical,  accent: 'var(--danger)',        label: 'Reference list' },
 };
 
 export default function SpecializedVocabView({ wordsData }) {
@@ -60,15 +60,17 @@ export default function SpecializedVocabView({ wordsData }) {
             const m = META[ch.chapter_title] || { icon: BookOpen, accent: 'var(--primary)', label: 'Reference' };
             const Icon = m.icon;
             return (
-              <div key={ch.chapter_number} onClick={() => { setChapter(ch); setQuery(''); }}
+              <button type="button" key={ch.chapter_number} onClick={() => { setChapter(ch); setQuery(''); }}
+                aria-label={`Open ${ch.chapter_title}`}
                 style={{
                   borderRadius: '12px', padding: '1.15rem 1.25rem', cursor: 'pointer',
-                  background: 'hsl(222 22% 10%)', border: '1px solid hsl(var(--border-muted))',
+                  background: 'hsl(var(--bg-surface))', border: '1px solid hsl(var(--border-muted))',
                   display: 'flex', alignItems: 'center', gap: '0.85rem',
                   transition: 'border-color 0.15s, background 0.15s',
+                  width: '100%', textAlign: 'left', color: 'inherit', font: 'inherit',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'hsla(var(--primary), 0.3)'; e.currentTarget.style.background = 'hsl(222 22% 13%)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(var(--border-muted))'; e.currentTarget.style.background = 'hsl(222 22% 12%)'; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'hsla(var(--primary), 0.3)'; e.currentTarget.style.background = 'hsl(var(--bg-surface-elevated))'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(var(--border-muted))'; e.currentTarget.style.background = 'hsl(var(--bg-surface))'; }}
               >
                 <div style={{
                   width: '36px', height: '36px', borderRadius: '10px', flexShrink: 0,
@@ -78,13 +80,13 @@ export default function SpecializedVocabView({ wordsData }) {
                   <Icon size={18} />
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'white' }}>{ch.chapter_title}</div>
+                  <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'hsl(var(--text-primary))' }}>{ch.chapter_title}</div>
                   <div style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', marginTop: '1px' }}>
                     {ch.entries.length} entries
                   </div>
                 </div>
                 <span style={{ color: 'hsl(var(--text-muted))', fontSize: '1.1rem' }}>→</span>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -114,7 +116,7 @@ export default function SpecializedVocabView({ wordsData }) {
           <Icon size={18} />
         </div>
         <div>
-          <h1 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-title)', color: 'white', lineHeight: '1.2' }}>{chapter.chapter_title}</h1>
+          <h1 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))', lineHeight: '1.2' }}>{chapter.chapter_title}</h1>
           <div style={{ fontSize: '0.78rem', color: 'hsl(var(--text-muted))' }}>
             {entries.length} of {chapter.entries.length} entries
           </div>
@@ -134,11 +136,11 @@ export default function SpecializedVocabView({ wordsData }) {
           {entries.map((entry, i) => (
             <div key={i} style={{
               padding: '1rem 1.25rem', borderRadius: '10px',
-              background: 'hsl(222 22% 11%)', border: '1px solid hsl(var(--border-muted))',
+              background: 'hsl(var(--bg-surface))', border: '1px solid hsl(var(--border-muted))',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
                 <span style={{ fontSize: '0.6rem', fontWeight: 800, color: 'hsl(var(--text-muted))',
-                  padding: '1px 7px', borderRadius: '4px', background: 'hsla(0,0%,100%,0.04)' }}>
+                  padding: '1px 7px', borderRadius: '4px', background: 'hsla(var(--text-primary), 0.04)' }}>
                   #{i + 1}
                 </span>
                 <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'hsl(var(--secondary))' }}>{entry.term}</span>

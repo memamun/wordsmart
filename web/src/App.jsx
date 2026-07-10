@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import Sidebar from './components/Sidebar.jsx';
 import Header from './components/Header.jsx';
 import Dashboard from './components/Dashboard.jsx';
@@ -6,15 +6,19 @@ import FlashcardsView from './components/FlashcardsView.jsx';
 import ReviewSessionView from './components/ReviewSessionView.jsx';
 import StoriesView from './components/StoriesView.jsx';
 import QuizzesView from './components/QuizzesView.jsx';
-import AnalogyView from './components/AnalogyView.jsx';
+import VocabDrillsView from './components/VocabDrillsView.jsx';
+import QuickMatchView from './components/QuickMatchView.jsx';
+import AdvancedQuizzesView from './components/AdvancedQuizzesView.jsx';
 import TimeBlitzView from './components/TimeBlitzView.jsx';
 import SearchView from './components/SearchView.jsx';
 import LeaderboardView from './components/LeaderboardView.jsx';
 import SpecializedVocabView from './components/SpecializedVocabView.jsx';
 import WordDetailPanel from './components/WordDetailPanel.jsx';
+import HitParadesView from './components/HitParadesView.jsx';
+import AllQuizzesView from './components/AllQuizzesView.jsx';
 import { useGameState } from './hooks/useGameState.js';
 import { useWordsData } from './hooks/useWordsData.js';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield } from 'lucide-react';
 
 export const DetailPanelContext = createContext();
 
@@ -24,7 +28,92 @@ export default function App() {
   const [activeView, setActiveView] = useState('dashboard');
   const [selectedUnit, setSelectedUnit] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
   const [detailWord, setDetailWord] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'system');
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+  // Gesture State for 2026 Mobile Viewport Gesture Navigation
+  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
+  const [touchEnd, setTouchEnd] = useState({ x: 0, y: 0 });
+
+  const handleTouchStart = (e) => {
+    setTouchStart({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    });
+    setTouchEnd({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    });
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd({
+      x: e.targetTouches[0].clientX,
+      y: e.targetTouches[0].clientY
+    });
+  };
+
+  const handleTouchEnd = (e) => {
+    const xDiff = touchStart.x - touchEnd.x;
+    const yDiff = touchStart.y - touchEnd.y;
+
+    // Prevent conflicts with flashcard card swiping, matching games, and standard scrolls
+    const target = e.target;
+    if (
+      target.closest('.flashcard-card') || 
+      target.closest('.game-container') || 
+      target.closest('.no-swipe') || 
+      target.closest('.quickmatch-container')
+    ) {
+      return;
+    }
+
+    // Dominate horizontal swipes with 80px horizontal delta and minor vertical slope
+    if (Math.abs(xDiff) > 80 && Math.abs(yDiff) < 60) {
+      const tabs = ['dashboard', 'flashcards', 'quizzes', 'search'];
+      const currentIndex = tabs.indexOf(activeView);
+
+      if (xDiff > 0) {
+        // Swipe Left -> Next Tab
+        if (currentIndex !== -1 && currentIndex < tabs.length - 1) {
+          setActiveView(tabs[currentIndex + 1]);
+        }
+      } else {
+        // Swipe Right -> Previous Tab
+        if (currentIndex !== -1 && currentIndex > 0) {
+          setActiveView(tabs[currentIndex - 1]);
+        } else if (touchStart.x < 50) {
+          // Swipe Right from edge -> Reveal Drawer
+          setSidebarOpen(true);
+        }
+      }
+    }
+  };
+
+  // Sync Theme attribute on <html> element
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', systemTheme);
+    } else {
+      root.setAttribute('data-theme', theme);
+    }
+  }, [theme]);
+
+  // Listen to system preference changes if 'system' is selected
+  useEffect(() => {
+    if (theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const listener = () => {
+        document.documentElement.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
+      };
+      mediaQuery.addEventListener('change', listener);
+      return () => mediaQuery.removeEventListener('change', listener);
+    }
+  }, [theme]);
 
   const renderActiveView = () => {
     switch (activeView) {
@@ -43,7 +132,6 @@ export default function App() {
           <FlashcardsView 
             state={state} 
             wordsData={wordsData} 
-            setActiveView={setActiveView} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
           />
@@ -67,14 +155,27 @@ export default function App() {
           <QuizzesView 
             state={state} 
             wordsData={wordsData} 
-            setActiveView={setActiveView} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
           />
         );
-      case 'analogy':
+      case 'vocabdrills':
         return (
-          <AnalogyView 
+          <VocabDrillsView 
+            state={state} 
+            wordsData={wordsData} 
+          />
+        );
+      case 'quickmatch':
+        return (
+          <QuickMatchView 
+            state={state} 
+            wordsData={wordsData} 
+          />
+        );
+      case 'advanced':
+        return (
+          <AdvancedQuizzesView 
             state={state} 
             wordsData={wordsData} 
           />
@@ -89,14 +190,29 @@ export default function App() {
       case 'search':
         return (
           <SearchView 
-            state={state} 
+            state={state}
             wordsData={wordsData} 
           />
         );
       case 'specialized':
         return (
           <SpecializedVocabView 
+            state={state}
             wordsData={wordsData} 
+          />
+        );
+      case 'hitparades':
+        return (
+          <HitParadesView 
+            wordsData={wordsData} 
+          />
+        );
+      case 'allquizzes':
+        return (
+          <AllQuizzesView 
+            state={state} 
+            wordsData={wordsData} 
+            setActiveView={setActiveView}
           />
         );
       case 'leaderboard':
@@ -126,23 +242,26 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        backgroundColor: '#0b0f19',
-        color: 'white',
-        gap: '1rem'
+        backgroundColor: 'var(--bg-canvas)',
+        color: 'var(--text-primary)',
+        fontFamily: 'var(--font-body)'
       }}>
         <div style={{
           width: '50px',
           height: '50px',
-          border: '4px solid rgba(255,255,255,0.05)',
-          borderTopColor: '#10B981',
+          border: '5px solid var(--bg-surface-elevated)',
+          borderTop: '5px solid #FFD740',
           borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }}></div>
-        <h3 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: '600' }}>Loading WordSmart</h3>
-        <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Loading vocabulary databases...</p>
+          animation: 'spin 1s linear infinite',
+          marginBottom: '1rem'
+        }} />
         <style>{`
-          @keyframes spin { to { transform: rotate(360deg); } }
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
         `}</style>
+        <span style={{ fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Loading Vocab Universe...</span>
       </div>
     );
   }
@@ -155,31 +274,43 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        backgroundColor: '#0b0f19',
-        color: 'white',
+        backgroundColor: 'var(--bg-canvas)',
+        color: 'var(--text-primary)',
         padding: '2rem',
         textAlign: 'center',
-        gap: '1rem'
+        fontFamily: 'var(--font-body)'
       }}>
-        <AlertCircle size={48} color="#EF4444" />
-        <h2 style={{ fontFamily: 'Outfit, sans-serif' }}>Loading Error</h2>
-        <p style={{ color: '#e2e8f0', maxWidth: '500px', lineHeight: '1.5' }}>
-          Could not load the core vocabulary database. Please verify that the files `core_vocabulary.json`, `mcq_quizzes.json`, `contextual_stories.json`, and `hit_parades.json` are placed in the `web/public/data/` directory.
-        </p>
-        <button 
-          onClick={() => window.location.reload()}
-          className="btn btn-primary"
-          style={{ marginTop: '1rem' }}
-        >
-          Retry Load
-        </button>
+        <div className="glass-panel" style={{ padding: '2rem', maxWidth: '450px' }}>
+          <AlertCircle size={48} color="#FF5252" style={{ marginBottom: '1rem' }} />
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Database Error</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.9rem', lineHeight: '1.5' }}>
+            {wordsData.error}
+          </p>
+          <button className="btn btn-primary" onClick={() => window.location.reload()}>
+            Try Reloading
+          </button>
+        </div>
       </div>
     );
   }
 
+  // Helper to resolve active tab in mobile bottom bar
+  const getMobileActiveTab = () => {
+    if (activeView === 'dashboard') return 'dashboard';
+    if (activeView === 'flashcards') return 'flashcards';
+    if (activeView === 'quizzes') return 'quizzes';
+    if (activeView === 'search') return 'search';
+    return '';
+  };
+
   return (
-    <div className="app-container">
-      {/* Sidebar Navigation */}
+    <div 
+      className="app-container"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Navigation Sidebar */}
       <Sidebar 
         activeView={activeView} 
         setActiveView={(view) => {
@@ -190,6 +321,12 @@ export default function App() {
         wordsData={wordsData}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={(val) => {
+          setSidebarCollapsed(val);
+          localStorage.setItem('sidebarCollapsed', val);
+        }}
+        setShowResetConfirm={setShowResetConfirm}
       />
 
       {/* Sidebar Overlay (Mobile Dismissal Backdrop) */}
@@ -204,7 +341,7 @@ export default function App() {
             height: '100vh',
             backgroundColor: 'rgba(0,0,0,0.5)',
             backdropFilter: 'blur(4px)',
-            zIndex: 998,
+            zIndex: 1000,
           }}
           className="animate-fade"
         />
@@ -219,6 +356,11 @@ export default function App() {
             selectedUnit={selectedUnit}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
+            theme={theme}
+            setTheme={(t) => {
+              setTheme(t);
+              localStorage.setItem('theme', t);
+            }}
           />
           <div style={{ flex: 1, overflowY: 'auto' }}>
             {renderActiveView()}
@@ -228,6 +370,173 @@ export default function App() {
           <WordDetailPanel word={detailWord} onClose={() => setDetailWord(null)} />
         )}
       </DetailPanelContext.Provider>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="mobile-bottom-nav">
+        <button 
+          onClick={() => setActiveView('dashboard')} 
+          className={`mobile-bottom-tab ${getMobileActiveTab() === 'dashboard' ? 'active' : ''}`}
+        >
+          <Compass size={20} />
+          <span>Roadmap</span>
+        </button>
+        <button 
+          onClick={() => setActiveView('flashcards')} 
+          className={`mobile-bottom-tab ${getMobileActiveTab() === 'flashcards' ? 'active' : ''}`}
+        >
+          <BookOpen size={20} />
+          <span>Study</span>
+        </button>
+        <button 
+          onClick={() => setActiveView('quizzes')} 
+          className={`mobile-bottom-tab ${getMobileActiveTab() === 'quizzes' ? 'active' : ''}`}
+        >
+          <Award size={20} />
+          <span>Quizzes</span>
+        </button>
+        <button 
+          onClick={() => setActiveView('search')} 
+          className={`mobile-bottom-tab ${getMobileActiveTab() === 'search' ? 'active' : ''}`}
+        >
+          <Search size={20} />
+          <span>Search</span>
+        </button>
+        <button 
+          onClick={() => setSidebarOpen(true)} 
+          className={`mobile-bottom-tab ${sidebarOpen ? 'active' : ''}`}
+        >
+          <Menu size={20} />
+          <span>More</span>
+        </button>
+      </div>
+
+      {/* Global Self-Destruct Dialog Modal (Creative Playful Design) */}
+      {showResetConfirm && (
+        <>
+          {/* Backdrop Overlay */}
+          <div 
+            onClick={() => setShowResetConfirm(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(0,0,0,0.7)',
+              backdropFilter: 'blur(6px)',
+              zIndex: 99998,
+            }}
+            className="animate-fade"
+          />
+          {/* Start Fresh Console Dialog */}
+          <div 
+            role="dialog" 
+            aria-modal="true" 
+            aria-labelledby="fresh-modal-title" 
+            style={{ 
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '350px',
+              maxWidth: '90vw',
+              padding: '1.5rem', 
+              border: '4px solid #000000', 
+              backgroundColor: '#FFD740', 
+              color: '#000000', 
+              boxShadow: '8px 8px 0px #000000',
+              zIndex: 99999,
+              borderRadius: '8px',
+              textAlign: 'center',
+              fontFamily: 'var(--font-body)'
+            }}
+            className="animate-fade"
+          >
+            {/* Warning/Hazard Diagonal Stripes Strip */}
+            <div style={{
+              height: '16px',
+              background: 'repeating-linear-gradient(45deg, #18FFFF, #18FFFF 10px, #000000 10px, #000000 20px)',
+              borderBottom: '3px solid #000000',
+              margin: '-1.5rem -1.5rem 1rem -1.5rem',
+              borderTopLeftRadius: '4px',
+              borderTopRightRadius: '4px'
+            }} />
+
+            {/* Glowing Refresh badge */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.85rem' }}>
+              <div style={{
+                width: '54px',
+                height: '54px',
+                backgroundColor: '#ffffff',
+                border: '3px solid #000000',
+                boxShadow: '3px 3px 0px #000000',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFD740'
+              }}>
+                <RotateCcw size={28} color="#000000" />
+              </div>
+            </div>
+
+            <div id="fresh-modal-title" style={{ fontWeight: '900', fontSize: '1.35rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '-0.02em', fontFamily: 'var(--font-title)' }}>
+              Start Fresh?
+            </div>
+            
+            <p style={{ fontSize: '0.82rem', fontWeight: '700', lineHeight: '1.4', marginBottom: '1.5rem', color: '#000000' }}>
+              This will reset all your stage progress, XP levels, review history, and bookmarks back to the beginning. It's a great opportunity to start your vocabulary journey clean!
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <button 
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  fontSize: '0.85rem', 
+                  fontWeight: '900', 
+                  backgroundColor: '#ffffff', 
+                  border: '3px solid #000000', 
+                  cursor: 'pointer', 
+                  boxShadow: '3px 3px 0px #000000',
+                  textTransform: 'uppercase',
+                  borderRadius: '6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  color: '#FF5252'
+                }} 
+                onClick={() => { state.resetProgress(); window.location.reload(); }}
+              >
+                <RotateCcw size={16} /> Yes, Start Fresh
+              </button>
+              <button 
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  fontSize: '0.85rem', 
+                  fontWeight: '900', 
+                  backgroundColor: '#69F0AE', 
+                  border: '3px solid #000000', 
+                  cursor: 'pointer', 
+                  boxShadow: '3px 3px 0px #000000',
+                  textTransform: 'uppercase',
+                  borderRadius: '6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  color: '#000000'
+                }} 
+                onClick={() => setShowResetConfirm(false)}
+              >
+                <Shield size={16} /> Keep Learning
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

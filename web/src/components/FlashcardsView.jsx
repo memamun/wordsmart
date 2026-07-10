@@ -76,6 +76,9 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
     const handleKeyDown = (e) => {
       if (wordsData.loading || levelWords.length === 0) return;
 
+      const target = e.target;
+      if (target?.closest?.('button, input, textarea, select, [contenteditable="true"]')) return;
+
       if (e.key === ' ') {
         e.preventDefault();
         setFlipped(prev => !prev);
@@ -206,7 +209,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
           width: '100%',
           padding: '2.5rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(30, 41, 59, 0.7) 100%)',
+          background: 'linear-gradient(135deg, hsla(var(--primary), 0.15) 0%, hsla(var(--bg-surface), 0.7) 100%)',
           border: '1px solid hsl(var(--primary))',
           borderRadius: 'var(--radius-lg)',
           marginTop: '1rem'
@@ -218,12 +221,20 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
           <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
             Congratulations! You have mastered all the words in this unit. Prove your skills in the Unit Quiz or Stage Cumulative Exam to unlock the next levels.
           </p>
-          <button 
-            onClick={() => setActiveView('quizzes')}
-            className="btn btn-accent"
-          >
-            Go to Qualification Exam <ArrowRight size={16} />
-          </button>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button 
+              onClick={() => setActiveView('quizzes')}
+              className="btn btn-accent"
+            >
+              Go to Qualification Exam <ArrowRight size={16} />
+            </button>
+            <button 
+              onClick={() => state.resetWordProgress(levelWords.map(w => w.id))}
+              className="btn btn-secondary"
+            >
+              Study Unit Again
+            </button>
+          </div>
         </div>
       ) : (
         <>
@@ -256,8 +267,8 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 top: '5rem',
                 left: '2rem',
                 zIndex: 30,
-                border: '4px solid hsl(142, 70%, 45%)', // Bright emerald success
-                color: 'hsl(142, 70%, 45%)',
+                border: '4px solid hsl(var(--primary))',
+                color: 'hsl(var(--primary))',
                 fontWeight: '900',
                 fontSize: '2rem',
                 padding: '0.25rem 1.05rem',
@@ -265,7 +276,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 transform: 'rotate(-20deg)',
                 pointerEvents: 'none',
                 textTransform: 'uppercase',
-                backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                backgroundColor: 'hsla(var(--primary), 0.15)',
               }}
             >
               Mastered
@@ -278,8 +289,8 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 top: '5rem',
                 right: '2rem',
                 zIndex: 30,
-                border: '4px solid hsl(350, 90%, 60%)', // Bright crimson danger
-                color: 'hsl(350, 90%, 60%)',
+                border: '4px solid hsl(var(--danger))',
+                color: 'hsl(var(--danger))',
                 fontWeight: '900',
                 fontSize: '2rem',
                 padding: '0.25rem 1.05rem',
@@ -287,7 +298,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 transform: 'rotate(20deg)',
                 pointerEvents: 'none',
                 textTransform: 'uppercase',
-                backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                backgroundColor: 'hsla(var(--danger), 0.15)',
               }}
             >
               Study
@@ -313,6 +324,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                       state.toggleBookmark(word.id);
                     }}
                     className="min-touch"
+                    aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
                     style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))' }}
                   >
                     {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
@@ -321,7 +333,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
                 {/* Word details */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', margin: 'auto 0' }}>
-                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'white' }}>{word.word.toUpperCase()}</h2>
+                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'hsl(var(--text-primary))' }}>{word.word.toUpperCase()}</h2>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <span style={{ fontStyle: 'italic', color: 'hsl(var(--text-secondary))', fontWeight: '500' }}>
                       ({word.part_of_speech})
@@ -332,6 +344,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                     <button 
                       onClick={(e) => speakWord(word.word, e)}
                       className="min-touch"
+                      aria-label="Listen to pronunciation"
                       style={{
                         width: '44px',
                         height: '44px',
@@ -371,8 +384,9 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                         e.stopPropagation();
                         setDetailWord(word);
                       }}
-                      className="min-touch"
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
+                        className="min-touch"
+                        aria-label="View word details and mnemonic"
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
                       title="View Details & Mnemonic"
                     >
                       <Info size={22} />

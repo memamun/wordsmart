@@ -69,6 +69,13 @@ export default function SearchView({ state, wordsData }) {
     setExpandedWordId(expandedWordId === wordId ? null : wordId);
   };
 
+  const handleCardKeyDown = (e, wordId) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleExpand(wordId);
+    }
+  };
+
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '850px', margin: '0 auto' }} className="animate-fade search-view-container">
       {/* View Header */}
@@ -94,7 +101,7 @@ export default function SearchView({ state, wordsData }) {
             borderRadius: 'var(--radius-md)',
             backgroundColor: 'hsl(var(--bg-surface))',
             border: '1px solid hsl(var(--border-muted))',
-            color: 'white',
+            color: 'hsl(var(--text-primary))',
             fontSize: '1rem',
             outline: 'none',
             transition: 'var(--transition-fast)'
@@ -122,7 +129,7 @@ export default function SearchView({ state, wordsData }) {
         <button 
           onClick={() => setFilterMode('bookmarked')}
           className="btn"
-          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'bookmarked' ? 'rgba(245, 158, 11, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'bookmarked' ? '1px solid hsl(var(--secondary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'bookmarked' ? 'hsl(var(--secondary))' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'bookmarked' ? 'hsla(var(--secondary), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'bookmarked' ? '1px solid hsl(var(--secondary))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'bookmarked' ? 'hsl(var(--secondary))' : 'hsl(var(--text-secondary))' }}
         >
           Bookmarked ({state.bookmarkedWordIds.length})
         </button>
@@ -136,14 +143,14 @@ export default function SearchView({ state, wordsData }) {
         <button 
           onClick={() => setFilterMode('learning')}
           className="btn"
-          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'learning' ? 'rgba(99, 102, 241, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'learning' ? '1px solid #6366F1' : '1px solid hsl(var(--border-muted))', color: filterMode === 'learning' ? '#818CF8' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'learning' ? 'hsla(var(--accent-purple), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'learning' ? '1px solid hsl(var(--accent-purple))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'learning' ? 'hsl(var(--accent-purple))' : 'hsl(var(--text-secondary))' }}
         >
           Learning ({Object.values(state.wordProgress).filter(p => p.status === 'learning' || p.status === 'reviewing' || p.status === 'relearning').length})
         </button>
         <button 
           onClick={() => setFilterMode('hit_parades')}
           className="btn"
-          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'hit_parades' ? 'rgba(56, 189, 248, 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'hit_parades' ? '1px solid #0EA5E9' : '1px solid hsl(var(--border-muted))', color: filterMode === 'hit_parades' ? '#38BDF8' : 'hsl(var(--text-secondary))' }}
+          style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem', minHeight: '38px', backgroundColor: filterMode === 'hit_parades' ? 'hsla(var(--accent-blue), 0.15)' : 'hsl(var(--bg-surface))', border: filterMode === 'hit_parades' ? '1px solid hsl(var(--accent-blue))' : '1px solid hsl(var(--border-muted))', color: filterMode === 'hit_parades' ? 'hsl(var(--accent-blue))' : 'hsl(var(--text-secondary))' }}
         >
           SAT Hit Parade
         </button>
@@ -165,6 +172,10 @@ export default function SearchView({ state, wordsData }) {
               <div 
                 key={w.id} 
                 className="card"
+                role="button"
+                tabIndex={0}
+                aria-expanded={isExpanded}
+                aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${w.word} details`}
                 style={{
                   padding: '1rem 1.25rem',
                   borderColor: isExpanded ? 'hsla(var(--primary), 0.3)' : 'hsl(var(--border-muted))',
@@ -174,11 +185,12 @@ export default function SearchView({ state, wordsData }) {
                   gap: isExpanded ? '1rem' : '0'
                 }}
                 onClick={() => toggleExpand(w.id)}
+                onKeyDown={(e) => handleCardKeyDown(e, w.id)}
               >
                 {/* Main collapsed row */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ fontSize: '1.15rem', fontWeight: '700', color: 'white', letterSpacing: '-0.01em' }}>
+                    <span style={{ fontSize: '1.15rem', fontWeight: '700', color: 'hsl(var(--text-primary))', letterSpacing: '-0.01em' }}>
                       {w.word.toUpperCase()}
                     </span>
                     <span style={{ fontSize: '0.75rem', fontStyle: 'italic', color: 'hsl(var(--text-secondary))' }}>
@@ -190,7 +202,7 @@ export default function SearchView({ state, wordsData }) {
                       </span>
                     )}
                     {(wProgress.status === 'learning' || wProgress.status === 'reviewing' || wProgress.status === 'relearning') && (
-                      <span style={{ fontSize: '0.65rem', padding: '0.1rem 0.35rem', borderRadius: '4px', backgroundColor: 'rgba(99, 102, 241, 0.15)', color: '#818CF8', fontWeight: '700' }}>
+                      <span style={{ fontSize: '0.65rem', padding: '0.1rem 0.35rem', borderRadius: '4px', backgroundColor: 'hsla(var(--accent-purple), 0.15)', color: 'hsl(var(--accent-purple))', fontWeight: '700' }}>
                         LEARNING
                       </span>
                     )}
@@ -200,6 +212,7 @@ export default function SearchView({ state, wordsData }) {
                     {/* Bookmark Toggle */}
                     <button 
                       onClick={() => state.toggleBookmark(w.id)}
+                      aria-label={isBookmarked ? `Remove bookmark for ${w.word}` : `Bookmark ${w.word}`}
                       style={{ background: 'none', border: 'none', color: isBookmarked ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))', cursor: 'pointer' }}
                     >
                       {isBookmarked ? <BookmarkCheck size={18} fill="hsl(var(--secondary))" /> : <Bookmark size={18} />}
@@ -231,9 +244,10 @@ export default function SearchView({ state, wordsData }) {
                         <div>
                           <div style={{ fontSize: '0.65rem', color: 'hsl(var(--text-muted))', fontWeight: '700', textTransform: 'uppercase' }}>Pronunciation Phonetics</div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.15rem' }}>
-                            <span style={{ fontFamily: 'monospace', color: 'white' }}>/{w.pronunciation}/</span>
+                            <span style={{ fontFamily: 'monospace', color: 'hsl(var(--text-primary))' }}>/{w.pronunciation}/</span>
                             <button 
                               onClick={(e) => speakWord(w.word, e)}
+                              aria-label={`Listen to ${w.word} pronunciation`}
                               style={{ background: 'none', border: 'none', color: 'hsl(var(--primary))', cursor: 'pointer' }}
                             >
                               <Volume2 size={16} />
@@ -243,7 +257,7 @@ export default function SearchView({ state, wordsData }) {
 
                         <div>
                           <div style={{ fontSize: '0.65rem', color: 'hsl(var(--text-muted))', fontWeight: '700', textTransform: 'uppercase' }}>English Definition</div>
-                          <p style={{ fontSize: '0.9rem', color: 'white', marginTop: '0.15rem', lineHeight: '1.4' }}>{w.definition}</p>
+                          <p style={{ fontSize: '0.9rem', color: 'hsl(var(--text-primary))', marginTop: '0.15rem', lineHeight: '1.4' }}>{w.definition}</p>
                         </div>
 
                         {w.bengali_meaning && (
@@ -271,7 +285,7 @@ export default function SearchView({ state, wordsData }) {
                             <div style={{ fontSize: '0.65rem', color: 'hsl(var(--text-muted))', fontWeight: '700', textTransform: 'uppercase' }}>Collocations</div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginTop: '0.25rem' }}>
                               {w.collocations.map((col, idx) => (
-                                <span key={idx} style={{ fontSize: '0.75rem', padding: '0.1rem 0.4rem', borderRadius: '4px', backgroundColor: 'hsl(var(--bg-canvas))', border: '1px solid hsl(var(--border-muted))', color: 'white' }}>
+                                <span key={idx} style={{ fontSize: '0.75rem', padding: '0.1rem 0.4rem', borderRadius: '4px', backgroundColor: 'hsl(var(--bg-canvas))', border: '1px solid hsl(var(--border-muted))', color: 'hsl(var(--text-primary))' }}>
                                   {col}
                                 </span>
                               ))}

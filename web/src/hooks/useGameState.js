@@ -43,7 +43,11 @@ export function useGameState() {
 
   // Save to localStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.error('Failed to save state to localStorage', e);
+    }
   }, [state]);
 
   // Check and update streak on mount
@@ -371,6 +375,26 @@ export function useGameState() {
     setState(DEFAULT_STATE);
   }, []);
 
+  const resetWordProgress = useCallback((wordIds) => {
+    setState((prev) => {
+      const newProgress = { ...prev.wordProgress };
+      wordIds.forEach(id => {
+        if (newProgress[id]) {
+          newProgress[id] = {
+            ...newProgress[id],
+            status: 'unlearned',
+            masteryScore: 0,
+            repetitionCount: 0,
+          };
+        }
+      });
+      return {
+        ...prev,
+        wordProgress: newProgress
+      };
+    });
+  }, []);
+
   // Backwards compatible helpers mapping wordProgress to lists
   const masteredWordIds = Object.keys(state.wordProgress).filter(
     (id) => state.wordProgress[id].status === 'mastered'
@@ -391,6 +415,7 @@ export function useGameState() {
     toggleBookmark,
     recordQuizAttempt,
     resetProgress,
+    resetWordProgress,
     markWordMastered,
     markWordLearning,
   };

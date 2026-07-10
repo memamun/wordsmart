@@ -1,8 +1,8 @@
 import React from 'react';
-import { Flame, Coins, Award, Menu } from 'lucide-react';
+import { Flame, Coins, Award, Menu, Sun, Moon, Monitor } from 'lucide-react';
 import { PREP_STAGES } from '../hooks/useGameState';
 
-export default function Header({ state, wordsData, selectedUnit, sidebarOpen, setSidebarOpen }) {
+export default function Header({ state, wordsData, selectedUnit, sidebarOpen, setSidebarOpen, theme, setTheme }) {
   const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
   
   // Calculate unit-specific mastery progress
@@ -33,16 +33,13 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
   const unitProgressPercent = unitTotalWords ? Math.round((unitMasteredCount / unitTotalWords) * 100) : 0;
 
   return (
-    <header className="glass-panel main-header" style={{
-      borderRadius: '0',
-      borderTop: 'none',
-      borderLeft: 'none',
-      borderRight: 'none',
+    <header className="main-header" style={{
+      borderBottom: '3px solid #000000',
       padding: '1rem 1.5rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      backgroundColor: 'hsl(var(--bg-surface) / 0.4)',
+      backgroundColor: 'var(--bg-surface)',
       zIndex: 10,
       width: '100%',
       gap: '1rem',
@@ -53,52 +50,64 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setSidebarOpen(true)}
-          className="mobile-menu-btn btn btn-secondary min-touch"
+          className="mobile-menu-btn min-touch"
+          aria-label="Open navigation menu"
           style={{ 
             display: 'none', 
-            borderRadius: 'var(--radius-md)',
+            backgroundColor: '#ffffff',
+            border: '2px solid #000000',
+            boxShadow: '2px 2px 0px #000000',
+            cursor: 'pointer',
+            padding: '4px'
           }}
         >
-          <Menu size={20} />
+          <Menu size={20} color="#000000" />
         </button>
 
         <div style={{
           width: '36px',
           height: '36px',
-          borderRadius: '50%',
-          backgroundColor: 'hsla(var(--primary), 0.1)',
+          backgroundColor: '#69F0AE',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '1px solid hsla(var(--primary), 0.2)'
+          border: '2px solid #000000',
+          boxShadow: '2px 2px 0px #000000'
         }}>
-          <Award size={18} color="hsl(var(--primary))" />
+          <Award size={18} color="#000000" />
         </div>
         <div>
-          <div style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))', fontWeight: '700', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '800', letterSpacing: '0.05em' }}>
             STAGE {state.unlockedLevel}: {currentStage.name.toUpperCase()}
           </div>
-          <div style={{ fontFamily: 'var(--font-title)', fontWeight: '700', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             <span>Unit {state.unlockedLevel}.{targetUnitNum}</span>
-            <span style={{ fontSize: '0.7rem', padding: '0.1rem 0.35rem', borderRadius: '4px', backgroundColor: 'hsla(var(--primary), 0.15)', color: 'hsl(var(--primary))', fontWeight: '700' }}>
+            <span style={{ 
+              fontSize: '0.75rem', 
+              padding: '0.1rem 0.5rem', 
+              backgroundColor: '#69F0AE', 
+              color: '#000000', 
+              fontWeight: '800',
+              border: '2px solid #000000',
+              boxShadow: '1px 1px 0px #000000'
+            }}>
               {unitMasteredCount}/{unitTotalWords} mastered ({unitProgressPercent}%)
             </span>
           </div>
           {/* Progress bar */}
           <div style={{ 
-            height: '4px', 
+            height: '8px', 
             width: '100%', 
             maxWidth: '150px',
-            backgroundColor: 'hsl(var(--border-muted))', 
-            borderRadius: '2px', 
-            marginTop: '0.25rem', 
+            backgroundColor: 'var(--bg-canvas)', 
+            border: '2px solid #000000',
+            marginTop: '0.35rem', 
             overflow: 'hidden' 
           }}>
             <div style={{ 
               height: '100%', 
               width: `${unitProgressPercent}%`, 
-              backgroundColor: 'hsl(var(--primary))',
-              borderRadius: '2px',
+              backgroundColor: '#69F0AE',
               transition: 'var(--transition-normal)'
             }}></div>
           </div>
@@ -112,17 +121,18 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           display: 'flex', 
           alignItems: 'center', 
           gap: '0.4rem', 
-          padding: '0.35rem 0.75rem', 
-          borderRadius: 'var(--radius-md)', 
-          backgroundColor: 'hsl(var(--bg-canvas) / 0.5)',
-          border: '1px solid hsl(var(--border-muted))'
+          padding: '0.4rem 0.75rem', 
+          backgroundColor: state.streak > 0 ? '#FF5252' : 'var(--bg-canvas)',
+          border: '2px solid #000000',
+          boxShadow: '2px 2px 0px #000000',
+          color: state.streak > 0 ? '#000000' : 'var(--text-primary)'
         }}>
           <div className={state.streak > 0 ? 'animate-fire' : ''}>
-            <Flame size={16} color={state.streak > 0 ? '#F59E0B' : 'hsl(var(--text-muted))'} fill={state.streak > 0 ? '#F59E0B' : 'none'} />
+            <Flame size={16} color={state.streak > 0 ? '#000000' : 'var(--text-muted)'} fill={state.streak > 0 ? '#000000' : 'none'} />
           </div>
           <div>
-            <div style={{ fontSize: '0.6rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>STREAK</div>
-            <div style={{ fontSize: '0.85rem', fontWeight: '700', fontFamily: 'var(--font-title)', color: state.streak > 0 ? '#F59E0B' : 'hsl(var(--text-primary))', lineHeight: '1' }}>
+            <div style={{ fontSize: '0.6rem', color: state.streak > 0 ? '#000000' : 'var(--text-muted)', fontWeight: '900', textTransform: 'uppercase' }}>STREAK</div>
+            <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
               {state.streak} Days
             </div>
           </div>
@@ -133,15 +143,16 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           display: 'flex', 
           alignItems: 'center', 
           gap: '0.4rem', 
-          padding: '0.35rem 0.75rem', 
-          borderRadius: 'var(--radius-md)', 
-          backgroundColor: 'hsl(var(--bg-canvas) / 0.5)',
-          border: '1px solid hsl(var(--border-muted))'
+          padding: '0.4rem 0.75rem', 
+          backgroundColor: '#FFD740',
+          border: '2px solid #000000',
+          boxShadow: '2px 2px 0px #000000',
+          color: '#000000'
         }}>
-          <Coins size={16} color="#FBBF24" />
+          <Coins size={16} color="#000000" />
           <div>
-            <div style={{ fontSize: '0.6rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>BUDGET</div>
-            <div style={{ fontSize: '0.85rem', fontWeight: '700', fontFamily: 'var(--font-title)', color: '#FBBF24', lineHeight: '1' }}>
+            <div style={{ fontSize: '0.6rem', color: '#000000', fontWeight: '900', textTransform: 'uppercase' }}>BUDGET</div>
+            <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
               {state.coins} Coins
             </div>
           </div>
@@ -152,30 +163,49 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           display: 'flex', 
           alignItems: 'center', 
           gap: '0.4rem', 
-          padding: '0.35rem 0.75rem', 
-          borderRadius: 'var(--radius-md)', 
-          backgroundColor: 'hsl(var(--bg-canvas) / 0.5)',
-          border: '1px solid hsl(var(--border-muted))'
+          padding: '0.4rem 0.75rem', 
+          backgroundColor: '#E040FB',
+          border: '2px solid #000000',
+          boxShadow: '2px 2px 0px #000000',
+          color: '#000000'
         }}>
-          <div style={{
-            width: '16px',
-            height: '16px',
-            borderRadius: '50%',
-            backgroundColor: 'hsl(var(--accent-purple))',
-            color: 'black',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '0.6rem',
-            fontWeight: '900'
-          }}>XP</div>
+          <Award size={16} color="#000000" />
           <div>
-            <div style={{ fontSize: '0.6rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>TOTAL XP</div>
-            <div style={{ fontSize: '0.85rem', fontWeight: '700', fontFamily: 'var(--font-title)', color: 'hsl(var(--accent-purple))', lineHeight: '1' }}>
+            <div style={{ fontSize: '0.6rem', color: '#000000', fontWeight: '900', textTransform: 'uppercase' }}>TOTAL XP</div>
+            <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
               {state.xp.toLocaleString()}
             </div>
           </div>
         </div>
+
+        {/* Theme Toggler */}
+        <button
+          onClick={() => {
+            const themes = ['light', 'dark', 'system'];
+            const nextIdx = (themes.indexOf(theme) + 1) % themes.length;
+            setTheme(themes[nextIdx]);
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            padding: '0.4rem 0.75rem',
+            backgroundColor: '#18FFFF',
+            border: '2px solid #000000',
+            boxShadow: '2px 2px 0px #000000',
+            color: '#000000',
+            cursor: 'pointer',
+            fontWeight: '900',
+            fontSize: '0.85rem',
+            textTransform: 'uppercase'
+          }}
+          title={`Theme: ${theme}`}
+        >
+          {theme === 'light' && <Sun size={16} />}
+          {theme === 'dark' && <Moon size={16} />}
+          {theme === 'system' && <Monitor size={16} />}
+          <span>{theme}</span>
+        </button>
       </div>
     </header>
   );

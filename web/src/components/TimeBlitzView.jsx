@@ -22,7 +22,12 @@ export default function TimeBlitzView({ state, wordsData }) {
   const [answerStreak, setAnswerStreak] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [highScore, setHighScore] = useState(() => {
-    return parseInt(localStorage.getItem(HIGH_SCORE_KEY) || '0', 10);
+    try {
+      return parseInt(localStorage.getItem(HIGH_SCORE_KEY) || '0', 10);
+    } catch (e) {
+      console.error('Failed to load blitz high score', e);
+      return 0;
+    }
   });
   
   const timerRef = useRef(null);
@@ -93,7 +98,7 @@ export default function TimeBlitzView({ state, wordsData }) {
         confetti({
           particleCount: 20,
           spread: 40,
-          colors: ['#FBBF24', '#F59E0B']
+          colors: ['hsl(var(--coin))', 'hsl(var(--secondary))']
         });
       }
     } else {
@@ -119,7 +124,11 @@ export default function TimeBlitzView({ state, wordsData }) {
       // Check for new High Score
       if (score > highScore) {
         setHighScore(score);
-        localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+        try {
+          localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+        } catch (e) {
+          console.error('Failed to save blitz high score', e);
+        }
         confetti({
           particleCount: 50,
           spread: 60
@@ -165,8 +174,8 @@ export default function TimeBlitzView({ state, wordsData }) {
         <div className="glass-panel" style={{
           padding: '3rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(30, 41, 59, 0.5) 100%)',
-          border: '1px solid rgba(239, 68, 68, 0.2)'
+          background: 'linear-gradient(135deg, hsla(var(--danger), 0.1) 0%, hsla(var(--bg-surface), 0.5) 100%)',
+          border: '1px solid hsla(var(--danger), 0.2)'
         }}>
           <Timer size={48} color="hsl(var(--danger))" style={{ margin: '0 auto 1rem', display: 'block' }} />
           <h3 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', marginBottom: '1rem' }}>
@@ -191,9 +200,9 @@ export default function TimeBlitzView({ state, wordsData }) {
           <button 
             onClick={startBlitzGame}
             className="btn btn-primary"
-            style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)', boxShadow: '0 4px 12px rgba(239,68,68,0.3)' }}
+            style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, hsl(var(--danger)) 0%, hsl(var(--danger-dark)) 100%)', boxShadow: '0 4px 12px hsla(var(--danger), 0.3)' }}
           >
-            <Play size={16} fill="black" /> Launch Blitz Game
+            <Play size={16} fill="hsl(var(--bg-canvas))" /> Launch Blitz Game
           </button>
         </div>
       )}
@@ -221,8 +230,8 @@ export default function TimeBlitzView({ state, wordsData }) {
 
             {/* Answer Streak */}
             {answerStreak >= 2 && (
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-full)', backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', fontWeight: '700', fontSize: '0.8rem' }}>
-                <Zap size={14} fill="#F59E0B" />
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsla(var(--secondary), 0.15)', color: 'hsl(var(--secondary))', fontWeight: '700', fontSize: '0.8rem' }}>
+                <Zap size={14} fill="hsl(var(--secondary))" />
                 <span>STREAK x{answerStreak} ({Math.min(answerStreak, 5)}x XP)</span>
               </div>
             )}
@@ -237,13 +246,13 @@ export default function TimeBlitzView({ state, wordsData }) {
           <div className="glass-panel" style={{
             padding: '2.5rem 2rem',
             textAlign: 'center',
-            border: '1px solid rgba(255,255,255,0.05)',
+            border: '1px solid hsla(var(--text-primary), 0.05)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.5)'
           }}>
             <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))', fontWeight: '700', letterSpacing: '0.1em' }}>
               RAPID DRILL
             </span>
-            <h2 style={{ fontSize: '2.25rem', color: 'white', marginTop: '0.5rem', fontWeight: '700' }}>
+            <h2 style={{ fontSize: '2.25rem', color: 'hsl(var(--text-primary))', marginTop: '0.5rem', fontWeight: '700' }}>
               {currentQuestion.question}
             </h2>
           </div>
@@ -269,7 +278,7 @@ export default function TimeBlitzView({ state, wordsData }) {
         <div className="glass-panel animate-fade" style={{
           padding: '3rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(245, 158, 11, 0.05) 100%)',
+          background: 'linear-gradient(135deg, hsla(var(--bg-surface), 0.6) 0%, hsla(var(--secondary), 0.05) 100%)',
           border: '1px solid hsla(var(--secondary), 0.2)'
         }}>
           <Trophy size={48} color="hsl(var(--secondary))" style={{ margin: '0 auto 1rem', display: 'block' }} />
@@ -293,7 +302,7 @@ export default function TimeBlitzView({ state, wordsData }) {
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
               <span>Coins Earned:</span>
-              <span style={{ color: '#FBBF24', fontWeight: '700' }}>+{Math.floor(score / 20)} Coins</span>
+              <span style={{ color: 'hsl(var(--coin))', fontWeight: '700' }}>+{Math.floor(score / 20)} Coins</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span>XP Granted:</span>
@@ -310,7 +319,7 @@ export default function TimeBlitzView({ state, wordsData }) {
             <button 
               onClick={startBlitzGame}
               className="btn btn-primary"
-              style={{ background: 'linear-gradient(135deg, #EF4444 0%, #B91C1C 100%)' }}
+              style={{ background: 'linear-gradient(135deg, hsl(var(--danger)) 0%, hsl(var(--danger-dark)) 100%)' }}
             >
               <RefreshCw size={14} /> Retry Blitz
             </button>

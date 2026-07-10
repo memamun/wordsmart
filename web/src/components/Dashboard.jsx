@@ -41,34 +41,40 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }} className="animate-fade dashboard-container">
       {/* Welcome Banner */}
-      <div className="glass-panel welcome-banner" style={{
+      <div className="welcome-banner" style={{
         padding: '2rem',
-        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(30, 41, 59, 0.4) 100%)',
+        backgroundColor: '#FFD740',
+        color: '#000000',
+        border: '3px solid #000000',
+        boxShadow: '6px 6px 0px #000000',
+        borderRadius: 'var(--radius-lg)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         gap: '2rem'
       }}>
         <div style={{ flex: 1 }}>
-          <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
             Master 1,900+ High-Frequency Words
           </h1>
-          <p style={{ color: 'hsl(var(--text-secondary))', lineHeight: '1.5', maxWidth: '600px' }}>
+          <p style={{ fontWeight: '600', lineHeight: '1.5', maxWidth: '600px' }}>
             Progress through 10 stages of vocabulary mastery. Use flashcards, spaced repetition, and quizzes to retain every word long-term. Earn coins for hints and climb the leaderboard.
           </p>
         </div>
         <div className="motivation-card" style={{
           padding: '1rem',
-          borderRadius: 'var(--radius-md)',
-          backgroundColor: 'hsl(var(--bg-canvas) / 0.8)',
-          border: '1px solid hsla(var(--primary), 0.2)',
-          maxWidth: '350px'
+          backgroundColor: '#ffffff',
+          border: '3px solid #000000',
+          boxShadow: '3px 3px 0px #000000',
+          color: '#000000',
+          maxWidth: '350px',
+          borderRadius: 'var(--radius-md)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'hsl(var(--primary))', fontWeight: '700', fontSize: '0.85rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#E040FB', fontWeight: '900', fontSize: '0.85rem' }}>
             <Brain size={16} />
             <span>STUDY TIP</span>
           </div>
-          <p style={{ fontSize: '0.85rem', color: 'hsl(var(--text-secondary))', fontStyle: 'italic', lineHeight: '1.4' }}>
+          <p style={{ fontSize: '0.85rem', fontWeight: '700', fontStyle: 'italic', lineHeight: '1.4' }}>
             "{randomTip}"
           </p>
         </div>
@@ -144,10 +150,12 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
       </div>
 
       {/* Specialized Vocabulary & Grammar Modules banner */}
-      <div className="glass-panel" style={{
+      <div style={{
         padding: '1.5rem 2rem',
-        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(30, 41, 59, 0.4) 100%)',
-        border: '1px solid hsla(var(--accent-purple), 0.25)',
+        backgroundColor: '#E040FB',
+        color: '#000000',
+        border: '3px solid #000000',
+        boxShadow: '6px 6px 0px #000000',
         borderRadius: 'var(--radius-lg)',
         display: 'flex',
         justifyContent: 'space-between',
@@ -156,26 +164,23 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
         flexWrap: 'wrap'
       }}>
         <div style={{ flex: 1, minWidth: '250px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--accent-purple))', fontWeight: '700', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#000000', fontWeight: '900', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
             <Book size={16} />
             <span>SPECIALIZED VOCABULARY</span>
           </div>
-          <h2 style={{ fontSize: '1.35rem', fontFamily: 'var(--font-title)', color: 'white' }}>
+          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: '#000000', textTransform: 'uppercase' }}>
             Grammar, Usage & Specialized Terms
           </h2>
-          <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.85rem', marginTop: '0.25rem', lineHeight: '1.4' }}>
+          <p style={{ color: '#000000', fontSize: '0.9rem', fontWeight: '700', marginTop: '0.25rem', lineHeight: '1.4' }}>
             Master common usage errors, abbreviations, foreign expressions, and register terminology across multiple domains with definitions and example sentences.
           </p>
         </div>
         <button 
           onClick={() => setActiveView('specialized')}
-          className="btn btn-accent"
+          className="btn btn-secondary"
           style={{ 
             padding: '0.75rem 1.5rem', 
-            whiteSpace: 'nowrap',
-            boxShadow: '0 4px 15px -3px hsla(var(--accent-purple), 0.4)',
-            backgroundColor: 'hsl(var(--accent-purple))',
-            borderColor: 'hsl(var(--accent-purple))'
+            whiteSpace: 'nowrap'
           }}
         >
           Explore Specialized Vocabs →
@@ -201,8 +206,8 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             left: '20px',
             top: '20px',
             bottom: '20px',
-            width: '2px',
-            backgroundColor: 'hsl(var(--border-muted))',
+            width: '4px',
+            backgroundColor: '#000000',
             zIndex: 1
           }}></div>
 
@@ -241,31 +246,34 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
-                  backgroundColor: bgBubble,
-                  border: `2px solid ${borderBubble}`,
+                  backgroundColor: isCompleted ? '#69F0AE' : isActive ? '#FFD740' : 'var(--bg-canvas)',
+                  border: '3px solid #000000',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: isCompleted ? 'hsl(var(--primary))' : isActive ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))',
-                  boxShadow: isActive ? '0 0 12px hsla(var(--secondary), 0.3)' : 'none',
+                  color: '#000000',
+                  boxShadow: isActive ? '2px 2px 0px #000000' : 'none',
                   transition: 'var(--transition-normal)',
-                  marginTop: '0.2rem'
+                  marginTop: '0.2rem',
+                  position: 'relative',
+                  zIndex: 10
                 }}>
-                  {isCompleted ? <CheckCircle size={20} /> : isLocked ? <Lock size={16} /> : <span style={{ fontWeight: '800', fontFamily: 'var(--font-title)' }}>{stage.id}</span>}
+                  {isCompleted ? <CheckCircle size={20} color="#000000" /> : isLocked ? <Lock size={16} color="var(--text-muted)" /> : <span style={{ fontWeight: '900', fontFamily: 'var(--font-title)' }}>{stage.id}</span>}
                 </div>
 
                 {/* Content Card */}
                 <div className="card roadmap-card" style={{
                   flex: 1,
                   padding: '1.1rem 1.5rem',
-                  backgroundColor: isActive ? 'hsl(var(--bg-surface-elevated))' : 'hsl(var(--bg-surface) / 0.5)',
-                  border: isActive ? '1px solid hsla(var(--secondary), 0.3)' : '1px solid hsl(var(--border-muted))',
+                  backgroundColor: isActive ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
+                  border: '3px solid #000000',
+                  boxShadow: isActive ? '4px 4px 0px #000000' : '2px 2px 0px #000000',
                   display: 'flex',
                   flexDirection: isActive ? 'column' : 'row',
                   alignItems: isActive ? 'stretch' : 'center',
                   justifyContent: 'space-between',
                   gap: '1rem',
-                  boxShadow: isActive ? '0 4px 20px -4px rgba(0, 0, 0, 0.4)' : 'none'
+                  borderRadius: 'var(--radius-md)'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
                     <div>
@@ -338,10 +346,9 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                         return (
                           <div 
                             key={unitNum} 
-                            className="glass-panel unit-card"
                             style={{ 
                               padding: '1rem', 
-                              border: '1px solid hsl(var(--border-muted))',
+                              border: '3px solid #000000',
                               borderRadius: 'var(--radius-md)',
                               display: 'flex', 
                               flexDirection: 'column', 
@@ -349,12 +356,13 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                               opacity: isUnitUnlocked ? 1 : 0.6,
                               pointerEvents: isUnitUnlocked ? 'auto' : 'none',
                               position: 'relative',
-                              background: isUnitUnlocked ? 'rgba(30, 41, 59, 0.6)' : 'rgba(15, 23, 42, 0.4)',
+                              background: isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
+                              boxShadow: isUnitUnlocked ? '2px 2px 0px #000000' : 'none',
                               transition: 'var(--transition-normal)'
                             }}
                           >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <span style={{ fontWeight: '700', fontSize: '0.9rem', color: isUnitUnlocked ? 'white' : 'hsl(var(--text-muted))' }}>
+                              <span style={{ fontWeight: '700', fontSize: '0.9rem', color: isUnitUnlocked ? 'hsl(var(--text-primary))' : 'hsl(var(--text-muted))' }}>
                                 Unit {stage.id}.{unitNum}
                               </span>
                               <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))' }}>
@@ -368,12 +376,11 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                                 <span>Progress</span>
                                 <span>{masteredInUnit}/{totalInUnit} ({unitPercent}%)</span>
                               </div>
-                              <div style={{ height: '4px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '2px', overflow: 'hidden' }}>
+                              <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: '2px solid #000000', overflow: 'hidden' }}>
                                 <div style={{ 
                                   height: '100%', 
                                   width: `${unitPercent}%`, 
-                                  backgroundColor: 'hsl(var(--primary))',
-                                  borderRadius: '2px',
+                                  backgroundColor: '#69F0AE',
                                   transition: 'var(--transition-normal)'
                                 }}></div>
                               </div>

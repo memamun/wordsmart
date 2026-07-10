@@ -34,6 +34,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [notice, setNotice] = useState(null);
   
   // Hint states
   const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(false);
@@ -131,11 +132,17 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     setDisabledOptions([]);
     setBengaliClueUsed(false);
     setMnemonicUsed(false);
+    setNotice(null);
+  };
+
+  const showNotice = (message) => {
+    setNotice(message);
+    window.setTimeout(() => setNotice(null), 2400);
   };
 
   // Hint shop purchases
   const buyFiftyFifty = () => {
-    if (state.coins < 15) return alert('Not enough coins!');
+    if (state.coins < 15) return showNotice('Not enough coins for 50/50. Complete more questions to earn coins.');
     state.deductCoins(15);
     setFiftyFiftyUsed(true);
 
@@ -147,13 +154,13 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
   };
 
   const buyBengaliClue = () => {
-    if (state.coins < 10) return alert('Not enough coins!');
+    if (state.coins < 10) return showNotice('Not enough coins for the Bengali clue.');
     state.deductCoins(10);
     setBengaliClueUsed(true);
   };
 
   const buyMnemonic = () => {
-    if (state.coins < 20) return alert('Not enough coins!');
+    if (state.coins < 20) return showNotice('Not enough coins for the mnemonic hint.');
     state.deductCoins(20);
     setMnemonicUsed(true);
   };
@@ -233,7 +240,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           {selectedUnit && (
             <div className="glass-panel unit-quiz-banner" style={{
               padding: '2rem',
-              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(30, 41, 59, 0.5) 100%)',
+              background: 'linear-gradient(135deg, hsla(var(--primary), 0.15) 0%, hsla(var(--bg-surface), 0.5) 100%)',
               border: '1px solid hsla(var(--primary), 0.3)',
               display: 'flex',
               justifyContent: 'space-between',
@@ -265,7 +272,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           {/* Qualification Exam Banner */}
           <div className="glass-panel cumulative-exam-banner" style={{
             padding: '2rem',
-            background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(30, 41, 59, 0.5) 100%)',
+            background: 'linear-gradient(135deg, hsla(var(--secondary), 0.15) 0%, hsla(var(--bg-surface), 0.5) 100%)',
             border: '1px solid hsla(var(--secondary), 0.3)',
             display: 'flex',
             justifyContent: 'space-between',
@@ -306,7 +313,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 {levelQuizzes.map((quiz) => (
                   <div key={quiz.quiz_id} className="card card-hover" style={{ display: 'flex', flexDirection: 'column', justifyBetween: 'space-between', gap: '1rem' }}>
                     <div>
-                      <h4 style={{ fontSize: '1.05rem', fontFamily: 'var(--font-title)', color: 'white' }}>{quiz.title}</h4>
+                      <h4 style={{ fontSize: '1.05rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))' }}>{quiz.title}</h4>
                       <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: '600' }}>
                         {quiz.total_questions} MCQ Questions
                       </span>
@@ -339,7 +346,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 Question {currentQIndex + 1} of {questions.length}
               </h2>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#FBBF24', fontWeight: '700' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--coin))', fontWeight: '700' }}>
               <Coins size={18} />
               <span>{state.coins} Coins</span>
             </div>
@@ -357,7 +364,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
 
           {/* Question Card */}
           <div className="card" style={{ padding: '2rem', backgroundColor: 'hsl(var(--bg-surface))' }}>
-            <h3 style={{ fontSize: '1.25rem', color: 'white', lineHeight: '1.5', fontWeight: '600' }}>
+            <h3 style={{ fontSize: '1.25rem', color: 'hsl(var(--text-primary))', lineHeight: '1.5', fontWeight: '600' }}>
               {questions[currentQIndex]?.question}
             </h3>
           </div>
@@ -383,7 +390,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 className="btn btn-secondary"
                 style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
-                <Coins size={12} color="#FBBF24" /> 50/50 (-15c)
+                <Coins size={12} color="hsl(var(--coin))" /> 50/50 (-15c)
               </button>
               <button 
                 onClick={buyBengaliClue}
@@ -391,7 +398,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 className="btn btn-secondary"
                 style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
-                <Coins size={12} color="#FBBF24" /> Show Bengali (-10c)
+                <Coins size={12} color="hsl(var(--coin))" /> Show Bengali (-10c)
               </button>
               <button 
                 onClick={buyMnemonic}
@@ -399,18 +406,23 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 className="btn btn-secondary"
                 style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
               >
-                <Coins size={12} color="#FBBF24" /> Mnemonic (-20c)
+                <Coins size={12} color="hsl(var(--coin))" /> Mnemonic (-20c)
               </button>
             </div>
           </div>
 
           {/* Interactive Hints Output */}
+          {notice && (
+            <div role="status" aria-live="polite" className="card animate-fade" style={{ padding: '0.85rem 1rem', borderLeft: '3px solid hsl(var(--secondary))', color: 'hsl(var(--text-secondary))', fontSize: '0.85rem' }}>
+              {notice}
+            </div>
+          )}
           {(bengaliClueUsed || mnemonicUsed) && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {bengaliClueUsed && (
                 <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--primary))', backgroundColor: 'hsl(var(--bg-surface) / 0.6)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'hsl(var(--primary))', fontWeight: '700' }}>BENGALI TRANSLATION CLUE</div>
-                  <p style={{ fontSize: '0.95rem', fontWeight: '600', color: 'white', marginTop: '0.15rem' }}>
+                  <p style={{ fontSize: '0.95rem', fontWeight: '600', color: 'hsl(var(--text-primary))', marginTop: '0.15rem' }}>
                     {questions[currentQIndex]?.bengali_clue}
                   </p>
                 </div>
@@ -491,7 +503,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
         <div className="glass-panel animate-fade" style={{
           padding: '3rem',
           textAlign: 'center',
-          background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(16, 185, 129, 0.05) 100%)',
+          background: 'linear-gradient(145deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--primary), 0.05) 100%)',
           maxWidth: '550px',
           margin: '2rem auto'
         }}>

@@ -1,0 +1,6245 @@
+[
+  {
+    "quiz_id": 1,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "abash"
+      },
+      {
+        "word_number": 2,
+        "word": "abate"
+      },
+      {
+        "word_number": 3,
+        "word": "abdicate"
+      },
+      {
+        "word_number": 4,
+        "word": "aberration"
+      },
+      {
+        "word_number": 5,
+        "word": "abhor"
+      },
+      {
+        "word_number": 6,
+        "word": "abject"
+      },
+      {
+        "word_number": 7,
+        "word": "abnegate"
+      },
+      {
+        "word_number": 8,
+        "word": "abortive"
+      },
+      {
+        "word_number": 9,
+        "word": "abridge"
+      },
+      {
+        "word_number": 10,
+        "word": "absolute"
+      },
+      {
+        "word_number": 11,
+        "word": "absolve"
+      }
+    ],
+    "choices": {
+      "a": "to make ashamed; to embarrass",
+      "b": "to subside; to reduce",
+      "c": "to step down from a position of power or responsibility",
+      "d": "something not typical; a deviation from the standard",
+      "e": "to hate very, very much; to detest",
+      "f": "hopeless; extremely sad and servile; defeated; utterly bummed out",
+      "g": "to deny oneself things; to reject; to renounce",
+      "h": "unsuccessful",
+      "i": "to shorten; to condense",
+      "j": "total; unlimited; perfect",
+      "k": "to forgive or free from blame; to free from sin; to free from an obligation"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 2,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "abstinent"
+      },
+      {
+        "word_number": 2,
+        "word": "abstract"
+      },
+      {
+        "word_number": 3,
+        "word": "abstruse"
+      },
+      {
+        "word_number": 4,
+        "word": "abysmal"
+      },
+      {
+        "word_number": 5,
+        "word": "accolade"
+      },
+      {
+        "word_number": 6,
+        "word": "accost"
+      },
+      {
+        "word_number": 7,
+        "word": "acerbic"
+      },
+      {
+        "word_number": 8,
+        "word": "acquiesce"
+      },
+      {
+        "word_number": 9,
+        "word": "acrid"
+      },
+      {
+        "word_number": 10,
+        "word": "acrimonious"
+      },
+      {
+        "word_number": 11,
+        "word": "acumen"
+      }
+    ],
+    "choices": {
+      "a": "abstaining; voluntarily not doing something, especially something pleasant that is bad for you or has a bad reputation",
+      "b": "theoretical; impersonal",
+      "c": "hard to understand",
+      "d": "extremely hopeless or wretched; bottomless",
+      "e": "an award; an honor",
+      "f": "to approach and speak to someone",
+      "g": "bitter; sour; severe",
+      "h": "to comply passively; to accept; to assent; to agree",
+      "i": "harsh; like acid",
+      "j": "full of spite; bitter; nasty",
+      "k": "keenness of judgment; mental sharpness"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 3,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "acute"
+      },
+      {
+        "word_number": 2,
+        "word": "adulation"
+      },
+      {
+        "word_number": 3,
+        "word": "adamant"
+      },
+      {
+        "word_number": 4,
+        "word": "address"
+      },
+      {
+        "word_number": 5,
+        "word": "adherent"
+      },
+      {
+        "word_number": 6,
+        "word": "admonish"
+      },
+      {
+        "word_number": 7,
+        "word": "adroit"
+      },
+      {
+        "word_number": 8,
+        "word": "dexterous"
+      },
+      {
+        "word_number": 9,
+        "word": "gauche"
+      }
+    ],
+    "choices": {
+      "a": "sharp; shrewd",
+      "b": "wild or excessive admiration; flattery",
+      "c": "stubborn; unyielding; completely inflexible",
+      "d": "to speak to; to direct one's attention to",
+      "e": "follower; supporter; believer",
+      "f": "to scold gently; to warn",
+      "g": "skillful; dexterous; clever; shrewd; socially at ease",
+      "h": "skillful (2)",
+      "i": "socially awkward"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 4,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "adulterate"
+      },
+      {
+        "word_number": 2,
+        "word": "adverse"
+      },
+      {
+        "word_number": 3,
+        "word": "averse"
+      },
+      {
+        "word_number": 4,
+        "word": "aesthetic"
+      },
+      {
+        "word_number": 5,
+        "word": "affable"
+      },
+      {
+        "word_number": 6,
+        "word": "affectation"
+      },
+      {
+        "word_number": 7,
+        "word": "affinity"
+      },
+      {
+        "word_number": 8,
+        "word": "affluent"
+      },
+      {
+        "word_number": 9,
+        "word": "agenda"
+      },
+      {
+        "word_number": 10,
+        "word": "agrarian"
+      }
+    ],
+    "choices": {
+      "a": "to contaminate; to make impure",
+      "b": "unfavorable; antagonistic",
+      "c": "opposed to",
+      "d": "having to do with artistic beauty; artistic",
+      "e": "easy to talk to; friendly",
+      "f": "unnatural or artificial behavior, usually intended to impress",
+      "g": "sympathy; attraction; kinship; similarity",
+      "h": "rich; prosperous",
+      "i": "program; the things to be done",
+      "j": "relating to land; relating to the management or farming of land"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 5,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "aggregate"
+      },
+      {
+        "word_number": 2,
+        "word": "congregate"
+      },
+      {
+        "word_number": 3,
+        "word": "segregate"
+      },
+      {
+        "word_number": 4,
+        "word": "integrate"
+      },
+      {
+        "word_number": 5,
+        "word": "agnostic"
+      },
+      {
+        "word_number": 6,
+        "word": "alacrity"
+      },
+      {
+        "word_number": 7,
+        "word": "allege"
+      },
+      {
+        "word_number": 8,
+        "word": "alleviate"
+      },
+      {
+        "word_number": 9,
+        "word": "allocate"
+      },
+      {
+        "word_number": 10,
+        "word": "alloy"
+      }
+    ],
+    "choices": {
+      "a": "sum total; a collection of separate things mixed together",
+      "b": "distribute",
+      "c": "sum total",
+      "d": "combination of metals",
+      "e": "one who believes that the existence of a god can be neither proven nor disproven",
+      "f": "cheerful eagerness or readiness to respond",
+      "g": "to assert without proof",
+      "h": "to relieve, usually temporarily or incompletely; to make bearable; to lessen",
+      "i": "to distribute; to assign; to allot",
+      "j": "a combination of two or more things, usually metals"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 6,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "allusion"
+      },
+      {
+        "word_number": 2,
+        "word": "aloof"
+      },
+      {
+        "word_number": 3,
+        "word": "altruism"
+      },
+      {
+        "word_number": 4,
+        "word": "ambience"
+      },
+      {
+        "word_number": 5,
+        "word": "ambiguous"
+      },
+      {
+        "word_number": 6,
+        "word": "ambivalent"
+      }
+    ],
+    "choices": {
+      "a": "an indirect reference (often to a literary work); a hint",
+      "b": "uninvolved; standing off; keeping one's distance",
+      "c": "selflessness; generosity; devotion to the interests of others",
+      "d": "atmosphere; mood; feeling",
+      "e": "unclear in meaning; confusing; capable of being interpreted in different ways",
+      "f": "undecided; neutral; wishy-washy"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f"
+    }
+  },
+  {
+    "quiz_id": 7,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "ameliorate"
+      },
+      {
+        "word_number": 2,
+        "word": "amenable"
+      },
+      {
+        "word_number": 3,
+        "word": "amenity"
+      },
+      {
+        "word_number": 4,
+        "word": "amiable"
+      },
+      {
+        "word_number": 5,
+        "word": "amicable"
+      },
+      {
+        "word_number": 6,
+        "word": "amnesty"
+      },
+      {
+        "word_number": 7,
+        "word": "amoral"
+      },
+      {
+        "word_number": 8,
+        "word": "amorous"
+      },
+      {
+        "word_number": 9,
+        "word": "amorphous"
+      },
+      {
+        "word_number": 10,
+        "word": "anachronism"
+      },
+      {
+        "word_number": 11,
+        "word": "analogy"
+      }
+    ],
+    "choices": {
+      "a": "to make better or more tolerable",
+      "b": "obedient; willing to give in to the wishes of another; agreeable",
+      "c": "pleasantness; attractive or comfortable feature",
+      "d": "friendly; agreeable",
+      "e": "politely friendly",
+      "f": "an official pardon for a group of people who have violated a law or policy",
+      "g": "lacking a sense of right and wrong; neither good nor bad, neither moral nor immoral; without moral feelings",
+      "h": "feeling loving, especially in a sexual sense; in love; relating to love",
+      "i": "shapeless; without a regular or stable shape; bloblike",
+      "j": "something out of place in time or history; an incongruity",
+      "k": "a comparison of one thing to another; similarity"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 8,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "anarchy"
+      },
+      {
+        "word_number": 2,
+        "word": "monarchy"
+      },
+      {
+        "word_number": 3,
+        "word": "anecdote"
+      },
+      {
+        "word_number": 4,
+        "word": "anguish"
+      },
+      {
+        "word_number": 5,
+        "word": "animosity"
+      },
+      {
+        "word_number": 6,
+        "word": "anomaly"
+      },
+      {
+        "word_number": 7,
+        "word": "antecedent"
+      },
+      {
+        "word_number": 8,
+        "word": "antipathy"
+      },
+      {
+        "word_number": 9,
+        "word": "antithesis"
+      },
+      {
+        "word_number": 10,
+        "word": "apartheid"
+      }
+    ],
+    "choices": {
+      "a": "absence of government or control; lawlessness; disorder",
+      "b": "agonizing pain",
+      "c": "a short account of a humorous or revealing incident",
+      "d": "agonizing physical or mental pain",
+      "e": "resentment; hostility; ill will",
+      "f": "an aberration; an irregularity; a deviation",
+      "g": "someone or something that went before; something that provides a model for something that came after it",
+      "h": "firm dislike; a dislike",
+      "i": "the direct opposite",
+      "j": "the abhorrent policy of racial segregation and oppression in the Republic of South Africa"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 9,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "apathy"
+      },
+      {
+        "word_number": 2,
+        "word": "aphorism"
+      },
+      {
+        "word_number": 3,
+        "word": "apocalypse"
+      },
+      {
+        "word_number": 4,
+        "word": "apocryphal"
+      },
+      {
+        "word_number": 5,
+        "word": "apotheosis"
+      },
+      {
+        "word_number": 6,
+        "word": "appease"
+      },
+      {
+        "word_number": 7,
+        "word": "appreciate"
+      },
+      {
+        "word_number": 8,
+        "word": "depreciate"
+      },
+      {
+        "word_number": 9,
+        "word": "apprehensive"
+      },
+      {
+        "word_number": 10,
+        "word": "misapprehension"
+      }
+    ],
+    "choices": {
+      "a": "lack of interest; lack of feeling",
+      "b": "a brief, often witty saying; a proverb",
+      "c": "a prophetic revelation, especially one concerning the end of the world",
+      "d": "of dubious authenticity; fictitious; spurious",
+      "e": "elevation to divine status; the perfect example of something",
+      "f": "to soothe; to pacify by giving in to",
+      "g": "to increase in value",
+      "h": "soothe",
+      "i": "worried; anxious",
+      "j": "lack of interest"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 10,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "approbation"
+      },
+      {
+        "word_number": 2,
+        "word": "appropriate"
+      },
+      {
+        "word_number": 3,
+        "word": "misappropriate"
+      },
+      {
+        "word_number": 4,
+        "word": "expropriate"
+      },
+      {
+        "word_number": 5,
+        "word": "aptitude"
+      },
+      {
+        "word_number": 6,
+        "word": "arbiter"
+      },
+      {
+        "word_number": 7,
+        "word": "arbitrate"
+      },
+      {
+        "word_number": 8,
+        "word": "arbitrary"
+      },
+      {
+        "word_number": 9,
+        "word": "arcane"
+      },
+      {
+        "word_number": 10,
+        "word": "archaic"
+      }
+    ],
+    "choices": {
+      "a": "approval; praise",
+      "b": "to take without permission; to set aside for a particular use",
+      "c": "misuse public money",
+      "d": "take property officially",
+      "e": "capacity for learning; natural ability",
+      "f": "one who decides; a judge",
+      "g": "weigh opposing views",
+      "h": "random; capricious",
+      "i": "mysterious; known only to a select few",
+      "j": "extremely old; ancient; outdated"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 11,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "archetype"
+      },
+      {
+        "word_number": 2,
+        "word": "ardent"
+      },
+      {
+        "word_number": 3,
+        "word": "arduous"
+      },
+      {
+        "word_number": 4,
+        "word": "aristocratic"
+      },
+      {
+        "word_number": 5,
+        "word": "artful"
+      },
+      {
+        "word_number": 6,
+        "word": "artifice"
+      },
+      {
+        "word_number": 7,
+        "word": "ascendancy"
+      },
+      {
+        "word_number": 8,
+        "word": "ascetic"
+      },
+      {
+        "word_number": 9,
+        "word": "assiduous"
+      }
+    ],
+    "choices": {
+      "a": "an original model or pattern",
+      "b": "passionate",
+      "c": "hard; difficult",
+      "d": "of noble birth; snobbish",
+      "e": "crafty; wily; sly",
+      "f": "a clever trick; cunning",
+      "g": "supremacy; domination",
+      "h": "hermitlike; practicing self-denial",
+      "i": "hardworking; busy; quite diligent"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 12,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "assimilate"
+      },
+      {
+        "word_number": 2,
+        "word": "assuage"
+      },
+      {
+        "word_number": 3,
+        "word": "astute"
+      },
+      {
+        "word_number": 4,
+        "word": "attrition"
+      },
+      {
+        "word_number": 5,
+        "word": "audacity"
+      },
+      {
+        "word_number": 6,
+        "word": "augment"
+      },
+      {
+        "word_number": 7,
+        "word": "auspicious"
+      },
+      {
+        "word_number": 8,
+        "word": "austere"
+      },
+      {
+        "word_number": 9,
+        "word": "autocratic"
+      }
+    ],
+    "choices": {
+      "a": "to take in; to absorb; to learn thoroughly",
+      "b": "to soothe; to pacify; to ease the pain of; to relieve",
+      "c": "shrewd; keen in judgment",
+      "d": "gradual wearing away, weakening, or loss; a natural or expected decrease in numbers or size",
+      "e": "boldness; reckless daring; impertinence",
+      "f": "to make bigger; to add to; to increase",
+      "g": "favorable; promising; pointing to a good result",
+      "h": "unadorned; stern; forbidding; without excess",
+      "i": "ruling with absolute authority; extremely bossy"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 13,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "autonomous"
+      },
+      {
+        "word_number": 2,
+        "word": "avarice"
+      },
+      {
+        "word_number": 3,
+        "word": "avow"
+      },
+      {
+        "word_number": 4,
+        "word": "avuncular"
+      },
+      {
+        "word_number": 5,
+        "word": "awry"
+      },
+      {
+        "word_number": 6,
+        "word": "axiom"
+      }
+    ],
+    "choices": {
+      "a": "acting independently",
+      "b": "greed; excessive love of riches",
+      "c": "to claim; to declare boldly; to admit",
+      "d": "like an uncle, especially a nice uncle",
+      "e": "off course; twisted to one side",
+      "f": "a self-evident rule or truth; a widely accepted saying"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f"
+    }
+  },
+  {
+    "quiz_id": 14,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "banal"
+      },
+      {
+        "word_number": 2,
+        "word": "bane"
+      },
+      {
+        "word_number": 3,
+        "word": "bastion"
+      },
+      {
+        "word_number": 4,
+        "word": "beget"
+      },
+      {
+        "word_number": 5,
+        "word": "belabor"
+      },
+      {
+        "word_number": 6,
+        "word": "beleaguer"
+      },
+      {
+        "word_number": 7,
+        "word": "belie"
+      },
+      {
+        "word_number": 8,
+        "word": "belittle"
+      }
+    ],
+    "choices": {
+      "a": "unoriginal; ordinary",
+      "b": "poison; torment; cause of harm",
+      "c": "stronghold; fortress; fortified place",
+      "d": "to give birth to; to create; to lead to; to cause",
+      "e": "to go over repeatedly or to an absurd extent",
+      "f": "to surround; to besiege; to harass",
+      "g": "to give a false impression of; to contradict",
+      "h": "to make to seem little; to put someone down"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h"
+    }
+  },
+  {
+    "quiz_id": 15,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "belligerent"
+      },
+      {
+        "word_number": 2,
+        "word": "bemused"
+      },
+      {
+        "word_number": 3,
+        "word": "benefactor"
+      },
+      {
+        "word_number": 4,
+        "word": "beneficiary"
+      },
+      {
+        "word_number": 5,
+        "word": "benevolent"
+      },
+      {
+        "word_number": 6,
+        "word": "benign"
+      },
+      {
+        "word_number": 7,
+        "word": "malignant"
+      },
+      {
+        "word_number": 8,
+        "word": "malign"
+      },
+      {
+        "word_number": 9,
+        "word": "malevolent"
+      },
+      {
+        "word_number": 10,
+        "word": "malefactor"
+      }
+    ],
+    "choices": {
+      "a": "combative; quarrelsome; waging war",
+      "b": "confused; bewildered",
+      "c": "one who provides help, especially in the form of a gift or donation",
+      "d": "generous",
+      "e": "generous; kind; doing good deeds",
+      "f": "gentle; not harmful; kind; mild",
+      "g": "not harmful",
+      "h": "one who receives benefits",
+      "i": "confused",
+      "j": "deadly"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 16,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "bequest"
+      },
+      {
+        "word_number": 2,
+        "word": "bequeath"
+      },
+      {
+        "word_number": 3,
+        "word": "bereaved"
+      },
+      {
+        "word_number": 4,
+        "word": "beset"
+      },
+      {
+        "word_number": 5,
+        "word": "blasphemy"
+      },
+      {
+        "word_number": 6,
+        "word": "blatant"
+      }
+    ],
+    "choices": {
+      "a": "something left to someone in a will",
+      "b": "leaving in a will",
+      "c": "deprived or left desolate, especially through death",
+      "d": "to harass; to surround",
+      "e": "irreverence; an insult to something held sacred; profanity",
+      "f": "unpleasantly or offensively noisy; glaring"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f"
+    }
+  },
+  {
+    "quiz_id": 17,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "blight"
+      },
+      {
+        "word_number": 2,
+        "word": "blithe"
+      },
+      {
+        "word_number": 3,
+        "word": "bourgeois"
+      },
+      {
+        "word_number": 4,
+        "word": "bovine"
+      },
+      {
+        "word_number": 5,
+        "word": "canine"
+      },
+      {
+        "word_number": 6,
+        "word": "feline"
+      },
+      {
+        "word_number": 7,
+        "word": "equine"
+      },
+      {
+        "word_number": 8,
+        "word": "piscine"
+      },
+      {
+        "word_number": 9,
+        "word": "porcine"
+      },
+      {
+        "word_number": 10,
+        "word": "ursine"
+      },
+      {
+        "word_number": 11,
+        "word": "brevity"
+      },
+      {
+        "word_number": 12,
+        "word": "broach"
+      },
+      {
+        "word_number": 13,
+        "word": "bucolic"
+      },
+      {
+        "word_number": 14,
+        "word": "bureaucracy"
+      },
+      {
+        "word_number": 15,
+        "word": "burgeon"
+      },
+      {
+        "word_number": 16,
+        "word": "burlesque"
+      }
+    ],
+    "choices": {
+      "a": "a disease in plants; anything that injures or destroys",
+      "b": "carefree; cheerful",
+      "c": "middle class, usually in a pejorative sense; boringly conventional",
+      "d": "cow related; cowlike",
+      "e": "doglike",
+      "f": "catlike",
+      "g": "carefree",
+      "h": "fishlike",
+      "i": "briefness",
+      "j": "bearlike",
+      "k": "briefness",
+      "l": "to open up a subject for discussion, often a delicate subject",
+      "m": "charmingly rural; rustic; countrylike",
+      "n": "a system of government administration consisting of numerous bureaus or offices, especially one run according to inflexible and inefficient rules; any large administrative system characterized by inefficiency, lots of rules, and red tape",
+      "o": "to expand; to flourish",
+      "p": "a ludicrous, mocking, or exaggerated imitation"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o",
+      "16": "p"
+    }
+  },
+  {
+    "quiz_id": 18,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "cacophony"
+      },
+      {
+        "word_number": 2,
+        "word": "cadence"
+      },
+      {
+        "word_number": 3,
+        "word": "cajole"
+      },
+      {
+        "word_number": 4,
+        "word": "callow"
+      },
+      {
+        "word_number": 5,
+        "word": "candor"
+      },
+      {
+        "word_number": 6,
+        "word": "capitalism"
+      },
+      {
+        "word_number": 7,
+        "word": "capitulate"
+      },
+      {
+        "word_number": 8,
+        "word": "recapitulate"
+      },
+      {
+        "word_number": 9,
+        "word": "capricious"
+      },
+      {
+        "word_number": 10,
+        "word": "caricature"
+      },
+      {
+        "word_number": 11,
+        "word": "castigate"
+      },
+      {
+        "word_number": 12,
+        "word": "catalyst"
+      }
+    ],
+    "choices": {
+      "a": "harsh-sounding mixture of words, voices, or sounds",
+      "b": "rhythm; the rise and fall of sounds",
+      "c": "to persuade someone to do something he or she doesn't want to do",
+      "d": "immature",
+      "e": "truthfulness; sincere honesty",
+      "f": "free enterprise; an economic system in which businesses are owned by private citizens (not by the government) and in which the resulting products and services are sold with relatively little government control",
+      "g": "to surrender; to give up or give in",
+      "h": "free enterprise",
+      "i": "unpredictable; likely to change at any moment",
+      "j": "a portrait or description that is purposely distorted or exaggerated, often to prove some point about its subject",
+      "k": "to criticize severely; to chastise",
+      "l": "in chemistry, something that changes the rate of a chemical reaction without itself being changed; anyone or anything that makes something happen without being directly involved in it"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 19,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "categorical"
+      },
+      {
+        "word_number": 2,
+        "word": "catharsis"
+      },
+      {
+        "word_number": 3,
+        "word": "catholic"
+      },
+      {
+        "word_number": 4,
+        "word": "caustic"
+      },
+      {
+        "word_number": 5,
+        "word": "celibacy"
+      },
+      {
+        "word_number": 6,
+        "word": "censure"
+      },
+      {
+        "word_number": 7,
+        "word": "cerebral"
+      },
+      {
+        "word_number": 8,
+        "word": "chagrin"
+      },
+      {
+        "word_number": 9,
+        "word": "charisma"
+      }
+    ],
+    "choices": {
+      "a": "unconditional; absolute",
+      "b": "purification that brings emotional relief or renewal",
+      "c": "universal; embracing everything",
+      "d": "like acid; corrosive",
+      "e": "abstinence from sex",
+      "f": "to condemn severely for doing something bad",
+      "g": "brainy; intellectually refined",
+      "h": "humiliation; embarrassed disappointment",
+      "i": "a magical-seeming ability to attract followers or inspire loyalty"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 20,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "charlatan"
+      },
+      {
+        "word_number": 2,
+        "word": "chasm"
+      },
+      {
+        "word_number": 3,
+        "word": "chastise"
+      },
+      {
+        "word_number": 4,
+        "word": "chicanery"
+      },
+      {
+        "word_number": 5,
+        "word": "chimera"
+      },
+      {
+        "word_number": 6,
+        "word": "chivalrous"
+      },
+      {
+        "word_number": 7,
+        "word": "choleric"
+      },
+      {
+        "word_number": 8,
+        "word": "chronic"
+      },
+      {
+        "word_number": 9,
+        "word": "chronological"
+      },
+      {
+        "word_number": 10,
+        "word": "chronology"
+      },
+      {
+        "word_number": 11,
+        "word": "chronicle"
+      }
+    ],
+    "choices": {
+      "a": "fraud; quack; con man",
+      "b": "a deep, gaping hole; a gorge",
+      "c": "to inflict punishment on; to discipline",
+      "d": "trickery; deceitfulness; artifice, especially legal or political",
+      "e": "an illusion; a foolish fancy",
+      "f": "gallant",
+      "g": "hot-tempered; quick to anger",
+      "h": "constant; lasting a long time; inveterate",
+      "i": "in order of occurrence",
+      "j": "list in time order",
+      "k": "a record of events in order of time; a history"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 21,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "circuitous"
+      },
+      {
+        "word_number": 2,
+        "word": "circumlocution"
+      },
+      {
+        "word_number": 3,
+        "word": "circumscribe"
+      },
+      {
+        "word_number": 4,
+        "word": "circumspect"
+      },
+      {
+        "word_number": 5,
+        "word": "circumvent"
+      },
+      {
+        "word_number": 6,
+        "word": "civil"
+      },
+      {
+        "word_number": 7,
+        "word": "clique"
+      },
+      {
+        "word_number": 8,
+        "word": "clemency"
+      },
+      {
+        "word_number": 9,
+        "word": "inclement"
+      },
+      {
+        "word_number": 10,
+        "word": "cliché"
+      }
+    ],
+    "choices": {
+      "a": "roundabout; not following a direct path",
+      "b": "an indirect expression; use of wordy or evasive language",
+      "c": "to draw a line around; to set the limits; to define; to restrict",
+      "d": "cautious",
+      "e": "to frustrate as though by surrounding",
+      "f": "polite; civilized; courteous",
+      "g": "an exclusive group bound together by some shared quality or interest",
+      "h": "mercy; forgiveness; mildness",
+      "i": "exclusive group",
+      "j": "overused saying"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 22,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "coalesce"
+      },
+      {
+        "word_number": 2,
+        "word": "coalition"
+      },
+      {
+        "word_number": 3,
+        "word": "coerce"
+      },
+      {
+        "word_number": 4,
+        "word": "cogent"
+      },
+      {
+        "word_number": 5,
+        "word": "cognitive"
+      },
+      {
+        "word_number": 6,
+        "word": "cognizant"
+      },
+      {
+        "word_number": 7,
+        "word": "coherent"
+      },
+      {
+        "word_number": 8,
+        "word": "colloquial"
+      },
+      {
+        "word_number": 9,
+        "word": "collusion"
+      },
+      {
+        "word_number": 10,
+        "word": "commensurate"
+      },
+      {
+        "word_number": 11,
+        "word": "compelling"
+      },
+      {
+        "word_number": 12,
+        "word": "compendium"
+      }
+    ],
+    "choices": {
+      "a": "to come together as one; to fuse; to unite",
+      "b": "group with a purpose",
+      "c": "to force someone to do or not to do something",
+      "d": "powerfully convincing",
+      "e": "dealing with how we know the world around us through our senses; mental",
+      "f": "aware; conscious",
+      "g": "holding together; making sense",
+      "h": "conversational; informal in language",
+      "i": "conspiracy; secret cooperation",
+      "j": "equal; proportionate",
+      "k": "forceful; causing to yield",
+      "l": "a summary; an abridgment"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 23,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "complacent"
+      },
+      {
+        "word_number": 2,
+        "word": "complement"
+      },
+      {
+        "word_number": 3,
+        "word": "complicity"
+      },
+      {
+        "word_number": 4,
+        "word": "comprehensive"
+      },
+      {
+        "word_number": 5,
+        "word": "comprise"
+      },
+      {
+        "word_number": 6,
+        "word": "compose"
+      },
+      {
+        "word_number": 7,
+        "word": "constitute"
+      },
+      {
+        "word_number": 8,
+        "word": "conciliatory"
+      },
+      {
+        "word_number": 9,
+        "word": "concise"
+      }
+    ],
+    "choices": {
+      "a": "self-satisfied; overly pleased with oneself; contented to a fault",
+      "b": "to complete or fill up; to be the perfect counterpart",
+      "c": "participation in wrongdoing; the act of being an accomplice",
+      "d": "covering or including everything",
+      "e": "to consist of",
+      "f": "make up (2)",
+      "g": "make up (2)",
+      "h": "making peace; attempting to resolve a dispute through goodwill",
+      "i": "brief and to the point; succinct"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 24,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "concord"
+      },
+      {
+        "word_number": 2,
+        "word": "discord"
+      },
+      {
+        "word_number": 3,
+        "word": "concurrent"
+      },
+      {
+        "word_number": 4,
+        "word": "condescend"
+      },
+      {
+        "word_number": 5,
+        "word": "condone"
+      },
+      {
+        "word_number": 6,
+        "word": "conducive"
+      },
+      {
+        "word_number": 7,
+        "word": "confluence"
+      },
+      {
+        "word_number": 8,
+        "word": "congenial"
+      },
+      {
+        "word_number": 9,
+        "word": "congenital"
+      }
+    ],
+    "choices": {
+      "a": "harmony; agreement",
+      "b": "disharmony",
+      "c": "happening at the same time; parallel",
+      "d": "to stoop to someone else's level, usually in an offensive way; to patronize",
+      "e": "to overlook; to permit to happen",
+      "f": "promoting",
+      "g": "a flowing together, especially of rivers; the place where they begin to flow together",
+      "h": "agreeably suitable; pleasant",
+      "i": "a trait or condition acquired between conception and birth; innate"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 25,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "conjecture"
+      },
+      {
+        "word_number": 2,
+        "word": "conjure"
+      },
+      {
+        "word_number": 3,
+        "word": "connoisseur"
+      },
+      {
+        "word_number": 4,
+        "word": "consecrate"
+      },
+      {
+        "word_number": 5,
+        "word": "desecrate"
+      },
+      {
+        "word_number": 6,
+        "word": "consensus"
+      },
+      {
+        "word_number": 7,
+        "word": "consonant"
+      },
+      {
+        "word_number": 8,
+        "word": "dissonant"
+      }
+    ],
+    "choices": {
+      "a": "to guess; to deduce or infer on slight evidence",
+      "b": "to summon or bring into being as if by magic",
+      "c": "an expert, particularly in matters of art or taste",
+      "d": "to make or declare sacred",
+      "e": "treat irreverently",
+      "f": "unanimity or general agreement",
+      "g": "harmonious; in agreement",
+      "h": "harmonious"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h"
+    }
+  },
+  {
+    "quiz_id": 26,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "construe"
+      },
+      {
+        "word_number": 2,
+        "word": "consummate"
+      },
+      {
+        "word_number": 3,
+        "word": "contentious"
+      },
+      {
+        "word_number": 4,
+        "word": "contiguous"
+      },
+      {
+        "word_number": 5,
+        "word": "contingent"
+      },
+      {
+        "word_number": 6,
+        "word": "contrite"
+      },
+      {
+        "word_number": 7,
+        "word": "contrived"
+      },
+      {
+        "word_number": 8,
+        "word": "conventional"
+      },
+      {
+        "word_number": 9,
+        "word": "convivial"
+      },
+      {
+        "word_number": 10,
+        "word": "copious"
+      }
+    ],
+    "choices": {
+      "a": "to interpret",
+      "b": "perfect; complete; supremely skillful",
+      "c": "argumentative; quarrelsome",
+      "d": "side by side; adjoining",
+      "e": "dependent; possible",
+      "f": "admitting guilt; especially feeling remorseful",
+      "g": "artificial; labored",
+      "h": "common; customary; unexceptional",
+      "i": "fond of partying; festive",
+      "j": "abundant; plentiful"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 27,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "corollary"
+      },
+      {
+        "word_number": 2,
+        "word": "corroborate"
+      },
+      {
+        "word_number": 3,
+        "word": "cosmopolitan"
+      },
+      {
+        "word_number": 4,
+        "word": "countenance"
+      },
+      {
+        "word_number": 5,
+        "word": "coup"
+      },
+      {
+        "word_number": 6,
+        "word": "covenant"
+      },
+      {
+        "word_number": 7,
+        "word": "covert"
+      },
+      {
+        "word_number": 8,
+        "word": "covet"
+      }
+    ],
+    "choices": {
+      "a": "something that follows; a natural consequence",
+      "b": "to confirm; to back up with evidence",
+      "c": "at home in many places or situations; internationally sophisticated",
+      "d": "face; facial expression, especially an encouraging one",
+      "e": "a brilliant victory or accomplishment; the violent overthrow of a government by a small internal group",
+      "f": "a solemn agreement; a contract; a pledge",
+      "g": "secret; hidden",
+      "h": "to wish for enviously"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h"
+    }
+  },
+  {
+    "quiz_id": 28,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "credulous"
+      },
+      {
+        "word_number": 2,
+        "word": "credible"
+      },
+      {
+        "word_number": 3,
+        "word": "incredible"
+      },
+      {
+        "word_number": 4,
+        "word": "incredulous"
+      },
+      {
+        "word_number": 5,
+        "word": "credence"
+      },
+      {
+        "word_number": 6,
+        "word": "creditable"
+      },
+      {
+        "word_number": 7,
+        "word": "criterion"
+      },
+      {
+        "word_number": 8,
+        "word": "cryptic"
+      },
+      {
+        "word_number": 9,
+        "word": "culinary"
+      },
+      {
+        "word_number": 10,
+        "word": "culminate"
+      }
+    ],
+    "choices": {
+      "a": "eager to believe; gullible",
+      "b": "standard",
+      "c": "unbelievable",
+      "d": "eager to believe",
+      "e": "eager to believe",
+      "f": "related to cooking",
+      "g": "standard; basis for judgment",
+      "h": "mysterious; mystifying",
+      "i": "relating to cooking or the kitchen",
+      "j": "to climax; to reach full effect"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 29,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "culpable"
+      },
+      {
+        "word_number": 2,
+        "word": "exculpate"
+      },
+      {
+        "word_number": 3,
+        "word": "cursory"
+      },
+      {
+        "word_number": 4,
+        "word": "curtail"
+      },
+      {
+        "word_number": 5,
+        "word": "cynic"
+      }
+    ],
+    "choices": {
+      "a": "deserving blame; guilty",
+      "b": "definition of exculpate",
+      "c": "hasty; superficial",
+      "d": "to shorten; to cut short",
+      "e": "one who deeply distrusts human nature; one who believes humans are motivated only by selfishness"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e"
+    }
+  },
+  {
+    "quiz_id": 30,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "daunt"
+      },
+      {
+        "word_number": 2,
+        "word": "dearth"
+      },
+      {
+        "word_number": 3,
+        "word": "debacle"
+      },
+      {
+        "word_number": 4,
+        "word": "debauchery"
+      },
+      {
+        "word_number": 5,
+        "word": "debilitate"
+      },
+      {
+        "word_number": 6,
+        "word": "decadent"
+      },
+      {
+        "word_number": 7,
+        "word": "decimate"
+      },
+      {
+        "word_number": 8,
+        "word": "decorous"
+      },
+      {
+        "word_number": 9,
+        "word": "deduce"
+      },
+      {
+        "word_number": 10,
+        "word": "defame"
+      }
+    ],
+    "choices": {
+      "a": "to make fearful; to intimidate",
+      "b": "lack; scarcity",
+      "c": "violent breakdown; sudden overthrow; overwhelming defeat",
+      "d": "wild living; excessive intemperance",
+      "e": "to weaken; to cripple",
+      "f": "decaying or decayed, especially in terms of morals",
+      "g": "to kill or destroy a large part of",
+      "h": "proper; in good taste; orderly",
+      "i": "to conclude from the evidence; to infer",
+      "j": "to libel or slander; to ruin the good name of"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 31,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "deference"
+      },
+      {
+        "word_number": 2,
+        "word": "definitive"
+      },
+      {
+        "word_number": 3,
+        "word": "degenerate"
+      },
+      {
+        "word_number": 4,
+        "word": "deleterious"
+      },
+      {
+        "word_number": 5,
+        "word": "delineate"
+      },
+      {
+        "word_number": 6,
+        "word": "delude"
+      },
+      {
+        "word_number": 7,
+        "word": "deluge"
+      },
+      {
+        "word_number": 8,
+        "word": "demagogue"
+      },
+      {
+        "word_number": 9,
+        "word": "denizen"
+      },
+      {
+        "word_number": 10,
+        "word": "depravity"
+      },
+      {
+        "word_number": 11,
+        "word": "deprecate"
+      },
+      {
+        "word_number": 12,
+        "word": "deride"
+      }
+    ],
+    "choices": {
+      "a": "submission to another's will; respect; courtesy",
+      "b": "conclusive; providing the last word",
+      "c": "to break down; to deteriorate",
+      "d": "harmful",
+      "e": "to describe accurately; to draw in outline",
+      "f": "to deceive",
+      "g": "a flood; an inundation",
+      "h": "a leader of the people, but more a rabble rouser",
+      "i": "inhabitant",
+      "j": "extreme wickedness or corruption",
+      "k": "to express disapproval of",
+      "l": "to ridicule; to laugh at contemptuously"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 32,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "derogatory"
+      },
+      {
+        "word_number": 2,
+        "word": "desiccate"
+      },
+      {
+        "word_number": 3,
+        "word": "despondent"
+      },
+      {
+        "word_number": 4,
+        "word": "despot"
+      },
+      {
+        "word_number": 5,
+        "word": "destitute"
+      },
+      {
+        "word_number": 6,
+        "word": "desultory"
+      },
+      {
+        "word_number": 7,
+        "word": "dialectical"
+      },
+      {
+        "word_number": 8,
+        "word": "dictum"
+      },
+      {
+        "word_number": 9,
+        "word": "didactic"
+      },
+      {
+        "word_number": 10,
+        "word": "diffident"
+      },
+      {
+        "word_number": 11,
+        "word": "digress"
+      },
+      {
+        "word_number": 12,
+        "word": "dilettante"
+      }
+    ],
+    "choices": {
+      "a": "disapproving; degrading",
+      "b": "to dry out",
+      "c": "extremely depressed; full of despair",
+      "d": "an absolute ruler; an autocrat",
+      "e": "extremely poor; utterly lacking",
+      "f": "without a plan or purpose; disconnected; random",
+      "g": "relating to discussions; relating to the rules and methods of reasoning; approaching truth in the middle of opposing extremes",
+      "h": "an authoritative saying; an adage; a maxim; a proverb",
+      "i": "intended to teach; morally instructive; pedantic",
+      "j": "timid; lacking in self-confidence",
+      "k": "to stray from the main subject",
+      "l": "someone with superficial knowledge of the arts; an amateur; a dabbler"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 33,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "discern"
+      },
+      {
+        "word_number": 2,
+        "word": "discreet"
+      },
+      {
+        "word_number": 3,
+        "word": "discrete"
+      },
+      {
+        "word_number": 4,
+        "word": "indiscrete"
+      },
+      {
+        "word_number": 5,
+        "word": "discriminate"
+      },
+      {
+        "word_number": 6,
+        "word": "disdain"
+      },
+      {
+        "word_number": 7,
+        "word": "disinterested"
+      },
+      {
+        "word_number": 8,
+        "word": "disparage"
+      }
+    ],
+    "choices": {
+      "a": "to have insight; to see things clearly, to discriminate; to differentiate",
+      "b": "prudent; judiciously reserved",
+      "c": "unconnected; separate; distinct",
+      "d": "not separated",
+      "e": "to notice or point out the difference between two or more things; to discern; to differentiate",
+      "f": "arrogant scorn; contempt",
+      "g": "not taking sides; unbiased",
+      "h": "to belittle; to say uncomplimentary things about, usually in a somewhat indirect way"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h"
+    }
+  },
+  {
+    "quiz_id": 34,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "disparate"
+      },
+      {
+        "word_number": 2,
+        "word": "disseminate"
+      },
+      {
+        "word_number": 3,
+        "word": "dissipate"
+      },
+      {
+        "word_number": 4,
+        "word": "dissolution"
+      },
+      {
+        "word_number": 5,
+        "word": "dissonant"
+      },
+      {
+        "word_number": 6,
+        "word": "distend"
+      },
+      {
+        "word_number": 7,
+        "word": "distinguish"
+      },
+      {
+        "word_number": 8,
+        "word": "docile"
+      },
+      {
+        "word_number": 9,
+        "word": "doctrinaire"
+      },
+      {
+        "word_number": 10,
+        "word": "dogmatic"
+      },
+      {
+        "word_number": 11,
+        "word": "dogma"
+      },
+      {
+        "word_number": 12,
+        "word": "domestic"
+      }
+    ],
+    "choices": {
+      "a": "different; incompatible; unequal",
+      "b": "to spread the seeds of something; to scatter; to make widely known",
+      "c": "to thin out, drift away, or dissolve; to cause to thin out, drift away, or dissolve; to waste or squander",
+      "d": "the breaking up or dissolving of something into parts; disintegration",
+      "e": "inharmonious",
+      "f": "to swell; to extend a great deal",
+      "g": "to tell apart; to cause to stand out",
+      "h": "easily taught; obedient; easy to handle",
+      "i": "inflexibly committed to a doctrine or theory without regard to its practicality; dogmatic",
+      "j": "arrogantly assertive of unproven ideas; stubbornly claiming that something (often a system of beliefs) is beyond dispute",
+      "k": "definition of dogma",
+      "l": "having to do with the household or family; not foreign"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 35,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "dormant"
+      },
+      {
+        "word_number": 2,
+        "word": "dubiety"
+      },
+      {
+        "word_number": 3,
+        "word": "duplicity"
+      }
+    ],
+    "choices": {
+      "a": "inactive; as though asleep; asleep",
+      "b": "uncertainty",
+      "c": "the act of being two-faced; double-dealing; deception"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c"
+    }
+  },
+  {
+    "quiz_id": 36,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "ebullient"
+      },
+      {
+        "word_number": 2,
+        "word": "eccentric"
+      },
+      {
+        "word_number": 3,
+        "word": "eclectic"
+      },
+      {
+        "word_number": 4,
+        "word": "edify"
+      },
+      {
+        "word_number": 5,
+        "word": "efface"
+      },
+      {
+        "word_number": 6,
+        "word": "effusion"
+      },
+      {
+        "word_number": 7,
+        "word": "egalitarian"
+      },
+      {
+        "word_number": 8,
+        "word": "egocentric"
+      },
+      {
+        "word_number": 9,
+        "word": "egotist"
+      },
+      {
+        "word_number": 10,
+        "word": "egregious"
+      }
+    ],
+    "choices": {
+      "a": "boiling; bubbling with excitement; exuberant",
+      "b": "not conventional; a little kooky; irregular",
+      "c": "choosing the best from many sources; drawn from many sources",
+      "d": "to enlighten; to instruct, especially in moral or religious matters",
+      "e": "to erase; to rub away the features of",
+      "f": "a pouring forth",
+      "g": "believing in the social and economic equality of all people",
+      "h": "selfish; believing that one is the center of everything",
+      "i": "pouring forth",
+      "j": "extremely bad; flagrant"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 37,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "elicit"
+      },
+      {
+        "word_number": 2,
+        "word": "elliptical"
+      },
+      {
+        "word_number": 3,
+        "word": "elusive"
+      },
+      {
+        "word_number": 4,
+        "word": "emigrate"
+      },
+      {
+        "word_number": 5,
+        "word": "immigration"
+      },
+      {
+        "word_number": 6,
+        "word": "eminent"
+      },
+      {
+        "word_number": 7,
+        "word": "empirical"
+      }
+    ],
+    "choices": {
+      "a": "to bring out; to call forth",
+      "b": "oval; missing a word or words; obscure",
+      "c": "hard to pin down; evasive",
+      "d": "to move to a new country; to move to a new place to live; to expatriate",
+      "e": "hard to pin down",
+      "f": "well-known and respected; standing out from all others in quality or accomplishment; outstanding",
+      "g": "relying on experience or observation; not merely theoretical"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g"
+    }
+  },
+  {
+    "quiz_id": 38,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "emulate"
+      },
+      {
+        "word_number": 2,
+        "word": "encroach"
+      },
+      {
+        "word_number": 3,
+        "word": "endemic"
+      },
+      {
+        "word_number": 4,
+        "word": "enervate"
+      },
+      {
+        "word_number": 5,
+        "word": "enfranchise"
+      },
+      {
+        "word_number": 6,
+        "word": "disfranchise"
+      },
+      {
+        "word_number": 7,
+        "word": "engender"
+      },
+      {
+        "word_number": 8,
+        "word": "enigma"
+      },
+      {
+        "word_number": 9,
+        "word": "enormity"
+      },
+      {
+        "word_number": 10,
+        "word": "ephemeral"
+      }
+    ],
+    "choices": {
+      "a": "to strive to equal or excel, usually through imitation",
+      "b": "to make gradual or stealthy inroads into; to trespass",
+      "c": "native; restricted to a particular region or era; indigenous",
+      "d": "to reduce the strength or energy of, especially to do so gradually",
+      "e": "to grant the privileges of citizenship, especially the right to vote",
+      "f": "cause to exist",
+      "g": "to bring into existence; to create; to cause",
+      "h": "a mystery",
+      "i": "extreme evil; a hideous offense; immensity",
+      "j": "lasting a very short time"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 39,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "epigram"
+      },
+      {
+        "word_number": 2,
+        "word": "epigraph"
+      },
+      {
+        "word_number": 3,
+        "word": "epitaph"
+      },
+      {
+        "word_number": 4,
+        "word": "epithet"
+      },
+      {
+        "word_number": 5,
+        "word": "epitome"
+      },
+      {
+        "word_number": 6,
+        "word": "equanimity"
+      },
+      {
+        "word_number": 7,
+        "word": "equitable"
+      },
+      {
+        "word_number": 8,
+        "word": "equivocal"
+      },
+      {
+        "word_number": 9,
+        "word": "equivocate"
+      },
+      {
+        "word_number": 10,
+        "word": "erudite"
+      }
+    ],
+    "choices": {
+      "a": "a brief and usually witty or satirical saying",
+      "b": "apt quotation",
+      "c": "brief summary",
+      "d": "inscription on a grave",
+      "e": "a brief summary that captures the meaning of the whole; the perfect example of something; a paradigm",
+      "f": "composure; calm",
+      "g": "fair",
+      "h": "ambiguous; intentionally confusing; capable of being interpreted in more than one way",
+      "i": "scholarly",
+      "j": "scholarly; deeply learned"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 40,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "esoteric"
+      },
+      {
+        "word_number": 2,
+        "word": "espouse"
+      },
+      {
+        "word_number": 3,
+        "word": "ethereal"
+      },
+      {
+        "word_number": 4,
+        "word": "euphemism"
+      },
+      {
+        "word_number": 5,
+        "word": "evanescent"
+      },
+      {
+        "word_number": 6,
+        "word": "exacerbate"
+      },
+      {
+        "word_number": 7,
+        "word": "exacting"
+      },
+      {
+        "word_number": 8,
+        "word": "exalt"
+      },
+      {
+        "word_number": 9,
+        "word": "exasperate"
+      },
+      {
+        "word_number": 10,
+        "word": "exemplify"
+      },
+      {
+        "word_number": 11,
+        "word": "exhaustive"
+      },
+      {
+        "word_number": 12,
+        "word": "exhort"
+      }
+    ],
+    "choices": {
+      "a": "hard to understand; understood by only a select few; peculiar",
+      "b": "to support; to advocate",
+      "c": "heavenly; as light and insubstantial as a gas or ether",
+      "d": "a pleasant or inoffensive expression used in place of an unpleasant or offensive one",
+      "e": "fleeting; vanishing; happening for only the briefest period",
+      "f": "to make worse",
+      "g": "extremely demanding; difficult; requiring great skill or care",
+      "h": "to raise high; to glorify",
+      "i": "to annoy thoroughly; to make very angry; to try the patience of",
+      "j": "to illustrate by example; to serve as a good example",
+      "k": "thorough; rigorous; complete; painstaking",
+      "l": "to urge strongly; to give a serious warning to"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 41,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "exigency"
+      },
+      {
+        "word_number": 2,
+        "word": "existential"
+      },
+      {
+        "word_number": 3,
+        "word": "exonerate"
+      },
+      {
+        "word_number": 4,
+        "word": "expatriate"
+      },
+      {
+        "word_number": 5,
+        "word": "expedient"
+      },
+      {
+        "word_number": 6,
+        "word": "expedite"
+      },
+      {
+        "word_number": 7,
+        "word": "explicit"
+      },
+      {
+        "word_number": 8,
+        "word": "implicit"
+      },
+      {
+        "word_number": 9,
+        "word": "extol"
+      },
+      {
+        "word_number": 10,
+        "word": "extraneous"
+      },
+      {
+        "word_number": 11,
+        "word": "extrapolate"
+      },
+      {
+        "word_number": 12,
+        "word": "extricate"
+      },
+      {
+        "word_number": 13,
+        "word": "extrovert"
+      },
+      {
+        "word_number": 14,
+        "word": "introvert"
+      },
+      {
+        "word_number": 15,
+        "word": "exult"
+      }
+    ],
+    "choices": {
+      "a": "an emergency; an urgency",
+      "b": "having to do with existence; having to do with the body of thought called existentialism, which basically holds that human beings are responsible for their own actions but is otherwise too complicated to summarize in a single sentence",
+      "c": "to free completely from blame; to exculpate",
+      "d": "to throw (someone) out of his or her native land; to move away from one's native land; to emigrate",
+      "e": "providing an immediate advantage; serving one's immediate self-interest; practical",
+      "f": "to speed up or ease the progress of",
+      "g": "clearly and directly expressed",
+      "h": "indirectly expressed",
+      "i": "to praise highly; to laud",
+      "j": "unnecessary; irrelevant; extra",
+      "k": "to project or deduce from something known; to infer",
+      "l": "to free from difficulty",
+      "m": "an open, outgoing person; a person whose attention is focused on others rather than on himself or herself",
+      "n": "definition of introvert",
+      "o": "to rejoice; to celebrate"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o"
+    }
+  },
+  {
+    "quiz_id": 42,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "fabrication"
+      },
+      {
+        "word_number": 2,
+        "word": "facetious"
+      },
+      {
+        "word_number": 3,
+        "word": "facile"
+      },
+      {
+        "word_number": 4,
+        "word": "faction"
+      },
+      {
+        "word_number": 5,
+        "word": "farcical"
+      },
+      {
+        "word_number": 6,
+        "word": "fastidious"
+      },
+      {
+        "word_number": 7,
+        "word": "fatalist"
+      },
+      {
+        "word_number": 8,
+        "word": "fatuous"
+      },
+      {
+        "word_number": 9,
+        "word": "fauna"
+      },
+      {
+        "word_number": 10,
+        "word": "flora"
+      },
+      {
+        "word_number": 11,
+        "word": "fecund"
+      }
+    ],
+    "choices": {
+      "a": "a lie; something made up",
+      "b": "humorous; not serious; clumsily humorous",
+      "c": "fluent; skillful in a superficial way; easy",
+      "d": "a group, usually a small part of a larger group, united around some cause; disagreement within an organization",
+      "e": "absurd; ludicrous",
+      "f": "meticulous; demanding; finicky",
+      "g": "someone who believes that future events are already determined and that humans are powerless to change them",
+      "h": "foolish; silly; idiotic",
+      "i": "animals",
+      "j": "group with a cause",
+      "k": "fertile; productive"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 43,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "felicity"
+      },
+      {
+        "word_number": 2,
+        "word": "fervor"
+      },
+      {
+        "word_number": 3,
+        "word": "fetter"
+      },
+      {
+        "word_number": 4,
+        "word": "fidelity"
+      },
+      {
+        "word_number": 5,
+        "word": "figurative"
+      },
+      {
+        "word_number": 6,
+        "word": "literal"
+      },
+      {
+        "word_number": 7,
+        "word": "finesse"
+      },
+      {
+        "word_number": 8,
+        "word": "flagrant"
+      },
+      {
+        "word_number": 9,
+        "word": "flaunt"
+      },
+      {
+        "word_number": 10,
+        "word": "flout"
+      },
+      {
+        "word_number": 11,
+        "word": "foible"
+      },
+      {
+        "word_number": 12,
+        "word": "foment"
+      }
+    ],
+    "choices": {
+      "a": "happiness; skillfulness, especially at expressing things; adeptness",
+      "b": "great warmth or earnestness; ardor; zeal",
+      "c": "to restrain; to hamper",
+      "d": "faithfulness; loyalty",
+      "e": "based on figures of speech; expressing something in terms usually used for something else; metaphorical",
+      "f": "meaning exactly what it says",
+      "g": "skillful maneuvering; subtlety; craftiness",
+      "h": "glaringly bad; notorious; scandalous",
+      "i": "to show off; to display ostentatiously",
+      "j": "to disregard something out of disrespect",
+      "k": "a minor character flaw",
+      "l": "to stir up; to instigate"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 44,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "forbear"
+      },
+      {
+        "word_number": 2,
+        "word": "forebear"
+      },
+      {
+        "word_number": 3,
+        "word": "forgo"
+      },
+      {
+        "word_number": 4,
+        "word": "forsake"
+      },
+      {
+        "word_number": 5,
+        "word": "fortuitous"
+      },
+      {
+        "word_number": 6,
+        "word": "founder"
+      },
+      {
+        "word_number": 7,
+        "word": "flounder"
+      },
+      {
+        "word_number": 8,
+        "word": "frenetic"
+      },
+      {
+        "word_number": 9,
+        "word": "frugal"
+      },
+      {
+        "word_number": 10,
+        "word": "furtive"
+      }
+    ],
+    "choices": {
+      "a": "to refrain from; to abstain",
+      "b": "do without",
+      "c": "to do without; to forbear",
+      "d": "to abandon; to renounce; to relinquish",
+      "e": "accidental; occurring by chance",
+      "f": "to fail; to collapse; to sink",
+      "g": "ancestor",
+      "h": "frantic; frenzied",
+      "i": "economical; penny-pinching",
+      "j": "secretive; sly"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 45,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "futile"
+      },
+      {
+        "word_number": 2,
+        "word": "garrulous"
+      },
+      {
+        "word_number": 3,
+        "word": "genre"
+      },
+      {
+        "word_number": 4,
+        "word": "genteel"
+      },
+      {
+        "word_number": 5,
+        "word": "gesticulate"
+      },
+      {
+        "word_number": 6,
+        "word": "glut"
+      },
+      {
+        "word_number": 7,
+        "word": "grandiloquent"
+      },
+      {
+        "word_number": 8,
+        "word": "grandiose"
+      },
+      {
+        "word_number": 9,
+        "word": "gratuitous"
+      },
+      {
+        "word_number": 10,
+        "word": "gravity"
+      },
+      {
+        "word_number": 11,
+        "word": "gregarious"
+      },
+      {
+        "word_number": 12,
+        "word": "guile"
+      }
+    ],
+    "choices": {
+      "a": "useless; hopeless",
+      "b": "talkative; chatty",
+      "c": "a type or category, especially of art or writing",
+      "d": "refined; polite; aristocratic; affecting refinement",
+      "e": "to make gestures, especially when speaking or in place of speaking",
+      "f": "surplus; an overabundance",
+      "g": "pompous; using a lot of big, fancy words in an attempt to sound impressive",
+      "h": "absurdly exaggerated",
+      "i": "given freely (said of something bad); unjustified; unprovoked; uncalled for",
+      "j": "seriousness",
+      "k": "sociable; enjoying the company of others",
+      "l": "cunning; duplicity; artfulness"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 46,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "hackneyed"
+      },
+      {
+        "word_number": 2,
+        "word": "hapless"
+      },
+      {
+        "word_number": 3,
+        "word": "harbinger"
+      },
+      {
+        "word_number": 4,
+        "word": "hedonism"
+      },
+      {
+        "word_number": 5,
+        "word": "hegemony"
+      },
+      {
+        "word_number": 6,
+        "word": "heresy"
+      },
+      {
+        "word_number": 7,
+        "word": "hermetic"
+      },
+      {
+        "word_number": 8,
+        "word": "heyday"
+      },
+      {
+        "word_number": 9,
+        "word": "hiatus"
+      },
+      {
+        "word_number": 10,
+        "word": "hierarchy"
+      },
+      {
+        "word_number": 11,
+        "word": "hindrance"
+      },
+      {
+        "word_number": 12,
+        "word": "histrionic"
+      },
+      {
+        "word_number": 13,
+        "word": "homily"
+      },
+      {
+        "word_number": 14,
+        "word": "homogeneous"
+      },
+      {
+        "word_number": 15,
+        "word": "heterogeneous"
+      },
+      {
+        "word_number": 16,
+        "word": "husbandry"
+      },
+      {
+        "word_number": 17,
+        "word": "hyperbole"
+      },
+      {
+        "word_number": 18,
+        "word": "hypothetical"
+      }
+    ],
+    "choices": {
+      "a": "overused; trite; stale",
+      "b": "unlucky",
+      "c": "a forerunner; a signal of",
+      "d": "the pursuit of pleasure as a way of life",
+      "e": "leadership, especially of one nation over another",
+      "f": "any belief that is strongly opposed to established beliefs",
+      "g": "impervious to external influence; airtight",
+      "h": "golden age; prime",
+      "i": "a break or interruption, often from work",
+      "j": "an organization based on rank or degree; pecking order",
+      "k": "obstruction",
+      "l": "overly dramatic; theatrical",
+      "m": "a sermon",
+      "n": "uniform; made entirely of one thing",
+      "o": "varied",
+      "p": "thrifty management of resources; livestock farming",
+      "q": "an exaggeration used as a figure of speech; exaggeration",
+      "r": "uncertain; unproven"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o",
+      "16": "p",
+      "17": "q",
+      "18": "r"
+    }
+  },
+  {
+    "quiz_id": 47,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "iconoclast"
+      },
+      {
+        "word_number": 2,
+        "word": "ideology"
+      },
+      {
+        "word_number": 3,
+        "word": "idiosyncrasy"
+      },
+      {
+        "word_number": 4,
+        "word": "idyllic"
+      },
+      {
+        "word_number": 5,
+        "word": "ignominy"
+      },
+      {
+        "word_number": 6,
+        "word": "illicit"
+      },
+      {
+        "word_number": 7,
+        "word": "imminent"
+      },
+      {
+        "word_number": 8,
+        "word": "immutable"
+      },
+      {
+        "word_number": 9,
+        "word": "impartial"
+      },
+      {
+        "word_number": 10,
+        "word": "impeccable"
+      },
+      {
+        "word_number": 11,
+        "word": "imperial"
+      },
+      {
+        "word_number": 12,
+        "word": "imperious"
+      }
+    ],
+    "choices": {
+      "a": "one who attacks popular beliefs or institutions",
+      "b": "a system of social or political ideas",
+      "c": "a peculiarity; an eccentricity",
+      "d": "charming in a rustic way; naturally peaceful",
+      "e": "deep disgrace",
+      "f": "illegal; not permitted",
+      "g": "just about to happen",
+      "h": "unchangeable",
+      "i": "fair; not favoring one side or the other; unbiased",
+      "j": "flawless; entirely without sin",
+      "k": "like an emperor or an empire",
+      "l": "just about to happen"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 48,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "impervious"
+      },
+      {
+        "word_number": 2,
+        "word": "impetuous"
+      },
+      {
+        "word_number": 3,
+        "word": "implement"
+      },
+      {
+        "word_number": 4,
+        "word": "impugn"
+      },
+      {
+        "word_number": 5,
+        "word": "impotent"
+      },
+      {
+        "word_number": 6,
+        "word": "inane"
+      },
+      {
+        "word_number": 7,
+        "word": "inaugurate"
+      }
+    ],
+    "choices": {
+      "a": "not allowing anything to pass through; impenetrable",
+      "b": "impulsive; extremely impatient",
+      "c": "to carry out",
+      "d": "to attack, especially to attack the truth or integrity of something",
+      "e": "powerless; helpless; unable to perform sexual intercourse",
+      "f": "silly; senseless",
+      "g": "to begin officially; to induct formally into office"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g"
+    }
+  },
+  {
+    "quiz_id": 49,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "incandescent"
+      },
+      {
+        "word_number": 2,
+        "word": "incantation"
+      },
+      {
+        "word_number": 3,
+        "word": "incense"
+      },
+      {
+        "word_number": 4,
+        "word": "incessant"
+      },
+      {
+        "word_number": 5,
+        "word": "incipient"
+      },
+      {
+        "word_number": 6,
+        "word": "incisive"
+      },
+      {
+        "word_number": 7,
+        "word": "incongruous"
+      },
+      {
+        "word_number": 8,
+        "word": "incorrigible"
+      },
+      {
+        "word_number": 9,
+        "word": "increment"
+      },
+      {
+        "word_number": 10,
+        "word": "indifferent"
+      }
+    ],
+    "choices": {
+      "a": "brilliant; giving off heat or light",
+      "b": "a chant; the repetition of statements or phrases in a way reminiscent of a chant",
+      "c": "to make very angry",
+      "d": "unceasing",
+      "e": "beginning; emerging",
+      "f": "cutting right to the heart of the matter",
+      "g": "not harmonious; not consistent; not appropriate; not fitting in",
+      "h": "incapable of being reformed",
+      "i": "an increase; one in a series of increases",
+      "j": "not caring one way or the other; apathetic; mediocre"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 50,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "indigenous"
+      },
+      {
+        "word_number": 2,
+        "word": "indigent"
+      },
+      {
+        "word_number": 3,
+        "word": "indignant"
+      },
+      {
+        "word_number": 4,
+        "word": "indolent"
+      },
+      {
+        "word_number": 5,
+        "word": "indulgent"
+      },
+      {
+        "word_number": 6,
+        "word": "ineffable"
+      },
+      {
+        "word_number": 7,
+        "word": "inept"
+      },
+      {
+        "word_number": 8,
+        "word": "inert"
+      },
+      {
+        "word_number": 9,
+        "word": "inexorable"
+      },
+      {
+        "word_number": 10,
+        "word": "infamous"
+      },
+      {
+        "word_number": 11,
+        "word": "infatuated"
+      }
+    ],
+    "choices": {
+      "a": "native; originating in that area",
+      "b": "poor",
+      "c": "angry, especially as a result of something unjust or unworthy; insulted",
+      "d": "lazy",
+      "e": "lenient; yielding to desire",
+      "f": "incapable of being expressed or described",
+      "g": "clumsy; incompetent; gauche",
+      "h": "inactive; sluggish; not reacting chemically",
+      "i": "relentless; inevitable; unavoidable",
+      "j": "shamefully wicked; having an extremely bad reputation; disgraceful",
+      "k": "foolish; foolishly passionate or attracted; made foolish; foolishly in love"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 51,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "infer"
+      },
+      {
+        "word_number": 2,
+        "word": "imply"
+      },
+      {
+        "word_number": 3,
+        "word": "infinitesimal"
+      },
+      {
+        "word_number": 4,
+        "word": "inflame"
+      },
+      {
+        "word_number": 5,
+        "word": "ingenuous"
+      },
+      {
+        "word_number": 6,
+        "word": "inherent"
+      },
+      {
+        "word_number": 7,
+        "word": "injunction"
+      },
+      {
+        "word_number": 8,
+        "word": "innate"
+      },
+      {
+        "word_number": 9,
+        "word": "innocuous"
+      },
+      {
+        "word_number": 10,
+        "word": "inordinate"
+      },
+      {
+        "word_number": 11,
+        "word": "insatiable"
+      }
+    ],
+    "choices": {
+      "a": "to conclude; to deduce",
+      "b": "hint at",
+      "c": "very, very, very small; infinitely small",
+      "d": "intensify",
+      "e": "frank; without deception; simple; artless; charmingly naive",
+      "f": "part of the essential nature of something; intrinsic",
+      "g": "a command or order, especially a court order",
+      "h": "existing since birth; inborn; inherent",
+      "i": "harmless; banal",
+      "j": "excessive; unreasonable",
+      "k": "hard or impossible to satisfy; greedy; avaricious"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 52,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "insidious"
+      },
+      {
+        "word_number": 2,
+        "word": "insinuate"
+      },
+      {
+        "word_number": 3,
+        "word": "insipid"
+      },
+      {
+        "word_number": 4,
+        "word": "insolent"
+      },
+      {
+        "word_number": 5,
+        "word": "instigate"
+      },
+      {
+        "word_number": 6,
+        "word": "insular"
+      },
+      {
+        "word_number": 7,
+        "word": "insurgent"
+      },
+      {
+        "word_number": 8,
+        "word": "integral"
+      },
+      {
+        "word_number": 9,
+        "word": "intractable"
+      },
+      {
+        "word_number": 10,
+        "word": "intransigent"
+      }
+    ],
+    "choices": {
+      "a": "treacherous; sneaky",
+      "b": "to hint; to creep in",
+      "c": "dull; bland; banal",
+      "d": "arrogant; insulting",
+      "e": "to provoke; to stir up",
+      "f": "like an island; isolated",
+      "g": "a rebel; someone who revolts against a government",
+      "h": "essential",
+      "i": "uncontrollable; stubborn; disobedient.",
+      "j": "uncompromising; stubborn"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 53,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "intrinsic"
+      },
+      {
+        "word_number": 2,
+        "word": "introspective"
+      },
+      {
+        "word_number": 3,
+        "word": "inundate"
+      },
+      {
+        "word_number": 4,
+        "word": "invective"
+      },
+      {
+        "word_number": 5,
+        "word": "inveterate"
+      },
+      {
+        "word_number": 6,
+        "word": "irascible"
+      },
+      {
+        "word_number": 7,
+        "word": "ironic"
+      },
+      {
+        "word_number": 8,
+        "word": "irrevocable"
+      },
+      {
+        "word_number": 9,
+        "word": "itinerant"
+      },
+      {
+        "word_number": 10,
+        "word": "itinerary"
+      }
+    ],
+    "choices": {
+      "a": "part of the essential nature of something; inherent",
+      "b": "tending to think about oneself; examining one's feelings",
+      "c": "to flood; to cover completely with water; to overwhelm",
+      "d": "insulting or abusive speech",
+      "e": "habitual; firm in habit; deeply rooted",
+      "f": "easily angered or provoked; irritable",
+      "g": "meaning the opposite of what you seem to say; using words to mean something other than what they seem to mean",
+      "h": "irreversible",
+      "i": "moving from place to place",
+      "j": "definition of itinerary"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 54,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "judicious"
+      },
+      {
+        "word_number": 2,
+        "word": "juxtapose"
+      },
+      {
+        "word_number": 3,
+        "word": "kinetic"
+      },
+      {
+        "word_number": 4,
+        "word": "labyrinth"
+      },
+      {
+        "word_number": 5,
+        "word": "laconic"
+      },
+      {
+        "word_number": 6,
+        "word": "lament"
+      },
+      {
+        "word_number": 7,
+        "word": "lampoon"
+      },
+      {
+        "word_number": 8,
+        "word": "languish"
+      },
+      {
+        "word_number": 9,
+        "word": "latent"
+      },
+      {
+        "word_number": 10,
+        "word": "laud"
+      },
+      {
+        "word_number": 11,
+        "word": "legacy"
+      },
+      {
+        "word_number": 12,
+        "word": "lethargy"
+      },
+      {
+        "word_number": 13,
+        "word": "levity"
+      }
+    ],
+    "choices": {
+      "a": "exercising sound judgment",
+      "b": "to place side by side",
+      "c": "having to do with motion; lively; active",
+      "d": "a maze; something like a maze",
+      "e": "using few words, especially to the point of seeming rude",
+      "f": "to mourn",
+      "g": "to satirize; to mock; to parody",
+      "h": "to become weak, listless, or depressed",
+      "i": "present but not visible or apparent; potential",
+      "j": "to praise; to applaud; to extol; to celebrate",
+      "k": "something handed down from the past; a bequest",
+      "l": "sluggishness; laziness; drowsiness; indifference",
+      "m": "lightness; frivolity; unseriousness"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m"
+    }
+  },
+  {
+    "quiz_id": 55,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "libel"
+      },
+      {
+        "word_number": 2,
+        "word": "slander"
+      },
+      {
+        "word_number": 3,
+        "word": "litigate"
+      },
+      {
+        "word_number": 4,
+        "word": "loquacious"
+      },
+      {
+        "word_number": 5,
+        "word": "lucid"
+      },
+      {
+        "word_number": 6,
+        "word": "lugubrious"
+      },
+      {
+        "word_number": 7,
+        "word": "luminous"
+      }
+    ],
+    "choices": {
+      "a": "a written or published falsehood that injures the reputation of, or defames, someone",
+      "b": "to speak badly about someone publicly; to defame; to spread malicious rumor.",
+      "c": "to try in court; to engage in legal proceedings",
+      "d": "talking a lot or too much",
+      "e": "clear; easy to understand",
+      "f": "exaggeratedly mournful",
+      "g": "giving off light; glowing; bright"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g"
+    }
+  },
+  {
+    "quiz_id": 56,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "machination"
+      },
+      {
+        "word_number": 2,
+        "word": "macroeconomic"
+      },
+      {
+        "word_number": 3,
+        "word": "magnanimous"
+      },
+      {
+        "word_number": 4,
+        "word": "magnate"
+      },
+      {
+        "word_number": 5,
+        "word": "malaise"
+      },
+      {
+        "word_number": 6,
+        "word": "malfeasance"
+      },
+      {
+        "word_number": 7,
+        "word": "malinger"
+      },
+      {
+        "word_number": 8,
+        "word": "malleable"
+      },
+      {
+        "word_number": 9,
+        "word": "mandate"
+      },
+      {
+        "word_number": 10,
+        "word": "manifest"
+      },
+      {
+        "word_number": 11,
+        "word": "manifesto"
+      },
+      {
+        "word_number": 12,
+        "word": "marshal"
+      },
+      {
+        "word_number": 13,
+        "word": "martial"
+      },
+      {
+        "word_number": 14,
+        "word": "martyr"
+      },
+      {
+        "word_number": 15,
+        "word": "matriculate"
+      }
+    ],
+    "choices": {
+      "a": "scheming activity for an evil purpose",
+      "b": "dealing with the economy at large",
+      "c": "forgiving; unresentful; noble in spirit; generous",
+      "d": "a rich, powerful, or very successful businessperson.",
+      "e": "a feeling of depression, uneasiness, or queasiness",
+      "f": "an illegal act, especially by a public official",
+      "g": "to pretend to be sick to avoid doing work",
+      "h": "easy to shape or bend",
+      "i": "a command or authorization to do something; the will of the voters as expressed by the results of an election",
+      "j": "visible; evident",
+      "k": "a public declaration of beliefs or principles, usually political ones",
+      "l": "to arrange in order; to gather together for the purpose of doing something",
+      "m": "warlike; having to do with combat",
+      "n": "someone who gives up his or her life in pursuit of a cause, especially a religious one; one who suffers for a cause; one who makes a show of suffering in order to arouse sympathy",
+      "o": "to enroll, especially at a college"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o"
+    }
+  },
+  {
+    "quiz_id": 57,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "maudlin"
+      },
+      {
+        "word_number": 2,
+        "word": "maverick"
+      },
+      {
+        "word_number": 3,
+        "word": "maxim"
+      },
+      {
+        "word_number": 4,
+        "word": "mediate"
+      },
+      {
+        "word_number": 5,
+        "word": "mellifluous"
+      },
+      {
+        "word_number": 6,
+        "word": "mendacious"
+      },
+      {
+        "word_number": 7,
+        "word": "mendicant"
+      },
+      {
+        "word_number": 8,
+        "word": "mentor"
+      },
+      {
+        "word_number": 9,
+        "word": "mercenary"
+      },
+      {
+        "word_number": 10,
+        "word": "mercurial"
+      },
+      {
+        "word_number": 11,
+        "word": "metamorphosis"
+      }
+    ],
+    "choices": {
+      "a": "silly and overly sentimental",
+      "b": "a nonconformist; a rebel",
+      "c": "a fundamental principle; an old saying",
+      "d": "to help settle differences",
+      "e": "sweetly flowing",
+      "f": "lying; dishonest",
+      "g": "a beggar",
+      "h": "a teacher, tutor, counselor, or coach; especially in business, an experienced person who shows an inexperienced person the ropes",
+      "i": "a hired soldier; someone who will do anything for money",
+      "j": "emotionally unpredictable; rapidly changing in mood",
+      "k": "a magical change in form; a striking or sudden change"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 58,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "microcosm"
+      },
+      {
+        "word_number": 2,
+        "word": "milieu"
+      },
+      {
+        "word_number": 3,
+        "word": "minuscule"
+      },
+      {
+        "word_number": 4,
+        "word": "misanthropic"
+      },
+      {
+        "word_number": 5,
+        "word": "mitigate"
+      },
+      {
+        "word_number": 6,
+        "word": "mollify"
+      },
+      {
+        "word_number": 7,
+        "word": "monolithic"
+      },
+      {
+        "word_number": 8,
+        "word": "moribund"
+      },
+      {
+        "word_number": 9,
+        "word": "morose"
+      },
+      {
+        "word_number": 10,
+        "word": "mortify"
+      },
+      {
+        "word_number": 11,
+        "word": "mundane"
+      },
+      {
+        "word_number": 12,
+        "word": "munificent"
+      },
+      {
+        "word_number": 13,
+        "word": "myopia"
+      },
+      {
+        "word_number": 14,
+        "word": "myriad"
+      }
+    ],
+    "choices": {
+      "a": "the world in miniature",
+      "b": "environment; surroundings",
+      "c": "very tiny",
+      "d": "hating mankind",
+      "e": "to moderate the effect of something",
+      "f": "to soften; to soothe; to pacify",
+      "g": "massive, solid, uniform, and unyielding",
+      "h": "dying",
+      "i": "gloomy; sullen",
+      "j": "to humiliate",
+      "k": "ordinary; pretty boring; not heavenly and eternal",
+      "l": "very generous; lavish",
+      "m": "nearsightedness; lack of foresight",
+      "n": "a huge number"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n"
+    }
+  },
+  {
+    "quiz_id": 59,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "narcissism"
+      },
+      {
+        "word_number": 2,
+        "word": "nebulous"
+      },
+      {
+        "word_number": 3,
+        "word": "nefarious"
+      },
+      {
+        "word_number": 4,
+        "word": "neologism"
+      },
+      {
+        "word_number": 5,
+        "word": "nepotism"
+      },
+      {
+        "word_number": 6,
+        "word": "nihilism"
+      },
+      {
+        "word_number": 7,
+        "word": "nominal"
+      },
+      {
+        "word_number": 8,
+        "word": "nostalgia"
+      },
+      {
+        "word_number": 9,
+        "word": "notorious"
+      },
+      {
+        "word_number": 10,
+        "word": "novel"
+      },
+      {
+        "word_number": 11,
+        "word": "noxious"
+      },
+      {
+        "word_number": 12,
+        "word": "nuance"
+      }
+    ],
+    "choices": {
+      "a": "excessive love of one's body or oneself",
+      "b": "vague; hazy; indistinct",
+      "c": "evil; flagrantly wicked",
+      "d": "a new word or phrase; a new usage of a word",
+      "e": "showing favoritism to friends or family in business or politics",
+      "f": "the belief that there are no values or morals in the universe",
+      "g": "in name only; insignificant; A-OK (during rocket launches)",
+      "h": "sentimental longing for the past; homesickness",
+      "i": "famous for something bad",
+      "j": "new; original",
+      "k": "harmful; offensive",
+      "l": "a subtle difference or distinction"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 60,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "obdurate"
+      },
+      {
+        "word_number": 2,
+        "word": "obfuscate"
+      },
+      {
+        "word_number": 3,
+        "word": "oblique"
+      },
+      {
+        "word_number": 4,
+        "word": "oblivion"
+      },
+      {
+        "word_number": 5,
+        "word": "obscure"
+      },
+      {
+        "word_number": 6,
+        "word": "obsequious"
+      },
+      {
+        "word_number": 7,
+        "word": "obtuse"
+      },
+      {
+        "word_number": 8,
+        "word": "officious"
+      },
+      {
+        "word_number": 9,
+        "word": "onerous"
+      },
+      {
+        "word_number": 10,
+        "word": "opaque"
+      },
+      {
+        "word_number": 11,
+        "word": "opulent"
+      },
+      {
+        "word_number": 12,
+        "word": "orthodox"
+      },
+      {
+        "word_number": 13,
+        "word": "ostensible"
+      },
+      {
+        "word_number": 14,
+        "word": "ostentatious",
+        "text": "ostentatious"
+      },
+      {
+        "word_number": 15,
+        "word": "pacify"
+      }
+    ],
+    "choices": {
+      "a": "stubborn and insensitive",
+      "b": "to darken; to confuse; to make confusing",
+      "c": "indirect; at an angle",
+      "d": "total forgetfulness; the state of being forgotten",
+      "e": "unknown; hard to understand; dark",
+      "f": "fawning; subservient; sucking up to",
+      "g": "insensitive; blockheaded",
+      "h": "annoyingly eager to help or advise",
+      "i": "burdensome; oppressive",
+      "j": "impossible to see through; impossible to understand",
+      "k": "luxurious",
+      "l": "conventional; adhering to established principles or doctrines, especially in religion; by the book",
+      "m": "apparent (but misleading); professed",
+      "n": "showing off",
+      "o": "to calm someone down; to placate"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o"
+    }
+  },
+  {
+    "quiz_id": 61,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "painstaking"
+      },
+      {
+        "word_number": 2,
+        "word": "palliate"
+      },
+      {
+        "word_number": 3,
+        "word": "palpable"
+      },
+      {
+        "word_number": 4,
+        "word": "paltry"
+      },
+      {
+        "word_number": 5,
+        "word": "panacea"
+      },
+      {
+        "word_number": 6,
+        "word": "paradigm"
+      },
+      {
+        "word_number": 7,
+        "word": "paradox"
+      },
+      {
+        "word_number": 8,
+        "word": "parochial"
+      },
+      {
+        "word_number": 9,
+        "word": "parody"
+      },
+      {
+        "word_number": 10,
+        "word": "parsimonious"
+      },
+      {
+        "word_number": 11,
+        "word": "partisan"
+      }
+    ],
+    "choices": {
+      "a": "extremely careful; taking pains",
+      "b": "to relieve or alleviate something without getting rid of the problem; to assuage; to mitigate",
+      "c": "capable of being touched; obvious; tangible",
+      "d": "insignificant; worthless",
+      "e": "something that cures everything",
+      "f": "a model or example",
+      "g": "a true statement or phenomenon that nonetheless seems to contradict itself; an untrue statement or phenomenon that nonetheless seems logical",
+      "h": "narrow or confined in point of view; provincial",
+      "i": "a satirical imitation",
+      "j": "stingy",
+      "k": "one who supports a particular person, cause, or idea"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 62,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "patent"
+      },
+      {
+        "word_number": 2,
+        "word": "paternal"
+      },
+      {
+        "word_number": 3,
+        "word": "pathology"
+      },
+      {
+        "word_number": 4,
+        "word": "patriarch"
+      },
+      {
+        "word_number": 5,
+        "word": "patrician"
+      },
+      {
+        "word_number": 6,
+        "word": "patronize"
+      },
+      {
+        "word_number": 7,
+        "word": "paucity"
+      },
+      {
+        "word_number": 8,
+        "word": "peccadillo"
+      },
+      {
+        "word_number": 9,
+        "word": "pedantic"
+      },
+      {
+        "word_number": 10,
+        "word": "pedestrian"
+      },
+      {
+        "word_number": 11,
+        "word": "pejorative"
+      },
+      {
+        "word_number": 12,
+        "word": "penchant"
+      },
+      {
+        "word_number": 13,
+        "word": "penitent"
+      },
+      {
+        "word_number": 14,
+        "word": "pensive"
+      }
+    ],
+    "choices": {
+      "a": "obvious",
+      "b": "fatherly; fatherlike",
+      "c": "the science of diseases",
+      "d": "the male head of a family or tribe",
+      "e": "a person of noble birth; an aristocrat",
+      "f": "to treat as an inferior; to condescend to",
+      "g": "scarcity",
+      "h": "a minor offense",
+      "i": "boringly scholarly, or academic",
+      "j": "unimaginative; banal",
+      "k": "negative; disparaging",
+      "l": "a strong taste or liking for something; a predilection",
+      "m": "sorry; repentant; contrite",
+      "n": "thoughtful and sad"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n"
+    }
+  },
+  {
+    "quiz_id": 63,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "peremptory"
+      },
+      {
+        "word_number": 2,
+        "word": "perennial"
+      },
+      {
+        "word_number": 3,
+        "word": "perfidy"
+      },
+      {
+        "word_number": 4,
+        "word": "perfunctory"
+      },
+      {
+        "word_number": 5,
+        "word": "peripatetic"
+      },
+      {
+        "word_number": 6,
+        "word": "periphery"
+      },
+      {
+        "word_number": 7,
+        "word": "perjury"
+      },
+      {
+        "word_number": 8,
+        "word": "permeate"
+      },
+      {
+        "word_number": 9,
+        "word": "pernicious"
+      },
+      {
+        "word_number": 10,
+        "word": "perquisite"
+      },
+      {
+        "word_number": 11,
+        "word": "prerequisite"
+      },
+      {
+        "word_number": 12,
+        "word": "pertinent"
+      },
+      {
+        "word_number": 13,
+        "word": "perturb"
+      },
+      {
+        "word_number": 14,
+        "word": "peruse"
+      }
+    ],
+    "choices": {
+      "a": "final; categorical; dictatorial",
+      "b": "continual; happening again and again or year after year",
+      "c": "treachery",
+      "d": "unenthusiastic; careless",
+      "e": "wandering; traveling continually; itinerant",
+      "f": "the outside edge of something",
+      "g": "lying under oath",
+      "h": "to spread or seep through; to penetrate",
+      "i": "deadly; extremely evil",
+      "j": "a privilege that goes along with a job; a \"perk\"",
+      "k": "necessity",
+      "l": "relevant; dealing with the matter at hand",
+      "m": "to disturb greatly",
+      "n": "to read carefully"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n"
+    }
+  },
+  {
+    "quiz_id": 64,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "pervade"
+      },
+      {
+        "word_number": 2,
+        "word": "petulant"
+      },
+      {
+        "word_number": 3,
+        "word": "philanthropy"
+      },
+      {
+        "word_number": 4,
+        "word": "philistine"
+      },
+      {
+        "word_number": 5,
+        "word": "pious"
+      },
+      {
+        "word_number": 6,
+        "word": "pivotal"
+      },
+      {
+        "word_number": 7,
+        "word": "placate"
+      },
+      {
+        "word_number": 8,
+        "word": "plaintive"
+      },
+      {
+        "word_number": 9,
+        "word": "platitude"
+      },
+      {
+        "word_number": 10,
+        "word": "plebeian"
+      },
+      {
+        "word_number": 11,
+        "word": "plethora"
+      },
+      {
+        "word_number": 12,
+        "word": "poignant"
+      }
+    ],
+    "choices": {
+      "a": "to spread throughout",
+      "b": "rude; cranky; ill-tempered",
+      "c": "love of mankind, especially by doing good deeds",
+      "d": "a smugly ignorant person with no appreciation of intellectual or artistic matters",
+      "e": "reverent or devout; outwardly (and sometimes falsely) reverent or devout; hypocritical",
+      "f": "crucial...",
+      "g": "to pacify; to appease; to soothe.",
+      "h": "expressing sadness or sorrow",
+      "i": "a dull or trite remark; a cliché",
+      "j": "common; vulgar; low class; bourgeois",
+      "k": "an excess",
+      "l": "painfully emotional; extremely moving; sharp or astute"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 65,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "polarize"
+      },
+      {
+        "word_number": 2,
+        "word": "polemic"
+      },
+      {
+        "word_number": 3,
+        "word": "ponderous"
+      },
+      {
+        "word_number": 4,
+        "word": "portent"
+      },
+      {
+        "word_number": 5,
+        "word": "portentous"
+      },
+      {
+        "word_number": 6,
+        "word": "postulate"
+      },
+      {
+        "word_number": 7,
+        "word": "pragmatic"
+      },
+      {
+        "word_number": 8,
+        "word": "precedent"
+      },
+      {
+        "word_number": 9,
+        "word": "precept"
+      },
+      {
+        "word_number": 10,
+        "word": "precipitate"
+      },
+      {
+        "word_number": 11,
+        "word": "precipitous"
+      }
+    ],
+    "choices": {
+      "a": "to break up into opposing factions or groupings",
+      "b": "a powerful argument often made to attack or refute a controversial issue",
+      "c": "so large as to be clumsy; massive; dull",
+      "d": "an omen; a sign of something coming in the future",
+      "e": "ominous",
+      "f": "something accepted as true without proof; an axiom",
+      "g": "practical; down to earth; based on experience rather than theory",
+      "h": "an earlier example or model of something",
+      "i": "a rule to live by; a principle establishing a certain kind of action or behavior; a maxim",
+      "j": "to cause to happen abruptly",
+      "k": "steep"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 66,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "preclude"
+      },
+      {
+        "word_number": 2,
+        "word": "precursor"
+      },
+      {
+        "word_number": 3,
+        "word": "predilection"
+      },
+      {
+        "word_number": 4,
+        "word": "preeminent"
+      },
+      {
+        "word_number": 5,
+        "word": "preempt"
+      },
+      {
+        "word_number": 6,
+        "word": "premise"
+      },
+      {
+        "word_number": 7,
+        "word": "prepossess"
+      },
+      {
+        "word_number": 8,
+        "word": "prerogative"
+      },
+      {
+        "word_number": 9,
+        "word": "prevail"
+      },
+      {
+        "word_number": 10,
+        "word": "pristine"
+      },
+      {
+        "word_number": 11,
+        "word": "prodigal"
+      }
+    ],
+    "choices": {
+      "a": "to prevent something from ever happening",
+      "b": "forerunner; something that goes before and anticipates or paves the way for whatever it is that follows",
+      "c": "a natural preference for something",
+      "d": "better than anyone else; outstanding; supreme",
+      "e": "to seize something by prior right",
+      "f": "an assumption; the basis for a conclusion",
+      "g": "to preoccupy; to influence beforehand or prejudice; to make a good impression on beforehand",
+      "h": "a right or privilege connected exclusively with a position, a person, a class, a nation, or some other group or classification",
+      "i": "to triumph; to overcome rivals; (with on, upon, or with) to persuade",
+      "j": "original; unspoiled; pure",
+      "k": "wastefully extravagant"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 67,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "prodigious"
+      },
+      {
+        "word_number": 2,
+        "word": "prodigy"
+      },
+      {
+        "word_number": 3,
+        "word": "profane"
+      },
+      {
+        "word_number": 4,
+        "word": "profess"
+      },
+      {
+        "word_number": 5,
+        "word": "proficient"
+      },
+      {
+        "word_number": 6,
+        "word": "profligate"
+      },
+      {
+        "word_number": 7,
+        "word": "profound"
+      },
+      {
+        "word_number": 8,
+        "word": "profuse"
+      },
+      {
+        "word_number": 9,
+        "word": "proletariat"
+      },
+      {
+        "word_number": 10,
+        "word": "proliferate"
+      },
+      {
+        "word_number": 11,
+        "word": "prolific"
+      }
+    ],
+    "choices": {
+      "a": "extraordinary; enormous",
+      "b": "an extremely talented child; an extraordinary accomplishment or occurrence",
+      "c": "not having to do with religion; irreverent; blasphemous",
+      "d": "to declare; to declare falsely or pretend",
+      "e": "thoroughly competent; skillful; very good (at something)",
+      "f": "extravagantly wasteful and, usually, wildly immoral",
+      "g": "deep (in several senses)",
+      "h": "flowing; extravagant",
+      "i": "the industrial working class",
+      "j": "to spread or grow rapidly",
+      "k": "abundantly productive; fruitful or fertile"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 68,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "promulgate"
+      },
+      {
+        "word_number": 2,
+        "word": "propensity"
+      },
+      {
+        "word_number": 3,
+        "word": "propitious"
+      },
+      {
+        "word_number": 4,
+        "word": "proponent"
+      },
+      {
+        "word_number": 5,
+        "word": "proprietary"
+      },
+      {
+        "word_number": 6,
+        "word": "propriety"
+      },
+      {
+        "word_number": 7,
+        "word": "prosaic"
+      },
+      {
+        "word_number": 8,
+        "word": "proscribe"
+      },
+      {
+        "word_number": 9,
+        "word": "proselytize"
+      },
+      {
+        "word_number": 10,
+        "word": "protagonist"
+      },
+      {
+        "word_number": 11,
+        "word": "protract"
+      },
+      {
+        "word_number": 12,
+        "word": "provident"
+      }
+    ],
+    "choices": {
+      "a": "to proclaim; to publicly or formally declare something",
+      "b": "a natural inclination or tendency; a predilection",
+      "c": "marked by favorable signs or conditions",
+      "d": "an advocate; a supporter of a position",
+      "e": "characteristic of an owner property; constituting property",
+      "f": "properness; good manners",
+      "g": "dull; unimaginative; like prose (as opposed to poetry)",
+      "h": "to outlaw; to prohibit",
+      "i": "to convert (someone) from one religion or doctrine to another; to recruit converts to a religion or doctrine",
+      "j": "the leading character in a novel, play, or other work; a leader or champion",
+      "k": "to prolong",
+      "l": "preparing for the future; providing for the future; frugal"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 69,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "provincial"
+      },
+      {
+        "word_number": 2,
+        "word": "provisional"
+      },
+      {
+        "word_number": 3,
+        "word": "proximity"
+      },
+      {
+        "word_number": 4,
+        "word": "prudent"
+      },
+      {
+        "word_number": 5,
+        "word": "purported"
+      },
+      {
+        "word_number": 6,
+        "word": "putative"
+      }
+    ],
+    "choices": {
+      "a": "limited in outlook to one's own small corner of the world; narrow",
+      "b": "conditional; temporary; tentative",
+      "c": "nearness",
+      "d": "careful; having foresight",
+      "e": "rumored; claimed",
+      "f": "commonly accepted; supposed; reputed"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f"
+    }
+  },
+  {
+    "quiz_id": 70,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "qualify"
+      },
+      {
+        "word_number": 2,
+        "word": "qualitative"
+      },
+      {
+        "word_number": 3,
+        "word": "quantitative"
+      },
+      {
+        "word_number": 4,
+        "word": "querulous"
+      },
+      {
+        "word_number": 5,
+        "word": "quixotic"
+      }
+    ],
+    "choices": {
+      "a": "to modify or restrict",
+      "b": "having to do with the quality or qualities of something (as opposed to the quantity)",
+      "c": "having to do with quantity",
+      "d": "complaining; grumbling; whining",
+      "e": "romantic or idealistic to a foolish or impractical degree"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e"
+    }
+  },
+  {
+    "quiz_id": 71,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "ramification"
+      },
+      {
+        "word_number": 2,
+        "word": "rancor"
+      },
+      {
+        "word_number": 3,
+        "word": "rapacious"
+      },
+      {
+        "word_number": 4,
+        "word": "rebuke"
+      },
+      {
+        "word_number": 5,
+        "word": "rebut"
+      },
+      {
+        "word_number": 6,
+        "word": "recalcitrant"
+      },
+      {
+        "word_number": 7,
+        "word": "recant"
+      },
+      {
+        "word_number": 8,
+        "word": "reciprocal"
+      },
+      {
+        "word_number": 9,
+        "word": "reclusive"
+      },
+      {
+        "word_number": 10,
+        "word": "recondite"
+      }
+    ],
+    "choices": {
+      "a": "a consequence; a branching out",
+      "b": "bitter, long-lasting ill will or resentment",
+      "c": "greedy; plundering; avaricious",
+      "d": "to criticize sharply",
+      "e": "to contradict; to argue in opposition to; to prove to be false",
+      "f": "stubbornly defiant of authority or control; disobedient",
+      "g": "to publicly take back and deny (something previously said or believed); to openly confess error",
+      "h": "mutual; shared; interchangeable",
+      "i": "hermitlike; withdrawn from society",
+      "j": "hard to understand; over one's head"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 72,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "recrimination"
+      },
+      {
+        "word_number": 2,
+        "word": "redolent"
+      },
+      {
+        "word_number": 3,
+        "word": "redundant"
+      },
+      {
+        "word_number": 4,
+        "word": "refute"
+      },
+      {
+        "word_number": 5,
+        "word": "reiterate"
+      },
+      {
+        "word_number": 6,
+        "word": "relegate"
+      },
+      {
+        "word_number": 7,
+        "word": "relinquish"
+      },
+      {
+        "word_number": 8,
+        "word": "remonstrate"
+      },
+      {
+        "word_number": 9,
+        "word": "renaissance"
+      },
+      {
+        "word_number": 10,
+        "word": "renounce"
+      }
+    ],
+    "choices": {
+      "a": "a bitter counteraccusation, or the act of making a bitter counteraccusation",
+      "b": "fragrant",
+      "c": "unnecessarily repetitive; excessive; excessively wordy",
+      "d": "to prove to be false; to disprove",
+      "e": "to say again; to repeat",
+      "f": "to banish; to send away",
+      "g": "to release or let go of; to surrender; to stop doing",
+      "h": "to argue against; to protest; to raise objections",
+      "i": "a rebirth or revival",
+      "j": "to give up formally or resign; to disown; to have nothing to do with anymore"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 73,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "reparation"
+      },
+      {
+        "word_number": 2,
+        "word": "repercussion"
+      },
+      {
+        "word_number": 3,
+        "word": "replenish"
+      },
+      {
+        "word_number": 4,
+        "word": "replete"
+      },
+      {
+        "word_number": 5,
+        "word": "reprehensible"
+      },
+      {
+        "word_number": 6,
+        "word": "reprisal"
+      },
+      {
+        "word_number": 7,
+        "word": "reproach"
+      },
+      {
+        "word_number": 8,
+        "word": "reprove"
+      },
+      {
+        "word_number": 9,
+        "word": "repudiate"
+      },
+      {
+        "word_number": 10,
+        "word": "requisite"
+      },
+      {
+        "word_number": 11,
+        "word": "resolute"
+      }
+    ],
+    "choices": {
+      "a": "paying back; making amends; compensation",
+      "b": "a consequence; an indirect effect",
+      "c": "to fill again; to resupply; to restore",
+      "d": "completely filled; abounding",
+      "e": "worthy of blame or censure",
+      "f": "a military action undertaken in revenge for another; an act of taking \"an eye for an eye\"",
+      "g": "to scold, usually in disappointment; to blame; to disgrace",
+      "h": "to criticize mildly",
+      "i": "to reject; to renounce; to disown; to have nothing to do with",
+      "j": "required; necessary",
+      "k": "determined; firm; unwavering"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 74,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "respite"
+      },
+      {
+        "word_number": 2,
+        "word": "reticent"
+      },
+      {
+        "word_number": 3,
+        "word": "retract"
+      },
+      {
+        "word_number": 4,
+        "word": "reverberate"
+      },
+      {
+        "word_number": 5,
+        "word": "revere"
+      },
+      {
+        "word_number": 6,
+        "word": "rhetoric"
+      },
+      {
+        "word_number": 7,
+        "word": "rigorous"
+      },
+      {
+        "word_number": 8,
+        "word": "robust"
+      },
+      {
+        "word_number": 9,
+        "word": "rogue"
+      },
+      {
+        "word_number": 10,
+        "word": "rudimentary"
+      },
+      {
+        "word_number": 11,
+        "word": "ruminate"
+      },
+      {
+        "word_number": 12,
+        "word": "rustic"
+      }
+    ],
+    "choices": {
+      "a": "a period of rest or relief",
+      "b": "quiet; restrained; reluctant to speak, especially about oneself",
+      "c": "withdraw",
+      "d": "echo",
+      "e": "to respect highly; to honor",
+      "f": "the art of formal speaking or writing; inflated discourse",
+      "g": "strict; harsh; severe",
+      "h": "strong and healthy; vigorous",
+      "i": "a criminally dishonest person; a scoundrel",
+      "j": "basic; crude; unformed; undeveloped",
+      "k": "to contemplate; to ponder; to mull over",
+      "l": "rural; lacking urban comforts or sophistication; primitive"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l"
+    }
+  },
+  {
+    "quiz_id": 75,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "saccharine"
+      },
+      {
+        "word_number": 2,
+        "word": "sacrilege"
+      },
+      {
+        "word_number": 3,
+        "word": "sacrosanct"
+      },
+      {
+        "word_number": 4,
+        "word": "sagacious"
+      },
+      {
+        "word_number": 5,
+        "word": "sage"
+      },
+      {
+        "word_number": 6,
+        "word": "salient"
+      },
+      {
+        "word_number": 7,
+        "word": "salutary"
+      },
+      {
+        "word_number": 8,
+        "word": "sanctimonious"
+      },
+      {
+        "word_number": 9,
+        "word": "sanguine"
+      },
+      {
+        "word_number": 10,
+        "word": "sardonic"
+      }
+    ],
+    "choices": {
+      "a": "sweet; excessively or disgustingly sweet",
+      "b": "a violation of something sacred; blasphemy",
+      "c": "sacred; held to be inviolable",
+      "d": "discerning; shrewd; keen in judgment; wise",
+      "e": "discerning",
+      "f": "sticking out; conspicuous; leaping",
+      "g": "healthful; remedial; curative",
+      "h": "pretending to be devout; affecting religious feeling",
+      "i": "cheerful; optimistic; hopeful",
+      "j": "mocking; scornful"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 76,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "scintillate"
+      },
+      {
+        "word_number": 2,
+        "word": "scrupulous"
+      },
+      {
+        "word_number": 3,
+        "word": "scrutinize"
+      },
+      {
+        "word_number": 4,
+        "word": "secular"
+      },
+      {
+        "word_number": 5,
+        "word": "sedition"
+      },
+      {
+        "word_number": 6,
+        "word": "sensory"
+      },
+      {
+        "word_number": 7,
+        "word": "sensual"
+      },
+      {
+        "word_number": 8,
+        "word": "sensuous"
+      },
+      {
+        "word_number": 9,
+        "word": "sentient"
+      },
+      {
+        "word_number": 10,
+        "word": "sequester"
+      }
+    ],
+    "choices": {
+      "a": "to sparkle, either literally or figuratively",
+      "b": "strict; careful; hesitant for ethical reasons",
+      "c": "to examine very carefully",
+      "d": "having nothing to do with religion or spiritual concerns",
+      "e": "treason; the incitement of public disorder or rebellion",
+      "f": "having to do with the senses or sensation",
+      "g": "devoted to pleasure",
+      "h": "delighting the senses",
+      "i": "able to perceive by the senses; conscious",
+      "j": "to set or keep apart"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 77,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "serendipity"
+      },
+      {
+        "word_number": 2,
+        "word": "servile"
+      },
+      {
+        "word_number": 3,
+        "word": "singular"
+      },
+      {
+        "word_number": 4,
+        "word": "slavish"
+      },
+      {
+        "word_number": 5,
+        "word": "sloth"
+      },
+      {
+        "word_number": 6,
+        "word": "sobriety"
+      },
+      {
+        "word_number": 7,
+        "word": "solicitous"
+      },
+      {
+        "word_number": 8,
+        "word": "solvent"
+      },
+      {
+        "word_number": 9,
+        "word": "insolvent"
+      },
+      {
+        "word_number": 10,
+        "word": "soporific"
+      }
+    ],
+    "choices": {
+      "a": "accidental good fortune; discovering good things without looking for them",
+      "b": "submissive and subservient; like a servant",
+      "c": "unique; superior; exceptional; strange",
+      "d": "extremely subservient",
+      "e": "laziness; sluggishness",
+      "f": "the state of being sober; seriousness",
+      "g": "eager and attentive, often to the point of hovering; anxiously caring or attentive",
+      "h": "not broke or bankrupt; able to pay one's bills",
+      "i": "broke",
+      "j": "sleep inducing; extremely boring; very sleepy"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 78,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "sordid"
+      },
+      {
+        "word_number": 2,
+        "word": "spawn"
+      },
+      {
+        "word_number": 3,
+        "word": "specious"
+      },
+      {
+        "word_number": 4,
+        "word": "sporadic"
+      },
+      {
+        "word_number": 5,
+        "word": "spurious"
+      },
+      {
+        "word_number": 6,
+        "word": "squander"
+      },
+      {
+        "word_number": 7,
+        "word": "stagnation"
+      },
+      {
+        "word_number": 8,
+        "word": "static"
+      },
+      {
+        "word_number": 9,
+        "word": "staunch"
+      },
+      {
+        "word_number": 10,
+        "word": "steadfast"
+      },
+      {
+        "word_number": 11,
+        "word": "stigmatize"
+      },
+      {
+        "word_number": 12,
+        "word": "stipulate"
+      },
+      {
+        "word_number": 13,
+        "word": "stoic"
+      },
+      {
+        "word_number": 14,
+        "word": "stratum"
+      },
+      {
+        "word_number": 15,
+        "word": "stricture"
+      }
+    ],
+    "choices": {
+      "a": "vile; filthy; squalid",
+      "b": "to bring forth; to produce a large number",
+      "c": "deceptively plausible or attractive",
+      "d": "stopping and starting; scattered; occurring in bursts every once in a while",
+      "e": "false; fake",
+      "f": "to waste",
+      "g": "motionlessness; inactivity",
+      "h": "stationary; not changing or moving",
+      "i": "firmly committed; firmly in favor of; steadfast",
+      "j": "loyal; faithful",
+      "k": "to brand with disgrace; to set a mark of disgrace upon",
+      "l": "to require something as part of an agreement",
+      "m": "indifferent (at least outwardly) to pleasure or pain, to joy or grief, to fortune or misfortune",
+      "n": "a layer; a level",
+      "o": "a restriction; a limitation; a negative criticism"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o"
+    }
+  },
+  {
+    "quiz_id": 79,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "strife"
+      },
+      {
+        "word_number": 2,
+        "word": "stringent"
+      },
+      {
+        "word_number": 3,
+        "word": "stymie"
+      },
+      {
+        "word_number": 4,
+        "word": "subjugate"
+      },
+      {
+        "word_number": 5,
+        "word": "sublime"
+      },
+      {
+        "word_number": 6,
+        "word": "subordinate"
+      },
+      {
+        "word_number": 7,
+        "word": "insubordinate"
+      },
+      {
+        "word_number": 8,
+        "word": "substantive"
+      },
+      {
+        "word_number": 9,
+        "word": "subtle"
+      },
+      {
+        "word_number": 10,
+        "word": "subversive"
+      },
+      {
+        "word_number": 11,
+        "word": "succinct"
+      }
+    ],
+    "choices": {
+      "a": "bitter conflict; discord; a struggle or clash",
+      "b": "strict; restrictive",
+      "c": "to thwart; to get in the way of; to hinder",
+      "d": "to subdue and dominate; to enslave",
+      "e": "awesome; extremely exalted; lofty; majestic",
+      "f": "lower in importance, position, or rank; secondary",
+      "g": "not respectful of authority",
+      "h": "having substance; real; essential; solid; substantial",
+      "i": "not obvious; able to make fine distinctions; ingenious; crafty",
+      "j": "corrupting; overthrowing; undermining; insurgent",
+      "k": "brief and to the point; concise"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 80,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "succumb"
+      },
+      {
+        "word_number": 2,
+        "word": "supercilious"
+      },
+      {
+        "word_number": 3,
+        "word": "superficial"
+      },
+      {
+        "word_number": 4,
+        "word": "superfluous"
+      },
+      {
+        "word_number": 5,
+        "word": "surfeit"
+      },
+      {
+        "word_number": 6,
+        "word": "surreptitious"
+      },
+      {
+        "word_number": 7,
+        "word": "surrogate"
+      },
+      {
+        "word_number": 8,
+        "word": "sycophant"
+      },
+      {
+        "word_number": 9,
+        "word": "synthesis"
+      }
+    ],
+    "choices": {
+      "a": "to yield or submit; to die",
+      "b": "haughty; patronizing",
+      "c": "on the surface only; shallow; not thorough",
+      "d": "extra; unnecessary; redundant",
+      "e": "excess; an excessive amount; excess or over indulgence in eating or drinking",
+      "f": "sneaky; secret",
+      "g": "substitute...",
+      "h": "one who sucks up to others",
+      "i": "the combining of parts to form a whole"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i"
+    }
+  },
+  {
+    "quiz_id": 81,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "tacit"
+      },
+      {
+        "word_number": 2,
+        "word": "taciturn"
+      },
+      {
+        "word_number": 3,
+        "word": "tangential"
+      },
+      {
+        "word_number": 4,
+        "word": "tangible"
+      },
+      {
+        "word_number": 5,
+        "word": "tantamount"
+      },
+      {
+        "word_number": 6,
+        "word": "tautological"
+      },
+      {
+        "word_number": 7,
+        "word": "temerity"
+      },
+      {
+        "word_number": 8,
+        "word": "temperate"
+      },
+      {
+        "word_number": 9,
+        "word": "tenable"
+      },
+      {
+        "word_number": 10,
+        "word": "tenacious"
+      }
+    ],
+    "choices": {
+      "a": "implied; not spoken",
+      "b": "untalkative by nature",
+      "c": "only superficially related to the matter at hand; not especially relevant; peripheral",
+      "d": "touchable; palpable",
+      "e": "equivalent to",
+      "f": "redundant; circular",
+      "g": "boldness; recklessness; audacity",
+      "h": "mild; moderate; restrained",
+      "i": "defensible, as in one's position in an argument; capable of being argued successfully; valid",
+      "j": "persistent; stubborn; not letting go"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 82,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "tenet"
+      },
+      {
+        "word_number": 2,
+        "word": "tentative"
+      },
+      {
+        "word_number": 3,
+        "word": "tenuous"
+      },
+      {
+        "word_number": 4,
+        "word": "terse"
+      },
+      {
+        "word_number": 5,
+        "word": "torpor"
+      },
+      {
+        "word_number": 6,
+        "word": "theology"
+      },
+      {
+        "word_number": 7,
+        "word": "tirade"
+      },
+      {
+        "word_number": 8,
+        "word": "touchstone"
+      },
+      {
+        "word_number": 9,
+        "word": "tout"
+      },
+      {
+        "word_number": 10,
+        "word": "transcend"
+      },
+      {
+        "word_number": 11,
+        "word": "transgress"
+      },
+      {
+        "word_number": 12,
+        "word": "transient"
+      },
+      {
+        "word_number": 13,
+        "word": "transitory"
+      },
+      {
+        "word_number": 14,
+        "word": "trepidation"
+      },
+      {
+        "word_number": 15,
+        "word": "intrepid"
+      },
+      {
+        "word_number": 16,
+        "word": "turpitude"
+      }
+    ],
+    "choices": {
+      "a": "a shared principle or belief",
+      "b": "experimental; temporary; uncertain",
+      "c": "flimsy; extremely thin",
+      "d": "using no unnecessary words; succinct",
+      "e": "sluggishness; inactivity; apathy",
+      "f": "the study of God or religion",
+      "g": "prolonged, bitter speech",
+      "h": "a standard; a test of authenticity or quality",
+      "i": "to praise highly; to brag publicly about",
+      "j": "to go beyond or above; to surpass",
+      "k": "to violate (a law); to sin",
+      "l": "not staying for a long time; temporary",
+      "m": "not lasting long (2)",
+      "n": "fear; apprehension; nervous trembling",
+      "o": "fearless",
+      "p": "shameful wickedness; depravity"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o",
+      "16": "p"
+    }
+  },
+  {
+    "quiz_id": 83,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "ubiquitous"
+      },
+      {
+        "word_number": 2,
+        "word": "unconscionable"
+      },
+      {
+        "word_number": 3,
+        "word": "unctuous"
+      },
+      {
+        "word_number": 4,
+        "word": "uniform"
+      },
+      {
+        "word_number": 5,
+        "word": "unremitting"
+      },
+      {
+        "word_number": 6,
+        "word": "unwitting"
+      },
+      {
+        "word_number": 7,
+        "word": "urbane"
+      },
+      {
+        "word_number": 8,
+        "word": "usurp"
+      },
+      {
+        "word_number": 9,
+        "word": "utilitarian"
+      },
+      {
+        "word_number": 10,
+        "word": "utopia"
+      }
+    ],
+    "choices": {
+      "a": "being everywhere at the same time",
+      "b": "not controlled by conscience; unscrupulous",
+      "c": "oily, both literally and figuratively; insincere",
+      "d": "consistent; unchanging; the same for everyone",
+      "e": "unceasing; unabated; relentless",
+      "f": "unintentional; ignorant; not aware",
+      "g": "poised; sophisticated; refined",
+      "h": "to seize wrongfully",
+      "i": "stressing usefulness or utility above all other qualities; pragmatic",
+      "j": "an ideal society"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j"
+    }
+  },
+  {
+    "quiz_id": 84,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "vacillate"
+      },
+      {
+        "word_number": 2,
+        "word": "vapid"
+      },
+      {
+        "word_number": 3,
+        "word": "vehement"
+      },
+      {
+        "word_number": 4,
+        "word": "venal"
+      },
+      {
+        "word_number": 5,
+        "word": "venerate"
+      },
+      {
+        "word_number": 6,
+        "word": "veracity"
+      },
+      {
+        "word_number": 7,
+        "word": "verbose"
+      },
+      {
+        "word_number": 8,
+        "word": "verisimilitude"
+      },
+      {
+        "word_number": 9,
+        "word": "vernacular"
+      },
+      {
+        "word_number": 10,
+        "word": "vestige"
+      },
+      {
+        "word_number": 11,
+        "word": "vex"
+      },
+      {
+        "word_number": 12,
+        "word": "viable"
+      },
+      {
+        "word_number": 13,
+        "word": "vicarious"
+      },
+      {
+        "word_number": 14,
+        "word": "vicissitude"
+      },
+      {
+        "word_number": 15,
+        "word": "vilify"
+      }
+    ],
+    "choices": {
+      "a": "to be indecisive; to waver",
+      "b": "without liveliness; dull; spiritless",
+      "c": "intense; forceful; violent",
+      "d": "capable of being bribed; willing to do anything for money; corrupt",
+      "e": "to revere; to treat as something holy, especially because of great age",
+      "f": "truthfulness",
+      "g": "using too many words; not succinct; circumlocutory",
+      "h": "similarity to reality; the appearance of truth; looking like the real thing",
+      "i": "everyday speech; slang; idiom",
+      "j": "a remaining bit of something; a last trace",
+      "k": "to annoy; to pester; to confuse",
+      "l": "capable of living; workable",
+      "m": "experienced, performed, or suffered through someone else; living through the experiences of another as though they were one's own experiences",
+      "n": "upheaval; natural change; change in fortune",
+      "o": "to say vile things about; to defame"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k",
+      "12": "l",
+      "13": "m",
+      "14": "n",
+      "15": "o"
+    }
+  },
+  {
+    "quiz_id": 85,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "vindicate"
+      },
+      {
+        "word_number": 2,
+        "word": "vindictive"
+      },
+      {
+        "word_number": 3,
+        "word": "virtuoso"
+      },
+      {
+        "word_number": 4,
+        "word": "virulent"
+      },
+      {
+        "word_number": 5,
+        "word": "visionary"
+      },
+      {
+        "word_number": 6,
+        "word": "vitiate"
+      },
+      {
+        "word_number": 7,
+        "word": "vitriolic"
+      },
+      {
+        "word_number": 8,
+        "word": "vocation"
+      },
+      {
+        "word_number": 9,
+        "word": "vociferous"
+      },
+      {
+        "word_number": 10,
+        "word": "volatile"
+      },
+      {
+        "word_number": 11,
+        "word": "volition"
+      }
+    ],
+    "choices": {
+      "a": "clear from suspicion",
+      "b": "seeking revenge",
+      "c": "a masterful musician; a masterful practitioner in some other field",
+      "d": "extremely poisonous; malignant; full of hate",
+      "e": "a dreamer; someone with impractical goals or ideas about the future",
+      "f": "to make impure; to pollute",
+      "g": "caustic; full of bitterness",
+      "h": "an occupation; a job",
+      "i": "loud; noisy",
+      "j": "quick to evaporate; highly unstable; explosive",
+      "k": "will; conscious choice"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c",
+      "4": "d",
+      "5": "e",
+      "6": "f",
+      "7": "g",
+      "8": "h",
+      "9": "i",
+      "10": "j",
+      "11": "k"
+    }
+  },
+  {
+    "quiz_id": 86,
+    "quiz_title": "",
+    "matches": [
+      {
+        "word_number": 1,
+        "word": "wanton"
+      },
+      {
+        "word_number": 2,
+        "word": "willful"
+      },
+      {
+        "word_number": 3,
+        "word": "wistful"
+      }
+    ],
+    "choices": {
+      "a": "malicious; unjustifiable; unprovoked; egregious",
+      "b": "deliberate; obstinate; insistent on having one's way",
+      "c": "yearning; sadly longing"
+    },
+    "answer_key": {
+      "1": "a",
+      "2": "b",
+      "3": "c"
+    }
+  }
+]

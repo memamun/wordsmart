@@ -58,7 +58,7 @@ export default function LeaderboardView({ state }) {
       {/* Top Banner / Motivating quote */}
       <div className="glass-panel" style={{
         padding: '1.25rem 1.5rem',
-        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(30, 41, 59, 0.4) 100%)',
+        background: 'linear-gradient(135deg, hsla(var(--primary), 0.05) 0%, hsla(var(--bg-surface), 0.4) 100%)',
         border: '1px solid hsla(var(--primary), 0.15)',
         display: 'flex',
         alignItems: 'center',
@@ -150,7 +150,7 @@ export default function LeaderboardView({ state }) {
                   <span style={{ 
                     fontWeight: competitor.isUser ? '700' : '600', 
                     fontSize: '1rem',
-                    color: competitor.isUser ? 'white' : 'hsl(var(--text-primary))'
+                    color: competitor.isUser ? 'hsl(var(--text-primary))' : 'hsl(var(--text-primary))'
                   }}>
                     {competitor.name}
                   </span>
@@ -163,8 +163,8 @@ export default function LeaderboardView({ state }) {
               {/* Stats - Streak & XP */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                 {competitor.streak > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem', color: '#F59E0B', fontSize: '0.85rem', fontWeight: '600' }}>
-                    <Flame size={14} fill="#F59E0B" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem', color: 'hsl(var(--secondary))', fontSize: '0.85rem', fontWeight: '600' }}>
+                    <Flame size={14} fill="hsl(var(--secondary))" />
                     <span>{competitor.streak}d</span>
                   </div>
                 )}
@@ -173,7 +173,7 @@ export default function LeaderboardView({ state }) {
                     fontFamily: 'var(--font-title)', 
                     fontWeight: '800', 
                     fontSize: '1.05rem', 
-                    color: competitor.isUser ? 'hsl(var(--primary))' : 'white'
+                    color: competitor.isUser ? 'hsl(var(--primary))' : 'hsl(var(--text-primary))'
                   }}>
                     {competitor.xp.toLocaleString()}
                   </div>

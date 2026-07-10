@@ -55,9 +55,18 @@ export default function StoriesView({ state, wordsData }) {
         return (
           <span 
             key={index}
+            role="button"
+            tabIndex={0}
+            aria-label={`Show details for ${wordText}`}
             onClick={(e) => {
               e.stopPropagation();
               setSelectedWord(wordObj);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedWord(wordObj);
+              }
             }}
             style={{
               color: 'hsl(var(--secondary))',
@@ -67,6 +76,7 @@ export default function StoriesView({ state, wordsData }) {
               borderRadius: '4px',
               borderBottom: '2px solid hsl(var(--secondary))',
               cursor: 'pointer',
+              outlineOffset: '2px',
               display: 'inline-block',
               margin: '0 0.1rem'
             }}
@@ -109,7 +119,7 @@ export default function StoriesView({ state, wordsData }) {
             {levelStories.map((story, idx) => (
               <div key={idx} className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyBetween: 'space-between' }}>
                 <div>
-                  <h4 style={{ fontSize: '1.1rem', fontFamily: 'var(--font-title)', color: 'white' }}>
+                  <h4 style={{ fontSize: '1.1rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))' }}>
                     Reading Set #{idx + 1}
                   </h4>
                   <span style={{ fontSize: '0.75rem', color: 'hsl(var(--primary))', fontWeight: '700', display: 'block', marginTop: '0.25rem' }}>
@@ -165,7 +175,7 @@ export default function StoriesView({ state, wordsData }) {
 
           {/* Reading Arena */}
           <div className="glass-panel" style={{ padding: '2.5rem 2rem', backgroundColor: 'hsl(var(--bg-surface) / 0.3)', border: '1px solid hsla(var(--primary), 0.15)' }}>
-            <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-title)', color: 'white', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <BookOpen size={20} color="hsl(var(--primary))" />
               English Reading Context
             </h2>
@@ -224,7 +234,7 @@ export default function StoriesView({ state, wordsData }) {
               padding: '1.5rem',
               border: '1px solid hsl(var(--primary))',
               boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
-              backgroundColor: '#0f172a',
+              backgroundColor: 'hsl(var(--bg-canvas))',
               position: 'relative'
             }}>
               <button 
@@ -236,7 +246,7 @@ export default function StoriesView({ state, wordsData }) {
               </button>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                <h3 style={{ fontSize: '1.5rem', color: 'white' }}>{selectedWord.word.toUpperCase()}</h3>
+                <h3 style={{ fontSize: '1.5rem', color: 'hsl(var(--text-primary))' }}>{selectedWord.word.toUpperCase()}</h3>
                 <span style={{ fontStyle: 'italic', color: 'hsl(var(--text-secondary))' }}>({selectedWord.part_of_speech})</span>
                 <button 
                   onClick={() => speakWord(selectedWord.word)}
@@ -250,7 +260,7 @@ export default function StoriesView({ state, wordsData }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', textAlign: 'left' }}>
                 <div>
                   <div style={{ fontSize: '0.65rem', color: 'hsl(var(--text-muted))', fontWeight: '700', textTransform: 'uppercase' }}>Definition</div>
-                  <p style={{ fontSize: '0.95rem', color: 'white', fontWeight: '500' }}>{selectedWord.definition}</p>
+                  <p style={{ fontSize: '0.95rem', color: 'hsl(var(--text-primary))', fontWeight: '500' }}>{selectedWord.definition}</p>
                 </div>
                 {selectedWord.bengali_meaning && (
                   <div>
@@ -288,7 +298,7 @@ export default function StoriesView({ state, wordsData }) {
                     border: '1px solid hsl(var(--border-muted))'
                   }}>
                     <div>
-                      <strong style={{ color: 'white', fontSize: '0.95rem' }}>{wName.toUpperCase()}</strong>
+                      <strong style={{ color: 'hsl(var(--text-primary))', fontSize: '0.95rem' }}>{wName.toUpperCase()}</strong>
                       <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-secondary))', marginLeft: '0.75rem' }}>
                         {wordObj.definition}
                       </span>

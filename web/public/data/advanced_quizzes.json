@@ -1,0 +1,4302 @@
+[
+  {
+    "quiz_id": 1,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "ABRIDGE : LENGTH",
+        "options": [
+          "CONDENSE : SIZE",
+          "AGGRAVATE : ANGER",
+          "ABDICATE : POWER",
+          "ACTIVATE : ENERGY"
+        ],
+        "correct_answer": "CONDENSE : SIZE",
+        "explanation": "To abridge is to reduce length, just as to condense is to reduce size.",
+        "bengali_explanation": "abridge মানে দৈর্ঘ্য কমানো, যেমন condense মানে আকার বা সাইজ কমানো।"
+      },
+      {
+        "question_number": 2,
+        "stem": "TENACIOUS : PURPOSE",
+        "options": [
+          "SPORADIC : ALIGNMENT",
+          "VACILLATING : DECISION",
+          "OBDURATE : FLEXIBILITY",
+          "INSOLENT : RESPECT"
+        ],
+        "correct_answer": "VACILLATING : DECISION",
+        "explanation": "A tenacious person is characterized by firmness of purpose; a vacillating person is characterized by lack of decision.",
+        "bengali_explanation": "tenacious ব্যক্তি দৃঢ় সংকল্পবদ্ধ থাকেন; বিপরীতে vacillating ব্যক্তি সিদ্ধান্তে নড়বড়ে বা দ্বিধাদ্বন্দ্বে থাকেন।"
+      },
+      {
+        "question_number": 3,
+        "stem": "ABSTRUSE : COMPREHENSION",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "CLEMENCY : MERCY",
+          "CAUSTIC : BURNING",
+          "MUNDANE : ORDINARY"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something abstruse lacks clear comprehension; something amorphous lacks clear shape.",
+        "bengali_explanation": "abstruse (দুর্বোধ্য) জিনিসের বোধগম্যতার অভাব থাকে, যেমন amorphous (আকারহীন) জিনিসের সুনির্দিষ্ট আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "ACRIMONIOUS : HARMONY",
+        "options": [
+          "AFFABLE : FRIENDLINESS",
+          "EPHEMERAL : DURATION",
+          "LACONIC : WORDS",
+          "CLEMENCY : HOSTILITY"
+        ],
+        "correct_answer": "CLEMENCY : HOSTILITY",
+        "explanation": "Acrimonious behavior is characterized by a lack of harmony; clemency is characterized by a lack of hostility.",
+        "bengali_explanation": "acrimonious (তিক্ত) আচরণে সম্প্রীতির অভাব থাকে; clemency (ক্ষমাশীলতা) প্রকাশে শত্রুতার অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "ADULTERATE : PURITY",
+        "options": [
+          "ASSUAGE : PAIN",
+          "ENERVATE : VIGOR",
+          "AUGMENT : DEFICIT",
+          "ALLEVIATE : DEARTH"
+        ],
+        "correct_answer": "ENERVATE : VIGOR",
+        "explanation": "To adulterate is to reduce or destroy purity; to enervate is to reduce or destroy vigor.",
+        "bengali_explanation": "adulterate মানে বিশুদ্ধতা নষ্ট করা; enervate মানে শক্তি বা জীবনীশক্তি (vigor) নষ্ট করা।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The politician's _______ behavior alienated voters who expected a high moral standard.",
+        "options": [
+          "amoral",
+          "adroit",
+          "affable",
+          "acute"
+        ],
+        "correct_answer": "amoral",
+        "explanation": "The context refers to a lack of moral standards, making 'amoral' the correct choice.",
+        "bengali_explanation": "নৈতিক মানের অভাব বোঝানো হচ্ছে, তাই amoral (নীতিহীন) সঠিক উত্তর।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The storm showed no signs of slowing down, continuing _______ throughout the entire night.",
+        "options": [
+          "unabated",
+          "aberrant",
+          "abstract",
+          "abortive"
+        ],
+        "correct_answer": "unabated",
+        "explanation": "Something that continues with full force without slowing down is unabated.",
+        "bengali_explanation": "ঝড়টি না কমে সারা রাত ধরে চলেছে, তাই unabated (অব্যাহত/অপ্রশমিত) সঠিক উত্তর।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "Rather than taking a direct approach, he made a _______ argument that confused the listeners.",
+        "options": [
+          "circuitous",
+          "concise",
+          "cogent",
+          "candid"
+        ],
+        "correct_answer": "circuitous",
+        "explanation": "An indirect, roundabout argument is described as circuitous.",
+        "bengali_explanation": "সোজা কথা না বলে ঘুরিয়ে পেঁচিয়ে কথা বলাকে circuitous (আঁকাবাঁকা/পরোক্ষ) বলা হয়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The judge showed _______ toward the young offender, reducing his sentence significantly.",
+        "options": [
+          "clemency",
+          "chagrin",
+          "chicanery",
+          "censure"
+        ],
+        "correct_answer": "clemency",
+        "explanation": "Clemency refers to mercy or leniency shown by a judge or authority figure.",
+        "bengali_explanation": "বিচারক তরুণ অপরাধীর প্রতি clemency (ক্ষমাশীলতা/উদারতা) প্রদর্শন করে সাজা কমিয়ে দিয়েছেন।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "His business _______ allowed him to predict market trends and make highly profitable decisions.",
+        "options": [
+          "acumen",
+          "apathy",
+          "affectation",
+          "anarchy"
+        ],
+        "correct_answer": "acumen",
+        "explanation": "Acumen is the ability to make good judgments and quick decisions, especially in a particular domain.",
+        "bengali_explanation": "ব্যবসায়িক acumen (তীক্ষ্ণ বুদ্ধি/বিচারক্ষমতা) তাকে সঠিক সিদ্ধান্ত নিতে সাহায্য করেছে।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The teacher had to **admonish** the students for their loud whispering during the exam.",
+        "target_word": "admonish",
+        "options": [
+          "warn",
+          "praise",
+          "ignore",
+          "reward"
+        ],
+        "correct_answer": "warn",
+        "explanation": "In this context, admonish means to gently warn or scold.",
+        "bengali_explanation": "পরীক্ষার সময় কথা বলার জন্য শিক্ষক শিক্ষার্থীদের admonish (সতর্ক/মৃদু তিরস্কার) করলেন, তাই warn সঠিক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The artist created an **amorphous** sculpture that left viewers debating its true meaning.",
+        "target_word": "amorphous",
+        "options": [
+          "shapeless",
+          "detailed",
+          "colorful",
+          "monumental"
+        ],
+        "correct_answer": "shapeless",
+        "explanation": "Amorphous means lacking a definite shape or form; shapeless is the closest synonym.",
+        "bengali_explanation": "amorphous ভাস্কর্যটির কোনো সুনির্দিষ্ট আকার ছিল না, তাই shapeless সঠিক উত্তর।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "Her **affable** nature made her extremely popular among her new colleagues.",
+        "target_word": "affable",
+        "options": [
+          "hostile",
+          "friendly",
+          "polite",
+          "gentle"
+        ],
+        "correct_answer": "hostile",
+        "explanation": "Affable means friendly and easy to talk to. The opposite (antonym) is hostile.",
+        "bengali_explanation": "affable মানে অমায়িক ও বন্ধুবৎসল। এর বিপরীত শব্দ (antonym) হলো hostile (শত্রুভাবাপন্ন)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The new government tried to **ameliorate** the living conditions of the poor.",
+        "target_word": "ameliorate",
+        "options": [
+          "improve",
+          "worsen",
+          "neglect",
+          "stabilize"
+        ],
+        "correct_answer": "improve",
+        "explanation": "To ameliorate is to make something bad or unsatisfactory better; to improve.",
+        "bengali_explanation": "গরিব মানুষের জীবনযাত্রার মান ameliorate (উন্নত/ভালো করা) করার চেষ্টা করা হয়েছে, তাই improve সঠিক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The manager's **arbitrary** decisions created frustration among the team members.",
+        "target_word": "arbitrary",
+        "options": [
+          "reasoned",
+          "random",
+          "capricious",
+          "unfair"
+        ],
+        "correct_answer": "reasoned",
+        "explanation": "An arbitrary decision is based on random choice or personal whim rather than reason. The antonym is reasoned.",
+        "bengali_explanation": "arbitrary মানে স্বেচ্ছাচারী বা যুক্তিহীন সিদ্ধান্ত। এর বিপরীত শব্দ হলো reasoned (যুক্তিপূর্ণ/সুচিন্তিত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 2,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "ANOMALY : NORMAL",
+        "options": [
+          "ABERRATION : STANDARD",
+          "CLIQUE : GROUP",
+          "PRECURSOR : FOLLOWER",
+          "BANAL : INTERESTING"
+        ],
+        "correct_answer": "ABERRATION : STANDARD",
+        "explanation": "An anomaly deviates from what is normal, just as an aberration deviates from a standard.",
+        "bengali_explanation": "anomaly স্বাভাবিক অবস্থা থেকে বিচ্যুতি বোঝায়, যেমন aberration আদর্শ মান বা standard থেকে বিচ্যুতি।"
+      },
+      {
+        "question_number": 2,
+        "stem": "APATHY : EMOTION",
+        "options": [
+          "LEVITY : SERIOUSNESS",
+          "CADENCE : RHYTHM",
+          "CANDOR : TRUTH",
+          "AESTHETIC : BEAUTY"
+        ],
+        "correct_answer": "LEVITY : SERIOUSNESS",
+        "explanation": "Apathy is a lack of emotion; levity is a lack of seriousness.",
+        "bengali_explanation": "apathy মানে আবেগের অভাব (lack of emotion), যেমন levity মানে গাম্ভীর্যের অভাব (lack of seriousness)।"
+      },
+      {
+        "question_number": 3,
+        "stem": "ARCANE : UNDERSTANDING",
+        "options": [
+          "MUTABLE : CHANGE",
+          "EPHEMERAL : PERMANENCE",
+          "COGENT : PERSUASION",
+          "LUCID : CLARITY"
+        ],
+        "correct_answer": "EPHEMERAL : PERMANENCE",
+        "explanation": "Something arcane lacks ease of understanding; something ephemeral lacks permanence.",
+        "bengali_explanation": "arcane (রহস্যময়/গুপ্ত) জিনিসের সহজবোধ্যতার অভাব থাকে, যেমন ephemeral (ক্ষণস্থায়ী) জিনিসের স্থায়িত্বের অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "ASSIDUOUS : DILIGENT",
+        "options": [
+          "CALLOW : INEXPERIENCED",
+          "MOROSE : CHEERFUL",
+          "MENDACIOUS : HONEST",
+          "LACONIC : VERBOSE"
+        ],
+        "correct_answer": "CALLOW : INEXPERIENCED",
+        "explanation": "Assiduous and diligent are synonyms; callow and inexperienced are also synonyms.",
+        "bengali_explanation": "assiduous ও diligent সমার্থক শব্দ (পরিশ্রমী); callow ও inexperienced-ও সমার্থক শব্দ (অনভিজ্ঞ)।"
+      },
+      {
+        "question_number": 5,
+        "stem": "AUDACITY : BOLD",
+        "options": [
+          "AVARICE : GREEDY",
+          "CLEMENCY : HARSH",
+          "LEVITY : GRAVE",
+          "CHICANERY : HONEST"
+        ],
+        "correct_answer": "AVARICE : GREEDY",
+        "explanation": "Audacity is the quality of being bold; avarice is the quality of being greedy.",
+        "bengali_explanation": "audacity হলো সাহসী হওয়ার গুণ, যেমন avarice হলো লোভী হওয়ার গুণ।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The ancient scrolls contained _______ symbols that only a few specialized scholars could decode.",
+        "options": [
+          "arcane",
+          "banal",
+          "candid",
+          "copious"
+        ],
+        "correct_answer": "arcane",
+        "explanation": "Arcane means mysterious, secret, or understood by only a few.",
+        "bengali_explanation": "প্রাচীন লিপিতে arcane (রহস্যময়/গুপ্ত) সংকেত ছিল যা কেবল বিশেষজ্ঞরা বুঝতে পারতেন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "We were surprised by his _______, as he openly admitted his mistakes without trying to make excuses.",
+        "options": [
+          "candor",
+          "chicanery",
+          "cacophony",
+          "censure"
+        ],
+        "correct_answer": "candor",
+        "explanation": "Candor is the quality of being open, sincere, and honest.",
+        "bengali_explanation": "নিজের ভুল অকপটে স্বীকার করায় তার candor (সরলতা/অকপতা) আমাদের বিস্মিত করেছে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The teacher had to _______ the students who failed to submit their projects on time.",
+        "options": [
+          "chastise",
+          "coalesce",
+          "condone",
+          "collaborate"
+        ],
+        "correct_answer": "chastise",
+        "explanation": "To chastise is to reprimand or scold someone severely.",
+        "bengali_explanation": "সময়মতো প্রজেক্ট জমা না দেওয়ায় শিক্ষক শিক্ষার্থীদের chastise (তিরস্কার/শাস্তি দেওয়া) করলেন।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "Her ideas were a perfect _______ to mine, making our joint project extremely well-balanced.",
+        "options": [
+          "complement",
+          "compliment",
+          "compromise",
+          "contradiction"
+        ],
+        "correct_answer": "complement",
+        "explanation": "A complement is something that completes or brings to perfection.",
+        "bengali_explanation": "তার আইডিয়াগুলো আমার আইডিয়ার চমৎকার complement (পরিপূরক) হিসেবে কাজ করেছে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The speaker's _______ arguments easily persuaded the undecided voters.",
+        "options": [
+          "cogent",
+          "capricious",
+          "callow",
+          "circuitous"
+        ],
+        "correct_answer": "cogent",
+        "explanation": "A cogent argument is clear, logical, and convincing.",
+        "bengali_explanation": "বক্তার cogent (যুক্তিপূর্ণ/অকাট্য) যুক্তি সহজেই ভোটারদের প্রভাবিত করেছে।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The market was flooded with a **copious** supply of fresh fruits during the harvest season.",
+        "target_word": "copious",
+        "options": [
+          "abundant",
+          "scarce",
+          "expensive",
+          "limited"
+        ],
+        "correct_answer": "abundant",
+        "explanation": "Copious means abundant in supply or quantity.",
+        "bengali_explanation": "copious মানে প্রচুর বা বিপুল পরিমাণে, তাই abundant সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The CEO made a **categorical** denial of the corruption allegations.",
+        "target_word": "categorical",
+        "options": [
+          "absolute",
+          "conditional",
+          "hesitant",
+          "partial"
+        ],
+        "correct_answer": "absolute",
+        "explanation": "Categorical means unambiguously explicit and direct; absolute.",
+        "bengali_explanation": "categorical denial মানে দ্ব্যর্থহীন বা সরাসরি অস্বীকার, যা absolute (নিশ্চিত/চূড়ান্ত)-এর সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The author's **banal** remarks disappointed the audience who expected deep insights.",
+        "target_word": "banal",
+        "options": [
+          "original",
+          "commonplace",
+          "boring",
+          "dull"
+        ],
+        "correct_answer": "original",
+        "explanation": "Banal means lacking originality; obvious and boring. The antonym is original.",
+        "bengali_explanation": "banal মানে গতানুগতিক বা তুচ্ছ। এর বিপরীত শব্দ হলো original (মৌলিক/নতুনত্বপূর্ণ)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The two political factions decided to **coalesce** to form a stronger coalition government.",
+        "target_word": "coalesce",
+        "options": [
+          "merge",
+          "divide",
+          "quarrel",
+          "compete"
+        ],
+        "correct_answer": "merge",
+        "explanation": "To coalesce is to come together to form one mass or whole; to merge.",
+        "bengali_explanation": "coalesce মানে একত্রিত হওয়া বা মিশে যাওয়া, তাই merge সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "His **capricious** mood swings made it difficult for others to work with him.",
+        "target_word": "capricious",
+        "options": [
+          "stable",
+          "fickle",
+          "unpredictable",
+          "erratic"
+        ],
+        "correct_answer": "stable",
+        "explanation": "Capricious means given to sudden and unaccountable changes of mood or behavior. The antonym is stable.",
+        "bengali_explanation": "capricious মানে খামখেয়ালী বা পরিবর্তনশীল। এর বিপরীত শব্দ হলো stable (স্থির/অপরিবর্তনশীল)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 3,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "DAUNT : COURAGE",
+        "options": [
+          "ENERVATE : STRENGTH",
+          "ASSUAGE : ANGER",
+          "CONSECRATE : HOLINESS",
+          "DELUDE : TRUTH"
+        ],
+        "correct_answer": "ENERVATE : STRENGTH",
+        "explanation": "To daunt is to reduce courage; to enervate is to reduce strength.",
+        "bengali_explanation": "daunt মানে সাহস কমিয়ে দেওয়া বা নিরুৎসাহিত করা; enervate মানে শক্তি কমিয়ে দেওয়া।"
+      },
+      {
+        "question_number": 2,
+        "stem": "DEARTH : PLENTIFUL",
+        "options": [
+          "PAUCITY : ABUNDANT",
+          "CLEMENCY : MERCIFUL",
+          "CADENCE : RHYTHMIC",
+          "CANDOR : HONEST"
+        ],
+        "correct_answer": "PAUCITY : ABUNDANT",
+        "explanation": "Dearth is the opposite of plentiful; paucity is the opposite of abundant.",
+        "bengali_explanation": "dearth (অভাব) হলো plentiful (প্রচুর)-এর বিপরীত; paucity (ঘাটতি) হলো abundant (প্রচুর)-এর বিপরীত।"
+      },
+      {
+        "question_number": 3,
+        "stem": "DEFERENCE : RESPECT",
+        "options": [
+          "ADULATION : FLATTERY",
+          "CHIGRIN : JOY",
+          "CENSURE : PRAISE",
+          "DISDAIN : ADMIRATION"
+        ],
+        "correct_answer": "ADULATION : FLATTERY",
+        "explanation": "Deference is an expression of high respect; adulation is an expression of extreme flattery.",
+        "bengali_explanation": "deference হলো সম্মান প্রদর্শন করা; adulation হলো চরম তোষামোদ বা অতি-প্রশংসা করা।"
+      },
+      {
+        "question_number": 4,
+        "stem": "DESPOT : TYRANNY",
+        "options": [
+          "BENEFACTOR : GENEROSITY",
+          "MENDICANT : WEALTH",
+          "CHARLATAN : HONESTY",
+          "CYNIC : TRUST"
+        ],
+        "correct_answer": "BENEFACTOR : GENEROSITY",
+        "explanation": "A despot is characterized by tyranny; a benefactor is characterized by generosity.",
+        "bengali_explanation": "despot (স্বৈরাচারী শাসক) অত্যাচার বা স্বৈরাচার দ্বারা পরিচিত; benefactor (উপকারী ব্যক্তি) উদারতা বা দানশীলতার জন্য পরিচিত।"
+      },
+      {
+        "question_number": 5,
+        "stem": "DIDACTIC : TEACH",
+        "options": [
+          "SOPORIFIC : SLEEP",
+          "LACONIC : TALK",
+          "EPHEMERAL : LAST",
+          "MOROSE : SMILE"
+        ],
+        "correct_answer": "SOPORIFIC : SLEEP",
+        "explanation": "Something didactic is intended to teach; something soporific is intended to induce sleep.",
+        "bengali_explanation": "didactic জিনিস শিক্ষার উদ্দেশ্যে তৈরি; soporific জিনিস ঘুমের উদ্রেক করার উদ্দেশ্যে তৈরি।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The economic collapse was an absolute _______, ruining thousands of small businesses overnight.",
+        "options": [
+          "debacle",
+          "dictum",
+          "dearth",
+          "decorum"
+        ],
+        "correct_answer": "debacle",
+        "explanation": "A debacle is a sudden and ignominious failure; a complete disaster.",
+        "bengali_explanation": "অর্থনৈতিক ধসটি ছিল একটি চরম debacle (মহাবিপর্যয়/পতন), যা হাজার হাজার ব্যবসা ধ্বংস করেছে।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "She was so _______ that she would believe almost any story, no matter how apocryphal it sounded.",
+        "options": [
+          "credulous",
+          "cryptic",
+          "cursory",
+          "cynical"
+        ],
+        "correct_answer": "credulous",
+        "explanation": "A credulous person is too ready to believe things; easily fooled or gullible.",
+        "bengali_explanation": "সে এতটাই credulous (সহজসরল/विश्वासপ্রবণ) ছিল যে যেকোনো গল্পই সহজেই বিশ্বাস করত।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The disease began to _______ the patient, leaving him extremely weak and bedridden.",
+        "options": [
+          "debilitate",
+          "delineate",
+          "deprecate",
+          "deride"
+        ],
+        "correct_answer": "debilitate",
+        "explanation": "To debilitate is to make someone weak and infirm.",
+        "bengali_explanation": "রোগটি রোগীকে debilitate (দুর্বল/কৃশ করা) করতে শুরু করেছিল, যার ফলে সে বিছানায় পড়ে যায়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "He gave only a _______ glance at the report before signing it, missing several major errors.",
+        "options": [
+          "cursory",
+          "definitive",
+          "decorous",
+          "didactic"
+        ],
+        "correct_answer": "cursory",
+        "explanation": "A cursory glance is hasty and superficial, not thorough.",
+        "bengali_explanation": "স্বাক্ষর করার আগে সে রিপোর্টে কেবল একটি cursory (ভাসা ভাসা/চোখ বোলানো) নজর দিয়েছিল।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The company decided to _______ operations in unprofitable regions to save costs.",
+        "options": [
+          "curtail",
+          "culminate",
+          "delude",
+          "diffuse"
+        ],
+        "correct_answer": "curtail",
+        "explanation": "To curtail is to reduce in extent or quantity; impose a restriction on.",
+        "bengali_explanation": "খরচ কমাতে কোম্পানি অলাভজনক অঞ্চলে তাদের কার্যক্রম curtail (হ্রাস করা/গুটিয়ে নেওয়া)-এর সিদ্ধান্ত নেয়।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "There is a severe **dearth** of skilled software engineers in the current job market.",
+        "target_word": "dearth",
+        "options": [
+          "scarcity",
+          "abundance",
+          "surplus",
+          "variety"
+        ],
+        "correct_answer": "scarcity",
+        "explanation": "Dearth means a scarcity or lack of something.",
+        "bengali_explanation": "dearth শব্দের অর্থ অভাব বা অপ্রাচুর্যতা, তাই scarcity সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The artist used bold charcoal lines to **delineate** the shape of the model.",
+        "target_word": "delineate",
+        "options": [
+          "outline",
+          "color",
+          "confuse",
+          "erase"
+        ],
+        "correct_answer": "outline",
+        "explanation": "To delineate is to describe or portray something precisely; outline.",
+        "bengali_explanation": "delineate মানে অঙ্কন করা বা নকশা এঁকে বোঝানো, যা outline-এর সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The critics began to **deride** the director's new movie, calling it unoriginal and boring.",
+        "target_word": "deride",
+        "options": [
+          "praise",
+          "mock",
+          "criticize",
+          "ridicule"
+        ],
+        "correct_answer": "praise",
+        "explanation": "To deride is to express contempt for; ridicule. The antonym is praise.",
+        "bengali_explanation": "deride মানে উপহাস বা বিদ্রূপ করা। এর বিপরীত শব্দ (antonym) হলো praise (প্রশংসা করা)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The custom is still practiced by the **denizens** of the remote mountain village.",
+        "target_word": "denizens",
+        "options": [
+          "inhabitants",
+          "visitors",
+          "strangers",
+          "leaders"
+        ],
+        "correct_answer": "inhabitants",
+        "explanation": "A denizen is a person, animal, or plant that lives or is found in a particular place; inhabitant.",
+        "bengali_explanation": "denizen মানে বাসিন্দা বা অধিবাসী, তাই inhabitants সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "His **decorous** behavior at the formal dinner party was noted by the hosts.",
+        "target_word": "decorous",
+        "options": [
+          "improper",
+          "polite",
+          "respectful",
+          "dignified"
+        ],
+        "correct_answer": "improper",
+        "explanation": "Decorous means in keeping with good taste and propriety; polite. The antonym is improper.",
+        "bengali_explanation": "decorous মানে শালীন বা শোভন আচরণ। এর বিপরীত শব্দ (antonym) হলো improper (অশালীন/অনুপযুক্ত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 4,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "EPHEMERAL : DURATION",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "MUNDANE : SPIRIT",
+          "LACONIC : SPEECH",
+          "BLATANT : SOUND"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something ephemeral is lacking in duration; something amorphous is lacking in shape.",
+        "bengali_explanation": "ephemeral (ক্ষণস্থায়ী) জিনিসের স্থায়িত্ব বা মেয়াদের অভাব থাকে; amorphous জিনিসের সুনির্দিষ্ট আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 2,
+        "stem": "ERUDITE : KNOWLEDGE",
+        "options": [
+          "AFFLUENT : WEALTH",
+          "INDOLENT : ENERGY",
+          "MENDACIOUS : HONESTY",
+          "CLEMENCY : JUSTICE"
+        ],
+        "correct_answer": "AFFLUENT : WEALTH",
+        "explanation": "An erudite person possesses abundant knowledge; an affluent person possesses abundant wealth.",
+        "bengali_explanation": "erudite (পণ্ডিত) ব্যক্তির প্রচুর জ্ঞান থাকে, যেমন affluent (ধনী) ব্যক্তির প্রচুর সম্পদ বা অর্থ থাকে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "EXONERATE : GUILT",
+        "options": [
+          "ALLEVIATE : PAIN",
+          "DISSIPATE : FOG",
+          "ELEVATE : RANK",
+          "ADULTERATE : PURITY"
+        ],
+        "correct_answer": "ALLEVIATE : PAIN",
+        "explanation": "To exonerate is to free from guilt; to alleviate is to free from or reduce pain.",
+        "bengali_explanation": "exonerate মানে দোষ বা অপরাধ থেকে মুক্তি দেওয়া; alleviate মানে কষ্ট বা ব্যথা দূর করা বা কমানো।"
+      },
+      {
+        "question_number": 4,
+        "stem": "EQUIVOCAL : CLARITY",
+        "options": [
+          "CLIQUE : MEMBERS",
+          "BANAL : INTEREST",
+          "COGENT : LOGIC",
+          "ARDENT : PASSION"
+        ],
+        "correct_answer": "BANAL : INTEREST",
+        "explanation": "Something equivocal is lacking in clarity; something banal is lacking in interest.",
+        "bengali_explanation": "equivocal (দ্ব্যর্থবোধক/অস্পষ্ট) কথায় স্পষ্টতার অভাব থাকে; banal (গতানুগতিক) বিষয়ে আগ্রহ বা নতুনত্বের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "EXACERBATE : WORSE",
+        "options": [
+          "AMELIORATE : BETTER",
+          "ASSUAGE : STRONGER",
+          "ENERVATE : WEAKER",
+          "CURTAIL : LONGER"
+        ],
+        "correct_answer": "AMELIORATE : BETTER",
+        "explanation": "To exacerbate is to make something worse; to ameliorate is to make something better.",
+        "bengali_explanation": "exacerbate মানে আরও খারাপ বা তীব্র করা; ameliorate মানে আরও উন্নত বা ভালো করা।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The lawyer tried to _______ his client by presenting a rock-solid alibi during the trial.",
+        "options": [
+          "exonerate",
+          "exacerbate",
+          "extol",
+          "equivocate"
+        ],
+        "correct_answer": "exonerate",
+        "explanation": "To exonerate is to officially declare someone free from blame or guilt.",
+        "bengali_explanation": "আইনজীবী আদালতে অকাট্য প্রমাণ হাজির করে তার মক্কেলকে exonerate (দোষমুক্ত করা) করার চেষ্টা করলেন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The manager's _______ instructions left everyone confused about what their actual duties were.",
+        "options": [
+          "equivocal",
+          "explicit",
+          "exemplary",
+          "exhaustive"
+        ],
+        "correct_answer": "equivocal",
+        "explanation": "Equivocal means open to more than one interpretation; ambiguous or unclear.",
+        "bengali_explanation": "ম্যানেজারের equivocal (দ্ব্যর্থবোধক/অস্পষ্ট) নির্দেশনা সবাইকে বিভ্রান্ত করেছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "She is an _______ reader, devouring three to four books every week without fail.",
+        "options": [
+          "avid",
+          "apathetic",
+          "aloof",
+          "archaic"
+        ],
+        "correct_answer": "avid",
+        "explanation": "An avid reader is extremely enthusiastic and eager about reading.",
+        "bengali_explanation": "সে অত্যন্ত avid (উৎসুক/পাগল) পাঠক, প্রতি সপ্তাহে তিন-চারটি বই পড়ে শেষ করে।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "Scratching the mosquito bite will only _______ the itching and lead to potential infection.",
+        "options": [
+          "exacerbate",
+          "alleviate",
+          "assuage",
+          "efface"
+        ],
+        "correct_answer": "exacerbate",
+        "explanation": "To exacerbate is to make a problem, bad situation, or negative feeling worse.",
+        "bengali_explanation": "মশার কামড়ের জায়গা চুলকালে চুলকানি আরও exacerbate (তীব্র বা খারাপ করা) হবে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "His _______ lifestyle, characterized by self-denial and simple food, surprised his wealthy friends.",
+        "options": [
+          "ascetic",
+          "affluent",
+          "adroit",
+          "amoral"
+        ],
+        "correct_answer": "ascetic",
+        "explanation": "An ascetic lifestyle involves severe self-discipline and abstention from all forms of indulgence.",
+        "bengali_explanation": "তার ascetic (তপস্বীসুলভ/কঠোর সংযমী) জীবনযাপন তার ধনী বন্ধুদের বিস্মিত করেছিল।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The professor gave an **exhaustive** review of the scientific literature in his lecture.",
+        "target_word": "exhaustive",
+        "options": [
+          "thorough",
+          "tiring",
+          "quick",
+          "incomplete"
+        ],
+        "correct_answer": "thorough",
+        "explanation": "Exhaustive means fully comprehensive and thorough; leaving nothing out.",
+        "bengali_explanation": "exhaustive review মানে অত্যন্ত পুঙ্খানুপুঙ্খ বা সম্পূর্ণ পর্যালোচনা, যা thorough-এর সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The cherry blossoms are beautiful but **ephemeral**, lasting only a couple of weeks.",
+        "target_word": "ephemeral",
+        "options": [
+          "short-lived",
+          "permanent",
+          "colorful",
+          "rare"
+        ],
+        "correct_answer": "short-lived",
+        "explanation": "Ephemeral means lasting for a very short time; short-lived.",
+        "bengali_explanation": "চেরি ফুল অত্যন্ত সুন্দর কিন্তু ephemeral (ক্ষণস্থায়ী), তাই short-lived সঠিক উত্তর।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The local community leaders began to **extol** the virtues of the new recycling program.",
+        "target_word": "extol",
+        "options": [
+          "criticize",
+          "praise",
+          "celebrate",
+          "promote"
+        ],
+        "correct_answer": "criticize",
+        "explanation": "To extol is to praise enthusiastically. The antonym is criticize.",
+        "bengali_explanation": "extol মানে অত্যন্ত প্রশংসা করা। এর বিপরীত শব্দ (antonym) হলো criticize (সমালোচনা করা)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "He made an **explicit** promise that the work would be completed by Friday afternoon.",
+        "target_word": "explicit",
+        "options": [
+          "clear",
+          "vague",
+          "hidden",
+          "implied"
+        ],
+        "correct_answer": "clear",
+        "explanation": "Explicit means stated clearly and in detail, leaving no room for confusion or doubt.",
+        "bengali_explanation": "explicit promise মানে সুনির্দিষ্ট বা স্পষ্ট প্রতিশ্রুতি, তাই clear সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The scholar was known for his **erudite** articles on medieval European history.",
+        "target_word": "erudite",
+        "options": [
+          "ignorant",
+          "scholarly",
+          "learned",
+          "wise"
+        ],
+        "correct_answer": "ignorant",
+        "explanation": "Erudite means having or showing great knowledge or learning. The antonym is ignorant.",
+        "bengali_explanation": "erudite মানে অত্যন্ত জ্ঞানী বা পণ্ডিত। এর বিপরীত শব্দ (antonym) হলো ignorant (অজ্ঞ/মূর্খ)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 5,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "GARRULOUS : WORDS",
+        "options": [
+          "PRODIGAL : MONEY",
+          "RETICENT : SILENCE",
+          "LACONIC : SPEECH",
+          "FASTIDIOUS : DETAIL"
+        ],
+        "correct_answer": "PRODIGAL : MONEY",
+        "explanation": "A garrulous person is extremely wasteful or excessive with words; a prodigal person is excessive or wasteful with money.",
+        "bengali_explanation": "garrulous ব্যক্তি কথায় অমিতব্যয়ী বা বাচাল হন; prodigal ব্যক্তি অর্থ বা টাকায় অমিতব্যয়ী হন।"
+      },
+      {
+        "question_number": 2,
+        "stem": "GUILE : NAIVE",
+        "options": [
+          "LEVITY : SERIOUS",
+          "CANDOR : HONEST",
+          "ANARCHY : DISORDER",
+          "BANE : HARMFUL"
+        ],
+        "correct_answer": "LEVITY : SERIOUS",
+        "explanation": "A person with guile is not naive; a person showing levity is not serious.",
+        "bengali_explanation": "guile (ছলনা/ধূর্ততা) যার আছে সে naive (সরল/অনভিজ্ঞ) নয়; levity (চপলতা) যে দেখায় সে serious (গুরুগম্ভীর) নয়।"
+      },
+      {
+        "question_number": 3,
+        "stem": "HACKNEYED : ORIGINALITY",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LUCID : CLARITY",
+          "MUNDANE : ORDINARY",
+          "FASTIDIOUS : CLEAN"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something hackneyed lacks originality; something amorphous lacks shape.",
+        "bengali_explanation": "hackneyed (গতানুগতিক/ঘেঁষা) জিনিসের মৌলিকতার অভাব থাকে, যেমন amorphous জিনিসের আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "HARBINGER : FUTURE",
+        "options": [
+          "PRECURSOR : EVENT",
+          "BANE : GOOD",
+          "CLIQUE : MEMBER",
+          "ANACHRONISM : PAST"
+        ],
+        "correct_answer": "PRECURSOR : EVENT",
+        "explanation": "A harbinger indicates or signals the future; a precursor indicates or comes before an event.",
+        "bengali_explanation": "harbinger ভবিষ্যৎ ঘটনার সংকেত দেয়, যেমন precursor কোনো ঘটনার পূর্বসূরি বা আগমনী বার্তা দেয়।"
+      },
+      {
+        "question_number": 5,
+        "stem": "IMPARTIAL : BIAS",
+        "options": [
+          "INSOLENT : RESPECT",
+          "AFFABLE : FRIEND",
+          "MENDACIOUS : LIE",
+          "FASTIDIOUS : CARE"
+        ],
+        "correct_answer": "INSOLENT : RESPECT",
+        "explanation": "An impartial person is free from bias; an insolent person is free from respect.",
+        "bengali_explanation": "impartial (নিরপেক্ষ) ব্যক্তি পক্ষপাতিত্ব বা bias থেকে মুক্ত থাকেন; insolent (উদ্ধত) ব্যক্তি শ্রদ্ধা বা সম্মান থেকে মুক্ত থাকেন।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The dynamic host was so _______ that he could easily spark a conversation with any stranger in the room.",
+        "options": [
+          "gregarious",
+          "garrulous",
+          "genteel",
+          "grandiloquent"
+        ],
+        "correct_answer": "gregarious",
+        "explanation": "Gregarious means fond of company; sociable and outgoing.",
+        "bengali_explanation": "আমন্ত্রিত হোস্ট অত্যন্ত gregarious (মিশুক/সামাজিক) ছিলেন, যা তাকে সবার সাথে সহজে কথা বলতে সাহায্য করে।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "His speech was filled with _______ language, designed to impress but lacking any real substance.",
+        "options": [
+          "grandiloquent",
+          "genteel",
+          "gratuitous",
+          "gullible"
+        ],
+        "correct_answer": "grandiloquent",
+        "explanation": "Grandiloquent language is pompous or extravagant in style, especially in a way that is intended to impress.",
+        "bengali_explanation": "তার বক্তব্যটি grandiloquent (বাগাড়ম্বরপূর্ণ/জমকালো) শব্দে ঠাসা ছিল যা কেবল লোক দেখানোর জন্য ছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The frost in early autumn was a clear _______ of the harsh winter that lay ahead.",
+        "options": [
+          "harbinger",
+          "hiatus",
+          "heresy",
+          "homily"
+        ],
+        "correct_answer": "harbinger",
+        "explanation": "A harbinger is a person or thing that announces or signals the approach of something else.",
+        "bengali_explanation": "শরতের শুরুতে তুষারপাত ছিল আসন্ন তীব্র শীতের একটি স্পষ্ট harbinger (অগ্রদূত/পূর্বাভাস)।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "She is extremely _______ about food, refusing to eat at any restaurant that hasn't received a five-star hygiene rating.",
+        "options": [
+          "fastidious",
+          "farcical",
+          "fatalistic",
+          "fecund"
+        ],
+        "correct_answer": "fastidious",
+        "explanation": "A fastidious person is very attentive to and concerned about accuracy, detail, or cleanliness.",
+        "bengali_explanation": "খাবারের ব্যাপারে সে অত্যন্ত fastidious (খুঁতখুঁতে/খুবই সতর্ক), তাই একটু নোংরা জায়গায় সে খায় না।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "We had to pay for a lot of _______ services that we didn't actually need or want.",
+        "options": [
+          "gratuitous",
+          "gregarious",
+          "genteel",
+          "garrulous"
+        ],
+        "correct_answer": "gratuitous",
+        "explanation": "Gratuitous means uncalled for; lacking good reason; unwarranted or free.",
+        "bengali_explanation": "আমাদের অনেক gratuitous (অপ্রয়োজনীয়/অহেতুক) সেবার জন্য অর্থ দিতে হয়েছিল যা আমাদের প্রয়োজন ছিল না।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "He tried to charm the interviewer using his smooth talk and **guile**.",
+        "target_word": "guile",
+        "options": [
+          "cunning",
+          "honesty",
+          "clumsiness",
+          "wisdom"
+        ],
+        "correct_answer": "cunning",
+        "explanation": "Guile means sly or cunning intelligence; craftiness.",
+        "bengali_explanation": "guile শব্দের অর্থ ধূর্ততা, ছলনা বা কূটকৌশল, তাই cunning সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The professor's speech was filled with **hackneyed** phrases that we had heard a thousand times.",
+        "target_word": "hackneyed",
+        "options": [
+          "cliché",
+          "original",
+          "clever",
+          "poetic"
+        ],
+        "correct_answer": "cliché",
+        "explanation": "Hackneyed means lacking significance through having been overused; cliché.",
+        "bengali_explanation": "hackneyed মানে বহু ব্যবহৃত ও জীর্ণ উক্তি, যা cliché (ঘেঁষা কথা)-এর সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "We were relieved to find that the tumor was **benign** and required no further surgery.",
+        "target_word": "benign",
+        "options": [
+          "malignant",
+          "harmless",
+          "gentle",
+          "friendly"
+        ],
+        "correct_answer": "malignant",
+        "explanation": "Benign means gentle, kind, or in medicine, not harmful. The opposite is malignant.",
+        "bengali_explanation": "benign মানে ক্ষতিকর নয় বা মৃদু। এর বিপরীত শব্দ (antonym) হলো malignant (মারাত্মক/ক্ষতিকর)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The soil in the valley is extremely **fecund**, yielding three major crops every year.",
+        "target_word": "fecund",
+        "options": [
+          "fertile",
+          "barren",
+          "dry",
+          "rocky"
+        ],
+        "correct_answer": "fertile",
+        "explanation": "Fecund means producing or capable of producing an abundance of offspring or new growth; fertile.",
+        "bengali_explanation": "fecund মানে উর্বর বা ফলপ্রসূ, তাই fertile সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "She gave a **garrulous** account of her vacation, talking for nearly three hours without stopping.",
+        "target_word": "garrulous",
+        "options": [
+          "taciturn",
+          "talkative",
+          "wordy",
+          "rambling"
+        ],
+        "correct_answer": "taciturn",
+        "explanation": "Garrulous means excessively talkative, especially on trivial matters. The antonym is taciturn.",
+        "bengali_explanation": "garrulous মানে বাচাল বা বেশি কথা বলা। এর বিপরীত শব্দ (antonym) হলো taciturn (স্বল্পভাষী/মৌন)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 6,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "ICONOCLAST : ORTHODOX",
+        "options": [
+          "RECLUSE : SOCIAL",
+          "CYNIC : NEGATIVE",
+          "BENEFACTOR : GENEROUS",
+          "DESPOT : POWERFUL"
+        ],
+        "correct_answer": "RECLUSE : SOCIAL",
+        "explanation": "An iconoclast opposes orthodox beliefs; a recluse avoids social situations.",
+        "bengali_explanation": "iconoclast প্রচলিত বা orthodox মতবাদের বিরোধিতা করে; recluse সামাজিক সম্পর্ক এড়িয়ে চলে।"
+      },
+      {
+        "question_number": 2,
+        "stem": "IMMINENT : DELAYED",
+        "options": [
+          "TRANSIENT : PERSISTENT",
+          "APATHETIC : INDIFFERENT",
+          "LUCID : CLEAR",
+          "BANAL : TRITE"
+        ],
+        "correct_answer": "TRANSIENT : PERSISTENT",
+        "explanation": "Imminent (about to happen) is the opposite of delayed; transient (short-lived) is the opposite of persistent.",
+        "bengali_explanation": "imminent (আসন্ন) শব্দের বিপরীত delayed; transient (ক্ষণস্থায়ী) শব্দের বিপরীত persistent (স্থায়ী)।"
+      },
+      {
+        "question_number": 3,
+        "stem": "INCORRIGIBLE : REFORM",
+        "options": [
+          "INTRACTABLE : MANAGE",
+          "DOCILE : OBEY",
+          "MUNDANE : ROUTINE",
+          "COGENT : PERSUADE"
+        ],
+        "correct_answer": "INTRACTABLE : MANAGE",
+        "explanation": "An incorrigible person cannot be reformed; an intractable person cannot be managed.",
+        "bengali_explanation": "incorrigible (অসংশোধনীয়) ব্যক্তিকে সংশোধন করা যায় না; intractable (অদম্য) ব্যক্তিকে পরিচালনা করা যায় না।"
+      },
+      {
+        "question_number": 4,
+        "stem": "INDOLENT : ENERGY",
+        "options": [
+          "IMPECUNIOUS : MONEY",
+          "INDIGENT : HOME",
+          "AFFABLE : PRIDE",
+          "ERUDITE : STUDY"
+        ],
+        "correct_answer": "IMPECUNIOUS : MONEY",
+        "explanation": "An indolent person lacks energy; an impecunious person lacks money.",
+        "bengali_explanation": "indolent (অলস) মানুষের শক্তির অভাব থাকে; impecunious (নিঃস্ব) মানুষের অর্থের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "LACONIC : SPEECH",
+        "options": [
+          "FRUGAL : EXPENDITURE",
+          "AUDACIOUS : COURAGE",
+          "MENDACIOUS : TRUTH",
+          "COMPLACENT : ACTION"
+        ],
+        "correct_answer": "FRUGAL : EXPENDITURE",
+        "explanation": "A laconic person is economical with speech; a frugal person is economical with expenditure.",
+        "bengali_explanation": "laconic ব্যক্তি কথা বলায় সাশ্রয়ী বা স্বল্পভাষী হন; frugal ব্যক্তি খরচে সাশ্রয়ী বা মিতব্যয়ী হন।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The scientific community was shocked by his _______ theories, which challenged decades of established research.",
+        "options": [
+          "iconoclastic",
+          "indolent",
+          "imminent",
+          "innocuous"
+        ],
+        "correct_answer": "iconoclastic",
+        "explanation": "Iconoclastic theories challenge or attack cherished beliefs or established institutions.",
+        "bengali_explanation": "তার iconoclastic (প্রচলিত বিশ্বাস বা আদর্শ বিরোধী) তত্ত্ব বিজ্ঞান মহলকে নাড়া দিয়েছিল।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "With the dark clouds gathering rapidly overhead, we knew the storm was _______.",
+        "options": [
+          "imminent",
+          "immutable",
+          "impartial",
+          "impetuous"
+        ],
+        "correct_answer": "imminent",
+        "explanation": "Imminent means about to happen; impending or fast approaching.",
+        "bengali_explanation": "আকাশে ঘন কালো মেঘ দেখে আমরা বুঝেছিলাম ঝড়টি imminent (আসন্ন)।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The student was so _______ that he would often spend the entire weekend sleeping and watching television.",
+        "options": [
+          "indolent",
+          "industrious",
+          "indigenous",
+          "indignant"
+        ],
+        "correct_answer": "indolent",
+        "explanation": "Indolent means wanting to avoid activity or exertion; lazy.",
+        "bengali_explanation": "ছাত্রটি এতটাই indolent (অলস) ছিল যে সারা উইকেন্ড সে ঘুমিয়ে কাটাত।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "She gave a _______ response to the long and complicated question, saying only 'No' before walking away.",
+        "options": [
+          "laconic",
+          "loquacious",
+          "luminous",
+          "laudable"
+        ],
+        "correct_answer": "laconic",
+        "explanation": "A laconic response uses very few words; concise and brief.",
+        "bengali_explanation": "জটিল ও দীর্ঘ প্রশ্নটির একটি laconic (স্বল্পভাষী/সংক্ষিপ্ত) জবাব দিয়ে সে চলে গেল।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "His criminal behavior was deemed _______ by the judges, who sentenced him to life in prison.",
+        "options": [
+          "incorrigible",
+          "innocuous",
+          "incipient",
+          "indigenous"
+        ],
+        "correct_answer": "incorrigible",
+        "explanation": "An incorrigible person is bad beyond reform or correction.",
+        "bengali_explanation": "তার অপরাধমূলক আচরণ incorrigible (অসংশোধনীয়) বলে গণ্য করে বিচারক তাকে যাবজ্জীবন কারাদণ্ড দেন।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The new safety regulations were designed to be **innocuous**, causing no disruption to daily routines.",
+        "target_word": "innocuous",
+        "options": [
+          "harmless",
+          "harmful",
+          "strict",
+          "complicated"
+        ],
+        "correct_answer": "harmless",
+        "explanation": "Innocuous means not harmful or offensive; harmless.",
+        "bengali_explanation": "নতুন নিয়মগুলো ছিল innocuous (ক্ষতিহীন/নিরীহ), তাই harmless সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The ancient stone monuments stood as an **immutable** reminder of the bygone empire.",
+        "target_word": "immutable",
+        "options": [
+          "unchangeable",
+          "temporary",
+          "ruined",
+          "beautiful"
+        ],
+        "correct_answer": "unchangeable",
+        "explanation": "Immutable means unchanging over time or unable to be changed.",
+        "bengali_explanation": "পাথরের স্মৃতিস্তম্ভটি ছিল প্রাচীন সাম্রাজ্যের একটি immutable (অপরিবর্তনীয়) নিদর্শন, তাই unchangeable সঠিক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "After years of working as a wealthy lawyer, he was suddenly left **impecunious** by bad investments.",
+        "target_word": "impecunious",
+        "options": [
+          "wealthy",
+          "penniless",
+          "bankrupt",
+          "needy"
+        ],
+        "correct_answer": "wealthy",
+        "explanation": "Impecunious means having little or no money; poor. The antonym is wealthy.",
+        "bengali_explanation": "impecunious শব্দের অর্থ অর্থহীন বা গরিব। এর বিপরীত শব্দ (antonym) হলো wealthy (ধনী)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The community gave a **laudable** effort to clean up the local park after the storm.",
+        "target_word": "laudable",
+        "options": [
+          "praiseworthy",
+          "lazy",
+          "failed",
+          "costly"
+        ],
+        "correct_answer": "praiseworthy",
+        "explanation": "Laudable means deserving praise and commendation; praiseworthy.",
+        "bengali_explanation": "পার্কটি পরিষ্কার করায় তাদের উদ্যোগটি ছিল laudable (প্রশংসনীয়), তাই praiseworthy সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The dictator was **intractable**, refusing to negotiate with any foreign diplomats.",
+        "target_word": "intractable",
+        "options": [
+          "manageable",
+          "stubborn",
+          "difficult",
+          "wild"
+        ],
+        "correct_answer": "manageable",
+        "explanation": "Intractable means hard to control or deal with; stubborn. The antonym is manageable.",
+        "bengali_explanation": "intractable মানে অবাধ্য বা একগুঁয়ে। এর বিপরীত শব্দ হলো manageable (নিয়ন্ত্রণযোগ্য/বাধ্য)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 7,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "MALINGER : WORK",
+        "options": [
+          "SHIRK : DUTY",
+          "RECLUSE : CROWD",
+          "ICONOCLAST : BELIEF",
+          "DESPOT : RULE"
+        ],
+        "correct_answer": "SHIRK : DUTY",
+        "explanation": "To malinger is to avoid work by pretending to be ill; to shirk is to avoid duty or responsibility.",
+        "bengali_explanation": "malinger মানে অসুস্থতার ভান করে কাজ ফাঁকি দেওয়া; shirk মানে দায়িত্ব ফাঁকি দেওয়া।"
+      },
+      {
+        "question_number": 2,
+        "stem": "MENDACIOUS : TRUTH",
+        "options": [
+          "APATHETIC : INTEREST",
+          "LACONIC : SPEECH",
+          "BENIGN : KINDNESS",
+          "COGENT : LOGIC"
+        ],
+        "correct_answer": "APATHETIC : INTEREST",
+        "explanation": "A mendacious person is characterized by a lack of truth; an apathetic person is characterized by a lack of interest.",
+        "bengali_explanation": "mendacious (মিথ্যাবাদী) চরিত্রে সত্যের অভাব থাকে; apathetic (উদাসীন) চরিত্রে আগ্রহ বা ইন্টারেস্টের অভাব থাকে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "MONOLITHIC : INDIVIDUALITY",
+        "options": [
+          "AMORPHOUS : STRUCTURE",
+          "CLEMENCY : HOSTILITY",
+          "EPHEMERAL : CHANGE",
+          "LUCID : CLARITY"
+        ],
+        "correct_answer": "AMORPHOUS : STRUCTURE",
+        "explanation": "A monolithic system lacks individuality; an amorphous substance lacks structure.",
+        "bengali_explanation": "monolithic (একশিলা/বিশাল একতাবদ্ধ) ব্যবস্থায় ব্যক্তিগত বৈচিত্র্যের অভাব থাকে, যেমন amorphous জিনিসে কাঠামোর অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "MOROSE : CHEERFUL",
+        "options": [
+          "TACITURN : TALKATIVE",
+          "SOPORIFIC : SLEEP",
+          "LUCID : CLEAR",
+          "BANAL : BORING"
+        ],
+        "correct_answer": "TACITURN : TALKATIVE",
+        "explanation": "Morose (gloomy) is the antonym of cheerful; taciturn (silent) is the antonym of talkative.",
+        "bengali_explanation": "morose (বিষণ্ণ) ও cheerful বিপরীত শব্দ; taciturn (স্বল্পভাষী) ও talkative (বাচাল) বিপরীত শব্দ।"
+      },
+      {
+        "question_number": 5,
+        "stem": "MUNDANE : ADVENTURE",
+        "options": [
+          "TRITE : ORIGINALITY",
+          "LUCID : CLARITY",
+          "Fastidious : DETAIL",
+          "LACONIC : WORDS"
+        ],
+        "correct_answer": "TRITE : ORIGINALITY",
+        "explanation": "Something mundane lacks adventure; something trite lacks originality.",
+        "bengali_explanation": "mundane (গতানুগতিক/পার্থিব) কাজে রোমাঞ্চের অভাব থাকে, যেমন trite (ঘেঁষা) বিষয়ে মৌলিকতার অভাব থাকে।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The employer suspected that the clerk was _______ when he missed three consecutive Mondays due to 'stomach aches'.",
+        "options": [
+          "malingering",
+          "mitigating",
+          "matriculating",
+          "mediating"
+        ],
+        "correct_answer": "malingering",
+        "explanation": "Malingering refers to exaggerating or feigning illness in order to escape duty or work.",
+        "bengali_explanation": "টানা তিন সোমবার পেট ব্যথার অজুহাতে অনুপস্থিত থাকায় মালিক সন্দেহ করলেন সে malingering (অসুস্থতার ভান করা) করছে।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "His report was proved to be utterly _______, containing fabricated data and fake interviews.",
+        "options": [
+          "mendacious",
+          "munificent",
+          "merciful",
+          "mercurial"
+        ],
+        "correct_answer": "mendacious",
+        "explanation": "Mendacious means not telling the truth; lying or deceitful.",
+        "bengali_explanation": "বানানো তথ্য ও ভুয়া ইন্টারভিউ থাকায় তার রিপোর্টটি সম্পূর্ণরূপে mendacious (মিথ্যাপূর্ণ/প্রতারণামূলক) প্রমাণিত হয়।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The giant corporate headquarters was a _______ grey building that dominated the city skyline.",
+        "options": [
+          "monolithic",
+          "minuscule",
+          "mutable",
+          "merciful"
+        ],
+        "correct_answer": "monolithic",
+        "explanation": "A monolithic building is massive, uniform, and solid.",
+        "bengali_explanation": "বিশাল কর্পোরেট অফিসটি ছিল একটি monolithic (বিশাল, একরূপ ও ভারী) ধূসর ভবন যা পুরো শহরের আকাশ দখল করেছিল।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The new scholarship program was funded by a _______ donation from an anonymous local businessman.",
+        "options": [
+          "munificent",
+          "morose",
+          "mundane",
+          "myopic"
+        ],
+        "correct_answer": "munificent",
+        "explanation": "Munificent means characterized by or displaying great generosity.",
+        "bengali_explanation": "নতুন স্কলারশিপ প্রোগ্রামটি একজন বেনামী ব্যবসায়ীর munificent (অত্যন্ত উদার/দানশীল) অনুদানে শুরু হয়েছে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "We decided to take a vacation to escape the _______ routines of our daily office work.",
+        "options": [
+          "mundane",
+          "morose",
+          "magnanimous",
+          "mercurial"
+        ],
+        "correct_answer": "mundane",
+        "explanation": "Mundane means lacking interest or excitement; dull and ordinary.",
+        "bengali_explanation": "অফিসের গতানুগতিক ও একঘেয়ে mundane (বিরক্তিকর/পার্থিব) রুটিন থেকে বাঁচতে আমরা ছুটিতে যাওয়ার সিদ্ধান্ত নিয়েছি।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The doctor gave her some medicine to **mitigate** the intense pain in her lower back.",
+        "target_word": "mitigate",
+        "options": [
+          "reduce",
+          "increase",
+          "ignore",
+          "prolong"
+        ],
+        "correct_answer": "reduce",
+        "explanation": "To mitigate is to make less severe, serious, or painful; to reduce.",
+        "bengali_explanation": "কোমরের তীব্র ব্যথা mitigate (প্রশমিত করা/কমানো)-র জন্য ডাক্তার ওষুধ দিলেন, তাই reduce সঠিক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "She sat in the corner of the room with a **morose** expression, refusing to talk to anyone.",
+        "target_word": "morose",
+        "options": [
+          "gloomy",
+          "cheerful",
+          "excited",
+          "friendly"
+        ],
+        "correct_answer": "gloomy",
+        "explanation": "Morose means sullen and ill-tempered; gloomy.",
+        "bengali_explanation": "ঘরের কোণে সে morose (বিষণ্ণ/ভারাক্রান্ত) মুখে বসে ছিল, তাই gloomy সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The university founders made a **magnanimous** decision to wave the fees for poor students.",
+        "target_word": "magnanimous",
+        "options": [
+          "selfish",
+          "generous",
+          "noble",
+          "kind"
+        ],
+        "correct_answer": "selfish",
+        "explanation": "Magnanimous means very generous or forgiving, especially toward a rival or someone less powerful. The antonym is selfish.",
+        "bengali_explanation": "magnanimous মানে অত্যন্ত উদার বা মহৎ। এর বিপরীত শব্দ (antonym) হলো selfish (স্বার্থপর)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "His investment decisions were hampered by his extreme **myopia**, focusing only on short-term profits.",
+        "target_word": "myopia",
+        "options": [
+          "nearsightedness",
+          "wisdom",
+          "vision",
+          "courage"
+        ],
+        "correct_answer": "nearsightedness",
+        "explanation": "Myopia means nearsightedness; in a broader sense, it refers to lack of foresight.",
+        "bengali_explanation": "myopia মানে ক্ষীণদৃষ্টি বা দূরদর্শিতার অভাব, তাই nearsightedness সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "Her mood was **mercurial**, changing from joy to anger in a matter of seconds.",
+        "target_word": "mercurial",
+        "options": [
+          "stable",
+          "unpredictable",
+          "changeable",
+          "volatile"
+        ],
+        "correct_answer": "stable",
+        "explanation": "Mercurial means subject to sudden or unpredictable changes of mood or mind. The antonym is stable.",
+        "bengali_explanation": "mercurial মানে পরিবর্তনশীল বা পারদতুল্য অস্থির। এর বিপরীত শব্দ হলো stable (স্থির/অপরিবর্তনশীল)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 8,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "OBDURATE : PERSUASION",
+        "options": [
+          "INTRACTABLE : CONTROL",
+          "DOCILE : OBEDIENCE",
+          "LUCID : CLARITY",
+          "FRUGAL : CHEAP"
+        ],
+        "correct_answer": "INTRACTABLE : CONTROL",
+        "explanation": "An obdurate person resists persuasion; an intractable person resists control.",
+        "bengali_explanation": "obdurate (একগুঁয়ে) ব্যক্তি সহজে কথা শোনেন না বা অনুনয় শোনেন না; intractable ব্যক্তি সহজে নিয়ন্ত্রণ মানেন না।"
+      },
+      {
+        "question_number": 2,
+        "stem": "NEPOTISM : FAVORITISM",
+        "options": [
+          "CAJOLE : FLATTERY",
+          "CLEMENCY : HARSHNESS",
+          "LEVITY : SERIOUSNESS",
+          "APATHY : PASSION"
+        ],
+        "correct_answer": "CAJOLE : FLATTERY",
+        "explanation": "Nepotism is a form of favoritism; to cajole is to use flattery.",
+        "bengali_explanation": "nepotism (স্বজনপ্রীতি) হলো এক প্রকার পক্ষপাতিত্ব বা favoritism; cajole মানে তোষামোদ বা flattery-র সাহায্যে ভোলানো।"
+      },
+      {
+        "question_number": 3,
+        "stem": "NOXIOUS : HEALTH",
+        "options": [
+          "DELETERIOUS : SAFETY",
+          "BENIGN : MEDICINE",
+          "MUNDANE : WORK",
+          "LUCID : VISION"
+        ],
+        "correct_answer": "DELETERIOUS : SAFETY",
+        "explanation": "Something noxious harms health; something deleterious harms safety.",
+        "bengali_explanation": "noxious (ক্ষতিকর) জিনিস স্বাস্থ্যের ক্ষতি করে; deleterious (ক্ষতিকারক) জিনিস নিরাপত্তার ক্ষতি করে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "OBSEQUIOUS : FLATTERY",
+        "options": [
+          "MENDACIOUS : LIES",
+          "LACONIC : SPEECH",
+          "BENIGN : GENTLE",
+          "AUDACIOUS : FEAR"
+        ],
+        "correct_answer": "MENDACIOUS : LIES",
+        "explanation": "An obsequious person is characterized by excessive flattery; a mendacious person is characterized by lies.",
+        "bengali_explanation": "obsequious (চাটুকার) ব্যক্তি তোষামোদ বা flattery দ্বারা পূর্ণ থাকেন; mendacious (মিথ্যাবাদী) ব্যক্তি মিথ্যা বা lies দ্বারা পূর্ণ থাকেন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "OBLIVION : AWARENESS",
+        "options": [
+          "ANARCHY : ORDER",
+          "CADENCE : MUSIC",
+          "CANDOR : HONESTY",
+          "APOGEE : HEIGHT"
+        ],
+        "correct_answer": "ANARCHY : ORDER",
+        "explanation": "Oblivion is a state of lack of awareness; anarchy is a state of lack of order.",
+        "bengali_explanation": "oblivion (বিস্মৃতি) বলতে সচেতনতা বা জাগ্রত ভাবের অভাব বোঝায়; anarchy (অরাজকতা) বলতে শৃঙ্খলার অভাব বোঝায়।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The politician was accused of _______ when he hired his inexperienced nephew as a senior director.",
+        "options": [
+          "nepotism",
+          "nihilism",
+          "nostalgia",
+          "neologism"
+        ],
+        "correct_answer": "nepotism",
+        "explanation": "Nepotism is the practice among those with power or influence of favoring relatives.",
+        "bengali_explanation": "নিজের অনভিজ্ঞ ভাগ্নেকে উচ্চ পদে নিয়োগ করায় রাজনীতিবিদটির বিরুদ্ধে nepotism (স্বজনপ্রীতি)-এর অভিযোগ উঠেছে।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The factory was fined for dumping _______ waste into the nearby river, killing thousands of fish.",
+        "options": [
+          "noxious",
+          "nebulous",
+          "nominal",
+          "novel"
+        ],
+        "correct_answer": "noxious",
+        "explanation": "Noxious means harmful, poisonous, or very unpleasant.",
+        "bengali_explanation": "নদীতে noxious (ক্ষতিকর/বিষাক্ত) বর্জ্য ফেলে মাছ মেরে ফেলায় কারখানাটিকে জরিমানা করা হয়েছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The child remained _______, refusing to eat her vegetables despite her parents' promises of dessert.",
+        "options": [
+          "obdurate",
+          "obsequious",
+          "officious",
+          "onerous"
+        ],
+        "correct_answer": "obdurate",
+        "explanation": "Obdurate means stubbornly refusing to change one's opinion or course of action.",
+        "bengali_explanation": "বাবা-মা মিষ্টি খাওয়ার লোভ দেখালেও শিশুটি obdurate (একগুঁয়ে/অটল) হয়ে সবজি খেতে অস্বীকার করল।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The new task was extremely _______, requiring long hours of intense physical labor in the sun.",
+        "options": [
+          "onerous",
+          "opaque",
+          "oblique",
+          "orthodox"
+        ],
+        "correct_answer": "onerous",
+        "explanation": "Onerous refers to a task, duty, or responsibility that is burdensomely difficult.",
+        "bengali_explanation": "নতুন কাজটি ছিল অত্যন্ত onerous (কষ্টসাধ্য/গুরুভার), যা রোদে দীর্ঘ সময় ধরে শারীরিক পরিশ্রম দাবি করত।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The waiter was almost annoyingly _______, bowing constantly and laughing at all of our terrible jokes.",
+        "options": [
+          "obsequious",
+          "officious",
+          "obtuse",
+          "oblique"
+        ],
+        "correct_answer": "obsequious",
+        "explanation": "Obsequious means obedient or attentive to an excessive or servile degree.",
+        "bengali_explanation": "ওয়েটারটি ছিল অত্যন্ত obsequious (চাটুকার/গোলামের মতো মনোযোগী), যে বারবার মাথা নিচু করে আমাদের বাজে হাসিতে হাসছিল।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The explanations in the manual were **nebulous**, leaving the users more confused than before.",
+        "target_word": "nebulous",
+        "options": [
+          "vague",
+          "clear",
+          "detailed",
+          "helpful"
+        ],
+        "correct_answer": "vague",
+        "explanation": "Nebulous means in the form of a cloud or haze; hazy, vague, or indistinct.",
+        "bengali_explanation": "নির্দেশনাগুলো ছিল nebulous (অস্পষ্ট/কুয়াশাচ্ছন্ন), তাই vague সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The lawyer gave an **oblique** reference to the witness's prior criminal record.",
+        "target_word": "oblique",
+        "options": [
+          "indirect",
+          "direct",
+          "clear",
+          "rude"
+        ],
+        "correct_answer": "indirect",
+        "explanation": "Oblique means not explicit or direct in addressing a point; indirect.",
+        "bengali_explanation": "oblique reference মানে পরোক্ষ বা ঘুরিয়ে ইঙ্গিত দেওয়া, যা indirect-এর সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The windows were covered in dirt, making them completely **opaque**.",
+        "target_word": "opaque",
+        "options": [
+          "transparent",
+          "dark",
+          "cloudy",
+          "solid"
+        ],
+        "correct_answer": "transparent",
+        "explanation": "Opaque means not able to be seen through; not transparent. The antonym is transparent.",
+        "bengali_explanation": "opaque মানে অচ্ছ বা আলো চলাচলে বাধাদানকারী। এর বিপরীত শব্দ (antonym) হলো transparent (স্বচ্ছ)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "He fell into a deep sleep of **oblivion** after taking the strong painkiller.",
+        "target_word": "oblivion",
+        "options": [
+          "forgetfulness",
+          "awareness",
+          "excitement",
+          "memory"
+        ],
+        "correct_answer": "forgetfulness",
+        "explanation": "Oblivion is the state of being unaware or unconscious of what is happening around one; forgetfulness.",
+        "bengali_explanation": "oblivion মানে বিস্মৃতি বা অচেতন অবস্থা, তাই forgetfulness সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "His **obtuse** remarks during the meeting showed that he did not understand the project's goal.",
+        "target_word": "obtuse",
+        "options": [
+          "sharp",
+          "dull",
+          "stupid",
+          "ignorant"
+        ],
+        "correct_answer": "sharp",
+        "explanation": "Obtuse means annoyingly insensitive or slow to understand; dull. The antonym is sharp.",
+        "bengali_explanation": "obtuse মানে নিরেট বা স্থূলবুদ্ধি সম্পন্ন। এর বিপরীত শব্দ হলো sharp (তীক্ষ্ণ/চালাক)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 9,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "PANACEA : CURE",
+        "options": [
+          "PALLIATIVE : ALLEVIATE",
+          "CADENCE : RHYTHM",
+          "CANDOR : HONESTY",
+          "BANE : LIFE"
+        ],
+        "correct_answer": "PALLIATIVE : ALLEVIATE",
+        "explanation": "A panacea is designed to cure completely; a palliative is designed to alleviate or soothe without curing.",
+        "bengali_explanation": "panacea (সর্বরোগহর ঔষধ) রোগ নিরাময় বা cure করে; palliative ঔষধ রোগ সম্পূর্ণ না সারিয়ে কষ্ট উপশম বা alleviate করে।"
+      },
+      {
+        "question_number": 2,
+        "stem": "PAUCITY : QUANTITY",
+        "options": [
+          "LETHARGY : ENERGY",
+          "CLEMENCY : JUSTICE",
+          "AESTHETIC : BEAUTY",
+          "LEVITY : SERIOUSNESS"
+        ],
+        "correct_answer": "LETHARGY : ENERGY",
+        "explanation": "Paucity is a lack of quantity; lethargy is a lack of energy.",
+        "bengali_explanation": "paucity হলো পরিমাণের অভাব বা ঘাটতি; lethargy হলো শারীরিক শক্তি বা উদ্দীপনার অভাব।"
+      },
+      {
+        "question_number": 3,
+        "stem": "PARIAH : OSTRACIZED",
+        "options": [
+          "MARTYR : REVERED",
+          "DESPOT : LOVED",
+          "CHARLATAN : TRUSTED",
+          "CYNIC : RESPECTED"
+        ],
+        "correct_answer": "MARTYR : REVERED",
+        "explanation": "A pariah is ostracized by society; a martyr is revered by supporters.",
+        "bengali_explanation": "pariah (সমাজচ্যুত ব্যক্তি) সমাজ দ্বারা ostracized (বহিষ্কৃত) হন; martyr (শহীদ) মানুষ দ্বারা revered (শ্রদ্ধেয়) হন।"
+      },
+      {
+        "question_number": 4,
+        "stem": "PEDANTIC : RULES",
+        "options": [
+          "FASTIDIOUS : DETAILS",
+          "LACONIC : SPEECH",
+          "MENDACIOUS : TRUTH",
+          "COMPLACENT : DANGER"
+        ],
+        "correct_answer": "FASTIDIOUS : DETAILS",
+        "explanation": "A pedantic person is obsessed with strict rules; a fastidious person is obsessed with minor details.",
+        "bengali_explanation": "pedantic ব্যক্তি কঠোর নিয়ম বা rules নিয়ে অতিরিক্ত মাতামাতি করেন; fastidious ব্যক্তি খুটিনাটি বিষয় বা details নিয়ে অতি সতর্ক থাকেন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "PERFIDY : TRUST",
+        "options": [
+          "APATHY : ENTHUSIASM",
+          "LEVITY : FUN",
+          "CANDOR : TRUTH",
+          "CADENCE : MUSIC"
+        ],
+        "correct_answer": "APATHY : ENTHUSIASM",
+        "explanation": "Perfidy is a breach or lack of trust; apathy is a lack of enthusiasm.",
+        "bengali_explanation": "perfidy (বিশ্বাসঘাতকতা) দ্বারা বিশ্বাসের অভাব বা হানি বোঝায়; apathy (উদাসীনতা) দ্বারা উৎসাহ বা enthusiasm-এর অভাব বোঝায়।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The government's temporary tax reduction was only a _______, failing to solve the root causes of the recession.",
+        "options": [
+          "palliative",
+          "panacea",
+          "paradigm",
+          "paradox"
+        ],
+        "correct_answer": "palliative",
+        "explanation": "A palliative provides temporary relief or alleviation without curing the underlying problem.",
+        "bengali_explanation": "কর কমানোর সিদ্ধান্তটি ছিল কেবল একটি palliative (সাময়িক উপশম), যা মূল অর্থনৈতিক সমস্যার সমাধান করেনি।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "Despite the massive budget, there was a shocking _______ of basic equipment in the new science lab.",
+        "options": [
+          "paucity",
+          "plethora",
+          "panacea",
+          "paradox"
+        ],
+        "correct_answer": "paucity",
+        "explanation": "Paucity means the presence of something only in small or insufficient quantities or amounts; scarcity.",
+        "bengali_explanation": "বড় বাজেট থাকা সত্ত্বেও নতুন ল্যাবে সাধারণ যন্ত্রপাতির এক হতাশাজনক paucity (ঘাটতি/অভাব) দেখা গেছে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The company's new customer service strategy represents a major _______ shift, changing how they interact with clients.",
+        "options": [
+          "paradigm",
+          "parody",
+          "patronage",
+          "peccadillo"
+        ],
+        "correct_answer": "paradigm",
+        "explanation": "A paradigm is a typical pattern or model of something; a fundamental model shift.",
+        "bengali_explanation": "কোম্পানির নতুন গ্রাহক সেবা কৌশলটি একটি বড় paradigm shift (মৌলিক কাঠামোগত পরিবর্তন) নির্দেশ করে।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The old textbook was filled with _______ examples that felt incredibly outdated to the modern students.",
+        "options": [
+          "pedestrian",
+          "pedantic",
+          "pejorative",
+          "perennial"
+        ],
+        "correct_answer": "pedestrian",
+        "explanation": "Pedestrian, when used as an adjective, means lacking inspiration or excitement; dull, ordinary.",
+        "bengali_explanation": "পুরনো বইটি pedestrian (সাধারণ/ঘেঁষা/একঘেয়ে) উদাহরণে ঠাসা ছিল যা আধুনিক শিক্ষার্থীদের কাছে আকর্ষণহীন ঠেকেছে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "Her act of _______ shocked her friends, who never expected her to leak their private conversations to the press.",
+        "options": [
+          "perfidy",
+          "penitence",
+          "philanthropy",
+          "piety"
+        ],
+        "correct_answer": "perfidy",
+        "explanation": "Perfidy refers to deceitfulness; untrustworthiness or betrayal of trust.",
+        "bengali_explanation": "বন্ধুদের ব্যক্তিগত কথা ফাঁস করে দিয়ে সে যে perfidy (বিশ্বাসঘাতকতা) করেছে তা সত্যিই বিস্ময়কর।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The local doctor was praised for his tireless **philanthropy**, donating millions to built a free clinic.",
+        "target_word": "philanthropy",
+        "options": [
+          "generosity",
+          "greed",
+          "business",
+          "politics"
+        ],
+        "correct_answer": "generosity",
+        "explanation": "Philanthropy means the desire to promote the welfare of others, expressed especially by the generous donation of money.",
+        "bengali_explanation": "philanthropy মানে মানবকল্যাণ বা পরোপকারিতা, যা generosity (উদারতা)-এর সাথে সরাসরি মিলে যায়।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The student's explanation was filled with **pedantic** details that bored the rest of the class.",
+        "target_word": "pedantic",
+        "options": [
+          "academic",
+          "exciting",
+          "creative",
+          "vague"
+        ],
+        "correct_answer": "academic",
+        "explanation": "Pedantic means excessively concerned with minor details and rules; academic or bookish.",
+        "bengali_explanation": "pedantic মানে পাণ্ডিত্যপ্রদর্শনকারী বা অতি-নিয়মনিষ্ঠ, যা academic-এর সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The manager's **pejorative** remarks about the worker's presentation created a hostile atmosphere.",
+        "target_word": "pejorative",
+        "options": [
+          "complimentary",
+          "insulting",
+          "rude",
+          "negative"
+        ],
+        "correct_answer": "complimentary",
+        "explanation": "Pejorative means expressing contempt or disapproval; derogatory. The antonym is complimentary.",
+        "bengali_explanation": "pejorative মানে অবমাননাকর বা নিন্দাসূচক। এর বিপরীত শব্দ (antonym) হলো complimentary (প্রশংসাসূচক)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "Inflation is a **perennial** problem in the country's economy, returning year after year.",
+        "target_word": "perennial",
+        "options": [
+          "continual",
+          "temporary",
+          "rare",
+          "sudden"
+        ],
+        "correct_answer": "continual",
+        "explanation": "Perennial means lasting or existing for a long or apparently infinite time; continually recurring.",
+        "bengali_explanation": "perennial শব্দের অর্থ বহুবর্ষজীবী বা চিরস্থায়ী, যা continual (ক্রমাগত/অব্যাহত)-এর সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "He felt extremely **penitent** after the argument, wishing he could take back his angry words.",
+        "target_word": "penitent",
+        "options": [
+          "unrepentant",
+          "sorry",
+          "sad",
+          "ashamed"
+        ],
+        "correct_answer": "unrepentant",
+        "explanation": "Penitent means feeling or showing sorrow and regret for having done wrong. The antonym is unrepentant.",
+        "bengali_explanation": "penitent মানে অনুতপ্ত বা দুঃখিত। এর বিপরীত শব্দ (antonym) হলো unrepentant (অননুতপ্ত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 10,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "PLACATE : ANGER",
+        "options": [
+          "ASSUAGE : PAIN",
+          "AGGRAVATE : TEMPER",
+          "AUGMENT : FORCE",
+          "ABDICATE : STATUS"
+        ],
+        "correct_answer": "ASSUAGE : PAIN",
+        "explanation": "To placate is to soothe or reduce anger; to assuage is to soothe or reduce pain.",
+        "bengali_explanation": "placate মানে রাগ প্রশমিত করা বা শান্ত করা; assuage মানে ব্যথা বা কষ্ট প্রশমিত করা।"
+      },
+      {
+        "question_number": 2,
+        "stem": "PLETHORA : SCARCITY",
+        "options": [
+          "SURPLUS : DEARTH",
+          "LEVITY : GRAVITY",
+          "CADENCE : RHYTHM",
+          "CANDOR : HONESTY"
+        ],
+        "correct_answer": "SURPLUS : DEARTH",
+        "explanation": "Plethora is the opposite of scarcity; surplus is the opposite of dearth.",
+        "bengali_explanation": "plethora (আধিক্য) ও scarcity (অভাব) বিপরীত শব্দ; surplus (বাড়তি) ও dearth (অভাব) বিপরীত শব্দ।"
+      },
+      {
+        "question_number": 3,
+        "stem": "POIGNANT : EMOTION",
+        "options": [
+          "SOPORIFIC : SLEEP",
+          "LUCID : CLARITY",
+          "EPHEMERAL : TIMING",
+          "MUNDANE : ROUTINE"
+        ],
+        "correct_answer": "SOPORIFIC : SLEEP",
+        "explanation": "Something poignant touches or induces emotion; something soporific induces sleep.",
+        "bengali_explanation": "poignant (হৃদয়স্পর্শী) জিনিস আবেগ জাগ্রত করে; soporific (ঘুমপাড়ানি) জিনিস ঘুম জাগ্রত করে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "PRAGMATIC : PRACTICE",
+        "options": [
+          "THEORETICAL : IDEA",
+          "DUBIOUS : CERTAIN",
+          "MENDACIOUS : FAITH",
+          "BANAL : NOVELTY"
+        ],
+        "correct_answer": "THEORETICAL : IDEA",
+        "explanation": "A pragmatic person focuses on practical experience; a theoretical person focuses on abstract ideas.",
+        "bengali_explanation": "pragmatic (বাস্তববাদী) ব্যক্তি বাস্তব প্রয়োগ বা প্র্যাকটিসের ওপর গুরুত্ব দেন; theoretical ব্যক্তি তাত্ত্বিক বা চিন্তার ওপর গুরুত্ব দেন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "PRECURSOR : ANTECEDENT",
+        "options": [
+          "HARBINGER : PREDECESSOR",
+          "BANE : BENIGNITY",
+          "LEVITY : GRAVITY",
+          "APOGEE : DEPTH"
+        ],
+        "correct_answer": "HARBINGER : PREDECESSOR",
+        "explanation": "Precursor and antecedent are synonyms (coming before); harbinger and predecessor are also synonyms.",
+        "bengali_explanation": "precursor ও antecedent সমার্থক শব্দ (পূর্বসূরি); harbinger ও predecessor-ও সমার্থক শব্দ।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The customer was so angry about the delayed order that the manager had to offer a full refund to _______ her.",
+        "options": [
+          "placate",
+          "polarize",
+          "postulate",
+          "preclude"
+        ],
+        "correct_answer": "placate",
+        "explanation": "To placate is to make someone less angry or hostile, especially by giving in to their demands.",
+        "bengali_explanation": "ক্রেতা রেগে যাওয়ায় ম্যানেজার তাকে placate (শান্ত/প্রশমিত করা) করতে পুরো টাকা রিফান্ড দেওয়ার অফার করলেন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "After the storm, there was a _______ of fallen leaves blocking the main drainage pipes of the street.",
+        "options": [
+          "plethora",
+          "paucity",
+          "precedent",
+          "predilection"
+        ],
+        "correct_answer": "plethora",
+        "explanation": "A plethora is a large or excessive amount of something.",
+        "bengali_explanation": "ঝড়ের পর রাস্তায় ড্রেনেজ পাইপে plethora (প্রচুর/আধিক্য) পরিমাণ ঝরা পাতা জমে পাইপ জ্যাম হয়ে গিয়েছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The movie's ending was extremely _______, leaving almost everyone in the theater in tears.",
+        "options": [
+          "poignant",
+          "prosaic",
+          "pristine",
+          "prodigious"
+        ],
+        "correct_answer": "poignant",
+        "explanation": "Poignant means evoking a keen sense of sadness or regret; deeply moving.",
+        "bengali_explanation": "সিনেমার শেষ দৃশ্যটি অত্যন্ত poignant (হৃদয়স্পর্শী/বেদনাদায়ক) ছিল, যা দর্শকদের কাঁদিয়ে ছেড়েছিল।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "Taking a _______ approach, we decided to fix the critical bugs first before working on the visual design.",
+        "options": [
+          "pragmatic",
+          "precipitous",
+          "profound",
+          "provincial"
+        ],
+        "correct_answer": "pragmatic",
+        "explanation": "A pragmatic approach focuses on practical considerations and results rather than theories.",
+        "bengali_explanation": "ডিজাইন সুন্দর করার আগে আমরা pragmatic (বাস্তবমুখী/পদ্ধতিগত) হয়ে ক্র্যাশ বাগগুলো আগে ফিক্স করলাম।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "His sudden high fever was a _______ of the severe flu that spread throughout the school the next week.",
+        "options": [
+          "precursor",
+          "precedent",
+          "predilection",
+          "prerogative"
+        ],
+        "correct_answer": "precursor",
+        "explanation": "A precursor is a person or thing that comes before another of the same kind; a forerunner.",
+        "bengali_explanation": "তার হঠাৎ তীব্র জ্বর হওয়াটা ছিল স্কুলে ছড়িয়ে পড়া ফ্লু মহামারীর একটি precursor (পূর্বলক্ষ্মণ/পূর্বাভাস)।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The snowy mountains and green valley stood in their **pristine** beauty, untouched by humans.",
+        "target_word": "pristine",
+        "options": [
+          "spoiled",
+          "pure",
+          "ruined",
+          "dirty"
+        ],
+        "correct_answer": "pure",
+        "explanation": "Pristine means in its original condition; unspoiled or pure.",
+        "bengali_explanation": "মানুষের হাত না পড়ায় বরফাবৃত পাহাড়টি তার pristine (আদিম/খাঁটি) রূপে ছিল, তাই pure সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The new mayor had a **predilection** for high-tech solutions to urban transport problems.",
+        "target_word": "predilection",
+        "options": [
+          "preference",
+          "dislike",
+          "fear",
+          "hate"
+        ],
+        "correct_answer": "preference",
+        "explanation": "A predilection is a preference or special liking for something; a bias in favor of something.",
+        "bengali_explanation": "হাই-টেক সমাধানের প্রতি মেয়রের একটি predilection (বিশেষ পক্ষপাত/পছন্দ) ছিল, তাই preference সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The judge's ruling created a dangerous **precedent** that could affect future court cases.",
+        "target_word": "precedent",
+        "options": [
+          "subsequent",
+          "example",
+          "model",
+          "standard"
+        ],
+        "correct_answer": "subsequent",
+        "explanation": "A precedent is an earlier event or action that is regarded as an example. The antonym is subsequent (following).",
+        "bengali_explanation": "precedent শব্দের অর্থ নজির বা পূর্ববর্তী উদাহরণ। এর বিপরীত শব্দ (antonym) হলো subsequent (পরবর্তী)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The child showed a **prodigious** talent for mathematics, solving complex equations at age five.",
+        "target_word": "prodigious",
+        "options": [
+          "extraordinary",
+          "normal",
+          "poor",
+          "boring"
+        ],
+        "correct_answer": "extraordinary",
+        "explanation": "Prodigious means remarkably or impressively great in extent, size, or degree; extraordinary.",
+        "bengali_explanation": "গণিতে তার prodigious (বিস্ময়কর/অসাধারণ) প্রতিভা ছিল, তাই extraordinary সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "His **prosaic** description of his journey made it sound like an unexciting commute.",
+        "target_word": "prosaic",
+        "options": [
+          "poetic",
+          "ordinary",
+          "dull",
+          "uninspired"
+        ],
+        "correct_answer": "poetic",
+        "explanation": "Prosaic means having the style or diction of prose; lacking poetic beauty; dull or ordinary. The antonym is poetic.",
+        "bengali_explanation": "prosaic মানে গদ্যময়, একঘেয়ে বা সাধারণ। এর বিপরীত শব্দ (antonym) হলো poetic (কাব্যিক/চমৎকার)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 11,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "PROFLIGATE : EXTRAVAGANT",
+        "options": [
+          "FRUGAL : CHEAP",
+          "RETICENT : LOUDMOTHED",
+          "CANDOR : DECEITFUL",
+          "LEVITY : GLOOMY"
+        ],
+        "correct_answer": "FRUGAL : CHEAP",
+        "explanation": "A profligate person is extremely extravagant; a frugal person is extremely saving or cheap.",
+        "bengali_explanation": "profligate ও extravagant সমার্থক (অপব্যয়ী); frugal ও cheap সমার্থক (মিতব্যয়ী)।"
+      },
+      {
+        "question_number": 2,
+        "stem": "PROFOUND : DEPTH",
+        "options": [
+          "LUMINOUS : BRIGHT",
+          "EPHEMERAL : AGE",
+          "LACONIC : WORDS",
+          "AMORPHOUS : SOLID"
+        ],
+        "correct_answer": "LUMINOUS : BRIGHT",
+        "explanation": "Something profound possesses depth; something luminous possesses brightness.",
+        "bengali_explanation": "profound (গভীর) জিনিসে গভীরতা বা depth থাকে, যেমন luminous (উজ্জ্বল) জিনিসে উজ্জ্বলতা বা brightness থাকে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "PROPITIOUS : SUSPICIOUS",
+        "options": [
+          "AUSPICIOUS : OMINOUS",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "ACUTE : SHARP"
+        ],
+        "correct_answer": "AUSPICIOUS : OMINOUS",
+        "explanation": "Propitious and suspicious are antonyms (favorable vs unfavorable); auspicious and ominous are antonyms.",
+        "bengali_explanation": "propitious (অনুকূল) ও suspicious (সন্দেহজনক) বিপরীত শব্দ; auspicious (শুভ) ও ominous (অশুভ) বিপরীত শব্দ।"
+      },
+      {
+        "question_number": 4,
+        "stem": "PROSCRIBE : ALLOW",
+        "options": [
+          "CONDONE : FORGIVE",
+          "ADMONISH : SCROLL",
+          "CHASTISE : PRAISE",
+          "AMELIORATE : BETTER"
+        ],
+        "correct_answer": "CHASTISE : PRAISE",
+        "explanation": "To proscribe is to forbid or ban (opposite of allow); to chastise is to scold (opposite of praise).",
+        "bengali_explanation": "proscribe (নিষিদ্ধ করা) হলো allow (অনুমতি দেওয়া)-এর বিপরীত; chastise (তিরস্কার করা) হলো praise (প্রশংসা)-এর বিপরীত।"
+      },
+      {
+        "question_number": 5,
+        "stem": "PROVIDENT : FUTURE",
+        "options": [
+          "RECLUSE : SOCIETY",
+          "FASTIDIOUS : ORDER",
+          "MUNDANE : ADVENTURE",
+          "CYNIC : FAITH"
+        ],
+        "correct_answer": "RECLUSE : SOCIETY",
+        "explanation": "A provident person makes preparations for the future; a recluse separates from society.",
+        "bengali_explanation": "provident (দূরদর্শী/মিতব্যয়ী) ব্যক্তি ভবিষ্যতের জন্য সঞ্চয় করেন; recluse ব্যক্তি সমাজ থেকে নিজেকে দূরে রাখেন।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The country's leaders made a _______ decision to invest in renewable energy before the oil crisis started.",
+        "options": [
+          "provident",
+          "profligate",
+          "provinical",
+          "prosaic"
+        ],
+        "correct_answer": "provident",
+        "explanation": "Provident means making timely preparation for the future; wise, farseeing.",
+        "bengali_explanation": "তেল সংকটের আগেই নবায়নযোগ্য শক্তিতে বিনিয়োগ করে দেশটির নেতারা provident (দূরদর্শী/মিতব্যয়ী) পরিচয় দিয়েছেন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The medical association decided to _______ the dangerous treatment method, banning all doctors from using it.",
+        "options": [
+          "proscribe",
+          "promulgate",
+          "prolong",
+          "propel"
+        ],
+        "correct_answer": "proscribe",
+        "explanation": "To proscribe is to forbid, ban, or condemn officially.",
+        "bengali_explanation": "ক্ষতিকর চিকিৎসাপদ্ধতিটি সব ডাক্তারের জন্য মেডিকেল কাউন্সিল proscribe (নিষিদ্ধ/বর্জন করা) ঘোষণা করেছে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The manager's _______ spending on luxury hotels and dinners led to the company's financial crisis.",
+        "options": [
+          "profligate",
+          "provident",
+          "profound",
+          "pristine"
+        ],
+        "correct_answer": "profligate",
+        "explanation": "Profligate means recklessly extravagant or wasteful in the use of resources.",
+        "bengali_explanation": "বিলাসবহুল হোটেল ও ঘোরাফেরায় ম্যানেজারের profligate (উড়নচণ্ডী/অপব্যয়ী) খরচ কোম্পানিকে ব্যাংকরপ্ট করেছে।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The new law was _______ by the president, making it active across the nation immediately.",
+        "options": [
+          "promulgated",
+          "proscribed",
+          "protracted",
+          "pruned"
+        ],
+        "correct_answer": "promulgated",
+        "explanation": "To promulgate is to promote or make widely known, especially a new law.",
+        "bengali_explanation": "নতুন আইনটি রাষ্ট্রপতি কর্তৃক promulgated (জারী/জনসমক্ষে প্রচার করা) হয়ে দেশব্যাপী কার্যকর হয়েছে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "His book was a _______ study of the social impacts of the industrial revolution, praised for its depth.",
+        "options": [
+          "profound",
+          "prosaic",
+          "provincial",
+          "provisional"
+        ],
+        "correct_answer": "profound",
+        "explanation": "Profound means demanding deep study or thought; showing great knowledge or insight.",
+        "bengali_explanation": "তার বইটি ছিল বিপ্লবের সামাজিক প্রভাবের ওপর একটি profound (গভীর/গবেষণামূলক) কাজ।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The sunny sky and light breeze were **propitious** signs for our planned outdoor wedding.",
+        "target_word": "propitious",
+        "options": [
+          "favorable",
+          "dark",
+          "stormy",
+          "ominous"
+        ],
+        "correct_answer": "favorable",
+        "explanation": "Propitious means giving or indicating a good chance of success; favorable.",
+        "bengali_explanation": "মেঘমুক্ত আকাশ ছিল বিয়ের অনুষ্ঠানের জন্য propitious (অনুকূল/শুভ), তাই favorable সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "She has a natural **propensity** for learning foreign languages, mastering them in months.",
+        "target_word": "propensity",
+        "options": [
+          "inclination",
+          "dislike",
+          "fear",
+          "hate"
+        ],
+        "correct_answer": "inclination",
+        "explanation": "A propensity is an inclination or natural tendency to behave in a particular way.",
+        "bengali_explanation": "নতুন ভাষা শেখার প্রতি তার একটি সহজাত propensity (প্রবণতা/অনুরক্তি) ছিল, তাই inclination সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "His views were criticized as **provincial**, reflecting only the interests of his small home village.",
+        "target_word": "provincial",
+        "options": [
+          "cosmopolitan",
+          "narrow-minded",
+          "local",
+          "rural"
+        ],
+        "correct_answer": "cosmopolitan",
+        "explanation": "Provincial means of or concerning a province; narrow-minded. The antonym is cosmopolitan (world-wise).",
+        "bengali_explanation": "provincial মানে সংকীর্ণমনা বা আঞ্চলিক। এর বিপরীত শব্দ (antonym) হলো cosmopolitan (উদার/বিশ্বজনীন)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The treaty signed by the two countries was only **provisional**, awaiting final parliament approval.",
+        "target_word": "provisional",
+        "options": [
+          "temporary",
+          "permanent",
+          "binding",
+          "final"
+        ],
+        "correct_answer": "temporary",
+        "explanation": "Provisional means arranged or existing for the present, possibly to be changed later; temporary.",
+        "bengali_explanation": "চুক্তিটি ছিল কেবল provisional (অস্থায়ী/সাময়িক), যা সংসদের চূড়ান্ত অনুমোদনের অপেক্ষায় ছিল, তাই temporary সঠিক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The negotiations were **protracted** by long debates over minor financial details.",
+        "target_word": "protracted",
+        "options": [
+          "shortened",
+          "extended",
+          "prolonged",
+          "delayed"
+        ],
+        "correct_answer": "shortened",
+        "explanation": "Protracted means lasting for a long time or longer than expected or usual. The antonym is shortened.",
+        "bengali_explanation": "protracted মানে দীর্ঘায়িত বা দীর্ঘ দিন ধরে চলা। এর বিপরীত শব্দ হলো shortened (সংক্ষিপ্ত/হ্রাসকৃত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 12,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "RECALCITRANT : OBEY",
+        "options": [
+          "MENDACIOUS : TRUTH",
+          "COMPLACENT : DANGER",
+          "FASTIDIOUS : DETAIL",
+          "LACONIC : SPEECH"
+        ],
+        "correct_answer": "MENDACIOUS : TRUTH",
+        "explanation": "A recalcitrant person stubbornly refuses to obey; a mendacious person stubbornly refuses to tell the truth.",
+        "bengali_explanation": "recalcitrant (অবাধ্য) ব্যক্তি অবাধ্য আচরণ করেন; mendacious (মিথ্যাবাদী) ব্যক্তি সত্য বলতে অস্বীকার করেন।"
+      },
+      {
+        "question_number": 2,
+        "stem": "RANCOR : ENMITY",
+        "options": [
+          "CLEMENCY : HOSTILITY",
+          "LEVITY : SERIOUSNESS",
+          "CADENCE : RHYTHM",
+          "CANDOR : HONESTY"
+        ],
+        "correct_answer": "CADENCE : RHYTHM",
+        "explanation": "Rancor is a synonym of enmity; cadence is a synonym of rhythm.",
+        "bengali_explanation": "rancor (তিক্ততা) ও enmity (শত্রুতা) সমার্থক শব্দ; cadence (ছন্দ) ও rhythm (লয়/ছন্দ) সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 3,
+        "stem": "RECLUSIVE : SOCIETY",
+        "options": [
+          "APATHETIC : ENTHUSIASM",
+          "AUDACIOUS : BOLDNESS",
+          "MUNDANE : ORDINARY",
+          "LUCID : VISION"
+        ],
+        "correct_answer": "APATHETIC : ENTHUSIASM",
+        "explanation": "A reclusive person avoids society; an apathetic person avoids enthusiasm.",
+        "bengali_explanation": "reclusive (নিঃসঙ্গ/একাকী) ব্যক্তি সমাজ এড়িয়ে চলেন; apathetic (উদাসীন) ব্যক্তি উৎসাহ-উদ্দীপনা এড়িয়ে চলেন।"
+      },
+      {
+        "question_number": 4,
+        "stem": "RECONDITE : KNOWLEDGE",
+        "options": [
+          "ABSTRUSE : TOPIC",
+          "EPHEMERAL : DURATION",
+          "LACONIC : SPEECH",
+          "AMORPHOUS : SOLID"
+        ],
+        "correct_answer": "ABSTRUSE : TOPIC",
+        "explanation": "Recondite knowledge is extremely abstruse or difficult to understand; an abstruse topic is also difficult.",
+        "bengali_explanation": "recondite (দুর্বোধ্য) জ্ঞান ও abstruse (দুর্বোধ্য) বিষয়বস্তু সমার্থক জোড় নির্দেশ করে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "REDUNDANT : NECESSARY",
+        "options": [
+          "SUPERFLUOUS : REQUIRED",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "CLEMENCY : GENTLE"
+        ],
+        "correct_answer": "SUPERFLUOUS : REQUIRED",
+        "explanation": "Redundant and necessary are opposites; superfluous and required are also opposites.",
+        "bengali_explanation": "redundant (অতিরিক্ত/অপ্রয়োজনীয়) ও necessary বিপরীত; superfluous (অতিরিক্ত) ও required বিপরীত শব্দ।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The child was _______, refusing to sit in his seat despite multiple warnings from the flight attendant.",
+        "options": [
+          "recalcitrant",
+          "reclusive",
+          "recondite",
+          "redolent"
+        ],
+        "correct_answer": "recalcitrant",
+        "explanation": "Recalcitrant means having an obstinately uncooperative attitude toward authority or discipline.",
+        "bengali_explanation": "বিমানবালা বারবার অনুরোধ করার পরও শিশুটি recalcitrant (অবাধ্য/একগুঁয়ে) হয়ে সিটে বসতে রাজি হলো না।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "Years after leaving his home country, his kitchen was still _______ with the sweet smell of spices.",
+        "options": [
+          "redolent",
+          "redundant",
+          "recalcitrant",
+          "reclusive"
+        ],
+        "correct_answer": "redolent",
+        "explanation": "Redolent means strongly reminiscent or suggestive of something; fragrant or smelling of.",
+        "bengali_explanation": "দেশ ছাড়ার বহু বছর পরও তার রান্নাঘরটি দেশের মসলার ঘ্রাণে redolent (সুগন্ধি/স্মৃতিজাগানিয়া) হয়ে থাকত।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The professor's lecture was so _______ that even the graduate students struggled to understand it.",
+        "options": [
+          "recondite",
+          "redundant",
+          "recalcitrant",
+          "repartee"
+        ],
+        "correct_answer": "recondite",
+        "explanation": "Recondite means little known; abstruse, obscure, or highly intellectual.",
+        "bengali_explanation": "প্রফেসরের লেকচারটি ছিল অত্যন্ত recondite (দুর্বোধ্য/নিগূঢ়) যা বুঝতে বড় বড় ছাত্ররাও হিমশিম খাচ্ছিল।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The writer cut several _______ paragraphs to make the story more concise and readable.",
+        "options": [
+          "redundant",
+          "reclusive",
+          "reciprocal",
+          "replete"
+        ],
+        "correct_answer": "redundant",
+        "explanation": "Redundant means not or no longer needed or useful; superfluous or unnecessary.",
+        "bengali_explanation": "গল্পটি গোছানো করতে লেখক অপ্রয়োজনীয় ও redundant (অতিরিক্ত/পুনরুক্ত) প্যারাগ্রাফগুলো কেটে বাদ দিলেন।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The host was famous for his quick _______, always ready with a witty comeback to any joke.",
+        "options": [
+          "repartee",
+          "recrimination",
+          "rancor",
+          "renaissance"
+        ],
+        "correct_answer": "repartee",
+        "explanation": "Repartee refers to conversation or speech characterized by quick, witty comments and replies.",
+        "bengali_explanation": "টক শো হোস্ট তার ক্ষুরধার repartee (রসাত্মক ও চটজলদি উত্তর)-এর জন্য দেশজুড়ে বিখ্যাত ছিলেন।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "He harbored deep **rancor** toward his former business partner who had cheated him.",
+        "target_word": "rancor",
+        "options": [
+          "bitterness",
+          "friendship",
+          "pity",
+          "trust"
+        ],
+        "correct_answer": "bitterness",
+        "explanation": "Rancor means bitterness or resentfulness, especially when long-standing.",
+        "bengali_explanation": "প্রতারণা করায় পার্টনারের প্রতি তার মনে গভীর rancor (তিক্ততা/আক্রোশ) ছিল, তাই bitterness সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The billionaire lived a **reclusive** life on his private island, away from the media.",
+        "target_word": "reclusive",
+        "options": [
+          "isolated",
+          "public",
+          "famous",
+          "friendly"
+        ],
+        "correct_answer": "isolated",
+        "explanation": "Reclusive means avoiding the company of other people; solitary or isolated.",
+        "bengali_explanation": "মিডিয়া থেকে দূরে সে তার দ্বীপে reclusive (নিঃসঙ্গ/একাকী) জীবন কাটাত, তাই isolated সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The politician's speech was filled with **recrimination**, blaming his rivals for every failure.",
+        "target_word": "recrimination",
+        "options": [
+          "praise",
+          "accusation",
+          "denial",
+          "defense"
+        ],
+        "correct_answer": "praise",
+        "explanation": "Recrimination is an accusation in response to one from someone else. The antonym is praise.",
+        "bengali_explanation": "recrimination মানে পাল্টা অভিযোগ আনা। এর বিপরীত শব্দ (antonym) হলো praise (প্রশংসা করা)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The library was **replete** with thousands of rare books on medieval Asian history.",
+        "target_word": "replete",
+        "options": [
+          "filled",
+          "empty",
+          "expensive",
+          "ruined"
+        ],
+        "correct_answer": "filled",
+        "explanation": "Replete means filled or well-supplied with something.",
+        "bengali_explanation": "লাইব্রেরিটি হাজার হাজার বিরল বইয়ে replete (পরিপূর্ণ) ছিল, তাই filled সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "To protect his reputation, the writer decided to **recant** his highly controversial statements.",
+        "target_word": "recant",
+        "options": [
+          "reaffirm",
+          "withdraw",
+          "deny",
+          "defend"
+        ],
+        "correct_answer": "reaffirm",
+        "explanation": "To recant is to say that one no longer holds an opinion or belief; withdraw. The antonym is reaffirm (assert again).",
+        "bengali_explanation": "recant মানে আগের মন্তব্য বা বক্তব্য প্রত্যাহার করা। এর বিপরীত শব্দ হলো reaffirm (পুনশ্চ নিশ্চিত করা)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 13,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "REPREHENSIBLE : BLAME",
+        "options": [
+          "LAUDABLE : PRAISE",
+          "MENDACIOUS : HONESTY",
+          "FASTIDIOUS : DETAIL",
+          "LACONIC : SPEECH"
+        ],
+        "correct_answer": "LAUDABLE : PRAISE",
+        "explanation": "Something reprehensible deserves blame; something laudable deserves praise.",
+        "bengali_explanation": "reprehensible (নিন্দনীয়) কাজ তিরস্কার বা blame পাওয়ার যোগ্য; laudable (প্রশংসনীয়) কাজ প্রশংসার যোগ্য।"
+      },
+      {
+        "question_number": 2,
+        "stem": "REPUDIATE : AGREEMENT",
+        "options": [
+          "ABSCOND : COUNTRY",
+          "CLEMENCY : LAW",
+          "CANDOR : HONESTY",
+          "BANE : LIFE"
+        ],
+        "correct_answer": "ABSCOND : COUNTRY",
+        "explanation": "To repudiate is to reject or break an agreement; to abscond is to secretly flee a country.",
+        "bengali_explanation": "repudiate মানে কোনো চুক্তি অস্বীকার করা বা প্রত্যাখ্যান করা; abscond মানে গোপনে দেশ ছেড়ে পালানো।"
+      },
+      {
+        "question_number": 3,
+        "stem": "RESILIENT : FORCE",
+        "options": [
+          "MALLEABLE : PRESSURE",
+          "LUCID : CLARITY",
+          "MUNDANE : ADVENTURE",
+          "APATHETIC : EMOTION"
+        ],
+        "correct_answer": "MALLEABLE : PRESSURE",
+        "explanation": "A resilient material can withstand force; a malleable material can withstand pressure.",
+        "bengali_explanation": "resilient (স্থিতিস্থাপক) বস্তু বল বা force সহ্য করতে পারে; malleable (নমনীয়) ধাতু চাপ বা pressure সহ্য করতে পারে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "RETICENT : WORDS",
+        "options": [
+          "FRUGAL : MONEY",
+          "INSOLENT : PRIDE",
+          "FASTIDIOUS : DETAILS",
+          "CYNIC : TRUST"
+        ],
+        "correct_answer": "FRUGAL : MONEY",
+        "explanation": "A reticent person is economical with words; a frugal person is economical with money.",
+        "bengali_explanation": "reticent (স্বল্পভাষী) ব্যক্তি কথা বলায় বা শব্দ ব্যবহারে সাশ্রয়ী হন; frugal ব্যক্তি খরচে বা টাকায় সাশ্রয়ী হন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "RIGOR : HARSH",
+        "options": [
+          "LEVITY : LIGHT",
+          "CADENCE : RHYTHMIC",
+          "CANDOR : TRUE",
+          "BANE : EVIL"
+        ],
+        "correct_answer": "LEVITY : LIGHT",
+        "explanation": "Rigor is the quality of being harsh; levity is the quality of being light or frivolous.",
+        "bengali_explanation": "rigor হলো কঠোর বা কঠোরতা প্রদর্শন করার গুণ; levity হলো চপলতা বা হালকা স্বভাবের গুণ।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The politician was forced to _______ his controversial remarks after a massive public backlash.",
+        "options": [
+          "repudiate",
+          "reprobate",
+          "reproach",
+          "replicate"
+        ],
+        "correct_answer": "repudiate",
+        "explanation": "To repudiate is to refuse to accept or be associated with; reject or disown.",
+        "bengali_explanation": "জনগণের তোপের মুখে পড়ে রাজনীতিবিদটি তার বিতর্কিত মন্তব্যটি repudiate (প্রত্যাখ্যান/অস্বীকার করা) করতে বাধ্য হন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "Stealing money from the orphan charity was a truly _______ crime.",
+        "options": [
+          "reprehensible",
+          "replete",
+          "resolute",
+          "resilient"
+        ],
+        "correct_answer": "reprehensible",
+        "explanation": "Reprehensible means deserving censure or condemnation; highly shameful.",
+        "bengali_explanation": "এতিমখানার টাকা চুরি করা ছিল একটি অত্যন্ত reprehensible (নিন্দনীয়/ক্ষমার অযোগ্য) অপরাধ।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "Despite being knocked down multiple times, the boxer showed a _______ spirit and won the final round.",
+        "options": [
+          "resilient",
+          "reprehensible",
+          "replete",
+          "reclusive"
+        ],
+        "correct_answer": "resilient",
+        "explanation": "Resilient means able to withstand or recover quickly from difficult conditions.",
+        "bengali_explanation": "বারবার মাটিতে পড়ে যাওয়ার পরও বক্সারটি তার resilient (স্থিতিস্থাপক/সহনশীল) ক্ষমতার প্রকাশ ঘটিয়ে জয়ী হয়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "He was extremely _______ about his private life, refusing to share any details with his coworkers.",
+        "options": [
+          "reticent",
+          "robust",
+          "replete",
+          "recalcitrant"
+        ],
+        "correct_answer": "reticent",
+        "explanation": "Reticent means not revealing one's thoughts or feelings readily; reserved.",
+        "bengali_explanation": "ব্যক্তিগত জীবনের ব্যাপারে সে অত্যন্ত reticent (স্বল্পভাষী/চাপা স্বভাবের) ছিল, কাউকে কিছু বলত না।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The academic program was famous for its _______, requiring students to study up to ten hours every day.",
+        "options": [
+          "rigor",
+          "rancor",
+          "repartee",
+          "resignation"
+        ],
+        "correct_answer": "rigor",
+        "explanation": "Rigor refers to the quality of being extremely thorough, exhaustive, and difficult.",
+        "bengali_explanation": "একাডেমিক প্রোগ্রামটি তার rigor (কঠোরতা/পুঙ্খানুপুঙ্খতা)-এর জন্য পরিচিত ছিল, যেখানে প্রতিদিন ১০ ঘণ্টা পড়তে হতো।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The general ordered a swift military **reprisal** against the rebel forces.",
+        "target_word": "reprisal",
+        "options": [
+          "retaliation",
+          "peace",
+          "surrender",
+          "pardon"
+        ],
+        "correct_answer": "retaliation",
+        "explanation": "A reprisal is an act of retaliation, especially in war; revenge.",
+        "bengali_explanation": "reprisal মানে প্রতিশোধমূলক সামরিক পদক্ষেপ, যা retaliation (প্রতিশোধ)-এর সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "Her mother gave her a gentle **reproach** for leaving her clothes scattered on the floor.",
+        "target_word": "reproach",
+        "options": [
+          "scolding",
+          "praise",
+          "reward",
+          "excuse"
+        ],
+        "correct_answer": "scolding",
+        "explanation": "Reproach means an expression of disapproval or disappointment; scolding or scold.",
+        "bengali_explanation": "কাপড় ফেলে রাখায় মা তাকে মৃদু reproach (তিরস্কার/বকা দেওয়া) করলেন, তাই scolding সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The patient showed a **robust** recovery after the surgery, walking within three days.",
+        "target_word": "robust",
+        "options": [
+          "feeble",
+          "strong",
+          "healthy",
+          "quick"
+        ],
+        "correct_answer": "feeble",
+        "explanation": "Robust means strong and healthy; vigorous. The antonym is feeble (weak).",
+        "bengali_explanation": "robust recovery মানে অত্যন্ত জোরালো বা সুস্থভাবে সুস্থ হওয়া। এর বিপরীত শব্দ (antonym) হলো feeble (দুর্বল/কৃশ)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The defense attorney presented several facts to **refute** the prosecutor's claims.",
+        "target_word": "refute",
+        "options": [
+          "disprove",
+          "prove",
+          "accept",
+          "ignore"
+        ],
+        "correct_answer": "disprove",
+        "explanation": "To refute is to prove a statement or theory to be wrong or false; disprove.",
+        "bengali_explanation": "প্রসিকিউটরের দাবিগুলো মিথ্যা প্রমাণ করতে আইনজীবী বেশ কিছু যুক্তি দিলেন, তাই disprove সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The team remained **resolute** in their goal, refusing to give up despite the bad weather.",
+        "target_word": "resolute",
+        "options": [
+          "vacillating",
+          "determined",
+          "strong",
+          "firm"
+        ],
+        "correct_answer": "vacillating",
+        "explanation": "Resolute means admirably purposeful, determined, and unwavering. The antonym is vacillating (hesitant).",
+        "bengali_explanation": "resolute মানে দৃঢ় সংকল্পবদ্ধ বা অটল। এর বিপরীত শব্দ হলো vacillating (দোদুল্যমান/দ্বিধাগ্রস্ত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 14,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "SAGACIOUS : WISDOM",
+        "options": [
+          "AFFLUENT : MONEY",
+          "INDOLENT : ENERGY",
+          "MENDACIOUS : TRUTH",
+          "LACONIC : WORDS"
+        ],
+        "correct_answer": "AFFLUENT : MONEY",
+        "explanation": "A sagacious person possesses wisdom; an affluent person possesses money.",
+        "bengali_explanation": "sagacious (জ্ঞানী) ব্যক্তির প্রজ্ঞা থাকে; affluent (ধনী) ব্যক্তির প্রচুর অর্থ বা সম্পদ থাকে।"
+      },
+      {
+        "question_number": 2,
+        "stem": "SANCTIMONIOUS : PIETY",
+        "options": [
+          "MENDACIOUS : HONESTY",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "FASTIDIOUS : DETAILS"
+        ],
+        "correct_answer": "MENDACIOUS : HONESTY",
+        "explanation": "A sanctimonious person falsely displays piety (holiness); a mendacious person falsely displays honesty.",
+        "bengali_explanation": "sanctimonious (ভণ্ড ধার্মিক) লোক ভণ্ড ধার্মিকতা বা piety দেখায়; mendacious লোক ভণ্ড সততা বা honesty দেখায়।"
+      },
+      {
+        "question_number": 3,
+        "stem": "SOPORIFIC : AWAKE",
+        "options": [
+          "ENERVATE : STRONG",
+          "ASSUAGE : SOFT",
+          "CONSECRATE : HOLY",
+          "DELUDE : GUILTY"
+        ],
+        "correct_answer": "ENERVATE : STRONG",
+        "explanation": "Something soporific makes one not awake; something enervating makes one not strong.",
+        "bengali_explanation": "soporific (ঘুমপাড়ানি) জিনিস জাগরণ দূর করে; enervating (ক্লান্তিকর) জিনিস শক্তি বা জোর হরণ করে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "SPORADIC : FREQUENCY",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LUCID : CLARITY",
+          "MUNDANE : ORDINARY",
+          "LACONIC : SPEECH"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something sporadic lacks regular frequency; something amorphous lacks shape.",
+        "bengali_explanation": "sporadic (অনিয়মিত/বিক্ষিপ্ত) জিনিসে নিয়মিত ফ্রিকোয়েন্সি বা হারের অভাব থাকে; amorphous জিনিসে আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "SQUALOR : CLEAN",
+        "options": [
+          "ANARCHY : ORDERED",
+          "LEVITY : LIGHT",
+          "CANDOR : HONEST",
+          "BANE : EVIL"
+        ],
+        "correct_answer": "ANARCHY : ORDERED",
+        "explanation": "Squalor is a state of being extremely dirty (not clean); anarchy is a state of being not ordered.",
+        "bengali_explanation": "squalor (নোংরা পরিবেশ) বলতে পরিষ্কার না হওয়াকে বোঝায়; anarchy বলতে সুশৃঙ্খল না হওয়াকে বোঝায়।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The old professor gave _______ advice to his graduate students, helping them avoid career traps.",
+        "options": [
+          "sagacious",
+          "sanctimonious",
+          "sanguine",
+          "sardonic"
+        ],
+        "correct_answer": "sagacious",
+        "explanation": "Sagacious means having or showing keen mental discernment and good judgment; shrewd or wise.",
+        "bengali_explanation": "বৃদ্ধ প্রবীণ প্রফেসর ছাত্রদের ক্যারিয়ার গঠনে বেশ কিছু sagacious (বিজ্ঞ/যুক্তিযুক্ত) উপদেশ দিলেন।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The lectures on ethics given by the corrupt official felt incredibly _______ to the listeners.",
+        "options": [
+          "sanctimonious",
+          "sagacious",
+          "salutary",
+          "scrupulous"
+        ],
+        "correct_answer": "sanctimonious",
+        "explanation": "Sanctimonious means making a hypocritical show of religious devotion, piety, or righteousness.",
+        "bengali_explanation": "দুর্নীতিবাজ কর্মকর্তার নৈতিকতার লেকচারটি দর্শকদের কাছে চরম sanctimonious (বকধার্মিকসুলভ/ভণ্ডামি) লেগেছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "Taking the warm milk before bed had a strong _______ effect, putting him to sleep in minutes.",
+        "options": [
+          "soporific",
+          "scintillating",
+          "sensory",
+          "sentient"
+        ],
+        "correct_answer": "soporific",
+        "explanation": "Soporific means tending to induce drowsiness or sleep.",
+        "bengali_explanation": "ঘুমানোর আগে গরম দুধ খাওয়ার চমৎকার soporific (ঘুমের উদ্রেককারী) ক্ষমতা ছিল, যার ফলে সে দ্রুত ঘুমিয়ে পড়ে।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The rain showers were _______ throughout the afternoon, starting and stopping every few minutes.",
+        "options": [
+          "sporadic",
+          "spurious",
+          "secular",
+          "steadfast"
+        ],
+        "correct_answer": "sporadic",
+        "explanation": "Sporadic means occurring at irregular intervals or only in a few places; scattered or isolated.",
+        "bengali_explanation": "আজ দুপুরজুড়ে sporadic (বিক্ষিপ্ত/অনিয়মিত) বৃষ্টি হয়েছে, এই নামছে তো এই থামছে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The poor family lived in absolute _______, in a tiny room with no running water or electricity.",
+        "options": [
+          "squalor",
+          "sobriety",
+          "solitude",
+          "stagnation"
+        ],
+        "correct_answer": "squalor",
+        "explanation": "Squalor refers to a state of being extremely dirty and unpleasant, especially as a result of poverty.",
+        "bengali_explanation": "অত্যন্ত দরিদ্র পরিবারটি বিদ্যুৎ ও পানিশূন্য এক ঘরে চরম squalor (নোংরা বা মলিন পরিবেশ)-এর মাঝে বাস করত।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The new green spaces in the city center had a **salutary** effect on the public health.",
+        "target_word": "salutary",
+        "options": [
+          "beneficial",
+          "harmful",
+          "costly",
+          "small"
+        ],
+        "correct_answer": "beneficial",
+        "explanation": "Salutary means producing good effects; beneficial or health-promoting.",
+        "bengali_explanation": "শহরের নতুন সবুজ পার্কগুলো জনস্বাস্থ্যে salutary (কল্যাণকর/উপকারী) প্রভাব ফেলেছে, তাই beneficial সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "Despite the terrible financial report, the CEO remained **sanguine** about next quarter profits.",
+        "target_word": "sanguine",
+        "options": [
+          "optimistic",
+          "pessimistic",
+          "sad",
+          "angry"
+        ],
+        "correct_answer": "optimistic",
+        "explanation": "Sanguine means optimistic or positive, especially in an apparently bad or difficult situation.",
+        "bengali_explanation": "মন্দা থাকার পরও সিইও মুনাফার ব্যাপারে sanguine (আশাবাদী/হাসিখুশি) ছিলেন, তাই optimistic সঠিক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The host gave a **sardonic** smile after hearing the guest's ridiculous excuse.",
+        "target_word": "sardonic",
+        "options": [
+          "warm",
+          "mocking",
+          "cynical",
+          "cold"
+        ],
+        "correct_answer": "warm",
+        "explanation": "Sardonic means grimly mocking or cynical. The antonym is warm (friendly).",
+        "bengali_explanation": "sardonic মানে অবজ্ঞাপূর্ণ হাসি বা বিদ্রূপাত্মক হাসি। এর বিপরীত শব্দ (antonym) হলো warm (উষ্ণ/আন্তরিক)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The lawyer **scrutinized** the contract, searching for any hidden loopholes.",
+        "target_word": "scrutinized",
+        "options": [
+          "examined",
+          "ignored",
+          "signed",
+          "lost"
+        ],
+        "correct_answer": "examined",
+        "explanation": "To scrutinize is to examine or inspect closely and thoroughly.",
+        "bengali_explanation": "আইনজীবী চুক্তিপত্রটি খুঁটিয়ে scrutinized (নিবিড়ভাবে পরীক্ষা করা) করলেন, তাই examined সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The city council made a **steadfast** promise to complete the bridge on time.",
+        "target_word": "steadfast",
+        "options": [
+          "vacillating",
+          "firm",
+          "strong",
+          "loyal"
+        ],
+        "correct_answer": "vacillating",
+        "explanation": "Steadfast means resolutely or dutifully firm and unwavering. The antonym is vacillating (fickle).",
+        "bengali_explanation": "steadfast মানে অবিচল বা দৃঢ় সংকল্প। এর বিপরীত শব্দ হলো vacillating (দোদুল্যমান/অস্থির)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 15,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "SYCOPHANT : FLATTERY",
+        "options": [
+          "MENDACIOUS : TRUTH",
+          "FASTIDIOUS : CLEAN",
+          "LACONIC : SPEECH",
+          "PRODIGAL : WASTE"
+        ],
+        "correct_answer": "PRODIGAL : WASTE",
+        "explanation": "A sycophant is characterized by excessive flattery; a prodigal person is characterized by excessive waste.",
+        "bengali_explanation": "sycophant (তোষামোদকারী) ব্যক্তি চাটুকারিতা দিয়ে কাজ হাসিল করেন; prodigal ব্যক্তি অপব্যয় বা অপচয় করেন।"
+      },
+      {
+        "question_number": 2,
+        "stem": "TACIT : SPOKEN",
+        "options": [
+          "AMORPHOUS : SHAPED",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "CLEMENCY : GENTLE"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPED",
+        "explanation": "Something tacit is understood without being spoken; something amorphous exists without being shaped.",
+        "bengali_explanation": "tacit (মৌন/অনুক্ত) কথা বলা বা spoken ছাড়াই বোঝা যায়; amorphous জিনিস সুনির্দিষ্ট আকার বা shape ছাড়াই অবস্থান করে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "TEMERITY : CAUTION",
+        "options": [
+          "LEVITY : SERIOUSNESS",
+          "CADENCE : RHYTHM",
+          "CANDOR : TRUTH",
+          "AESTHETIC : BEAUTY"
+        ],
+        "correct_answer": "LEVITY : SERIOUSNESS",
+        "explanation": "Temerity (recklessness) is a lack of caution; levity is a lack of seriousness.",
+        "bengali_explanation": "temerity (দুঃসাহস/অবিবেচনা) বলতে সতর্কতার অভাব বোঝায়; levity বলতে গাম্ভীর্যের অভাব বোঝায়।"
+      },
+      {
+        "question_number": 4,
+        "stem": "TENUOUS : STRENGTH",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LACONIC : WORDS",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : HOSTILITY"
+        ],
+        "correct_answer": "CLEMENCY : HOSTILITY",
+        "explanation": "Something tenuous lacks structural strength; clemency lacks active hostility.",
+        "bengali_explanation": "tenuous (ক্ষীণ/দুর্বল) জিনিসে শক্তির অভাব থাকে; clemency (ক্ষমাশীলতা)-তে শত্রুতা বা বিরোধের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "TORPOR : ENERGY",
+        "options": [
+          "PAUCITY : AMOUNT",
+          "APATHY : EXCITEMENT",
+          "LEVITY : GRAVITY",
+          "BANAL : BORING"
+        ],
+        "correct_answer": "PAUCITY : AMOUNT",
+        "explanation": "Torpor is a state of lack of energy; paucity is a state of lack of amount.",
+        "bengali_explanation": "torpor (অসাড়তা/নিষ্ক্রিয়তা) বলতে কর্মশক্তি বা উদ্দীপনার অভাব বোঝায়; paucity বলতে পরিমাণের ঘাটতি বোঝায়।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The assistant was an absolute _______, constantly praising the manager's terrible fashion choices to get a promotion.",
+        "options": [
+          "sycophant",
+          "sovereign",
+          "savior",
+          "speculator"
+        ],
+        "correct_answer": "sycophant",
+        "explanation": "A sycophant is a person who acts obsequiously toward someone important in order to gain advantage.",
+        "bengali_explanation": "প্রমোশন পাওয়ার জন্য অলস সহকারীটি ম্যানেজারের বাজে পোশাকের সবসময় প্রশংসা করে sycophant (চাটুকার/তোষামোদকারী)-এর মতো আচরণ করত।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "There was a _______ agreement between the roommates that whoever finished the milk would buy a new carton.",
+        "options": [
+          "tacit",
+          "tangible",
+          "temperate",
+          "tentative"
+        ],
+        "correct_answer": "tacit",
+        "explanation": "Tacit agreement is understood or implied without being directly stated in words.",
+        "bengali_explanation": "রুমমেটদের মধ্যে একটি tacit (মৌন/অনুক্ত) সমঝোতা ছিল যে যে দুধ শেষ করবে সেই নতুন প্যাকেট কিনবে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "We were shocked by his _______, as he walked right up to the stage and interrupted the guest speaker.",
+        "options": [
+          "temerity",
+          "taciturnity",
+          "tenuity",
+          "torpor"
+        ],
+        "correct_answer": "temerity",
+        "explanation": "Temerity refers to excessive confidence or boldness; audacity or rashness.",
+        "bengali_explanation": "তার এমন temerity (দুঃসাহস/অবিবেচনা) দেখে সবাই অবাক হয়েছিল যখন সে সরাসরি মঞ্চে উঠে বক্তাকে থামিয়ে দেয়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The connection between the two historical events was extremely _______, supported by only a few vague rumors.",
+        "options": [
+          "tenuous",
+          "temperate",
+          "tangible",
+          "terse"
+        ],
+        "correct_answer": "tenuous",
+        "explanation": "Tenuous means very weak, slight, or unsubstantial.",
+        "bengali_explanation": "দুটি ঐতিহাসিক ঘটনার যোগসূত্র ছিল অত্যন্ত tenuous (ক্ষীণ/দুর্বল), যা কেবল গুটি কয়েক গুজবের ওপর টিকে ছিল।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "After the heavy lunch, a deep _______ settled over the office staff, slowing productivity to a crawl.",
+        "options": [
+          "torpor",
+          "temerity",
+          "turbulence",
+          "tactfulness"
+        ],
+        "correct_answer": "torpor",
+        "explanation": "Torpor is a state of physical or mental inactivity; lethargy or sluggishness.",
+        "bengali_explanation": "দুপুরের ভারি খাবারের পর অফিসের সবার মাঝে এক প্রকার torpor (অসাড়তা/নিস্তেজ ভাব) নেমে এসেছিল।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The police searched for some **tangible** evidence linking the suspect to the crime scene.",
+        "target_word": "tangible",
+        "options": [
+          "concrete",
+          "invisible",
+          "vague",
+          "unimportant"
+        ],
+        "correct_answer": "concrete",
+        "explanation": "Tangible means perceptible by touch; clear, definite, or concrete.",
+        "bengali_explanation": "পুলিশ সন্দেহভাজন ব্যক্তির বিরুদ্ধে tangible (বাস্তব/স্পর্শযোগ্য) প্রমাণ খুঁজছিল, তাই concrete সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "His **terse** response to the email indicated that he was extremely busy or angry.",
+        "target_word": "terse",
+        "options": [
+          "brief",
+          "long",
+          "wordy",
+          "polite"
+        ],
+        "correct_answer": "brief",
+        "explanation": "Terse means sparing in the use of words; abrupt; brief and concise.",
+        "bengali_explanation": "ইমেলের terse (সংক্ষিপ্ত/রুক্ষ) উত্তর বুঝিয়েছিল সে খুবই ব্যস্ত, তাই brief সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The host was **taciturn** by nature, preferring to listen rather than talk.",
+        "target_word": "taciturn",
+        "options": [
+          "loquacious",
+          "silent",
+          "quiet",
+          "reserved"
+        ],
+        "correct_answer": "loquacious",
+        "explanation": "Taciturn means reserved or uncommunicative in speech; saying little. The antonym is loquacious (talkative).",
+        "bengali_explanation": "taciturn মানে স্বল্পভাষী বা মিতভাষী। এর বিপরীত শব্দ (antonym) হলো loquacious (বাচাল/খুব কথা বলে)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The climate in the coastal valley was **temperate**, never getting too hot or too cold.",
+        "target_word": "temperate",
+        "options": [
+          "mild",
+          "harsh",
+          "extreme",
+          "dry"
+        ],
+        "correct_answer": "mild",
+        "explanation": "Temperate means relating to or denoting a region or climate characterized by mild temperatures.",
+        "bengali_explanation": "উপকূলবর্তী অঞ্চলের আবহাওয়া ছিল temperate (নাতিশীতোষ্ণ/মৃদু), তাই mild সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The project proposal was only **tentative**, subject to change after the budget review.",
+        "target_word": "tentative",
+        "options": [
+          "definitive",
+          "temporary",
+          "unconfirmed",
+          "vague"
+        ],
+        "correct_answer": "definitive",
+        "explanation": "Tentative means not certain or fixed; provisional. The antonym is definitive (final/certain).",
+        "bengali_explanation": "tentative মানে খসড়া, পরীক্ষামূলক বা অস্থায়ী। এর বিপরীত শব্দ হলো definitive (চূড়ান্ত/চূড়ান্ত সুনির্দিষ্ট)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 16,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "TRANSIENT : PERMANENT",
+        "options": [
+          "EPHEMERAL : LASTING",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "CLEMENCY : HOSTILITY"
+        ],
+        "correct_answer": "EPHEMERAL : LASTING",
+        "explanation": "Transient is the opposite of permanent; ephemeral is the opposite of lasting.",
+        "bengali_explanation": "transient (ক্ষণস্থায়ী) ও permanent (স্থায়ী) বিপরীত শব্দ; ephemeral (অস্থায়ী) ও lasting (দীর্ঘস্থায়ী) বিপরীত শব্দ।"
+      },
+      {
+        "question_number": 2,
+        "stem": "TREPIDATION : FEAR",
+        "options": [
+          "ALACRITY : EAGERNESS",
+          "LEVITY : SERIOUSNESS",
+          "CADENCE : RHYTHM",
+          "CANDOR : HONESTY"
+        ],
+        "correct_answer": "ALACRITY : EAGERNESS",
+        "explanation": "Trepidation is a state of fear; alacrity is a state of eagerness.",
+        "bengali_explanation": "trepidation (কম্পন/ভীতি) বলতে ভীতিপূর্ণ অবস্থা বোঝায়; alacrity (তৎপরতা) বলতে উৎসাহপূর্ণ অবস্থা বোঝায়।"
+      },
+      {
+        "question_number": 3,
+        "stem": "TRITE : ORIGINALITY",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LUCID : CLARITY",
+          "FASTIDIOUS : DETAIL",
+          "LACONIC : SPEECH"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something trite lacks originality; something amorphous lacks shape.",
+        "bengali_explanation": "trite (গতানুগতিক/ঘেঁষা) জিনিসের মৌলিকতার অভাব থাকে, যেমন amorphous জিনিসের আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "UBIQUITOUS : RARITY",
+        "options": [
+          "EPHEMERAL : DURATION",
+          "LACONIC : SPEECH",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : HOSTILITY"
+        ],
+        "correct_answer": "EPHEMERAL : DURATION",
+        "explanation": "Something ubiquitous is lacking in rarity; something ephemeral is lacking in duration.",
+        "bengali_explanation": "ubiquitous (সর্বব্যাপী) জিনিসের বিরলতা বা rarity-র অভাব থাকে; ephemeral জিনিসের স্থায়িত্বের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "UNCONSCIONABLE : CONSCIENCE",
+        "options": [
+          "AMORAL : MORALS",
+          "INSOLENT : RESPECT",
+          "FASTIDIOUS : CAUTION",
+          "MENDACIOUS : FAITH"
+        ],
+        "correct_answer": "AMORAL : MORALS",
+        "explanation": "An unconscionable action lacks conscience; an amoral action lacks morals.",
+        "bengali_explanation": "unconscionable (বিবেকহীন) আচরণে বিবেকের অভাব থাকে; amoral (নীতিহীন) কাজে নৈতিকতার অভাব থাকে।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The joy of victory was only _______, quickly replaced by the stress of preparing for the next match.",
+        "options": [
+          "transient",
+          "tenacious",
+          "tangible",
+          "temperate"
+        ],
+        "correct_answer": "transient",
+        "explanation": "Transient means lasting only for a short time; impermanent.",
+        "bengali_explanation": "জয়ের আনন্দ ছিল কেবল transient (ক্ষণস্থায়ী), যা পরের ম্যাচের চিন্তায় উবে যায়।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "She approached the job interview with great _______, her hands shaking as she walked into the room.",
+        "options": [
+          "trepidation",
+          "temerity",
+          "torpor",
+          "tactfulness"
+        ],
+        "correct_answer": "trepidation",
+        "explanation": "Trepidation refers to a feeling of fear or agitation about something that may happen.",
+        "bengali_explanation": "চাকরির ইন্টারভিউতে ঢোকার সময় সে চরম trepidation (ভীতি/উদ্বেগ)-এর মধ্যে ছিল, তার হাত কাঁপছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The cell phones have become _______ in modern society, carried by almost every person from children to elders.",
+        "options": [
+          "ubiquitous",
+          "unwitting",
+          "urbane",
+          "unconscionable"
+        ],
+        "correct_answer": "ubiquitous",
+        "explanation": "Ubiquitous means present, appearing, or found everywhere.",
+        "bengali_explanation": "মোবাইল ফোন আধুনিক সমাজে ubiquitous (সর্বব্যাপী) হয়ে উঠেছে, সবার হাতেই এখন এটি দেখা যায়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "Charging ten times the normal price for bottled water during the flood was an _______ act of greed.",
+        "options": [
+          "unconscionable",
+          "unwitting",
+          "urbane",
+          "uniform"
+        ],
+        "correct_answer": "unconscionable",
+        "explanation": "Unconscionable means not right or reasonable; unreasonably excessive or unfair.",
+        "bengali_explanation": "বন্যার সময় পানির বোতলের দাম দশগুণ বাড়ানো ছিল একটি unconscionable (বিবেকহীন/অযৌক্তিক) কাজ।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "We were bored by the speaker's _______ remarks, which felt like a collection of old clichés.",
+        "options": [
+          "trite",
+          "terse",
+          "temperate",
+          "tangible"
+        ],
+        "correct_answer": "trite",
+        "explanation": "Trite means lacking originality or freshness; dull on account of overuse.",
+        "bengali_explanation": "বক্তার trite (ঘেঁষা/গতানুগতিক) বক্তব্য আমাদের বিরক্ত করেছিল, কারণ সেখানে নতুন কিছু ছিল না।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The young diplomat was praised for his **urbane** manners and charming personality.",
+        "target_word": "urbane",
+        "options": [
+          "sophisticated",
+          "rude",
+          "rural",
+          "shy"
+        ],
+        "correct_answer": "sophisticated",
+        "explanation": "Urbane means courteous, refined, and suave in manner; sophisticated.",
+        "bengali_explanation": "তরুণ কূটনীতিক তার urbane (ভদ্র/মার্জিত) স্বভাবের জন্য প্রশংসিত হন, যা sophisticated-এর সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The rebels tried to **usurp** the throne, but their coup attempt was quickly defeated.",
+        "target_word": "usurp",
+        "options": [
+          "seize",
+          "give",
+          "share",
+          "defend"
+        ],
+        "correct_answer": "seize",
+        "explanation": "To usurp is to take a position of power or importance illegally or by force; seize.",
+        "bengali_explanation": "বিদ্রোহীরা ক্ষমতা usurp (জবরদখল করা) করার চেষ্টা করেছিল, তাই seize সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The company's new policy was based on **utilitarian** principles, focusing on practical benefits.",
+        "target_word": "utilitarian",
+        "options": [
+          "impractical",
+          "practical",
+          "useful",
+          "beneficial"
+        ],
+        "correct_answer": "impractical",
+        "explanation": "Utilitarian means designed to be useful or practical rather than attractive. The antonym is impractical.",
+        "bengali_explanation": "utilitarian মানে ব্যবহারিক বা উপযোগবাদী। এর বিপরীত শব্দ (antonym) হলো impractical (অবাস্তব/অকার্যকর)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The author wrote about a future **utopia** where hunger and poverty had been completely eliminated.",
+        "target_word": "utopia",
+        "options": [
+          "paradise",
+          "hell",
+          "jungle",
+          "desert"
+        ],
+        "correct_answer": "paradise",
+        "explanation": "A utopia is an imagined place or state of things in which everything is perfect; paradise.",
+        "bengali_explanation": "utopia মানে কাল্পনিক আদর্শ স্বর্গরাজ্য বা নিখুঁত সমাজ, যা paradise (স্বর্গ)-এর সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The team gave an **unremitting** effort to save the stranded hikers, working for 48 hours without rest.",
+        "target_word": "unremitting",
+        "options": [
+          "intermittent",
+          "constant",
+          "continuous",
+          "steady"
+        ],
+        "correct_answer": "intermittent",
+        "explanation": "Unremitting means never relaxing or ceasing; incessant. The antonym is intermittent (stopping and starting).",
+        "bengali_explanation": "unremitting মানে অবিরাম, নিরলস বা অক্লান্ত। এর বিপরীত শব্দ হলো intermittent (সবিরাম/মাঝে মাঝে থামা)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 17,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "VACILLATE : DECISION",
+        "options": [
+          "OBDURATE : COMPROMISE",
+          "DOCILE : OBEY",
+          "LUCID : CLARITY",
+          "FRUGAL : CHEAP"
+        ],
+        "correct_answer": "OBDURATE : COMPROMISE",
+        "explanation": "To vacillate is to waver and avoid making a decision; an obdurate person stubbornly avoids compromise.",
+        "bengali_explanation": "vacillate মানে সিদ্ধান্তে দোদুল্যমান থাকা; obdurate ব্যক্তি আপস বা compromise করতে অটল অস্বীকৃতি জানান।"
+      },
+      {
+        "question_number": 2,
+        "stem": "VACUOUS : INTELLIGENCE",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LACONIC : SPEECH",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : MERCY"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something vacuous lacks intelligence or substance; something amorphous lacks shape.",
+        "bengali_explanation": "vacuous (শূন্যগর্ভ/অসার) জিনিসে বুদ্ধিমত্তা বা চিন্তার অভাব থাকে, যেমন amorphous জিনিসে সুনির্দিষ্ট আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "VAPID : INTEREST",
+        "options": [
+          "BANAL : NOVELTY",
+          "LUCID : CLARITY",
+          "FASTIDIOUS : DETAIL",
+          "LACONIC : SPEECH"
+        ],
+        "correct_answer": "BANAL : NOVELTY",
+        "explanation": "Something vapid lacks interest or life; something banal lacks novelty.",
+        "bengali_explanation": "vapid (নীরস/উত্তেজকহীন) জিনিসে আগ্রহের অভাব থাকে, যেমন banal জিনিসে নতুনত্ব বা novelty-র অভাব থাকে।"
+      },
+      {
+        "question_number": 4,
+        "stem": "VEHEMENT : PASSION",
+        "options": [
+          "ARDENT : DEVOTION",
+          "LACONIC : SPEECH",
+          "MUNDANE : ROUTINE",
+          "CLEMENCY : MERCY"
+        ],
+        "correct_answer": "ARDENT : DEVOTION",
+        "explanation": "A vehement statement is characterized by intense passion; an ardent believer is characterized by devotion.",
+        "bengali_explanation": "vehement (তীব্র/উগ্র) বক্তব্য তীব্র আবেগ বা passion প্রকাশ করে; ardent ভক্ত গভীর ভক্তি প্রকাশ করে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "VENAL : INTEGRITY",
+        "options": [
+          "MENDACIOUS : TRUTH",
+          "COMPLACENT : ACTION",
+          "LUCID : CLARITY",
+          "BANAL : BORING"
+        ],
+        "correct_answer": "MENDACIOUS : TRUTH",
+        "explanation": "A venal person is characterized by a lack of integrity; a mendacious person is characterized by a lack of truth.",
+        "bengali_explanation": "venal (অর্থলোভী/দুর্নীতিগ্রস্ত) চরিত্রে সততা বা integrity-র অভাব থাকে; mendacious চরিত্রে সত্যের অভাব থাকে।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The politician's mood began to _______ as the poll results changed, making him change his statements hourly.",
+        "options": [
+          "vacillate",
+          "venerate",
+          "vilify",
+          "vitiate"
+        ],
+        "correct_answer": "vacillate",
+        "explanation": "To vacillate is to waver between different opinions or actions; be indecisive.",
+        "bengali_explanation": "ভোটের ফল প্রকাশের সময় রাজনীতিবিদটির মন vacillate (দোদুল্যমান/দ্বিধাগ্রস্ত) হতে শুরু করেছিল।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The movie critic dismissed the blockbuster as a _______ action film with zero plot and terrible acting.",
+        "options": [
+          "vapid",
+          "vehement",
+          "viable",
+          "vicarious"
+        ],
+        "correct_answer": "vapid",
+        "explanation": "Vapid means offering nothing that is stimulating or challenging; flat or dull.",
+        "bengali_explanation": "চলচ্চিত্র সমালোচক বড় বাজেটের সিনেমাটিকে একটি vapid (নীরস/নির্জীব) অ্যাকশন ছবি বলে উড়িয়ে দিয়েছেন।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The corrupt police officer was proved to be _______, accepting bribes from local drug dealers.",
+        "options": [
+          "venal",
+          "venerable",
+          "vehement",
+          "verbose"
+        ],
+        "correct_answer": "venal",
+        "explanation": "Venal means showing or motivated by susceptibility to bribery; corrupt.",
+        "bengali_explanation": "ঘুষ নেওয়ার অভিযোগে পুলিশ কর্মকর্তাটি venal (দুর্নীতিগ্রস্ত/ঘুষখোর) প্রমাণিত হয়েছিল।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The community gathered to _______ the old priest, who had served the church for over fifty years.",
+        "options": [
+          "venerate",
+          "vilify",
+          "vitiate",
+          "vacillate"
+        ],
+        "correct_answer": "venerate",
+        "explanation": "To venerate is to regard with great respect; revere or honor.",
+        "bengali_explanation": "পঁয়তাল্লিশ বছর ধরে চার্চে সেবা করায় সবাই বৃদ্ধ যাজককে venerate (শ্রদ্ধা করা/সম্মান জানানো)-র জন্য জড়ো হয়।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "She gave a _______ denial to the rumors, slamming her hand on the desk and walking out.",
+        "options": [
+          "vehement",
+          "vacuous",
+          "vapid",
+          "venal"
+        ],
+        "correct_answer": "vehement",
+        "explanation": "Vehement means showing strong feeling; forceful, passionate, or intense.",
+        "bengali_explanation": "টেবিলে হাত চাপড়ে সে গুজবের একটি vehement (তীব্র/উগ্র) প্রতিবাদ জানিয়ে রুম থেকে বেরিয়ে গেল।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The defense presented some facts to prove the **veracity** of the witness's statement.",
+        "target_word": "veracity",
+        "options": [
+          "truthfulness",
+          "lies",
+          "courage",
+          "intelligence"
+        ],
+        "correct_answer": "truthfulness",
+        "explanation": "Veracity means conformity to facts; accuracy or truthfulness.",
+        "bengali_explanation": "veracity শব্দের অর্থ সত্যবাদিতা বা যাথার্থ্য, তাই truthfulness সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The movie set was designed with great **verisimilitude**, making 1920s London feel alive.",
+        "target_word": "verisimilitude",
+        "options": [
+          "realism",
+          "fantasy",
+          "modernity",
+          "ruins"
+        ],
+        "correct_answer": "realism",
+        "explanation": "Verisimilitude means the appearance of being true or real; realism.",
+        "bengali_explanation": "মুভি সেটটি অত্যন্ত verisimilitude (সত্যের আভাস/বাস্তবধর্মিতা) সহকারে তৈরি হয়েছিল, তাই realism সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The opponent tried to **vilify** the candidate, sharing fake rumors about his family.",
+        "target_word": "vilify",
+        "options": [
+          "praise",
+          "mock",
+          "criticize",
+          "attack"
+        ],
+        "correct_answer": "praise",
+        "explanation": "To vilify is to speak or write about in an abusively disparaging manner; defame. The antonym is praise.",
+        "bengali_explanation": "vilify মানে পরনিন্দা করা, হেয় করা বা মানহানি করা। এর বিপরীত শব্দ (antonym) হলো praise (প্রশংসা করা)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The project was deemed **viable**, and the board approved the initial funding.",
+        "target_word": "viable",
+        "options": [
+          "feasible",
+          "impossible",
+          "failed",
+          "costly"
+        ],
+        "correct_answer": "feasible",
+        "explanation": "Viable means capable of working successfully; feasible or practical.",
+        "bengali_explanation": "প্রজেক্টটি viable (বাস্তবায়নযোগ্য/চলনসই) বলে বিবেচিত হয়েছিল, তাই feasible সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "He gave a **verbose** explanation, taking nearly an hour to explain a five-minute concept.",
+        "target_word": "verbose",
+        "options": [
+          "concise",
+          "wordy",
+          "long",
+          "rambling"
+        ],
+        "correct_answer": "concise",
+        "explanation": "Verbose means using or expressed in more words than are needed; wordy. The antonym is concise (brief).",
+        "bengali_explanation": "verbose মানে শব্দবহুল বা বাচালতাপূর্ণ ব্যাখ্যা। এর বিপরীত শব্দ হলো concise (সংক্ষিপ্ত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 18,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "VINDICATE : GUILT",
+        "options": [
+          "ALLEVIATE : PAIN",
+          "CONDONE : FORGIVENESS",
+          "CHASTISE : BLAME",
+          "ADULTERATE : PURITY"
+        ],
+        "correct_answer": "ALLEVIATE : PAIN",
+        "explanation": "To vindicate is to clear of guilt; to alleviate is to clear of or reduce pain.",
+        "bengali_explanation": "vindicate মানে অভিযোগ বা দোষ থেকে মুক্তি দেওয়া; alleviate মানে কষ্ট বা ব্যথা দূর করা।"
+      },
+      {
+        "question_number": 2,
+        "stem": "VIRULENT : HARM",
+        "options": [
+          "SOPORIFIC : SLEEP",
+          "LUCID : VISION",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : JUSTICE"
+        ],
+        "correct_answer": "SOPORIFIC : SLEEP",
+        "explanation": "A virulent substance induces severe harm; a soporific substance induces sleep.",
+        "bengali_explanation": "virulent (বিষাক্ত/মারাত্মক) জিনিস মারাত্মক ক্ষতি বা harm করে; soporific জিনিস ঘুম বা sleep আনে।"
+      },
+      {
+        "question_number": 3,
+        "stem": "VOCIFEROUS : NOISE",
+        "options": [
+          "LACONIC : SPEECH",
+          "MENDACIOUS : TRUTH",
+          "COMPLACENT : ENTHUSIASM",
+          "AUDACIOUS : FEAR"
+        ],
+        "correct_answer": "LACONIC : SPEECH",
+        "explanation": "A vociferous person produces excessive noise; a laconic person is economical with speech.",
+        "bengali_explanation": "vociferous (গোলমেলে/উচ্চকণ্ঠ) ব্যক্তি গোলমাল বা noise সৃষ্টি করেন; laconic ব্যক্তি কথাবার্তায় সাশ্রয়ী হন।"
+      },
+      {
+        "question_number": 4,
+        "stem": "VOLATILE : STABILITY",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LUCID : CLARITY",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : MERCY"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something volatile lacks stability; something amorphous lacks shape.",
+        "bengali_explanation": "volatile (অস্থির/বাষ্পশীল) জিনিসে স্থায়িত্ব বা স্থিতিশীলতার অভাব থাকে; amorphous জিনিসে আকারের অভাব থাকে।"
+      },
+      {
+        "question_number": 5,
+        "stem": "WISTFUL : REGRET",
+        "options": [
+          "JUBILANT : JOY",
+          "MOROSE : ANGER",
+          "APATHY : INTEREST",
+          "LEVITY : SERIOUSNESS"
+        ],
+        "correct_answer": "JUBILANT : JOY",
+        "explanation": "A wistful person is characterized by regret; a jubilant person is characterized by joy.",
+        "bengali_explanation": "wistful (আকুল/বিষণ্ণ স্মৃতিময়) ব্যক্তি অনুশোচনা প্রকাশ করেন; jubilant ব্যক্তি আনন্দ বা joy প্রকাশ করেন।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "The DNA evidence served to completely _______ the suspect, who had spent years in jail for a crime he didn't commit.",
+        "options": [
+          "vindicate",
+          "vitiate",
+          "vilify",
+          "venerate"
+        ],
+        "correct_answer": "vindicate",
+        "explanation": "To vindicate is to clear someone of blame or suspicion; prove to be right or innocent.",
+        "bengali_explanation": "ডিএনএ টেস্টের ফল অবশেষে সন্দেহভাজন লোকটিকে সম্পূর্ণ vindicate (দোষমুক্ত/নিরপরাধ প্রমাণ করা) করেছে।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The rumors against the CEO began to _______ the company's reputation among its major investors.",
+        "options": [
+          "vitiate",
+          "vindicate",
+          "venerate",
+          "vilify"
+        ],
+        "correct_answer": "vitiate",
+        "explanation": "To vitiate is to spoil or impair the quality or efficiency of; destroy the legal validity of.",
+        "bengali_explanation": "অপপ্রচারগুলো সিইও এবং কোম্পানির সুনামকে বিনিয়োগকারীদের কাছে vitiate (নষ্ট/কলুষিত করা) করতে শুরু করে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The database was hit by a _______ virus that deleted all customer record files within seconds.",
+        "options": [
+          "virulent",
+          "verbose",
+          "voluntary",
+          "volatile"
+        ],
+        "correct_answer": "virulent",
+        "explanation": "Virulent refers to a disease or poison that is extremely severe or harmful in its effects.",
+        "bengali_explanation": "ডাটাবেজটি একটি virulent (মারাত্মক ক্ষতিকর/তীব্র বিষাক্ত) ভাইরাস দ্বারা আক্রান্ত হয়েছিল যা সব ফাইল মুছে দেয়।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The angry crowd was _______, shouting slogans outside the parliament and demanding the prime minister's resignation.",
+        "options": [
+          "vociferous",
+          "volatile",
+          "verbose",
+          "voluntary"
+        ],
+        "correct_answer": "vociferous",
+        "explanation": "Vociferous means crying out noisily; clamorous; expressing feelings in a loud and forceful way.",
+        "bengali_explanation": "সংসদ ভবনের বাইরে সমবেত জনতা vociferous (উচ্চকণ্ঠ/শোরগোলকারী) স্লোগানে প্রধানমন্ত্রীর পদত্যাগ দাবি করছিল।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "She gave a _______ look at her old school building as she drove out of her home town for the last time.",
+        "options": [
+          "wistful",
+          "wanton",
+          "willful",
+          "zealous"
+        ],
+        "correct_answer": "wistful",
+        "explanation": "Wistful means having or showing a feeling of vague or regretful longing.",
+        "bengali_explanation": "শহর ছেড়ে যাওয়ার সময় সে তার পুরনো স্কুলের দিকে এক wistful (আকুল/অতীতের সোনালী স্মৃতিভরা বিষণ্ণ) দৃষ্টিতে তাকাল।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The chemical market was extremely **volatile**, with oil prices changing twice every hour.",
+        "target_word": "volatile",
+        "options": [
+          "unstable",
+          "stable",
+          "expensive",
+          "solid"
+        ],
+        "correct_answer": "unstable",
+        "explanation": "Volatile means liable to change rapidly and unpredictably, especially for the worse; unstable.",
+        "bengali_explanation": "volatile মার্কেট মানে অস্থির বা দ্রুত পরিবর্তনশীল বাজার, তাই unstable সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The old ruins contained only a small **vestige** of the ancient temple's grand entrance.",
+        "target_word": "vestige",
+        "options": [
+          "trace",
+          "ruin",
+          "monument",
+          "painting"
+        ],
+        "correct_answer": "trace",
+        "explanation": "A vestige is a trace of something that is disappearing or no longer exists.",
+        "bengali_explanation": "মন্দিরের প্রবেশদ্বারের কেবল সামান্য vestige (চিহ্ন/অবশিষ্টাংশ) টিকে আছে, তাই trace সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The young student showed a **zealous** interest in medieval history, studying it day and night.",
+        "target_word": "zealous",
+        "options": [
+          "apathetic",
+          "passionate",
+          "eager",
+          "active"
+        ],
+        "correct_answer": "apathetic",
+        "explanation": "Zealous means having or showing zeal; passionate and enthusiastic. The antonym is apathetic (indifferent).",
+        "bengali_explanation": "zealous শব্দের অর্থ অত্যন্ত উৎসাহী বা উৎসর্গীকৃত। এর বিপরীত শব্দ (antonym) হলো apathetic (উদাসীন)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "His **wanton** destruction of public property during the protest led to his arrest.",
+        "target_word": "wanton",
+        "options": [
+          "deliberate",
+          "accidental",
+          "minor",
+          "legal"
+        ],
+        "correct_answer": "deliberate",
+        "explanation": "Wanton means deliberate and unprovoked; reckless or malicious.",
+        "bengali_explanation": "সরকারি সম্পদ ধ্বংসের পেছনে তার wanton (স্বেচ্ছাচারী/ইচ্ছাকৃত) হাত ছিল, তাই deliberate সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "She made a **willful** choice to quit her job, refusing to change her decision despite advice.",
+        "target_word": "willful",
+        "options": [
+          "involuntary",
+          "deliberate",
+          "planned",
+          "stubborn"
+        ],
+        "correct_answer": "involuntary",
+        "explanation": "Willful means intentional or deliberate; stubborn. The antonym is involuntary (unintentional).",
+        "bengali_explanation": "willful মানে স্বেচ্ছাপ্রণোদিত বা একগুঁয়ে সিদ্ধান্ত। এর বিপরীত শব্দ হলো involuntary (অনিচ্ছাকৃত)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 19,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "ANACHRONISM : TIME",
+        "options": [
+          "ANOMALY : TYPE",
+          "BANAL : BORING",
+          "CLEMENCY : JUSTICE",
+          "APATHY : FEELING"
+        ],
+        "correct_answer": "ANOMALY : TYPE",
+        "explanation": "An anachronism is an error in time; an anomaly is an error or deviation in type or normal standard.",
+        "bengali_explanation": "anachronism বলতে সময়ের অসংগতি বা ভুল বোঝায়; anomaly বলতে প্রকার বা আদর্শ মানের অসংগতি বোঝায়।"
+      },
+      {
+        "question_number": 2,
+        "stem": "ASTUTE : JUDGMENT",
+        "options": [
+          "PRODIGAL : RESOURCE",
+          "FASTIDIOUS : DETAIL",
+          "LACONIC : SPEECH",
+          "CANDOR : HONESTY"
+        ],
+        "correct_answer": "PRODIGAL : RESOURCE",
+        "explanation": "An astute person is sharp or wise in judgment; a prodigal person is wasteful with resources.",
+        "bengali_explanation": "astute (চতুর/তীক্ষ্ণবুদ্ধি) ব্যক্তি বিচারে বিচক্ষণ হন; prodigal ব্যক্তি সম্পদের অপচয় করেন।"
+      },
+      {
+        "question_number": 3,
+        "stem": "AUSPICIOUS : FAILURE",
+        "options": [
+          "PROPITIOUS : SUSPICION",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "CLEMENCY : GENTLE"
+        ],
+        "correct_answer": "PROPITIOUS : SUSPICION",
+        "explanation": "An auspicious start makes failure unlikely; a propitious sign makes suspicion unlikely.",
+        "bengali_explanation": "auspicious (শুভ) সূচনা ব্যর্থতা বা failure-এর সম্ভাবনা কমায়; propitious (অনুকূল) সংকেত সন্দেহ কমায়।"
+      },
+      {
+        "question_number": 4,
+        "stem": "AVARICE : MONEY",
+        "options": [
+          "GLUTTONY : FOOD",
+          "LEVITY : FUN",
+          "CADENCE : RHYTHM",
+          "CANDOR : TRUTH"
+        ],
+        "correct_answer": "GLUTTONY : FOOD",
+        "explanation": "Avarice is excessive greed for money; gluttony is excessive greed for food.",
+        "bengali_explanation": "avarice হলো টাকার প্রতি চরম লোভ বা লালসা; gluttony হলো খাবারের প্রতি অতি-লোভ বা অতিভোজন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "BANAL : NOVELTY",
+        "options": [
+          "AMORPHOUS : SHAPE",
+          "LUCID : CLARITY",
+          "MUNDANE : ORDINARY",
+          "CLEMENCY : Hostility"
+        ],
+        "correct_answer": "AMORPHOUS : SHAPE",
+        "explanation": "Something banal lacks novelty or interest; something amorphous lacks shape.",
+        "bengali_explanation": "banal (গতanugatik) বিষয়ে নতুনত্ব বা novelty-র অভাব থাকে, যেমন amorphous জিনিসে সুনির্দিষ্ট আকারের অভাব থাকে।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "Showing a digital wrist watch in a movie set in ancient Rome was a glaring _______.",
+        "options": [
+          "anachronism",
+          "anomaly",
+          "analogy",
+          "anarchy"
+        ],
+        "correct_answer": "anachronism",
+        "explanation": "An anachronism is a thing belonging or appropriate to a period other than that in which it exists.",
+        "bengali_explanation": "প্রাচীন রোমের গল্পে হাতঘড়ি দেখানো ছিল একটি হাস্যকর ও স্পষ্ট anachronism (কালবৈষম্য/সময়ের মারাত্মক ভুল)।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "Her _______ business decisions helped the small family startup grow into a multinational corporation.",
+        "options": [
+          "astute",
+          "ascetic",
+          "abstract",
+          "arbitrary"
+        ],
+        "correct_answer": "astute",
+        "explanation": "Astute means having or showing an ability to accurately assess situations or people and turn this to one's advantage.",
+        "bengali_explanation": "তার astute (চতুর/তীক্ষ্ণবুদ্ধিসম্পন্ন) ব্যবসায়িক সিদ্ধান্ত স্টার্টআপটিকে বহুজাতিক কোম্পানিতে পরিণত করে।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The sunny sky was an _______ sign for our long journey across the mountains.",
+        "options": [
+          "auspicious",
+          "adverse",
+          "aberrant",
+          "apathetic"
+        ],
+        "correct_answer": "auspicious",
+        "explanation": "Auspicious means conducive to success; favorable or promising.",
+        "bengali_explanation": "মেঘমুক্ত সুন্দর রোদঝলমলে আকাশ ছিল আমাদের পাহাড়ি যাত্রার জন্য একটি auspicious (শুভ/অনুকূল) লক্ষণ।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "The miser was driven by absolute _______, refusing to spend a single penny even on food or medicine.",
+        "options": [
+          "avarice",
+          "alacrity",
+          "altruism",
+          "apathy"
+        ],
+        "correct_answer": "avarice",
+        "explanation": "Avarice is extreme greed for wealth or material gain.",
+        "bengali_explanation": "কৃপণ লোকটি avarice (লোভ/ধনলালসা) দ্বারা চালিত হয়ে নিজের খাবার বা ওষুধের টাকাও বাঁচাত।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The speech was filled with _______ remarks that we had heard in a dozen other political meetings.",
+        "options": [
+          "banal",
+          "candid",
+          "copious",
+          "cogent"
+        ],
+        "correct_answer": "banal",
+        "explanation": "Banal means so lacking in originality as to be obvious and boring.",
+        "bengali_explanation": "বক্তৃতাটি গতানুগতিক ও banal (একঘেয়ে/তুচ্ছ) কথায় ভরা ছিল যা সবাই শতবার শুনেছে।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The storm caused a lot of **attrition** to the shoreline, washing away several houses.",
+        "target_word": "attrition",
+        "options": [
+          "erosion",
+          "growth",
+          "repair",
+          "safety"
+        ],
+        "correct_answer": "erosion",
+        "explanation": "Attrition means the action or process of gradually reducing the strength or effectiveness of someone or something through sustained attack or pressure; erosion.",
+        "bengali_explanation": "attrition মানে ক্ষয় বা ক্রমাগত আঘাতের মাধ্যমে দুর্বল করা, তাই erosion সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "The general tried to **augment** his forces by hiring mercenary soldiers.",
+        "target_word": "augment",
+        "options": [
+          "increase",
+          "reduce",
+          "withdraw",
+          "hide"
+        ],
+        "correct_answer": "increase",
+        "explanation": "To augment is to make something greater by adding to it; increase.",
+        "bengali_explanation": "সৈন্যবল augment (বৃদ্ধি করা/সমৃদ্ধ করা)-র জন্য ভাড়াটে সৈন্য নেওয়া হয়েছিল, তাই increase সঠিক সমার্থক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "She has a very **austere** office, with only a simple desk and a single chair.",
+        "target_word": "austere",
+        "options": [
+          "luxurious",
+          "simple",
+          "cold",
+          "strict"
+        ],
+        "correct_answer": "luxurious",
+        "explanation": "Austere means severe or strict in manner, attitude, or appearance; extremely simple or plain. The antonym is luxurious.",
+        "bengali_explanation": "austere মানে অত্যন্ত সাধারণ বা অনলঙ্কৃত। এর বিপরীত শব্দ (antonym) হলো luxurious (বিলাসবহুল)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The local council is **autonomous**, making its own decisions without central control.",
+        "target_word": "autonomous",
+        "options": [
+          "independent",
+          "dependent",
+          "small",
+          "weak"
+        ],
+        "correct_answer": "independent",
+        "explanation": "Autonomous means having the freedom to govern itself or control its own affairs; independent.",
+        "bengali_explanation": "কাউন্সিলটি ছিল autonomous (স্বায়ত্তশাসিত), তাই independent সঠিক সমার্থক শব্দ।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The plan went **awry** when the lead engineer resigned on the first day of development.",
+        "target_word": "awry",
+        "options": [
+          "straight",
+          "wrong",
+          "messy",
+          "late"
+        ],
+        "correct_answer": "straight",
+        "explanation": "Awry means away from the planned or expected course; amiss or crooked. The antonym is straight (perfect/direct).",
+        "bengali_explanation": "awry মানে এলোমেলো, বাঁকা বা ভেস্তে যাওয়া। এর বিপরীত শব্দ হলো straight (সঠিক/সোজা পথ)।"
+      }
+    ]
+  },
+  {
+    "quiz_id": 20,
+    "quiz_title": "",
+    "analogies": [
+      {
+        "question_number": 1,
+        "stem": "BANE : POISON",
+        "options": [
+          "BENEFACTOR : REMEDY",
+          "DESPOT : RULE",
+          "CLIQUE : GROUP",
+          "ANOMALY : ORDER"
+        ],
+        "correct_answer": "BENEFACTOR : REMEDY",
+        "explanation": "A bane is equivalent to a destructive poison; a benefactor acts as a healing remedy.",
+        "bengali_explanation": "bane (সর্বনাশের কারণ) ধ্বংসাত্মক বিষের মতো কাজ করে; benefactor (উপকারী) নিরাময়কারী ঔষধের মতো কাজ করে।"
+      },
+      {
+        "question_number": 2,
+        "stem": "BREVITY : WORDS",
+        "options": [
+          "FRUGAL : MONEY",
+          "LACONIC : SPEECH",
+          "FASTIDIOUS : DETAILS",
+          "MENDACIOUS : TRUTH"
+        ],
+        "correct_answer": "FRUGAL : MONEY",
+        "explanation": "Brevity is economy in the use of words; frugality is economy in the use of money.",
+        "bengali_explanation": "brevity হলো কথার ক্ষেত্রে সাশ্রয় বা সংক্ষেপণ; frugality হলো টাকার ক্ষেত্রে সাশ্রয় বা মিতব্যয়িতা।"
+      },
+      {
+        "question_number": 3,
+        "stem": "CACOPHONY : SOUND",
+        "options": [
+          "ANARCHY : STATE",
+          "CADENCE : RHYTHM",
+          "CANDOR : TRUTH",
+          "AESTHETIC : BEAUTY"
+        ],
+        "correct_answer": "ANARCHY : STATE",
+        "explanation": "Cacophony is a harsh, discordant state of sound; anarchy is a chaotic state of society or state.",
+        "bengali_explanation": "cacophony (কর্কশ শব্দ) শব্দের বিশৃঙ্খলা বোঝায়; anarchy (অরাজকতা) সমাজের বা রাষ্ট্রের বিশৃঙ্খলা বোঝায়।"
+      },
+      {
+        "question_number": 4,
+        "stem": "CAPRICIOUS : WHIM",
+        "options": [
+          "DOGMATIC : BELIEF",
+          "LUCID : CLEAR",
+          "BANAL : BORING",
+          "LACONIC : WORDS"
+        ],
+        "correct_answer": "DOGMATIC : BELIEF",
+        "explanation": "A capricious person is guided by random whims; a dogmatic person is guided by unyielding beliefs.",
+        "bengali_explanation": "capricious (খামখেয়ালী) ব্যক্তি খেয়ালখুশি বা whim দ্বারা চলেন; dogmatic ব্যক্তি অনমনীয় বিশ্বাস বা belief দ্বারা চলেন।"
+      },
+      {
+        "question_number": 5,
+        "stem": "CASTIGATE : FAULT",
+        "options": [
+          "CHASTISE : ERROR",
+          "ASSUAGE : PAIN",
+          "CONDONE : WRONG",
+          "PROSCRIBE : LAW"
+        ],
+        "correct_answer": "CHASTISE : ERROR",
+        "explanation": "To castigate is to severely scold someone for a fault; to chastise is to scold for an error.",
+        "bengali_explanation": "castigate মানে ত্রুটির জন্য কঠোর নিন্দা করা; chastise মানে ভুলের জন্য তিরস্কার করা।"
+      }
+    ],
+    "sentence_completions": [
+      {
+        "question_number": 6,
+        "sentence": "Lack of communication proved to be the _______ of their relationship, leading to their breakup.",
+        "options": [
+          "bane",
+          "brevity",
+          "bastion",
+          "bequest"
+        ],
+        "correct_answer": "bane",
+        "explanation": "Bane refers to a cause of great distress or annoyance; a ruin or curse.",
+        "bengali_explanation": "যোগাযোগের অভাবই ছিল তাদের সম্পর্কের bane (সর্বনাশের কারণ/অভিশাপ), যার ফলে ব্রেকআপ হয়।"
+      },
+      {
+        "question_number": 7,
+        "sentence": "The crowd at the concert was overwhelmed by the _______ of loud electric guitars and shouting.",
+        "options": [
+          "cacophony",
+          "cadence",
+          "candor",
+          "clemency"
+        ],
+        "correct_answer": "cacophony",
+        "explanation": "Cacophony is a harsh, discordant mixture of sounds.",
+        "bengali_explanation": "কনসার্টে গিটারের কর্কশ বাজনা ও চিৎকার মিলে এক তীব্র cacophony (কর্কশ শব্দের জগাখিচুড়ি) সৃষ্টি হয়েছিল।"
+      },
+      {
+        "question_number": 8,
+        "sentence": "The manager decided to _______ the worker for his constant lateness, scolding him in front of the board.",
+        "options": [
+          "castigate",
+          "cajole",
+          "coalesce",
+          "condone"
+        ],
+        "correct_answer": "castigate",
+        "explanation": "To castigate is to reprimand or punish someone severely.",
+        "bengali_explanation": "কাজে অবহেলার জন্য ম্যানেজার কর্মীটিকে সবার সামনে অত্যন্ত castigate (কঠোর তিরস্কার/শাস্তি দেওয়া) করলেন।"
+      },
+      {
+        "question_number": 9,
+        "sentence": "Writing a long book report requires great _______, keeping it short and to the point.",
+        "options": [
+          "brevity",
+          "benignity",
+          "cadence",
+          "candor"
+        ],
+        "correct_answer": "brevity",
+        "explanation": "Brevity means concise and exact use of words in writing or speech.",
+        "bengali_explanation": "বড় রিভিউ রিপোর্ট লেখার ক্ষেত্রে brevity (সংক্ষিপ্ততা/সংক্ষেপণ) একটি বড় গুণ যা সরাসরি মূল ভাব তুলে ধরে।"
+      },
+      {
+        "question_number": 10,
+        "sentence": "The ancient fortress served as a strong _______ of defense against the invading armies.",
+        "options": [
+          "bastion",
+          "bequest",
+          "brevity",
+          "bane"
+        ],
+        "correct_answer": "bastion",
+        "explanation": "A bastion is an institution, place, or person strongly defending or upholding particular principles or physical structures.",
+        "bengali_explanation": "ঐতিহাসিক দুর্গটি ছিল আক্রমণকারী বাহিনীর বিরুদ্ধে লড়াই করার এক শেষ bastion (দুর্গ/সুরক্ষিত ঘাঁটি)।"
+      }
+    ],
+    "contextual_lexical": [
+      {
+        "question_number": 11,
+        "question_type": "synonym",
+        "sentence": "The new legislation was a major **catalyst** for the city's rapid economic growth.",
+        "target_word": "catalyst",
+        "options": [
+          "stimulus",
+          "obstacle",
+          "delay",
+          "problem"
+        ],
+        "correct_answer": "stimulus",
+        "explanation": "A catalyst is a person or thing that precipitates an event or change; a stimulus.",
+        "bengali_explanation": "নতুন আইনটি অর্থনৈতিক প্রবৃদ্ধির জন্য catalyst (অনঘটক/উদ্দীপক) হিসেবে কাজ করেছিল, তাই stimulus সঠিক।"
+      },
+      {
+        "question_number": 12,
+        "question_type": "synonym",
+        "sentence": "She managed to **cajole** her father into lending her his brand new car for the weekend.",
+        "target_word": "cajole",
+        "options": [
+          "persuade",
+          "threaten",
+          "scold",
+          "force"
+        ],
+        "correct_answer": "persuade",
+        "explanation": "To cajole is to persuade someone to do something by sustained coaxing or flattery.",
+        "bengali_explanation": "তোষামোদ করে বাবাকে রাজি করিয়ে সে গাড়িটি পেয়েছিল, তাই persuade (পরামর্শ দিয়ে রাজি করানো) সঠিক।"
+      },
+      {
+        "question_number": 13,
+        "question_type": "antonym",
+        "sentence": "The general gave a **categorical** order that all soldiers must return to the camp by sunset.",
+        "target_word": "categorical",
+        "options": [
+          "conditional",
+          "absolute",
+          "strict",
+          "clear"
+        ],
+        "correct_answer": "conditional",
+        "explanation": "Categorical means unambiguously explicit and direct; absolute. The antonym is conditional.",
+        "bengali_explanation": "categorical order মানে নিশ্চিত বা চূড়ান্ত আদেশ। এর বিপরীত শব্দ (antonym) হলো conditional (শর্তসাপেক্ষ)।"
+      },
+      {
+        "question_number": 14,
+        "question_type": "synonym",
+        "sentence": "The hot water bath provided a wonderful **catharsis** after a long and stressful week.",
+        "target_word": "catharsis",
+        "options": [
+          "purification",
+          "injury",
+          "worry",
+          "stress"
+        ],
+        "correct_answer": "purification",
+        "explanation": "Catharsis is the process of releasing, and thereby providing relief from, strong or repressed emotions; purification.",
+        "bengali_explanation": "গরম পানির গোসল তার কাজের চাপ দূর করে শরীরে এক দারুণ catharsis (পরিশোধন/আবেগমুক্তি) এনেছিল, তাই purification সঠিক।"
+      },
+      {
+        "question_number": 15,
+        "question_type": "antonym",
+        "sentence": "The boss's **caustic** remarks about the proposal hurt the young intern's confidence.",
+        "target_word": "caustic",
+        "options": [
+          "gentle",
+          "sarcastic",
+          "harsh",
+          "sharp"
+        ],
+        "correct_answer": "gentle",
+        "explanation": "Caustic means sarcastic in a scathing and bitter way; biting. The antonym is gentle (kind/mild).",
+        "bengali_explanation": "caustic মানে অত্যন্ত তীব্র, কটু বা কর্কশ কথা। এর বিপরীত শব্দ হলো gentle (নরম/মৃদু)।"
+      }
+    ]
+  }
+]
