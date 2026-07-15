@@ -126,8 +126,8 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   if (wordsData.loading) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '60vh', gap: '1rem' }}>
-        <div style={{ width: '40px', height: '40px', border: '3px solid hsl(var(--border-muted))', borderTopColor: 'hsl(var(--primary))', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-        <p style={{ color: 'hsl(var(--text-secondary))' }}>Loading vocabulary cards...</p>
+        <div style={{ width: '40px', height: '40px', border: '3px solid var(--border-muted)', borderTopColor: 'hsl(var(--primary))', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ color: 'var(--text-secondary)' }}>Loading vocabulary cards...</p>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     );
@@ -138,7 +138,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
       <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px', margin: '0 auto' }}>
         <AlertCircle size={48} color="hsl(var(--danger))" style={{ marginBottom: '1rem' }} />
         <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>No words available</h2>
-        <p style={{ color: 'hsl(var(--text-secondary))' }}>Could not load vocabulary for this level. Please make sure the JSON data is placed correctly.</p>
+        <p style={{ color: 'var(--text-secondary)' }}>Could not load vocabulary for this level. Please make sure the JSON data is placed correctly.</p>
         <button 
           onClick={() => setActiveView('dashboard')}
           className="btn btn-secondary"
@@ -161,7 +161,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   }, [levelProgressPercent]);
 
   return (
-    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
       {/* View Navigation Header */}
       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button 
@@ -171,36 +171,48 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
         >
           ← Return to Roadmap
         </button>
-        <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>
+        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700' }}>
           STAGE {state.unlockedLevel} / UNIT {selectedUnit || 1}
         </span>
       </div>
 
-      {/* View Header */}
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-        <div>
-          <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)' }}>Unit {state.unlockedLevel}.{selectedUnit || 1} Study Quest</h1>
-          <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem' }}>
-            Master spelling, pronunciation, meaning, and mnemonics for every word.
-          </p>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>UNIT MASTERY PROGRESS</div>
-          <div style={{ fontSize: '1.05rem', fontWeight: '700', color: 'hsl(var(--primary))' }}>
-            {levelMasteredCount} / {levelWords.length} mastered ({levelProgressPercent}%)
+      {/* Progress stats + bar */}
+      <div style={{ width: '100%' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: '4px',
+              fontSize: '0.7rem', fontWeight: '800', color: '#000',
+              background: 'var(--theme-cyan)', padding: '3px 10px',
+              borderRadius: '99px', border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-one)',
+              textTransform: 'uppercase'
+            }}>
+              <Award size={11} strokeWidth={2.5} /> {levelMasteredCount} MASTERED
+            </span>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: '4px',
+              fontSize: '0.7rem', fontWeight: '800', color: '#000',
+              background: 'var(--theme-yellow)', padding: '3px 10px',
+              borderRadius: '99px', border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-one)',
+              textTransform: 'uppercase'
+            }}>
+              {levelWords.length - levelMasteredCount} REMAINING
+            </span>
           </div>
+          <span style={{ fontSize: '0.85rem', fontWeight: '800', color: 'var(--text-primary)', fontFamily: 'var(--font-title)' }}>
+            {levelProgressPercent}%
+          </span>
         </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div style={{ width: '100%', height: '6px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '4px', overflow: 'hidden' }}>
-        <div style={{
-          height: '100%',
-          width: `${levelProgressPercent}%`,
-          backgroundColor: 'hsl(var(--primary))',
-          borderRadius: '4px',
-          transition: 'var(--transition-normal)'
-        }}></div>
+        <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
+          <div style={{
+            height: '100%',
+            width: `${levelProgressPercent}%`,
+            backgroundColor: 'var(--theme-green)',
+            transition: 'var(--transition-normal)'
+          }}></div>
+        </div>
       </div>
 
       {/* Flashcard Content Area */}
@@ -209,19 +221,28 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
           width: '100%',
           padding: '2.5rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, hsla(var(--primary), 0.15) 0%, hsla(var(--bg-surface), 0.7) 100%)',
-          border: '1px solid hsl(var(--primary))',
-          borderRadius: 'var(--radius-lg)',
-          marginTop: '1rem'
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <Award size={48} color="hsl(var(--secondary))" style={{ margin: '0 auto 1rem', display: 'block' }} />
-          <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem', color: 'hsl(var(--secondary))' }}>
+          {/* Accent bar */}
+          <div style={{ height: '4px', background: 'linear-gradient(90deg, var(--theme-green), var(--theme-cyan), var(--theme-green))', position: 'absolute', top: 0, left: 0, right: 0 }} />
+          
+          <div style={{
+            width: '72px', height: '72px', borderRadius: 'var(--radius-md)',
+            background: 'linear-gradient(135deg, var(--theme-green), var(--theme-cyan))',
+            border: 'var(--border-thick)', boxShadow: 'var(--shadow-small)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 1rem'
+          }}>
+            <Award size={32} color="#000" strokeWidth={2.5} />
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
             Unit {state.unlockedLevel}.{selectedUnit || 1} Vocab Completed!
           </h2>
-          <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
             Congratulations! You have mastered all the words in this unit. Prove your skills in the Unit Quiz or Stage Cumulative Exam to unlock the next levels.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button 
               onClick={() => setActiveView('quizzes')}
               className="btn btn-accent"
@@ -272,7 +293,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 fontWeight: '900',
                 fontSize: '2rem',
                 padding: '0.25rem 1.05rem',
-                borderRadius: '8px',
+                borderRadius: 'var(--radius-lg)',
                 transform: 'rotate(-20deg)',
                 pointerEvents: 'none',
                 textTransform: 'uppercase',
@@ -294,7 +315,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 fontWeight: '900',
                 fontSize: '2rem',
                 padding: '0.25rem 1.05rem',
-                borderRadius: '8px',
+                borderRadius: 'var(--radius-lg)',
                 transform: 'rotate(20deg)',
                 pointerEvents: 'none',
                 textTransform: 'uppercase',
@@ -315,7 +336,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
               <div className="flashcard-front">
                 {/* Top row actions */}
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'hsl(var(--text-muted))', letterSpacing: '0.1em' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
                     CARD {currentIndex + 1} OF {levelWords.length}
                   </span>
                   <button 
@@ -325,7 +346,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                     }}
                     className="min-touch"
                     aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))' }}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
                   >
                     {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
                   </button>
@@ -333,12 +354,12 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
                 {/* Word details */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', margin: 'auto 0' }}>
-                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'hsl(var(--text-primary))' }}>{word.word.toUpperCase()}</h2>
+                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>{word.word.toUpperCase()}</h2>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ fontStyle: 'italic', color: 'hsl(var(--text-secondary))', fontWeight: '500' }}>
+                    <span style={{ fontStyle: 'italic', color: 'var(--text-secondary)', fontWeight: '500' }}>
                       ({word.part_of_speech})
                     </span>
-                    <span style={{ color: 'hsl(var(--text-muted))', fontFamily: 'monospace' }}>
+                    <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                       /{word.pronunciation}/
                     </span>
                     <button 
@@ -365,7 +386,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 </div>
 
                 {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', position: 'absolute', bottom: '2rem' }}>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem' }}>
                     💡 Click card to flip | Swipe left/right to study/master
                   </div>
                 )}
@@ -375,7 +396,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
               <div className="flashcard-back" style={{ position: 'relative', display: 'flex', flexDirection: 'column', height: '100%', padding: '2rem 1.5rem 1.5rem' }}>
                 {/* Top row actions (identical to front for design alignment) */}
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'hsl(var(--text-muted))', letterSpacing: '0.1em' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
                     CARD {currentIndex + 1} OF {levelWords.length}
                   </span>
                   {(word.mnemonic || (word.examples && word.examples.length > 0)) && (
@@ -386,7 +407,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                       }}
                         className="min-touch"
                         aria-label="View word details and mnemonic"
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
                       title="View Details & Mnemonic"
                     >
                       <Info size={22} />
@@ -402,14 +423,14 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                     </div>
                   )}
 
-                  <div style={{ fontSize: '1.25rem', color: 'hsl(var(--text-secondary))', lineHeight: '1.45', fontWeight: '500', maxWidth: '90%', textAlign: 'center', margin: '0 auto' }}>
+                  <div style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: '1.45', fontWeight: '500', maxWidth: '90%', textAlign: 'center', margin: '0 auto' }}>
                     {word.definition}
                   </div>
                 </div>
 
                 {/* Bottom notification */}
                 {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
                     💡 Click to flip back | Swipe left/right to study/master
                   </div>
                 )}

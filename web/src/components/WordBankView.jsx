@@ -14,7 +14,7 @@ export default function WordBankView({ state, wordsData }) {
         display: 'flex', 
         gap: '0.75rem', 
         padding: '1rem 2rem', 
-        borderBottom: '3px solid #000000',
+        borderBottom: 'var(--border-thick)',
         backgroundColor: 'var(--bg-surface-elevated)',
         overflowX: 'auto',
         whiteSpace: 'nowrap'
@@ -23,9 +23,9 @@ export default function WordBankView({ state, wordsData }) {
           onClick={() => setActiveTab('search')}
           className="btn"
           style={{
-            backgroundColor: activeTab === 'search' ? '#FFD740' : '#ffffff',
-            boxShadow: activeTab === 'search' ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
-            color: '#000000',
+            backgroundColor: activeTab === 'search' ? 'var(--theme-yellow)' : 'var(--bg-surface)',
+            boxShadow: activeTab === 'search' ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
+            color: activeTab === 'search' ? 'var(--text-black)' : 'var(--text-primary)',
             padding: '0.5rem 1rem',
             fontSize: '0.9rem'
           }}
@@ -36,9 +36,9 @@ export default function WordBankView({ state, wordsData }) {
           onClick={() => setActiveTab('specialized')}
           className="btn"
           style={{
-            backgroundColor: activeTab === 'specialized' ? '#FFD740' : '#ffffff',
-            boxShadow: activeTab === 'specialized' ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
-            color: '#000000',
+            backgroundColor: activeTab === 'specialized' ? 'var(--theme-yellow)' : 'var(--bg-surface)',
+            boxShadow: activeTab === 'specialized' ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
+            color: activeTab === 'specialized' ? 'var(--text-black)' : 'var(--text-primary)',
             padding: '0.5rem 1rem',
             fontSize: '0.9rem'
           }}
@@ -49,9 +49,9 @@ export default function WordBankView({ state, wordsData }) {
           onClick={() => setActiveTab('hitparades')}
           className="btn"
           style={{
-            backgroundColor: activeTab === 'hitparades' ? '#FFD740' : '#ffffff',
-            boxShadow: activeTab === 'hitparades' ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
-            color: '#000000',
+            backgroundColor: activeTab === 'hitparades' ? 'var(--theme-yellow)' : 'var(--bg-surface)',
+            boxShadow: activeTab === 'hitparades' ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
+            color: activeTab === 'hitparades' ? 'var(--text-black)' : 'var(--text-primary)',
             padding: '0.5rem 1rem',
             fontSize: '0.9rem'
           }}

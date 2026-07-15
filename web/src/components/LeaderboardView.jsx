@@ -43,14 +43,14 @@ export default function LeaderboardView({ state }) {
           <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Trophy color="hsl(var(--secondary))" /> Aspirants Leaderboard
           </h1>
-          <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
             Compete with simulated learners. Gain XP to climb the ranks!
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>YOUR RANKING</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700' }}>YOUR RANKING</div>
           <div style={{ fontSize: '1.4rem', fontWeight: '800', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
-            #{userRankIndex} <span style={{ fontSize: '0.9rem', color: 'hsl(var(--text-muted))', fontWeight: '500' }}>of {leaderboardList.length}</span>
+            #{userRankIndex} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>of {leaderboardList.length}</span>
           </div>
         </div>
       </div>
@@ -58,8 +58,8 @@ export default function LeaderboardView({ state }) {
       {/* Top Banner / Motivating quote */}
       <div className="glass-panel" style={{
         padding: '1.25rem 1.5rem',
-        background: 'linear-gradient(135deg, hsla(var(--primary), 0.05) 0%, hsla(var(--bg-surface), 0.4) 100%)',
-        border: '1px solid hsla(var(--primary), 0.15)',
+        background: 'linear-gradient(135deg, hsla(var(--primary), 0.05) 0%, var(--bg-surface) 100%)',
+        border: 'var(--border-thick)',
         display: 'flex',
         alignItems: 'center',
         gap: '1rem',
@@ -77,7 +77,7 @@ export default function LeaderboardView({ state }) {
         }}>
           <Sparkles size={16} />
         </div>
-        <p style={{ fontSize: '0.85rem', color: 'hsl(var(--text-secondary))', lineHeight: '1.4' }}>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
           {userRankIndex <= 3 ? (
             <span style={{ color: 'hsl(var(--secondary))', fontWeight: '600' }}>Excellent work! You are in the top 3! Keep studying to maintain your position on the podium.</span>
           ) : (
@@ -89,7 +89,7 @@ export default function LeaderboardView({ state }) {
       {/* Leaderboard Table List */}
       <div className="glass-panel" style={{
         padding: '0.5rem',
-        backgroundColor: 'hsl(var(--bg-surface) / 0.5)',
+        backgroundColor: 'var(--bg-surface)',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.25rem'
@@ -113,9 +113,12 @@ export default function LeaderboardView({ state }) {
                 justifyContent: 'space-between',
                 padding: '0.9rem 1.25rem',
                 borderRadius: 'var(--radius-md)',
-                backgroundColor: competitor.isUser ? 'hsla(var(--primary), 0.08)' : 'transparent',
-                border: competitor.isUser ? '1px solid hsla(var(--primary), 0.3)' : '1px solid transparent',
-                transition: 'var(--transition-fast)'
+                backgroundColor: competitor.isUser ? 'var(--theme-cyan)' : 'transparent',
+                color: competitor.isUser ? 'var(--text-black)' : 'inherit',
+                border: competitor.isUser ? 'var(--border-thin)' : '1px solid transparent',
+                boxShadow: competitor.isUser ? 'var(--shadow-tiny)' : 'none',
+                transition: 'var(--transition-fast)',
+                fontWeight: competitor.isUser ? '800' : '400'
               }}
             >
               {/* Rank & Profile Name */}
@@ -125,7 +128,7 @@ export default function LeaderboardView({ state }) {
                   fontSize: '1rem', 
                   fontWeight: '800', 
                   fontFamily: 'var(--font-title)', 
-                  color: rank <= 3 ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))',
+                  color: rank <= 3 ? 'var(--theme-yellow)' : competitor.isUser ? 'var(--text-black)' : 'var(--text-muted)',
                   textAlign: 'center'
                 }}>
                   {rank > 3 ? `#${rank}` : ''}
@@ -140,8 +143,9 @@ export default function LeaderboardView({ state }) {
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  backgroundColor: competitor.isUser ? 'hsla(var(--primary), 0.15)' : 'hsl(var(--bg-canvas))',
-                  border: '1px solid hsl(var(--border-muted))'
+                  backgroundColor: competitor.isUser ? 'var(--text-black)' : 'var(--bg-canvas)',
+                  color: competitor.isUser ? 'var(--theme-cyan)' : 'var(--text-primary)',
+                  border: 'var(--border-thin)'
                 }}>
                   {competitor.isUser ? '🎓' : '👤'}
                 </span>
@@ -150,11 +154,11 @@ export default function LeaderboardView({ state }) {
                   <span style={{ 
                     fontWeight: competitor.isUser ? '700' : '600', 
                     fontSize: '1rem',
-                    color: competitor.isUser ? 'hsl(var(--text-primary))' : 'hsl(var(--text-primary))'
+                    color: competitor.isUser ? 'var(--text-primary)' : 'var(--text-primary)'
                   }}>
                     {competitor.name}
                   </span>
-                  <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: '500' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '500' }}>
                     Stage {competitor.level}: {stage.name}
                   </span>
                 </div>
@@ -163,8 +167,8 @@ export default function LeaderboardView({ state }) {
               {/* Stats - Streak & XP */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                 {competitor.streak > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem', color: 'hsl(var(--secondary))', fontSize: '0.85rem', fontWeight: '600' }}>
-                    <Flame size={14} fill="hsl(var(--secondary))" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.15rem', color: competitor.isUser ? 'var(--text-black)' : 'hsl(var(--secondary))', fontSize: '0.85rem', fontWeight: '700' }}>
+                    <Flame size={14} fill={competitor.isUser ? 'var(--text-black)' : 'hsl(var(--secondary))'} />
                     <span>{competitor.streak}d</span>
                   </div>
                 )}
@@ -173,11 +177,11 @@ export default function LeaderboardView({ state }) {
                     fontFamily: 'var(--font-title)', 
                     fontWeight: '800', 
                     fontSize: '1.05rem', 
-                    color: competitor.isUser ? 'hsl(var(--primary))' : 'hsl(var(--text-primary))'
+                    color: competitor.isUser ? 'var(--text-black)' : 'var(--text-primary)'
                   }}>
                     {competitor.xp.toLocaleString()}
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: 'hsl(var(--text-muted))', fontWeight: '600' }}>XP</div>
+                  <div style={{ fontSize: '0.65rem', color: competitor.isUser ? 'var(--text-black)' : 'var(--text-muted)', fontWeight: '700' }}>XP</div>
                 </div>
               </div>
             </div>

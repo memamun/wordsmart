@@ -81,9 +81,9 @@ export default function AnalogyView({ state, wordsData }) {
   if (questions.length === 0) {
     return (
       <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px', margin: '0 auto' }}>
-        <HelpCircle size={48} color="hsl(var(--text-muted))" style={{ margin: '0 auto 1rem', display: 'block' }} />
+        <HelpCircle size={48} color="var(--text-muted)" style={{ margin: '0 auto 1rem', display: 'block' }} />
         <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>Analogy Arena Locked</h2>
-        <p style={{ color: 'hsl(var(--text-secondary))', lineHeight: '1.4' }}>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.4' }}>
           We need more synonym and antonym data for words in Stage {state.unlockedLevel} to generate analogies. Study more words or try another level!
         </p>
       </div>
@@ -111,7 +111,7 @@ export default function AnalogyView({ state, wordsData }) {
           </div>
 
           {/* Progress Indicator */}
-          <div style={{ width: '100%', height: '6px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--border-muted)', borderRadius: '3px', overflow: 'hidden', border: 'var(--border-thin)', boxShadow: 'var(--shadow-tiny)' }}>
             <div style={{
               height: '100%',
               width: `${((currentQIndex + 1) / questions.length) * 100}%`,
@@ -124,23 +124,23 @@ export default function AnalogyView({ state, wordsData }) {
           <div className="glass-panel" style={{
             padding: '2.5rem 2rem',
             textAlign: 'center',
-            background: 'linear-gradient(135deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--accent-blue), 0.05) 100%)',
-            border: '1px solid hsla(var(--accent-blue), 0.2)'
+            background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--accent-blue), 0.05) 100%)',
+            border: 'var(--border-thick)'
           }}>
-            <span style={{ fontSize: '0.75rem', color: 'hsl(var(--text-muted))', fontWeight: '800', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
               Match the Relation
             </span>
             <h1 style={{
               fontSize: '2.5rem',
               fontFamily: 'var(--font-title)',
-              color: 'hsl(var(--text-primary))',
+              color: 'var(--text-primary)',
               letterSpacing: '0.05em',
               margin: '0.5rem 0 1.5rem',
               textShadow: '0 4px 12px rgba(0,0,0,0.5)'
             }}>
               {questions[currentQIndex]?.question}
             </h1>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.4rem 0.8rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsl(var(--bg-canvas))', border: '1px solid hsl(var(--border-muted))', fontSize: '0.8rem', color: 'hsl(var(--text-secondary))' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.4rem 0.8rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border-muted)', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
               <Lightbulb size={12} color="hsl(var(--secondary))" />
               <span>Relation Type: {questions[currentQIndex]?.type}</span>
             </div>
@@ -185,7 +185,7 @@ export default function AnalogyView({ state, wordsData }) {
                 <h4 style={{ fontSize: '1rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.25rem', color: selectedOption === questions[currentQIndex].correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))' }}>
                   {selectedOption === questions[currentQIndex].correct_answer ? 'Correct Relation Recognized!' : 'Incorrect Analogy'}
                 </h4>
-                <p style={{ fontSize: '0.9rem', color: 'hsl(var(--text-secondary))', marginTop: '0.4rem', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: '1.4' }}>
                   {questions[currentQIndex]?.explanation}
                 </p>
                 <div style={{ fontSize: '0.85rem', color: 'hsl(var(--primary))', fontWeight: '600', marginTop: '0.5rem' }}>
@@ -209,8 +209,8 @@ export default function AnalogyView({ state, wordsData }) {
         <div className="glass-panel animate-fade" style={{
           padding: '3rem',
           textAlign: 'center',
-          background: 'linear-gradient(145deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--accent-blue), 0.05) 100%)',
-          border: '1px solid hsla(var(--accent-blue), 0.2)',
+          background: 'linear-gradient(145deg, var(--bg-surface) 0%, hsla(var(--accent-blue), 0.05) 100%)',
+          border: 'var(--border-thick)',
           maxWidth: '550px',
           margin: '2rem auto'
         }}>
@@ -219,7 +219,7 @@ export default function AnalogyView({ state, wordsData }) {
           <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
             Analogy Drill Complete!
           </h2>
-          <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
             You scored **{score} out of {questions.length}** ({Math.round((score / questions.length) * 100)}%).
           </p>
 

@@ -23,6 +23,216 @@ const STUDY_TIPS = [
   "Learning word roots helps decode unfamiliar vocabulary and expands your range."
 ];
 
+function BlockMeter({ value, max, color }) {
+  const blocksCount = 5;
+  const filledBlocks = max > 0 ? Math.round((value / max) * blocksCount) : 0;
+  
+  return (
+    <div style={{ display: 'flex', gap: '5px', zIndex: 2, marginRight: '0.25rem', flexShrink: 0 }}>
+      {Array.from({ length: blocksCount }).map((_, i) => {
+        const isFilled = i < filledBlocks;
+        return (
+          <div
+            key={i}
+            style={{
+              width: '12px',
+              height: '24px',
+              background: isFilled ? color : 'var(--bg-canvas)',
+              border: 'var(--border-thin)',
+              borderRadius: '3px',
+              boxShadow: isFilled ? 'var(--shadow-one)' : 'none',
+              transform: isFilled ? 'translateY(-2px)' : 'none',
+              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function WelcomeDecoration() {
+  return (
+    <div className="welcome-decor-container" style={{
+      position: 'relative',
+      width: '160px',
+      height: '160px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      margin: '0 auto'
+    }}>
+      {/* Neo-brutalist floating elements */}
+      <svg width="120" height="120" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(var(--shadow-small))' }}>
+        {/* Outer dotted grid circle */}
+        <circle cx="80" cy="80" r="70" stroke="var(--text-muted)" strokeWidth="2" strokeDasharray="6 6" opacity="0.3" />
+        
+        {/* Main circular frame */}
+        <circle cx="80" cy="80" r="55" fill="var(--bg-canvas)" stroke="var(--border-muted)" strokeWidth="4" />
+        
+        {/* Inner grid lines */}
+        <path d="M40 80H120" stroke="var(--border-muted)" strokeWidth="2" opacity="0.5" />
+        <path d="M80 40V120" stroke="var(--border-muted)" strokeWidth="2" opacity="0.5" />
+        
+        {/* Neobrutalist accent shape: star/burst */}
+        <path d="M80 50L84 76L110 80L84 84L80 110L76 84L50 80L76 76L80 50Z" fill="var(--theme-yellow)" stroke="var(--border-muted)" strokeWidth="3" />
+        
+        {/* Small floating sparkles/dots */}
+        <circle cx="45" cy="55" r="5" fill="var(--theme-cyan)" stroke="var(--border-muted)" strokeWidth="2" />
+        <circle cx="115" cy="115" r="4" fill="var(--theme-purple)" stroke="var(--border-muted)" strokeWidth="2" />
+        <path d="M110 50L115 55M115 50L110 55" stroke="var(--theme-green)" strokeWidth="3" strokeLinecap="round" />
+        <path d="M50 110L55 115M55 110L50 115" stroke="var(--theme-yellow)" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+      
+      {/* Floating vocabulary badge */}
+      <div style={{
+        position: 'absolute',
+        bottom: '12px',
+        right: '5px',
+        background: 'var(--theme-cyan)',
+        color: 'var(--text-black)',
+        border: 'var(--border-thin)',
+        boxShadow: 'var(--shadow-tiny)',
+        padding: '0.25rem 0.5rem',
+        borderRadius: 'var(--radius-md)',
+        fontWeight: '900',
+        fontSize: '0.65rem',
+        transform: 'rotate(8deg)',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        animation: 'float 3s ease-in-out infinite'
+      }}>
+        VOCAB PRO
+      </div>
+      
+      {/* Floating streak badge */}
+      <div style={{
+        position: 'absolute',
+        top: '12px',
+        left: '5px',
+        background: 'var(--theme-purple)',
+        color: 'var(--text-black)',
+        border: 'var(--border-thin)',
+        boxShadow: 'var(--shadow-tiny)',
+        padding: '0.25rem 0.5rem',
+        borderRadius: 'var(--radius-md)',
+        fontWeight: '900',
+        fontSize: '0.65rem',
+        transform: 'rotate(-8deg)',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        animation: 'float 3.5s ease-in-out infinite alternate'
+      }}>
+        LEVEL UP ⚡
+      </div>
+    </div>
+  );
+}
+
+function SpecializedDecoration() {
+  return (
+    <div className="welcome-decor-container" style={{
+      position: 'relative',
+      width: '120px',
+      height: '100px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+      margin: '0 auto',
+      animation: 'float 3.2s ease-in-out infinite'
+    }}>
+      {/* Stack of English and Bengali card graphics */}
+      <div style={{
+        position: 'absolute',
+        width: '55px',
+        height: '70px',
+        background: 'var(--theme-purple)',
+        border: 'var(--border-thick)',
+        borderRadius: 'var(--radius-lg)',
+        transform: 'rotate(-15deg) translate(-20px, 0px)',
+        boxShadow: 'var(--shadow-small)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: '900',
+        color: 'var(--text-black)',
+        fontSize: '1.25rem',
+        fontFamily: 'var(--font-title)'
+      }}>
+        A
+      </div>
+      <div style={{
+        position: 'absolute',
+        width: '55px',
+        height: '70px',
+        background: 'var(--theme-yellow)',
+        border: 'var(--border-thick)',
+        borderRadius: 'var(--radius-lg)',
+        transform: 'rotate(5deg) translate(15px, -5px)',
+        boxShadow: 'var(--shadow-small)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: '900',
+        color: 'var(--text-black)',
+        fontSize: '1.25rem',
+        fontFamily: 'var(--font-title)',
+        zIndex: 2
+      }}>
+        অ
+      </div>
+    </div>
+  );
+}
+
+function WindowPanel({ title, headerColor, shadowVar, className, style, children }) {
+  return (
+    <div className={`card-hover ${className}`} style={{
+      backgroundColor: 'var(--bg-surface)',
+      border: 'var(--border-thick)',
+      borderRadius: 'var(--radius-lg)',
+      boxShadow: shadowVar,
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      transition: 'var(--transition-normal)',
+      position: 'relative',
+      ...style
+    }}>
+      {/* Window Header Bar */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0.5rem 0.75rem',
+        background: headerColor,
+        borderBottom: 'var(--border-thick)',
+        color: 'var(--text-black)',
+        fontWeight: '900',
+        fontSize: '0.65rem',
+        fontFamily: 'monospace',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        userSelect: 'none'
+      }}>
+        {/* Retro Window Control Circles */}
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5252', border: '1.5px solid var(--border-muted)' }} />
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFD700', border: '1.5px solid var(--border-muted)' }} />
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#69F0AE', border: '1.5px solid var(--border-muted)' }} />
+        </div>
+        <div>{title}</div>
+      </div>
+      {/* Window Body Content */}
+      <div className="window-body" style={{ padding: '1.25rem', flex: 1, position: 'relative' }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
   const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
   
@@ -33,158 +243,285 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
     ? Math.round((totalMastered / wordsData.words.length) * 100) 
     : 0;
 
-  // Selected random tip
-  const randomTip = React.useMemo(() => {
-    return STUDY_TIPS[Math.floor(Math.random() * STUDY_TIPS.length)];
-  }, []);
-
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }} className="animate-fade dashboard-container">
-      {/* Welcome Banner */}
-      <div className="welcome-banner" style={{
-        padding: '2rem',
-        backgroundColor: '#FFD740',
-        color: '#000000',
-        border: '3px solid #000000',
-        boxShadow: '6px 6px 0px #000000',
-        borderRadius: 'var(--radius-lg)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: '2rem'
-      }}>
-        <div style={{ flex: 1 }}>
-          <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
-            Master 1,900+ High-Frequency Words
-          </h1>
-          <p style={{ fontWeight: '600', lineHeight: '1.5', maxWidth: '600px' }}>
-            Progress through 10 stages of vocabulary mastery. Use flashcards, spaced repetition, and quizzes to retain every word long-term. Earn coins for hints and climb the leaderboard.
-          </p>
-        </div>
-        <div className="motivation-card" style={{
-          padding: '1rem',
-          backgroundColor: '#ffffff',
-          border: '3px solid #000000',
-          boxShadow: '3px 3px 0px #000000',
-          color: '#000000',
-          maxWidth: '350px',
-          borderRadius: 'var(--radius-md)'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#E040FB', fontWeight: '900', fontSize: '0.85rem' }}>
-            <Brain size={16} />
-            <span>STUDY TIP</span>
+      {/* Bento Grid Highlights */}
+      <div className="dashboard-bento">
+        {/* Welcome Banner */}
+        <WindowPanel
+          title="WORDSMART_OS_v1.0.SYS"
+          headerColor="var(--theme-green)"
+          shadowVar="var(--welcome-shadow)"
+          className="welcome-banner bento-welcome"
+          style={{
+            background: 'var(--welcome-bg)',
+            color: 'var(--welcome-text)',
+            border: 'var(--welcome-border)',
+            borderRadius: 'var(--radius-lg)'
+          }}
+        >
+          <div className="bento-welcome-content">
+            <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+              Master 1,900+ High-Frequency Words
+            </h1>
+            <p style={{ color: 'var(--welcome-subtext)', fontWeight: '600', lineHeight: '1.5', maxWidth: '800px' }}>
+              Progress through 10 stages of vocabulary mastery. Use flashcards, spaced repetition, and quizzes to retain every word long-term. Earn coins for hints and climb the leaderboard.
+            </p>
           </div>
-          <p style={{ fontSize: '0.85rem', fontWeight: '700', fontStyle: 'italic', lineHeight: '1.4' }}>
-            "{randomTip}"
-          </p>
-        </div>
-      </div>
+          <WelcomeDecoration />
+        </WindowPanel>
 
-      {/* Grid Stats Highlights */}
-      <div className="grid-cols-responsive">
         {/* Words Mastered */}
-        <div className="card card-hover" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+        <WindowPanel
+          title="MASTERED_WORDS.DLL"
+          headerColor="var(--theme-cyan)"
+          shadowVar="var(--stats-shadow-1)"
+          className="bento-card-1"
+          style={{ padding: 0 }}
+        >
+          {/* Large Watermark Background Icon */}
+          <ShieldCheck size={96} style={{
+            position: 'absolute',
+            right: '-10px',
+            bottom: '-15px',
+            color: 'hsl(var(--primary))',
+            opacity: 0.08,
+            transform: 'rotate(-15deg)',
+            pointerEvents: 'none'
+          }} />
+          {/* Accent glow circle */}
           <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'hsla(var(--primary), 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'hsl(var(--primary))'
+            position: 'absolute',
+            top: '-20px',
+            right: '-20px',
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            background: 'hsla(var(--primary), 0.1)',
+            filter: 'blur(12px)',
+            pointerEvents: 'none'
+          }} />
+          {/* Top-right Status Pill */}
+          <span style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            fontSize: '0.6rem',
+            fontWeight: '900',
+            background: 'hsla(var(--primary), 0.1)',
+            color: 'hsl(var(--primary))',
+            padding: '0.15rem 0.35rem',
+            borderRadius: '4px',
+            border: '1px solid hsla(var(--primary), 0.3)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em'
           }}>
-            <ShieldCheck size={24} />
-          </div>
-          <div>
-            <div style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>WORDS MASTERED</div>
-            <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-title)' }}>
-              {totalMastered} <span style={{ fontSize: '0.9rem', color: 'hsl(var(--text-muted))', fontWeight: '500' }}>/ {wordsData.words.length || 1913}</span>
+            Active
+          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>WORDS MASTERED</div>
+            <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', marginTop: '0.15rem' }}>
+              {totalMastered} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>/ {wordsData.words.length || 1913}</span>
             </div>
           </div>
-        </div>
+          {/* Right visual indicator: Block Meter */}
+          <BlockMeter value={totalMastered} max={wordsData.words.length || 1913} color="hsl(var(--primary))" />
+          {/* Dynamic Progress Line indicator at bottom */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '4px',
+            width: `${masteryPercentage}%`,
+            background: 'hsl(var(--primary))',
+            transition: 'width 1s ease'
+          }} />
+        </WindowPanel>
 
         {/* Mastery Rate */}
-        <div className="card card-hover" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+        <WindowPanel
+          title="MASTERY_RATE.EXE"
+          headerColor="var(--theme-purple)"
+          shadowVar="var(--stats-shadow-2)"
+          className="bento-card-2"
+          style={{ padding: 0 }}
+        >
+          {/* Large Watermark Background Icon */}
+          <TrendingUp size={96} style={{
+            position: 'absolute',
+            right: '-10px',
+            bottom: '-15px',
+            color: 'hsl(var(--accent-purple))',
+            opacity: 0.08,
+            transform: 'rotate(-15deg)',
+            pointerEvents: 'none'
+          }} />
+          {/* Accent glow circle */}
           <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'hsla(var(--accent-purple), 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'hsl(var(--accent-purple))'
+            position: 'absolute',
+            top: '-20px',
+            right: '-20px',
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            background: 'hsla(var(--accent-purple), 0.1)',
+            filter: 'blur(12px)',
+            pointerEvents: 'none'
+          }} />
+          {/* Top-right Status Pill */}
+          <span style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            fontSize: '0.6rem',
+            fontWeight: '900',
+            background: 'hsla(var(--accent-purple), 0.1)',
+            color: 'hsl(var(--accent-purple))',
+            padding: '0.15rem 0.35rem',
+            borderRadius: '4px',
+            border: '1px solid hsla(var(--accent-purple), 0.3)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em'
           }}>
-            <TrendingUp size={24} />
-          </div>
-          <div>
-            <div style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>MASTERY RATE</div>
-            <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-title)', color: 'hsl(var(--accent-purple))' }}>
+            Success
+          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>MASTERY RATE</div>
+            <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--accent-purple))', marginTop: '0.15rem' }}>
               {masteryPercentage}%
             </div>
           </div>
-        </div>
-
-        {/* Current Target Stage */}
-        <div className="card card-hover" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+          {/* Right visual indicator: Block Meter */}
+          <BlockMeter value={masteryPercentage} max={100} color="hsl(var(--accent-purple))" />
+          {/* Dynamic Progress Line indicator at bottom */}
           <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'hsla(var(--secondary), 0.1)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'hsl(var(--secondary))'
-          }}>
-            <Trophy size={24} />
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '4px',
+            width: `${masteryPercentage}%`,
+            background: 'hsl(var(--accent-purple))',
+            transition: 'width 1s ease'
+          }} />
+        </WindowPanel>
+
+        {/* Specialized Vocabulary & Grammar Modules banner */}
+        <WindowPanel
+          title="GRAMMAR_MODULE.TXT"
+          headerColor="var(--theme-purple)"
+          shadowVar="var(--spec-shadow)"
+          className="bento-specialized"
+          style={{
+            background: 'var(--spec-bg)',
+            color: 'var(--spec-text)',
+            border: 'var(--spec-border)',
+            borderRadius: 'var(--radius-lg)'
+          }}
+        >
+          {/* Background glow lines */}
+          <div style={{
+            position: 'absolute',
+            top: '-50px',
+            left: '-50px',
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            background: 'hsla(var(--secondary), 0.05)',
+            filter: 'blur(30px)',
+            pointerEvents: 'none'
+          }} />
+          <div style={{ flex: 1, minWidth: '250px', zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--spec-text)', fontWeight: '900', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
+              <Book size={16} color="var(--spec-text)" />
+              <span>SPECIALIZED VOCABULARY</span>
+            </div>
+            <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--spec-text)', textTransform: 'uppercase' }}>
+              Grammar, Usage & Specialized Terms
+            </h2>
+            <p style={{ color: 'var(--spec-subtext)', fontSize: '0.9rem', fontWeight: '700', marginTop: '0.25rem', lineHeight: '1.4' }}>
+              Master common usage errors, abbreviations, foreign expressions, and register terminology across multiple domains with definitions and example sentences.
+            </p>
           </div>
-          <div>
-            <div style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>PREP STAGE REACHED</div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '800', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+          <SpecializedDecoration />
+          <button 
+            onClick={() => setActiveView('specialized')}
+            className="btn btn-secondary bento-specialized-btn"
+            style={{ 
+              padding: '0.75rem 1.5rem', 
+              whiteSpace: 'nowrap',
+              zIndex: 3
+            }}
+          >
+            Explore Specialized Vocabs →
+          </button>
+        </WindowPanel>
+
+        {/* Current Target Stage / Prep Stage Reached */}
+        <WindowPanel
+          title="PREP_STAGE.SYS"
+          headerColor="var(--theme-yellow)"
+          shadowVar="var(--stats-shadow-3)"
+          className="bento-card-3"
+          style={{ padding: 0 }}
+        >
+          {/* Large Watermark Background Icon */}
+          <Trophy size={96} style={{
+            position: 'absolute',
+            right: '-10px',
+            bottom: '-15px',
+            color: 'hsl(var(--secondary))',
+            opacity: 0.08,
+            transform: 'rotate(-15deg)',
+            pointerEvents: 'none'
+          }} />
+          {/* Accent glow circle */}
+          <div style={{
+            position: 'absolute',
+            top: '-20px',
+            right: '-20px',
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            background: 'hsla(var(--secondary), 0.1)',
+            filter: 'blur(12px)',
+            pointerEvents: 'none'
+          }} />
+          {/* Top-right Status Pill */}
+          <span style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            fontSize: '0.65rem',
+            fontWeight: '900',
+            background: 'hsla(var(--secondary), 0.1)',
+            color: 'hsl(var(--secondary))',
+            padding: '0.15rem 0.35rem',
+            borderRadius: '4px',
+            border: '1px solid hsla(var(--secondary), 0.3)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em'
+          }}>
+            Lvl {state.unlockedLevel}
+          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>PREP STAGE REACHED</div>
+            <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))', marginTop: '0.15rem' }}>
               {state.unlockedLevel}/10
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Specialized Vocabulary & Grammar Modules banner */}
-      <div style={{
-        padding: '1.5rem 2rem',
-        backgroundColor: '#E040FB',
-        color: '#000000',
-        border: '3px solid #000000',
-        boxShadow: '6px 6px 0px #000000',
-        borderRadius: 'var(--radius-lg)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: '2rem',
-        flexWrap: 'wrap'
-      }}>
-        <div style={{ flex: 1, minWidth: '250px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#000000', fontWeight: '900', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
-            <Book size={16} />
-            <span>SPECIALIZED VOCABULARY</span>
-          </div>
-          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: '#000000', textTransform: 'uppercase' }}>
-            Grammar, Usage & Specialized Terms
-          </h2>
-          <p style={{ color: '#000000', fontSize: '0.9rem', fontWeight: '700', marginTop: '0.25rem', lineHeight: '1.4' }}>
-            Master common usage errors, abbreviations, foreign expressions, and register terminology across multiple domains with definitions and example sentences.
-          </p>
-        </div>
-        <button 
-          onClick={() => setActiveView('specialized')}
-          className="btn btn-secondary"
-          style={{ 
-            padding: '0.75rem 1.5rem', 
-            whiteSpace: 'nowrap'
-          }}
-        >
-          Explore Specialized Vocabs →
-        </button>
+          {/* Right visual indicator: Block Meter */}
+          <BlockMeter value={state.unlockedLevel} max={10} color="hsl(var(--secondary))" />
+          {/* Dynamic Progress Line indicator at bottom */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '4px',
+            width: `${(state.unlockedLevel / 10) * 100}%`,
+            background: 'hsl(var(--secondary))',
+            transition: 'width 1s ease'
+          }} />
+        </WindowPanel>
       </div>
 
       {/* Progression Roadmap */}
@@ -207,7 +544,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             top: '20px',
             bottom: '20px',
             width: '4px',
-            backgroundColor: '#000000',
+            backgroundColor: 'var(--text-black)',
             zIndex: 1
           }}></div>
 
@@ -216,8 +553,8 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             const isActive = state.unlockedLevel === stage.id;
             const isLocked = stage.id > state.unlockedLevel;
 
-            let bgBubble = 'hsl(var(--bg-canvas))';
-            let borderBubble = 'hsl(var(--border-muted))';
+            let bgBubble = 'var(--bg-canvas)';
+            let borderBubble = 'var(--border-muted)';
 
             if (isCompleted) {
               bgBubble = 'hsla(var(--primary), 0.1)';
@@ -246,19 +583,19 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
-                  backgroundColor: isCompleted ? '#69F0AE' : isActive ? '#FFD740' : 'var(--bg-canvas)',
-                  border: '3px solid #000000',
+                  backgroundColor: isCompleted ? 'var(--theme-green)' : isActive ? 'var(--theme-yellow)' : 'var(--bg-canvas)',
+                  border: 'var(--border-thick)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#000000',
-                  boxShadow: isActive ? '2px 2px 0px #000000' : 'none',
+                  color: 'var(--text-black)',
+                  boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
                   transition: 'var(--transition-normal)',
                   marginTop: '0.2rem',
                   position: 'relative',
                   zIndex: 10
                 }}>
-                  {isCompleted ? <CheckCircle size={20} color="#000000" /> : isLocked ? <Lock size={16} color="var(--text-muted)" /> : <span style={{ fontWeight: '900', fontFamily: 'var(--font-title)' }}>{stage.id}</span>}
+                  {isCompleted ? <CheckCircle size={20} color="#ffffff" /> : isLocked ? <Lock size={16} color="var(--text-muted)" /> : <span style={{ fontWeight: '900', fontFamily: 'var(--font-title)' }}>{stage.id}</span>}
                 </div>
 
                 {/* Content Card */}
@@ -266,8 +603,8 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                   flex: 1,
                   padding: '1.1rem 1.5rem',
                   backgroundColor: isActive ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
-                  border: '3px solid #000000',
-                  boxShadow: isActive ? '4px 4px 0px #000000' : '2px 2px 0px #000000',
+                  border: 'var(--border-thick)',
+                  boxShadow: isActive ? 'var(--shadow-medium)' : 'var(--shadow-tiny)',
                   display: 'flex',
                   flexDirection: isActive ? 'column' : 'row',
                   alignItems: isActive ? 'stretch' : 'center',
@@ -279,7 +616,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                     <div>
                       <h3 style={{ 
                         fontSize: '1.1rem', 
-                        color: isActive ? 'hsl(var(--secondary))' : 'hsl(var(--text-primary))',
+                        color: isActive ? 'hsl(var(--secondary))' : 'var(--text-primary)',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.5rem',
@@ -289,18 +626,18 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                         {isActive && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsla(var(--secondary), 0.15)', color: 'hsl(var(--secondary))', fontWeight: '700' }}>ACTIVE PHASE</span>}
                         {isCompleted && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsla(var(--primary), 0.15)', color: 'hsl(var(--primary))', fontWeight: '700' }}>QUALIFIED</span>}
                       </h3>
-                      <p style={{ fontSize: '0.85rem', color: 'hsl(var(--text-secondary))', marginTop: '0.25rem' }}>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
                         {stage.desc}
                       </p>
                     </div>
 
                     {isCompleted && (
-                      <div style={{ color: 'hsl(var(--text-muted))', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                         <span>Best Score: {state.levelAttempts[stage.id]?.score}%</span>
                       </div>
                     )}
                     {isLocked && (
-                      <div style={{ color: 'hsl(var(--text-muted))', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                         <Lock size={14} /> Locked
                       </div>
                     )}
@@ -348,7 +685,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                             key={unitNum} 
                             style={{ 
                               padding: '1rem', 
-                              border: '3px solid #000000',
+                              border: 'var(--border-thick)',
                               borderRadius: 'var(--radius-md)',
                               display: 'flex', 
                               flexDirection: 'column', 
@@ -357,30 +694,30 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                               pointerEvents: isUnitUnlocked ? 'auto' : 'none',
                               position: 'relative',
                               background: isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
-                              boxShadow: isUnitUnlocked ? '2px 2px 0px #000000' : 'none',
+                              boxShadow: isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
                               transition: 'var(--transition-normal)'
                             }}
                           >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <span style={{ fontWeight: '700', fontSize: '0.9rem', color: isUnitUnlocked ? 'hsl(var(--text-primary))' : 'hsl(var(--text-muted))' }}>
+                              <span style={{ fontWeight: '700', fontSize: '0.9rem', color: isUnitUnlocked ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                                 Unit {stage.id}.{unitNum}
                               </span>
-                              <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))' }}>
+                              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                                 {totalInUnit} words
                               </span>
                             </div>
 
                             {/* Progress bar */}
                             <div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'hsl(var(--text-secondary))', marginBottom: '0.2rem' }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.2rem' }}>
                                 <span>Progress</span>
                                 <span>{masteredInUnit}/{totalInUnit} ({unitPercent}%)</span>
                               </div>
-                              <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: '2px solid #000000', overflow: 'hidden' }}>
+                              <div style={{ height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
                                 <div style={{ 
                                   height: '100%', 
                                   width: `${unitPercent}%`, 
-                                  backgroundColor: '#69F0AE',
+                                   backgroundColor: 'var(--theme-green)',
                                   transition: 'var(--transition-normal)'
                                 }}></div>
                               </div>
@@ -411,7 +748,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                                 </button>
                               </div>
                             ) : (
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'hsl(var(--text-muted))', fontSize: '0.7rem', marginTop: 'auto' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.7rem', marginTop: 'auto' }}>
                                 <Lock size={12} /> Locked (Need 70% in Unit {stage.id}.{unitNum - 1})
                               </div>
                             )}

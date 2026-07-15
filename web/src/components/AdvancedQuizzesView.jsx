@@ -65,15 +65,15 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
           <GraduationCap size={32} color="hsl(var(--accent-blue))" />
           <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)' }}>Advanced SAT/GRE Quizzes</h1>
         </div>
-        <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '2.5rem', maxWidth: '700px', lineHeight: '1.5' }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '700px', lineHeight: '1.5' }}>
           Challenge yourself with high-level test preparation formats, including Analogies, Sentence Completions, and Contextual Lexical questions.
         </p>
 
         <div className="grid-cols-responsive">
           {(wordsData.advancedQuizzes || []).map(quiz => (
-            <div key={quiz.quiz_id} className="card glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div key={quiz.quiz_id} className="card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))' }}>
+                <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)' }}>
                   {quiz.quiz_title || `Advanced Set ${quiz.quiz_id}`}
                 </h3>
               </div>
@@ -125,27 +125,27 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
             </span>
           </div>
 
-          <div style={{ width: '100%', height: '6px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
             <div style={{
               height: '100%',
               width: `${((currentQIndex + 1) / questions.length) * 100}%`,
-              backgroundColor: 'hsl(var(--accent-blue))',
+              backgroundColor: 'var(--theme-blue)',
               transition: 'var(--transition-normal)'
             }}></div>
           </div>
           
-          <h2 style={{ fontSize: '1.1rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>
+          <h2 style={{ fontSize: '1.1rem', color: 'var(--text-muted)', fontWeight: '700' }}>
             Question {currentQIndex + 1} of {questions.length}
           </h2>
 
           {/* Question Display */}
-          <div className="glass-panel" style={{ padding: '2rem', textAlign: 'center', backgroundColor: 'hsla(var(--bg-surface), 0.5)' }}>
+          <div className="glass-panel" style={{ padding: '2rem', textAlign: 'center', backgroundColor: 'var(--bg-surface)' }}>
             {mode === 'analogies' ? (
-              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', letterSpacing: '0.05em', color: 'hsl(var(--text-primary))' }}>
+              <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', letterSpacing: '0.05em', color: 'var(--text-primary)' }}>
                 {currentQ.stem}
               </h3>
             ) : (
-              <h3 style={{ fontSize: '1.35rem', lineHeight: '1.6', color: 'hsl(var(--text-primary))', textAlign: 'left' }}>
+              <h3 style={{ fontSize: '1.35rem', lineHeight: '1.6', color: 'var(--text-primary)', textAlign: 'left' }}>
                 {currentQ.sentence}
               </h3>
             )}
@@ -192,11 +192,11 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
               <h4 style={{ color: selectedOption === currentQ.correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))', marginBottom: '0.75rem', fontSize: '1.1rem' }}>
                 {selectedOption === currentQ.correct_answer ? 'Brilliant!' : 'Not quite.'}
               </h4>
-              <p style={{ color: 'hsl(var(--text-primary))', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '0.5rem' }}>
+              <p style={{ color: 'var(--text-primary)', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '0.5rem' }}>
                 {currentQ.explanation}
               </p>
               {currentQ.bengali_explanation && (
-                <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>
                   {currentQ.bengali_explanation}
                 </p>
               )}
@@ -212,7 +212,7 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
         <div className="glass-panel animate-fade" style={{ textAlign: 'center', padding: '4rem 2rem', maxWidth: '600px', margin: '2rem auto' }}>
           <Award size={64} color="hsl(var(--accent-blue))" style={{ margin: '0 auto 1.5rem', display: 'block' }} />
           <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-title)', marginBottom: '1rem' }}>Set Completed!</h2>
-          <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '2.5rem', fontSize: '1.2rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.2rem' }}>
             You scored {score} out of {questions.length}.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>

@@ -13,15 +13,16 @@ export default function StudyDeckView({ state, wordsData, selectedUnit, setSelec
         display: 'flex', 
         gap: '0.75rem', 
         padding: '1rem 2rem', 
-        borderBottom: '3px solid #000000',
+        borderBottom: 'var(--border-thick)',
         backgroundColor: 'var(--bg-surface-elevated)'
       }}>
         <button
           onClick={() => setActiveTab('flashcards')}
           className="btn"
           style={{
-            backgroundColor: activeTab === 'flashcards' ? '#FFD740' : '#ffffff',
-            boxShadow: activeTab === 'flashcards' ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
+            backgroundColor: activeTab === 'flashcards' ? 'var(--theme-yellow)' : 'var(--bg-surface)',
+            color: activeTab === 'flashcards' ? 'var(--text-black)' : 'var(--text-primary)',
+            boxShadow: activeTab === 'flashcards' ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
             padding: '0.5rem 1rem',
             fontSize: '0.9rem'
           }}
@@ -32,8 +33,9 @@ export default function StudyDeckView({ state, wordsData, selectedUnit, setSelec
           onClick={() => setActiveTab('review')}
           className="btn"
           style={{
-            backgroundColor: activeTab === 'review' ? '#FFD740' : '#ffffff',
-            boxShadow: activeTab === 'review' ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
+            backgroundColor: activeTab === 'review' ? 'var(--theme-yellow)' : 'var(--bg-surface)',
+            color: activeTab === 'review' ? 'var(--text-black)' : 'var(--text-primary)',
+            boxShadow: activeTab === 'review' ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
             padding: '0.5rem 1rem',
             fontSize: '0.9rem'
           }}

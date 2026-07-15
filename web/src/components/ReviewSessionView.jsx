@@ -143,30 +143,38 @@ export default function ReviewSessionView({ state, wordsData }) {
   if (dueWords.length === 0) {
     return (
       <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px', margin: '3rem auto' }} className="glass-panel animate-fade">
-        <CheckCircle size={56} color="hsl(var(--primary))" style={{ margin: '0 auto 1.5rem', display: 'block' }} />
+        <div style={{
+          width: '72px', height: '72px', borderRadius: 'var(--radius-md)',
+          background: 'linear-gradient(135deg, var(--theme-green), var(--theme-cyan))',
+          border: 'var(--border-thick)', boxShadow: 'var(--shadow-small)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 1rem'
+        }}>
+          <CheckCircle size={32} color="#000" strokeWidth={2.5} />
+        </div>
         <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.75rem' }}>All Caught Up!</h2>
-        <p style={{ color: 'hsl(var(--text-secondary))', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '1.5rem' }}>
           Excellent work. You have completed all scheduled vocabulary reviews for today. 
         </p>
         <div style={{
           padding: '1rem',
-          borderRadius: 'var(--radius-md)',
-          backgroundColor: 'hsl(var(--bg-canvas) / 0.8)',
-          border: '1px solid hsl(var(--border-muted))',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)',
+          backgroundColor: 'var(--bg-canvas)',
           fontSize: '0.85rem',
-          color: 'hsl(var(--text-secondary))',
+          color: 'var(--text-secondary)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.25rem',
+          gap: '0.5rem',
           textAlign: 'left'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Total Active Cards in Queue:</span>
-            <span style={{ fontWeight: '700', color: 'hsl(var(--text-primary))' }}>{Object.keys(state.wordProgress).length} words</span>
+            <span style={{ fontWeight: '700' }}>Total Active Cards:</span>
+            <span style={{ fontWeight: '800', color: 'var(--text-primary)' }}>{Object.keys(state.wordProgress).length} words</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Mastered (Level 4+ Reps):</span>
-            <span style={{ fontWeight: '700', color: 'hsl(var(--primary))' }}>
+            <span style={{ fontWeight: '700' }}>Mastered (Level 4+):</span>
+            <span style={{ fontWeight: '800', color: 'var(--theme-green)' }}>
               {Object.values(state.wordProgress).filter(p => p.status === 'mastered').length} words
             </span>
           </div>
@@ -183,27 +191,32 @@ export default function ReviewSessionView({ state, wordsData }) {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Calendar color="hsl(var(--accent-purple))" /> Spaced Repetition Queue
+            <Calendar color="var(--theme-purple)" /> Spaced Repetition Queue
           </h1>
-          <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem' }}>
-            Review cards due today using the central bank standard SM-2 cognitive algorithm.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            Review cards due today using the SM-2 cognitive algorithm.
           </p>
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700' }}>REVIEWS DUE TODAY</div>
-          <div style={{ fontSize: '1.25rem', fontWeight: '800', fontFamily: 'var(--font-title)', color: 'hsl(var(--danger))' }}>
-            {dueWords.length - currentIndex} left
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+            fontSize: '0.7rem', fontWeight: '800', color: '#000',
+            background: 'var(--theme-red)', padding: '3px 10px',
+            borderRadius: '99px', border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-one)',
+            textTransform: 'uppercase'
+          }}>
+            {dueWords.length - currentIndex} LEFT
+          </span>
         </div>
       </div>
 
       {/* Progress Bar */}
-      <div style={{ width: '100%', height: '8px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '4px', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
         <div style={{
           height: '100%',
           width: `${(currentIndex / dueWords.length) * 100}%`,
-          backgroundColor: 'hsl(var(--accent-purple))',
-          borderRadius: '4px',
+          backgroundColor: 'var(--theme-purple)',
           transition: 'var(--transition-normal)'
         }}></div>
       </div>
@@ -243,7 +256,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               fontWeight: '900',
               fontSize: '2rem',
               padding: '0.25rem 1.05rem',
-              borderRadius: '8px',
+              borderRadius: 'var(--radius-lg)',
               transform: 'rotate(-20deg)',
               pointerEvents: 'none',
               textTransform: 'uppercase',
@@ -265,7 +278,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               fontWeight: '900',
               fontSize: '2rem',
               padding: '0.25rem 1.05rem',
-              borderRadius: '8px',
+              borderRadius: 'var(--radius-lg)',
               transform: 'rotate(20deg)',
               pointerEvents: 'none',
               textTransform: 'uppercase',
@@ -293,7 +306,7 @@ export default function ReviewSessionView({ state, wordsData }) {
                     e.stopPropagation();
                     state.toggleBookmark(word.id);
                   }}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'hsl(var(--text-muted))' }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
                   aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
                 >
                   {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
@@ -301,12 +314,12 @@ export default function ReviewSessionView({ state, wordsData }) {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', margin: 'auto 0' }}>
-                <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'hsl(var(--text-primary))' }}>{word.word.toUpperCase()}</h2>
+                <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>{word.word.toUpperCase()}</h2>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span style={{ fontStyle: 'italic', color: 'hsl(var(--text-secondary))', fontWeight: '500' }}>
+                  <span style={{ fontStyle: 'italic', color: 'var(--text-secondary)', fontWeight: '500' }}>
                     ({word.part_of_speech})
                   </span>
-                  <span style={{ color: 'hsl(var(--text-muted))', fontFamily: 'monospace' }}>
+                  <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                     /{word.pronunciation}/
                   </span>
                   <button 
@@ -331,7 +344,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               </div>
 
                 {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', position: 'absolute', bottom: '2rem' }}>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem' }}>
                     💡 Click card to flip | Swipe left/right to study/master
                   </div>
                 )}
@@ -350,7 +363,7 @@ export default function ReviewSessionView({ state, wordsData }) {
                       e.stopPropagation();
                       setRevealDetails(true);
                     }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'hsl(var(--text-muted))' }}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
                     title="View Details & Mnemonic"
                     aria-label="View word details and mnemonic"
                   >
@@ -367,14 +380,14 @@ export default function ReviewSessionView({ state, wordsData }) {
                   </div>
                 )}
 
-                <div style={{ fontSize: '1.25rem', color: 'hsl(var(--text-secondary))', lineHeight: '1.45', fontWeight: '500', maxWidth: '90%', textAlign: 'center', margin: '0 auto' }}>
+                <div style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: '1.45', fontWeight: '500', maxWidth: '90%', textAlign: 'center', margin: '0 auto' }}>
                   {word.definition}
                 </div>
               </div>
 
               {/* Bottom notification */}
                 {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
                     💡 Click to flip back | Swipe left/right to study/master
                   </div>
                 )}
@@ -389,7 +402,7 @@ export default function ReviewSessionView({ state, wordsData }) {
       <div style={{ width: '100%', maxWidth: '600px', position: 'relative' }}>
         {flipped ? (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700', letterSpacing: '0.05em' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700', letterSpacing: '0.05em' }}>
               HOW WELL DID YOU RECALL THIS WORD?
             </span>
             <div style={{ display: 'flex', gap: '0.4rem', width: '100%', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -436,7 +449,7 @@ export default function ReviewSessionView({ state, wordsData }) {
             </div>
           </div>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'hsl(var(--text-muted))', fontSize: '0.9rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
             Tap the card above to flip and rate your memory.
           </div>
         )}

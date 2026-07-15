@@ -9,17 +9,17 @@ import {
 import confetti from 'canvas-confetti';
 
 // Neobrutalist design constants
-const NEO_SHADOW = '4px 4px 0px #000000';
-const NEO_BORDER = '3px solid #000000';
+const NEO_SHADOW = 'var(--shadow-medium)';
+const NEO_BORDER = 'var(--border-thick)';
 const NEO_RADIUS = '0px';
 
 const COLORS = [
-  '#FF5252', // Red
-  '#448AFF', // Blue
-  '#69F0AE', // Green
-  '#FFD740', // Yellow
-  '#E040FB', // Purple
-  '#18FFFF'  // Cyan
+  'var(--theme-red)',
+  'var(--theme-blue)',
+  'var(--theme-green)',
+  'var(--theme-yellow)',
+  'var(--theme-purple)',
+  'var(--theme-cyan)'
 ];
 
 export default function QuickMatchView({ state, wordsData }) {
@@ -109,14 +109,14 @@ export default function QuickMatchView({ state, wordsData }) {
     return (
       <div className="animate-fade" style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <div style={{ backgroundColor: '#FFD740', padding: '0.5rem', border: NEO_BORDER, boxShadow: NEO_SHADOW }}>
+          <div style={{ backgroundColor: 'var(--theme-yellow)', padding: '0.5rem', border: NEO_BORDER, boxShadow: NEO_SHADOW }}>
             <Puzzle size={32} color="#000" />
           </div>
-          <h1 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <h1 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
             Quick Match
           </h1>
         </div>
-        <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '2.5rem', maxWidth: '600px', fontSize: '1.1rem', fontWeight: '500' }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '600px', fontSize: '1.1rem', fontWeight: '500' }}>
           Test your rapid recall by matching words to their definitions. Select a quiz to begin.
         </p>
 
@@ -142,7 +142,7 @@ export default function QuickMatchView({ state, wordsData }) {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = 'translate(-2px, -2px)';
-                  e.currentTarget.style.boxShadow = '6px 6px 0px #000000';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-main)';
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = 'translate(0px, 0px)';
@@ -150,11 +150,11 @@ export default function QuickMatchView({ state, wordsData }) {
                 }}
                 onMouseDown={(e) => {
                   e.currentTarget.style.transform = 'translate(2px, 2px)';
-                  e.currentTarget.style.boxShadow = '2px 2px 0px #000000';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-tiny)';
                 }}
                 onMouseUp={(e) => {
                   e.currentTarget.style.transform = 'translate(-2px, -2px)';
-                  e.currentTarget.style.boxShadow = '6px 6px 0px #000000';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-main)';
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -185,9 +185,10 @@ export default function QuickMatchView({ state, wordsData }) {
               padding: '0.5rem 1rem', 
               fontSize: '1rem', 
               fontWeight: '800',
-              backgroundColor: '#fff',
+              backgroundColor: 'var(--bg-surface)',
+              color: 'var(--text-primary)',
               border: NEO_BORDER,
-              boxShadow: '2px 2px 0px #000',
+              boxShadow: 'var(--shadow-tiny)',
               cursor: 'pointer',
               textTransform: 'uppercase'
             }}
@@ -199,12 +200,12 @@ export default function QuickMatchView({ state, wordsData }) {
           </h2>
         </div>
         <div style={{ 
-          backgroundColor: '#69F0AE', 
+          backgroundColor: 'var(--theme-green)', 
           border: NEO_BORDER, 
           padding: '0.5rem 1rem',
-          boxShadow: '2px 2px 0px #000'
+          boxShadow: 'var(--shadow-tiny)'
         }}>
-          <span style={{ fontSize: '1.1rem', color: '#000', fontWeight: '900', textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '1.1rem', color: 'var(--text-black)', fontWeight: '900', textTransform: 'uppercase' }}>
             {correctMatches.length} / {activeQuiz.matches.length} Matched
           </span>
         </div>
@@ -216,9 +217,9 @@ export default function QuickMatchView({ state, wordsData }) {
           padding: '4rem 2rem', 
           maxWidth: '600px', 
           margin: '2rem auto',
-          backgroundColor: '#FFD740',
+          backgroundColor: 'var(--theme-yellow)',
           border: NEO_BORDER,
-          boxShadow: '8px 8px 0px #000'
+          boxShadow: '8px 8px 0px var(--shadow-color)'
         }}>
           <Award size={80} color="#000" style={{ margin: '0 auto 1.5rem' }} />
           <h2 style={{ fontSize: '3rem', fontFamily: 'var(--font-title)', marginBottom: '1rem', color: '#000', textTransform: 'uppercase' }}>Flawless!</h2>
@@ -229,13 +230,14 @@ export default function QuickMatchView({ state, wordsData }) {
             <button 
               onClick={() => setActiveQuiz(null)} 
               style={{
-                backgroundColor: '#fff',
+                backgroundColor: 'var(--bg-surface)',
+                color: 'var(--text-primary)',
                 border: NEO_BORDER,
                 padding: '0.75rem 1.5rem',
                 fontSize: '1.1rem',
                 fontWeight: '900',
                 cursor: 'pointer',
-                boxShadow: '4px 4px 0px #000',
+                boxShadow: 'var(--shadow-medium)',
                 textTransform: 'uppercase'
               }}
             >
@@ -244,17 +246,18 @@ export default function QuickMatchView({ state, wordsData }) {
             <button 
               onClick={() => startQuiz(activeQuiz)} 
               style={{
-                backgroundColor: '#69F0AE',
+                backgroundColor: 'var(--theme-green)',
                 border: NEO_BORDER,
                 padding: '0.75rem 1.5rem',
                 fontSize: '1.1rem',
                 fontWeight: '900',
                 cursor: 'pointer',
-                boxShadow: '4px 4px 0px #000',
+                boxShadow: 'var(--shadow-medium)',
                 textTransform: 'uppercase',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                color: 'var(--text-black)'
               }}
             >
               <RefreshCw size={20} /> Play Again
@@ -271,22 +274,22 @@ export default function QuickMatchView({ state, wordsData }) {
               const isSelected = selectedWord === num;
               const isWrong = wrongMatch?.word === num;
 
-              let bg = '#ffffff';
+              let bg = 'var(--bg-surface)';
               let translate = '0px, 0px';
               let shadow = NEO_SHADOW;
               let zIndex = 1;
 
               if (isCorrect) {
-                bg = '#69F0AE'; // Green
+                bg = 'var(--theme-green)';
                 translate = '2px, 2px';
-                shadow = '1px 1px 0px #000';
+                shadow = 'var(--shadow-one)';
               } else if (isWrong) {
-                bg = '#FF5252'; // Red
-                translate = '4px, -4px'; // Shake effect handled by css ideally, but offset for now
+                bg = 'var(--theme-red)';
+                translate = '4px, -4px';
               } else if (isSelected) {
-                bg = '#18FFFF'; // Cyan
+                bg = 'var(--theme-cyan)';
                 translate = '-2px, -2px';
-                shadow = '6px 6px 0px #000';
+                shadow = 'var(--shadow-main)';
                 zIndex = 10;
               }
 
@@ -301,7 +304,7 @@ export default function QuickMatchView({ state, wordsData }) {
                     backgroundColor: bg,
                     border: NEO_BORDER,
                     boxShadow: shadow,
-                    color: '#000',
+                    color: (isCorrect || isWrong || isSelected) ? 'var(--text-black)' : 'var(--text-primary)',
                     fontWeight: '900',
                     fontSize: '1.2rem',
                     textTransform: 'uppercase',
@@ -316,7 +319,7 @@ export default function QuickMatchView({ state, wordsData }) {
                   }}
                 >
                   <span>{item.word}</span>
-                  {isCorrect && <CheckCircle2 size={24} color="#000" />}
+                  {isCorrect && <CheckCircle2 size={24} color="#ffffff" />}
                 </button>
               );
             })}
@@ -329,21 +332,21 @@ export default function QuickMatchView({ state, wordsData }) {
               const isSelected = selectedDefinition === letter;
               const isWrong = wrongMatch?.def === letter;
 
-              let bg = '#ffffff';
+              let bg = 'var(--bg-surface)';
               let translate = '0px, 0px';
               let shadow = NEO_SHADOW;
               let zIndex = 1;
 
               if (isCorrect) {
-                bg = '#69F0AE';
+                bg = 'var(--theme-green)';
                 translate = '2px, 2px';
-                shadow = '1px 1px 0px #000';
+                shadow = 'var(--shadow-one)';
               } else if (isWrong) {
-                bg = '#FF5252';
+                bg = 'var(--theme-red)';
               } else if (isSelected) {
-                bg = '#E040FB'; // Purple
+                bg = 'var(--theme-purple)';
                 translate = '-2px, -2px';
-                shadow = '6px 6px 0px #000';
+                shadow = 'var(--shadow-main)';
                 zIndex = 10;
               }
 
@@ -358,7 +361,7 @@ export default function QuickMatchView({ state, wordsData }) {
                     backgroundColor: bg,
                     border: NEO_BORDER,
                     boxShadow: shadow,
-                    color: '#000',
+                    color: (isCorrect || isWrong || isSelected) ? 'var(--text-black)' : 'var(--text-primary)',
                     cursor: isCorrect ? 'default' : 'pointer',
                     transform: `translate(${translate})`,
                     transition: 'all 0.1s ease',

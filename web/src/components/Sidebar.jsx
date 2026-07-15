@@ -108,15 +108,15 @@ export default function Sidebar({
           <div style={{
             width: '36px',
             height: '36px',
-            backgroundColor: '#FFD740',
+            backgroundColor: 'var(--theme-yellow)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '2px solid #000000',
-            boxShadow: '2px 2px 0px #000000',
+            border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-tiny)',
             flexShrink: 0
           }} title="WordSmart">
-            <Sparkles size={20} color="#000000" />
+            <Sparkles size={20} color="var(--text-black)" />
           </div>
           {!sidebarCollapsed && (
             <div>
@@ -136,8 +136,8 @@ export default function Sidebar({
             width: '36px',
             height: '36px',
             backgroundColor: 'var(--bg-surface-elevated)',
-            border: '2px solid #000000',
-            boxShadow: '2px 2px 0px #000000',
+            border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-tiny)',
             cursor: 'pointer',
             padding: 0,
             display: 'inline-flex',
@@ -158,14 +158,14 @@ export default function Sidebar({
           aria-label="Close navigation menu"
           style={{
             display: 'none',
-            backgroundColor: '#ffffff',
-            border: '2px solid #000000',
-            boxShadow: '1px 1px 0px #000000',
+            backgroundColor: 'var(--bg-surface)',
+            border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-one)',
             cursor: 'pointer',
             padding: '2px'
           }}
         >
-          <X size={18} color="#000000" />
+          <X size={18} color="var(--text-primary)" />
         </button>
       </div>
 
@@ -173,13 +173,13 @@ export default function Sidebar({
       {!sidebarCollapsed && (
         <div style={{
           padding: '0.6rem 0.85rem',
-          backgroundColor: '#FF5252',
-          border: '2px solid #000000',
-          boxShadow: '3px 3px 0px #000000',
+          backgroundColor: 'var(--theme-red)',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-small)',
           marginBottom: '1.25rem',
-          color: '#000000'
+          color: 'var(--text-black)'
         }}>
-          <div style={{ fontSize: '0.65rem', color: '#000000', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.15rem' }}>
+          <div style={{ fontSize: '0.65rem', color: 'var(--text-black)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.15rem' }}>
             Current Stage
           </div>
           <div style={{ 
@@ -193,11 +193,11 @@ export default function Sidebar({
             <span style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', maxWidth: '160px', textTransform: 'uppercase' }}>{currentStage.name}</span>
             <span>Lvl {state.unlockedLevel}</span>
           </div>
-          <div style={{ marginTop: '0.4rem', height: '8px', backgroundColor: '#ffffff', border: '2px solid #000000', overflow: 'hidden' }}>
+          <div style={{ marginTop: '0.4rem', height: '10px', backgroundColor: 'var(--bg-surface)', border: 'var(--border-thin)', overflow: 'hidden' }}>
             <div style={{ 
               height: '100%', 
               width: `${(state.unlockedLevel / 10) * 100}%`, 
-              backgroundColor: '#69F0AE',
+              backgroundColor: 'var(--theme-green)',
               transition: 'var(--transition-normal)'
             }}></div>
           </div>
@@ -247,23 +247,23 @@ export default function Sidebar({
                       padding: sidebarCollapsed ? '0' : '0.45rem 0.85rem',
                       
                       // Background
-                      backgroundColor: isActive ? '#18FFFF' : 'transparent',
+                      backgroundColor: isActive ? 'var(--theme-cyan)' : 'transparent',
                       
                       // Border
                       border: isActive 
-                        ? (sidebarCollapsed ? '2px solid transparent' : '2px solid #000000') 
+                        ? (sidebarCollapsed ? '2px solid transparent' : 'var(--border-thin)') 
                         : '2px solid transparent',
                       
                       // Shadow
                       boxShadow: isActive 
-                        ? (sidebarCollapsed ? 'none' : '2px 2px 0px #000000') 
+                        ? (sidebarCollapsed ? 'none' : 'var(--shadow-tiny)') 
                         : 'none',
                       
                       // Pill shape corners
                       borderRadius: sidebarCollapsed ? '50%' : '9999px',
                       
                       // Text / Icon color
-                      color: isActive ? '#000000' : 'var(--text-secondary)',
+                      color: isActive ? 'var(--text-black)' : 'var(--text-secondary)',
                       
                       cursor: 'pointer',
                       fontFamily: 'var(--font-body)',
@@ -280,8 +280,8 @@ export default function Sidebar({
                           e.currentTarget.style.borderRadius = '50%';
                         } else {
                           e.currentTarget.style.borderRadius = '9999px';
-                          e.currentTarget.style.border = '2px solid #000000';
-                          e.currentTarget.style.boxShadow = '2px 2px 0px #000000';
+                          e.currentTarget.style.border = 'var(--border-thin)';
+                          e.currentTarget.style.boxShadow = 'var(--shadow-tiny)';
                         }
                       }
                     }}
@@ -299,7 +299,7 @@ export default function Sidebar({
                       <Icon size={20} style={{ minWidth: '20px' }} />
                       {!sidebarCollapsed && <span>{item.label}</span>}
                     </div>
-                    {!sidebarCollapsed && isActive && <ChevronRight size={12} className="item-chevron" color="#000" />}
+                    {!sidebarCollapsed && isActive && <ChevronRight size={12} className="item-chevron" color="var(--text-black)" />}
                   </button>
                 );
               })}
@@ -326,9 +326,9 @@ export default function Sidebar({
           padding: sidebarCollapsed ? '0' : '0.45rem 0.65rem',
           fontSize: '0.75rem',
           fontWeight: '900',
-          backgroundColor: isResetHovered ? '#000000' : '#FFD740',
-          border: '2px solid #000000',
-          color: isResetHovered ? '#FFD740' : '#000000',
+          backgroundColor: isResetHovered ? 'var(--text-black)' : 'var(--theme-yellow)',
+          border: 'var(--border-thin)',
+          color: isResetHovered ? 'var(--theme-yellow)' : 'var(--text-black)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
@@ -337,7 +337,7 @@ export default function Sidebar({
           marginTop: 'auto',
           marginRight: sidebarCollapsed ? 'auto' : '0',
           marginLeft: sidebarCollapsed ? 'auto' : '0',
-          boxShadow: '2px 2px 0px #000000',
+          boxShadow: 'var(--shadow-tiny)',
           borderRadius: sidebarCollapsed ? '50%' : '9999px',
           flexShrink: 0,
           transition: 'all 0.15s ease'

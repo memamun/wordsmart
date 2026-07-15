@@ -22,6 +22,16 @@ import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield 
 
 export const DetailPanelContext = createContext();
 
+const getSystemTheme = () => {
+  if (typeof window === 'undefined') return 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+const getInitialTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : getSystemTheme();
+};
+
 export default function App() {
   const state = useGameState();
   const wordsData = useWordsData();
@@ -30,7 +40,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
   const [detailWord, setDetailWord] = useState(null);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'system');
+  const [theme, setTheme] = useState(getInitialTheme);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // Gesture State for 2026 Mobile Viewport Gesture Navigation
@@ -92,27 +102,10 @@ export default function App() {
     }
   };
 
-  // Sync Theme attribute on <html> element
+  // Sync Theme attribute on <html> element. The default is resolved from system once,
+  // then the explicit light/dark choice is persisted.
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-theme', systemTheme);
-    } else {
-      root.setAttribute('data-theme', theme);
-    }
-  }, [theme]);
-
-  // Listen to system preference changes if 'system' is selected
-  useEffect(() => {
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const listener = () => {
-        document.documentElement.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
-      };
-      mediaQuery.addEventListener('change', listener);
-      return () => mediaQuery.removeEventListener('change', listener);
-    }
+    document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
   const renderActiveView = () => {
@@ -250,7 +243,7 @@ export default function App() {
           width: '50px',
           height: '50px',
           border: '5px solid var(--bg-surface-elevated)',
-          borderTop: '5px solid #FFD740',
+          borderTop: '5px solid var(--theme-yellow)',
           borderRadius: '50%',
           animation: 'spin 1s linear infinite',
           marginBottom: '1rem'
@@ -281,7 +274,7 @@ export default function App() {
         fontFamily: 'var(--font-body)'
       }}>
         <div className="glass-panel" style={{ padding: '2rem', maxWidth: '450px' }}>
-          <AlertCircle size={48} color="#FF5252" style={{ marginBottom: '1rem' }} />
+          <AlertCircle size={48} color="var(--theme-red)" style={{ marginBottom: '1rem' }} />
           <h2 style={{ fontSize: '1.5rem', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Database Error</h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.9rem', lineHeight: '1.5' }}>
             {wordsData.error}
@@ -339,7 +332,7 @@ export default function App() {
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            backgroundColor: 'var(--overlay)',
             backdropFilter: 'blur(4px)',
             zIndex: 1000,
           }}
@@ -422,7 +415,7 @@ export default function App() {
               left: 0,
               width: '100vw',
               height: '100vh',
-              backgroundColor: 'rgba(0,0,0,0.7)',
+              backgroundColor: 'var(--overlay)',
               backdropFilter: 'blur(6px)',
               zIndex: 99998,
             }}
@@ -441,12 +434,12 @@ export default function App() {
               width: '350px',
               maxWidth: '90vw',
               padding: '1.5rem', 
-              border: '4px solid #000000', 
-              backgroundColor: '#FFD740', 
-              color: '#000000', 
-              boxShadow: '8px 8px 0px #000000',
+              border: 'var(--border-thick)', 
+              backgroundColor: 'var(--theme-yellow)', 
+              color: 'var(--text-black)', 
+              boxShadow: '8px 8px 0px var(--shadow-color)',
               zIndex: 99999,
-              borderRadius: '8px',
+              borderRadius: 'var(--radius-lg)',
               textAlign: 'center',
               fontFamily: 'var(--font-body)'
             }}
@@ -455,8 +448,8 @@ export default function App() {
             {/* Warning/Hazard Diagonal Stripes Strip */}
             <div style={{
               height: '16px',
-              background: 'repeating-linear-gradient(45deg, #18FFFF, #18FFFF 10px, #000000 10px, #000000 20px)',
-              borderBottom: '3px solid #000000',
+              background: 'repeating-linear-gradient(45deg, var(--theme-cyan), var(--theme-cyan) 10px, var(--shadow-color) 10px, var(--shadow-color) 20px)',
+              borderBottom: 'var(--border-thick)',
               margin: '-1.5rem -1.5rem 1rem -1.5rem',
               borderTopLeftRadius: '4px',
               borderTopRightRadius: '4px'
@@ -467,16 +460,16 @@ export default function App() {
               <div style={{
                 width: '54px',
                 height: '54px',
-                backgroundColor: '#ffffff',
-                border: '3px solid #000000',
-                boxShadow: '3px 3px 0px #000000',
+                backgroundColor: 'var(--bg-surface)',
+                border: 'var(--border-thick)',
+                boxShadow: '3px 3px 0px var(--shadow-color)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FFD740'
+                color: 'var(--theme-yellow)'
               }}>
-                <RotateCcw size={28} color="#000000" />
+                <RotateCcw size={28} color="var(--text-black)" />
               </div>
             </div>
 
@@ -484,7 +477,7 @@ export default function App() {
               Start Fresh?
             </div>
             
-            <p style={{ fontSize: '0.82rem', fontWeight: '700', lineHeight: '1.4', marginBottom: '1.5rem', color: '#000000' }}>
+            <p style={{ fontSize: '0.82rem', fontWeight: '700', lineHeight: '1.4', marginBottom: '1.5rem', color: 'var(--text-black)' }}>
               This will reset all your stage progress, XP levels, review history, and bookmarks back to the beginning. It's a great opportunity to start your vocabulary journey clean!
             </p>
 
@@ -495,17 +488,17 @@ export default function App() {
                   padding: '0.75rem', 
                   fontSize: '0.85rem', 
                   fontWeight: '900', 
-                  backgroundColor: '#ffffff', 
-                  border: '3px solid #000000', 
-                  cursor: 'pointer', 
-                  boxShadow: '3px 3px 0px #000000',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: 'var(--border-thick)',
+                  cursor: 'pointer',
+                  boxShadow: '3px 3px 0px var(--shadow-color)',
                   textTransform: 'uppercase',
-                  borderRadius: '6px',
+                  borderRadius: 'var(--radius-md)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  color: '#FF5252'
+                  color: 'var(--theme-red)'
                 }} 
                 onClick={() => { state.resetProgress(); window.location.reload(); }}
               >
@@ -517,17 +510,17 @@ export default function App() {
                   padding: '0.75rem', 
                   fontSize: '0.85rem', 
                   fontWeight: '900', 
-                  backgroundColor: '#69F0AE', 
-                  border: '3px solid #000000', 
+                  backgroundColor: 'var(--theme-green)', 
+                  border: 'var(--border-thick)', 
                   cursor: 'pointer', 
-                  boxShadow: '3px 3px 0px #000000',
+                  boxShadow: '3px 3px 0px var(--shadow-color)',
                   textTransform: 'uppercase',
-                  borderRadius: '6px',
+                  borderRadius: 'var(--radius-md)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  color: '#000000'
+                  color: 'var(--text-black)'
                 }} 
                 onClick={() => setShowResetConfirm(false)}
               >

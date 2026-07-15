@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlertTriangle, RefreshCw } from 'lucide-react';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -23,32 +24,36 @@ export default class ErrorBoundary extends React.Component {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
-          background: 'hsl(224, 45%, 6%)',
-          color: 'hsl(220, 20%, 98%)',
-          fontFamily: 'Inter, sans-serif',
+          background: 'var(--bg-canvas)',
+          color: 'var(--text-primary)',
+          fontFamily: 'var(--font-body)',
           padding: '2rem',
           textAlign: 'center',
           gap: '1rem'
         }}>
-          <span style={{ fontSize: '4rem' }}>⚠️</span>
-          <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: '1.5rem' }}>Something went wrong</h1>
-          <p style={{ color: 'hsl(220, 15%, 78%)', maxWidth: '480px', lineHeight: '1.5', fontSize: '0.9rem' }}>
+          <div style={{
+            width: '72px',
+            height: '72px',
+            borderRadius: 'var(--radius-md)',
+            background: 'linear-gradient(135deg, var(--theme-yellow), var(--theme-red))',
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-small)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <AlertTriangle size={32} color="#000" strokeWidth={2.5} />
+          </div>
+          <h1 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem' }}>Something went wrong</h1>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '480px', lineHeight: '1.5', fontSize: '0.9rem' }}>
             An unexpected error occurred. Please try refreshing the page.
           </p>
           <button
             onClick={() => window.location.reload()}
-            style={{
-              padding: '0.75rem 1.5rem',
-              borderRadius: '12px',
-              border: 'none',
-              background: 'linear-gradient(135deg, hsl(155, 85%, 48%) 0%, hsl(160, 80%, 40%) 100%)',
-              color: 'hsl(224, 45%, 6%)',
-              fontWeight: '600',
-              cursor: 'pointer',
-              fontSize: '0.9rem'
-            }}
+            className="btn btn-primary"
+            style={{ gap: '0.4rem' }}
           >
-            Refresh Page
+            <RefreshCw size={16} /> Refresh Page
           </button>
         </div>
       );

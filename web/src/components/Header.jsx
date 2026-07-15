@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Coins, Award, Menu, Sun, Moon, Monitor } from 'lucide-react';
+import { Flame, Coins, Award, Menu, Sun, Moon } from 'lucide-react';
 import { PREP_STAGES } from '../hooks/useGameState';
 
 export default function Header({ state, wordsData, selectedUnit, sidebarOpen, setSidebarOpen, theme, setTheme }) {
@@ -34,7 +34,7 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
 
   return (
     <header className="main-header" style={{
-      borderBottom: '3px solid #000000',
+      borderBottom: 'var(--border-thick)',
       padding: '1rem 1.5rem',
       display: 'flex',
       alignItems: 'center',
@@ -54,27 +54,27 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           aria-label="Open navigation menu"
           style={{ 
             display: 'none', 
-            backgroundColor: '#ffffff',
-            border: '2px solid #000000',
-            boxShadow: '2px 2px 0px #000000',
+            backgroundColor: 'var(--bg-surface)',
+            border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-tiny)',
             cursor: 'pointer',
             padding: '4px'
           }}
         >
-          <Menu size={20} color="#000000" />
+          <Menu size={20} color="var(--text-primary)" />
         </button>
 
         <div style={{
           width: '36px',
           height: '36px',
-          backgroundColor: '#69F0AE',
+          backgroundColor: 'var(--theme-green)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '2px solid #000000',
-          boxShadow: '2px 2px 0px #000000'
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)'
         }}>
-          <Award size={18} color="#000000" />
+          <Award size={18} color="var(--text-black)" />
         </div>
         <div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '800', letterSpacing: '0.05em' }}>
@@ -85,29 +85,29 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
             <span style={{ 
               fontSize: '0.75rem', 
               padding: '0.1rem 0.5rem', 
-              backgroundColor: '#69F0AE', 
-              color: '#000000', 
+              backgroundColor: 'var(--theme-green)', 
+              color: 'var(--text-black)', 
               fontWeight: '800',
-              border: '2px solid #000000',
-              boxShadow: '1px 1px 0px #000000'
+              border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-one)'
             }}>
-              {unitMasteredCount}/{unitTotalWords} mastered ({unitProgressPercent}%)
+              {unitMasteredCount}/{unitTotalWords} <span className="hide-mobile">mastered </span>({unitProgressPercent}%)
             </span>
           </div>
           {/* Progress bar */}
           <div style={{ 
-            height: '8px', 
+            height: '10px', 
             width: '100%', 
             maxWidth: '150px',
             backgroundColor: 'var(--bg-canvas)', 
-            border: '2px solid #000000',
+            border: 'var(--border-thin)',
             marginTop: '0.35rem', 
             overflow: 'hidden' 
           }}>
             <div style={{ 
               height: '100%', 
               width: `${unitProgressPercent}%`, 
-              backgroundColor: '#69F0AE',
+              backgroundColor: 'var(--theme-green)',
               transition: 'var(--transition-normal)'
             }}></div>
           </div>
@@ -122,18 +122,18 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           alignItems: 'center', 
           gap: '0.4rem', 
           padding: '0.4rem 0.75rem', 
-          backgroundColor: state.streak > 0 ? '#FF5252' : 'var(--bg-canvas)',
-          border: '2px solid #000000',
-          boxShadow: '2px 2px 0px #000000',
-          color: state.streak > 0 ? '#000000' : 'var(--text-primary)'
+          backgroundColor: state.streak > 0 ? 'var(--theme-red)' : 'var(--bg-canvas)',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)',
+          color: state.streak > 0 ? 'var(--text-black)' : 'var(--text-primary)'
         }}>
           <div className={state.streak > 0 ? 'animate-fire' : ''}>
-            <Flame size={16} color={state.streak > 0 ? '#000000' : 'var(--text-muted)'} fill={state.streak > 0 ? '#000000' : 'none'} />
+            <Flame size={16} color={state.streak > 0 ? 'var(--text-black)' : 'var(--text-muted)'} fill={state.streak > 0 ? 'var(--text-black)' : 'none'} />
           </div>
           <div>
-            <div style={{ fontSize: '0.6rem', color: state.streak > 0 ? '#000000' : 'var(--text-muted)', fontWeight: '900', textTransform: 'uppercase' }}>STREAK</div>
+            <div className="hide-mobile" style={{ fontSize: '0.6rem', color: state.streak > 0 ? 'var(--text-black)' : 'var(--text-muted)', fontWeight: '900', textTransform: 'uppercase' }}>STREAK</div>
             <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
-              {state.streak} Days
+              {state.streak}<span className="hide-mobile"> {state.streak === 1 ? 'Day' : 'Days'}</span><span className="show-mobile-inline">d</span>
             </div>
           </div>
         </div>
@@ -144,16 +144,16 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           alignItems: 'center', 
           gap: '0.4rem', 
           padding: '0.4rem 0.75rem', 
-          backgroundColor: '#FFD740',
-          border: '2px solid #000000',
-          boxShadow: '2px 2px 0px #000000',
-          color: '#000000'
+          backgroundColor: 'var(--theme-yellow)',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)',
+          color: 'var(--text-black)'
         }}>
-          <Coins size={16} color="#000000" />
+          <Coins size={16} color="var(--text-black)" />
           <div>
-            <div style={{ fontSize: '0.6rem', color: '#000000', fontWeight: '900', textTransform: 'uppercase' }}>BUDGET</div>
+            <div className="hide-mobile" style={{ fontSize: '0.6rem', color: 'var(--text-black)', fontWeight: '900', textTransform: 'uppercase' }}>BUDGET</div>
             <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
-              {state.coins} Coins
+              {state.coins}<span className="hide-mobile"> Coins</span>
             </div>
           </div>
         </div>
@@ -164,16 +164,16 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
           alignItems: 'center', 
           gap: '0.4rem', 
           padding: '0.4rem 0.75rem', 
-          backgroundColor: '#E040FB',
-          border: '2px solid #000000',
-          boxShadow: '2px 2px 0px #000000',
-          color: '#000000'
+          backgroundColor: 'var(--theme-purple)',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)',
+          color: 'var(--text-black)'
         }}>
-          <Award size={16} color="#000000" />
+          <Award size={16} color="var(--text-black)" />
           <div>
-            <div style={{ fontSize: '0.6rem', color: '#000000', fontWeight: '900', textTransform: 'uppercase' }}>TOTAL XP</div>
+            <div className="hide-mobile" style={{ fontSize: '0.6rem', color: 'var(--text-black)', fontWeight: '900', textTransform: 'uppercase' }}>TOTAL XP</div>
             <div style={{ fontSize: '0.85rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1' }}>
-              {state.xp.toLocaleString()}
+              {state.xp.toLocaleString()}<span className="show-mobile-inline"> XP</span>
             </div>
           </div>
         </div>
@@ -181,30 +181,29 @@ export default function Header({ state, wordsData, selectedUnit, sidebarOpen, se
         {/* Theme Toggler */}
         <button
           onClick={() => {
-            const themes = ['light', 'dark', 'system'];
-            const nextIdx = (themes.indexOf(theme) + 1) % themes.length;
-            setTheme(themes[nextIdx]);
+            setTheme(theme === 'dark' ? 'light' : 'dark');
           }}
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.4rem',
-            padding: '0.4rem 0.75rem',
-            backgroundColor: '#18FFFF',
-            border: '2px solid #000000',
-            boxShadow: '2px 2px 0px #000000',
-            color: '#000000',
+            justifyContent: 'center',
+            width: '38px',
+            height: '38px',
+            padding: 0,
+            backgroundColor: 'var(--theme-cyan)',
+            border: 'var(--border-thin)',
+            boxShadow: 'var(--shadow-tiny)',
+            color: 'var(--text-black)',
             cursor: 'pointer',
             fontWeight: '900',
             fontSize: '0.85rem',
             textTransform: 'uppercase'
           }}
-          title={`Theme: ${theme}`}
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
           {theme === 'light' && <Sun size={16} />}
           {theme === 'dark' && <Moon size={16} />}
-          {theme === 'system' && <Monitor size={16} />}
-          <span>{theme}</span>
         </button>
       </div>
     </header>

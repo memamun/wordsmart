@@ -137,19 +137,19 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
             <Library size={28} color="hsl(var(--primary))" />
             <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)' }}>Quiz Library</h1>
           </div>
-          <p style={{ color: 'hsl(var(--text-secondary))', maxWidth: '600px', lineHeight: '1.5' }}>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', lineHeight: '1.5' }}>
             Browse and practice all available quizzes in the application, regardless of your current stage. Playing these quizzes awards XP and coins but does not affect stage progression.
           </p>
 
           {allQuizzes.length === 0 ? (
-            <p style={{ color: 'hsl(var(--text-muted))', fontStyle: 'italic' }}>No practice quizzes available.</p>
+            <p style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>No practice quizzes available.</p>
           ) : (
             <div className="grid-cols-responsive">
               {allQuizzes.map((quiz) => (
                 <div key={quiz.quiz_id} className="card card-hover" style={{ display: 'flex', flexDirection: 'column', justifyBetween: 'space-between', gap: '1rem', borderLeft: '4px solid hsl(var(--primary))' }}>
                   <div>
-                    <h4 style={{ fontSize: '1.15rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--text-primary))' }}>{quiz.title}</h4>
-                    <span style={{ fontSize: '0.85rem', color: 'hsl(var(--text-muted))', fontWeight: '600' }}>
+                    <h4 style={{ fontSize: '1.15rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)' }}>{quiz.title}</h4>
+                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '600' }}>
                       {quiz.total_questions} MCQ Questions
                     </span>
                   </div>
@@ -187,18 +187,18 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
           </div>
 
           {/* Progress Indicator */}
-          <div style={{ width: '100%', height: '6px', backgroundColor: 'hsl(var(--border-muted))', borderRadius: '3px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
             <div style={{
               height: '100%',
               width: `${((currentQIndex + 1) / questions.length) * 100}%`,
-              backgroundColor: 'hsl(var(--primary))',
+              backgroundColor: 'var(--theme-cyan)',
               transition: 'var(--transition-normal)'
             }}></div>
           </div>
 
           {/* Question Card */}
-          <div className="card" style={{ padding: '2rem', backgroundColor: 'hsl(var(--bg-surface))' }}>
-            <h3 style={{ fontSize: '1.25rem', color: 'hsl(var(--text-primary))', lineHeight: '1.5', fontWeight: '600' }}>
+          <div className="card" style={{ padding: '2rem', backgroundColor: 'var(--bg-surface)' }}>
+            <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', lineHeight: '1.5', fontWeight: '600' }}>
               {questions[currentQIndex]?.question}
             </h3>
           </div>
@@ -211,10 +211,10 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
             justifyContent: 'space-between',
             gap: '1rem',
             flexWrap: 'wrap',
-            backgroundColor: 'hsl(var(--bg-surface) / 0.3)',
+            backgroundColor: 'var(--bg-surface)',
             borderStyle: 'dashed'
           }}>
-            <span style={{ fontSize: '0.8rem', color: 'hsl(var(--text-muted))', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
               💡 PREP BUDGET HINTS:
             </span>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
@@ -247,24 +247,24 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
 
           {/* Interactive Hints Output */}
           {notice && (
-            <div role="status" aria-live="polite" className="card animate-fade" style={{ padding: '0.85rem 1rem', borderLeft: '3px solid hsl(var(--secondary))', color: 'hsl(var(--text-secondary))', fontSize: '0.85rem' }}>
+            <div role="status" aria-live="polite" className="card animate-fade" style={{ padding: '0.85rem 1rem', borderLeft: '3px solid hsl(var(--secondary))', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
               {notice}
             </div>
           )}
           {(bengaliClueUsed || mnemonicUsed) && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {bengaliClueUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--primary))', backgroundColor: 'hsl(var(--bg-surface) / 0.6)' }}>
+                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--primary))', backgroundColor: 'var(--bg-surface)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'hsl(var(--primary))', fontWeight: '700' }}>BENGALI TRANSLATION CLUE</div>
-                  <p style={{ fontSize: '0.95rem', fontWeight: '600', color: 'hsl(var(--text-primary))', marginTop: '0.15rem' }}>
+                  <p style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-primary)', marginTop: '0.15rem' }}>
                     {questions[currentQIndex]?.bengali_clue}
                   </p>
                 </div>
               )}
               {mnemonicUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--secondary))', backgroundColor: 'hsl(var(--bg-surface) / 0.6)' }}>
+                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--secondary))', backgroundColor: 'var(--bg-surface)' }}>
                   <div style={{ fontSize: '0.7rem', color: 'hsl(var(--secondary))', fontWeight: '700' }}>MEMORIZATION AID (MNEMONIC)</div>
-                  <p style={{ fontSize: '0.9rem', color: 'hsl(var(--text-secondary))', marginTop: '0.15rem', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.15rem', lineHeight: '1.4' }}>
                     {questions[currentQIndex]?.mnemonic}
                   </p>
                 </div>
@@ -316,7 +316,7 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
                 <h4 style={{ fontSize: '1rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.25rem', color: selectedOption === questions[currentQIndex].correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))' }}>
                   {selectedOption === questions[currentQIndex].correct_answer ? 'Correct Answer!' : 'Incorrect Answer'}
                 </h4>
-                <p style={{ fontSize: '0.9rem', color: 'hsl(var(--text-secondary))', marginTop: '0.4rem', lineHeight: '1.4' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: '1.4' }}>
                   {questions[currentQIndex]?.explanation}
                 </p>
               </div>
@@ -337,7 +337,7 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
         <div className="glass-panel animate-fade" style={{
           padding: '3rem',
           textAlign: 'center',
-          background: 'linear-gradient(145deg, hsla(var(--bg-surface), 0.4) 0%, hsla(var(--primary), 0.05) 100%)',
+          background: 'linear-gradient(145deg, var(--bg-surface) 0%, hsla(var(--primary), 0.05) 100%)',
           maxWidth: '550px',
           margin: '2rem auto'
         }}>
@@ -346,7 +346,7 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
           <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
             Quiz Completed!
           </h2>
-          <p style={{ color: 'hsl(var(--text-secondary))', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
             You scored **{score} out of {questions.length}** ({Math.round((score / questions.length) * 100)}%).
           </p>
 

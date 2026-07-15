@@ -17,12 +17,12 @@ export default function QuizHubView({ state, wordsData, selectedUnit, setSelecte
   const [activeTab, setActiveTab] = useState('library'); // Default to library to explore
 
   const TABS = [
-    { id: 'library', label: 'Quiz Library', icon: Library, color: '#18FFFF' },
-    { id: 'qualification', label: 'Qualification MCQs', icon: Award, color: '#69F0AE' },
-    { id: 'drills', label: 'Vocab Drills', icon: Zap, color: '#E040FB' },
-    { id: 'match', label: 'Quick Match', icon: Puzzle, color: '#FFD740' },
-    { id: 'advanced', label: 'Advanced GRE/SAT', icon: GraduationCap, color: '#FF5252' },
-    { id: 'blitz', label: 'Time Blitz', icon: Zap, color: '#FF9100' }
+    { id: 'library', label: 'Quiz Library', icon: Library, color: 'var(--theme-cyan)' },
+    { id: 'qualification', label: 'Qualification MCQs', icon: Award, color: 'var(--theme-green)' },
+    { id: 'drills', label: 'Vocab Drills', icon: Zap, color: 'var(--theme-purple)' },
+    { id: 'match', label: 'Quick Match', icon: Puzzle, color: 'var(--theme-yellow)' },
+    { id: 'advanced', label: 'Advanced GRE/SAT', icon: GraduationCap, color: 'var(--theme-red)' },
+    { id: 'blitz', label: 'Time Blitz', icon: Zap, color: 'var(--theme-orange)' }
   ];
 
   const renderActiveView = () => {
@@ -83,7 +83,7 @@ export default function QuizHubView({ state, wordsData, selectedUnit, setSelecte
         display: 'flex', 
         gap: '0.75rem', 
         padding: '1rem 2rem', 
-        borderBottom: '3px solid #000000',
+        borderBottom: 'var(--border-thick)',
         backgroundColor: 'var(--bg-surface-elevated)',
         overflowX: 'auto',
         whiteSpace: 'nowrap'
@@ -97,9 +97,9 @@ export default function QuizHubView({ state, wordsData, selectedUnit, setSelecte
               onClick={() => setActiveTab(tab.id)}
               className="btn"
               style={{
-                backgroundColor: isActive ? tab.color : '#ffffff',
-                boxShadow: isActive ? '2px 2px 0px #000000' : '1px 1px 0px #000000',
-                color: '#000000',
+                backgroundColor: isActive ? tab.color : 'var(--bg-surface)',
+                boxShadow: isActive ? 'var(--shadow-tiny)' : 'var(--shadow-one)',
+                color: isActive ? 'var(--text-black)' : 'var(--text-primary)',
                 padding: '0.5rem 1rem',
                 fontSize: '0.9rem',
                 flexShrink: 0
