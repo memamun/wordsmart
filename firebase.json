@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "wordsmart-vocab",
+    "site": "lexora-daa30",
     "public": "web/dist",
     "ignore": [
       "firebase.json",
