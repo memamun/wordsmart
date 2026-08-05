@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { shuffleArray } from '../utils/shuffle.js';
 
 export function useWordsData() {
   const [words, setWords] = useState([]);
@@ -218,7 +219,7 @@ export function useWordsData() {
         }
       }
 
-      const options = [rel2, ...distractors].sort(() => Math.random() - 0.5);
+      const options = shuffleArray([rel2, ...distractors]);
 
       analogies.push({
         id: `analogy_${levelId}_${i}`,

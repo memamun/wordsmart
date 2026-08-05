@@ -1,4 +1,9 @@
 import React, { useState, createContext, useEffect } from 'react';
+import { auth, db, googleProvider } from './firebase.js';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import AuthGateModal from './components/AuthGateModal.jsx';
+import { isViewFree } from './config/freemium.js';
 import Sidebar from './components/Sidebar.jsx';
 import Header from './components/Header.jsx';
 import Dashboard from './components/Dashboard.jsx';
@@ -39,9 +44,118 @@ export default function App() {
   const [selectedUnit, setSelectedUnit] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
-  const [detailWord, setDetailWord] = useState(null);
+  const [detailWordConfig, setDetailWordConfig] = useState(null);
+
+  const openDetailWord = (wordOrConfig, list = null) => {
+    if (!wordOrConfig) {
+      setDetailWordConfig(null);
+      return;
+    }
+    if (wordOrConfig.word) {
+      setDetailWordConfig({
+        word: wordOrConfig.word,
+        list: wordOrConfig.list || list || wordsData.words || []
+      });
+    } else {
+      setDetailWordConfig({
+        word: wordOrConfig,
+        list: list || wordsData.words || []
+      });
+    }
+  };
+
+  const detailWord = detailWordConfig?.word || null;
   const [theme, setTheme] = useState(getInitialTheme);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [authGatePendingView, setAuthGatePendingView] = useState(null);
+
+  // Firebase Auth listener
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser || null);
+      setAuthLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleGoogleSignIn = async (pendingView, pendingUnit) => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      if (result.user) {
+        if (pendingView) {
+          setActiveView(pendingView);
+          setSidebarOpen(false);
+        }
+        if (pendingUnit !== undefined) {
+          setSelectedUnit(pendingUnit);
+        }
+      }
+    } catch (err) {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        console.error('Google sign-in failed:', err.message);
+      }
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      // Return to dashboard on sign out
+      setActiveView('dashboard');
+    } catch {
+      // Catch sign-out error silently
+    }
+  };
+
+  // Sync logged-in user profile & XP to Cloud Firestore for live global leaderboard
+  useEffect(() => {
+    if (!user || !db) return;
+    try {
+      const userRef = doc(db, 'users', user.uid);
+      const payload = {
+        uid: user.uid,
+        displayName: user.displayName || 'WordSmart Learner',
+        photoURL: user.photoURL || null,
+        xp: Number(state.xp) || 0,
+        level: Number(state.unlockedLevel) || 1,
+        streak: Number(state.streak) || 0,
+        coins: Number(state.coins) || 0,
+        updatedAt: serverTimestamp()
+      };
+      setDoc(userRef, payload, { merge: true }).catch(() => {});
+    } catch {
+      // Ignore offline / permission edge cases gracefully
+    }
+  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins]);
+
+  /**
+   * Gated navigation: free views navigate immediately;
+   * premium views show the AuthGateModal for guests.
+   */
+  const gatedSetActiveView = (viewId, unitNum) => {
+    let targetUnit = unitNum;
+    if (targetUnit === undefined) {
+      targetUnit = (viewId === 'flashcards' && !user) ? 1 : selectedUnit;
+      if (viewId === 'flashcards' && !user && selectedUnit > 1) {
+        setSelectedUnit(1);
+      }
+    }
+
+    const isFreeFlashcards = viewId === 'flashcards' && targetUnit === 1;
+    
+    if (isViewFree(viewId) || isFreeFlashcards || user) {
+      if (targetUnit !== selectedUnit) {
+        setSelectedUnit(targetUnit);
+      }
+      setActiveView(viewId);
+      setSidebarOpen(false);
+    } else {
+      setSidebarOpen(false);
+      setAuthGatePendingView({ viewId, unitNum: targetUnit });
+    }
+  };
 
   // Gesture State for 2026 Mobile Viewport Gesture Navigation
   const [touchStart, setTouchStart] = useState({ x: 0, y: 0 });
@@ -72,7 +186,9 @@ export default function App() {
     // Prevent conflicts with flashcard card swiping, matching games, and standard scrolls
     const target = e.target;
     if (
-      target.closest('.flashcard-card') || 
+      target.closest('.flashcard-wrapper') || 
+      target.closest('.flashcard-view-container') || 
+      target.closest('.review-view-container') || 
       target.closest('.game-container') || 
       target.closest('.no-swipe') || 
       target.closest('.quickmatch-container')
@@ -115,9 +231,11 @@ export default function App() {
           <Dashboard 
             state={state} 
             wordsData={wordsData} 
-            setActiveView={setActiveView} 
+            setActiveView={gatedSetActiveView} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            user={user}
+            onGoogleSignIn={handleGoogleSignIn}
           />
         );
       case 'flashcards':
@@ -125,6 +243,7 @@ export default function App() {
           <FlashcardsView 
             state={state} 
             wordsData={wordsData} 
+            setActiveView={gatedSetActiveView}
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
           />
@@ -148,6 +267,7 @@ export default function App() {
           <QuizzesView 
             state={state} 
             wordsData={wordsData} 
+            setActiveView={gatedSetActiveView}
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
           />
@@ -212,6 +332,7 @@ export default function App() {
         return (
           <LeaderboardView 
             state={state} 
+            user={user}
           />
         );
       default:
@@ -293,7 +414,7 @@ export default function App() {
     if (activeView === 'flashcards') return 'flashcards';
     if (activeView === 'quizzes') return 'quizzes';
     if (activeView === 'search') return 'search';
-    return '';
+    return 'more';
   };
 
   return (
@@ -306,10 +427,7 @@ export default function App() {
       {/* Navigation Sidebar */}
       <Sidebar 
         activeView={activeView} 
-        setActiveView={(view) => {
-          setActiveView(view);
-          setSidebarOpen(false); // Auto close sidebar on mobile navigation
-        }}
+        setActiveView={gatedSetActiveView}
         state={state} 
         wordsData={wordsData}
         sidebarOpen={sidebarOpen}
@@ -320,7 +438,12 @@ export default function App() {
           localStorage.setItem('sidebarCollapsed', val);
         }}
         setShowResetConfirm={setShowResetConfirm}
+        user={user}
+        authLoading={authLoading}
+        onGoogleSignIn={handleGoogleSignIn}
+        onSignOut={handleSignOut}
       />
+
 
       {/* Sidebar Overlay (Mobile Dismissal Backdrop) */}
       {sidebarOpen && (
@@ -341,12 +464,15 @@ export default function App() {
       )}
 
       {/* Main Content Area */}
-      <DetailPanelContext.Provider value={{ detailWord, setDetailWord }}>
+      <DetailPanelContext.Provider value={{ detailWord, setDetailWord: openDetailWord }}>
         <main className="main-content">
           <Header 
             state={state} 
             wordsData={wordsData} 
             selectedUnit={selectedUnit}
+            setSelectedUnit={setSelectedUnit}
+            activeView={activeView}
+            setActiveView={gatedSetActiveView}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
             theme={theme}
@@ -359,8 +485,14 @@ export default function App() {
             {renderActiveView()}
           </div>
         </main>
-        {detailWord && (
-          <WordDetailPanel word={detailWord} onClose={() => setDetailWord(null)} />
+        {detailWordConfig?.word && (
+          <WordDetailPanel 
+            word={detailWordConfig.word} 
+            wordList={detailWordConfig.list}
+            onClose={() => setDetailWordConfig(null)} 
+            onSelectWord={(newWord) => setDetailWordConfig(prev => ({ ...prev, word: newWord }))}
+            gameState={state}
+          />
         )}
       </DetailPanelContext.Provider>
 
@@ -396,12 +528,25 @@ export default function App() {
         </button>
         <button 
           onClick={() => setSidebarOpen(true)} 
-          className={`mobile-bottom-tab ${sidebarOpen ? 'active' : ''}`}
+          className={`mobile-bottom-tab ${getMobileActiveTab() === 'more' || sidebarOpen ? 'active' : ''}`}
         >
           <Menu size={20} />
           <span>More</span>
         </button>
       </div>
+
+      {/* Auth Gate Soft Modal for Guest Users */}
+      {authGatePendingView && (
+        <AuthGateModal 
+          viewId={authGatePendingView.viewId}
+          onGoogleSignIn={() => {
+            const pending = authGatePendingView;
+            setAuthGatePendingView(null);
+            handleGoogleSignIn(pending.viewId, pending.unitNum);
+          }}
+          onDismiss={() => setAuthGatePendingView(null)}
+        />
+      )}
 
       {/* Global Self-Destruct Dialog Modal (Creative Playful Design) */}
       {showResetConfirm && (

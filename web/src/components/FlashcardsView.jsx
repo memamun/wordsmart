@@ -8,18 +8,23 @@ import {
   ArrowRight,
   CheckCircle,
   AlertCircle,
-  Info
+  ChevronLeft,
+  ChevronRight,
+  HelpCircle,
+  Sparkles
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DetailPanelContext } from '../App';
 
-export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit }) {
+export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
   const { detailWord, setDetailWord } = useContext(DetailPanelContext);
   const revealMnemonic = detailWord !== null;
 
+  const currentUnit = selectedUnit || 1;
+
   const levelWords = React.useMemo(() => {
-    return wordsData.getWordsForUnit(state.unlockedLevel, selectedUnit || 1);
-  }, [wordsData, state.unlockedLevel, selectedUnit]);
+    return wordsData?.getWordsForUnit(state.unlockedLevel, currentUnit) || [];
+  }, [wordsData, state.unlockedLevel, currentUnit]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -37,7 +42,13 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   const likeScale = useTransform(x, [40, 120], [0.8, 1.2]);
   const nopeScale = useTransform(x, [-120, -40], [1.2, 0.8]);
 
-  // Reset animations when card index changes
+  // Reset animations when card index or unit changes
+  useEffect(() => {
+    setFlipped(false);
+    setCurrentIndex(0);
+    x.set(0);
+  }, [currentUnit]);
+
   useEffect(() => {
     setFlipped(false);
     x.set(0);
@@ -102,14 +113,18 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   // Speech synthesis pronunciation
   const speakWord = (text, e) => {
-    e.stopPropagation(); // Don't flip the card when clicking audio
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.85;
-      utterance.pitch = 1.0;
-      utterance.lang = 'en-US';
-      window.speechSynthesis.speak(utterance);
+    if (e && e.stopPropagation) e.stopPropagation();
+    try {
+      if ('speechSynthesis' in window && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.85;
+        utterance.pitch = 1.0;
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+      }
+    } catch (err) {
+      console.warn('Speech synthesis unavailable:', err);
     }
   };
 
@@ -162,18 +177,42 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
-      {/* View Navigation Header */}
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* View Navigation Header Bar */}
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.65rem' }}>
         <button 
           onClick={() => setActiveView('dashboard')}
           className="btn btn-secondary"
-          style={{ padding: '0.40rem 0.8rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+          style={{ padding: '0.4rem 0.75rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
         >
-          ← Return to Roadmap
+          ← Roadmap
         </button>
-        <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700' }}>
-          STAGE {state.unlockedLevel} / UNIT {selectedUnit || 1}
-        </span>
+
+        {/* Quick Unit Switcher Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+          <button
+            onClick={() => setSelectedUnit && currentUnit > 1 && setSelectedUnit(currentUnit - 1)}
+            disabled={currentUnit <= 1}
+            className="btn btn-secondary"
+            style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', opacity: currentUnit <= 1 ? 0.4 : 1 }}
+            title="Previous Unit"
+          >
+            <ChevronLeft size={14} /> <span className="hide-mobile">Prev</span>
+          </button>
+          
+          <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: '900', fontFamily: 'var(--font-title)', whiteSpace: 'nowrap' }}>
+            STAGE {state.unlockedLevel} • U{currentUnit}
+          </span>
+
+          <button
+            onClick={() => setSelectedUnit && currentUnit < 10 && setSelectedUnit(currentUnit + 1)}
+            disabled={currentUnit >= 10}
+            className="btn btn-secondary"
+            style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', opacity: currentUnit >= 10 ? 0.4 : 1 }}
+            title="Next Unit"
+          >
+            <span className="hide-mobile">Next</span> <ChevronRight size={14} />
+          </button>
+        </div>
       </div>
 
       {/* Progress stats + bar */}
@@ -237,18 +276,41 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             <Award size={32} color="#000" strokeWidth={2.5} />
           </div>
           <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
-            Unit {state.unlockedLevel}.{selectedUnit || 1} Vocab Completed!
+            Unit {state.unlockedLevel}.{currentUnit} Vocab Mastered! 🎉
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
-            Congratulations! You have mastered all the words in this unit. Prove your skills in the Unit Quiz or Stage Cumulative Exam to unlock the next levels.
+            Outstanding work! You have mastered all words in Unit {state.unlockedLevel}.{currentUnit}. Continue your learning momentum below!
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button 
-              onClick={() => setActiveView('quizzes')}
-              className="btn btn-accent"
+              onClick={() => setActiveView('quizzes', currentUnit)}
+              className="btn btn-primary"
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
             >
-              Go to Qualification Exam <ArrowRight size={16} />
+              <HelpCircle size={16} /> Take Unit {state.unlockedLevel}.{currentUnit} Quiz
             </button>
+
+            {currentUnit < 10 && (
+              <button 
+                onClick={() => {
+                  if (setSelectedUnit) setSelectedUnit(currentUnit + 1);
+                }}
+                className="btn btn-accent"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+              >
+                <Sparkles size={16} /> Start Unit {state.unlockedLevel}.{currentUnit + 1} Flashcards <ArrowRight size={16} />
+              </button>
+            )}
+
+            {currentUnit >= 10 && (
+              <button 
+                onClick={() => setActiveView('quizzes')}
+                className="btn btn-accent"
+              >
+                Stage {state.unlockedLevel} Qualification Exam <ArrowRight size={16} />
+              </button>
+            )}
+
             <button 
               onClick={() => state.resetWordProgress(levelWords.map(w => w.id))}
               className="btn btn-secondary"
@@ -394,29 +456,15 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
               {/* BACK OF THE CARD */}
               <div className="flashcard-back" style={{ position: 'relative', display: 'flex', flexDirection: 'column', height: '100%', padding: '2rem 1.5rem 1.5rem' }}>
-                {/* Top row actions (identical to front for design alignment) */}
+                {/* Top row actions */}
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
                     CARD {currentIndex + 1} OF {levelWords.length}
                   </span>
-                  {(word.mnemonic || (word.examples && word.examples.length > 0)) && (
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDetailWord(word);
-                      }}
-                        className="min-touch"
-                        aria-label="View word details and mnemonic"
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
-                      title="View Details & Mnemonic"
-                    >
-                      <Info size={22} />
-                    </button>
-                  )}
                 </div>
 
-                {/* Back Contents (Centered like the front) */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%' }}>
+                {/* Back Contents (Centered like the front) with scroll support for long definitions */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%', maxHeight: '250px', overflowY: 'auto', padding: '0.25rem 0.5rem' }} className="no-swipe">
                   {word.bengali_meaning && (
                     <div style={{ fontSize: '2.25rem', fontWeight: '800', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
                       {word.bengali_meaning}

@@ -7,6 +7,7 @@ import {
   Zap
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { shuffleArray } from '../utils/shuffle.js';
 
 // Neobrutalist design constants
 const NEO_SHADOW = 'var(--shadow-medium)';
@@ -37,10 +38,10 @@ export default function QuickMatchView({ state, wordsData }) {
   const [isFinished, setIsFinished] = useState(false);
 
   const startQuiz = (quiz) => {
-    // Shuffle words
-    const sWords = [...quiz.matches].sort(() => 0.5 - Math.random());
-    // Shuffle definitions
-    const sDefs = Object.entries(quiz.choices).sort(() => 0.5 - Math.random());
+    // Shuffle words using Fisher-Yates
+    const sWords = shuffleArray(quiz.matches);
+    // Shuffle definitions using Fisher-Yates
+    const sDefs = shuffleArray(Object.entries(quiz.choices));
     
     setActiveQuiz(quiz);
     setShuffledWords(sWords);
@@ -107,20 +108,20 @@ export default function QuickMatchView({ state, wordsData }) {
 
   if (!activeQuiz) {
     return (
-      <div className="animate-fade" style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <div style={{ backgroundColor: 'var(--theme-yellow)', padding: '0.5rem', border: NEO_BORDER, boxShadow: NEO_SHADOW }}>
-            <Puzzle size={32} color="#000" />
+      <div className="animate-fade" style={{ padding: '1.5rem 1rem', maxWidth: '1000px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+          <div style={{ backgroundColor: 'var(--theme-yellow)', padding: '0.5rem', border: NEO_BORDER, boxShadow: NEO_SHADOW, borderRadius: 'var(--radius-sm)' }}>
+            <Puzzle size={28} color="#000" />
           </div>
-          <h1 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <h1 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.25rem)', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '1px' }}>
             Quick Match
           </h1>
         </div>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '600px', fontSize: '1.1rem', fontWeight: '500' }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '600px', fontSize: '0.95rem', fontWeight: '600', lineHeight: '1.4' }}>
           Test your rapid recall by matching words to their definitions. Select a quiz to begin.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.25rem' }}>
           {(wordsData.quickQuizzes || []).map((quiz, idx) => {
             const bgColor = COLORS[idx % COLORS.length];
             return (
@@ -265,7 +266,7 @@ export default function QuickMatchView({ state, wordsData }) {
           </div>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '2.5rem' }}>
+        <div className="quickmatch-grid">
           {/* Words Column */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {shuffledWords.map(item => {

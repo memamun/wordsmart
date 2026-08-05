@@ -10,8 +10,7 @@ import {
   ArrowRight,
   TrendingUp,
   Bookmark,
-  BookmarkCheck,
-  Info
+  BookmarkCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import WordDetailPanel from './WordDetailPanel';
@@ -24,11 +23,11 @@ export default function ReviewSessionView({ state, wordsData }) {
 
   // Filter words that are due for review under SM-2 (nextReviewAt <= now)
   const dueWords = useMemo(() => {
-    if (wordsData.words.length === 0) return [];
+    if ((wordsData.words || []).length === 0) return [];
     
     const now = new Date();
-    return wordsData.words.filter((word) => {
-      const progress = state.wordProgress[word.id];
+    return (wordsData.words || []).filter((word) => {
+      const progress = (state.wordProgress || {})[word.id];
       if (!progress || !progress.nextReviewAt) return false;
       return new Date(progress.nextReviewAt) <= now;
     });
@@ -139,10 +138,10 @@ export default function ReviewSessionView({ state, wordsData }) {
     return <div style={{ textAlign: 'center', padding: '3rem' }}>Loading review queue...</div>;
   }
 
-  // All caught up state
-  if (dueWords.length === 0) {
+  // All caught up / session finished state
+  if (dueWords.length === 0 || !word) {
     return (
-      <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px', margin: '3rem auto' }} className="glass-panel animate-fade">
+      <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '520px', margin: '3rem auto' }} className="glass-panel animate-fade">
         <div style={{
           width: '72px', height: '72px', borderRadius: 'var(--radius-md)',
           background: 'linear-gradient(135deg, var(--theme-green), var(--theme-cyan))',
@@ -152,9 +151,13 @@ export default function ReviewSessionView({ state, wordsData }) {
         }}>
           <CheckCircle size={32} color="#000" strokeWidth={2.5} />
         </div>
-        <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.75rem' }}>All Caught Up!</h2>
+        <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.75rem', fontSize: '1.6rem', textTransform: 'uppercase' }}>
+          {completedCount > 0 ? 'Session Complete!' : 'All Caught Up!'}
+        </h2>
         <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '1.5rem' }}>
-          Excellent work. You have completed all scheduled vocabulary reviews for today. 
+          {completedCount > 0 
+            ? `Fantastic effort! You successfully completed ${completedCount} spaced-repetition card reviews today.`
+            : 'Excellent work. You have completed all scheduled vocabulary reviews for today.'}
         </p>
         <div style={{
           padding: '1rem',
@@ -169,12 +172,16 @@ export default function ReviewSessionView({ state, wordsData }) {
           textAlign: 'left'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ fontWeight: '700' }}>Cards Reviewed Session:</span>
+            <span style={{ fontWeight: '800', color: 'var(--theme-green)' }}>{completedCount} cards</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontWeight: '700' }}>Total Active Cards:</span>
             <span style={{ fontWeight: '800', color: 'var(--text-primary)' }}>{Object.keys(state.wordProgress).length} words</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontWeight: '700' }}>Mastered (Level 4+):</span>
-            <span style={{ fontWeight: '800', color: 'var(--theme-green)' }}>
+            <span style={{ fontWeight: '800', color: 'var(--theme-cyan)' }}>
               {Object.values(state.wordProgress).filter(p => p.status === 'mastered').length} words
             </span>
           </div>
@@ -352,28 +359,15 @@ export default function ReviewSessionView({ state, wordsData }) {
 
             {/* Back */}
             <div className="flashcard-back" style={{ position: 'relative', display: 'flex', flexDirection: 'column', height: '100%', padding: '2rem 1.5rem 1.5rem' }}>
-              {/* Top row actions (identical to front for design alignment) */}
+              {/* Top row actions */}
               <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: '800', color: 'hsl(var(--accent-purple))', letterSpacing: '0.1em' }}>
                   OVERDUE SYSTEM CARD
                 </span>
-                {(word.mnemonic || (word.examples && word.examples.length > 0)) && (
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setRevealDetails(true);
-                    }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
-                    title="View Details & Mnemonic"
-                    aria-label="View word details and mnemonic"
-                  >
-                    <Info size={22} />
-                  </button>
-                )}
               </div>
 
-              {/* Back Contents (Centered like front) */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%' }}>
+              {/* Back Contents (Centered like front) with scroll support for long definitions */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%', maxHeight: '250px', overflowY: 'auto', padding: '0.25rem 0.5rem' }} className="no-swipe">
                 {word.bengali_meaning && (
                   <div style={{ fontSize: '2.25rem', fontWeight: '800', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
                     {word.bengali_meaning}

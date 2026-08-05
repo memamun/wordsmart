@@ -4,7 +4,8 @@ import {
   HelpCircle, 
   CheckCircle2, 
   XCircle, 
-  ArrowRight, 
+  ArrowRight,
+  ArrowLeft, 
   Sparkles, 
   Coins, 
   BookOpen, 
@@ -14,11 +15,15 @@ import {
   Target,
   Shield,
   Trophy,
-  Star
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  Lightbulb
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { shuffleArray } from '../utils/shuffle.js';
 
-export default function QuizzesView({ state, wordsData, setActiveView, selectedUnit }) {
+export default function QuizzesView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
   const levelWords = React.useMemo(() => {
     return wordsData.getWordsForLevel(state.unlockedLevel);
   }, [wordsData, state.unlockedLevel]);
@@ -46,14 +51,15 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
   const [disabledOptions, setDisabledOptions] = useState([]);
   const [bengaliClueUsed, setBengaliClueUsed] = useState(false);
   const [mnemonicUsed, setMnemonicUsed] = useState(false);
+  const [showHintPopover, setShowHintPopover] = useState(false);
 
   // Generate dynamic qualification quiz from words in this level / unit
   const generateQualificationQuiz = (isUnitOnly = false) => {
     const targetWords = isUnitOnly ? unitWords : levelWords;
     if (targetWords.length < 5) return;
     
-    // Choose 10 random words from the pool
-    const shuffledWords = [...targetWords].sort(() => Math.random() - 0.5);
+    // Choose 10 random words from the pool using Fisher-Yates shuffle
+    const shuffledWords = shuffleArray(targetWords);
     const selectedWords = shuffledWords.slice(0, Math.min(10, shuffledWords.length));
     
     const generatedQuestions = selectedWords.map((wordObj, index) => {
@@ -84,7 +90,8 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
         }
       }
 
-      const options = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
+      // Shuffle options using Fisher-Yates to guarantee unbiased positioning
+      const options = shuffleArray([correctAnswer, ...distractors]);
 
       return {
         question_number: index + 1,
@@ -110,12 +117,13 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
 
   // Start a preloaded MCQ quiz
   const startPreloadedQuiz = (quiz) => {
-    // Map JSON questions structure to our local format
+    // Map JSON questions structure to our local format and shuffle options
     const formatted = quiz.questions.map((q) => {
       // Find corresponding word in core vocabulary if possible
       const targetWord = wordsData.words.find(w => w.word.toUpperCase() === q.correct_answer || q.question.toLowerCase().includes(w.word.toLowerCase()));
       return {
         ...q,
+        options: shuffleArray(q.options),
         bengali_clue: q.bengali_clue || targetWord?.bengali_meaning || 'ক্লু নেই।',
         mnemonic: targetWord?.mnemonic || 'কৌশল নেই।',
         targetWord
@@ -138,6 +146,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     setBengaliClueUsed(false);
     setMnemonicUsed(false);
     setNotice(null);
+    setShowHintPopover(false);
   };
 
   const showNotice = (message) => {
@@ -153,8 +162,8 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
 
     const q = questions[currentQIndex];
     const incorrect = q.options.filter(o => o !== q.correct_answer);
-    // Shuffle and pick 2 to disable
-    const toDisable = incorrect.sort(() => Math.random() - 0.5).slice(0, 2);
+    // Shuffle using Fisher-Yates and pick 2 to disable
+    const toDisable = shuffleArray(incorrect).slice(0, 2);
     setDisabledOptions(toDisable);
   };
 
@@ -220,25 +229,59 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
       {/* 1. QUIZ LIST VIEW */}
       {!activeQuiz && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {/* Header Nav Row */}
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Unified 1-Row Header & Unit Stepper */}
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.25rem' }}>
             <button 
               onClick={() => setActiveView('dashboard')}
               className="btn btn-secondary"
-              style={{ padding: '0.40rem 0.8rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+              style={{ padding: '0.4rem 0.85rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.35rem', borderRadius: '9999px' }}
             >
-              ← Return to Roadmap
+              <ArrowLeft size={14} /> Roadmap
             </button>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700' }}>
-              STAGE {state.unlockedLevel} / UNIT {selectedUnit || 1}
-            </span>
+
+            {/* Sleek Unit Stepper Pill */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setSelectedUnit && selectedUnit > 1 && setSelectedUnit(selectedUnit - 1)}
+                disabled={!selectedUnit || selectedUnit <= 1}
+                className="btn btn-secondary"
+                style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', borderRadius: '9999px', opacity: (!selectedUnit || selectedUnit <= 1) ? 0.4 : 1 }}
+                title="Previous Unit"
+              >
+                <ChevronLeft size={14} /> <span className="hide-mobile">Prev</span>
+              </button>
+              
+              <span style={{ 
+                fontSize: '0.82rem', 
+                padding: '0.2rem 0.75rem', 
+                backgroundColor: 'var(--theme-yellow)', 
+                color: '#000', 
+                fontWeight: '900', 
+                fontFamily: 'var(--font-title)',
+                borderRadius: '9999px',
+                border: 'var(--border-thin)',
+                boxShadow: 'var(--shadow-tiny)',
+                whiteSpace: 'nowrap'
+              }}>
+                STAGE {state.unlockedLevel} • U{selectedUnit || 1}
+              </span>
+
+              <button
+                onClick={() => setSelectedUnit && selectedUnit < 10 && setSelectedUnit(selectedUnit + 1)}
+                disabled={selectedUnit >= 10}
+                className="btn btn-secondary"
+                style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', borderRadius: '9999px', opacity: selectedUnit >= 10 ? 0.4 : 1 }}
+                title="Next Unit"
+              >
+                <span className="hide-mobile">Next</span> <ChevronRight size={14} />
+              </button>
+            </div>
           </div>
 
           <div>
-            <h1 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)' }}>Qualification & Practice Exams</h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-              Test your knowledge. Passing the stage cumulative exam or progressing through Units unlocks your path to success.
-            </p>
+            <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.75rem)', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase' }}>
+              Qualification & Practice Quizzes
+            </h1>
           </div>
 
           {/* Unit Specific Quiz Banner (if selectedUnit is set) */}
@@ -573,7 +616,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
       {activeQuiz && !quizFinished && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {/* Quiz Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div>
               <span style={{ fontSize: '0.75rem', fontWeight: '700', color: (activeQuiz === 'qualification' || activeQuiz === 'unit_qualification') ? 'hsl(var(--secondary))' : 'hsl(var(--primary))' }}>
                 {activeQuiz === 'qualification' ? 'STAGE CUMULATIVE EXAM' : activeQuiz === 'unit_qualification' ? `UNIT ${state.unlockedLevel}.${selectedUnit} QUIZ` : 'PRACTICE QUIZ'}
@@ -582,11 +625,115 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 Question {currentQIndex + 1} of {questions.length}
               </h2>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'hsl(var(--coin))', fontWeight: '700' }}>
-              <Coins size={18} />
-              <span>{state.coins} Coins</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'hsl(var(--coin))', fontWeight: '800', fontSize: '0.85rem' }}>
+                <Coins size={18} />
+                <span>{state.coins} Coins</span>
+              </div>
+
+              {/* Hint Shop Drawer Button */}
+              <button 
+                onClick={() => setShowHintPopover(prev => !prev)}
+                className="btn btn-secondary"
+                style={{ 
+                  padding: '0.35rem 0.75rem', 
+                  fontSize: '0.75rem', 
+                  borderRadius: '9999px',
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '0.35rem',
+                  backgroundColor: showHintPopover ? 'var(--theme-yellow)' : 'var(--bg-surface-elevated)',
+                  color: showHintPopover ? '#000' : 'var(--text-primary)',
+                  boxShadow: showHintPopover ? 'var(--shadow-tiny)' : 'none',
+                  border: 'var(--border-thin)'
+                }}
+                title="Need a Hint?"
+              >
+                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-yellow)'} />
+                <span>Need a Hint?</span>
+              </button>
             </div>
           </div>
+
+          {/* Hint Shop Popover Drawer */}
+          {showHintPopover && (
+            <div className="animate-fade glass-panel" style={{
+              padding: '1rem',
+              border: 'var(--border-thick)',
+              boxShadow: 'var(--shadow-medium)',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: 'var(--bg-surface)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <Lightbulb size={14} color="var(--theme-yellow)" /> Available Hints
+                </span>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '700' }}>Use coins to unlock assistance</span>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <button 
+                  onClick={buyFiftyFifty}
+                  disabled={fiftyFiftyUsed || isAnswered || state.coins < 15}
+                  className={`quiz-hint-pill hint-5050 ${fiftyFiftyUsed ? 'used' : ''}`}
+                  style={{ flex: 1, minWidth: '110px' }}
+                >
+                  {fiftyFiftyUsed ? (
+                    <>
+                      <CheckCircle2 size={14} color="#000" />
+                      <span>50/50 Used</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles size={14} color="#000" />
+                      <span>50/50</span>
+                      <span className="hint-cost-pill">-15c</span>
+                    </>
+                  )}
+                </button>
+                <button 
+                  onClick={buyBengaliClue}
+                  disabled={bengaliClueUsed || isAnswered || state.coins < 10}
+                  className={`quiz-hint-pill hint-bengali ${bengaliClueUsed ? 'used' : ''}`}
+                  style={{ flex: 1, minWidth: '110px' }}
+                >
+                  {bengaliClueUsed ? (
+                    <>
+                      <CheckCircle2 size={14} color="#000" />
+                      <span>Bengali</span>
+                    </>
+                  ) : (
+                    <>
+                      <BookOpen size={14} color="#000" />
+                      <span>Bengali</span>
+                      <span className="hint-cost-pill">-10c</span>
+                    </>
+                  )}
+                </button>
+                <button 
+                  onClick={buyMnemonic}
+                  disabled={mnemonicUsed || isAnswered || state.coins < 20}
+                  className={`quiz-hint-pill hint-mnemonic ${mnemonicUsed ? 'used' : ''}`}
+                  style={{ flex: 1, minWidth: '110px' }}
+                >
+                  {mnemonicUsed ? (
+                    <>
+                      <CheckCircle2 size={14} color="#000" />
+                      <span>Mnemonic</span>
+                    </>
+                  ) : (
+                    <>
+                      <Lightbulb size={14} color="#000" />
+                      <span>Mnemonic</span>
+                      <span className="hint-cost-pill">-20c</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Progress Indicator */}
           <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--border-muted)', borderRadius: '3px', overflow: 'hidden', border: 'var(--border-thin)', boxShadow: 'var(--shadow-tiny)' }}>
@@ -599,52 +746,16 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           </div>
 
           {/* Question Card */}
-          <div className="card" style={{ padding: '2rem', backgroundColor: 'var(--bg-surface)' }}>
-            <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', lineHeight: '1.5', fontWeight: '600' }}>
+          <div style={{ 
+            padding: '2.25rem 2.5rem', 
+            background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
+            border: '3px solid #000000',
+            boxShadow: '6px 6px 0px #000000',
+            borderRadius: '20px'
+          }}>
+            <h3 style={{ fontSize: '1.35rem', color: 'var(--text-primary)', lineHeight: '1.55', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
               {questions[currentQIndex]?.question}
             </h3>
-          </div>
-
-          {/* Hint Shop / Budget Section */}
-          <div className="glass-panel" style={{
-            padding: '1rem 1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-            flexWrap: 'wrap',
-            backgroundColor: 'var(--bg-surface)',
-            borderStyle: 'dashed'
-          }}>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-              💡 PREP BUDGET HINTS:
-            </span>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <button 
-                onClick={buyFiftyFifty}
-                disabled={fiftyFiftyUsed || isAnswered || state.coins < 15}
-                className="btn btn-secondary"
-                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-              >
-                <Coins size={12} color="hsl(var(--coin))" /> 50/50 (-15c)
-              </button>
-              <button 
-                onClick={buyBengaliClue}
-                disabled={bengaliClueUsed || isAnswered || state.coins < 10}
-                className="btn btn-secondary"
-                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-              >
-                <Coins size={12} color="hsl(var(--coin))" /> Show Bengali (-10c)
-              </button>
-              <button 
-                onClick={buyMnemonic}
-                disabled={mnemonicUsed || isAnswered || state.coins < 20}
-                className="btn btn-secondary"
-                style={{ padding: '0.5rem 0.85rem', fontSize: '0.78rem', minHeight: '38px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-              >
-                <Coins size={12} color="hsl(var(--coin))" /> Mnemonic (-20c)
-              </button>
-            </div>
           </div>
 
           {/* Interactive Hints Output */}
@@ -656,17 +767,17 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           {(bengaliClueUsed || mnemonicUsed) && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {bengaliClueUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--primary))', backgroundColor: 'var(--bg-surface)' }}>
-                  <div style={{ fontSize: '0.7rem', color: 'hsl(var(--primary))', fontWeight: '700' }}>BENGALI TRANSLATION CLUE</div>
-                  <p style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--text-primary)', marginTop: '0.15rem' }}>
+                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #18FFFF', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#18FFFF', fontWeight: '900' }}>BENGALI TRANSLATION CLUE</div>
+                  <p style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', marginTop: '0.15rem' }}>
                     {questions[currentQIndex]?.bengali_clue}
                   </p>
                 </div>
               )}
               {mnemonicUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3px solid hsl(var(--secondary))', backgroundColor: 'var(--bg-surface)' }}>
-                  <div style={{ fontSize: '0.7rem', color: 'hsl(var(--secondary))', fontWeight: '700' }}>MEMORIZATION AID (MNEMONIC)</div>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.15rem', lineHeight: '1.4' }}>
+                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #FFD54F', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#FFD54F', fontWeight: '900' }}>MEMORIZATION AID (MNEMONIC)</div>
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: '0.15rem', lineHeight: '1.5', fontStyle: 'italic' }}>
                     {questions[currentQIndex]?.mnemonic}
                   </p>
                 </div>
@@ -675,7 +786,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           )}
 
           {/* MCQ Options */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             {questions[currentQIndex]?.options.map((option, idx) => {
               const isCorrect = option === questions[currentQIndex].correct_answer;
               const isDisabled = disabledOptions.includes(option);
@@ -685,6 +796,9 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 if (isCorrect) optClass = 'correct';
                 else if (selectedOption === option) optClass = 'wrong';
               }
+
+              const letterBadges = ['A', 'B', 'C', 'D'];
+              const letterFills = ['#18FFFF', '#E040FB', '#FFD54F', '#69F0AE'];
 
               return (
                 <button
@@ -697,40 +811,97 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                     pointerEvents: isDisabled ? 'none' : 'auto'
                   }}
                 >
-                  <span>{option}</span>
-                  {isAnswered && isCorrect && <CheckCircle2 size={18} color="hsl(var(--success))" />}
-                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={18} color="hsl(var(--danger))" />}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+                    <span style={{
+                      width: '34px',
+                      height: '34px',
+                      borderRadius: '10px',
+                      border: '2px solid #000000',
+                      backgroundColor: letterFills[idx % 4],
+                      color: idx % 4 === 0 || idx % 4 === 2 ? '#000000' : '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: '900',
+                      fontSize: '0.88rem',
+                      fontFamily: 'var(--font-title)',
+                      boxShadow: '2px 2px 0px #000000',
+                      flexShrink: 0
+                    }}>
+                      {letterBadges[idx % 4]}
+                    </span>
+                    <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
+                  </div>
+                  {isAnswered && isCorrect && <CheckCircle2 size={22} color="#000000" />}
+                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={22} color="#FFFFFF" />}
                 </button>
               );
             })}
           </div>
 
-          {/* Next / Explanation Card */}
-          {isAnswered && (
-            <div className="card animate-fade" style={{ 
-              padding: '1.5rem', 
-              borderLeft: `4px solid ${selectedOption === questions[currentQIndex].correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))'}`,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem'
-            }}>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.25rem', color: selectedOption === questions[currentQIndex].correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))' }}>
-                  {selectedOption === questions[currentQIndex].correct_answer ? 'Correct Answer!' : 'Incorrect Answer'}
-                </h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: '1.4' }}>
+          {/* Next / Explanation Card (High-Contrast Neobrutalist 3D) */}
+          {isAnswered && (() => {
+            const isCorrectAnswer = selectedOption === questions[currentQIndex].correct_answer;
+            return (
+              <div className="animate-fade" style={{ 
+                padding: '1.75rem 2rem', 
+                borderRadius: '20px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '3px solid #000000',
+                borderLeft: isCorrectAnswer ? '8px solid #00E676' : '8px solid #FF5252',
+                boxShadow: '6px 6px 0px #000000',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.25rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <h4 style={{ 
+                    fontSize: '1.1rem', 
+                    fontWeight: '900',
+                    fontFamily: 'var(--font-title)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '0.45rem', 
+                    color: isCorrectAnswer ? '#00E676' : '#FF5252',
+                    margin: 0
+                  }}>
+                    {isCorrectAnswer ? (
+                      <><CheckCircle2 size={22} color="#00E676" /> Correct Answer!</>
+                    ) : (
+                      <><XCircle size={22} color="#FF5252" /> Incorrect Answer</>
+                    )}
+                  </h4>
+                </div>
+
+                <p style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: '1.65', margin: 0, fontWeight: '600' }}>
                   {questions[currentQIndex]?.explanation}
                 </p>
+
+                <button 
+                  onClick={handleNext}
+                  style={{
+                    alignSelf: 'flex-end',
+                    padding: '0.65rem 1.4rem',
+                    fontSize: '0.9rem',
+                    fontWeight: '900',
+                    fontFamily: 'var(--font-title)',
+                    borderRadius: '12px',
+                    border: '2.5px solid #000000',
+                    background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
+                    color: '#000000',
+                    cursor: 'pointer',
+                    boxShadow: '3.5px 3.5px 0px #000000',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'transform 0.1s ease'
+                  }}
+                >
+                  Next Question <ArrowRight size={18} />
+                </button>
               </div>
-              <button 
-                onClick={handleNext}
-                className="btn btn-primary"
-                style={{ alignSelf: 'flex-end', padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
-              >
-                Next Question <ArrowRight size={14} />
-              </button>
-            </div>
-          )}
+            );
+          })()}
         </div>
       )}
 
@@ -785,16 +956,67 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
             </div>
           )}
 
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <button 
-              onClick={() => {
-                setActiveQuiz(null);
-                setQuizFinished(false);
-              }}
-              className="btn btn-secondary"
-            >
-              Exit to Roadmap
-            </button>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {/* 1. PASSING UNIT QUIZ NEXT STEPS */}
+            {activeQuiz === 'unit_qualification' && score >= 7 && (
+              <>
+                {(selectedUnit || 1) < 10 ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        const nextU = (selectedUnit || 1) + 1;
+                        if (setSelectedUnit) setSelectedUnit(nextU);
+                        setActiveQuiz(null);
+                        setQuizFinished(false);
+                        setActiveView('flashcards', nextU);
+                      }}
+                      className="btn btn-primary"
+                      style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                    >
+                      <BookOpen size={16} /> Unit {state.unlockedLevel}.{(selectedUnit || 1) + 1} Flashcards <ArrowRight size={16} />
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        const nextU = (selectedUnit || 1) + 1;
+                        if (setSelectedUnit) setSelectedUnit(nextU);
+                        generateQualificationQuiz(true);
+                      }}
+                      className="btn btn-accent"
+                      style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                    >
+                      <Sparkles size={16} /> Take Unit {state.unlockedLevel}.{(selectedUnit || 1) + 1} Quiz
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => generateQualificationQuiz(false)}
+                    className="btn btn-accent"
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                  >
+                    <Trophy size={16} /> Stage {state.unlockedLevel} Qualification Exam <ArrowRight size={16} />
+                  </button>
+                )}
+              </>
+            )}
+
+            {/* 2. PASSING CUMULATIVE QUALIFICATION EXAM NEXT STEPS */}
+            {activeQuiz === 'qualification' && score >= 7 && (
+              <button
+                onClick={() => {
+                  if (setSelectedUnit) setSelectedUnit(1);
+                  setActiveQuiz(null);
+                  setQuizFinished(false);
+                  setActiveView('flashcards', 1);
+                }}
+                className="btn btn-primary"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+              >
+                <Sparkles size={16} /> Advance to Stage {state.unlockedLevel} (Unit {state.unlockedLevel}.1) <ArrowRight size={16} />
+              </button>
+            )}
+
+            {/* RETRY BUTTONS */}
             {activeQuiz === 'qualification' && score < 7 && (
               <button 
                 onClick={() => generateQualificationQuiz(false)}
@@ -806,7 +1028,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
             {activeQuiz === 'unit_qualification' && (
               <button 
                 onClick={() => generateQualificationQuiz(true)}
-                className="btn btn-primary"
+                className="btn btn-secondary"
               >
                 <RefreshCw size={14} /> Retry Unit Quiz
               </button>
@@ -819,6 +1041,18 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 <RefreshCw size={14} /> Practice Again
               </button>
             )}
+
+            {/* RETURN TO ROADMAP */}
+            <button 
+              onClick={() => {
+                setActiveQuiz(null);
+                setQuizFinished(false);
+                setActiveView('dashboard');
+              }}
+              className="btn btn-secondary"
+            >
+              Return to Roadmap
+            </button>
           </div>
         </div>
       )}

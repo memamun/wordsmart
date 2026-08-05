@@ -233,7 +233,7 @@ function WindowPanel({ title, headerColor, shadowVar, className, style, children
   );
 }
 
-export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
+export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, user, onGoogleSignIn }) {
   const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
   
   // Stats calculations
@@ -242,6 +242,30 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
   const masteryPercentage = wordsData.words.length > 0 
     ? Math.round((totalMastered / wordsData.words.length) * 100) 
     : 0;
+
+  // Calculate recommended next unit action
+  const levelWords = wordsData?.getWordsForLevel(state.unlockedLevel) || [];
+  const wordsPerUnit = levelWords.length ? Math.ceil(levelWords.length / 10) : 19;
+  
+  let recUnit = selectedUnit || 1;
+  let recType = 'flashcards';
+
+  for (let u = 1; u <= 10; u++) {
+    const start = (u - 1) * wordsPerUnit;
+    const end = Math.min(u * wordsPerUnit, levelWords.length);
+    const uWords = levelWords.slice(start, end);
+    const uWordIds = uWords.map(w => w.id);
+    const masteredInU = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
+    
+    if (masteredInU < uWords.length) {
+      recUnit = u;
+      recType = 'flashcards';
+      break;
+    } else if (u === 10 && masteredInU >= uWords.length) {
+      recUnit = 10;
+      recType = 'exam';
+    }
+  }
 
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }} className="animate-fade dashboard-container">
@@ -524,45 +548,170 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
         </WindowPanel>
       </div>
 
+      {/* Recommended Next Action Hero Card */}
+      <div className="glass-panel animate-fade" style={{
+        padding: '1.5rem 2rem',
+        background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--primary), 0.08) 100%)',
+        border: 'var(--border-thick)',
+        boxShadow: 'var(--shadow-main)',
+        borderRadius: 'var(--radius-lg)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '1.25rem'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+          <div style={{
+            width: '54px',
+            height: '54px',
+            borderRadius: 'var(--radius-md)',
+            background: 'var(--theme-yellow)',
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-tiny)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--text-black)',
+            flexShrink: 0
+          }}>
+            <Brain size={28} />
+          </div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: '900', color: 'hsl(var(--secondary))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              ⚡ RECOMMENDED NEXT STEP
+            </div>
+            <h3 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', marginTop: '0.1rem' }}>
+              {recType === 'exam' 
+                ? `Stage ${state.unlockedLevel} Cumulative Qualification Exam`
+                : `Stage ${state.unlockedLevel} • Unit ${state.unlockedLevel}.${recUnit} Vocabulary`}
+            </h3>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
+              {recType === 'exam' 
+                ? 'You completed all 10 units! Take the qualification exam to unlock the next stage.'
+                : `Master the next set of words in Unit ${state.unlockedLevel}.${recUnit} without interrupting your streak.`}
+            </p>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '0.75rem' }}>
+          {recType === 'exam' ? (
+            <button
+              onClick={() => {
+                if (setSelectedUnit) setSelectedUnit(10);
+                setActiveView('quizzes');
+              }}
+              className="btn btn-accent"
+              style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+            >
+              Take Qualification Exam <ArrowRight size={16} />
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  if (setSelectedUnit) setSelectedUnit(recUnit);
+                  setActiveView('flashcards', recUnit);
+                }}
+                className="btn btn-primary"
+                style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+              >
+                <BookOpen size={16} /> Study Unit {state.unlockedLevel}.{recUnit}
+              </button>
+              <button
+                onClick={() => {
+                  if (setSelectedUnit) setSelectedUnit(recUnit);
+                  setActiveView('quizzes', recUnit);
+                }}
+                className="btn btn-secondary"
+                style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+              >
+                <HelpCircle size={16} /> Quiz
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* Progression Roadmap */}
       <div className="glass-panel roadmap-panel" style={{ padding: '2rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Award color="hsl(var(--primary))" />
-          Vocabulary Mastery Roadmap
-        </h2>
-        
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          position: 'relative'
-        }}>
-          {/* Vertical Timeline Bar */}
-          <div className="roadmap-timeline-line" style={{
-            position: 'absolute',
-            left: '20px',
-            top: '20px',
-            bottom: '20px',
-            width: '4px',
-            backgroundColor: 'var(--text-black)',
-            zIndex: 1
-          }}></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Award color="hsl(var(--primary))" />
+            Vocabulary Mastery Roadmap
+          </h2>
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '800' }}>
+            10 STAGES • 100 UNITS
+          </span>
+        </div>
 
+        {/* Stage Selector Pills (Horizontal Touch Bar) */}
+        <div className="pill-tabs no-scrollbar" style={{
+          display: 'flex',
+          gap: '0.5rem',
+          overflowX: 'auto',
+          paddingBottom: '0.75rem',
+          marginBottom: '1.5rem',
+          WebkitOverflowScrolling: 'touch'
+        }}>
           {PREP_STAGES.map((stage) => {
             const isCompleted = state.levelAttempts[stage.id]?.passed;
             const isActive = state.unlockedLevel === stage.id;
             const isLocked = stage.id > state.unlockedLevel;
 
-            let bgBubble = 'var(--bg-canvas)';
-            let borderBubble = 'var(--border-muted)';
-
-            if (isCompleted) {
-              bgBubble = 'hsla(var(--primary), 0.1)';
-              borderBubble = 'hsl(var(--primary))';
-            } else if (isActive) {
-              bgBubble = 'hsla(var(--secondary), 0.1)';
-              borderBubble = 'hsl(var(--secondary))';
-            }
+            return (
+              <button
+                key={stage.id}
+                onClick={() => {
+                  if (!isLocked) {
+                    if (setSelectedUnit) setSelectedUnit(1);
+                  }
+                }}
+                disabled={isLocked}
+                className={`pill-tab ${isActive ? 'active active-yellow' : isCompleted ? 'active-green' : ''}`}
+                style={{
+                  padding: '0.5rem 0.85rem',
+                  fontSize: '0.8rem',
+                  fontWeight: '900',
+                  borderRadius: 'var(--radius-full)',
+                  border: isActive ? '2px solid #000' : 'var(--border-thin)',
+                  backgroundColor: isActive ? 'var(--theme-yellow)' : isCompleted ? 'var(--theme-green)' : isLocked ? 'var(--bg-canvas)' : 'var(--bg-surface)',
+                  color: isLocked ? 'var(--text-muted)' : 'var(--text-black)',
+                  cursor: isLocked ? 'not-allowed' : 'pointer',
+                  opacity: isLocked ? 0.5 : 1,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  whiteSpace: 'nowrap',
+                  boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
+                  transition: 'var(--transition-fast)'
+                }}
+              >
+                {isCompleted ? (
+                  <CheckCircle size={12} color="#000" />
+                ) : isLocked ? (
+                  <Lock size={12} />
+                ) : (
+                  <span style={{ fontSize: '0.7rem' }}>S{stage.id}</span>
+                )}
+                <span>Stage {stage.id}</span>
+                {isActive && <span style={{ fontSize: '0.65rem', background: '#000', color: '#fff', padding: '1px 5px', borderRadius: '99px' }}>ACTIVE</span>}
+              </button>
+            );
+          })}
+        </div>
+        
+        {/* Stages Display List */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+          position: 'relative'
+        }}>
+          {PREP_STAGES.map((stage) => {
+            const isCompleted = state.levelAttempts[stage.id]?.passed;
+            const isActive = state.unlockedLevel === stage.id;
+            const isLocked = stage.id > state.unlockedLevel;
 
             return (
               <div 
@@ -570,69 +719,66 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                 className="animate-slide-up roadmap-node"
                 style={{
                   display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '1.5rem',
+                  flexDirection: 'column',
+                  gap: '1rem',
                   position: 'relative',
                   zIndex: 2,
                   opacity: isLocked ? 0.6 : 1,
-                  padding: '0.5rem 0'
+                  padding: '0.25rem 0'
                 }}
               >
-                {/* Node Status Bubble */}
-                <div style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  backgroundColor: isCompleted ? 'var(--theme-green)' : isActive ? 'var(--theme-yellow)' : 'var(--bg-canvas)',
-                  border: 'var(--border-thick)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--text-black)',
-                  boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
-                  transition: 'var(--transition-normal)',
-                  marginTop: '0.2rem',
-                  position: 'relative',
-                  zIndex: 10
-                }}>
-                  {isCompleted ? <CheckCircle size={20} color="#ffffff" /> : isLocked ? <Lock size={16} color="var(--text-muted)" /> : <span style={{ fontWeight: '900', fontFamily: 'var(--font-title)' }}>{stage.id}</span>}
-                </div>
-
-                {/* Content Card */}
+                {/* Stage Header Card */}
                 <div className="card roadmap-card" style={{
-                  flex: 1,
-                  padding: '1.1rem 1.5rem',
+                  padding: '1.25rem 1.5rem',
                   backgroundColor: isActive ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
-                  border: 'var(--border-thick)',
+                  border: isActive ? '2px solid var(--theme-yellow)' : 'var(--border-thick)',
                   boxShadow: isActive ? 'var(--shadow-medium)' : 'var(--shadow-tiny)',
                   display: 'flex',
-                  flexDirection: isActive ? 'column' : 'row',
-                  alignItems: isActive ? 'stretch' : 'center',
-                  justifyContent: 'space-between',
-                  gap: '1rem',
+                  flexDirection: 'column',
+                  gap: '0.75rem',
                   borderRadius: 'var(--radius-md)'
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
-                    <div>
-                      <h3 style={{ 
-                        fontSize: '1.1rem', 
-                        color: isActive ? 'hsl(var(--secondary))' : 'var(--text-primary)',
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <div className="roadmap-status-bubble" style={{
+                        width: '38px',
+                        height: '38px',
+                        borderRadius: '50%',
+                        backgroundColor: isCompleted ? 'var(--theme-green)' : isActive ? 'var(--theme-yellow)' : 'var(--bg-canvas)',
+                        border: 'var(--border-thick)',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        flexWrap: 'wrap'
+                        justifyContent: 'center',
+                        color: 'var(--text-black)',
+                        fontWeight: '900',
+                        fontFamily: 'var(--font-title)',
+                        boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
+                        flexShrink: 0
                       }}>
-                        Stage {stage.id}: {stage.name}
-                        {isActive && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsla(var(--secondary), 0.15)', color: 'hsl(var(--secondary))', fontWeight: '700' }}>ACTIVE PHASE</span>}
-                        {isCompleted && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.4rem', borderRadius: 'var(--radius-full)', backgroundColor: 'hsla(var(--primary), 0.15)', color: 'hsl(var(--primary))', fontWeight: '700' }}>QUALIFIED</span>}
-                      </h3>
-                      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                        {stage.desc}
-                      </p>
+                        {isCompleted ? <CheckCircle size={18} color="#000" /> : isLocked ? <Lock size={14} color="var(--text-muted)" /> : stage.id}
+                      </div>
+
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '1.15rem', 
+                          color: isActive ? 'hsl(var(--secondary))' : 'var(--text-primary)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          flexWrap: 'wrap'
+                        }}>
+                          Stage {stage.id}: {stage.name}
+                          {isActive && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-yellow)', color: '#000', fontWeight: '800', border: '1px solid #000' }}>ACTIVE</span>}
+                          {isCompleted && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-green)', color: '#000', fontWeight: '800', border: '1px solid #000' }}>QUALIFIED</span>}
+                        </h3>
+                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
+                          {stage.desc}
+                        </p>
+                      </div>
                     </div>
 
                     {isCompleted && (
-                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <div style={{ color: 'var(--theme-green)', fontSize: '0.85rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                         <span>Best Score: {state.levelAttempts[stage.id]?.score}%</span>
                       </div>
                     )}
@@ -646,10 +792,10 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                   {/* Render Bite-sized Units inside Active Stage */}
                   {isActive && (
                     <div className="active-stage-units" style={{
-                      marginTop: '1.25rem',
+                      marginTop: '0.75rem',
                       display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                      gap: '1rem',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                      gap: '0.85rem',
                       width: '100%'
                     }}>
                       {Array.from({ length: 10 }).map((_, index) => {
@@ -664,7 +810,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                         const unitWordIds = unitWords.map(w => w.id);
                         
                         // Calculate unit progress
-                        const masteredInUnit = state.masteredWordIds.filter(id => unitWordIds.includes(id)).length;
+                        const masteredInUnit = (state.masteredWordIds || []).filter(id => unitWordIds.includes(id)).length;
                         const totalInUnit = unitWords.length;
                         const unitPercent = totalInUnit ? Math.round((masteredInUnit / totalInUnit) * 100) : 0;
                         
@@ -675,49 +821,53 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                           const prevEnd = Math.min((unitNum - 1) * wordsPerUnit, levelWords.length);
                           const prevUnitWords = levelWords.slice(prevStart, prevEnd);
                           const prevUnitWordIds = prevUnitWords.map(w => w.id);
-                          const prevMastered = state.masteredWordIds.filter(id => prevUnitWordIds.includes(id)).length;
+                          const prevMastered = (state.masteredWordIds || []).filter(id => prevUnitWordIds.includes(id)).length;
                           const prevPercent = prevUnitWords.length ? Math.round((prevMastered / prevUnitWords.length) * 100) : 0;
                           isUnitUnlocked = prevPercent >= 70;
                         }
 
+                        const isCurrentActiveUnit = isUnitUnlocked && masteredInUnit < totalInUnit;
+
                         return (
                           <div 
                             key={unitNum} 
+                            className="roadmap-unit-card"
                             style={{ 
-                              padding: '1rem', 
-                              border: 'var(--border-thick)',
+                              padding: '0.85rem 1rem', 
+                              border: isCurrentActiveUnit ? '2px solid var(--theme-yellow)' : 'var(--border-thick)',
                               borderRadius: 'var(--radius-md)',
                               display: 'flex', 
                               flexDirection: 'column', 
-                              gap: '0.75rem',
+                              gap: '0.6rem',
                               opacity: isUnitUnlocked ? 1 : 0.6,
                               pointerEvents: isUnitUnlocked ? 'auto' : 'none',
                               position: 'relative',
-                              background: isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
-                              boxShadow: isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
+                              background: isCurrentActiveUnit ? 'var(--bg-surface-elevated)' : isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
+                              boxShadow: isCurrentActiveUnit ? 'var(--shadow-medium)' : isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
                               transition: 'var(--transition-normal)'
                             }}
                           >
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <span style={{ fontWeight: '700', fontSize: '0.9rem', color: isUnitUnlocked ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+                              <span style={{ fontWeight: '800', fontSize: '0.9rem', color: isUnitUnlocked ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                                 Unit {stage.id}.{unitNum}
+                                {isCurrentActiveUnit && <span style={{ fontSize: '0.65rem', marginLeft: '0.35rem', color: 'hsl(var(--secondary))', fontWeight: '900' }}>● CURRENT</span>}
                               </span>
-                              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: '700' }}>
                                 {totalInUnit} words
                               </span>
                             </div>
 
                             {/* Progress bar */}
                             <div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.2rem' }}>
-                                <span>Progress</span>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', fontWeight: '700' }}>
+                                <span>Mastery</span>
                                 <span>{masteredInUnit}/{totalInUnit} ({unitPercent}%)</span>
                               </div>
-                              <div style={{ height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
+                              <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', borderRadius: '4px' }}>
                                 <div style={{ 
                                   height: '100%', 
                                   width: `${unitPercent}%`, 
-                                   backgroundColor: 'var(--theme-green)',
+                                  backgroundColor: unitPercent >= 100 ? 'var(--theme-green)' : 'var(--theme-cyan)',
                                   transition: 'var(--transition-normal)'
                                 }}></div>
                               </div>
@@ -725,36 +875,77 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
 
                             {/* Actions */}
                             {isUnitUnlocked ? (
-                              <div style={{ display: 'flex', gap: '0.4rem', marginTop: 'auto' }}>
+                              <div className="roadmap-unit-actions" style={{ display: 'flex', gap: '0.4rem', marginTop: '0.2rem' }}>
                                 <button
                                   onClick={() => {
-                                    setSelectedUnit(unitNum);
-                                    setActiveView('flashcards');
+                                    if (setSelectedUnit) setSelectedUnit(unitNum);
+                                    setActiveView('flashcards', unitNum);
                                   }}
                                   className="btn btn-primary"
-                                  style={{ flex: 1, padding: '0.35rem 0.5rem', fontSize: '0.75rem' }}
+                                  style={{ flex: 1, padding: '0.4rem 0.5rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
                                 >
                                   <BookOpen size={12} /> Study
                                 </button>
                                 <button
                                   onClick={() => {
-                                    setSelectedUnit(unitNum);
-                                    setActiveView('quizzes');
+                                    if (setSelectedUnit) setSelectedUnit(unitNum);
+                                    setActiveView('quizzes', unitNum);
                                   }}
                                   className="btn btn-accent"
-                                  style={{ flex: 1, padding: '0.35rem 0.5rem', fontSize: '0.75rem' }}
+                                  style={{ flex: 1, padding: '0.4rem 0.5rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
                                 >
                                   <Award size={12} /> Quiz
                                 </button>
                               </div>
                             ) : (
                               <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.7rem', marginTop: 'auto' }}>
-                                <Lock size={12} /> Locked (Need 70% in Unit {stage.id}.{unitNum - 1})
+                                <Lock size={11} /> Locked (Need 70% in Unit {stage.id}.{unitNum - 1})
                               </div>
                             )}
                           </div>
                         );
                       })}
+
+                      {/* Cumulative Qualification Exam Card at end of stage */}
+                      <div 
+                        className="card"
+                        style={{
+                          gridColumn: '1 / -1',
+                          padding: '1rem 1.25rem',
+                          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.1) 100%)',
+                          border: 'var(--border-thick)',
+                          borderRadius: 'var(--radius-md)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          flexWrap: 'wrap',
+                          gap: '0.75rem',
+                          marginTop: '0.5rem'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                          <Trophy size={24} color="hsl(var(--secondary))" />
+                          <div>
+                            <div style={{ fontSize: '0.85rem', fontWeight: '900', color: 'var(--text-primary)' }}>
+                              Stage {stage.id} Cumulative Qualification Exam
+                            </div>
+                            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                              Required score: 70%+ to unlock Stage {stage.id + 1}
+                            </div>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            if (setSelectedUnit) setSelectedUnit(10);
+                            setActiveView('quizzes');
+                          }}
+                          className="btn btn-accent"
+                          style={{ padding: '0.45rem 1rem', fontSize: '0.8rem' }}
+                        >
+                          Take Stage Exam <ArrowRight size={14} />
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>

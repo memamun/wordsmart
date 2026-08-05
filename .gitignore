@@ -25,6 +25,13 @@ archive/
 *.sln
 *.swp
 
+# Node modules & dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+web/dist/
+
 # Firebase cache
 .firebase/
 

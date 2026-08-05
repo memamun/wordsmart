@@ -14,7 +14,7 @@ import confetti from 'canvas-confetti';
 
 export default function StoriesView({ state, wordsData }) {
   const levelStories = React.useMemo(() => {
-    return wordsData.getStoriesForLevel(state.unlockedLevel);
+    return wordsData?.getStoriesForLevel(state.unlockedLevel) || [];
   }, [wordsData, state.unlockedLevel]);
 
   const [activeStory, setActiveStory] = useState(null);
@@ -49,8 +49,9 @@ export default function StoriesView({ state, wordsData }) {
           normalizedWordText.includes(w.toLowerCase()) || w.toLowerCase().includes(normalizedWordText)
         ) || wordText;
         
-        const wordObj = wordsData.words.find(w => w.word.toUpperCase() === baseWordName.toUpperCase()) || 
-                        { word: wordText, definition: 'Definition not loaded', part_of_speech: 'n/a' };
+        const wordObj = (wordsData.words || []).find(w => w.word.toUpperCase() === baseWordName.toUpperCase()) || 
+                        (wordsData.words || []).find(w => w.word.toLowerCase().includes(normalizedWordText) || normalizedWordText.includes(w.word.toLowerCase())) ||
+                        { word: wordText, definition: `High-frequency vocabulary term featured in reading passage.`, part_of_speech: 'vocabulary' };
         
         return (
           <span 

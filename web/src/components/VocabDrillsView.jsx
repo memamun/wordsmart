@@ -14,6 +14,7 @@ import {
   Trophy
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { shuffleArray } from '../utils/shuffle.js';
 
 export default function VocabDrillsView({ state, wordsData }) {
   const [activeDrillType, setActiveDrillType] = useState(null);
@@ -35,8 +36,8 @@ export default function VocabDrillsView({ state, wordsData }) {
   const generateCollocationQuestions = () => {
     const questions = [];
     const availableWords = wordsData.words.filter(w => w.collocations && w.collocations.length > 0);
-    // Pick 10 random words
-    const selected = availableWords.sort(() => 0.5 - Math.random()).slice(0, 10);
+    // Pick 10 random words using Fisher-Yates
+    const selected = shuffleArray(availableWords).slice(0, 10);
     
     selected.forEach(wordObj => {
       const coll = wordObj.collocations[Math.floor(Math.random() * wordObj.collocations.length)];
@@ -50,16 +51,14 @@ export default function VocabDrillsView({ state, wordsData }) {
       }
 
       // Generate distractors
-      const distractors = wordsData.words
-        .filter(w => w.id !== wordObj.id)
-        .sort(() => 0.5 - Math.random())
+      const distractors = shuffleArray(wordsData.words.filter(w => w.id !== wordObj.id))
         .slice(0, 3)
         .map(w => w.word);
 
       questions.push({
         word: wordObj.word,
         sentence: sentence,
-        options: [wordObj.word, ...distractors].sort(() => 0.5 - Math.random()),
+        options: shuffleArray([wordObj.word, ...distractors]),
         correct_answer: wordObj.word,
         bengali_meaning: wordObj.bengali_meaning
       });
@@ -77,14 +76,17 @@ export default function VocabDrillsView({ state, wordsData }) {
       const drills = wordsData.vocabDrills || [];
       const validDrills = drills.filter(d => d[typeId] != null);
       
-      // Pick 10 random
-      selectedQuestions = validDrills
-        .sort(() => 0.5 - Math.random())
+      // Pick 10 random and shuffle option choices
+      selectedQuestions = shuffleArray(validDrills)
         .slice(0, 10)
-        .map(d => ({
-          ...d[typeId],
-          bengali_meaning: d.bengali_meaning
-        }));
+        .map(d => {
+          const item = d[typeId];
+          return {
+            ...item,
+            options: item.options ? shuffleArray(item.options) : item.options,
+            bengali_meaning: d.bengali_meaning
+          };
+        });
     }
 
     setQuestions(selectedQuestions);

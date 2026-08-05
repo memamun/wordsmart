@@ -13,5 +13,13 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "WordSmart",
+        "supportEmail": "a.a.mamun595@gmail.com"
+      }
+    }
   }
 }

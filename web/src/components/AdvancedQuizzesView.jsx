@@ -186,27 +186,75 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
             })}
           </div>
 
-          {/* Explanation */}
-          {isAnswered && (
-            <div className="card animate-fade" style={{ padding: '1.5rem', borderLeft: `4px solid ${selectedOption === currentQ.correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))'}` }}>
-              <h4 style={{ color: selectedOption === currentQ.correct_answer ? 'hsl(var(--success))' : 'hsl(var(--danger))', marginBottom: '0.75rem', fontSize: '1.1rem' }}>
-                {selectedOption === currentQ.correct_answer ? 'Brilliant!' : 'Not quite.'}
-              </h4>
-              <p style={{ color: 'var(--text-primary)', fontSize: '0.95rem', lineHeight: '1.5', marginBottom: '0.5rem' }}>
-                {currentQ.explanation}
-              </p>
-              {currentQ.bengali_explanation && (
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>
-                  {currentQ.bengali_explanation}
+          {/* Explanation Card (High-Contrast Neobrutalist 3D) */}
+          {isAnswered && (() => {
+            const isCorrectAnswer = selectedOption === currentQ.correct_answer;
+            return (
+              <div className="animate-fade" style={{ 
+                padding: '1.75rem 2rem', 
+                borderRadius: '20px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '3px solid #000000',
+                borderLeft: isCorrectAnswer ? '8px solid #00E676' : '8px solid #FF5252',
+                boxShadow: '6px 6px 0px #000000',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.25rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <h4 style={{ 
+                    fontSize: '1.1rem', 
+                    fontWeight: '900',
+                    fontFamily: 'var(--font-title)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '0.45rem', 
+                    color: isCorrectAnswer ? '#00E676' : '#FF5252',
+                    margin: 0
+                  }}>
+                    {isCorrectAnswer ? (
+                      <><CheckCircle2 size={22} color="#00E676" /> Brilliant!</>
+                    ) : (
+                      <><XCircle size={22} color="#FF5252" /> Not quite.</>
+                    )}
+                  </h4>
+                </div>
+
+                <p style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: '1.65', margin: 0, fontWeight: '600' }}>
+                  {currentQ.explanation}
                 </p>
-              )}
-              <div style={{ textAlign: 'right', marginTop: '1rem' }}>
-                <button onClick={handleNext} className="btn btn-primary">
-                  Next Question <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} />
+
+                {currentQ.bengali_explanation && (
+                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, fontWeight: '700' }}>
+                    {currentQ.bengali_explanation}
+                  </p>
+                )}
+
+                <button 
+                  onClick={handleNext}
+                  style={{
+                    alignSelf: 'flex-end',
+                    padding: '0.65rem 1.4rem',
+                    fontSize: '0.9rem',
+                    fontWeight: '900',
+                    fontFamily: 'var(--font-title)',
+                    borderRadius: '12px',
+                    border: '2.5px solid #000000',
+                    background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
+                    color: '#000000',
+                    cursor: 'pointer',
+                    boxShadow: '3.5px 3.5px 0px #000000',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'transform 0.1s ease'
+                  }}
+                >
+                  Next Question <ArrowRight size={18} />
                 </button>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
       ) : (
         <div className="glass-panel animate-fade" style={{ textAlign: 'center', padding: '4rem 2rem', maxWidth: '600px', margin: '2rem auto' }}>

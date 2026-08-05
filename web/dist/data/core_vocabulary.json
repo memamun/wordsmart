@@ -39941,15 +39941,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পরিমিতাহারী, সংযমী, আত্মসংযমী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ABSTEMIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "temperate",
+        "moderate",
+        "abstinent",
+        "austere",
+        "sober"
+      ],
+      "antonyms": [
+        "self-indulgent",
+        "greedy",
+        "gluttonous",
+        "intemperate"
+      ],
+      "collocations": [
+        "abstemious diet",
+        "abstemious habits",
+        "abstemious lifestyle"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -40085,15 +40100,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উৎসাহব্যঞ্জক প্রশংসা, অভ্যর্থনা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ACCLAIM.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "praise",
+        "applause",
+        "commendation",
+        "tribute",
+        "cheer"
+      ],
+      "antonyms": [
+        "criticism",
+        "condemnation",
+        "censure"
+      ],
+      "collocations": [
+        "critical acclaim",
+        "public acclaim",
+        "widely acclaimed"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -40157,15 +40186,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "একত্রিত হয়ে বেড়ে ওঠা, সঞ্চিত হওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ACCRETE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "accumulate",
+        "grow together",
+        "coalesce",
+        "fuse",
+        "adhere"
+      ],
+      "antonyms": [
+        "separate",
+        "disperse",
+        "erode"
+      ],
+      "collocations": [
+        "accrete over time",
+        "accrete ice",
+        "accrete layers"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -40832,15 +40875,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সমর্থক, প্রবক্তা, আইনজীবী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ADVOCATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "supporter",
+        "proponent",
+        "champion",
+        "defender",
+        "lawyer"
+      ],
+      "antonyms": [
+        "opponent",
+        "critic",
+        "antagonist"
+      ],
+      "collocations": [
+        "staunch advocate",
+        "advocate for rights",
+        "consumer advocate"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -41292,15 +41349,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "একত্রিত করা, পুঞ্জীভূত করা, জমা করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/AMASS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "accumulate",
+        "gather",
+        "collect",
+        "hoard",
+        "pile up"
+      ],
+      "antonyms": [
+        "disperse",
+        "scatter",
+        "squander"
+      ],
+      "collocations": [
+        "amass wealth",
+        "amass fortune",
+        "amass evidence"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -41503,15 +41574,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "হাঁটতে সক্ষম, চলাফেরায় সক্ষম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/AMBULATORY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "walking",
+        "mobile",
+        "ambulant",
+        "peripatetic"
+      ],
+      "antonyms": [
+        "bedridden",
+        "immobile",
+        "stationary"
+      ],
+      "collocations": [
+        "ambulatory care",
+        "ambulatory patient",
+        "ambulatory surgery"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -41551,15 +41635,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বন্ধুত্ব, সম্প্রীতি, বন্ধুত্বপূর্ণ সম্পর্ক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/AMITY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "friendship",
+        "harmony",
+        "cordiality",
+        "goodwill",
+        "peace"
+      ],
+      "antonyms": [
+        "hostility",
+        "enmity",
+        "discord"
+      ],
+      "collocations": [
+        "bonds of amity",
+        "international amity",
+        "live in amity"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -41671,15 +41769,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রাণবন্ত, চঞ্চল, সংজীবিত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ANIMATED.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "lively",
+        "spirited",
+        "vivid",
+        "vibrant",
+        "energetic"
+      ],
+      "antonyms": [
+        "lethargic",
+        "dull",
+        "lifeless",
+        "apathetic"
+      ],
+      "collocations": [
+        "animated discussion",
+        "animated movie",
+        "animated conversation"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -42166,15 +42279,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "জীবাণুনাশক, পচননিবারক, অত্যন্ত পরিষ্কার",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ANTISEPTIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "disinfectant",
+        "sterile",
+        "sanitized",
+        "clean",
+        "hygienic"
+      ],
+      "antonyms": [
+        "insanitary",
+        "dirty",
+        "contaminated",
+        "infectious"
+      ],
+      "collocations": [
+        "antiseptic cream",
+        "antiseptic solution",
+        "antiseptic environment"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -42578,15 +42706,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শুষ্ক, অনূর্বর, নিরস",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ARID.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "dry",
+        "barren",
+        "parched",
+        "unproductive",
+        "dull"
+      ],
+      "antonyms": [
+        "fertile",
+        "wet",
+        "humid",
+        "lush"
+      ],
+      "collocations": [
+        "arid climate",
+        "arid desert",
+        "arid region"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -42621,15 +42764,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অহংকারী, দাম্ভিক, স্পর্ধিত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ARROGANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "haughty",
+        "conceited",
+        "overbearing",
+        "pompous",
+        "supercilious"
+      ],
+      "antonyms": [
+        "humble",
+        "modest",
+        "meek"
+      ],
+      "collocations": [
+        "arrogant behavior",
+        "arrogant tone",
+        "arrogant attitude"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -42693,15 +42850,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্পষ্টভাষী, গুছিয়ে প্রকাশ করতে সক্ষম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ARTICULATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "fluent",
+        "eloquent",
+        "expressive",
+        "clear",
+        "coherent"
+      ],
+      "antonyms": [
+        "inarticulate",
+        "hesitant",
+        "unclear"
+      ],
+      "collocations": [
+        "articulate speaker",
+        "articulate thoughts",
+        "clearly articulate"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -42980,15 +43151,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ক্ষয় পাওয়া, অকেজো হওয়া, বিলুপ্ত হওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ATROPHY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "wither",
+        "waste away",
+        "dwindle",
+        "decline",
+        "deteriorate"
+      ],
+      "antonyms": [
+        "grow",
+        "flourish",
+        "develop",
+        "strengthen"
+      ],
+      "collocations": [
+        "muscle atrophy",
+        "brain atrophy",
+        "atrophy through disuse"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -43124,15 +43310,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "খাঁটি, নির্ভরযোগ্য, আসল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/AUTHENTIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "genuine",
+        "real",
+        "bona fide",
+        "legitimate",
+        "truthful"
+      ],
+      "antonyms": [
+        "fake",
+        "counterfeit",
+        "false",
+        "spurious"
+      ],
+      "collocations": [
+        "authentic signature",
+        "authentic dish",
+        "authentic voice"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43143,15 +43344,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্বৈরাচারী, কঠোর শাসক মনোভাবাপন্ন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/AUTHORITARIAN.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "autocratic",
+        "dictatorial",
+        "tyrannical",
+        "domineering",
+        "strict"
+      ],
+      "antonyms": [
+        "democratic",
+        "liberal",
+        "lenient"
+      ],
+      "collocations": [
+        "authoritarian regime",
+        "authoritarian ruler",
+        "authoritarian control"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43410,15 +43625,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ক্ষতিকর, ভয়াল, অশুভ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BALEFUL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "menacing",
+        "harmful",
+        "threatening",
+        "sinister",
+        "destructive"
+      ],
+      "antonyms": [
+        "beneficial",
+        "friendly",
+        "promising",
+        "favorable"
+      ],
+      "collocations": [
+        "baleful look",
+        "baleful influence",
+        "baleful stare"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43481,15 +43711,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "হিতকারী, দানশীল, পরোপকারী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BENEFICENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "charitable",
+        "generous",
+        "benevolent",
+        "kind",
+        "philanthropic"
+      ],
+      "antonyms": [
+        "malevolent",
+        "unkind",
+        "selfish",
+        "harmful"
+      ],
+      "collocations": [
+        "beneficent act",
+        "beneficent ruler",
+        "beneficent effect"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -43553,15 +43798,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শোকাভিভূত করা, প্রিয়জন হারানো, বঞ্চিত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BEREAVE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "deprive",
+        "divest",
+        "strip",
+        "dispossess"
+      ],
+      "antonyms": [
+        "provide",
+        "endow",
+        "enrich",
+        "give"
+      ],
+      "collocations": [
+        "bereaved family",
+        "bereaved parents",
+        "deeply bereaved"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43600,15 +43859,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পক্ষপাতিত্ব, পক্ষপাত, ঝোঁক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BIAS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "prejudice",
+        "partiality",
+        "favoritism",
+        "slant",
+        "predilection"
+      ],
+      "antonyms": [
+        "impartiality",
+        "fairness",
+        "objectivity",
+        "neutrality"
+      ],
+      "collocations": [
+        "implicit bias",
+        "cognitive bias",
+        "media bias"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43867,15 +44141,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শারীরিক পেশীশক্তি, দৈহিক বল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BRAWN.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "muscle",
+        "strength",
+        "sturdiness",
+        "brawniness",
+        "toughness"
+      ],
+      "antonyms": [
+        "brain",
+        "frailty",
+        "weakness"
+      ],
+      "collocations": [
+        "brawn and brains",
+        "sheer brawn",
+        "physical brawn"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43910,15 +44198,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সহ্য করা, মেনে নেওয়া, ছোট নদী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/BROOK.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "tolerate",
+        "allow",
+        "stand",
+        "bear",
+        "streamlet"
+      ],
+      "antonyms": [
+        "forbid",
+        "prohibit",
+        "reject"
+      ],
+      "collocations": [
+        "brook no delay",
+        "brook no opposition",
+        "babbling brook"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -43929,15 +44231,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অকপট, সরল, স্পষ্টবাদী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CANDID.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "frank",
+        "honest",
+        "truthful",
+        "direct",
+        "outspoken"
+      ],
+      "antonyms": [
+        "secretive",
+        "guarded",
+        "insincere",
+        "deceitful"
+      ],
+      "collocations": [
+        "candid interview",
+        "candid opinion",
+        "candid camera"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -44476,15 +44793,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কালানুক্রম, ঘটনাক্রম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CHRONOLOGY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "timeline",
+        "sequence",
+        "chronological order",
+        "history"
+      ],
+      "antonyms": [
+        "anachronism",
+        "disorder"
+      ],
+      "collocations": [
+        "strict chronology",
+        "chronology of events",
+        "historical chronology"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -44792,15 +45121,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সংগীত বা সাহিত্যের শেষ অংশ, উপসংহার",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CODA.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "conclusion",
+        "epilogue",
+        "postscript",
+        "ending",
+        "capping"
+      ],
+      "antonyms": [
+        "preface",
+        "introduction",
+        "prologue"
+      ],
+      "collocations": [
+        "fitting coda",
+        "dramatic coda",
+        "musical coda"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -45203,15 +45546,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনুগত, বাধ্য, নিয়ম মান্যকারী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/COMPLIANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "obedient",
+        "submissive",
+        "acquiescent",
+        "biddable",
+        "yielding"
+      ],
+      "antonyms": [
+        "defiant",
+        "rebellious",
+        "refractory",
+        "stubborn"
+      ],
+      "collocations": [
+        "fully compliant",
+        "compliant attitude",
+        "remain compliant"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -45734,15 +46092,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সংযুক্ত করা, একত্রিত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CONJOIN.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "join",
+        "combine",
+        "unite",
+        "connect",
+        "merge"
+      ],
+      "antonyms": [
+        "separate",
+        "divide",
+        "disconnect"
+      ],
+      "collocations": [
+        "conjoin forces",
+        "conjoin efforts",
+        "conjoined twins"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -45997,15 +46369,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সুস্পষ্ট, দৃষ্টিকটুভাবে দৃশ্যমান, উল্লেখযোগ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CONSPICUOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "noticeable",
+        "prominent",
+        "obvious",
+        "salient",
+        "striking"
+      ],
+      "antonyms": [
+        "inconspicuous",
+        "unnoticeable",
+        "hidden"
+      ],
+      "collocations": [
+        "conspicuous consumption",
+        "conspicuous by absence",
+        "conspicuous success"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -46093,15 +46479,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অবজ্ঞা, ঘৃণা, তুচ্ছজ্ঞান",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CONTEMPT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "scorn",
+        "disdain",
+        "despousal",
+        "disrespect",
+        "derision"
+      ],
+      "antonyms": [
+        "respect",
+        "admiration",
+        "esteem"
+      ],
+      "collocations": [
+        "contempt of court",
+        "treat with contempt",
+        "feel contempt"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -46280,15 +46680,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উদ্ধত, অমান্যকারী, একগুঁয়ে",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CONTUMACIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "rebellious",
+        "stubborn",
+        "defiant",
+        "refractory",
+        "willful"
+      ],
+      "antonyms": [
+        "obedient",
+        "submissive",
+        "compliant",
+        "tractable"
+      ],
+      "collocations": [
+        "contumacious witness",
+        "contumacious behavior",
+        "contumacious spirit"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -46299,15 +46714,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ধাঁধা, জটিল সমস্যা, পঁয়চাল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CONUNDRUM.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "riddle",
+        "puzzle",
+        "enigma",
+        "problem",
+        "mystery"
+      ],
+      "antonyms": [
+        "solution",
+        "answer",
+        "explanation"
+      ],
+      "collocations": [
+        "ethical conundrum",
+        "solve a conundrum",
+        "complex conundrum"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -46438,15 +46867,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পরস্পর সম্পর্কিত হওয়া, সম্বন্ধযুক্ত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/CORRELATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "connect",
+        "associate",
+        "relate",
+        "link",
+        "match"
+      ],
+      "antonyms": [
+        "disconnect",
+        "separate",
+        "differ"
+      ],
+      "collocations": [
+        "closely correlate",
+        "correlate with",
+        "positive correlation"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -47325,15 +47768,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ধিক্কার দেওয়া, প্রকাশ্যে নিন্দা করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DENOUNCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "condemn",
+        "criticize",
+        "censure",
+        "attack",
+        "castigate"
+      ],
+      "antonyms": [
+        "praise",
+        "laud",
+        "commend",
+        "endorse"
+      ],
+      "collocations": [
+        "publicly denounce",
+        "denounce violence",
+        "denounce corruption"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -47377,15 +47835,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নিঃশেষ করা, খালি করা, হ্রাস করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DEPLETE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "exhaust",
+        "consume",
+        "drain",
+        "reduce",
+        "diminish"
+      ],
+      "antonyms": [
+        "replenish",
+        "fill",
+        "increase",
+        "restore"
+      ],
+      "collocations": [
+        "deplete resources",
+        "deplete energy",
+        "deplete savings"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -47573,15 +48046,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অপবিত্র করা, পবিত্র স্থান অপব্যবহার করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DESECRATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "profane",
+        "violate",
+        "defile",
+        "pollute",
+        "dishonor"
+      ],
+      "antonyms": [
+        "consecrate",
+        "sanctify",
+        "honor",
+        "hallow"
+      ],
+      "collocations": [
+        "desecrate a shrine",
+        "desecrate graves",
+        "desecrated temple"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -47616,15 +48104,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নিরুৎসাহিত করা, নিবৃত্ত করা, ভয় দেখিয়ে থামানো",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DETER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "discourage",
+        "prevent",
+        "dissuade",
+        "hinder",
+        "check"
+      ],
+      "antonyms": [
+        "encourage",
+        "persuade",
+        "incite",
+        "prompt"
+      ],
+      "collocations": [
+        "deter crime",
+        "deter attacks",
+        "nothing could deter"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48007,15 +48510,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অধ্যাবসায়ী, পরিশ্রমী, মনোযোগী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DILIGENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "hardworking",
+        "assiduous",
+        "industrious",
+        "painstaking",
+        "careful"
+      ],
+      "antonyms": [
+        "lazy",
+        "indolent",
+        "careless",
+        "slack"
+      ],
+      "collocations": [
+        "diligent effort",
+        "diligent worker",
+        "diligent study"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48098,15 +48616,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দায়িত্ব অস্বীকার করা, প্রত্যাখ্যান করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISAVOW.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "disown",
+        "renounce",
+        "reject",
+        "repudiate",
+        "disclaim"
+      ],
+      "antonyms": [
+        "avow",
+        "acknowledge",
+        "claim",
+        "accept"
+      ],
+      "collocations": [
+        "disavow knowledge",
+        "disavow actions",
+        "publicly disavow"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48117,15 +48650,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সুক্ষ্ম বিচারবুদ্ধি, দূরদর্শিতা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISCERNMENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "insight",
+        "acumen",
+        "judgment",
+        "perception",
+        "shrewdness"
+      ],
+      "antonyms": [
+        "blindness",
+        "stupidity",
+        "ignorance"
+      ],
+      "collocations": [
+        "keen discernment",
+        "lack discernment",
+        "spiritual discernment"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48208,15 +48755,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অপ্রতিভ করা, বিব্রত করা, পরাজিত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISCOMFIT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "embarrass",
+        "unsettle",
+        "discompose",
+        "fluster",
+        "discomfiture"
+      ],
+      "antonyms": [
+        "reassure",
+        "soothe",
+        "calm"
+      ],
+      "collocations": [
+        "discomfit an opponent",
+        "felt discomfited",
+        "discomfit plans"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48227,15 +48788,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনৈক্য, মতভেদ, বেসুরো শব্দ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISCORD.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "disagreement",
+        "conflict",
+        "strife",
+        "dissonance",
+        "friction"
+      ],
+      "antonyms": [
+        "harmony",
+        "accord",
+        "concord",
+        "unity"
+      ],
+      "collocations": [
+        "marital discord",
+        "sow discord",
+        "family discord"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48251,15 +48827,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বক্তৃতা, আলাপ-আলোচনা, নিবন্ধ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISCOURSE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "discussion",
+        "conversation",
+        "talk",
+        "dialogue",
+        "treatise"
+      ],
+      "antonyms": [
+        "silence",
+        "quiet",
+        "speechlessness"
+      ],
+      "collocations": [
+        "public discourse",
+        "political discourse",
+        "academic discourse"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48371,15 +48961,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আবেগহীন, বস্তুনিষ্ঠ, শান্ত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISPASSIONATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "impartial",
+        "unemotional",
+        "unbiased",
+        "objective",
+        "cool"
+      ],
+      "antonyms": [
+        "emotional",
+        "passionate",
+        "biased"
+      ],
+      "collocations": [
+        "dispassionate view",
+        "dispassionate observer",
+        "dispassionate analysis"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48515,15 +49119,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "মতভেদ, ভিন্নমত পোষন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISSENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "disagreement",
+        "nonconformity",
+        "opposition",
+        "objection"
+      ],
+      "antonyms": [
+        "agreement",
+        "assent",
+        "consent",
+        "concurrency"
+      ],
+      "collocations": [
+        "voice dissent",
+        "dissenting opinion",
+        "political dissent"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48611,15 +49229,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শ্রুতিকটু, অসুরের মতো, অসমঞ্জস",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DISSONANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "in harmonious",
+        "discordant",
+        "harsh",
+        "clashing",
+        "unjarring"
+      ],
+      "antonyms": [
+        "harmonious",
+        "melodious",
+        "consonant",
+        "sweet"
+      ],
+      "collocations": [
+        "dissonant chord",
+        "dissonant sound",
+        "dissonant views"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48658,15 +49291,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অপসারী, ভিন্নমুখী, বিভিন্ন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DIVERGENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "different",
+        "deviating",
+        "differing",
+        "disparate",
+        "varying"
+      ],
+      "antonyms": [
+        "convergent",
+        "similar",
+        "parallel",
+        "matching"
+      ],
+      "collocations": [
+        "divergent views",
+        "divergent paths",
+        "divergent thinking"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48677,15 +49325,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বৈচিত্র্যময়, বিভিন্ন প্রকারের",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DIVERSE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "varied",
+        "different",
+        "assorted",
+        "sundry",
+        "manifold"
+      ],
+      "antonyms": [
+        "similar",
+        "identical",
+        "uniform"
+      ],
+      "collocations": [
+        "diverse backgrounds",
+        "culturally diverse",
+        "diverse group"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48701,15 +49363,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দিক পরিবর্তন করা, মনোনিবেশ অন্য দিকে নেওয়া, বিনোদন দেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DIVERT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "reroute",
+        "redirect",
+        "distract",
+        "amuse",
+        "entertain"
+      ],
+      "antonyms": [
+        "direct",
+        "focus",
+        "attract"
+      ],
+      "collocations": [
+        "divert attention",
+        "divert traffic",
+        "divert funds"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -48773,15 +49449,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "তুচ্ছ কবিতা, তালজ্ঞানহীন ছড়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DOGGEREL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "verse",
+        "rhyme",
+        "crudeness",
+        "ditty",
+        "jingle"
+      ],
+      "antonyms": [
+        "epic",
+        "masterpiece",
+        "fine poetry"
+      ],
+      "collocations": [
+        "doggerel verse",
+        "simple doggerel",
+        "witty doggerel"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -48960,15 +49650,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "একঘেয়ে সুর বা গুঞ্জন, অলস লোক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/DRONE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "hum",
+        "buzz",
+        "monotone",
+        "sluggard",
+        "idler"
+      ],
+      "antonyms": [
+        "silence",
+        "hard worker"
+      ],
+      "collocations": [
+        "drone on",
+        "constant drone",
+        "drone of engines"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -49195,15 +49898,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "মিতব্যয়ী, সাশ্রয়ী, হিসেবী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ECONOMICAL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "thrifty",
+        "frugal",
+        "sparing",
+        "saving",
+        "cost-effective"
+      ],
+      "antonyms": [
+        "extravagant",
+        "wasteful",
+        "expensive"
+      ],
+      "collocations": [
+        "economical car",
+        "economical use",
+        "be economical"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -49286,15 +50003,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দুর্গন্ধ, ক্ষতিকর নির্গমন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EFFLUVIUM.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "odor",
+        "stench",
+        "fume",
+        "exhalation",
+        "miasma"
+      ],
+      "antonyms": [
+        "fragrance",
+        "perfume",
+        "aroma"
+      ],
+      "collocations": [
+        "noxious effluvium",
+        "foul effluvium",
+        "effluvium of decay"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -49353,15 +50084,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বিস্তারিত, বিস্তৃত আলোচনা করা, জটিল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ELABORATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "detailed",
+        "intricate",
+        "complex",
+        "expound",
+        "embellish"
+      ],
+      "antonyms": [
+        "simple",
+        "plain",
+        "summarize"
+      ],
+      "collocations": [
+        "elaborate scheme",
+        "elaborate on",
+        "elaborate preparation"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -49836,15 +50581,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বৃদ্ধি করা, উন্নত করা, বাড়ানো",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ENHANCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "improve",
+        "boost",
+        "heighten",
+        "augment",
+        "elevate"
+      ],
+      "antonyms": [
+        "reduce",
+        "diminish",
+        "degrade",
+        "impair"
+      ],
+      "collocations": [
+        "enhance performance",
+        "enhance reputation",
+        "enhance features"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -49879,15 +50639,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "মুগ্ধ করা, বশীভূত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ENTHALL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "captivate",
+        "charm",
+        "mesmerize",
+        "fascinate",
+        "enchant"
+      ],
+      "antonyms": [
+        "bore",
+        "disgust",
+        "repel"
+      ],
+      "collocations": [
+        "enthralled audience",
+        "enthralled by music",
+        "enthralled by beauty"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -50270,15 +51044,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অস্থির, অনিয়মিত, খামখেয়ালী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/ERRATIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unpredictable",
+        "inconsistent",
+        "irregular",
+        "capricious",
+        "variable"
+      ],
+      "antonyms": [
+        "predictable",
+        "consistent",
+        "regular",
+        "steady"
+      ],
+      "collocations": [
+        "erratic behavior",
+        "erratic pulse",
+        "erratic driving"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -50394,15 +51183,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শ্রুতিমধুরতা, মধুর শব্দ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EUPHONY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "harmony",
+        "melodiousness",
+        "sweetness of sound",
+        "tunefulness"
+      ],
+      "antonyms": [
+        "cacophony",
+        "dissonance",
+        "harshness"
+      ],
+      "collocations": [
+        "pleasing euphony",
+        "poetic euphony",
+        "verbal euphony"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -50806,15 +51608,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দৃষ্টান্তমূলক, অনুসরণীয়, আদর্শ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EXEMPLARY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "model",
+        "praiseworthy",
+        "commendable",
+        "ideal",
+        "flawless"
+      ],
+      "antonyms": [
+        "deplorable",
+        "blameworthy",
+        "poor"
+      ],
+      "collocations": [
+        "exemplary behavior",
+        "exemplary punishment",
+        "exemplary service"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -50825,15 +51641,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "জরুরী, অতি প্রয়োজনীয়, দাবিদার",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EXIGENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "urgent",
+        "pressing",
+        "demanding",
+        "critical",
+        "imperative"
+      ],
+      "antonyms": [
+        "unimportant",
+        "non-urgent",
+        "easy"
+      ],
+      "collocations": [
+        "exigent circumstances",
+        "exigent demands",
+        "exigent crisis"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -50849,15 +51679,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অত্যধিকতা, চড়া দাম, মাত্রাতিরিক্ততা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EXORBITANCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "extravagance",
+        "excess",
+        "immoderation",
+        "enormity"
+      ],
+      "antonyms": [
+        "modesty",
+        "reasonableness",
+        "cheapness"
+      ],
+      "collocations": [
+        "exorbitance of prices",
+        "sheer exorbitance",
+        "demand exorbitance"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51036,15 +51879,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ব্যাখ্যা, বিশদ আলোচনা, প্রদর্শনী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EXPOSITION.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "explanation",
+        "description",
+        "elucidation",
+        "exhibition",
+        "interpretation"
+      ],
+      "antonyms": [
+        "suppression",
+        "concealment",
+        "cover-up",
+        "obscurity"
+      ],
+      "collocations": [
+        "clear exposition",
+        "detailed exposition",
+        "exposition of ideas"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -51208,15 +52066,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উচ্ছ্বল, প্রাণবন্ত, প্রচুর",
       "mnemonic": null,
       "level": null,
       "audio": "audio/EXUBERANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "lively",
+        "enthusiastic",
+        "buoyant",
+        "overflowing",
+        "profuse"
+      ],
+      "antonyms": [
+        "gloomy",
+        "depressed",
+        "restrained",
+        "subdued"
+      ],
+      "collocations": [
+        "exuberant energy",
+        "exuberant mood",
+        "exuberant growth"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51227,15 +52100,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সহজতর করা, সহায়তা করা, ত্বরান্বিত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FACILITATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "ease",
+        "assist",
+        "expedite",
+        "promote",
+        "aid"
+      ],
+      "antonyms": [
+        "hinder",
+        "impede",
+        "complicate",
+        "delay"
+      ],
+      "collocations": [
+        "facilitate discussion",
+        "facilitate process",
+        "facilitate learning"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51246,15 +52134,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ভুল, ভ্রান্তিপূর্ণ, প্রবঞ্চনামূলক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FALLACIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "false",
+        "misleading",
+        "erroneous",
+        "untrue",
+        "flawed"
+      ],
+      "antonyms": [
+        "true",
+        "valid",
+        "correct",
+        "sound"
+      ],
+      "collocations": [
+        "fallacious argument",
+        "fallacious reasoning",
+        "fallacious assumption"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51265,15 +52168,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "গোঁড়া ব্যক্তি, ধর্মান্ধ, অন্ধভক্ত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FANATIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "zealot",
+        "extremist",
+        "maniac",
+        "enthusiast",
+        "militant"
+      ],
+      "antonyms": [
+        "moderate",
+        "liberal"
+      ],
+      "collocations": [
+        "religious fanatic",
+        "fitness fanatic",
+        "fanatic supporter"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51284,15 +52200,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সম্ভব, বাস্তবায়নযোগ্য, সুবিধাজনক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FEASIBLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "possible",
+        "practicable",
+        "viable",
+        "achievable",
+        "plausible"
+      ],
+      "antonyms": [
+        "impossible",
+        "impracticable",
+        "unviable",
+        "unfeasible"
+      ],
+      "collocations": [
+        "feasible plan",
+        "economically feasible",
+        "feasible solution"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51303,15 +52234,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "চঞ্চল, পরিবর্তনশীল, অবিশ্বস্ত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FICKLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "capricious",
+        "changeable",
+        "variable",
+        "unpredictable",
+        "inconstant"
+      ],
+      "antonyms": [
+        "constant",
+        "loyal",
+        "steadfast",
+        "reliable"
+      ],
+      "collocations": [
+        "fickle weather",
+        "fickle nature",
+        "fickle fortune"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51322,15 +52268,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ক্লান্ত বা দুর্বল হওয়া, সংকেত দেওয়া, পতাকা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FLAG.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "weaken",
+        "falter",
+        "decline",
+        "fade",
+        "signal"
+      ],
+      "antonyms": [
+        "revive",
+        "strengthen",
+        "flourish"
+      ],
+      "collocations": [
+        "flagging energy",
+        "flagging interest",
+        "flag for review"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51341,15 +52301,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অসSerious, হালকা মেজাজের, অনীহ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FLIPPANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "frivolous",
+        "facetious",
+        "disrespectful",
+        "glib",
+        "shallow"
+      ],
+      "antonyms": [
+        "serious",
+        "respectful",
+        "reverent",
+        "solemn"
+      ],
+      "collocations": [
+        "flippant remark",
+        "flippant attitude",
+        "flippant answer"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51384,15 +52359,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উৎসাহিত করা, লালন-পালন করা, বৃদ্ধি করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FOSTER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "encourage",
+        "promote",
+        "nurture",
+        "cultivate",
+        "rear"
+      ],
+      "antonyms": [
+        "discourage",
+        "hinder",
+        "suppress",
+        "neglect"
+      ],
+      "collocations": [
+        "foster growth",
+        "foster relationships",
+        "foster innovation"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51403,15 +52393,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "তুচ্ছ, হালকা মেজাজের, অহেতুক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FRIVOLOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "trivial",
+        "foolish",
+        "superficial",
+        "flippant",
+        "shallow"
+      ],
+      "antonyms": [
+        "serious",
+        "important",
+        "sensible"
+      ],
+      "collocations": [
+        "frivolous lawsuit",
+        "frivolous expenditure",
+        "frivolous matter"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51422,15 +52426,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অত্যধিক তোষামোদপূর্ণ, কটু, বিরক্তিকর",
       "mnemonic": null,
       "level": null,
       "audio": "audio/FULSOME.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "excessive",
+        "overdone",
+        "insincere",
+        "exaggerated",
+        "cloying"
+      ],
+      "antonyms": [
+        "sincere",
+        "restrained",
+        "understated"
+      ],
+      "collocations": [
+        "fulsome praise",
+        "fulsome compliments",
+        "fulsome apologies"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51441,15 +52459,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অস্বীকার করা, প্রতিবাদ করা, বিরোধিতা করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GAINSAY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "deny",
+        "contradict",
+        "dispute",
+        "challenge",
+        "oppose"
+      ],
+      "antonyms": [
+        "confirm",
+        "accept",
+        "agree",
+        "acknowledge"
+      ],
+      "collocations": [
+        "cannot gainsay",
+        "hard to gainsay",
+        "gainsay the facts"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51460,15 +52493,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সংগ্রহ করা, জমা করা, অর্জন করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GARNER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "gather",
+        "collect",
+        "accumulate",
+        "amass",
+        "reap"
+      ],
+      "antonyms": [
+        "disperse",
+        "scatter",
+        "squander",
+        "waste"
+      ],
+      "collocations": [
+        "garner support",
+        "garner praise",
+        "garner evidence"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51503,15 +52551,31 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "হাসিখুশি, সদয়, বন্ধুত্বপূর্ণ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GENIAL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "friendly",
+        "cheerful",
+        "affable",
+        "cordial",
+        "warm"
+      ],
+      "antonyms": [
+        "unfriendly",
+        "cold",
+        "sullen",
+        "morose",
+        "hostile"
+      ],
+      "collocations": [
+        "genial smile",
+        "genial host",
+        "genial atmosphere"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51522,15 +52586,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নির্বাচনী এলাকা কারচুপি করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GERRYMANDER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "manipulate",
+        "rig",
+        "distort",
+        "doctor",
+        "engineer"
+      ],
+      "antonyms": [
+        "fairly divide",
+        "neutralize"
+      ],
+      "collocations": [
+        "gerrymander districts",
+        "partisan gerrymander",
+        "gerrymandered map"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51541,15 +52618,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উস্কানি দেওয়া, তাড়িত করা, তাগিদ দেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GOAD.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "provoke",
+        "spur",
+        "prod",
+        "stimulate",
+        "impel"
+      ],
+      "antonyms": [
+        "deter",
+        "restrain",
+        "dissuade",
+        "discourage"
+      ],
+      "collocations": [
+        "goad into action",
+        "goad on",
+        "sharp goad"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51776,15 +52868,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সহজে প্রতারণীয়, অতিবিশ্বাসী, সরল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/GULLIBLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "credulous",
+        "naive",
+        "trusting",
+        "innocent",
+        "impressionable"
+      ],
+      "antonyms": [
+        "cynical",
+        "skeptical",
+        "astute",
+        "shrewd"
+      ],
+      "collocations": [
+        "gullible public",
+        "gullible victim",
+        "gullible tourists"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51795,15 +52902,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সুখভোগবাদী, ভোগবিলাসী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/HEDONISTIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "pleasure-seeking",
+        "sybaritic",
+        "self-indulgent",
+        "epicurean"
+      ],
+      "antonyms": [
+        "ascetic",
+        "austere",
+        "abstemious"
+      ],
+      "collocations": [
+        "hedonistic lifestyle",
+        "hedonistic pursuit",
+        "hedonistic tendencies"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51814,15 +52934,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "মনোযোগ দেওয়া, খেয়াল রাখা, মেনে চলা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/HEED.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "pay attention",
+        "mind",
+        "note",
+        "listen to",
+        "regard"
+      ],
+      "antonyms": [
+        "ignore",
+        "disregard",
+        "slight",
+        "neglect"
+      ],
+      "collocations": [
+        "heed warnings",
+        "take heed",
+        "heed advice"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51921,15 +53056,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রতিবন্ধকতা, বাধা, অন্তরায়",
       "mnemonic": null,
       "level": null,
       "audio": "audio/HINDRANCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "obstacle",
+        "impediment",
+        "barrier",
+        "block",
+        "check"
+      ],
+      "antonyms": [
+        "help",
+        "assistance",
+        "advantage",
+        "furtherance"
+      ],
+      "collocations": [
+        "major hindrance",
+        "without hindrance",
+        "cause hindrance"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -51964,15 +53114,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শারীরবৃত্তীয় ভারসাম্য অবস্থা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/HOMEOSTASIS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "equilibrium",
+        "balance",
+        "stability",
+        "harmony"
+      ],
+      "antonyms": [
+        "imbalance",
+        "disequilibrium",
+        "instability"
+      ],
+      "collocations": [
+        "body homeostasis",
+        "maintain homeostasis",
+        "disrupt homeostasis"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -52056,15 +53219,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ধারালো করা, দক্ষতা বৃদ্ধি করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/HONE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "sharpen",
+        "refine",
+        "perfect",
+        "improve",
+        "whet"
+      ],
+      "antonyms": [
+        "blunt",
+        "dull",
+        "worsen"
+      ],
+      "collocations": [
+        "hone skills",
+        "hone talent",
+        "hone a blade"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -52219,15 +53396,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বাগধারা, বিশেষ প্রকাশভঙ্গি",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IDIOM.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "expression",
+        "phrase",
+        "locution",
+        "parlance",
+        "vernacular"
+      ],
+      "antonyms": [
+        "literal expression"
+      ],
+      "collocations": [
+        "common idiom",
+        "local idiom",
+        "use an idiom"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -52411,15 +53600,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বাঁধা দেওয়া, ব্যাহত করা, বিলম্বিত করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IMPEDE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "hinder",
+        "obstruct",
+        "hamper",
+        "delay",
+        "block"
+      ],
+      "antonyms": [
+        "help",
+        "facilitate",
+        "advance",
+        "encourage"
+      ],
+      "collocations": [
+        "impede progress",
+        "impede flow",
+        "impede development"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -52531,15 +53735,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অন্তর্নিহিত, পরোক্ষ, অন্ধবিশ্বাসমূলক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IMPLICIT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "implied",
+        "tacit",
+        "unspoken",
+        "indirect",
+        "unquestioning"
+      ],
+      "antonyms": [
+        "explicit",
+        "direct",
+        "expressed",
+        "stated"
+      ],
+      "collocations": [
+        "implicit trust",
+        "implicit agreement",
+        "implicit meaning"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -52655,15 +53874,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উপস্থিতমত, পূর্বপ্রস্তুতিহীন, তাৎক্ষণিক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IMPROMPTU.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unrehearsed",
+        "unplanned",
+        "spontaneous",
+        "extemporaneous"
+      ],
+      "antonyms": [
+        "rehearsed",
+        "planned",
+        "prepared",
+        "deliberate"
+      ],
+      "collocations": [
+        "impromptu speech",
+        "impromptu performance",
+        "impromptu party"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -52674,15 +53907,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অদূরদর্শী, অপব্যয়ী, অসাবধান",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IMPROVIDENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "wasteful",
+        "spendthrift",
+        "reckless",
+        "short-sighted",
+        "thoughtless"
+      ],
+      "antonyms": [
+        "thrifty",
+        "prudent",
+        "frugal",
+        "provident"
+      ],
+      "collocations": [
+        "improvident behavior",
+        "improvident habits",
+        "improvident youth"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -52693,15 +53941,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অশিষ্ট, নির্লজ্জ, বেয়াদব",
       "mnemonic": null,
       "level": null,
       "audio": "audio/IMPUDENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "insolent",
+        "brazen",
+        "audacious",
+        "rude",
+        "cheeky"
+      ],
+      "antonyms": [
+        "polite",
+        "respectful",
+        "modest",
+        "courteous"
+      ],
+      "collocations": [
+        "impudent behavior",
+        "impudent remark",
+        "impudent youth"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -52784,15 +54047,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনাকাঙ্ক্ষিত, অসাবধানতাবশত, ভুলবশত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INADVERTENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unintentional",
+        "accidental",
+        "unplanned",
+        "unwitting"
+      ],
+      "antonyms": [
+        "deliberate",
+        "intentional",
+        "planned"
+      ],
+      "collocations": [
+        "inadvertent mistake",
+        "inadvertent omission",
+        "inadvertently cause"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -52904,15 +54180,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রাথমিক পর্যায়ে থাকা, অপূর্ণাঙ্গ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INCHOATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "rudimentary",
+        "underdeveloped",
+        "incipient",
+        "nascent",
+        "embryonic"
+      ],
+      "antonyms": [
+        "fully formed",
+        "developed",
+        "mature",
+        "complete"
+      ],
+      "collocations": [
+        "inchoate state",
+        "inchoate thoughts",
+        "inchoate plan"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -52971,15 +54262,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অসংলগ্ন, বিশৃঙ্খল, অস্পষ্ট",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INCOHERENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unclear",
+        "confused",
+        "disjointed",
+        "rambling",
+        "incomprehensible"
+      ],
+      "antonyms": [
+        "coherent",
+        "articulate",
+        "lucid",
+        "clear"
+      ],
+      "collocations": [
+        "incoherent speech",
+        "incoherent rambling",
+        "incoherent thoughts"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -53182,15 +54488,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "হঠাৎ আক্রমণ, অনুপ্রবেশ, অনধিকার প্রবেশ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INCURSION.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "raid",
+        "invasion",
+        "inroad",
+        "intrusion",
+        "irruption"
+      ],
+      "antonyms": [
+        "retreat",
+        "withdrawal",
+        "evacuation"
+      ],
+      "collocations": [
+        "military incursion",
+        "sudden incursion",
+        "hostile incursion"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -53302,15 +54622,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কুঁড়েমি, অলসতা, নিষ্ক্রিয়তা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INDOLENCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "laziness",
+        "sloth",
+        "inactivity",
+        "lethargy",
+        "idleness"
+      ],
+      "antonyms": [
+        "industry",
+        "diligence",
+        "dynamism",
+        "activity"
+      ],
+      "collocations": [
+        "sheer indolence",
+        "indolence and apathy",
+        "overcome indolence"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -53402,15 +54737,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনিবার্য, এড়ানো অসম্ভব",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INELUCTABLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "inevitable",
+        "unavoidable",
+        "escapeless",
+        "destined",
+        "certain"
+      ],
+      "antonyms": [
+        "avoidable",
+        "preventable",
+        "uncertain"
+      ],
+      "collocations": [
+        "ineluctable fate",
+        "ineluctable conclusion",
+        "ineluctable destiny"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -53421,15 +54770,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনিবার্য, সুনিশ্চিত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INEVITABLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unavoidable",
+        "certain",
+        "sure",
+        "fated",
+        "destined"
+      ],
+      "antonyms": [
+        "avoidable",
+        "uncertain",
+        "preventable"
+      ],
+      "collocations": [
+        "inevitable outcome",
+        "inevitable result",
+        "seem inevitable"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -53684,15 +55047,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নতুন কিছু চালু করা, উদ্ভাবন করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INNOVATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "invent",
+        "introduce",
+        "originate",
+        "pioneer",
+        "create"
+      ],
+      "antonyms": [
+        "copy",
+        "imitate",
+        "follow"
+      ],
+      "collocations": [
+        "innovate products",
+        "continually innovate",
+        "innovate technology"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -53708,15 +55085,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অসংখ্য, অগণিত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INNUMERABLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "countless",
+        "numberless",
+        "infinite",
+        "untold",
+        "myriad"
+      ],
+      "antonyms": [
+        "few",
+        "limited",
+        "countable"
+      ],
+      "collocations": [
+        "innumerable stars",
+        "innumerable times",
+        "innumerable options"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -53847,15 +55238,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দেউলিয়া, ঋণ পরিশোধে অক্ষম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/INSOLVENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "bankrupt",
+        "broke",
+        "penniless",
+        "indigent",
+        "ruined"
+      ],
+      "antonyms": [
+        "solvent",
+        "wealthy",
+        "rich",
+        "prosperous"
+      ],
+      "collocations": [
+        "declared insolvent",
+        "insolvent estate",
+        "insolvent company"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -54430,15 +55836,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ঝুঁকি, বিপদ, সংশয়",
       "mnemonic": null,
       "level": null,
       "audio": "audio/JEOPARDY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "danger",
+        "peril",
+        "risk",
+        "hazard",
+        "endangerment"
+      ],
+      "antonyms": [
+        "safety",
+        "security",
+        "protection"
+      ],
+      "collocations": [
+        "in jeopardy",
+        "double jeopardy",
+        "place in jeopardy"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -54569,15 +55989,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "রক্তের সম্পর্ক, আত্মীয়তা, সাদৃশ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/KINSHIP.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "relationship",
+        "affinity",
+        "connection",
+        "family tie",
+        "similarity"
+      ],
+      "antonyms": [
+        "alienation",
+        "estrangement",
+        "disaffinity"
+      ],
+      "collocations": [
+        "sense of kinship",
+        "blood kinship",
+        "close kinship"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -54612,15 +56046,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রশংসনীয়, প্রংশসার যোগ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/LAUDABLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "praiseworthy",
+        "commendable",
+        "admirable",
+        "meritorious"
+      ],
+      "antonyms": [
+        "blameworthy",
+        "shameful",
+        "condemnable"
+      ],
+      "collocations": [
+        "laudable goal",
+        "laudable effort",
+        "laudable ambition"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -54655,15 +56102,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শিথিল, ঢিলেঢালা, অসাবধান",
       "mnemonic": null,
       "level": null,
       "audio": "audio/LAX.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "slack",
+        "careless",
+        "negligent",
+        "lenient",
+        "loose"
+      ],
+      "antonyms": [
+        "strict",
+        "rigorous",
+        "firm",
+        "careful"
+      ],
+      "collocations": [
+        "lax security",
+        "lax discipline",
+        "lax attitudes"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -54674,15 +56136,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নদীর বাঁধ, প্রাতঃকালীন রাজকীয় অভ্যর্থনা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/LEVEE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "embankment",
+        "dike",
+        "dam",
+        "reception"
+      ],
+      "antonyms": [
+        "trench",
+        "hollow",
+        "depression"
+      ],
+      "collocations": [
+        "river levee",
+        "earthen levee",
+        "levee breach"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -54746,15 +56221,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কাঠের মতো, কাষ্ঠল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/LIGNEOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "woody",
+        "wooden",
+        "timber-like"
+      ],
+      "antonyms": [
+        "fleshy",
+        "leafy",
+        "soft"
+      ],
+      "collocations": [
+        "ligneous tissue",
+        "ligneous stem",
+        "ligneous texture"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -55213,15 +56700,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বাধ্যতামূলক, আবশ্যকীয়, আইনসম্মত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/MANDATORY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "compulsory",
+        "obligatory",
+        "required",
+        "binding"
+      ],
+      "antonyms": [
+        "optional",
+        "voluntary",
+        "discretionary"
+      ],
+      "collocations": [
+        "mandatory requirement",
+        "mandatory sentence",
+        "mandatory testing"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -55333,15 +56833,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ক্ষতিগ্রস্ত, বিকৃত, নষ্ট করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/MARRED.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "spoiled",
+        "impaired",
+        "ruined",
+        "damaged",
+        "blighted"
+      ],
+      "antonyms": [
+        "enhanced",
+        "perfected",
+        "restored"
+      ],
+      "collocations": [
+        "marred by flaws",
+        "marred by violence",
+        "marred perfection"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -55520,15 +57034,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আঁকাবাঁকা হওয়া, নিদের্শহীন ঘুরে বেড়ানো",
       "mnemonic": null,
       "level": null,
       "audio": "audio/MEANDER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "wander",
+        "wind",
+        "ramble",
+        "twist",
+        "roam"
+      ],
+      "antonyms": [
+        "go direct",
+        "straighten"
+      ],
+      "collocations": [
+        "meandering stream",
+        "meander through",
+        "meandering path"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -55563,15 +57090,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "একত্রীকরণ, সংযোজন, মিলসাধন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/MERGER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "amalgamation",
+        "combination",
+        "consolidation",
+        "union",
+        "fusion"
+      ],
+      "antonyms": [
+        "separation",
+        "split",
+        "division"
+      ],
+      "collocations": [
+        "corporate merger",
+        "merger agreement",
+        "merger and acquisition"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -55942,15 +57483,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্বাধীন চলাচলের ক্ষমতা, গতিশীলতা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/MOTILITY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "mobility",
+        "movement",
+        "locomotion",
+        "agility"
+      ],
+      "antonyms": [
+        "immobility",
+        "stillness"
+      ],
+      "collocations": [
+        "sperm motility",
+        "cell motility",
+        "impaired motility"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56129,15 +57682,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অবহেলা, অসাবধানতা, গাফিলতি",
       "mnemonic": null,
       "level": null,
       "audio": "audio/NEGLIGENCE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "carelessness",
+        "slackness",
+        "inattention",
+        "remissness"
+      ],
+      "antonyms": [
+        "care",
+        "diligence",
+        "attention"
+      ],
+      "collocations": [
+        "gross negligence",
+        "medical negligence",
+        "through negligence"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56148,15 +57714,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শিক্ষানবিস, নবাগত, নবদীক্ষিত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/NEOPHYTE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "beginner",
+        "novice",
+        "newcomer",
+        "tyro",
+        "greenhorn"
+      ],
+      "antonyms": [
+        "veteran",
+        "expert",
+        "master"
+      ],
+      "collocations": [
+        "eager neophyte",
+        "neophyte swimmer",
+        "neophyte in politics"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -56196,15 +57776,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নিরপেক্ষ, কোনো পক্ষের নয়",
       "mnemonic": null,
       "level": null,
       "audio": "audio/NEUTRAL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "impartial",
+        "unbiased",
+        "nonaligned",
+        "disinterested"
+      ],
+      "antonyms": [
+        "partisan",
+        "biased",
+        "partial"
+      ],
+      "collocations": [
+        "neutral ground",
+        "remain neutral",
+        "neutral observer"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56455,15 +58048,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বাতিল করা, নিষ্ফল করা, নাকচ করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/NULLIFY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "invalidate",
+        "cancel",
+        "annul",
+        "void",
+        "neutralize"
+      ],
+      "antonyms": [
+        "validate",
+        "ratify",
+        "enforce",
+        "confirm"
+      ],
+      "collocations": [
+        "nullify a contract",
+        "nullify effects",
+        "nullify a decision"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56546,15 +58154,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নিরপেক্ষ, লক্ষ্য, বস্তুনিষ্ঠ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/OBJECTIVE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "impartial",
+        "unbiased",
+        "fair",
+        "goal",
+        "target"
+      ],
+      "antonyms": [
+        "subjective",
+        "biased",
+        "prejudiced"
+      ],
+      "collocations": [
+        "objective assessment",
+        "main objective",
+        "objective criteria"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56941,15 +58563,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দুলতে থাকা, উঠানামা করা, দোলাচল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/OSCILLATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "swing",
+        "waver",
+        "fluctuate",
+        "sway",
+        "vacillate"
+      ],
+      "antonyms": [
+        "remain steady",
+        "stabilize"
+      ],
+      "collocations": [
+        "oscillate between",
+        "oscillate back and forth",
+        "oscillate rapidly"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -56960,15 +58595,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অস্থিতে পরিণত হওয়া, শক্ত বা গোঁড়া হওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/OSSIFY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "harden",
+        "rigidify",
+        "petrify",
+        "fossilize",
+        "freeze"
+      ],
+      "antonyms": [
+        "soften",
+        "flex",
+        "melt"
+      ],
+      "collocations": [
+        "ossify into belief",
+        "ossified thinking",
+        "ossified tradition"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -57103,15 +58752,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রশংসাসূচক বক্তৃতা, স্তুতি",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PANEGYRIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "eulogy",
+        "paean",
+        "tribute",
+        "acclaim",
+        "praise"
+      ],
+      "antonyms": [
+        "condemnation",
+        "criticism",
+        "denunciation"
+      ],
+      "collocations": [
+        "glowing panegyric",
+        "deliver a panegyric",
+        "panegyric to"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -57295,15 +58958,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সমান্তরাল, অনুরূপ, সদৃশ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PARALLEL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "equivalent",
+        "similar",
+        "analogous",
+        "corresponding",
+        "matching"
+      ],
+      "antonyms": [
+        "divergent",
+        "different",
+        "perpendicular",
+        "unrelated"
+      ],
+      "collocations": [
+        "parallel lines",
+        "parallel developments",
+        "draw a parallel"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -57535,15 +59213,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কৃপণতা, অতিরিক্ত হিসেবী স্বভাব",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PARSIMONY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "stinginess",
+        "frugality",
+        "meanness",
+        "miserliness",
+        "parsimoniousness"
+      ],
+      "antonyms": [
+        "generosity",
+        "extravagance",
+        "open-handedness"
+      ],
+      "collocations": [
+        "extreme parsimony",
+        "parsimony of words",
+        "habitual parsimony"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -57746,15 +59438,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শিক্ষক, নীতিবাগীশ শিক্ষক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PEDAGOGUE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "teacher",
+        "educator",
+        "instructor",
+        "schoolmaster",
+        "tutor"
+      ],
+      "antonyms": [
+        "student",
+        "pupil",
+        "learner"
+      ],
+      "collocations": [
+        "strict pedagogue",
+        "learned pedagogue",
+        "pedagogue approach"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -58086,15 +59792,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রান্তিক, গৌণ, অসংলগ্ন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PERIPHERAL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "secondary",
+        "marginal",
+        "outer",
+        "auxiliary",
+        "tangential"
+      ],
+      "antonyms": [
+        "central",
+        "core",
+        "essential"
+      ],
+      "collocations": [
+        "peripheral vision",
+        "peripheral issue",
+        "peripheral details"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -58506,15 +60226,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ঝাল ও চটপটে, রুচিকর, মনোরম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PIQUANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "spicy",
+        "tangy",
+        "savory",
+        "stimulating",
+        "pungent"
+      ],
+      "antonyms": [
+        "bland",
+        "tasteless",
+        "insipid",
+        "dull"
+      ],
+      "collocations": [
+        "piquant sauce",
+        "piquant flavor",
+        "piquant details"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -58549,15 +60284,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "শান্ত, সমাহিত, ধীর-স্থির",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PLACID.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "calm",
+        "peaceful",
+        "tranquil",
+        "serene",
+        "quiet"
+      ],
+      "antonyms": [
+        "stormy",
+        "agitated",
+        "turbulent",
+        "excited"
+      ],
+      "collocations": [
+        "placid lake",
+        "placid demeanor",
+        "placid expression"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -58573,15 +60323,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "গভীরতা মাপানো, পরীক্ষা করা, নিখুঁত খাঁড়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PLUMB.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "measure",
+        "fathom",
+        "probe",
+        "explore",
+        "vertical"
+      ],
+      "antonyms": [
+        "slanted",
+        "horizontal",
+        "shallow"
+      ],
+      "collocations": [
+        "plumb the depths",
+        "plumb line",
+        "plumb exact"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -59192,15 +60956,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পূর্বসূরী, পূর্ববর্তী কর্মকর্তা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PREDECESSOR.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "forerunner",
+        "precursor",
+        "ancestor",
+        "antecedent"
+      ],
+      "antonyms": [
+        "successor",
+        "descendant"
+      ],
+      "collocations": [
+        "immediate predecessor",
+        "office predecessor",
+        "distinguished predecessor"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -59512,15 +61288,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আড়ম্বরপূর্ণ, আত্মম্ভরী, নিজেকে জাহির করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PRETENTIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "ostentatious",
+        "showy",
+        "pompous",
+        "affected",
+        "grandiloquent"
+      ],
+      "antonyms": [
+        "unpretentious",
+        "modest",
+        "simple",
+        "humble"
+      ],
+      "collocations": [
+        "pretentious talk",
+        "pretentious style",
+        "pretentious art"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -59627,15 +61418,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সততা, ন্যায়পরায়ণতা, নীতিনিষ্ঠা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PROBITY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "integrity",
+        "honesty",
+        "uprightness",
+        "rectitude",
+        "decency"
+      ],
+      "antonyms": [
+        "dishonesty",
+        "deceit",
+        "corruption"
+      ],
+      "collocations": [
+        "unquestioned probity",
+        "financial probity",
+        "moral probity"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -59651,15 +61456,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সমস্যাসঙ্কুল, সন্দেহজনক, জটিল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PROBLEMATIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "difficult",
+        "troublesome",
+        "doubtful",
+        "uncertain",
+        "questionable"
+      ],
+      "antonyms": [
+        "unproblematic",
+        "straightforward",
+        "certain"
+      ],
+      "collocations": [
+        "highly problematic",
+        "problematic area",
+        "problematic issue"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -59914,15 +61733,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নিকটবর্তীতা, ঘনিষ্টতা, সান্নিধ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PROPINQUITY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "proximity",
+        "closeness",
+        "nearness",
+        "adjacency",
+        "kinship"
+      ],
+      "antonyms": [
+        "distance",
+        "remoteness",
+        "separation"
+      ],
+      "collocations": [
+        "spatial propinquity",
+        "propinquity of blood",
+        "close propinquity"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -60029,15 +61862,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উত্তেজনা সৃষ্টিকারী, উস্কানিমূলক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PROVOCATIVE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "stimulating",
+        "annoying",
+        "galling",
+        "incendiary",
+        "arousing"
+      ],
+      "antonyms": [
+        "soothing",
+        "calming",
+        "unprovoking"
+      ],
+      "collocations": [
+        "provocative question",
+        "provocative speech",
+        "provocative statement"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -60293,15 +62140,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পণ্ডিত, বিশেষজ্ঞ, সমঝদার",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PUNDIT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "expert",
+        "authority",
+        "commentator",
+        "scholar",
+        "specialist"
+      ],
+      "antonyms": [
+        "amateur",
+        "novice",
+        "layman"
+      ],
+      "collocations": [
+        "political pundit",
+        "financial pundit",
+        "pundit analysis"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -60312,15 +62173,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ঝাঁঝালো, তীব্র গন্ধ বা স্বাদযুক্ত, কটু",
       "mnemonic": null,
       "level": null,
       "audio": "audio/PUNGENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "sharp",
+        "acrid",
+        "biting",
+        "stinging",
+        "penetrating"
+      ],
+      "antonyms": [
+        "bland",
+        "mild",
+        "soothing",
+        "tasteless"
+      ],
+      "collocations": [
+        "pungent odor",
+        "pungent taste",
+        "pungent remarks"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -60488,15 +62364,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রাচীর, প্রতিরক্ষামূলক বাঁধ, দুর্গ প্রাকার",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RAMPART.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "barricade",
+        "defensive wall",
+        "fortification",
+        "bulwark",
+        "parapet"
+      ],
+      "antonyms": [
+        "opening",
+        "vulnerability",
+        "breach"
+      ],
+      "collocations": [
+        "city ramparts",
+        "defensive rampart",
+        "outer rampart"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -60867,15 +62757,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "পুনরুজ্জীবিত করা, নতুন রূপ দান করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/REJUVENATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "revitalize",
+        "refresh",
+        "renew",
+        "reinvigorate",
+        "restore"
+      ],
+      "antonyms": [
+        "age",
+        "exhaust",
+        "weaken",
+        "drain"
+      ],
+      "collocations": [
+        "rejuvenate skin",
+        "rejuvenate economy",
+        "rejuvenate spirits"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -60886,15 +62791,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রাসঙ্গিক, উপযোগী, উপযুক্ত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RELEVANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "pertinent",
+        "applicable",
+        "appropriate",
+        "fitting",
+        "related"
+      ],
+      "antonyms": [
+        "irrelevant",
+        "unrelated",
+        "inappropriate"
+      ],
+      "collocations": [
+        "highly relevant",
+        "relevant experience",
+        "relevant facts"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -61006,15 +62925,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনুতাপ, অনুশোচনা, গভীর গ্লানি",
       "mnemonic": null,
       "level": null,
       "audio": "audio/REMORSE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "regret",
+        "contrition",
+        "repentance",
+        "guilt",
+        "penitence"
+      ],
+      "antonyms": [
+        "impenitence",
+        "unrepentance",
+        "indifference"
+      ],
+      "collocations": [
+        "feel remorse",
+        "deep remorse",
+        "remorse for actions"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61169,15 +63102,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দমন করা, চেপে রাখা, চাপ দেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/REPRESS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "suppress",
+        "subdue",
+        "stifle",
+        "restrain",
+        "quell"
+      ],
+      "antonyms": [
+        "release",
+        "express",
+        "encourage",
+        "foster"
+      ],
+      "collocations": [
+        "repress emotions",
+        "repress a smile",
+        "repress rebellion"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61188,15 +63136,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নরাধম, বদমাশ, ভণ্ড",
       "mnemonic": null,
       "level": null,
       "audio": "audio/REPROBATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "rogue",
+        "rascal",
+        "scoundrel",
+        "miscreant",
+        "wretch"
+      ],
+      "antonyms": [
+        "saint",
+        "angel",
+        "virtuous person"
+      ],
+      "collocations": [
+        "old reprobate",
+        "unrepentant reprobate",
+        "charming reprobate"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -61212,15 +63174,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ঘৃণ্য, অপ্রীতিকর, বিরোধী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/REPUGNANT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "offensive",
+        "distasteful",
+        "abhorrent",
+        "revolting",
+        "obnoxious"
+      ],
+      "antonyms": [
+        "attractive",
+        "pleasing",
+        "agreeable",
+        "delightful"
+      ],
+      "collocations": [
+        "repugnant idea",
+        "morally repugnant",
+        "repugnant smells"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -61260,15 +63237,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বাতিল করা, রদ করা, হুকুম উঠিয়ে নেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RESCIND.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "revoke",
+        "cancel",
+        "repeal",
+        "annul",
+        "nullify"
+      ],
+      "antonyms": [
+        "enforce",
+        "validate",
+        "confirm",
+        "ratify"
+      ],
+      "collocations": [
+        "rescind an order",
+        "rescind a contract",
+        "rescind law"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61351,15 +63343,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ইস্তফা দেওয়া, নিরূপায় মেনে নেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RESIGNATION.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "acceptance",
+        "submission",
+        "acquiescence",
+        "departure"
+      ],
+      "antonyms": [
+        "resistance",
+        "defiance",
+        "continuance"
+      ],
+      "collocations": [
+        "tender resignation",
+        "accept with resignation",
+        "letter of resignation"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61442,15 +63447,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রত্যাহার করা, ফিরিয়ে নেওয়া, উঠিয়ে নেওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RETRACT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "withdraw",
+        "recant",
+        "revoke",
+        "disavow",
+        "pull back"
+      ],
+      "antonyms": [
+        "assert",
+        "confirm",
+        "reaffirm",
+        "extend"
+      ],
+      "collocations": [
+        "retract a statement",
+        "retract claws",
+        "retract allegations"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61557,15 +63577,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অশ্লীল ও রসাত্মক, চটুল, বেহায়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RIBALD.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "bawdy",
+        "vulgar",
+        "coarse",
+        "rude",
+        "scurrilous"
+      ],
+      "antonyms": [
+        "chaste",
+        "refined",
+        "polite",
+        "proper"
+      ],
+      "collocations": [
+        "ribald humor",
+        "ribald song",
+        "ribald laughter"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61624,15 +63659,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দৃষ্টি আকর্ষণ করে রাখা, শক্ত করে আঁটা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/RIVET.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "engross",
+        "fascinate",
+        "captivate",
+        "fasten",
+        "fix"
+      ],
+      "antonyms": [
+        "bore",
+        "repel",
+        "release"
+      ],
+      "collocations": [
+        "rivet attention",
+        "riveted to the spot",
+        "riveting story"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61715,15 +63764,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "জ্ঞানী ব্যক্তি, প্রাজ্ঞ, ঋষিতুল্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SAGE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "wise person",
+        "philosopher",
+        "scholar",
+        "savant",
+        "discreet"
+      ],
+      "antonyms": [
+        "fool",
+        "dunce",
+        "foolish"
+      ],
+      "collocations": [
+        "sage advice",
+        "venerable sage",
+        "sage counsel"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61734,15 +63797,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্বাস্থ্যকর, পুষ্টিকর, মনোরম",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SALUBRIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "healthy",
+        "health-giving",
+        "beneficial",
+        "wholesome",
+        "sanitary"
+      ],
+      "antonyms": [
+        "unhealthy",
+        "insalubrious",
+        "noxious",
+        "harmful"
+      ],
+      "collocations": [
+        "salubrious climate",
+        "salubrious surroundings",
+        "salubrious air"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61777,15 +63855,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অনুমোদন, মঞ্জুরি, নিষেধাজ্ঞা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SANCTION.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "approval",
+        "authorization",
+        "penalty",
+        "embargo",
+        "ban"
+      ],
+      "antonyms": [
+        "prohibition",
+        "disapproval",
+        "ban",
+        "veto"
+      ],
+      "collocations": [
+        "official sanction",
+        "economic sanctions",
+        "sanction an action"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -61825,15 +63918,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ব্যঙ্গাত্মক, বিদ্রূপাত্মক, পরিহাসমূলক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SATIRIC.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "satirical",
+        "ironic",
+        "mocking",
+        "sarcastic",
+        "sardonic"
+      ],
+      "antonyms": [
+        "complimentary",
+        "praising",
+        "solemn",
+        "serious"
+      ],
+      "collocations": [
+        "satiric novel",
+        "satiric cartoon",
+        "satiric tone"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61844,15 +63952,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বিষাদময়, গম্ভীর ও ম্লানমুখো",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SATURNINE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "gloomy",
+        "somber",
+        "morose",
+        "sullen",
+        "melancholy"
+      ],
+      "antonyms": [
+        "cheerful",
+        "jovial",
+        "bright",
+        "genial"
+      ],
+      "collocations": [
+        "saturnine expression",
+        "saturnine disposition",
+        "saturnine mood"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61863,15 +63986,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আস্বাদন করা, উপভোগ করা, গন্ধ বা স্বাদ পাওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SAVOR.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "relish",
+        "enjoy",
+        "taste",
+        "appreciate",
+        "savour"
+      ],
+      "antonyms": [
+        "dislike",
+        "disrelish",
+        "ignore"
+      ],
+      "collocations": [
+        "savor the moment",
+        "savor victory",
+        "savor food"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -61882,15 +64019,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অপর্যাপ্ত, সামান্য, অল্প",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SCANTY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "insufficient",
+        "meager",
+        "scant",
+        "sp描写",
+        "slender"
+      ],
+      "antonyms": [
+        "abundant",
+        "plentiful",
+        "ample",
+        "profuse"
+      ],
+      "collocations": [
+        "scanty evidence",
+        "scanty resources",
+        "scanty information"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62537,15 +64689,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সর্পিল, আঁকাবাঁকা, নমনীয়",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SINUOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "winding",
+        "curving",
+        "serpentine",
+        "flexible",
+        "supple"
+      ],
+      "antonyms": [
+        "straight",
+        "rigid",
+        "direct"
+      ],
+      "collocations": [
+        "sinuous path",
+        "sinuous river",
+        "sinuous movement"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62556,15 +64722,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সন্দেহপ্রবণ, সংশয়ী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SKEPTICAL.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "doubtful",
+        "dubious",
+        "suspicious",
+        "unbelieving",
+        "cynical"
+      ],
+      "antonyms": [
+        "certain",
+        "convinced",
+        "credulous",
+        "trusting"
+      ],
+      "collocations": [
+        "skeptical about",
+        "highly skeptical",
+        "skeptical reaction"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62599,15 +64780,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "গম্ভীর, মর্যাদাপূর্ণ, আন্তরিক",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SOLEMN.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "serious",
+        "grave",
+        "dignified",
+        "somber",
+        "formal"
+      ],
+      "antonyms": [
+        "cheerful",
+        "lighthearted",
+        "frivolous"
+      ],
+      "collocations": [
+        "solemn promise",
+        "solemn occasion",
+        "solemn face"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62618,15 +64813,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আবেদন করা, অনুনয়-বিনয় করা, সমর্থন বা সাহায্য চাওয়া",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SOLICIT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "request",
+        "seek",
+        "beg",
+        "implore",
+        "petition"
+      ],
+      "antonyms": [
+        "refuse",
+        "grant",
+        "give"
+      ],
+      "collocations": [
+        "solicit feedback",
+        "solicit funds",
+        "solicit opinions"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -62906,15 +65115,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অপব্যয়ী ব্যক্তি, উড়নচণ্ডী",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SPENDTHRIFT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "prodigal",
+        "squanderer",
+        "wasteful person",
+        "extravagant"
+      ],
+      "antonyms": [
+        "miser",
+        "saver",
+        "thrifty person"
+      ],
+      "collocations": [
+        "spendthrift habits",
+        "reckless spendthrift",
+        "notorious spendthrift"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62925,15 +65147,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "নোংরা, নোংরা ও জঘন্য, ভিখিরির মতো",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SQUALID.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "dirty",
+        "filthy",
+        "sordid",
+        "foul",
+        "miserable"
+      ],
+      "antonyms": [
+        "clean",
+        "pure",
+        "immaculate",
+        "splendid"
+      ],
+      "collocations": [
+        "squalid conditions",
+        "squalid housing",
+        "squalid slum"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -62992,15 +65229,26 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কবিতার স্তবক, পদ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/STANZA.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "verse",
+        "strophe",
+        "canto",
+        "couplet"
+      ],
+      "antonyms": [
+        "prose"
+      ],
+      "collocations": [
+        "opening stanza",
+        "final stanza",
+        "rhyming stanza"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -63107,15 +65355,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "জীবাণুমুক্ত, অনূর্বর, নিষ্ফলা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/STERILE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "barren",
+        "infertile",
+        "unproductive",
+        "antiseptic",
+        "sanitized"
+      ],
+      "antonyms": [
+        "fertile",
+        "productive",
+        "fruitful",
+        "contaminated"
+      ],
+      "collocations": [
+        "sterile equipment",
+        "sterile environment",
+        "sterile land"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -63370,15 +65633,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ম্লান, গম্ভীর, গোমড়ামুখো, বিষাদময়",
       "mnemonic": null,
       "level": null,
       "audio": "audio/SULLEN.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "sulky",
+        "surly",
+        "morose",
+        "gloomy",
+        "glum"
+      ],
+      "antonyms": [
+        "cheerful",
+        "bright",
+        "genial",
+        "friendly"
+      ],
+      "collocations": [
+        "sullen look",
+        "sullen silence",
+        "sullen child"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -63969,15 +66247,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "টানটান, আঁটসাঁট, সুসংহত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TAUT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "tight",
+        "stretched",
+        "tense",
+        "rigid",
+        "snug"
+      ],
+      "antonyms": [
+        "slack",
+        "loose",
+        "relaxed"
+      ],
+      "collocations": [
+        "taut muscle",
+        "taut rope",
+        "taut storyline"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64036,15 +66328,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "একঘেয়ে, বিরক্তিকর, দীর্ঘসূত্রি",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TEDIOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "boring",
+        "monotonous",
+        "dull",
+        "tiresome",
+        "wearisome"
+      ],
+      "antonyms": [
+        "exciting",
+        "interesting",
+        "fascinating"
+      ],
+      "collocations": [
+        "tedious task",
+        "tedious journey",
+        "tedious process"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64103,15 +66409,28 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্বভাব, মেজাজ, মানসিক গঠন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TEMPERAMENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "disposition",
+        "nature",
+        "character",
+        "personality",
+        "makeup"
+      ],
+      "antonyms": [
+        "apathy",
+        "unconcern"
+      ],
+      "collocations": [
+        "artistic temperament",
+        "fiery temperament",
+        "calm temperament"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64318,15 +66637,27 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "কণ্ঠ বা শব্দের বৈশিষ্ট্যপূর্ণ গুণ",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TIMBRE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "tone color",
+        "tone quality",
+        "resonance",
+        "sound quality"
+      ],
+      "antonyms": [
+        "monotone",
+        "pitch"
+      ],
+      "collocations": [
+        "rich timbre",
+        "vocal timbre",
+        "distinctive timbre"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64457,15 +66788,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "সহজে পরিচালনাযোগ্য, অনুগত, বাধ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TRACTABLE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "docile",
+        "manageable",
+        "compliant",
+        "yielding",
+        "obedient"
+      ],
+      "antonyms": [
+        "intractable",
+        "stubborn",
+        "unmanageable",
+        "obstinate"
+      ],
+      "collocations": [
+        "tractable problem",
+        "tractable material",
+        "tractable nature"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -64697,15 +67043,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অস্থায়ী, ক্ষণস্থায়ী, পলকা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TRANSITORY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "temporary",
+        "transient",
+        "fleeting",
+        "ephemeral",
+        "brief"
+      ],
+      "antonyms": [
+        "permanent",
+        "lasting",
+        "enduring",
+        "eternal"
+      ],
+      "collocations": [
+        "transitory nature",
+        "transitory fame",
+        "transitory phase"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -64893,15 +67254,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "উগ্র, লড়াইপ্রিয়, অবাধ্য",
       "mnemonic": null,
       "level": null,
       "audio": "audio/TRUCULENT.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "aggressive",
+        "defiant",
+        "belligerent",
+        "hostile",
+        "pugnacious"
+      ],
+      "antonyms": [
+        "gentle",
+        "peaceful",
+        "submissive",
+        "amiable"
+      ],
+      "collocations": [
+        "truculent mood",
+        "truculent manner",
+        "truculent reply"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64936,15 +67312,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "অভূতপূর্ব, নজিরবিহীন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/UNPRECEDENTED.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unmatched",
+        "unparalleled",
+        "extraordinary",
+        "unrivaled",
+        "novel"
+      ],
+      "antonyms": [
+        "precedented",
+        "familiar",
+        "common",
+        "usual"
+      ],
+      "collocations": [
+        "unprecedented growth",
+        "unprecedented event",
+        "unprecedented scale"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -64955,15 +67346,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "প্রতিকূল, অনাকাঙ্ক্ষিত, দুর্ভাগ্যের",
       "mnemonic": null,
       "level": null,
       "audio": "audio/UNTOWARD.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "unfortunate",
+        "adverse",
+        "inconvenient",
+        "improper",
+        "unseemly"
+      ],
+      "antonyms": [
+        "favorable",
+        "propitious",
+        "convenient"
+      ],
+      "collocations": [
+        "untoward incident",
+        "nothing untoward",
+        "untoward event"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -65046,15 +67451,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "ফাঁকা, বোকা, চিন্তাচেতনাহীন",
       "mnemonic": null,
       "level": null,
       "audio": "audio/VACUOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "mindless",
+        "inane",
+        "empty",
+        "foolish",
+        "blank"
+      ],
+      "antonyms": [
+        "meaningful",
+        "intelligent",
+        "thoughtful",
+        "expressive"
+      ],
+      "collocations": [
+        "vacuous smile",
+        "vacuous look",
+        "vacuous expression"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -65237,15 +67657,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "দোষমুক্ত করা, সত্যতা প্রমাণ করা, সমর্থন করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/VINDICATE.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "exonerate",
+        "acquit",
+        "justify",
+        "clear",
+        "validate"
+      ],
+      "antonyms": [
+        "convict",
+        "blame",
+        "incriminate",
+        "condemn"
+      ],
+      "collocations": [
+        "vindicate reputation",
+        "vindicate rights",
+        "fully vindicated"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -65280,15 +67715,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "আঠালো, ঘন ও আঠালো রসযুক্ত",
       "mnemonic": null,
       "level": null,
       "audio": "audio/VISCOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "thick",
+        "sticky",
+        "gummy",
+        "glutinous",
+        "viscid"
+      ],
+      "antonyms": [
+        "watery",
+        "fluid",
+        "thin",
+        "runny"
+      ],
+      "collocations": [
+        "viscous liquid",
+        "viscous fluid",
+        "highly viscous"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -65443,15 +67893,30 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বৃহৎ আকৃতির, বিশাল, প্রকাণ্ড",
       "mnemonic": null,
       "level": null,
       "audio": "audio/VOLUMINOUS.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "spacious",
+        "capacious",
+        "huge",
+        "extensive",
+        "copious"
+      ],
+      "antonyms": [
+        "tiny",
+        "slender",
+        "scanty",
+        "brief"
+      ],
+      "collocations": [
+        "voluminous report",
+        "voluminous notes",
+        "voluminous dress"
+      ],
       "derivatives": {},
       "root_tags": []
     },
@@ -65462,15 +67927,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "স্বেচ্ছাকৃত, নিজের ইচ্ছায় করা",
       "mnemonic": null,
       "level": null,
       "audio": "audio/VOLUNTARY.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "optional",
+        "uncompelled",
+        "freewill",
+        "discretionary"
+      ],
+      "antonyms": [
+        "compulsory",
+        "mandatory",
+        "involuntary",
+        "forced"
+      ],
+      "collocations": [
+        "voluntary work",
+        "voluntary organization",
+        "voluntary submission"
+      ],
       "derivatives": {},
       "root_tags": [
         {
@@ -65510,15 +67989,29 @@
       "part_of_speech": null,
       "definition": null,
       "quick_quiz_id": null,
-      "bengali_meaning": null,
+      "bengali_meaning": "বিশৃঙ্খলা, এলোমেলো স্তূপ, গণ্ডগোল",
       "mnemonic": null,
       "level": null,
       "audio": "audio/WELTER.mp3",
       "examples": [],
       "example_translations": [],
-      "synonyms": [],
-      "antonyms": [],
-      "collocations": [],
+      "synonyms": [
+        "jumble",
+        "clutter",
+        "tangle",
+        "confusion",
+        "turmoil"
+      ],
+      "antonyms": [
+        "order",
+        "organization",
+        "neatness"
+      ],
+      "collocations": [
+        "welter of details",
+        "welter of emotions",
+        "confused welter"
+      ],
       "derivatives": {},
       "root_tags": []
     }
