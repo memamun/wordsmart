@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Sparkles, X, Volume2, BookOpen, Lightbulb, Hash, Layers, 
+  Sparkles, X, Volume2, BookOpen, Lightbulb, Layers, 
   ChevronLeft, ChevronRight, Bookmark, BookmarkCheck, Copy, Check, 
-  ArrowLeft, Award, Clock, HelpCircle, Compass
+  ArrowLeft
 } from 'lucide-react';
+import { renderMarkdown, formatExampleText } from '../utils/markdown';
+import WordAiChatModal from './WordAiChatModal';
 
 const SectionHeader = ({ icon, label, color }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.65rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.75rem' }}>
     {icon}
-    <span style={{ fontSize: '0.8rem', fontWeight: '900', color, textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: 'var(--font-title)' }}>
+    <span 
+      className="detail-section-title"
+      style={{ color: color || 'var(--text-primary)' }}
+    >
       {label}
     </span>
   </div>
@@ -21,31 +26,21 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
   const [deltaX, setDeltaX] = useState(0);
   const [deltaY, setDeltaY] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [aiChatOpen, setAiChatOpen] = useState(false);
+  const panelRef = useRef(null);
 
-  // Guide visibility state: Show on first 2 launches
-  const [showGuide, setShowGuide] = useState(() => {
-    try {
-      const count = parseInt(localStorage.getItem('wordsmart_detail_guide_count') || '0', 10);
-      return count < 2;
-    } catch (e) {
-      return true;
-    }
-  });
-
+  // Guarantee scroll to top when word changes or panel mounts
   useEffect(() => {
-    try {
-      const count = parseInt(localStorage.getItem('wordsmart_detail_guide_count') || '0', 10);
-      if (count < 2) {
-        localStorage.setItem('wordsmart_detail_guide_count', (count + 1).toString());
-        const timer = setTimeout(() => {
-          setShowGuide(false);
-        }, 2500);
-        return () => clearTimeout(timer);
-      }
-    } catch (e) {
-      console.warn('LocalStorage unavailable for guide count:', e);
+    if (panelRef.current) {
+      panelRef.current.scrollTop = 0;
     }
-  }, []);
+    const rafId = requestAnimationFrame(() => {
+      if (panelRef.current) {
+        panelRef.current.scrollTop = 0;
+      }
+    });
+    return () => cancelAnimationFrame(rafId);
+  }, [word?.id, word?.word]);
 
   // Find index of current word in list
   const currentIndex = wordList.findIndex(w => (w.id && word.id && w.id === word.id) || (w.word && word.word && w.word.toUpperCase() === word.word.toUpperCase()));
@@ -110,7 +105,7 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, wordList, word, hasNext, hasPrev]);
 
-  // Touch Swipe Handlers for Mobile & Gesture Keyboards
+  // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e) => {
     setTouchStart({
       x: e.targetTouches[0].clientX,
@@ -158,112 +153,140 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
 
   return (
     <div 
+      ref={panelRef}
       className="word-detail-fullscreen"
       role="main"
       aria-label={`Full screen word details for ${word.word}`}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      style={{
+        backgroundColor: 'var(--bg-canvas)',
+        color: 'var(--text-primary)'
+      }}
     >
-      <div style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        backgroundColor: 'var(--bg-surface)',
-        borderBottom: '3px solid #000000',
-        boxShadow: '0 4px 0 #000000',
-        padding: '0.85rem 1.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '0.75rem'
-      }}>
+      {/* Sticky Top Navigation Bar - Single Row Guarantee */}
+      <div className="detail-top-nav">
         {/* Back Button */}
         <button
           onClick={onClose}
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem',
-            padding: '0.5rem 1.1rem',
-            borderRadius: '12px',
-            border: '2.5px solid #000000',
+            justifyContent: 'center',
+            gap: '0.35rem',
+            padding: '0.45rem 0.75rem',
+            borderRadius: '9999px',
+            border: 'var(--border-thin)',
             backgroundColor: 'var(--bg-surface-elevated)',
             color: 'var(--text-primary)',
-            fontSize: '0.88rem',
-            fontWeight: '900',
+            fontSize: '0.85rem',
+            fontWeight: '800',
             fontFamily: 'var(--font-title)',
             cursor: 'pointer',
-            boxShadow: '3px 3px 0px #000000',
-            transition: 'transform 0.1s ease'
+            boxShadow: 'var(--shadow-tiny)',
+            flexShrink: 0
           }}
+          className="btn-icon-hover"
+          title="Back"
         >
-          <ArrowLeft size={18} /> Back
+          <ArrowLeft size={17} />
+          <span className="detail-header-label">Back</span>
         </button>
 
         {/* Word Progress Indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          {wordList.length > 0 && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              backgroundColor: 'var(--bg-canvas)',
-              padding: '0.35rem 0.9rem',
-              borderRadius: '9999px',
-              border: '2px solid #000000',
-              boxShadow: '2px 2px 0px #000000'
+        {wordList.length > 0 && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            padding: '0.35rem 0.75rem',
+            borderRadius: '9999px',
+            border: 'var(--border-thin)',
+            flexShrink: 0
+          }}>
+            <span style={{
+              fontSize: '0.78rem',
+              fontWeight: '800',
+              fontFamily: 'var(--font-title)',
+              color: 'var(--text-secondary)'
             }}>
-              <span style={{
-                fontSize: '0.8rem',
-                fontWeight: '900',
-                fontFamily: 'var(--font-title)',
-                color: 'var(--text-primary)'
-              }}>
-                WORD {currentIndex >= 0 ? currentIndex + 1 : 1} / {wordList.length}
-              </span>
+              <span className="detail-word-prefix">WORD </span>
+              {currentIndex >= 0 ? currentIndex + 1 : 1} / {wordList.length}
+            </span>
+            <div className="detail-progress-bar" style={{
+              width: '45px',
+              height: '5px',
+              backgroundColor: 'var(--border-muted)',
+              borderRadius: '99px',
+              overflow: 'hidden'
+            }}>
               <div style={{
-                width: '50px',
-                height: '6px',
-                backgroundColor: 'rgba(0,0,0,0.15)',
+                width: `${progressPct}%`,
+                height: '100%',
+                backgroundColor: 'var(--theme-cyan)',
                 borderRadius: '99px',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  width: `${progressPct}%`,
-                  height: '100%',
-                  backgroundColor: '#18FFFF',
-                  borderRadius: '99px',
-                  transition: 'width 0.25s ease'
-                }} />
-              </div>
+                transition: 'width 0.25s ease'
+              }} />
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Header Actions Suite */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginLeft: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginLeft: 'auto', flexShrink: 0 }}>
+          {/* Ask AI Button */}
+          <button
+            onClick={() => setAiChatOpen(true)}
+            title="Ask AI (Gemini Tutor)"
+            style={{
+              padding: '0.45rem 0.75rem',
+              borderRadius: '9999px',
+              border: '2px solid #000000',
+              backgroundColor: 'var(--theme-cyan)',
+              color: '#000000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.35rem',
+              fontSize: '0.82rem',
+              fontWeight: '900',
+              fontFamily: 'var(--font-title)',
+              boxShadow: '2px 2px 0px #000000',
+              flexShrink: 0
+            }}
+            className="btn-icon-hover"
+          >
+            <Sparkles size={15} />
+            <span className="detail-header-label">Ask AI</span>
+          </button>
+
           {/* Audio Button */}
           <button
             onClick={() => speakWord(word.word)}
             title="Pronounce Word (Spacebar)"
             style={{
-              padding: '0.5rem 0.9rem',
-              borderRadius: '12px',
-              border: '2.5px solid #000000',
-              background: 'linear-gradient(135deg, #E040FB 0%, #7C4DFF 100%)',
-              color: '#FFFFFF',
+              padding: '0.45rem 0.75rem',
+              borderRadius: '9999px',
+              border: 'var(--border-thin)',
+              backgroundColor: 'var(--theme-yellow)',
+              color: '#000000',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
               gap: '0.35rem',
-              fontSize: '0.85rem',
+              fontSize: '0.82rem',
               fontWeight: '900',
-              boxShadow: '3px 3px 0px #000000'
+              fontFamily: 'var(--font-title)',
+              boxShadow: 'var(--shadow-tiny)',
+              flexShrink: 0
             }}
+            className="btn-icon-hover"
           >
-            <Volume2 size={18} /> <span className="header-btn-label">Audio</span>
+            <Volume2 size={16} />
+            <span className="detail-header-label">Audio</span>
           </button>
 
           {/* Bookmark Toggle */}
@@ -271,18 +294,21 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
             <button
               onClick={() => gameState.toggleBookmark(word.id)}
               title={isBookmarked ? "Remove bookmark (B)" : "Add bookmark (B)"}
+              aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
               style={{
-                padding: '0.5rem 0.75rem',
-                borderRadius: '12px',
-                border: '2.5px solid #000000',
-                backgroundColor: isBookmarked ? '#FFD54F' : 'var(--bg-surface-elevated)',
-                color: isBookmarked ? '#000000' : 'var(--text-primary)',
+                padding: '0.45rem 0.6rem',
+                borderRadius: '10px',
+                border: 'var(--border-thin)',
+                backgroundColor: isBookmarked ? '#F59E0B' : 'var(--bg-surface-elevated)',
+                color: isBookmarked ? '#000000' : 'var(--text-secondary)',
                 cursor: 'pointer',
-                boxShadow: '3px 3px 0px #000000',
+                boxShadow: 'var(--shadow-tiny)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.3rem'
+                justifyContent: 'center',
+                flexShrink: 0
               }}
+              className="btn-icon-hover"
             >
               {isBookmarked ? <BookmarkCheck size={18} fill="#000000" /> : <Bookmark size={18} />}
             </button>
@@ -292,15 +318,21 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
           <button
             onClick={handleCopy}
             title="Copy word & definition"
+            aria-label="Copy word"
             style={{
-              padding: '0.5rem 0.75rem',
-              borderRadius: '12px',
-              border: '2.5px solid #000000',
-              backgroundColor: copied ? '#69F0AE' : 'var(--bg-surface-elevated)',
-              color: copied ? '#000000' : 'var(--text-primary)',
+              padding: '0.45rem 0.6rem',
+              borderRadius: '10px',
+              border: 'var(--border-thin)',
+              backgroundColor: copied ? 'var(--theme-green)' : 'var(--bg-surface-elevated)',
+              color: copied ? '#000000' : 'var(--text-secondary)',
               cursor: 'pointer',
-              boxShadow: '3px 3px 0px #000000'
+              boxShadow: 'var(--shadow-tiny)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
             }}
+            className="btn-icon-hover"
           >
             {copied ? <Check size={18} /> : <Copy size={18} />}
           </button>
@@ -309,15 +341,21 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
           <button
             onClick={onClose}
             title="Close (Esc)"
+            aria-label="Close"
             style={{
-              padding: '0.5rem 0.75rem',
-              borderRadius: '12px',
-              border: '2.5px solid #000000',
-              backgroundColor: '#FF5252',
-              color: '#FFFFFF',
+              padding: '0.45rem 0.6rem',
+              borderRadius: '10px',
+              border: 'var(--border-thin)',
+              backgroundColor: 'var(--bg-surface-elevated)',
+              color: 'var(--text-secondary)',
               cursor: 'pointer',
-              boxShadow: '3px 3px 0px #000000'
+              boxShadow: 'var(--shadow-tiny)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
             }}
+            className="btn-icon-hover"
           >
             <X size={18} />
           </button>
@@ -325,103 +363,44 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
       </div>
 
       {/* Main Full-Screen Body */}
-      <div style={{
-        maxWidth: '1050px',
-        width: '100%',
-        margin: '0 auto',
-        padding: '2rem 1.5rem 6.5rem 1.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem'
-      }}>
-        {/* Playful Neobrutalist Hero Card Banner with Side Chevron Controls */}
-        <div style={{
-          padding: '2.25rem 2.5rem',
-          borderRadius: '24px',
-          background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.15) 0%, rgba(24, 255, 255, 0.12) 50%, var(--bg-surface) 100%)',
-          border: '3px solid #000000',
-          boxShadow: '8px 8px 0px #000000',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.25rem',
-          position: 'relative'
-        }}>
-          {/* Hero Card Previous Chevron Arrow */}
+      <div className="detail-body-container">
+        {/* Soothing Hero Word Card with Side Navigation Arrows */}
+        <div className="detail-hero-card">
+          {/* Previous Word Chevron */}
           <button
             onClick={handlePrevWord}
             disabled={!hasPrev}
-            style={{
-              position: 'absolute',
-              left: '-1rem',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '42px',
-              height: '42px',
-              borderRadius: '50%',
-              border: '2.5px solid #000000',
-              backgroundColor: 'var(--bg-surface)',
-              color: 'var(--text-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: hasPrev ? 'pointer' : 'not-allowed',
-              opacity: hasPrev ? 1 : 0.4,
-              boxShadow: hasPrev ? '3px 3px 0px #000000' : 'none',
-              zIndex: 10
-            }}
+            className="detail-nav-chevron prev btn-icon-hover"
             title="Previous Word"
+            style={{ opacity: hasPrev ? 1 : 0.35, cursor: hasPrev ? 'pointer' : 'not-allowed' }}
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={20} />
           </button>
 
-          {/* Hero Card Next Chevron Arrow */}
+          {/* Next Word Chevron */}
           <button
             onClick={handleNextWord}
             disabled={!hasNext}
-            style={{
-              position: 'absolute',
-              right: '-1rem',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '42px',
-              height: '42px',
-              borderRadius: '50%',
-              border: '2.5px solid #000000',
-              background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
-              color: '#000000',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: hasNext ? 'pointer' : 'not-allowed',
-              opacity: hasNext ? 1 : 0.4,
-              boxShadow: hasNext ? '3px 3px 0px #000000' : 'none',
-              zIndex: 10
-            }}
+            className="detail-nav-chevron next btn-icon-hover"
             title="Next Word"
+            style={{ opacity: hasNext ? 1 : 0.35, cursor: hasNext ? 'pointer' : 'not-allowed' }}
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={20} />
           </button>
 
-          {/* Word Title Line */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <h1 style={{
-                fontSize: '3rem',
-                fontFamily: 'var(--font-title)',
-                fontWeight: '900',
-                letterSpacing: '-0.02em',
-                margin: 0,
-                color: 'var(--text-primary)'
-              }}>
+          {/* Top Line: Headword + Part of Speech + Pronunciation */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <h1 className="detail-headword">
                 {word.word}
               </h1>
 
               {word.part_of_speech && (
                 <span style={{
-                  fontSize: '0.85rem',
-                  padding: '0.35rem 1rem',
+                  fontSize: '0.82rem',
+                  padding: '0.25rem 0.8rem',
                   borderRadius: '9999px',
-                  background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
+                  backgroundColor: 'var(--theme-cyan)',
                   color: '#000000',
                   fontWeight: '900',
                   textTransform: 'uppercase',
@@ -434,87 +413,82 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
             </div>
 
             {word.pronunciation && (
-              <span style={{
-                fontSize: '1.1rem',
-                fontFamily: 'monospace',
-                fontWeight: '800',
-                color: 'var(--text-primary)',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                padding: '0.4rem 1rem',
-                borderRadius: '12px',
-                border: '2px solid #000000',
-                boxShadow: '2.5px 2.5px 0px #000000'
-              }}>
+              <span className="detail-pronunciation">
                 /{word.pronunciation}/
               </span>
             )}
           </div>
 
-          {/* Bengali Meaning & Definition Container */}
-          <div style={{
-            padding: '1.5rem 1.75rem',
-            borderRadius: '18px',
-            background: 'linear-gradient(135deg, hsla(var(--primary), 0.15) 0%, hsla(var(--primary), 0.05) 100%)',
-            border: '2.5px solid #000000',
-            boxShadow: '4px 4px 0px #000000',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.65rem'
-          }}>
-            {word.bengali_meaning && (
-              <div style={{
-                fontSize: '1.9rem',
-                fontWeight: '900',
-                color: 'hsl(var(--primary))',
-                fontFamily: 'var(--font-body)',
-                lineHeight: '1.3'
-              }}>
-                {word.bengali_meaning}
-              </div>
-            )}
-            <div style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: '1.65', fontWeight: '600' }}>
-              {word.definition}
+          {/* Bengali Meaning (High Contrast, Hind Siliguri, Readable Font Size) */}
+          {word.bengali_meaning && (
+            <div className="detail-bengali-meaning">
+              {renderMarkdown(word.bengali_meaning)}
             </div>
+          )}
+
+          {/* English Definition */}
+          <div className="detail-english-definition">
+            {renderMarkdown(word.definition)}
+          </div>
+
+          {/* Ask AI Quick Trigger Button */}
+          <div style={{ marginTop: '0.25rem' }}>
+            <button
+              onClick={() => setAiChatOpen(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                padding: '0.42rem 0.95rem',
+                borderRadius: '9999px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '1.5px dashed var(--theme-cyan)',
+                color: 'var(--text-primary)',
+                fontSize: '0.84rem',
+                fontWeight: '700',
+                fontFamily: 'var(--font-title)',
+                cursor: 'pointer'
+              }}
+              className="btn-icon-hover"
+              title="Ask AI for easy sentences & help"
+            >
+              <Sparkles size={15} style={{ color: 'var(--theme-cyan)' }} />
+              <span>Ask AI for easy sentences & help</span>
+            </button>
           </div>
         </div>
 
-        {/* 2-Column Content Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.75rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        {/* 2-Column Content Bento Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.25rem' }}>
+          {/* Left Column: Mnemonic & Examples */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {word.mnemonic && (
-              <div style={{
-                padding: '1.5rem 1.75rem',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '2.5px solid #000000',
-                borderLeft: '8px solid #FFD54F',
-                boxShadow: '4px 4px 0px #000000'
-              }}>
-                <SectionHeader icon={<Lightbulb size={18} color="#FFD54F" />} color="#FFD54F" label="Memory Trick (Mnemonic)" />
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: '1.65', margin: 0, fontStyle: 'italic', fontWeight: '500' }}>
-                  {word.mnemonic}
+              <div 
+                className="detail-bento-card"
+                style={{ borderLeft: '6px solid var(--mnemonic-accent)' }}
+              >
+                <SectionHeader icon={<Lightbulb size={18} color="var(--mnemonic-accent)" />} color="var(--mnemonic-accent)" label="Memory Trick (Mnemonic)" />
+                <p className="detail-mnemonic-text">
+                  {renderMarkdown(word.mnemonic)}
                 </p>
               </div>
             )}
+
             {word.examples && word.examples.length > 0 && (
-              <div style={{
-                padding: '1.5rem 1.75rem',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '2.5px solid #000000',
-                borderLeft: '8px solid #69F0AE',
-                boxShadow: '4px 4px 0px #000000'
-              }}>
-                <SectionHeader icon={<BookOpen size={18} color="#69F0AE" />} color="#69F0AE" label="Usage Examples" />
+              <div 
+                className="detail-bento-card"
+                style={{ borderLeft: '6px solid var(--sentence-accent)' }}
+              >
+                <SectionHeader icon={<BookOpen size={18} color="var(--sentence-accent)" />} color="var(--sentence-accent)" label="Usage Examples" />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {word.examples.map((ex, index) => (
-                    <div key={index} style={{ borderLeft: '3.5px solid hsla(var(--primary), 0.5)', paddingLeft: '0.85rem' }}>
-                      <p style={{ fontSize: '0.98rem', color: 'var(--text-secondary)', lineHeight: '1.6', margin: 0, fontWeight: '500' }}>
-                        "{ex.replace(/\*\*/g, '')}"
+                    <div key={index} style={{ borderLeft: '3.5px solid var(--sentence-quote-border)', paddingLeft: '0.9rem' }}>
+                      <p className="detail-example-english">
+                        {renderMarkdown(formatExampleText(ex))}
                       </p>
                       {word.example_translations && word.example_translations[index] && (
-                        <p style={{ fontSize: '0.9rem', color: 'hsl(var(--primary))', margin: '0.35rem 0 0 0', fontWeight: '700' }}>
-                          {word.example_translations[index]}
+                        <p className="detail-example-bengali">
+                          {renderMarkdown(word.example_translations[index])}
                         </p>
                       )}
                     </div>
@@ -523,70 +497,79 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
               </div>
             )}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+
+          {/* Right Column: Synonyms, Antonyms & Collocations */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {/* Synonyms (Theme-Aware Sky Blue) */}
             {word.synonyms && word.synonyms.length > 0 && (
-              <div style={{
-                padding: '1.5rem 1.75rem',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '2.5px solid #000000',
-                borderLeft: '8px solid var(--theme-blue)',
-                boxShadow: '4px 4px 0px #000000'
-              }}>
-                <SectionHeader icon={<Layers size={18} color="var(--theme-blue)" />} color="var(--theme-blue)" label="Synonyms" />
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.35rem' }}>
+              <div 
+                className="detail-bento-card"
+                style={{ borderLeft: '6px solid var(--synonym-accent)' }}
+              >
+                <SectionHeader icon={<Layers size={18} color="var(--synonym-accent)" />} color="var(--synonym-accent)" label="Synonyms" />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginTop: '0.25rem' }}>
                   {word.synonyms.map((syn, index) => (
-                    <span key={index} style={{
-                      fontSize: '0.85rem', fontWeight: '900', padding: '0.4rem 0.9rem', borderRadius: '10px',
-                      background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)', color: '#000000',
-                      border: '2px solid #000000', boxShadow: '2px 2px 0px #000000'
-                    }}>
+                    <span 
+                      key={index}
+                      className="detail-chip"
+                      style={{
+                        backgroundColor: 'var(--synonym-bg)',
+                        color: 'var(--synonym-text)',
+                        border: '1.5px solid var(--synonym-border)'
+                      }}
+                    >
                       {syn}
                     </span>
                   ))}
                 </div>
               </div>
             )}
+
+            {/* Antonyms (Theme-Aware Red) */}
             {word.antonyms && word.antonyms.length > 0 && (
-              <div style={{
-                padding: '1.5rem 1.75rem',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '2.5px solid #000000',
-                borderLeft: '8px solid var(--theme-red)',
-                boxShadow: '4px 4px 0px #000000'
-              }}>
-                <SectionHeader icon={<X size={18} color="var(--theme-red)" />} color="var(--theme-red)" label="Antonyms" />
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.35rem' }}>
+              <div 
+                className="detail-bento-card"
+                style={{ borderLeft: '6px solid var(--antonym-accent)' }}
+              >
+                <SectionHeader icon={<X size={18} color="var(--antonym-accent)" />} color="var(--antonym-accent)" label="Antonyms" />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginTop: '0.25rem' }}>
                   {word.antonyms.map((ant, index) => (
-                    <span key={index} style={{
-                      fontSize: '0.85rem', fontWeight: '900', padding: '0.4rem 0.9rem', borderRadius: '10px',
-                      background: 'linear-gradient(135deg, #FF5252 0%, #FF1744 100%)', color: '#FFFFFF',
-                      border: '2px solid #000000', boxShadow: '2px 2px 0px #000000'
-                    }}>
+                    <span 
+                      key={index}
+                      className="detail-chip"
+                      style={{
+                        backgroundColor: 'var(--antonym-bg)',
+                        color: 'var(--antonym-text)',
+                        border: '1.5px solid var(--antonym-border)'
+                      }}
+                    >
                       {ant}
                     </span>
                   ))}
                 </div>
               </div>
             )}
+
+            {/* Common Collocations (Theme-Aware Purple) */}
             {word.collocations && word.collocations.length > 0 && (
-              <div style={{
-                padding: '1.5rem 1.75rem',
-                borderRadius: '18px',
-                backgroundColor: 'var(--bg-surface)',
-                border: '2.5px solid #000000',
-                borderLeft: '8px solid #E040FB',
-                boxShadow: '4px 4px 0px #000000'
-              }}>
-                <SectionHeader icon={<Sparkles size={18} color="#E040FB" />} color="#E040FB" label="Common Collocations" />
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.35rem' }}>
+              <div 
+                className="detail-bento-card"
+                style={{ borderLeft: '6px solid var(--colloc-accent)' }}
+              >
+                <SectionHeader icon={<Sparkles size={18} color="var(--colloc-accent)" />} color="var(--colloc-accent)" label="Common Collocations" />
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginTop: '0.25rem' }}>
                   {word.collocations.map((col, index) => (
-                    <span key={index} style={{
-                      fontSize: '0.85rem', fontWeight: '900', padding: '0.4rem 0.9rem', borderRadius: '9999px',
-                      background: 'linear-gradient(135deg, #E040FB 0%, #7C4DFF 100%)', color: '#FFFFFF',
-                      border: '2px solid #000000', boxShadow: '2px 2px 0px #000000'
-                    }}>
+                    <span 
+                      key={index}
+                      className="detail-chip"
+                      style={{
+                        borderRadius: '9999px',
+                        background: 'linear-gradient(135deg, #E040FB 0%, #7C4DFF 100%)',
+                        color: '#FFFFFF',
+                        border: '2px solid #000000',
+                        boxShadow: '2px 2px 0px #000000'
+                      }}
+                    >
                       {col}
                     </span>
                   ))}
@@ -596,6 +579,24 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
           </div>
         </div>
       </div>
+
+      {/* Floating Side Chat Button (FAB) */}
+      <button
+        onClick={() => setAiChatOpen(!aiChatOpen)}
+        className="detail-ai-floating-fab"
+        title={aiChatOpen ? "Close AI Chat" : "Ask AI Vocabulary Tutor"}
+        aria-label="Ask AI"
+      >
+        <Sparkles size={18} />
+        <span>{aiChatOpen ? 'Close AI' : 'Ask AI'}</span>
+      </button>
+
+      {/* Side Floating AI Chat Panel */}
+      <WordAiChatModal 
+        word={word}
+        isOpen={aiChatOpen}
+        onClose={() => setAiChatOpen(false)}
+      />
     </div>
   );
 }

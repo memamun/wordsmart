@@ -369,7 +369,7 @@ export default function ReviewSessionView({ state, wordsData }) {
               {/* Back Contents (Centered like front) with scroll support for long definitions */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%', maxHeight: '250px', overflowY: 'auto', padding: '0.25rem 0.5rem' }} className="no-swipe">
                 {word.bengali_meaning && (
-                  <div style={{ fontSize: '2.25rem', fontWeight: '800', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
+                  <div style={{ fontSize: '2.25rem', fontWeight: '800', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-bengali)', textAlign: 'center' }}>
                     {word.bengali_meaning}
                   </div>
                 )}

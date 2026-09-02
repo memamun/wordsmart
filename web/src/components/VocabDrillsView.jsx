@@ -270,7 +270,7 @@ export default function VocabDrillsView({ state, wordsData }) {
                     {selectedOption === currentQ.correct_answer ? 'Correct!' : 'Incorrect'}
                   </h4>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    <strong>{currentQ.word || currentQ.correct_answer}</strong>: {currentQ.bengali_meaning}
+                    <strong>{currentQ.word || currentQ.correct_answer}</strong>: <span style={{ fontFamily: 'var(--font-bengali)' }}>{currentQ.bengali_meaning}</span>
                   </p>
                 </div>
                 <button onClick={handleNext} className="btn btn-primary">

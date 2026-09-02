@@ -10,12 +10,13 @@ import {
   BookOpen, 
   LayoutGrid, 
   List as ListIcon, 
-  Sparkles, 
   ArrowRight, 
   X,
-  Compass
+  Compass,
+  Sparkles
 } from 'lucide-react';
 import { DetailPanelContext } from '../App';
+import { renderMarkdown } from '../utils/markdown';
 
 const ALPHABET = ['ALL', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
 
@@ -58,8 +59,6 @@ export default function SearchView({ state, wordsData }) {
     } else if (filterMode === 'hit_parades') {
       const satList = wordsData.hitParades?.sat_hit_parade?.map(item => item.word.toLowerCase()) || [];
       result = result.filter(w => satList.includes(w.word.toLowerCase()));
-    } else if (filterMode === 'beginner' || filterMode === 'intermediate' || filterMode === 'advanced') {
-      result = result.filter(w => w.level === filterMode);
     }
 
     // Apply A-Z letter filter
@@ -87,158 +86,185 @@ export default function SearchView({ state, wordsData }) {
     }
   };
 
+  const totalWordsCount = (wordsData.words || []).length || 1913;
+
   return (
-    <div style={{ maxWidth: '1080px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }} className="animate-fade search-view-container">
+    <div style={{ maxWidth: '1080px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingBottom: '3rem' }} className="animate-fade search-view-container">
       
-      {/* Neumorphic Hero Header Banner */}
-      <div className="glass-panel" style={{
-        padding: '1.75rem 2rem',
-        background: 'linear-gradient(135deg, rgba(24, 255, 255, 0.1) 0%, rgba(224, 64, 251, 0.08) 50%, rgba(18, 24, 36, 0.95) 100%)',
-        border: 'var(--border-thick)',
-        boxShadow: 'var(--neu-shadow-extrude), var(--shadow-medium)',
+      {/* Minimal & Elegant Search Header Banner */}
+      <div style={{
+        padding: '1.5rem 1.75rem',
+        backgroundColor: 'var(--bg-surface)',
+        border: 'var(--border-thin)',
+        boxShadow: 'var(--shadow-tiny)',
         borderRadius: 'var(--radius-lg)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
-        position: 'relative',
-        overflow: 'hidden'
+        gap: '1.15rem'
       }}>
+        {/* Top Title Row */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
             <div style={{
-              width: '54px',
-              height: '54px',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
-              border: '2.5px solid #000000',
-              boxShadow: '0 4px 0 #000000',
+              width: '44px',
+              height: '44px',
+              borderRadius: '12px',
+              backgroundColor: 'var(--bg-surface-elevated)',
+              border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-tiny)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              flexShrink: 0
+              flexShrink: 0,
+              color: 'var(--text-primary)'
             }}>
-              <Search size={28} color="#000000" />
+              <Search size={22} />
             </div>
             <div>
-              <span style={{
-                fontSize: '0.68rem',
-                fontWeight: '900',
-                padding: '0.2rem 0.6rem',
-                borderRadius: '9999px',
-                backgroundColor: '#000000',
-                color: '#FFD54F',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                border: '1px solid rgba(255, 213, 79, 0.4)'
-              }}>
-                <Sparkles size={11} style={{ display: 'inline', marginRight: '3px' }} /> Smart Vocabulary Search
-              </span>
-              <h1 style={{ fontSize: '1.85rem', fontFamily: 'var(--font-title)', fontWeight: '900', margin: '0.2rem 0 0 0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.15rem' }}>
+                <span style={{
+                  fontSize: '0.7rem',
+                  fontWeight: '800',
+                  color: 'var(--text-muted)',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  fontFamily: 'var(--font-title)'
+                }}>
+                  Lexicon Archive
+                </span>
+              </div>
+              <h1 style={{ fontSize: '1.6rem', fontFamily: 'var(--font-title)', fontWeight: '900', margin: 0, color: 'var(--text-primary)', lineHeight: 1.2 }}>
                 Dictionary Portal
               </h1>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <span style={{
-              fontSize: '0.82rem',
-              fontWeight: '900',
+              fontSize: '0.78rem',
+              fontWeight: '800',
               fontFamily: 'var(--font-title)',
               backgroundColor: 'var(--bg-surface-elevated)',
-              color: 'var(--theme-cyan)',
-              padding: '0.4rem 0.9rem',
+              color: 'var(--text-secondary)',
+              padding: '0.35rem 0.75rem',
               borderRadius: '9999px',
               border: 'var(--border-thin)',
-              boxShadow: 'var(--shadow-tiny)'
+              letterSpacing: '0.02em'
             }}>
-              {filteredWords.length} / {(wordsData.words || []).length || 1913} WORDS
+              {filteredWords.length} / {totalWordsCount} WORDS
             </span>
 
             {/* View Mode Toggle */}
-            <div style={{ display: 'flex', backgroundColor: 'var(--bg-surface)', padding: '3px', borderRadius: '10px', border: 'var(--border-thin)' }}>
+            <div style={{ 
+              display: 'flex', 
+              backgroundColor: 'var(--bg-surface-elevated)', 
+              padding: '3px', 
+              borderRadius: '10px', 
+              border: 'var(--border-thin)' 
+            }}>
               <button
                 onClick={() => setViewMode('grid')}
                 style={{
-                  padding: '0.35rem 0.6rem',
+                  padding: '0.35rem 0.55rem',
                   borderRadius: '7px',
-                  border: 'none',
-                  backgroundColor: viewMode === 'grid' ? 'var(--theme-purple)' : 'transparent',
-                  color: viewMode === 'grid' ? '#FFFFFF' : 'var(--text-muted)',
+                  border: viewMode === 'grid' ? '1px solid var(--border-muted)' : 'none',
+                  backgroundColor: viewMode === 'grid' ? 'var(--bg-surface)' : 'transparent',
+                  color: viewMode === 'grid' ? 'var(--text-primary)' : 'var(--text-muted)',
+                  boxShadow: viewMode === 'grid' ? 'var(--shadow-tiny)' : 'none',
                   cursor: 'pointer',
                   display: 'flex',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  transition: 'all 0.15s ease'
                 }}
                 title="Grid View"
+                aria-label="Grid View"
               >
-                <LayoutGrid size={16} />
+                <LayoutGrid size={15} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
                 style={{
-                  padding: '0.35rem 0.6rem',
+                  padding: '0.35rem 0.55rem',
                   borderRadius: '7px',
-                  border: 'none',
-                  backgroundColor: viewMode === 'list' ? 'var(--theme-purple)' : 'transparent',
-                  color: viewMode === 'list' ? '#FFFFFF' : 'var(--text-muted)',
+                  border: viewMode === 'list' ? '1px solid var(--border-muted)' : 'none',
+                  backgroundColor: viewMode === 'list' ? 'var(--bg-surface)' : 'transparent',
+                  color: viewMode === 'list' ? 'var(--text-primary)' : 'var(--text-muted)',
+                  boxShadow: viewMode === 'list' ? 'var(--shadow-tiny)' : 'none',
                   cursor: 'pointer',
                   display: 'flex',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  transition: 'all 0.15s ease'
                 }}
                 title="List View"
+                aria-label="List View"
               >
-                <ListIcon size={16} />
+                <ListIcon size={15} />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Search Input Bar */}
+        {/* Search Input Field */}
         <div style={{ position: 'relative', width: '100%' }}>
           <input 
             type="text"
-            placeholder="Search by word spelling, definition, Bengali meaning, or synonyms..."
+            placeholder="Search by spelling, definition, Bengali meaning, or synonyms..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input-field"
             style={{
               width: '100%',
-              padding: '0.85rem 2.8rem 0.85rem 3.4rem',
+              padding: '0.8rem 2.8rem 0.8rem 3rem',
               fontSize: '0.92rem',
-              fontWeight: '700',
-              borderRadius: '14px',
-              border: '2.5px solid #000000',
-              boxShadow: '3px 3px 0px #000000',
-              background: 'var(--bg-surface-elevated)',
+              fontWeight: '500',
+              borderRadius: '12px',
+              border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-tiny)',
+              backgroundColor: 'var(--bg-surface-elevated)',
               color: 'var(--text-primary)',
-              outline: 'none'
+              outline: 'none',
+              transition: 'border-color 0.15s ease, box-shadow 0.15s ease'
             }}
           />
           <Search 
-            size={20} 
-            color="#18FFFF" 
-            style={{ position: 'absolute', left: '1.1rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} 
+            size={18} 
+            color="var(--text-muted)" 
+            style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} 
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
               style={{
                 position: 'absolute',
-                right: '1rem',
+                right: '0.85rem',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 background: 'none',
                 border: 'none',
                 color: 'var(--text-muted)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                padding: '0.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%'
               }}
+              title="Clear search"
+              aria-label="Clear search"
             >
-              <X size={18} />
+              <X size={16} />
             </button>
           )}
         </div>
 
-        {/* Alphabet A-Z Selector Bar */}
-        <div className="no-scrollbar" style={{ display: 'flex', gap: '0.3rem', overflowX: 'auto', paddingBottom: '0.2rem', WebkitOverflowScrolling: 'touch' }}>
+        {/* Alphabet A-Z Quick Selector Bar */}
+        <div className="no-scrollbar" style={{ 
+          display: 'flex', 
+          gap: '0.25rem', 
+          overflowX: 'auto', 
+          paddingBottom: '0.1rem', 
+          WebkitOverflowScrolling: 'touch' 
+        }}>
           {ALPHABET.map(letter => {
             const isSelected = selectedLetter === letter;
             return (
@@ -246,17 +272,18 @@ export default function SearchView({ state, wordsData }) {
                 key={letter}
                 onClick={() => setSelectedLetter(letter)}
                 style={{
-                  padding: '0.3rem 0.6rem',
+                  padding: '0.25rem 0.55rem',
                   fontSize: '0.75rem',
-                  fontWeight: '900',
+                  fontWeight: '800',
                   fontFamily: 'var(--font-title)',
-                  borderRadius: '8px',
-                  border: isSelected ? '2px solid #000000' : '1px solid var(--border-muted)',
-                  backgroundColor: isSelected ? 'var(--theme-cyan)' : 'var(--bg-surface-elevated)',
-                  color: isSelected ? '#000000' : 'var(--text-secondary)',
+                  borderRadius: '6px',
+                  border: isSelected ? '1px solid var(--text-primary)' : '1px solid var(--border-muted)',
+                  backgroundColor: isSelected ? 'var(--text-primary)' : 'var(--bg-surface-elevated)',
+                  color: isSelected ? 'var(--bg-canvas)' : 'var(--text-secondary)',
                   cursor: 'pointer',
                   flexShrink: 0,
-                  boxShadow: isSelected ? '2px 2px 0 #000000' : 'none'
+                  boxShadow: isSelected ? 'var(--shadow-tiny)' : 'none',
+                  transition: 'all 0.12s ease'
                 }}
               >
                 {letter}
@@ -267,15 +294,15 @@ export default function SearchView({ state, wordsData }) {
       </div>
 
       {/* Category & Status Filter Tabs */}
-      <div className="pill-tabs no-scrollbar" style={{ display: 'flex', gap: '0.6rem', overflowX: 'auto', paddingBottom: '0.25rem', alignItems: 'center' }}>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.05em', flexShrink: 0 }}>
-          <Filter size={14} /> Filter:
+      <div className="pill-tabs no-scrollbar" style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.25rem', alignItems: 'center' }}>
+        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.05em', flexShrink: 0 }}>
+          <Filter size={13} /> Filter:
         </span>
         <button 
           onClick={() => setFilterMode('all')}
           className={`filter-pill ${filterMode === 'all' ? 'active active-cyan' : ''}`}
         >
-          All ({(wordsData.words || []).length})
+          All ({totalWordsCount})
         </button>
         <button 
           onClick={() => setFilterMode('bookmarked')}
@@ -305,14 +332,26 @@ export default function SearchView({ state, wordsData }) {
 
       {/* Words Grid / List Container */}
       {filteredWords.length === 0 ? (
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)', borderRadius: 'var(--radius-lg)' }}>
-          <Compass size={36} style={{ marginBottom: '0.75rem', opacity: 0.5 }} />
-          <h3 style={{ fontFamily: 'var(--font-title)', color: 'var(--text-primary)', margin: '0 0 0.5rem 0' }}>No matching vocabulary terms</h3>
-          <p style={{ fontSize: '0.9rem', margin: 0 }}>Try clearing your search query or switching your letter / category filters.</p>
+        <div style={{ 
+          padding: '3.5rem 2rem', 
+          textAlign: 'center', 
+          color: 'var(--text-muted)', 
+          borderRadius: 'var(--radius-lg)',
+          backgroundColor: 'var(--bg-surface)',
+          border: 'var(--border-thin)',
+          boxShadow: 'var(--shadow-tiny)'
+        }}>
+          <Compass size={40} style={{ marginBottom: '0.75rem', opacity: 0.6, color: 'var(--text-secondary)' }} />
+          <h3 style={{ fontFamily: 'var(--font-title)', color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.2rem', fontWeight: '800' }}>
+            No vocabulary matches found
+          </h3>
+          <p style={{ fontSize: '0.88rem', margin: 0, color: 'var(--text-secondary)' }}>
+            Try checking for spelling variations or switching your letter / category filters.
+          </p>
         </div>
       ) : viewMode === 'grid' ? (
         /* GRID VIEW */
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))', gap: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))', gap: '1rem' }}>
           {filteredWords.slice(0, 100).map((w) => {
             const isBookmarked = (state.bookmarkedWordIds || []).includes(w.id);
 
@@ -323,80 +362,140 @@ export default function SearchView({ state, wordsData }) {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '0.85rem',
-                  padding: '1.35rem',
-                  borderRadius: '16px',
-                  border: '2.5px solid #000000',
-                  borderLeft: '7px solid #18FFFF',
-                  boxShadow: '4px 4px 0px #000000',
+                  gap: '0.65rem',
+                  padding: '1.25rem 1.35rem',
+                  borderRadius: '14px',
+                  border: 'var(--border-thin)',
+                  boxShadow: 'var(--shadow-tiny)',
                   backgroundColor: 'var(--bg-surface)',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease'
                 }}
                 onClick={() => handleOpenDetail(w)}
               >
-                {/* Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', margin: 0 }}>
-                      {w.word}
-                    </h3>
-                    {w.part_of_speech && (
-                      <span style={{ fontSize: '0.68rem', padding: '2px 8px', borderRadius: '99px', background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)', color: '#000000', fontWeight: '900', textTransform: 'uppercase', border: '1.5px solid #000000' }}>
-                        {w.part_of_speech}
+                {/* 1. Header Row: Headword, Part of Speech, Pronunciation & Quick Actions */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <h3 style={{ 
+                        fontSize: '1.3rem', 
+                        fontFamily: 'var(--font-title)', 
+                        fontWeight: '900', 
+                        color: 'var(--text-primary)', 
+                        margin: 0,
+                        letterSpacing: '0.01em',
+                        lineHeight: 1.15
+                      }}>
+                        {w.word}
+                      </h3>
+                      {w.part_of_speech && (
+                        <span style={{ 
+                          fontSize: '0.8rem', 
+                          color: 'var(--text-muted)', 
+                          fontWeight: '600', 
+                          fontStyle: 'italic'
+                        }}>
+                          {w.part_of_speech}.
+                        </span>
+                      )}
+                    </div>
+                    {w.pronunciation && (
+                      <span style={{ 
+                        fontSize: '0.8rem', 
+                        fontFamily: 'monospace', 
+                        color: 'var(--text-muted)', 
+                        fontWeight: '500',
+                        letterSpacing: '0.02em'
+                      }}>
+                        /{w.pronunciation}/
                       </span>
                     )}
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }} onClick={(e) => e.stopPropagation()}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }} onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={(e) => speakWord(w.word, e)}
                       title="Listen pronunciation"
-                      style={{ background: 'none', border: 'none', color: 'var(--theme-purple)', cursor: 'pointer', padding: '0.2rem' }}
+                      aria-label={`Pronounce ${w.word}`}
+                      style={{ 
+                        background: 'none', 
+                        border: 'none', 
+                        color: 'var(--text-secondary)', 
+                        cursor: 'pointer', 
+                        padding: '0.35rem',
+                        borderRadius: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                      className="btn-icon-hover"
                     >
-                      <Volume2 size={16} />
+                      <Volume2 size={17} />
                     </button>
                     <button
                       onClick={() => state.toggleBookmark(w.id)}
                       title={isBookmarked ? "Remove bookmark" : "Bookmark word"}
-                      style={{ background: 'none', border: 'none', color: isBookmarked ? '#FFD54F' : 'var(--text-muted)', cursor: 'pointer', padding: '0.2rem' }}
+                      aria-label={isBookmarked ? "Remove bookmark" : "Bookmark word"}
+                      style={{ 
+                        background: 'none', 
+                        border: 'none', 
+                        color: isBookmarked ? '#F59E0B' : 'var(--text-muted)', 
+                        cursor: 'pointer', 
+                        padding: '0.35rem',
+                        borderRadius: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                      className="btn-icon-hover"
                     >
-                      {isBookmarked ? <BookmarkCheck size={18} fill="#FFD54F" /> : <Bookmark size={18} />}
+                      {isBookmarked ? <BookmarkCheck size={19} fill="#F59E0B" /> : <Bookmark size={19} />}
                     </button>
                   </div>
                 </div>
 
-                {/* Definition */}
-                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.55', margin: 0, fontWeight: '500' }}>
-                  {w.definition}
-                </p>
-
-                {/* Synonyms Preview */}
-                {w.synonyms && w.synonyms.length > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap', fontSize: '0.78rem' }}>
-                    <span style={{ fontWeight: '900', color: '#18FFFF', fontSize: '0.7rem', textTransform: 'uppercase' }}>SYN:</span>
-                    <span style={{ color: 'var(--text-secondary)', fontWeight: '600' }}>
-                      {w.synonyms.slice(0, 3).join(', ')}
-                    </span>
+                {/* 2. Bengali Meaning (Immediate Visual Anchor, High-Contrast Hind Siliguri) */}
+                {w.bengali_meaning && (
+                  <div style={{
+                    fontSize: '1.15rem',
+                    fontWeight: '600',
+                    color: 'var(--text-primary)',
+                    fontFamily: 'var(--font-bengali)',
+                    lineHeight: '1.4'
+                  }}>
+                    {renderMarkdown(w.bengali_meaning)}
                   </div>
                 )}
 
-                {/* Bengali Meaning Pill (High Contrast) */}
-                {w.bengali_meaning && (
-                  <div style={{
-                    marginTop: 'auto',
-                    padding: '0.5rem 0.85rem',
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, rgba(24, 255, 255, 0.15) 0%, rgba(224, 64, 251, 0.15) 100%)',
-                    border: '1.5px solid rgba(24, 255, 255, 0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justify: 'space-between',
-                    boxShadow: '2px 2px 0px rgba(0,0,0,0.4)'
+                {/* 3. English Definition (Comfortable reading weight & line-height) */}
+                <p style={{ 
+                  fontSize: '0.92rem', 
+                  color: 'var(--text-secondary)', 
+                  lineHeight: '1.6', 
+                  margin: '0.1rem 0 0 0', 
+                  fontWeight: '450' 
+                }}>
+                  {renderMarkdown(w.definition)}
+                </p>
+
+                {/* 4. Footer: Synonyms (if present) */}
+                {w.synonyms && w.synonyms.length > 0 && (
+                  <div style={{ 
+                    marginTop: 'auto', 
+                    paddingTop: '0.65rem', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '0.35rem', 
+                    flexWrap: 'wrap', 
+                    fontSize: '0.78rem',
+                    borderTop: '1px solid var(--border-muted)'
                   }}>
-                    <span style={{ fontSize: '0.92rem', fontWeight: '900', color: '#18FFFF', fontFamily: 'var(--font-body)' }}>
-                      {w.bengali_meaning}
+                    <span style={{ fontWeight: '800', color: 'var(--text-muted)', fontSize: '0.68rem', letterSpacing: '0.04em' }}>
+                      SYN:
                     </span>
-                    <ArrowRight size={15} color="#18FFFF" />
+                    <span style={{ color: 'var(--text-secondary)', fontWeight: '500', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {w.synonyms.slice(0, 3).join(', ')}
+                    </span>
                   </div>
                 )}
               </div>
@@ -405,7 +504,7 @@ export default function SearchView({ state, wordsData }) {
         </div>
       ) : (
         /* LIST VIEW */
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
           {filteredWords.slice(0, 100).map((w) => {
             const isBookmarked = (state.bookmarkedWordIds || []).includes(w.id);
 
@@ -414,55 +513,80 @@ export default function SearchView({ state, wordsData }) {
                 key={w.id}
                 className="card card-hover"
                 style={{
-                  padding: '1rem 1.25rem',
+                  padding: '0.9rem 1.25rem',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  borderRadius: '14px',
-                  border: '2px solid #000000',
-                  boxShadow: '3px 3px 0px #000000',
+                  borderRadius: '12px',
+                  border: 'var(--border-thin)',
+                  boxShadow: 'var(--shadow-tiny)',
                   backgroundColor: 'var(--bg-surface)',
                   cursor: 'pointer',
-                  gap: '1rem'
+                  gap: '1rem',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease'
                 }}
                 onClick={() => handleOpenDetail(w)}
               >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <span style={{ fontSize: '1.1rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--text-primary)' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: '1.15rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--text-primary)' }}>
                       {w.word}
                     </span>
                     {w.part_of_speech && (
-                      <span style={{ fontSize: '0.68rem', padding: '1px 7px', borderRadius: '4px', background: '#18FFFF', color: '#000000', fontWeight: '900' }}>
-                        {w.part_of_speech}
+                      <span style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-muted)', 
+                        fontWeight: '500',
+                        fontStyle: 'italic'
+                      }}>
+                        {w.part_of_speech}.
                       </span>
                     )}
                     {w.bengali_meaning && (
-                      <span style={{ fontSize: '0.88rem', color: '#18FFFF', fontWeight: '900', marginLeft: '0.5rem' }}>
+                      <span style={{ 
+                        fontSize: '1.02rem', 
+                        color: 'var(--text-primary)', 
+                        fontWeight: '600', 
+                        marginLeft: '0.35rem',
+                        fontFamily: 'var(--font-bengali)'
+                      }}>
                         {w.bengali_meaning}
                       </span>
                     )}
                   </div>
 
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                  <span style={{ 
+                    fontSize: '0.86rem', 
+                    color: 'var(--text-secondary)', 
+                    textOverflow: 'ellipsis', 
+                    overflow: 'hidden', 
+                    whiteSpace: 'nowrap',
+                    fontWeight: '450',
+                    lineHeight: '1.4'
+                  }}>
                     {w.definition}
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }} onClick={(e) => e.stopPropagation()}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }} onClick={(e) => e.stopPropagation()}>
                   <button
                     onClick={(e) => speakWord(w.word, e)}
-                    style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+                    title={`Pronounce ${w.word}`}
+                    aria-label={`Pronounce ${w.word}`}
+                    className="btn-icon-hover"
+                    style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', padding: '0.3rem', borderRadius: '6px' }}
                   >
-                    <Volume2 size={16} />
+                    <Volume2 size={17} />
                   </button>
                   <button
                     onClick={() => state.toggleBookmark(w.id)}
-                    style={{ background: 'none', border: 'none', color: isBookmarked ? '#FFD54F' : 'var(--text-muted)', cursor: 'pointer' }}
+                    title={isBookmarked ? "Remove bookmark" : "Bookmark word"}
+                    aria-label={isBookmarked ? "Remove bookmark" : "Bookmark word"}
+                    className="btn-icon-hover"
+                    style={{ background: 'none', border: 'none', color: isBookmarked ? '#F59E0B' : 'var(--text-muted)', cursor: 'pointer', padding: '0.3rem', borderRadius: '6px' }}
                   >
-                    {isBookmarked ? <BookmarkCheck size={18} fill="#FFD54F" /> : <Bookmark size={18} />}
+                    {isBookmarked ? <BookmarkCheck size={19} fill="#F59E0B" /> : <Bookmark size={19} />}
                   </button>
-                  <BookOpen size={16} color="var(--theme-cyan)" />
                 </div>
               </div>
             );
@@ -472,4 +596,3 @@ export default function SearchView({ state, wordsData }) {
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Trophy, 
   BookOpen, 
@@ -10,18 +10,17 @@ import {
   TrendingUp,
   Brain,
   ShieldCheck,
-  Book
+  Folder,
+  FolderOpen,
+  Flame,
+  Coins,
+  Sparkles,
+  Layers,
+  ChevronRight,
+  ChevronDown,
+  CheckCircle2
 } from 'lucide-react';
 import { PREP_STAGES } from '../hooks/useGameState';
-
-const STUDY_TIPS = [
-  "Spaced repetition is the only proven way to retain 1,900+ high-frequency words long-term.",
-  "Create mnemonics for words that don't stick — memory anchors reinforce recall.",
-  "Active recall through quizzes and flashcards beats passive reading every time.",
-  "Study in focused 25-minute sessions with short breaks for best retention.",
-  "Use the review feature to revisit words you're learning — repetition builds mastery.",
-  "Learning word roots helps decode unfamiliar vocabulary and expands your range."
-];
 
 function BlockMeter({ value, max, color }) {
   const blocksCount = 5;
@@ -51,149 +50,13 @@ function BlockMeter({ value, max, color }) {
   );
 }
 
-function WelcomeDecoration() {
-  return (
-    <div className="welcome-decor-container" style={{
-      position: 'relative',
-      width: '160px',
-      height: '160px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexShrink: 0,
-      margin: '0 auto'
-    }}>
-      {/* Neo-brutalist floating elements */}
-      <svg width="120" height="120" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(var(--shadow-small))' }}>
-        {/* Outer dotted grid circle */}
-        <circle cx="80" cy="80" r="70" stroke="var(--text-muted)" strokeWidth="2" strokeDasharray="6 6" opacity="0.3" />
-        
-        {/* Main circular frame */}
-        <circle cx="80" cy="80" r="55" fill="var(--bg-canvas)" stroke="var(--border-muted)" strokeWidth="4" />
-        
-        {/* Inner grid lines */}
-        <path d="M40 80H120" stroke="var(--border-muted)" strokeWidth="2" opacity="0.5" />
-        <path d="M80 40V120" stroke="var(--border-muted)" strokeWidth="2" opacity="0.5" />
-        
-        {/* Neobrutalist accent shape: star/burst */}
-        <path d="M80 50L84 76L110 80L84 84L80 110L76 84L50 80L76 76L80 50Z" fill="var(--theme-yellow)" stroke="var(--border-muted)" strokeWidth="3" />
-        
-        {/* Small floating sparkles/dots */}
-        <circle cx="45" cy="55" r="5" fill="var(--theme-cyan)" stroke="var(--border-muted)" strokeWidth="2" />
-        <circle cx="115" cy="115" r="4" fill="var(--theme-purple)" stroke="var(--border-muted)" strokeWidth="2" />
-        <path d="M110 50L115 55M115 50L110 55" stroke="var(--theme-green)" strokeWidth="3" strokeLinecap="round" />
-        <path d="M50 110L55 115M55 110L50 115" stroke="var(--theme-yellow)" strokeWidth="3" strokeLinecap="round" />
-      </svg>
-      
-      {/* Floating vocabulary badge */}
-      <div style={{
-        position: 'absolute',
-        bottom: '12px',
-        right: '5px',
-        background: 'var(--theme-cyan)',
-        color: 'var(--text-black)',
-        border: 'var(--border-thin)',
-        boxShadow: 'var(--shadow-tiny)',
-        padding: '0.25rem 0.5rem',
-        borderRadius: 'var(--radius-md)',
-        fontWeight: '900',
-        fontSize: '0.65rem',
-        transform: 'rotate(8deg)',
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        animation: 'float 3s ease-in-out infinite'
-      }}>
-        VOCAB PRO
-      </div>
-      
-      {/* Floating streak badge */}
-      <div style={{
-        position: 'absolute',
-        top: '12px',
-        left: '5px',
-        background: 'var(--theme-purple)',
-        color: 'var(--text-black)',
-        border: 'var(--border-thin)',
-        boxShadow: 'var(--shadow-tiny)',
-        padding: '0.25rem 0.5rem',
-        borderRadius: 'var(--radius-md)',
-        fontWeight: '900',
-        fontSize: '0.65rem',
-        transform: 'rotate(-8deg)',
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        animation: 'float 3.5s ease-in-out infinite alternate'
-      }}>
-        LEVEL UP ⚡
-      </div>
-    </div>
-  );
-}
-
-function SpecializedDecoration() {
-  return (
-    <div className="welcome-decor-container" style={{
-      position: 'relative',
-      width: '120px',
-      height: '100px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexShrink: 0,
-      margin: '0 auto',
-      animation: 'float 3.2s ease-in-out infinite'
-    }}>
-      {/* Stack of English and Bengali card graphics */}
-      <div style={{
-        position: 'absolute',
-        width: '55px',
-        height: '70px',
-        background: 'var(--theme-purple)',
-        border: 'var(--border-thick)',
-        borderRadius: 'var(--radius-lg)',
-        transform: 'rotate(-15deg) translate(-20px, 0px)',
-        boxShadow: 'var(--shadow-small)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: '900',
-        color: 'var(--text-black)',
-        fontSize: '1.25rem',
-        fontFamily: 'var(--font-title)'
-      }}>
-        A
-      </div>
-      <div style={{
-        position: 'absolute',
-        width: '55px',
-        height: '70px',
-        background: 'var(--theme-yellow)',
-        border: 'var(--border-thick)',
-        borderRadius: 'var(--radius-lg)',
-        transform: 'rotate(5deg) translate(15px, -5px)',
-        boxShadow: 'var(--shadow-small)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: '900',
-        color: 'var(--text-black)',
-        fontSize: '1.25rem',
-        fontFamily: 'var(--font-title)',
-        zIndex: 2
-      }}>
-        অ
-      </div>
-    </div>
-  );
-}
-
-function WindowPanel({ title, headerColor, shadowVar, className, style, children }) {
+function WindowPanel({ title, headerColor, shadowVar, className = '', style = {}, children }) {
   return (
     <div className={`card-hover ${className}`} style={{
       backgroundColor: 'var(--bg-surface)',
       border: 'var(--border-thick)',
       borderRadius: 'var(--radius-lg)',
-      boxShadow: shadowVar,
+      boxShadow: shadowVar || 'var(--shadow-main)',
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
@@ -235,12 +98,15 @@ function WindowPanel({ title, headerColor, shadowVar, className, style, children
 
 export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, user, onGoogleSignIn }) {
   const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
-  
+  const [activeStageFolder, setActiveStageFolder] = useState(() => state.unlockedLevel || 1);
+  const [viewMode, setViewMode] = useState('folder'); // 'folder' (focused level folder) or 'all' (expanded tree)
+
   // Stats calculations
-  const totalMastered = state.masteredWordIds.length;
-  const totalLearning = state.learningWordIds.length;
-  const masteryPercentage = wordsData.words.length > 0 
-    ? Math.round((totalMastered / wordsData.words.length) * 100) 
+  const totalMastered = state.masteredWordIds?.length || 0;
+  const totalLearning = state.learningWordIds?.length || 0;
+  const totalWords = wordsData?.words?.length || 1913;
+  const masteryPercentage = totalWords > 0 
+    ? Math.round((totalMastered / totalWords) * 100) 
     : 0;
 
   // Calculate recommended next unit action
@@ -267,43 +133,63 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
     }
   }
 
+  // Calculate stage progress for a given stage
+  const getStageStats = (stageId) => {
+    const sWords = wordsData?.getWordsForLevel(stageId) || [];
+    const sWordIds = sWords.map(w => w.id);
+    const sMastered = (state.masteredWordIds || []).filter(id => sWordIds.includes(id)).length;
+    const sPercent = sWords.length ? Math.round((sMastered / sWords.length) * 100) : 0;
+    const isCompleted = state.levelAttempts?.[stageId]?.passed;
+    const isActive = state.unlockedLevel === stageId;
+    const isLocked = stageId > state.unlockedLevel;
+
+    // Count completed units
+    const sWordsPerUnit = sWords.length ? Math.ceil(sWords.length / 10) : 19;
+    let completedUnits = 0;
+    for (let u = 1; u <= 10; u++) {
+      const uStart = (u - 1) * sWordsPerUnit;
+      const uEnd = Math.min(u * sWordsPerUnit, sWords.length);
+      const uWords = sWords.slice(uStart, uEnd);
+      const uWordIds = uWords.map(w => w.id);
+      const mCount = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
+      if (uWords.length > 0 && mCount >= uWords.length) {
+        completedUnits++;
+      }
+    }
+
+    return {
+      words: sWords,
+      mastered: sMastered,
+      percent: sPercent,
+      isCompleted,
+      isActive,
+      isLocked,
+      completedUnits,
+      totalUnits: 10
+    };
+  };
+
+  const selectedStageStats = getStageStats(activeStageFolder);
+  const selectedStageData = PREP_STAGES.find(s => s.id === activeStageFolder) || PREP_STAGES[0];
+
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }} className="animate-fade dashboard-container">
-      {/* Bento Grid Highlights */}
-      <div className="dashboard-bento">
-        {/* Welcome Banner */}
-        <WindowPanel
-          title="WORDSMART_OS_v1.0.SYS"
-          headerColor="var(--theme-green)"
-          shadowVar="var(--welcome-shadow)"
-          className="welcome-banner bento-welcome"
-          style={{
-            background: 'var(--welcome-bg)',
-            color: 'var(--welcome-text)',
-            border: 'var(--welcome-border)',
-            borderRadius: 'var(--radius-lg)'
-          }}
-        >
-          <div className="bento-welcome-content">
-            <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
-              Master 1,900+ High-Frequency Words
-            </h1>
-            <p style={{ color: 'var(--welcome-subtext)', fontWeight: '600', lineHeight: '1.5', maxWidth: '800px' }}>
-              Progress through 10 stages of vocabulary mastery. Use flashcards, spaced repetition, and quizzes to retain every word long-term. Earn coins for hints and climb the leaderboard.
-            </p>
-          </div>
-          <WelcomeDecoration />
-        </WindowPanel>
-
-        {/* Words Mastered */}
+      
+      {/* ======================================================== */}
+      {/* 1. TOP PROGRESS METRICS BENTO GRID                       */}
+      {/* ======================================================== */}
+      <div className="dashboard-stats-grid" style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+        gap: '1.25rem'
+      }}>
+        {/* Metric 1: Words Mastered */}
         <WindowPanel
           title="MASTERED_WORDS.DLL"
           headerColor="var(--theme-cyan)"
           shadowVar="var(--stats-shadow-1)"
-          className="bento-card-1"
           style={{ padding: 0 }}
         >
-          {/* Large Watermark Background Icon */}
           <ShieldCheck size={96} style={{
             position: 'absolute',
             right: '-10px',
@@ -313,7 +199,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             transform: 'rotate(-15deg)',
             pointerEvents: 'none'
           }} />
-          {/* Accent glow circle */}
           <div style={{
             position: 'absolute',
             top: '-20px',
@@ -325,7 +210,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             filter: 'blur(12px)',
             pointerEvents: 'none'
           }} />
-          {/* Top-right Status Pill */}
           <span style={{
             position: 'absolute',
             top: '0.75rem',
@@ -345,12 +229,10 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>WORDS MASTERED</div>
             <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', marginTop: '0.15rem' }}>
-              {totalMastered} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>/ {wordsData.words.length || 1913}</span>
+              {totalMastered} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>/ {totalWords}</span>
             </div>
           </div>
-          {/* Right visual indicator: Block Meter */}
-          <BlockMeter value={totalMastered} max={wordsData.words.length || 1913} color="hsl(var(--primary))" />
-          {/* Dynamic Progress Line indicator at bottom */}
+          <BlockMeter value={totalMastered} max={totalWords} color="hsl(var(--primary))" />
           <div style={{
             position: 'absolute',
             bottom: 0,
@@ -362,15 +244,13 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
           }} />
         </WindowPanel>
 
-        {/* Mastery Rate */}
+        {/* Metric 2: Mastery Rate */}
         <WindowPanel
           title="MASTERY_RATE.EXE"
           headerColor="var(--theme-purple)"
           shadowVar="var(--stats-shadow-2)"
-          className="bento-card-2"
           style={{ padding: 0 }}
         >
-          {/* Large Watermark Background Icon */}
           <TrendingUp size={96} style={{
             position: 'absolute',
             right: '-10px',
@@ -380,7 +260,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             transform: 'rotate(-15deg)',
             pointerEvents: 'none'
           }} />
-          {/* Accent glow circle */}
           <div style={{
             position: 'absolute',
             top: '-20px',
@@ -392,7 +271,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             filter: 'blur(12px)',
             pointerEvents: 'none'
           }} />
-          {/* Top-right Status Pill */}
           <span style={{
             position: 'absolute',
             top: '0.75rem',
@@ -407,7 +285,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            Success
+            Overall
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>MASTERY RATE</div>
@@ -415,9 +293,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
               {masteryPercentage}%
             </div>
           </div>
-          {/* Right visual indicator: Block Meter */}
           <BlockMeter value={masteryPercentage} max={100} color="hsl(var(--accent-purple))" />
-          {/* Dynamic Progress Line indicator at bottom */}
           <div style={{
             position: 'absolute',
             bottom: 0,
@@ -429,66 +305,13 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
           }} />
         </WindowPanel>
 
-        {/* Specialized Vocabulary & Grammar Modules banner */}
-        <WindowPanel
-          title="GRAMMAR_MODULE.TXT"
-          headerColor="var(--theme-purple)"
-          shadowVar="var(--spec-shadow)"
-          className="bento-specialized"
-          style={{
-            background: 'var(--spec-bg)',
-            color: 'var(--spec-text)',
-            border: 'var(--spec-border)',
-            borderRadius: 'var(--radius-lg)'
-          }}
-        >
-          {/* Background glow lines */}
-          <div style={{
-            position: 'absolute',
-            top: '-50px',
-            left: '-50px',
-            width: '150px',
-            height: '150px',
-            borderRadius: '50%',
-            background: 'hsla(var(--secondary), 0.05)',
-            filter: 'blur(30px)',
-            pointerEvents: 'none'
-          }} />
-          <div style={{ flex: 1, minWidth: '250px', zIndex: 2 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--spec-text)', fontWeight: '900', fontSize: '0.85rem', marginBottom: '0.25rem' }}>
-              <Book size={16} color="var(--spec-text)" />
-              <span>SPECIALIZED VOCABULARY</span>
-            </div>
-            <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--spec-text)', textTransform: 'uppercase' }}>
-              Grammar, Usage & Specialized Terms
-            </h2>
-            <p style={{ color: 'var(--spec-subtext)', fontSize: '0.9rem', fontWeight: '700', marginTop: '0.25rem', lineHeight: '1.4' }}>
-              Master common usage errors, abbreviations, foreign expressions, and register terminology across multiple domains with definitions and example sentences.
-            </p>
-          </div>
-          <SpecializedDecoration />
-          <button 
-            onClick={() => setActiveView('specialized')}
-            className="btn btn-secondary bento-specialized-btn"
-            style={{ 
-              padding: '0.75rem 1.5rem', 
-              whiteSpace: 'nowrap',
-              zIndex: 3
-            }}
-          >
-            Explore Specialized Vocabs →
-          </button>
-        </WindowPanel>
-
-        {/* Current Target Stage / Prep Stage Reached */}
+        {/* Metric 3: Active Prep Stage */}
         <WindowPanel
           title="PREP_STAGE.SYS"
           headerColor="var(--theme-yellow)"
           shadowVar="var(--stats-shadow-3)"
-          className="bento-card-3"
           style={{ padding: 0 }}
         >
-          {/* Large Watermark Background Icon */}
           <Trophy size={96} style={{
             position: 'absolute',
             right: '-10px',
@@ -498,7 +321,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             transform: 'rotate(-15deg)',
             pointerEvents: 'none'
           }} />
-          {/* Accent glow circle */}
           <div style={{
             position: 'absolute',
             top: '-20px',
@@ -510,7 +332,6 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             filter: 'blur(12px)',
             pointerEvents: 'none'
           }} />
-          {/* Top-right Status Pill */}
           <span style={{
             position: 'absolute',
             top: '0.75rem',
@@ -533,9 +354,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
               {state.unlockedLevel}/10
             </div>
           </div>
-          {/* Right visual indicator: Block Meter */}
           <BlockMeter value={state.unlockedLevel} max={10} color="hsl(var(--secondary))" />
-          {/* Dynamic Progress Line indicator at bottom */}
           <div style={{
             position: 'absolute',
             bottom: 0,
@@ -546,9 +365,62 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
             transition: 'width 1s ease'
           }} />
         </WindowPanel>
+
+        {/* Metric 4: Daily Streak & Coins */}
+        <WindowPanel
+          title="DAILY_STREAK.LOG"
+          headerColor="var(--theme-green)"
+          shadowVar="var(--welcome-shadow)"
+          style={{ padding: 0 }}
+        >
+          <Flame size={96} style={{
+            position: 'absolute',
+            right: '-10px',
+            bottom: '-15px',
+            color: 'var(--theme-orange)',
+            opacity: 0.1,
+            transform: 'rotate(-15deg)',
+            pointerEvents: 'none'
+          }} />
+          <span style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            fontSize: '0.65rem',
+            fontWeight: '900',
+            background: 'hsla(38, 100%, 58%, 0.15)',
+            color: 'var(--theme-yellow)',
+            padding: '0.15rem 0.4rem',
+            borderRadius: '4px',
+            border: '1px solid hsla(38, 100%, 58%, 0.4)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.25rem'
+          }}>
+            <Coins size={10} /> {state.coins || 0} COINS
+          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>CURRENT STREAK</div>
+            <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--theme-orange)', marginTop: '0.15rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <Flame size={24} color="var(--theme-orange)" /> {state.streak || 0} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '600' }}>days</span>
+            </div>
+          </div>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '4px',
+            width: '100%',
+            background: 'var(--theme-green)'
+          }} />
+        </WindowPanel>
       </div>
 
-      {/* Recommended Next Action Hero Card */}
+      {/* ======================================================== */}
+      {/* 2. RECOMMENDED NEXT ACTION HERO CARD                     */}
+      {/* ======================================================== */}
       <div className="glass-panel animate-fade" style={{
         padding: '1.5rem 2rem',
         background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--primary), 0.08) 100%)',
@@ -633,325 +505,445 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
         </div>
       </div>
 
-      {/* Progression Roadmap */}
-      <div className="glass-panel roadmap-panel" style={{ padding: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Award color="hsl(var(--primary))" />
-            Vocabulary Mastery Roadmap
-          </h2>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '800' }}>
-            10 STAGES • 100 UNITS
-          </span>
+      {/* ======================================================== */}
+      {/* 3. LEVEL FOLDER SYSTEM & OPTION HIERARCHY                */}
+      {/* ======================================================== */}
+      <div className="glass-panel" style={{
+        padding: '0',
+        overflow: 'hidden',
+        border: 'var(--border-thick)',
+        boxShadow: 'var(--shadow-main)'
+      }}>
+        {/* Explorer Title Bar */}
+        <div style={{
+          padding: '0.75rem 1.25rem',
+          background: 'var(--bg-surface-elevated)',
+          borderBottom: 'var(--border-thick)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '0.75rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <div style={{ display: 'flex', gap: '6px' }}>
+              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5252', border: '1px solid #000' }} />
+              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFD700', border: '1px solid #000' }} />
+              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#69F0AE', border: '1px solid #000' }} />
+            </div>
+            <span style={{ fontFamily: 'monospace', fontWeight: '900', fontSize: '0.8rem', color: 'var(--text-primary)' }}>
+              STAGE_DIRECTORY://STAGES/STAGE_{activeStageFolder < 10 ? `0${activeStageFolder}` : activeStageFolder}/
+            </span>
+          </div>
+
+          {/* View Mode Toggle Switcher */}
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <button
+              onClick={() => setViewMode('folder')}
+              className={`filter-pill ${viewMode === 'folder' ? 'active active-yellow' : ''}`}
+              style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }}
+            >
+              <Folder size={13} /> Level Folder Focus
+            </button>
+            <button
+              onClick={() => setViewMode('all')}
+              className={`filter-pill ${viewMode === 'all' ? 'active active-cyan' : ''}`}
+              style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }}
+            >
+              <Layers size={13} /> Expand All 10 Stages
+            </button>
+          </div>
         </div>
 
-        {/* Stage Selector Pills (Horizontal Touch Bar) */}
-        <div className="pill-tabs no-scrollbar" style={{
+        {/* Stage Level Folder Navigator Bar (Tabs) */}
+        <div style={{
+          padding: '1rem 1.25rem',
+          background: 'var(--bg-canvas)',
+          borderBottom: 'var(--border-thin)',
           display: 'flex',
-          gap: '0.5rem',
+          gap: '0.6rem',
           overflowX: 'auto',
-          paddingBottom: '0.75rem',
-          marginBottom: '1.5rem',
           WebkitOverflowScrolling: 'touch'
-        }}>
+        }} className="no-scrollbar">
           {PREP_STAGES.map((stage) => {
-            const isCompleted = state.levelAttempts[stage.id]?.passed;
-            const isActive = state.unlockedLevel === stage.id;
-            const isLocked = stage.id > state.unlockedLevel;
+            const stats = getStageStats(stage.id);
+            const isSelected = activeStageFolder === stage.id;
 
             return (
               <button
                 key={stage.id}
                 onClick={() => {
-                  if (!isLocked) {
-                    if (setSelectedUnit) setSelectedUnit(1);
+                  if (!stats.isLocked) {
+                    setActiveStageFolder(stage.id);
                   }
                 }}
-                disabled={isLocked}
-                className={`pill-tab ${isActive ? 'active active-yellow' : isCompleted ? 'active-green' : ''}`}
+                disabled={stats.isLocked}
                 style={{
-                  padding: '0.5rem 0.85rem',
-                  fontSize: '0.8rem',
-                  fontWeight: '900',
-                  borderRadius: 'var(--radius-full)',
-                  border: isActive ? '2px solid #000' : 'var(--border-thin)',
-                  backgroundColor: isActive ? 'var(--theme-yellow)' : isCompleted ? 'var(--theme-green)' : isLocked ? 'var(--bg-canvas)' : 'var(--bg-surface)',
-                  color: isLocked ? 'var(--text-muted)' : 'var(--text-black)',
-                  cursor: isLocked ? 'not-allowed' : 'pointer',
-                  opacity: isLocked ? 0.5 : 1,
-                  display: 'inline-flex',
+                  padding: '0.55rem 0.95rem',
+                  borderRadius: 'var(--radius-md)',
+                  border: isSelected ? '2px solid #000' : 'var(--border-thin)',
+                  backgroundColor: isSelected 
+                    ? 'var(--theme-yellow)' 
+                    : stats.isCompleted 
+                      ? 'var(--bg-surface-elevated)' 
+                      : stats.isLocked 
+                        ? 'var(--bg-canvas)' 
+                        : 'var(--bg-surface)',
+                  color: isSelected ? '#000' : stats.isLocked ? 'var(--text-muted)' : 'var(--text-primary)',
+                  cursor: stats.isLocked ? 'not-allowed' : 'pointer',
+                  opacity: stats.isLocked ? 0.5 : 1,
+                  display: 'flex',
                   alignItems: 'center',
-                  gap: '0.35rem',
+                  gap: '0.5rem',
                   whiteSpace: 'nowrap',
-                  boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
-                  transition: 'var(--transition-fast)'
+                  boxShadow: isSelected ? 'var(--shadow-tiny)' : 'none',
+                  transition: 'var(--transition-fast)',
+                  fontWeight: '800',
+                  fontSize: '0.8rem'
                 }}
               >
-                {isCompleted ? (
-                  <CheckCircle size={12} color="#000" />
-                ) : isLocked ? (
-                  <Lock size={12} />
+                {stats.isCompleted ? (
+                  <CheckCircle size={14} color={isSelected ? '#000' : 'var(--theme-green)'} />
+                ) : stats.isLocked ? (
+                  <Lock size={14} />
+                ) : isSelected ? (
+                  <FolderOpen size={14} color="#000" />
                 ) : (
-                  <span style={{ fontSize: '0.7rem' }}>S{stage.id}</span>
+                  <Folder size={14} color="var(--theme-yellow)" />
                 )}
                 <span>Stage {stage.id}</span>
-                {isActive && <span style={{ fontSize: '0.65rem', background: '#000', color: '#fff', padding: '1px 5px', borderRadius: '99px' }}>ACTIVE</span>}
+                <span style={{
+                  fontSize: '0.65rem',
+                  padding: '1px 5px',
+                  borderRadius: '4px',
+                  background: isSelected ? '#000' : 'var(--bg-surface-elevated)',
+                  color: isSelected ? '#fff' : 'var(--text-muted)'
+                }}>
+                  {stats.completedUnits}/10
+                </span>
               </button>
             );
           })}
         </div>
-        
-        {/* Stages Display List */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.5rem',
-          position: 'relative'
-        }}>
-          {PREP_STAGES.map((stage) => {
-            const isCompleted = state.levelAttempts[stage.id]?.passed;
-            const isActive = state.unlockedLevel === stage.id;
-            const isLocked = stage.id > state.unlockedLevel;
 
-            return (
-              <div 
-                key={stage.id} 
-                className="animate-slide-up roadmap-node"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1rem',
-                  position: 'relative',
-                  zIndex: 2,
-                  opacity: isLocked ? 0.6 : 1,
-                  padding: '0.25rem 0'
-                }}
-              >
-                {/* Stage Header Card */}
-                <div className="card roadmap-card" style={{
-                  padding: '1.25rem 1.5rem',
-                  backgroundColor: isActive ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
-                  border: isActive ? '2px solid var(--theme-yellow)' : 'var(--border-thick)',
-                  boxShadow: isActive ? 'var(--shadow-medium)' : 'var(--shadow-tiny)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.75rem',
-                  borderRadius: 'var(--radius-md)'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '0.75rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <div className="roadmap-status-bubble" style={{
-                        width: '38px',
-                        height: '38px',
-                        borderRadius: '50%',
-                        backgroundColor: isCompleted ? 'var(--theme-green)' : isActive ? 'var(--theme-yellow)' : 'var(--bg-canvas)',
-                        border: 'var(--border-thick)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--text-black)',
-                        fontWeight: '900',
-                        fontFamily: 'var(--font-title)',
-                        boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
-                        flexShrink: 0
-                      }}>
-                        {isCompleted ? <CheckCircle size={18} color="#000" /> : isLocked ? <Lock size={14} color="var(--text-muted)" /> : stage.id}
-                      </div>
-
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '1.15rem', 
-                          color: isActive ? 'hsl(var(--secondary))' : 'var(--text-primary)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          flexWrap: 'wrap'
-                        }}>
-                          Stage {stage.id}: {stage.name}
-                          {isActive && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-yellow)', color: '#000', fontWeight: '800', border: '1px solid #000' }}>ACTIVE</span>}
-                          {isCompleted && <span style={{ fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-green)', color: '#000', fontWeight: '800', border: '1px solid #000' }}>QUALIFIED</span>}
-                        </h3>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
-                          {stage.desc}
-                        </p>
-                      </div>
-                    </div>
-
-                    {isCompleted && (
-                      <div style={{ color: 'var(--theme-green)', fontSize: '0.85rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                        <span>Best Score: {state.levelAttempts[stage.id]?.score}%</span>
-                      </div>
-                    )}
-                    {isLocked && (
-                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                        <Lock size={14} /> Locked
-                      </div>
-                    )}
+        {/* Level Folder Content Container */}
+        <div style={{ padding: '1.5rem 2rem' }}>
+          {viewMode === 'folder' ? (
+            /* FOCUSED LEVEL FOLDER VIEW */
+            <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {/* Folder Banner Header */}
+              <div style={{
+                background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.08) 100%)',
+                border: 'var(--border-thick)',
+                borderRadius: 'var(--radius-md)',
+                padding: '1.25rem 1.5rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '1rem',
+                boxShadow: 'var(--shadow-small)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: 'var(--radius-md)',
+                    backgroundColor: selectedStageStats.isCompleted ? 'var(--theme-green)' : selectedStageStats.isActive ? 'var(--theme-yellow)' : 'var(--bg-surface-elevated)',
+                    border: 'var(--border-thick)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#000',
+                    fontWeight: '900',
+                    fontSize: '1.2rem',
+                    boxShadow: 'var(--shadow-tiny)'
+                  }}>
+                    {selectedStageStats.isCompleted ? <CheckCircle size={24} /> : `S${selectedStageData.id}`}
                   </div>
-
-                  {/* Render Bite-sized Units inside Active Stage */}
-                  {isActive && (
-                    <div className="active-stage-units" style={{
-                      marginTop: '0.75rem',
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                      gap: '0.85rem',
-                      width: '100%'
-                    }}>
-                      {Array.from({ length: 10 }).map((_, index) => {
-                        const unitNum = index + 1;
-                        
-                        // Get words list for this unit
-                        const levelWords = wordsData?.getWordsForLevel(stage.id) || [];
-                        const wordsPerUnit = levelWords.length ? Math.ceil(levelWords.length / 10) : 19;
-                        const start = (unitNum - 1) * wordsPerUnit;
-                        const end = Math.min(unitNum * wordsPerUnit, levelWords.length);
-                        const unitWords = levelWords.slice(start, end);
-                        const unitWordIds = unitWords.map(w => w.id);
-                        
-                        // Calculate unit progress
-                        const masteredInUnit = (state.masteredWordIds || []).filter(id => unitWordIds.includes(id)).length;
-                        const totalInUnit = unitWords.length;
-                        const unitPercent = totalInUnit ? Math.round((masteredInUnit / totalInUnit) * 100) : 0;
-                        
-                        // Unlocked status
-                        let isUnitUnlocked = true;
-                        if (unitNum > 1) {
-                          const prevStart = (unitNum - 2) * wordsPerUnit;
-                          const prevEnd = Math.min((unitNum - 1) * wordsPerUnit, levelWords.length);
-                          const prevUnitWords = levelWords.slice(prevStart, prevEnd);
-                          const prevUnitWordIds = prevUnitWords.map(w => w.id);
-                          const prevMastered = (state.masteredWordIds || []).filter(id => prevUnitWordIds.includes(id)).length;
-                          const prevPercent = prevUnitWords.length ? Math.round((prevMastered / prevUnitWords.length) * 100) : 0;
-                          isUnitUnlocked = prevPercent >= 70;
-                        }
-
-                        const isCurrentActiveUnit = isUnitUnlocked && masteredInUnit < totalInUnit;
-
-                        return (
-                          <div 
-                            key={unitNum} 
-                            className="roadmap-unit-card"
-                            style={{ 
-                              padding: '0.85rem 1rem', 
-                              border: isCurrentActiveUnit ? '2px solid var(--theme-yellow)' : 'var(--border-thick)',
-                              borderRadius: 'var(--radius-md)',
-                              display: 'flex', 
-                              flexDirection: 'column', 
-                              gap: '0.6rem',
-                              opacity: isUnitUnlocked ? 1 : 0.6,
-                              pointerEvents: isUnitUnlocked ? 'auto' : 'none',
-                              position: 'relative',
-                              background: isCurrentActiveUnit ? 'var(--bg-surface-elevated)' : isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
-                              boxShadow: isCurrentActiveUnit ? 'var(--shadow-medium)' : isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
-                              transition: 'var(--transition-normal)'
-                            }}
-                          >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                              <span style={{ fontWeight: '800', fontSize: '0.9rem', color: isUnitUnlocked ? 'var(--text-primary)' : 'var(--text-muted)' }}>
-                                Unit {stage.id}.{unitNum}
-                                {isCurrentActiveUnit && <span style={{ fontSize: '0.65rem', marginLeft: '0.35rem', color: 'hsl(var(--secondary))', fontWeight: '900' }}>● CURRENT</span>}
-                              </span>
-                              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: '700' }}>
-                                {totalInUnit} words
-                              </span>
-                            </div>
-
-                            {/* Progress bar */}
-                            <div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', fontWeight: '700' }}>
-                                <span>Mastery</span>
-                                <span>{masteredInUnit}/{totalInUnit} ({unitPercent}%)</span>
-                              </div>
-                              <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', borderRadius: '4px' }}>
-                                <div style={{ 
-                                  height: '100%', 
-                                  width: `${unitPercent}%`, 
-                                  backgroundColor: unitPercent >= 100 ? 'var(--theme-green)' : 'var(--theme-cyan)',
-                                  transition: 'var(--transition-normal)'
-                                }}></div>
-                              </div>
-                            </div>
-
-                            {/* Actions */}
-                            {isUnitUnlocked ? (
-                              <div className="roadmap-unit-actions" style={{ display: 'flex', gap: '0.4rem', marginTop: '0.2rem' }}>
-                                <button
-                                  onClick={() => {
-                                    if (setSelectedUnit) setSelectedUnit(unitNum);
-                                    setActiveView('flashcards', unitNum);
-                                  }}
-                                  className="btn btn-primary"
-                                  style={{ flex: 1, padding: '0.4rem 0.5rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
-                                >
-                                  <BookOpen size={12} /> Study
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    if (setSelectedUnit) setSelectedUnit(unitNum);
-                                    setActiveView('quizzes', unitNum);
-                                  }}
-                                  className="btn btn-accent"
-                                  style={{ flex: 1, padding: '0.4rem 0.5rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
-                                >
-                                  <Award size={12} /> Quiz
-                                </button>
-                              </div>
-                            ) : (
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--text-muted)', fontSize: '0.7rem', marginTop: 'auto' }}>
-                                <Lock size={11} /> Locked (Need 70% in Unit {stage.id}.{unitNum - 1})
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-
-                      {/* Cumulative Qualification Exam Card at end of stage */}
-                      <div 
-                        className="card"
-                        style={{
-                          gridColumn: '1 / -1',
-                          padding: '1rem 1.25rem',
-                          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.1) 100%)',
-                          border: 'var(--border-thick)',
-                          borderRadius: 'var(--radius-md)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          flexWrap: 'wrap',
-                          gap: '0.75rem',
-                          marginTop: '0.5rem'
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                          <Trophy size={24} color="hsl(var(--secondary))" />
-                          <div>
-                            <div style={{ fontSize: '0.85rem', fontWeight: '900', color: 'var(--text-primary)' }}>
-                              Stage {stage.id} Cumulative Qualification Exam
-                            </div>
-                            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                              Required score: 70%+ to unlock Stage {stage.id + 1}
-                            </div>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => {
-                            if (setSelectedUnit) setSelectedUnit(10);
-                            setActiveView('quizzes');
-                          }}
-                          className="btn btn-accent"
-                          style={{ padding: '0.45rem 1rem', fontSize: '0.8rem' }}
-                        >
-                          Take Stage Exam <ArrowRight size={14} />
-                        </button>
-                      </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <h2 style={{ fontSize: '1.35rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)' }}>
+                        Stage {selectedStageData.id}: {selectedStageData.name}
+                      </h2>
+                      {selectedStageStats.isActive && (
+                        <span style={{ fontSize: '0.65rem', padding: '0.15rem 0.5rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-yellow)', color: '#000', fontWeight: '900', border: '1px solid #000' }}>
+                          ACTIVE STAGE
+                        </span>
+                      )}
+                      {selectedStageStats.isCompleted && (
+                        <span style={{ fontSize: '0.65rem', padding: '0.15rem 0.5rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-green)', color: '#000', fontWeight: '900', border: '1px solid #000' }}>
+                          QUALIFIED (SCORE: {state.levelAttempts?.[selectedStageData.id]?.score}%)
+                        </span>
+                      )}
                     </div>
-                  )}
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
+                      {selectedStageData.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.35rem', minWidth: '160px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)' }}>
+                    Stage Mastery: <strong style={{ color: 'var(--theme-yellow)' }}>{selectedStageStats.percent}%</strong> ({selectedStageStats.mastered}/{selectedStageStats.words.length} words)
+                  </span>
+                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', borderRadius: '4px', overflow: 'hidden' }}>
+                    <div style={{
+                      width: `${selectedStageStats.percent}%`,
+                      height: '100%',
+                      backgroundColor: selectedStageStats.percent >= 100 ? 'var(--theme-green)' : 'var(--theme-yellow)',
+                      transition: 'width 0.4s ease'
+                    }} />
+                  </div>
                 </div>
               </div>
-            );
-          })}
+
+              {/* Units Grid inside Folder */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                gap: '1rem'
+              }}>
+                {Array.from({ length: 10 }).map((_, index) => {
+                  const unitNum = index + 1;
+                  const wordsPerU = selectedStageStats.words.length ? Math.ceil(selectedStageStats.words.length / 10) : 19;
+                  const uStart = (unitNum - 1) * wordsPerU;
+                  const uEnd = Math.min(unitNum * wordsPerU, selectedStageStats.words.length);
+                  const uWords = selectedStageStats.words.slice(uStart, uEnd);
+                  const uWordIds = uWords.map(w => w.id);
+                  const masteredCount = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
+                  const totalCount = uWords.length || 19;
+                  const unitPercent = totalCount ? Math.round((masteredCount / totalCount) * 100) : 0;
+
+                  // Unlocked check
+                  let isUnitUnlocked = true;
+                  if (unitNum > 1 && !selectedStageStats.isCompleted) {
+                    const prevStart = (unitNum - 2) * wordsPerU;
+                    const prevEnd = Math.min((unitNum - 1) * wordsPerU, selectedStageStats.words.length);
+                    const prevWords = selectedStageStats.words.slice(prevStart, prevEnd);
+                    const prevWordIds = prevWords.map(w => w.id);
+                    const prevMastered = (state.masteredWordIds || []).filter(id => prevWordIds.includes(id)).length;
+                    const prevPercent = prevWords.length ? Math.round((prevMastered / prevWords.length) * 100) : 0;
+                    isUnitUnlocked = prevPercent >= 70;
+                  }
+
+                  const isCurrentActive = isUnitUnlocked && masteredCount < totalCount && selectedStageStats.isActive;
+
+                  return (
+                    <div
+                      key={unitNum}
+                      style={{
+                        padding: '1rem 1.25rem',
+                        border: isCurrentActive ? '2.5px solid var(--theme-yellow)' : 'var(--border-thick)',
+                        borderRadius: 'var(--radius-md)',
+                        backgroundColor: isCurrentActive ? 'var(--bg-surface-elevated)' : isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
+                        boxShadow: isCurrentActive ? 'var(--shadow-medium)' : isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
+                        opacity: isUnitUnlocked ? 1 : 0.6,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.75rem',
+                        position: 'relative',
+                        transition: 'var(--transition-normal)'
+                      }}
+                    >
+                      {/* Unit Card Header */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <span style={{ fontWeight: '900', fontSize: '0.95rem', color: isUnitUnlocked ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+                            Unit {selectedStageData.id}.{unitNum}
+                          </span>
+                          {isCurrentActive && (
+                            <span style={{ fontSize: '0.65rem', color: 'hsl(var(--secondary))', fontWeight: '900' }}>
+                              ● CURRENT
+                            </span>
+                          )}
+                        </div>
+                        <span style={{
+                          fontSize: '0.7rem',
+                          fontWeight: '800',
+                          padding: '0.15rem 0.4rem',
+                          borderRadius: '4px',
+                          background: unitPercent === 100 ? 'var(--theme-green)' : 'var(--bg-surface-elevated)',
+                          color: unitPercent === 100 ? '#000' : 'var(--text-muted)'
+                        }}>
+                          {unitPercent === 100 ? 'MASTERED' : `${totalCount} words`}
+                        </span>
+                      </div>
+
+                      {/* Mastery Bar */}
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', fontWeight: '700' }}>
+                          <span>Mastery</span>
+                          <span>{masteredCount}/{totalCount} ({unitPercent}%)</span>
+                        </div>
+                        <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', borderRadius: '4px', overflow: 'hidden' }}>
+                          <div style={{
+                            height: '100%',
+                            width: `${unitPercent}%`,
+                            backgroundColor: unitPercent >= 100 ? 'var(--theme-green)' : 'var(--theme-cyan)',
+                            transition: 'width 0.3s ease'
+                          }} />
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      {isUnitUnlocked ? (
+                        <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '0.25rem' }}>
+                          <button
+                            onClick={() => {
+                              if (setSelectedUnit) setSelectedUnit(unitNum);
+                              setActiveView('flashcards', unitNum);
+                            }}
+                            className="btn btn-primary"
+                            style={{ flex: 1, padding: '0.45rem', fontSize: '0.75rem', gap: '0.35rem' }}
+                          >
+                            <BookOpen size={13} /> Study
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (setSelectedUnit) setSelectedUnit(unitNum);
+                              setActiveView('quizzes', unitNum);
+                            }}
+                            className="btn btn-secondary"
+                            style={{ flex: 1, padding: '0.45rem', fontSize: '0.75rem', gap: '0.35rem' }}
+                          >
+                            <Award size={13} /> Quiz
+                          </button>
+                        </div>
+                      ) : (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: 'auto', paddingTop: '0.25rem' }}>
+                          <Lock size={12} /> Locked (Need 70% in Unit {selectedStageData.id}.{unitNum - 1})
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* Cumulative Qualification Exam for this stage */}
+                <div 
+                  style={{
+                    gridColumn: '1 / -1',
+                    padding: '1.25rem 1.5rem',
+                    background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.12) 100%)',
+                    border: 'var(--border-thick)',
+                    borderRadius: 'var(--radius-md)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '1rem',
+                    boxShadow: 'var(--shadow-small)'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                    <div style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: 'var(--radius-md)',
+                      backgroundColor: 'var(--theme-yellow)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#000',
+                      border: 'var(--border-thin)'
+                    }}>
+                      <Trophy size={22} />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.95rem', fontWeight: '900', color: 'var(--text-primary)' }}>
+                        Stage {selectedStageData.id} Cumulative Qualification Exam
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                        Required score: 70%+ across all words in this stage to qualify and unlock next stage.
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (setSelectedUnit) setSelectedUnit(10);
+                      setActiveView('quizzes');
+                    }}
+                    className="btn btn-accent"
+                    style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+                  >
+                    Launch Stage Exam <ArrowRight size={14} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* EXPAND ALL 10 STAGES TREE VIEW */
+            <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {PREP_STAGES.map((stage) => {
+                const stats = getStageStats(stage.id);
+
+                return (
+                  <div
+                    key={stage.id}
+                    style={{
+                      border: stats.isActive ? '2.5px solid var(--theme-yellow)' : 'var(--border-thick)',
+                      borderRadius: 'var(--radius-md)',
+                      backgroundColor: stats.isActive ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)',
+                      boxShadow: stats.isActive ? 'var(--shadow-medium)' : 'var(--shadow-tiny)',
+                      padding: '1.25rem 1.5rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '1rem',
+                      opacity: stats.isLocked ? 0.6 : 1
+                    }}
+                  >
+                    {/* Stage Header */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div style={{
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '50%',
+                          backgroundColor: stats.isCompleted ? 'var(--theme-green)' : stats.isActive ? 'var(--theme-yellow)' : 'var(--bg-canvas)',
+                          border: 'var(--border-thick)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#000',
+                          fontWeight: '900',
+                          fontSize: '0.9rem'
+                        }}>
+                          {stats.isCompleted ? <CheckCircle size={16} /> : stats.isLocked ? <Lock size={14} /> : stage.id}
+                        </div>
+                        <div>
+                          <h3 style={{ fontSize: '1.1rem', fontWeight: '900', color: stats.isActive ? 'hsl(var(--secondary))' : 'var(--text-primary)' }}>
+                            Stage {stage.id}: {stage.name}
+                          </h3>
+                          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                            {stage.desc}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)' }}>
+                          {stats.completedUnits}/10 Units ({stats.percent}%)
+                        </span>
+                        {!stats.isLocked && (
+                          <button
+                            onClick={() => {
+                              setActiveStageFolder(stage.id);
+                              setViewMode('folder');
+                            }}
+                            className="btn btn-secondary"
+                            style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem' }}
+                          >
+                            Open Folder →
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

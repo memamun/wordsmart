@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Star, Trophy, ArrowRight, BookOpen, Flame, Sparkles, Zap, Award } from 'lucide-react';
+import { Trophy, ArrowRight, Flame, Sparkles, Zap } from 'lucide-react';
 import { DetailPanelContext } from '../App';
 
 export default function HitParadesView({ wordsData }) {
@@ -40,20 +40,20 @@ export default function HitParadesView({ wordsData }) {
   };
 
   const getAccentColor = (tabKey) => {
-    if (tabKey.includes('gre')) return '#e040fb';
-    if (tabKey.includes('sat')) return '#ffd54f';
-    return '#18ffff';
+    if (tabKey.includes('gre')) return '#8b5cf6';
+    if (tabKey.includes('sat')) return 'var(--theme-bulb)';
+    return 'var(--theme-cyan)';
   };
 
   const activeAccent = getAccentColor(activeTab);
 
   return (
-    <div style={{ maxWidth: '1080px', margin: '0 auto' }} className="animate-fade">
+    <div className="hitparades-view-container animate-fade">
       {/* Neumorphic 3D Glue Hero Header Banner */}
       <div className="glass-panel" style={{
         padding: '1.75rem 2rem',
         marginBottom: '2rem',
-        background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.08) 50%, rgba(18, 24, 36, 0.95) 100%)',
+        background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(24, 255, 255, 0.08) 50%, rgba(18, 24, 36, 0.95) 100%)',
         border: 'var(--border-thick)',
         boxShadow: 'var(--neu-shadow-extrude), var(--shadow-medium)',
         display: 'flex',
@@ -173,20 +173,16 @@ export default function HitParadesView({ wordsData }) {
       </div>
 
       {/* List Container */}
-      <div className="glass-panel" style={{
-        padding: '2rem',
-        boxShadow: 'var(--neu-shadow-extrude), var(--shadow-main)',
-        borderRadius: 'var(--radius-lg)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.75rem', borderBottom: '2px dashed var(--border-muted)', paddingBottom: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <div style={{ marginTop: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '2px dashed var(--border-muted)', paddingBottom: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <div style={{
-              width: '12px',
-              height: '24px',
-              borderRadius: '6px',
+              width: '5px',
+              height: '22px',
+              borderRadius: '9999px',
               backgroundColor: activeAccent
             }} />
-            <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', margin: 0 }}>
+            <h2 style={{ fontSize: '1.45rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', margin: 0 }}>
               {formatTitle(activeTab)} Top Words
             </h2>
           </div>
@@ -205,134 +201,144 @@ export default function HitParadesView({ wordsData }) {
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))', gap: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.25rem' }}>
           {currentList.map((item, index) => {
             const coreWord = wordsData.words.find(w => w.word.toUpperCase() === item.word.toUpperCase());
             const rank = item.rank || index + 1;
 
-            // Medal colors for top 3
-            let badgeBg = 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)';
-            let badgeColor = '#000000';
-
-            if (rank === 1) {
-              badgeBg = 'linear-gradient(135deg, #FFD700 0%, #FF9100 100%)';
-              badgeColor = '#000000';
-            } else if (rank === 2) {
-              badgeBg = 'linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%)';
-              badgeColor = '#000000';
-            } else if (rank === 3) {
-              badgeBg = 'linear-gradient(135deg, #FF9100 0%, #FF5252 100%)';
-              badgeColor = '#000000';
-            }
-
             return (
               <div 
                 key={index}
-                className="card card-hover"
+                className="hit-parade-card"
                 style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  gap: '0.85rem',
-                  padding: '1.35rem',
                   cursor: coreWord ? 'pointer' : 'default',
-                  borderLeft: `5px solid ${activeAccent}`,
-                  borderRadius: '16px',
-                  boxShadow: 'var(--neu-shadow-extrude), var(--shadow-small)',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  borderLeft: `4px solid ${activeAccent}`
                 }}
                 onClick={() => {
                   if (coreWord) {
-                    setDetailWord(coreWord);
+                    const coreWordsList = currentList
+                      .map(i => wordsData.words.find(w => w.word.toUpperCase() === i.word.toUpperCase()))
+                      .filter(Boolean);
+                    setDetailWord({ word: coreWord, list: coreWordsList });
                   }
                 }}
               >
-                {/* Header line: Rank badge & Word title */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <div style={{
-                      background: badgeBg,
-                      color: badgeColor,
-                      padding: '0.25rem 0.6rem',
-                      borderRadius: '9999px',
-                      border: '2px solid #000000',
-                      boxShadow: '0 2px 0 #000000',
-                      fontSize: '0.75rem',
-                      fontWeight: '900',
-                      fontFamily: 'var(--font-title)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.25rem',
-                      flexShrink: 0
-                    }}>
-                      #{rank}
+                {/* Header line: Rank, Word, Part of Speech, Pronunciation, and Subtle Arrow */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.55rem', flexWrap: 'wrap' }}>
+                      <span style={{
+                        fontSize: '0.8rem',
+                        fontWeight: '900',
+                        fontFamily: 'var(--font-title)',
+                        color: rank <= 3 ? activeAccent : 'var(--text-muted)',
+                        letterSpacing: '0.04em'
+                      }}>
+                        #{rank < 10 ? `0${rank}` : rank}
+                      </span>
+
+                      <h3 style={{ 
+                        fontSize: '1.35rem', 
+                        fontFamily: 'var(--font-title)', 
+                        fontWeight: '900', 
+                        color: 'var(--text-primary)', 
+                        margin: 0,
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.2
+                      }}>
+                        {item.word}
+                      </h3>
+
+                      {coreWord?.part_of_speech && (
+                        <span style={{ 
+                          fontSize: '0.82rem', 
+                          fontStyle: 'italic', 
+                          color: 'var(--text-muted)',
+                          fontWeight: '600'
+                        }}>
+                          ({coreWord.part_of_speech}.)
+                        </span>
+                      )}
                     </div>
 
-                    <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', margin: 0 }}>
-                      {item.word}
-                    </h3>
+                    {coreWord?.pronunciation && (
+                      <span style={{ 
+                        fontSize: '0.78rem', 
+                        fontFamily: 'monospace', 
+                        color: 'var(--text-muted)', 
+                        opacity: 0.85,
+                        letterSpacing: '0.02em'
+                      }}>
+                        /{coreWord.pronunciation}/
+                      </span>
+                    )}
                   </div>
 
                   {coreWord && (
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '8px',
-                      backgroundColor: 'var(--bg-surface-elevated)',
-                      border: 'var(--border-thin)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }} title="View full details">
-                      <BookOpen size={15} color={activeAccent} />
-                    </div>
+                    <ArrowRight 
+                      size={17} 
+                      color={activeAccent} 
+                      className="hit-parade-arrow" 
+                      style={{ opacity: 0.6, flexShrink: 0, marginTop: '0.25rem' }} 
+                    />
                   )}
                 </div>
 
-                {/* Definition */}
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0 }}>
+                {/* Bengali Meaning - Pure Typography without any nested card box */}
+                {coreWord?.bengali_meaning && (
+                  <div style={{
+                    fontSize: '1.05rem',
+                    fontWeight: '700',
+                    color: activeAccent,
+                    fontFamily: 'var(--font-bengali)',
+                    lineHeight: '1.35'
+                  }}>
+                    {coreWord.bengali_meaning}
+                  </div>
+                )}
+
+                {/* Definition - Comfortable, legible reading typography */}
+                <p style={{ 
+                  fontSize: '0.92rem', 
+                  color: 'var(--text-secondary)', 
+                  lineHeight: '1.6', 
+                  margin: 0,
+                  fontWeight: '400'
+                }}>
                   {item.definition || (coreWord && coreWord.definition) || "A key high-yield vocabulary word frequently tested on standardized exams."}
                 </p>
 
-                {/* Synonyms & Antonyms preview */}
+                {/* Synonyms & Antonyms - Clean typographic list without cards */}
                 {coreWord && ((coreWord.synonyms && coreWord.synonyms.length > 0) || (coreWord.antonyms && coreWord.antonyms.length > 0)) && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.78rem', marginTop: '0.1rem' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '0.35rem', 
+                    fontSize: '0.82rem', 
+                    marginTop: 'auto',
+                    paddingTop: '0.65rem',
+                    borderTop: '1px dashed var(--border-muted)'
+                  }}>
                     {coreWord.synonyms && coreWord.synonyms.length > 0 && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: '900', color: 'var(--theme-green)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Syn:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: '600' }}>
-                          {coreWord.synonyms.slice(0, 3).join(', ')}
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        <span style={{ fontWeight: '800', color: 'var(--theme-green)', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          Syn:
+                        </span>
+                        <span style={{ color: 'var(--text-primary)', fontWeight: '500', lineHeight: 1.4 }}>
+                          {coreWord.synonyms.slice(0, 4).join(', ')}
                         </span>
                       </div>
                     )}
                     {coreWord.antonyms && coreWord.antonyms.length > 0 && (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: '900', color: 'var(--theme-red)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Ant:</span>
-                        <span style={{ color: 'var(--text-muted)' }}>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        <span style={{ fontWeight: '800', color: 'var(--theme-red)', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          Ant:
+                        </span>
+                        <span style={{ color: 'var(--text-muted)', fontWeight: '500', lineHeight: 1.4 }}>
                           {coreWord.antonyms.slice(0, 3).join(', ')}
                         </span>
                       </div>
                     )}
-                  </div>
-                )}
-
-                {/* Bengali meaning pill */}
-                {coreWord && coreWord.bengali_meaning && (
-                  <div style={{
-                    marginTop: 'auto',
-                    padding: '0.45rem 0.75rem',
-                    borderRadius: '10px',
-                    background: 'linear-gradient(135deg, rgba(24, 255, 255, 0.12) 0%, rgba(224, 64, 251, 0.12) 100%)',
-                    border: '1px solid var(--border-muted)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}>
-                    <span style={{ fontSize: '0.85rem', fontWeight: '800', color: activeAccent, fontFamily: 'var(--font-body)' }}>
-                      {coreWord.bengali_meaning}
-                    </span>
-                    <ArrowRight size={14} color={activeAccent} />
                   </div>
                 )}
               </div>

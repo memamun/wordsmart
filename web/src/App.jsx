@@ -7,6 +7,7 @@ import { isViewFree } from './config/freemium.js';
 import Sidebar from './components/Sidebar.jsx';
 import Header from './components/Header.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import LandingView from './components/LandingView.jsx';
 import FlashcardsView from './components/FlashcardsView.jsx';
 import ReviewSessionView from './components/ReviewSessionView.jsx';
 import StoriesView from './components/StoriesView.jsx';
@@ -40,7 +41,7 @@ const getInitialTheme = () => {
 export default function App() {
   const state = useGameState();
   const wordsData = useWordsData();
-  const [activeView, setActiveView] = useState('dashboard');
+  const [activeView, setActiveView] = useState(() => localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing');
   const [selectedUnit, setSelectedUnit] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
@@ -130,6 +131,9 @@ export default function App() {
     }
   }, [user, state.xp, state.unlockedLevel, state.streak, state.coins]);
 
+  // Navigation History Stack for dynamic back button across submenus
+  const [viewHistory, setViewHistory] = useState(['dashboard']);
+
   /**
    * Gated navigation: free views navigate immediately;
    * premium views show the AuthGateModal for guests.
@@ -149,11 +153,25 @@ export default function App() {
       if (targetUnit !== selectedUnit) {
         setSelectedUnit(targetUnit);
       }
+      if (viewId !== activeView) {
+        setViewHistory(prev => [...prev, activeView]);
+      }
       setActiveView(viewId);
       setSidebarOpen(false);
     } else {
       setSidebarOpen(false);
       setAuthGatePendingView({ viewId, unitNum: targetUnit });
+    }
+  };
+
+  const handleBack = () => {
+    if (viewHistory.length > 0) {
+      const nextHistory = [...viewHistory];
+      const prevView = nextHistory.pop();
+      setViewHistory(nextHistory.length > 0 ? nextHistory : ['dashboard']);
+      setActiveView(prevView || 'dashboard');
+    } else {
+      setActiveView('dashboard');
     }
   };
 
@@ -226,6 +244,17 @@ export default function App() {
 
   const renderActiveView = () => {
     switch (activeView) {
+      case 'landing':
+        return (
+          <LandingView
+            setActiveView={gatedSetActiveView}
+            selectedUnit={selectedUnit}
+            setSelectedUnit={setSelectedUnit}
+            user={user}
+            onGoogleSignIn={handleGoogleSignIn}
+            wordsData={wordsData}
+          />
+        );
       case 'dashboard':
         return (
           <Dashboard 
@@ -417,6 +446,44 @@ export default function App() {
     return 'more';
   };
 
+  // Standalone Full-Page SaaS Landing Experience for First Visits & Onboarding
+  if (activeView === 'landing') {
+    return (
+      <div 
+        className="standalone-landing-wrapper"
+        data-theme={theme}
+      >
+        <LandingView
+          setActiveView={(view, unit) => {
+            localStorage.setItem('has_entered_app', 'true');
+            gatedSetActiveView(view, unit);
+          }}
+          selectedUnit={selectedUnit}
+          setSelectedUnit={setSelectedUnit}
+          user={user}
+          onGoogleSignIn={handleGoogleSignIn}
+          wordsData={wordsData}
+          theme={theme}
+          setTheme={(t) => {
+            setTheme(t);
+            localStorage.setItem('theme', t);
+          }}
+        />
+        {authGatePendingView && (
+          <AuthGateModal 
+            viewId={authGatePendingView.viewId}
+            onGoogleSignIn={() => {
+              const pending = authGatePendingView;
+              setAuthGatePendingView(null);
+              handleGoogleSignIn(pending.viewId, pending.unitNum);
+            }}
+            onDismiss={() => setAuthGatePendingView(null)}
+          />
+        )}
+      </div>
+    );
+  }
+
   return (
     <div 
       className="app-container"
@@ -480,6 +547,8 @@ export default function App() {
               setTheme(t);
               localStorage.setItem('theme', t);
             }}
+            onBack={handleBack}
+            canGoBack={activeView !== 'dashboard' && activeView !== 'landing'}
           />
           <div style={{ flex: 1, overflowY: 'auto' }}>
             {renderActiveView()}

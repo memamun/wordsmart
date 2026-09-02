@@ -5,6 +5,7 @@
 
 // Views accessible without any login
 export const FREE_VIEWS = new Set([
+  'landing',
   'dashboard',
   'search',
   'hitparades',

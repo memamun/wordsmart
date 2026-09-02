@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
   Award, 
   HelpCircle, 
@@ -14,8 +14,13 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
+import { DetailPanelContext } from '../App';
+import QuizExplanationModal from './QuizExplanationModal';
+import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 
 export default function AllQuizzesView({ state, wordsData, setActiveView }) {
+  const { setDetailWord } = useContext(DetailPanelContext);
+  const [showExplanationModal, setShowExplanationModal] = useState(false);
   const allQuizzes = wordsData.quizzes || [];
 
   // Quiz running state
@@ -57,6 +62,7 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
     setSelectedOption(null);
     setQuizFinished(false);
     resetHints();
+    setShowExplanationModal(false);
     setActiveQuiz(quiz);
   };
 
@@ -106,18 +112,22 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
 
     const isCorrect = option === questions[currentQIndex].correct_answer;
     if (isCorrect) {
+      playCorrectSound();
       setScore((prev) => prev + 1);
       confetti({
         particleCount: 15,
         spread: 25,
         origin: { y: 0.8 }
       });
+    } else {
+      playIncorrectSound();
     }
   };
 
   const handleNext = () => {
     setIsAnswered(false);
     setSelectedOption(null);
+    setShowExplanationModal(false);
     resetHints();
 
     if (currentQIndex < questions.length - 1) {
@@ -210,8 +220,8 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
                 }}
                 title="Need a Hint?"
               >
-                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-yellow)'} />
-                <span>Need a Hint?</span>
+                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
+                <span>Need a hint?</span>
               </button>
             </div>
           </div>
@@ -230,7 +240,7 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <Lightbulb size={14} color="var(--theme-yellow)" /> Available Hints
+                  <Lightbulb size={14} color="var(--theme-bulb)" /> Available Hints
                 </span>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '700' }}>Use coins to unlock assistance</span>
               </div>
@@ -371,68 +381,40 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
             })}
           </div>
 
-          {/* Next / Explanation Card */}
-          {/* Next / Explanation Card (High-Contrast Neobrutalist 3D) */}
+          {/* Next / Explanation Action Bar */}
           {isAnswered && (() => {
-            const isCorrectAnswer = selectedOption === questions[currentQIndex].correct_answer;
+            const currentQ = questions[currentQIndex];
             return (
-              <div className="animate-fade" style={{ 
-                padding: '1.75rem 2rem', 
-                borderRadius: '20px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '3px solid #000000',
-                borderLeft: isCorrectAnswer ? '8px solid #00E676' : '8px solid #FF5252',
-                boxShadow: '6px 6px 0px #000000',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.25rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  <h4 style={{ 
-                    fontSize: '1.1rem', 
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.45rem', 
-                    color: isCorrectAnswer ? '#00E676' : '#FF5252',
-                    margin: 0
-                  }}>
-                    {isCorrectAnswer ? (
-                      <><CheckCircle2 size={22} color="#00E676" /> Correct Answer!</>
-                    ) : (
-                      <><XCircle size={22} color="#FF5252" /> Incorrect Answer</>
-                    )}
-                  </h4>
+              <>
+                <div className="quiz-action-bar animate-fade">
+                  <button
+                    onClick={() => setShowExplanationModal(true)}
+                    className="quiz-btn-explanation"
+                    title="View full explanation in dialog"
+                  >
+                    <Lightbulb size={16} color="var(--theme-bulb)" />
+                    <span>Explanation</span>
+                  </button>
+
+                  <button 
+                    onClick={handleNext}
+                    className="quiz-btn-next"
+                  >
+                    <span>Next Question</span>
+                    <ArrowRight size={18} />
+                  </button>
                 </div>
 
-                <p style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: '1.65', margin: 0, fontWeight: '600' }}>
-                  {questions[currentQIndex]?.explanation}
-                </p>
-
-                <button 
-                  onClick={handleNext}
-                  style={{
-                    alignSelf: 'flex-end',
-                    padding: '0.65rem 1.4rem',
-                    fontSize: '0.9rem',
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)',
-                    borderRadius: '12px',
-                    border: '2.5px solid #000000',
-                    background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
-                    color: '#000000',
-                    cursor: 'pointer',
-                    boxShadow: '3.5px 3.5px 0px #000000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    transition: 'transform 0.1s ease'
-                  }}
-                >
-                  Next Question <ArrowRight size={18} />
-                </button>
-              </div>
+                {/* Explanation Modal / Dialog */}
+                <QuizExplanationModal
+                  isOpen={showExplanationModal}
+                  onClose={() => setShowExplanationModal(false)}
+                  question={currentQ?.question}
+                  correctAnswer={currentQ?.correct_answer}
+                  explanation={currentQ?.explanation}
+                  bengaliExplanation={currentQ?.bengali_clue}
+                />
+              </>
             );
           })()}
         </div>
@@ -452,8 +434,8 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
           <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
             Quiz Completed!
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-            You scored **{score} out of {questions.length}** ({Math.round((score / questions.length) * 100)}%).
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            You scored <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>{score} out of {questions.length}</strong> ({Math.round((score / questions.length) * 100)}%).
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>

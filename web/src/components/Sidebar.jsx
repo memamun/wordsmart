@@ -110,7 +110,7 @@ export default function Sidebar({
 
   return (
     <aside 
-      className={`sidebar-nav ${sidebarOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}
+      className={`sidebar-nav ${sidebarOpen ? 'open' : ''} ${isCollapsed ? 'collapsed no-scrollbar' : ''}`}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -123,7 +123,14 @@ export default function Sidebar({
         marginBottom: '1.25rem', 
         padding: '0 0.25rem' 
       }}>
-        <div className="brand-logo-container" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        <div 
+          onClick={() => {
+            setActiveView('landing');
+            if (setSidebarOpen) setSidebarOpen(false);
+          }}
+          className="brand-logo-container" 
+          style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}
+        >
           <div style={{
             width: '36px',
             height: '36px',
@@ -134,7 +141,7 @@ export default function Sidebar({
             border: 'var(--border-thin)',
             boxShadow: 'var(--shadow-tiny)',
             flexShrink: 0
-          }} title="WordSmart">
+          }} title="WordSmart Welcome">
             <Sparkles size={20} color="var(--text-black)" />
           </div>
           {!isCollapsed && (
@@ -326,25 +333,21 @@ export default function Sidebar({
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: isCollapsed ? 'center' : 'space-between',
-                      width: isCollapsed ? '40px' : '100%',
-                      height: isCollapsed ? '40px' : 'auto',
-                      margin: isCollapsed ? '0.15rem auto' : '0',
+                      width: isCollapsed ? '42px' : '100%',
+                      height: isCollapsed ? '42px' : 'auto',
+                      margin: isCollapsed ? '0.2rem auto' : '0',
                       padding: isCollapsed ? '0' : '0.45rem 0.85rem',
                       
                       // Background
                       backgroundColor: isActive ? 'var(--theme-cyan)' : 'transparent',
                       
-                      // Border
-                      border: isActive 
-                        ? (isCollapsed ? '2px solid transparent' : 'var(--border-thin)') 
-                        : '2px solid transparent',
+                      // Border: ensure clean neobrutalist outline on active/hover
+                      border: isActive ? 'var(--border-thin)' : '2px solid transparent',
                       
-                      // Shadow
-                      boxShadow: isActive 
-                        ? (isCollapsed ? 'none' : 'var(--shadow-tiny)') 
-                        : 'none',
+                      // Shadow: ensure clean offset drop shadow on active
+                      boxShadow: isActive ? 'var(--shadow-tiny)' : 'none',
                       
-                      // Pill shape corners
+                      // Perfectly circular in collapsed mode, pill in expanded mode
                       borderRadius: isCollapsed ? '50%' : '9999px',
                       
                       // Text / Icon color
@@ -355,22 +358,19 @@ export default function Sidebar({
                       fontFamily: 'var(--font-body)',
                       fontWeight: isActive ? '900' : '700',
                       fontSize: '0.85rem',
-                      transition: 'all 0.1s ease',
+                      transition: 'all 0.12s ease',
                       textAlign: 'left',
-                      position: 'relative'
+                      position: 'relative',
+                      flexShrink: 0
                     }}
                     onMouseOver={(e) => {
                       if (!isActive) {
                         e.currentTarget.style.backgroundColor = isLocked ? 'var(--bg-surface)' : 'var(--bg-surface-elevated)';
                         e.currentTarget.style.color = 'var(--text-primary)';
                         e.currentTarget.style.opacity = '1';
-                        if (isCollapsed) {
-                          e.currentTarget.style.borderRadius = '50%';
-                        } else {
-                          e.currentTarget.style.borderRadius = '9999px';
-                          e.currentTarget.style.border = 'var(--border-thin)';
-                          e.currentTarget.style.boxShadow = 'var(--shadow-tiny)';
-                        }
+                        e.currentTarget.style.border = 'var(--border-thin)';
+                        e.currentTarget.style.boxShadow = 'var(--shadow-tiny)';
+                        e.currentTarget.style.borderRadius = isCollapsed ? '50%' : '9999px';
                       }
                     }}
                     onMouseOut={(e) => {
@@ -384,30 +384,25 @@ export default function Sidebar({
                       }
                     }}
                   >
-                    <div className="item-content" style={{ display: 'flex', alignItems: 'center', gap: isCollapsed ? '0' : '0.55rem', flex: 1, minWidth: 0 }}>
-                      <Icon size={20} style={{ minWidth: '20px', flexShrink: 0 }} />
+                    <div 
+                      className="item-content" 
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: isCollapsed ? 'center' : 'flex-start',
+                        gap: isCollapsed ? '0' : '0.55rem', 
+                        flex: isCollapsed ? 'none' : 1, 
+                        width: isCollapsed ? '100%' : 'auto',
+                        height: isCollapsed ? '100%' : 'auto',
+                        minWidth: 0 
+                      }}
+                    >
+                      <Icon size={isCollapsed ? 19 : 20} style={{ minWidth: isCollapsed ? '19px' : '20px', flexShrink: 0 }} />
                       {!isCollapsed && <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>}
                     </div>
-                    {/* Lock badge for premium items when guest */}
+                    {/* Lock badge for premium items when guest (expanded mode only) */}
                     {isLocked && !isCollapsed && (
                       <Lock size={11} style={{ flexShrink: 0, opacity: 0.6, marginLeft: '0.25rem' }} />
-                    )}
-                    {isLocked && isCollapsed && (
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '-2px',
-                        right: '-2px',
-                        width: '14px',
-                        height: '14px',
-                        backgroundColor: 'var(--bg-canvas)',
-                        border: 'var(--border-thin)',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}>
-                        <Lock size={8} />
-                      </div>
                     )}
                     {!isCollapsed && isActive && !isLocked && <ChevronRight size={12} className="item-chevron" color="var(--text-black)" />}
                   </button>
@@ -437,7 +432,8 @@ export default function Sidebar({
           className="reset-btn"
           title="Start Fresh"
           style={{
-            flex: isCollapsed ? 'none' : 1,
+            flexGrow: isCollapsed ? 0 : 1,
+            flexBasis: isCollapsed ? 'auto' : 0,
             width: isCollapsed ? '40px' : 'auto',
             height: isCollapsed ? '40px' : 'auto',
             padding: isCollapsed ? '0' : '0.45rem 0.65rem',

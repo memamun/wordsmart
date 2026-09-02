@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { 
   Award, 
   HelpCircle, 
@@ -22,8 +22,13 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
+import { DetailPanelContext } from '../App';
+import QuizExplanationModal from './QuizExplanationModal';
+import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 
 export default function QuizzesView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
+  const { setDetailWord } = useContext(DetailPanelContext);
+  const [showExplanationModal, setShowExplanationModal] = useState(false);
   const levelWords = React.useMemo(() => {
     return wordsData.getWordsForLevel(state.unlockedLevel);
   }, [wordsData, state.unlockedLevel]);
@@ -112,6 +117,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     setSelectedOption(null);
     setQuizFinished(false);
     resetHints();
+    setShowExplanationModal(false);
     setActiveQuiz(isUnitOnly ? 'unit_qualification' : 'qualification');
   };
 
@@ -137,6 +143,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     setSelectedOption(null);
     setQuizFinished(false);
     resetHints();
+    setShowExplanationModal(false);
     setActiveQuiz(quiz);
   };
 
@@ -186,18 +193,22 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
 
     const isCorrect = option === questions[currentQIndex].correct_answer;
     if (isCorrect) {
+      playCorrectSound();
       setScore((prev) => prev + 1);
       confetti({
         particleCount: 15,
         spread: 25,
         origin: { y: 0.8 }
       });
+    } else {
+      playIncorrectSound();
     }
   };
 
   const handleNext = () => {
     setIsAnswered(false);
     setSelectedOption(null);
+    setShowExplanationModal(false);
     resetHints();
 
     if (currentQIndex < questions.length - 1) {
@@ -228,56 +239,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade quiz-view-container">
       {/* 1. QUIZ LIST VIEW */}
       {!activeQuiz && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {/* Unified 1-Row Header & Unit Stepper */}
-          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.25rem' }}>
-            <button 
-              onClick={() => setActiveView('dashboard')}
-              className="btn btn-secondary"
-              style={{ padding: '0.4rem 0.85rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.35rem', borderRadius: '9999px' }}
-            >
-              <ArrowLeft size={14} /> Roadmap
-            </button>
-
-            {/* Sleek Unit Stepper Pill */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => setSelectedUnit && selectedUnit > 1 && setSelectedUnit(selectedUnit - 1)}
-                disabled={!selectedUnit || selectedUnit <= 1}
-                className="btn btn-secondary"
-                style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', borderRadius: '9999px', opacity: (!selectedUnit || selectedUnit <= 1) ? 0.4 : 1 }}
-                title="Previous Unit"
-              >
-                <ChevronLeft size={14} /> <span className="hide-mobile">Prev</span>
-              </button>
-              
-              <span style={{ 
-                fontSize: '0.82rem', 
-                padding: '0.2rem 0.75rem', 
-                backgroundColor: 'var(--theme-yellow)', 
-                color: '#000', 
-                fontWeight: '900', 
-                fontFamily: 'var(--font-title)',
-                borderRadius: '9999px',
-                border: 'var(--border-thin)',
-                boxShadow: 'var(--shadow-tiny)',
-                whiteSpace: 'nowrap'
-              }}>
-                STAGE {state.unlockedLevel} • U{selectedUnit || 1}
-              </span>
-
-              <button
-                onClick={() => setSelectedUnit && selectedUnit < 10 && setSelectedUnit(selectedUnit + 1)}
-                disabled={selectedUnit >= 10}
-                className="btn btn-secondary"
-                style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', borderRadius: '9999px', opacity: selectedUnit >= 10 ? 0.4 : 1 }}
-                title="Next Unit"
-              >
-                <span className="hide-mobile">Next</span> <ChevronRight size={14} />
-              </button>
-            </div>
-          </div>
-
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div>
             <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.75rem)', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase' }}>
               Qualification & Practice Quizzes
@@ -649,7 +611,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                 }}
                 title="Need a Hint?"
               >
-                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-yellow)'} />
+                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
                 <span>Need a Hint?</span>
               </button>
             </div>
@@ -669,7 +631,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <Lightbulb size={14} color="var(--theme-yellow)" /> Available Hints
+                  <Lightbulb size={14} color="var(--theme-bulb)" /> Available Hints
                 </span>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '700' }}>Use coins to unlock assistance</span>
               </div>
@@ -839,67 +801,40 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
             })}
           </div>
 
-          {/* Next / Explanation Card (High-Contrast Neobrutalist 3D) */}
+          {/* Next / Explanation Action Bar */}
           {isAnswered && (() => {
-            const isCorrectAnswer = selectedOption === questions[currentQIndex].correct_answer;
+            const currentQ = questions[currentQIndex];
             return (
-              <div className="animate-fade" style={{ 
-                padding: '1.75rem 2rem', 
-                borderRadius: '20px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '3px solid #000000',
-                borderLeft: isCorrectAnswer ? '8px solid #00E676' : '8px solid #FF5252',
-                boxShadow: '6px 6px 0px #000000',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.25rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  <h4 style={{ 
-                    fontSize: '1.1rem', 
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.45rem', 
-                    color: isCorrectAnswer ? '#00E676' : '#FF5252',
-                    margin: 0
-                  }}>
-                    {isCorrectAnswer ? (
-                      <><CheckCircle2 size={22} color="#00E676" /> Correct Answer!</>
-                    ) : (
-                      <><XCircle size={22} color="#FF5252" /> Incorrect Answer</>
-                    )}
-                  </h4>
+              <>
+                <div className="quiz-action-bar animate-fade">
+                  <button
+                    onClick={() => setShowExplanationModal(true)}
+                    className="quiz-btn-explanation"
+                    title="View full explanation in dialog"
+                  >
+                    <Lightbulb size={16} color="var(--theme-bulb)" />
+                    <span>Explanation</span>
+                  </button>
+
+                  <button 
+                    onClick={handleNext}
+                    className="quiz-btn-next"
+                  >
+                    <span>Next Question</span>
+                    <ArrowRight size={18} />
+                  </button>
                 </div>
 
-                <p style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: '1.65', margin: 0, fontWeight: '600' }}>
-                  {questions[currentQIndex]?.explanation}
-                </p>
-
-                <button 
-                  onClick={handleNext}
-                  style={{
-                    alignSelf: 'flex-end',
-                    padding: '0.65rem 1.4rem',
-                    fontSize: '0.9rem',
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)',
-                    borderRadius: '12px',
-                    border: '2.5px solid #000000',
-                    background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
-                    color: '#000000',
-                    cursor: 'pointer',
-                    boxShadow: '3.5px 3.5px 0px #000000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    transition: 'transform 0.1s ease'
-                  }}
-                >
-                  Next Question <ArrowRight size={18} />
-                </button>
-              </div>
+                {/* Explanation Modal / Dialog */}
+                <QuizExplanationModal
+                  isOpen={showExplanationModal}
+                  onClose={() => setShowExplanationModal(false)}
+                  question={currentQ?.question}
+                  correctAnswer={currentQ?.correct_answer}
+                  explanation={currentQ?.explanation}
+                  bengaliExplanation={currentQ?.bengali_clue}
+                />
+              </>
             );
           })()}
         </div>
@@ -923,8 +858,8 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
           <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
             Quiz Completed!
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-            You scored **{score} out of {questions.length}** ({Math.round((score / questions.length) * 100)}%).
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            You scored <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>{score} out of {questions.length}</strong> ({Math.round((score / questions.length) * 100)}%).
           </p>
 
           {/* Qualification Exam result specific styling */}
@@ -939,17 +874,17 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
               {score >= 7 ? (
                 <>
                   <h4 style={{ color: 'hsl(var(--primary))', fontWeight: '700', marginBottom: '0.25rem' }}>🎉 QUIZ PASSED!</h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
                     {activeQuiz === 'qualification' 
                       ? `Excellent! You qualified for the next prep level. Stage ${state.unlockedLevel} unlocked! You earned +150 XP and +30 Coins.`
-                      : `Great job! You passed the Unit ${state.unlockedLevel}.${selectedUnit} study quiz. You earned +80 XP and +15 Coins!`}
+                      : `Great job! You passed the Unit ${state.unlockedLevel}.${selectedUnit || 1} study quiz. You earned +80 XP and +15 Coins!`}
                   </p>
                 </>
               ) : (
                 <>
                   <h4 style={{ color: 'hsl(var(--danger))', fontWeight: '700', marginBottom: '0.25rem' }}>❌ DID NOT PASS</h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-                    You need to score at least **70% (7/10)** to pass. Review Unit {state.unlockedLevel}.${selectedUnit} words and try again to solidify your retention!
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                    You need to score at least <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>70% (7/10)</strong> to pass. Review Unit {state.unlockedLevel}.{selectedUnit || 1} words and try again to solidify your retention!
                   </p>
                 </>
               )}

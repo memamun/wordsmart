@@ -188,7 +188,7 @@ export default function AnalogyView({ state, wordsData }) {
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.4rem', lineHeight: '1.4' }}>
                   {questions[currentQIndex]?.explanation}
                 </p>
-                <div style={{ fontSize: '0.85rem', color: 'hsl(var(--primary))', fontWeight: '600', marginTop: '0.5rem' }}>
+                <div style={{ fontSize: '0.85rem', color: 'hsl(var(--primary))', fontWeight: '600', marginTop: '0.5rem', fontFamily: 'var(--font-bengali)' }}>
                   💡 {questions[currentQIndex]?.bengali_clue}
                 </div>
               </div>
@@ -219,8 +219,8 @@ export default function AnalogyView({ state, wordsData }) {
           <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
             Analogy Drill Complete!
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-            You scored **{score} out of {questions.length}** ({Math.round((score / questions.length) * 100)}%).
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+            You scored <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>{score} out of {questions.length}</strong> ({Math.round((score / questions.length) * 100)}%).
           </p>
 
           {score === questions.length && (

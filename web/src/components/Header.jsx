@@ -13,7 +13,8 @@ import {
   Lock, 
   BookOpen, 
   HelpCircle,
-  Layers
+  Layers,
+  ArrowLeft
 } from 'lucide-react';
 import { PREP_STAGES } from '../hooks/useGameState';
 
@@ -27,7 +28,9 @@ export default function Header({
   sidebarOpen, 
   setSidebarOpen, 
   theme, 
-  setTheme 
+  setTheme,
+  onBack,
+  canGoBack
 }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -115,28 +118,58 @@ export default function Header({
       {/* Top Nav Control Bar */}
       <div className="header-nav-container">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'nowrap' }}>
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setSidebarOpen(true)}
-            className="mobile-menu-btn min-touch"
-            aria-label="Open navigation menu"
-          >
-            <Menu size={18} color="#000000" />
-          </button>
+          {/* Mobile Control: Hamburger menu on home/dashboard, Back button on submenus */}
+          {canGoBack ? (
+            <button 
+              onClick={onBack}
+              className="mobile-menu-btn min-touch"
+              aria-label="Back to Roadmap"
+              title="Back to Roadmap"
+              style={{
+                background: 'var(--theme-yellow)',
+                border: '2px solid #000000',
+                boxShadow: '0 2.5px 0 #000000'
+              }}
+            >
+              <ArrowLeft size={18} color="#000000" strokeWidth={2.5} />
+            </button>
+          ) : (
+            <button 
+              onClick={() => setSidebarOpen(true)}
+              className="mobile-menu-btn min-touch"
+              aria-label="Open navigation menu"
+              title="Open navigation menu"
+            >
+              <Menu size={18} color="#000000" />
+            </button>
+          )}
 
-          <div className="hide-mobile" style={{
-            width: '36px',
-            height: '36px',
-            backgroundColor: 'var(--theme-green)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: 'var(--border-thin)',
-            boxShadow: 'var(--shadow-tiny)',
-            flexShrink: 0
-          }}>
-            <Award size={18} color="var(--text-black)" />
-          </div>
+          {/* Desktop Control: Award icon on home/dashboard, Back button on submenus */}
+          {canGoBack ? (
+            <button 
+              onClick={onBack}
+              className="header-back-btn hide-mobile"
+              title="Back to Roadmap"
+              aria-label="Back to Roadmap"
+            >
+              <ArrowLeft size={15} strokeWidth={2.5} />
+              <span className="header-back-text">Roadmap</span>
+            </button>
+          ) : (
+            <div className="hide-mobile" style={{
+              width: '36px',
+              height: '36px',
+              backgroundColor: 'var(--theme-green)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'var(--border-thin)',
+              boxShadow: 'var(--shadow-tiny)',
+              flexShrink: 0
+            }}>
+              <Award size={18} color="var(--text-black)" />
+            </div>
+          )}
 
           {/* Quick Switcher Area */}
           <div style={{ position: 'relative' }} ref={dropdownRef}>
@@ -280,62 +313,58 @@ export default function Header({
           </div>
         </div>
 
-        {/* Mobile Theme Toggle (Aligned to Top Right) */}
-        <button
-          className="header-theme-toggle show-mobile-flex"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-        >
-          {theme === 'light' && <Sun size={15} color="#000" />}
-          {theme === 'dark' && <Moon size={15} color="#000" />}
-        </button>
       </div>
 
-      {/* Gamified Stats Header */}
-      <div className="header-stats-container">
-        {/* Streak Counter */}
-        <div className="header-stat-badge header-stat-streak">
-          <div className={state.streak > 0 ? 'animate-fire' : ''}>
-            <Flame size={14} color="#000000" fill={state.streak > 0 ? '#000000' : 'none'} />
+      {/* Right Controls: Streak Pill, Desktop Stats, and Dark/Light Mode Switch at the Far Right */}
+      <div className="header-right-container" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+        {/* Mobile Streak Pill (Shown exclusively on mobile) */}
+        <div 
+          className="mobile-streak-pill"
+          title={`Daily Streak: ${state.streak} ${state.streak === 1 ? 'day' : 'days'}`}
+        >
+          <div className={state.streak > 0 ? 'animate-fire' : ''} style={{ display: 'flex', alignItems: 'center' }}>
+            <Flame size={15} color="#000000" fill={state.streak > 0 ? '#FFD54F' : 'none'} />
           </div>
-          <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
-            {state.streak}<span className="hide-mobile"> {state.streak === 1 ? 'Day' : 'Days'}</span><span className="show-mobile-inline">d</span>
+          <span>{state.streak}d</span>
+        </div>
+
+        {/* Gamified Stats Header (Desktop Only) */}
+        <div className="header-stats-container hide-mobile">
+          {/* Streak Counter */}
+          <div className="header-stat-badge header-stat-streak">
+            <div className={state.streak > 0 ? 'animate-fire' : ''}>
+              <Flame size={14} color="#000000" fill={state.streak > 0 ? '#000000' : 'none'} />
+            </div>
+            <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
+              {state.streak} {state.streak === 1 ? 'Day' : 'Days'}
+            </div>
+          </div>
+
+          {/* Prep Budget (Coins) */}
+          <div className="header-stat-badge header-stat-coins">
+            <Coins size={14} color="#000000" />
+            <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
+              {state.coins} Coins
+            </div>
+          </div>
+
+          {/* Experience Points (XP) */}
+          <div className="header-stat-badge header-stat-xp">
+            <Award size={14} color="#000000" />
+            <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
+              {state.xp.toLocaleString()} XP
+            </div>
           </div>
         </div>
 
-        {/* Prep Budget (Coins) */}
-        <div className="header-stat-badge header-stat-coins">
-          <Coins size={14} color="#000000" />
-          <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
-            {state.coins}<span className="hide-mobile"> Coins</span>
-          </div>
-        </div>
-
-        {/* Experience Points (XP) */}
-        <div className="header-stat-badge header-stat-xp">
-          <Award size={14} color="#000000" />
-          <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
-            {state.xp.toLocaleString()}<span className="show-mobile-inline"> XP</span>
-          </div>
-        </div>
-
-        {/* Unit Progress Pill for Mobile */}
-        <div className="header-stat-badge header-stat-progress show-mobile-flex" style={{ backgroundColor: 'var(--theme-green)', color: '#000000' }}>
-          <div style={{ fontSize: '0.82rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1', color: '#000000' }}>
-            {unitProgressPercent}%
-          </div>
-        </div>
-
-        {/* Theme Toggler for Desktop */}
+        {/* Theme Toggler: ALWAYS at the far right */}
         <button
-          className="header-theme-toggle hide-mobile"
+          className="header-theme-toggle"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          {theme === 'light' && <Sun size={16} />}
-          {theme === 'dark' && <Moon size={16} />}
+          {theme === 'light' ? <Sun size={17} /> : <Moon size={17} />}
         </button>
       </div>
     </header>

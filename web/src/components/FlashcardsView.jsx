@@ -176,45 +176,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   }, [levelProgressPercent]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
-      {/* View Navigation Header Bar */}
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.65rem' }}>
-        <button 
-          onClick={() => setActiveView('dashboard')}
-          className="btn btn-secondary"
-          style={{ padding: '0.4rem 0.75rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-        >
-          ← Roadmap
-        </button>
-
-        {/* Quick Unit Switcher Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-          <button
-            onClick={() => setSelectedUnit && currentUnit > 1 && setSelectedUnit(currentUnit - 1)}
-            disabled={currentUnit <= 1}
-            className="btn btn-secondary"
-            style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', opacity: currentUnit <= 1 ? 0.4 : 1 }}
-            title="Previous Unit"
-          >
-            <ChevronLeft size={14} /> <span className="hide-mobile">Prev</span>
-          </button>
-          
-          <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: '900', fontFamily: 'var(--font-title)', whiteSpace: 'nowrap' }}>
-            STAGE {state.unlockedLevel} • U{currentUnit}
-          </span>
-
-          <button
-            onClick={() => setSelectedUnit && currentUnit < 10 && setSelectedUnit(currentUnit + 1)}
-            disabled={currentUnit >= 10}
-            className="btn btn-secondary"
-            style={{ padding: '0.35rem 0.55rem', fontSize: '0.75rem', opacity: currentUnit >= 10 ? 0.4 : 1 }}
-            title="Next Unit"
-          >
-            <span className="hide-mobile">Next</span> <ChevronRight size={14} />
-          </button>
-        </div>
-      </div>
-
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
       {/* Progress stats + bar */}
       <div style={{ width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -401,17 +363,19 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                   <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
                     CARD {currentIndex + 1} OF {levelWords.length}
                   </span>
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      state.toggleBookmark(word.id);
-                    }}
-                    className="min-touch"
-                    aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
-                  >
-                    {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
-                  </button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        state.toggleBookmark(word.id);
+                      }}
+                      className="min-touch"
+                      aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
+                    >
+                      {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Word details */}
@@ -466,7 +430,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 {/* Back Contents (Centered like the front) with scroll support for long definitions */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%', maxHeight: '250px', overflowY: 'auto', padding: '0.25rem 0.5rem' }} className="no-swipe">
                   {word.bengali_meaning && (
-                    <div style={{ fontSize: '2.25rem', fontWeight: '800', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-title)', textAlign: 'center' }}>
+                    <div style={{ fontSize: '2.25rem', fontWeight: '700', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-bengali)', textAlign: 'center' }}>
                       {word.bengali_meaning}
                     </div>
                   )}
@@ -489,20 +453,20 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
           </motion.div>
 
           {/* Action Buttons underneath card */}
-          <div style={{ display: 'flex', gap: '1rem', width: '100%', maxWidth: '500px' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', width: '100%', maxWidth: '450px', alignItems: 'center' }}>
             <button 
               onClick={() => triggerRate('left', 'study')}
               className="btn btn-secondary"
-              style={{ flex: 1, padding: '1rem' }}
+              style={{ flex: 1, padding: '0.85rem' }}
             >
               Study Later
             </button>
             <button 
               onClick={() => triggerRate('right', 'mastered')}
               className="btn btn-primary"
-              style={{ flex: 1, padding: '1rem' }}
+              style={{ flex: 1, padding: '0.85rem' }}
             >
-              <CheckCircle size={18} /> Mastered (+10 XP)
+              <CheckCircle size={18} /> Mastered
             </button>
           </div>
         </>

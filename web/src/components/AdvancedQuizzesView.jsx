@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
   GraduationCap, 
   HelpCircle, 
   CheckCircle2, 
   XCircle, 
   ArrowRight, 
-  RefreshCw,
-  Award,
-  Link2,
-  FileText
+  RefreshCw, 
+  Award, 
+  Link2, 
+  FileText,
+  Lightbulb
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { DetailPanelContext } from '../App';
+import QuizExplanationModal from './QuizExplanationModal';
+import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 
 export default function AdvancedQuizzesView({ state, wordsData }) {
+  const { setDetailWord } = useContext(DetailPanelContext);
+  const [showExplanationModal, setShowExplanationModal] = useState(false);
   const [activeQuiz, setActiveQuiz] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -31,6 +37,7 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
     setIsAnswered(false);
     setSelectedOption(null);
     setQuizFinished(false);
+    setShowExplanationModal(false);
   };
 
   const handleAnswer = (option) => {
@@ -39,15 +46,19 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
     setIsAnswered(true);
 
     if (option === questions[currentQIndex].correct_answer) {
+      playCorrectSound();
       setScore(prev => prev + 1);
       state.addCoins(2);
       confetti({ particleCount: 15, spread: 20, origin: { y: 0.8 } });
+    } else {
+      playIncorrectSound();
     }
   };
 
   const handleNext = () => {
     setIsAnswered(false);
     setSelectedOption(null);
+    setShowExplanationModal(false);
 
     if (currentQIndex < questions.length - 1) {
       setCurrentQIndex(prev => prev + 1);
@@ -186,73 +197,47 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
             })}
           </div>
 
-          {/* Explanation Card (High-Contrast Neobrutalist 3D) */}
+          {/* Explanation Card (Single-Row High-Contrast Neobrutalist 3D) */}
           {isAnswered && (() => {
             const isCorrectAnswer = selectedOption === currentQ.correct_answer;
+            const matchedWord = wordsData?.words?.find(w => 
+              (currentQ.word && w.word.toUpperCase() === currentQ.word.toUpperCase()) ||
+              (currentQ.correct_answer && w.word.toUpperCase() === currentQ.correct_answer.toUpperCase()) ||
+              (currentQ.question && currentQ.question.toUpperCase().includes(w.word.toUpperCase()))
+            );
+            const targetWordObj = matchedWord || (currentQ.correct_answer ? { word: currentQ.correct_answer, definition: currentQ.explanation } : null);
+
             return (
-              <div className="animate-fade" style={{ 
-                padding: '1.75rem 2rem', 
-                borderRadius: '20px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '3px solid #000000',
-                borderLeft: isCorrectAnswer ? '8px solid #00E676' : '8px solid #FF5252',
-                boxShadow: '6px 6px 0px #000000',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.25rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  <h4 style={{ 
-                    fontSize: '1.1rem', 
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '0.45rem', 
-                    color: isCorrectAnswer ? '#00E676' : '#FF5252',
-                    margin: 0
-                  }}>
-                    {isCorrectAnswer ? (
-                      <><CheckCircle2 size={22} color="#00E676" /> Brilliant!</>
-                    ) : (
-                      <><XCircle size={22} color="#FF5252" /> Not quite.</>
-                    )}
-                  </h4>
+              <>
+                <div className="quiz-action-bar animate-fade">
+                  <button
+                    onClick={() => setShowExplanationModal(true)}
+                    className="quiz-btn-explanation"
+                    title="View explanation in dialog"
+                  >
+                    <Lightbulb size={16} color="var(--theme-bulb)" />
+                    <span>Explanation</span>
+                  </button>
+
+                  <button 
+                    onClick={handleNext}
+                    className="quiz-btn-next"
+                  >
+                    <span>Next Question</span>
+                    <ArrowRight size={18} />
+                  </button>
                 </div>
 
-                <p style={{ fontSize: '1rem', color: 'var(--text-primary)', lineHeight: '1.65', margin: 0, fontWeight: '600' }}>
-                  {currentQ.explanation}
-                </p>
-
-                {currentQ.bengali_explanation && (
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, fontWeight: '700' }}>
-                    {currentQ.bengali_explanation}
-                  </p>
-                )}
-
-                <button 
-                  onClick={handleNext}
-                  style={{
-                    alignSelf: 'flex-end',
-                    padding: '0.65rem 1.4rem',
-                    fontSize: '0.9rem',
-                    fontWeight: '900',
-                    fontFamily: 'var(--font-title)',
-                    borderRadius: '12px',
-                    border: '2.5px solid #000000',
-                    background: 'linear-gradient(135deg, #18FFFF 0%, #00E5FF 100%)',
-                    color: '#000000',
-                    cursor: 'pointer',
-                    boxShadow: '3.5px 3.5px 0px #000000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    transition: 'transform 0.1s ease'
-                  }}
-                >
-                  Next Question <ArrowRight size={18} />
-                </button>
-              </div>
+                {/* Explanation Modal / Dialog */}
+                <QuizExplanationModal
+                  isOpen={showExplanationModal}
+                  onClose={() => setShowExplanationModal(false)}
+                  question={currentQ?.question}
+                  correctAnswer={currentQ?.correct_answer}
+                  explanation={currentQ?.explanation}
+                  bengaliExplanation={currentQ?.bengali_explanation}
+                />
+              </>
             );
           })()}
         </div>

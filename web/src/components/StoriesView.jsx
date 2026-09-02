@@ -11,8 +11,10 @@ import {
   X
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { DetailPanelContext } from '../App';
 
 export default function StoriesView({ state, wordsData }) {
+  const { setDetailWord } = React.useContext(DetailPanelContext);
   const levelStories = React.useMemo(() => {
     return wordsData?.getStoriesForLevel(state.unlockedLevel) || [];
   }, [wordsData, state.unlockedLevel]);
@@ -249,7 +251,7 @@ export default function StoriesView({ state, wordsData }) {
               <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))', marginBottom: '1rem' }}>
                 বঙ্গানুবাদ (Bengali Translation)
               </h3>
-              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.8', fontFamily: 'var(--font-bengali)' }}>
                 {activeStory.story_bengali.split(/(\*\*.*?\*\*)/g).map((part, index) => {
                   if (part.startsWith('**') && part.endsWith('**')) {
                     return <strong key={index} style={{ color: 'hsl(var(--secondary))', fontWeight: '700' }}>{part.replace(/\*\*/g, '')}</strong>;
@@ -297,7 +299,7 @@ export default function StoriesView({ state, wordsData }) {
                 {selectedWord.bengali_meaning && (
                   <div>
                     <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontWeight: '700', textTransform: 'uppercase' }}>Bengali Meaning</div>
-                    <p style={{ fontSize: '0.95rem', color: 'hsl(var(--primary))', fontWeight: '500' }}>{selectedWord.bengali_meaning}</p>
+                    <p style={{ fontSize: '0.95rem', color: 'hsl(var(--primary))', fontWeight: '500', fontFamily: 'var(--font-bengali)' }}>{selectedWord.bengali_meaning}</p>
                   </div>
                 )}
                 {selectedWord.mnemonic && (
@@ -335,11 +337,13 @@ export default function StoriesView({ state, wordsData }) {
                         {wordObj.definition}
                       </span>
                     </div>
-                    {wordObj.bengali_meaning && (
-                      <span style={{ fontSize: '0.85rem', color: 'hsl(var(--primary))', fontWeight: '600' }}>
-                        {wordObj.bengali_meaning}
-                      </span>
-                    )}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+                      {wordObj.bengali_meaning && (
+                        <span style={{ fontSize: '0.85rem', color: 'hsl(var(--primary))', fontWeight: '600', fontFamily: 'var(--font-bengali)' }}>
+                          {wordObj.bengali_meaning}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 );
               })}
