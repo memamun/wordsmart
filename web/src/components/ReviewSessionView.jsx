@@ -20,20 +20,37 @@ export default function ReviewSessionView({ state, wordsData }) {
   const [flipped, setFlipped] = useState(false);
   const [completedCount, setCompletedCount] = useState(0);
   const [revealDetails, setRevealDetails] = useState(false);
+  const [sessionWords, setSessionWords] = useState([]);
+  const [sessionInitialized, setSessionInitialized] = useState(false);
 
-  // Filter words that are due for review under SM-2 (nextReviewAt <= now)
-  const dueWords = useMemo(() => {
-    if ((wordsData.words || []).length === 0) return [];
-    
+  // Initialize stable review session queue from cards due at session start
+  useEffect(() => {
+    if (!sessionInitialized && (wordsData.words || []).length > 0) {
+      const now = new Date();
+      const due = (wordsData.words || []).filter((w) => {
+        const progress = (state.wordProgress || {})[w.id];
+        if (!progress || !progress.nextReviewAt) return false;
+        return new Date(progress.nextReviewAt) <= now;
+      });
+      setSessionWords(due);
+      setSessionInitialized(true);
+    }
+  }, [wordsData.words, sessionInitialized, state.wordProgress]);
+
+  const restartSession = () => {
     const now = new Date();
-    return (wordsData.words || []).filter((word) => {
-      const progress = (state.wordProgress || {})[word.id];
+    const due = (wordsData.words || []).filter((w) => {
+      const progress = (state.wordProgress || {})[w.id];
       if (!progress || !progress.nextReviewAt) return false;
       return new Date(progress.nextReviewAt) <= now;
     });
-  }, [wordsData.words, state.wordProgress]);
+    setSessionWords(due);
+    setCurrentIndex(0);
+    setFlipped(false);
+    setRevealDetails(false);
+  };
 
-  const word = dueWords[currentIndex];
+  const word = sessionWords[currentIndex];
 
   // Framer Motion Tinder values
   const x = useMotionValue(0);
@@ -64,6 +81,7 @@ export default function ReviewSessionView({ state, wordsData }) {
   };
 
   const handleRate = (rating) => {
+    if (!word) return;
     state.submitSM2Review(word.id, rating);
     
     // Celebration effect on high scores
@@ -79,14 +97,9 @@ export default function ReviewSessionView({ state, wordsData }) {
     setFlipped(false);
     setRevealDetails(false);
 
-    // Wait for flip transition to end, then advance index
+    // Wait for flip transition to end, then advance index smoothly without skipping
     setTimeout(() => {
-      if (currentIndex < dueWords.length - 1) {
-        setCurrentIndex(prev => prev + 1);
-      } else {
-        // Queue finished
-        setCurrentIndex(0);
-      }
+      setCurrentIndex(prev => prev + 1);
     }, 150);
   };
 
@@ -98,7 +111,7 @@ export default function ReviewSessionView({ state, wordsData }) {
   // Keyboard navigation listener
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (wordsData.loading || dueWords.length === 0) return;
+      if (wordsData.loading || sessionWords.length === 0) return;
 
       const target = e.target;
       if (target?.closest?.('button, input, textarea, select, [contenteditable="true"]')) return;
@@ -122,7 +135,7 @@ export default function ReviewSessionView({ state, wordsData }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [wordsData.loading, dueWords, flipped, currentIndex, word]);
+  }, [wordsData.loading, sessionWords, flipped, currentIndex, word]);
 
   const handleDragEnd = (event, info) => {
     if (info.offset.x > 120) {
@@ -139,7 +152,7 @@ export default function ReviewSessionView({ state, wordsData }) {
   }
 
   // All caught up / session finished state
-  if (dueWords.length === 0 || !word) {
+  if (sessionWords.length === 0 || !word) {
     return (
       <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '520px', margin: '3rem auto' }} className="glass-panel animate-fade">
         <div style={{
@@ -186,6 +199,24 @@ export default function ReviewSessionView({ state, wordsData }) {
             </span>
           </div>
         </div>
+
+        <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+          <button
+            onClick={restartSession}
+            className="btn btn-primary"
+            style={{
+              padding: '0.75rem 1.5rem',
+              fontWeight: '800',
+              fontFamily: 'var(--font-title)',
+              borderRadius: '12px',
+              border: '2px solid #000',
+              boxShadow: '3px 3px 0 #000',
+              cursor: 'pointer'
+            }}
+          >
+            Check for Due Words
+          </button>
+        </div>
       </div>
     );
   }
@@ -213,7 +244,7 @@ export default function ReviewSessionView({ state, wordsData }) {
             boxShadow: 'var(--shadow-one)',
             textTransform: 'uppercase'
           }}>
-            {dueWords.length - currentIndex} LEFT
+            {sessionWords.length - currentIndex} LEFT
           </span>
         </div>
       </div>
@@ -222,7 +253,7 @@ export default function ReviewSessionView({ state, wordsData }) {
       <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', overflow: 'hidden', boxShadow: 'var(--shadow-tiny)' }}>
         <div style={{
           height: '100%',
-          width: `${(currentIndex / dueWords.length) * 100}%`,
+          width: `${sessionWords.length > 0 ? (currentIndex / sessionWords.length) * 100 : 0}%`,
           backgroundColor: 'var(--theme-purple)',
           transition: 'var(--transition-normal)'
         }}></div>
