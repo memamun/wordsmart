@@ -79,7 +79,8 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
   // Keyboard Shortcuts Listener
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      const target = e.target;
+      if (target?.closest?.('button, input, textarea, select, a, [contenteditable="true"]')) return;
 
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
         e.preventDefault();

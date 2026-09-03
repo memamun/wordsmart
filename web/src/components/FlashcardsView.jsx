@@ -63,7 +63,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   const handleNext = () => {
     setFlipped(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % levelWords.length);
+      setCurrentIndex((prev) => (levelWords.length > 0 ? (prev + 1) % levelWords.length : 0));
     }, 150);
   };
 
