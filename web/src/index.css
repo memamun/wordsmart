@@ -2446,4 +2446,152 @@ a:focus-visible,
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   Time Blitz Vibrant Themed Elements (Light & Dark Mode)
+   ========================================================================== */
+
+.blitz-card {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-radius: 24px;
+  border: 2.5px solid var(--border-muted);
+  box-shadow: 6px 6px 0px var(--shadow-color);
+  transition: all 0.2s ease;
+}
+
+[data-theme='light'] .blitz-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2.5px solid #0f172a;
+  box-shadow: 6px 6px 0px #0f172a;
+}
+
+[data-theme='dark'] .blitz-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, #121824 100%);
+  border: 2.5px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+}
+
+/* Blitz Question Box */
+.blitz-question-box {
+  padding: 2.25rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 2.5px solid var(--border-muted);
+  box-shadow: 5px 5px 0px var(--shadow-color);
+}
+
+[data-theme='light'] .blitz-question-box {
+  background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 60%, #eff6ff 100%);
+  border: 2.5px solid #0f172a;
+  box-shadow: 5px 5px 0px #0f172a;
+}
+
+[data-theme='dark'] .blitz-question-box {
+  background: linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.08) 50%, var(--bg-surface) 100%);
+  border: 2.5px solid #000000;
+  box-shadow: 5px 5px 0px #000000;
+}
+
+/* Blitz Rule Pills */
+.blitz-pill {
+  padding: 0.85rem 0.6rem;
+  border-radius: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 2px solid var(--border-muted);
+  box-shadow: 3px 3px 0px var(--shadow-color);
+  transition: transform 0.15s ease;
+}
+
+.blitz-pill-neutral {
+  background-color: var(--bg-surface-elevated);
+}
+.blitz-pill-neutral .pill-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.blitz-pill-neutral .pill-value {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  font-family: var(--font-title);
+}
+
+.blitz-pill-correct {
+  background-color: var(--quiz-correct-bg);
+  border-color: var(--quiz-correct-border);
+}
+.blitz-pill-correct .pill-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--quiz-correct-text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.blitz-pill-correct .pill-value {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--quiz-correct-text);
+  font-family: var(--font-title);
+}
+
+.blitz-pill-mistake {
+  background-color: var(--quiz-incorrect-bg);
+  border-color: var(--quiz-incorrect-border);
+}
+.blitz-pill-mistake .pill-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--quiz-incorrect-text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.blitz-pill-mistake .pill-value {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--quiz-incorrect-text);
+  font-family: var(--font-title);
+}
+
+/* Blitz Start Button */
+.blitz-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 380px;
+  padding: 1.05rem 2rem;
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-family: var(--font-title);
+  border-radius: 16px;
+  border: 2.5px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  background: linear-gradient(135deg, #FFD54F 0%, #FFB300 100%);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.blitz-cta-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.blitz-cta-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+
 
