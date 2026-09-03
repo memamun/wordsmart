@@ -499,19 +499,18 @@ export default function TimeBlitzView({ state, wordsData }) {
 
       {/* 2. PLAYING GAME LOOP SCREEN */}
       {isPlaying && currentQuestion && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {/* Game Stats HUD */}
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0.85rem 1.25rem',
-            borderRadius: '16px',
+            padding: '0.75rem 1.25rem',
+            borderRadius: 'var(--radius-md)',
             backgroundColor: 'var(--bg-surface)',
-            border: '2.5px solid var(--border-muted)',
-            boxShadow: '4px 4px 0px var(--shadow-color)'
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-tiny)'
           }}>
-            {/* Left: Timer + Quit */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <button
                 onClick={() => setShowQuitConfirm(true)}
@@ -539,9 +538,9 @@ export default function TimeBlitzView({ state, wordsData }) {
                 <span>Quit</span>
               </button>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? 'var(--quiz-incorrect-text)' : 'var(--text-primary)', position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? 'var(--theme-red)' : 'var(--text-primary)', position: 'relative' }}>
                 <Timer size={18} className={timeRemaining <= 10 ? 'animate-shake' : ''} />
-                <span style={{ fontSize: '1.3rem', fontFamily: 'var(--font-title)', fontWeight: '900' }}>
+                <span style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', fontWeight: '900' }}>
                   {timeRemaining}s
                 </span>
 
@@ -552,8 +551,9 @@ export default function TimeBlitzView({ state, wordsData }) {
                     left: '100%',
                     marginLeft: '0.5rem',
                     fontWeight: '900',
-                    fontSize: '1rem',
-                    color: timeChange.amount > 0 ? 'var(--quiz-correct-text)' : 'var(--quiz-incorrect-text)',
+                    fontSize: '0.95rem',
+                    color: timeChange.amount > 0 ? 'var(--theme-green)' : 'var(--theme-red)',
+                    textShadow: '1px 1px 0px #000',
                     pointerEvents: 'none',
                     zIndex: 10
                   }}>
@@ -563,59 +563,46 @@ export default function TimeBlitzView({ state, wordsData }) {
               </div>
             </div>
 
-            {/* Answer Streak Badge */}
+            {/* Answer Streak */}
             {answerStreak >= 2 && (
-              <div style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '0.25rem', 
-                padding: '0.25rem 0.65rem', 
-                borderRadius: '9999px', 
-                backgroundColor: 'var(--theme-yellow)', 
-                color: '#000000', 
-                fontWeight: '900', 
-                fontSize: '0.78rem', 
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0px #000000'
-              }}>
-                <Zap size={14} fill="#000000" />
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.2rem 0.6rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-yellow)', color: '#000', fontWeight: '900', fontSize: '0.75rem', border: '1px solid #000' }}>
+                <Zap size={13} fill="#000" />
                 <span>STREAK x{answerStreak}</span>
               </div>
             )}
 
-            {/* Score Display */}
+            {/* Score */}
             <div style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '1.3rem', color: 'hsl(var(--secondary))' }}>
               {score} PTS
             </div>
           </div>
 
           {/* Rapid Question Board */}
-          <div className="blitz-question-box">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', padding: '0.2rem 0.65rem', borderRadius: '9999px', backgroundColor: 'rgba(255, 179, 0, 0.15)', border: '1px solid rgba(255, 179, 0, 0.4)' }}>
-              <Zap size={14} color="#D97706" fill="#D97706" />
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: '900', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                RAPID TARGET
-              </span>
-            </div>
-            <h2 style={{ fontSize: '1.65rem', color: 'var(--text-primary)', lineHeight: '1.4', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
+          <div className="glass-panel" style={{
+            padding: '2rem 1.5rem',
+            textAlign: 'center',
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-medium)',
+            borderRadius: 'var(--radius-md)'
+          }}>
+            <span style={{ fontSize: '0.75rem', color: 'hsl(var(--secondary))', fontWeight: '900', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+              ⚡ RAPID TARGET
+            </span>
+            <h2 style={{ fontSize: '1.85rem', color: 'var(--text-primary)', marginTop: '0.25rem', fontWeight: '900', fontFamily: 'var(--font-title)' }}>
               {currentQuestion.question}
             </h2>
           </div>
 
-          {/* MCQ Blitz Options - Uniform Letter Badges (A, B, C, D) & Neo-Brutalist Cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+          {/* MCQ Blitz Options */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
             {currentQuestion.options.map((option, idx) => {
               const isCorrect = option === currentQuestion.correct_answer;
-              const isSelected = selectedOption === option;
-
+              
               let optClass = '';
               if (isAnswered) {
                 if (isCorrect) optClass = 'correct';
-                else if (isSelected) optClass = 'wrong';
+                else if (selectedOption === option) optClass = 'wrong';
               }
-
-              const letterBadges = ['A', 'B', 'C', 'D'];
-              const letterFills = ['#0284C7', '#A855F7', '#F59E0B', '#10B981'];
 
               return (
                 <button
@@ -623,43 +610,19 @@ export default function TimeBlitzView({ state, wordsData }) {
                   onClick={() => handleOptionClick(option)}
                   disabled={isAnswered}
                   className={`mcq-option ${optClass}`}
-                  style={{
+                  style={{ 
+                    padding: '0.9rem 1.1rem',
+                    fontSize: '1rem',
+                    fontWeight: '800',
                     display: 'flex',
-                    alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '1rem 1.25rem',
-                    borderRadius: '16px',
-                    border: '2.5px solid var(--border-muted)',
-                    boxShadow: '4px 4px 0px var(--shadow-color)',
-                    backgroundColor: 'var(--bg-surface)',
-                    color: 'var(--text-primary)',
-                    cursor: isAnswered ? 'default' : 'pointer',
-                    transition: 'all 0.15s ease'
+                    alignItems: 'center',
+                    minHeight: '48px'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-                    <span style={{
-                      width: '34px',
-                      height: '34px',
-                      borderRadius: '10px',
-                      border: '2px solid #000000',
-                      backgroundColor: letterFills[idx % 4],
-                      color: '#FFFFFF',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: '900',
-                      fontSize: '0.88rem',
-                      fontFamily: 'var(--font-title)',
-                      boxShadow: '2px 2px 0px #000000',
-                      flexShrink: 0
-                    }}>
-                      {letterBadges[idx % 4]}
-                    </span>
-                    <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
-                  </div>
-                  {isAnswered && isCorrect && <CheckCircle2 size={22} color="var(--quiz-correct-text)" />}
-                  {isAnswered && isSelected && !isCorrect && <XCircle size={22} color="var(--quiz-incorrect-text)" />}
+                  <span>{option}</span>
+                  {isAnswered && isCorrect && <CheckCircle2 size={18} color="var(--theme-green)" />}
+                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={18} color="var(--theme-red)" />}
                 </button>
               );
             })}
