@@ -38,12 +38,64 @@ CORE PRINCIPLES:
 5. FORMATTING: Use clean, standard markdown (**bold** for target words, *italics* for translations).`;
 
 /**
+ * Parses an incoming Server-Sent Events (SSE) stream from OpenRouter or Gemini.
+ */
+async function parseSseStream(response, onChunk, signal) {
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let accumulated = '';
+  let buffer = '';
+
+  try {
+    while (true) {
+      if (signal?.aborted) {
+        reader.cancel();
+        break;
+      }
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith(':')) continue;
+        if (trimmed === 'data: [DONE]') return accumulated;
+
+        if (trimmed.startsWith('data: ')) {
+          try {
+            const data = JSON.parse(trimmed.slice(6));
+            const delta = data.choices?.[0]?.delta?.content || 
+                          data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            if (delta) {
+              accumulated += delta;
+              if (onChunk) onChunk(accumulated, delta);
+            }
+          } catch {
+            // Segment may be incomplete JSON across SSE frame boundaries
+          }
+        }
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return accumulated;
+}
+
+/**
  * Sends chat messages to AI. Primary: OpenRouter, Fallback: Gemini.
+ * Supports streaming via options.onChunk and cancellation via options.signal.
  * @param {Array<{role: string, text: string}>} messages 
  * @param {object} wordContext Optional current word information
+ * @param {object} options Optional { signal, onChunk }
  * @returns {Promise<string>} AI text response
  */
-export async function sendGeminiChatMessage(messages, wordContext = null) {
+export async function sendGeminiChatMessage(messages, wordContext = null, options = {}) {
+  const { signal, onChunk } = options;
+
   let systemPrompt = SYSTEM_INSTRUCTION;
   if (wordContext && wordContext.word) {
     systemPrompt += `\n\nCURRENT TARGET WORD:
@@ -78,6 +130,7 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
 
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
+        signal,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
@@ -88,13 +141,19 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
           model: OPENROUTER_MODEL,
           messages: orMessages,
           temperature: 0.7,
-          max_tokens: 1000
+          max_tokens: 1000,
+          stream: Boolean(onChunk)
         })
       });
 
       if (!response.ok) {
         const errData = await response.json().catch(() => ({}));
         throw new Error(errData.error?.message || `OpenRouter HTTP ${response.status}`);
+      }
+
+      if (onChunk && response.body) {
+        const streamed = await parseSseStream(response, onChunk, signal);
+        if (streamed) return streamed.trim();
       }
 
       const data = await response.json();
@@ -106,6 +165,7 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
         throw new Error("No response from OpenRouter.");
       }
     } catch (err) {
+      if (err.name === 'AbortError') throw err;
       lastError = err;
       console.warn('OpenRouter failed:', err.message, '— trying Gemini fallback...');
     }
@@ -121,9 +181,11 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
     for (const apiKey of GEMINI_API_KEYS) {
       for (const model of GEMINI_MODELS) {
         try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+          const endpoint = onChunk ? 'streamGenerateContent?alt=sse&key=' : 'generateContent?key=';
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:${endpoint}${apiKey}`;
           const response = await fetch(url, {
             method: 'POST',
+            signal,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               contents: geminiContents,
@@ -148,6 +210,11 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
             throw new Error(errMsg);
           }
 
+          if (onChunk && response.body) {
+            const streamed = await parseSseStream(response, onChunk, signal);
+            if (streamed) return streamed.trim();
+          }
+
           const data = await response.json();
           const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
@@ -157,6 +224,7 @@ CRITICAL: The student is studying this specific word: "${wordContext.word.toUppe
             throw new Error("No response from Gemini.");
           }
         } catch (err) {
+          if (err.name === 'AbortError') throw err;
           lastError = err;
           console.warn(`Gemini ${model} error:`, err.message);
         }

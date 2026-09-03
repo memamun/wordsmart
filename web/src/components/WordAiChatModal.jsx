@@ -245,6 +245,16 @@ export default function WordAiChatModal({ word, isOpen, onClose }) {
 
   const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
+  const abortControllerRef = useRef(null);
+
+  // Abort in-flight AI requests when modal closes or word changes
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, [isOpen, word?.id]);
 
   const placeholders = [
     `Ask anything or practice...`,
@@ -303,22 +313,64 @@ export default function WordAiChatModal({ word, isOpen, onClose }) {
     setError(null);
     const visibleText = (displayText || textToSend || input).trim();
     const updatedMessages = [...messages, { role: 'user', text: visibleText }];
-    setMessages(updatedMessages);
+    
+    // Add placeholder assistant message for live streaming
+    const assistantIndex = updatedMessages.length;
+    setMessages([...updatedMessages, { role: 'assistant', text: '' }]);
     if (!textToSend) setInput('');
     setLoading(true);
 
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
-      // Pass the conversation history to Gemini
+      // Pass conversation history to AI
       const chatPayload = updatedMessages.map((m, i) => ({
         role: m.role === 'assistant' ? 'model' : 'user',
         text: i === updatedMessages.length - 1 ? promptToSend : m.text
       }));
 
-      const reply = await sendGeminiChatMessage(chatPayload, word);
-      setMessages([...updatedMessages, { role: 'assistant', text: reply }]);
+      const reply = await sendGeminiChatMessage(chatPayload, word, {
+        signal: controller.signal,
+        onChunk: (accumulated) => {
+          setMessages((prev) => {
+            const next = [...prev];
+            if (next[assistantIndex]) {
+              next[assistantIndex] = { role: 'assistant', text: accumulated };
+            }
+            return next;
+          });
+        }
+      });
+
+      setMessages((prev) => {
+        const next = [...prev];
+        next[assistantIndex] = { role: 'assistant', text: reply };
+        return next;
+      });
     } catch (err) {
-      console.error("Gemini AI error:", err);
+      if (err.name === 'AbortError') {
+        setMessages((prev) => {
+          const next = [...prev];
+          if (next[assistantIndex] && !next[assistantIndex].text) {
+            next.splice(assistantIndex, 1);
+          }
+          return next;
+        });
+        return;
+      }
+      console.error("AI chat error:", err);
       setError(err.message || "Failed to get response from AI. Please try again.");
+      setMessages((prev) => {
+        const next = [...prev];
+        if (next[assistantIndex] && !next[assistantIndex].text) {
+          next.splice(assistantIndex, 1);
+        }
+        return next;
+      });
     } finally {
       setLoading(false);
     }
@@ -566,6 +618,7 @@ export default function WordAiChatModal({ word, isOpen, onClose }) {
       >
         {messages.map((m, idx) => {
           const isUser = m.role === 'user';
+          if (!isUser && !m.text) return null;
           const isLastMessage = idx === messages.length - 1;
           const quiz = !isUser ? extractQuizFromText(m.text) : null;
           const displayText = cleanDisplayText(m.text);
@@ -728,7 +781,7 @@ export default function WordAiChatModal({ word, isOpen, onClose }) {
           );
         })}
 
-        {loading && (
+        {loading && (!messages.length || messages[messages.length - 1].role === 'user' || !messages[messages.length - 1].text) && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', paddingLeft: '0.2rem' }}>
             <div style={{
               width: '28px',
