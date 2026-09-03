@@ -404,6 +404,34 @@ export function useGameState() {
     (id) => state.wordProgress[id].status === 'learning' || state.wordProgress[id].status === 'reviewing' || state.wordProgress[id].status === 'relearning'
   ).map(Number);
 
+  const syncFromCloud = useCallback((cloudData) => {
+    if (!cloudData) return;
+    setState((prev) => {
+      // Intelligently merge cloud data with local device state
+      const mergedXp = Math.max(Number(cloudData.xp) || 0, Number(prev.xp) || 0);
+      const mergedCoins = Math.max(Number(cloudData.coins) || 0, Number(prev.coins) || 0);
+      const mergedLevel = Math.max(Number(cloudData.unlockedLevel) || 1, Number(prev.unlockedLevel) || 1);
+      const mergedStreak = Math.max(Number(cloudData.streak) || 0, Number(prev.streak) || 0);
+      const mergedBookmarks = Array.from(new Set([...(prev.bookmarkedWordIds || []), ...(cloudData.bookmarkedWordIds || [])]));
+      const mergedLevelAttempts = { ...(cloudData.levelAttempts || {}), ...(prev.levelAttempts || {}) };
+      const mergedWordProgress = { ...(cloudData.wordProgress || {}), ...(prev.wordProgress || {}) };
+      const mergedAchievements = Array.from(new Set([...(prev.achievements || []), ...(cloudData.achievements || [])]));
+
+      return {
+        ...prev,
+        xp: mergedXp,
+        coins: mergedCoins,
+        unlockedLevel: mergedLevel,
+        streak: mergedStreak,
+        bookmarkedWordIds: mergedBookmarks,
+        levelAttempts: mergedLevelAttempts,
+        wordProgress: mergedWordProgress,
+        achievements: mergedAchievements,
+        lastActiveDate: cloudData.lastActiveDate || prev.lastActiveDate
+      };
+    });
+  }, []);
+
   return {
     ...state,
     masteredWordIds,
@@ -418,5 +446,6 @@ export function useGameState() {
     resetWordProgress,
     markWordMastered,
     markWordLearning,
+    syncFromCloud,
   };
 }

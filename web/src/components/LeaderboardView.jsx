@@ -4,19 +4,6 @@ import { PREP_STAGES } from '../hooks/useGameState';
 import { db } from '../firebase.js';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
-// Default stage milestone benchmarks for offline / fresh platform initialization
-const DEFAULT_STAGE_BENCHMARKS = [
-  { id: 'b10', name: 'Tanvir Hossain (Cadre Target)', xp: 18450, level: 10, streak: 14, avatar: '🥇' },
-  { id: 'b9',  name: 'Ayesha Akhter (GRE Scholar)', xp: 15920, level: 9, streak: 11, avatar: '🥈' },
-  { id: 'b8',  name: 'Zayan Ahmed (Bank Officer)', xp: 12840, level: 8, streak: 9, avatar: '🥉' },
-  { id: 'b7',  name: 'Taskin Karim (Verbal Expert)', xp: 10450, level: 7, streak: 7, avatar: '👤' },
-  { id: 'b6',  name: 'Adnan Sami (IELTS Target 8)', xp: 8750, level: 6, streak: 6, avatar: '👤' },
-  { id: 'b5',  name: 'Nusrat Jahan (Prep Pioneer)', xp: 6200, level: 5, streak: 4, avatar: '👤' },
-  { id: 'b4',  name: 'Mahrab Kabir (Core Learner)', xp: 4890, level: 4, streak: 3, avatar: '👤' },
-  { id: 'b3',  name: 'Sumaiya Khan (Daily Sprinter)', xp: 2900, level: 3, streak: 2, avatar: '👤' },
-  { id: 'b2',  name: 'Faisal Mahmud (Foundations)', xp: 950, level: 2, streak: 1, avatar: '👤' },
-];
-
 export default function LeaderboardView({ state, user }) {
   const [cloudUsers, setCloudUsers] = useState([]);
   const [isCloudActive, setIsCloudActive] = useState(false);
@@ -51,12 +38,10 @@ export default function LeaderboardView({ state, user }) {
           });
         });
 
-        if (list.length > 0) {
-          setCloudUsers(list);
-          setIsCloudActive(true);
-        }
+        setCloudUsers(list);
+        setIsCloudActive(true);
         setLoadingCloud(false);
-      }, (err) => {
+      }, () => {
         setLoadingCloud(false);
       });
 
@@ -80,12 +65,12 @@ export default function LeaderboardView({ state, user }) {
     isUser: true
   };
 
-  // Determine active competitor pool (cloud users or fallback benchmarks)
-  let rawList = isCloudActive && cloudUsers.length > 0 ? [...cloudUsers] : [...DEFAULT_STAGE_BENCHMARKS];
+  // Only actual real registered competitors from Firestore
+  let rawList = [...cloudUsers];
 
-  // If local user is not already in list, merge user entry
+  // If local user has earned XP or is signed in, ensure they appear in the live list
   const userAlreadyInList = rawList.some(item => item.id === userEntry.id || (user?.uid && item.id === user.uid));
-  if (!userAlreadyInList) {
+  if (!userAlreadyInList && (user?.uid || state.xp > 0)) {
     rawList.push(userEntry);
   } else {
     // Update existing user entry with live local state
@@ -124,8 +109,8 @@ export default function LeaderboardView({ state, user }) {
               gap: '0.25rem',
               border: 'var(--border-thin)'
             }}>
-              {isCloudActive ? <Cloud size={12} color="#000" /> : <Globe size={12} />}
-              {isCloudActive ? 'LIVE CLOUD' : 'STAGE BENCHMARKS'}
+              <Cloud size={12} color="#000" />
+              LIVE CLOUD
             </span>
           </div>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginTop: '0.25rem' }}>
@@ -135,63 +120,76 @@ export default function LeaderboardView({ state, user }) {
         <div style={{ textAlign: 'right' }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800' }}>YOUR GLOBAL RANK</div>
           <div style={{ fontSize: '1.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
-            #{userRankIndex} <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '600' }}>of {leaderboardList.length}</span>
+            #{userRankIndex > 0 ? userRankIndex : '-'} <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '600' }}>of {leaderboardList.length}</span>
           </div>
         </div>
       </div>
 
       {/* Top Banner / Motivating quote */}
-      <div className="glass-panel" style={{
-        padding: '1.25rem 1.5rem',
-        background: 'linear-gradient(135deg, hsla(var(--primary), 0.08) 0%, var(--bg-surface) 100%)',
-        border: 'var(--border-thick)',
-        borderRadius: 'var(--radius-md)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-        marginBottom: '1.5rem'
-      }}>
-        <div style={{
-          width: '36px',
-          height: '36px',
-          borderRadius: '50%',
-          backgroundColor: 'var(--theme-yellow)',
-          color: '#000',
+      {leaderboardList.length > 0 && (
+        <div className="glass-panel" style={{
+          padding: '1.25rem 1.5rem',
+          background: 'linear-gradient(135deg, hsla(var(--primary), 0.08) 0%, var(--bg-surface) 100%)',
+          border: 'var(--border-thick)',
+          borderRadius: 'var(--radius-md)',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          fontWeight: '900',
-          border: 'var(--border-thin)',
-          flexShrink: 0,
-          boxShadow: 'var(--shadow-tiny)'
+          gap: '1rem',
+          marginBottom: '1.5rem'
         }}>
-          <Sparkles size={18} />
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
-            PERFORMANCE HIGHLIGHT
+          <div style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--theme-yellow)',
+            color: '#000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontWeight: '900',
+            border: 'var(--border-thin)',
+            flexShrink: 0,
+            boxShadow: 'var(--shadow-tiny)'
+          }}>
+            <Sparkles size={18} />
           </div>
-          <p style={{ fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: '1.4', marginTop: '2px', fontWeight: '600' }}>
-            {userRankIndex === 1 ? (
-              <span style={{ color: 'hsl(var(--secondary))' }}>🏆 Outstanding Achievement! You are currently #1 on the leaderboard! Keep building your streak to hold the title.</span>
-            ) : userRankIndex <= 3 ? (
-              <span style={{ color: 'hsl(var(--secondary))' }}>🥇 Excellent work! You are on the podium in the Top 3!</span>
-            ) : (
-              <span>You need <strong style={{ color: 'hsl(var(--primary))' }}>{((leaderboardList[userRankIndex - 2]?.xp || 0) - state.xp).toLocaleString()} XP</strong> to pass <strong>{leaderboardList[userRankIndex - 2]?.name}</strong>!</span>
-            )}
-          </p>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase' }}>
+              PERFORMANCE HIGHLIGHT
+            </div>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-primary)', lineHeight: '1.4', marginTop: '2px', fontWeight: '600' }}>
+              {userRankIndex === 1 ? (
+                <span style={{ color: 'hsl(var(--secondary))' }}>🏆 Outstanding Achievement! You are currently #1 on the leaderboard! Keep building your streak to hold the title.</span>
+              ) : userRankIndex <= 3 && userRankIndex > 1 ? (
+                <span style={{ color: 'hsl(var(--secondary))' }}>🥇 Excellent work! You are on the podium in the Top 3!</span>
+              ) : (
+                <span>You need <strong style={{ color: 'hsl(var(--primary))' }}>{((leaderboardList[userRankIndex - 2]?.xp || 0) - state.xp).toLocaleString()} XP</strong> to pass <strong>{leaderboardList[userRankIndex - 2]?.name}</strong>!</span>
+              )}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Leaderboard Table List */}
       <div className="glass-panel" style={{
-        padding: '0.5rem',
+        padding: leaderboardList.length === 0 ? '2.5rem 1.5rem' : '0.5rem',
         backgroundColor: 'var(--bg-surface)',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.35rem'
       }}>
-        {leaderboardList.map((competitor, index) => {
+        {leaderboardList.length === 0 ? (
+          <div style={{ textAlign: 'center' }}>
+            <Trophy size={48} color="hsl(var(--secondary))" style={{ margin: '0 auto 1rem', display: 'block' }} />
+            <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+              No Ranked Learners Yet
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '420px', margin: '0 auto' }}>
+              Sign in with your Google account and practice vocabulary quizzes or flashcards to be the first to claim the #1 spot on the global leaderboard!
+            </p>
+          </div>
+        ) : (
+          leaderboardList.map((competitor, index) => {
           const rank = index + 1;
           const stage = PREP_STAGES.find(s => s.id === competitor.level) || PREP_STAGES[0];
           const isUser = competitor.isUser;
@@ -312,7 +310,8 @@ export default function LeaderboardView({ state, user }) {
               </div>
             </div>
           );
-        })}
+        })
+      )}
       </div>
     </div>
   );

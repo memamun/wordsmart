@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { auth, db, googleProvider } from './firebase.js';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import AuthGateModal from './components/AuthGateModal.jsx';
 import { isViewFree } from './config/freemium.js';
 import Sidebar from './components/Sidebar.jsx';
@@ -110,26 +110,81 @@ export default function App() {
     }
   };
 
-  // Sync logged-in user profile & XP to Cloud Firestore for live global leaderboard
+  // On sign-in, restore full cloud progress and analytics into local state
   useEffect(() => {
     if (!user || !db) return;
-    try {
-      const userRef = doc(db, 'users', user.uid);
-      const payload = {
-        uid: user.uid,
-        displayName: user.displayName || 'WordSmart Learner',
-        photoURL: user.photoURL || null,
-        xp: Number(state.xp) || 0,
-        level: Number(state.unlockedLevel) || 1,
-        streak: Number(state.streak) || 0,
-        coins: Number(state.coins) || 0,
-        updatedAt: serverTimestamp()
-      };
-      setDoc(userRef, payload, { merge: true }).catch(() => {});
-    } catch {
-      // Ignore offline / permission edge cases gracefully
+    let isMounted = true;
+    async function restoreCloudProgress() {
+      try {
+        const progressRef = doc(db, 'users', user.uid, 'data', 'progress');
+        const progressSnap = await getDoc(progressRef);
+        if (progressSnap.exists() && isMounted) {
+          state.syncFromCloud(progressSnap.data());
+        } else {
+          // Fallback to top-level user doc for older format
+          const userRef = doc(db, 'users', user.uid);
+          const userSnap = await getDoc(userRef);
+          if (userSnap.exists() && isMounted) {
+            state.syncFromCloud(userSnap.data());
+          }
+        }
+      } catch (err) {
+        console.warn('Could not restore cloud progress:', err);
+      }
     }
-  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins]);
+    restoreCloudProgress();
+    return () => { isMounted = false; };
+  }, [user]);
+
+  // Sync logged-in user profile to Cloud Firestore for live global leaderboard
+  // and persist comprehensive learning analytics to 'users/{uid}/data/progress'
+  useEffect(() => {
+    if (!user || !db) return;
+    const timer = setTimeout(() => {
+      try {
+        // 1. Lightweight public leaderboard document
+        const userRef = doc(db, 'users', user.uid);
+        const leaderboardPayload = {
+          uid: user.uid,
+          displayName: user.displayName || 'WordSmart Learner',
+          photoURL: user.photoURL || null,
+          xp: Number(state.xp) || 0,
+          level: Number(state.unlockedLevel) || 1,
+          streak: Number(state.streak) || 0,
+          coins: Number(state.coins) || 0,
+          masteredWordsCount: state.masteredWordIds?.length || 0,
+          learningWordsCount: state.learningWordIds?.length || 0,
+          updatedAt: serverTimestamp()
+        };
+        setDoc(userRef, leaderboardPayload, { merge: true }).catch(() => {});
+
+        // 2. Comprehensive learning progress & analytics document
+        const progressRef = doc(db, 'users', user.uid, 'data', 'progress');
+        const progressPayload = {
+          xp: Number(state.xp) || 0,
+          coins: Number(state.coins) || 0,
+          unlockedLevel: Number(state.unlockedLevel) || 1,
+          streak: Number(state.streak) || 0,
+          bookmarkedWordIds: state.bookmarkedWordIds || [],
+          levelAttempts: state.levelAttempts || {},
+          wordProgress: state.wordProgress || {},
+          achievements: state.achievements || [],
+          lastActiveDate: state.lastActiveDate || null,
+          analytics: {
+            masteredCount: state.masteredWordIds?.length || 0,
+            learningCount: state.learningWordIds?.length || 0,
+            totalQuizzesAttempted: Object.keys(state.levelAttempts || {}).length,
+            updatedAt: serverTimestamp()
+          }
+        };
+        setDoc(progressRef, progressPayload, { merge: true }).catch(() => {});
+      } catch {
+        // Graceful catch for offline
+      }
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins, state.wordProgress, state.levelAttempts, state.bookmarkedWordIds]);
 
   // Navigation History Stack for dynamic back button across submenus
   const [viewHistory, setViewHistory] = useState(['dashboard']);
