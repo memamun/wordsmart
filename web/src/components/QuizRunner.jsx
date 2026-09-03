@@ -281,21 +281,25 @@ export default function QuizRunner({
           {/* Quit Button */}
           <button
             onClick={onQuit}
-            className="btn-icon-hover"
+            className="btn btn-secondary"
             title="Quit Quiz"
             style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--text-muted)',
-              cursor: 'pointer',
+              padding: '0.35rem 0.85rem',
+              fontSize: '0.78rem',
+              fontWeight: '800',
+              fontFamily: 'var(--font-title)',
+              borderRadius: '9999px',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.3rem',
-              fontSize: '0.82rem',
-              fontWeight: '700'
+              gap: '0.35rem',
+              backgroundColor: 'var(--bg-surface-elevated)',
+              color: 'var(--text-secondary)',
+              border: 'var(--border-thin)',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
             }}
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={14} />
             <span>Quit</span>
           </button>
         </div>
