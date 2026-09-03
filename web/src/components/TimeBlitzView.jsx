@@ -265,134 +265,140 @@ export default function TimeBlitzView({ state, wordsData }) {
       {/* 1. START GAME SCREEN: Compact Punchy Arcade Card */}
       {!isPlaying && !isGameOver && (
         <div className="blitz-arcade-card animate-slide-up">
-          {/* Top Badge & Title */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.35rem',
-            padding: '0.3rem 0.8rem',
-            borderRadius: '9999px',
-            backgroundColor: 'rgba(255, 213, 79, 0.2)',
-            border: '1.5px solid var(--theme-yellow)',
-            color: 'var(--text-primary)',
-            fontSize: '0.72rem',
-            fontWeight: '900',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            marginBottom: '0.75rem'
-          }}>
-            <Zap size={13} color="var(--theme-yellow)" fill="var(--theme-yellow)" />
-            <span>60-Second Challenge</span>
-          </div>
-
-          <h1 style={{
-            fontSize: 'clamp(2.1rem, 6vw, 2.75rem)',
-            fontFamily: 'var(--font-title)',
-            fontWeight: '900',
-            color: 'var(--text-primary)',
-            lineHeight: '1.1',
-            margin: '0 0 0.35rem 0',
-            letterSpacing: '-0.02em'
-          }}>
-            TIME BLITZ
-          </h1>
-
-          <p style={{
-            fontSize: '0.92rem',
-            color: 'var(--text-secondary)',
-            margin: '0 0 1.5rem 0',
-            fontWeight: '600'
-          }}>
-            Rapid Recall • Synonyms & Antonyms
-          </p>
-
-          {/* Personal Record Showcase */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0.85rem 1.15rem',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: '2px solid var(--border-muted)',
-            borderRadius: '16px',
-            boxShadow: '3px 3px 0px var(--shadow-color)',
-            marginBottom: '1.5rem',
-            width: '100%'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 100%)',
-                border: '2px solid #000000',
-                boxShadow: '2px 2px 0px #000000',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#000000',
-                flexShrink: 0
-              }}>
-                <Trophy size={20} strokeWidth={2.5} />
-              </div>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  PERSONAL RECORD
-                </div>
-                <div style={{ fontSize: '1.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', lineHeight: '1.1' }}>
-                  {highScore > 0 ? `${highScore} PTS` : '0 PTS'}
-                </div>
-              </div>
-            </div>
-
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: '900',
-              color: rank.color,
-              backgroundColor: 'rgba(0,0,0,0.25)',
-              padding: '0.3rem 0.7rem',
+          {/* Top Header Section */}
+          <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              padding: '0.3rem 0.8rem',
               borderRadius: '9999px',
-              border: `1.5px solid ${rank.color}`
+              backgroundColor: 'rgba(255, 213, 79, 0.2)',
+              border: '1.5px solid var(--theme-yellow)',
+              color: 'var(--text-primary)',
+              fontSize: '0.72rem',
+              fontWeight: '900',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              marginBottom: '0.65rem'
             }}>
-              {rank.title}
-            </span>
+              <Zap size={13} color="var(--theme-yellow)" fill="var(--theme-yellow)" />
+              <span>60-Second Challenge</span>
+            </div>
+
+            <h1 style={{
+              fontSize: 'clamp(2.1rem, 6vw, 2.75rem)',
+              fontFamily: 'var(--font-title)',
+              fontWeight: '900',
+              color: 'var(--text-primary)',
+              lineHeight: '1.1',
+              margin: '0 0 0.35rem 0',
+              letterSpacing: '-0.02em'
+            }}>
+              TIME BLITZ
+            </h1>
+
+            <p style={{
+              fontSize: '0.92rem',
+              color: 'var(--text-secondary)',
+              margin: '0',
+              fontWeight: '600'
+            }}>
+              Rapid Recall • Synonyms & Antonyms
+            </p>
           </div>
 
-          {/* 3 Quick Game Rule Pills (Visual & Punchy, No Long Text!) */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '0.65rem',
-            width: '100%',
-            marginBottom: '1.75rem'
-          }}>
-            {/* Start Pill */}
-            <div className="blitz-pill blitz-pill-neutral">
-              <span className="pill-label">CLOCK</span>
-              <span className="pill-value">⏱️ 60s</span>
+          {/* Middle Body Section: Best Score + 3 Rule Pills */}
+          <div style={{ width: '100%', margin: '1.5rem 0' }}>
+            {/* Personal Record Showcase */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0.85rem 1.15rem',
+              backgroundColor: 'var(--bg-surface-elevated)',
+              border: '2px solid var(--border-muted)',
+              borderRadius: '16px',
+              boxShadow: '3px 3px 0px var(--shadow-color)',
+              marginBottom: '1rem',
+              width: '100%'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 100%)',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#000000',
+                  flexShrink: 0
+                }}>
+                  <Trophy size={20} strokeWidth={2.5} />
+                </div>
+                <div style={{ textAlign: 'left' }}>
+                  <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    PERSONAL RECORD
+                  </div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', lineHeight: '1.1' }}>
+                    {highScore > 0 ? `${highScore} PTS` : '0 PTS'}
+                  </div>
+                </div>
+              </div>
+
+              <span style={{
+                fontSize: '0.75rem',
+                fontWeight: '900',
+                color: rank.color,
+                backgroundColor: 'rgba(0,0,0,0.25)',
+                padding: '0.3rem 0.7rem',
+                borderRadius: '9999px',
+                border: `1.5px solid ${rank.color}`
+              }}>
+                {rank.title}
+              </span>
             </div>
 
-            {/* Correct Pill */}
-            <div className="blitz-pill blitz-pill-correct">
-              <span className="pill-label">MATCH</span>
-              <span className="pill-value">+3s</span>
-            </div>
+            {/* 3 Quick Game Rule Pills */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '0.65rem',
+              width: '100%'
+            }}>
+              {/* Start Pill */}
+              <div className="blitz-pill blitz-pill-neutral">
+                <span className="pill-label">CLOCK</span>
+                <span className="pill-value">⏱️ 60s</span>
+              </div>
 
-            {/* Mistake Pill */}
-            <div className="blitz-pill blitz-pill-mistake">
-              <span className="pill-label">MISS</span>
-              <span className="pill-value">-5s</span>
+              {/* Correct Pill */}
+              <div className="blitz-pill blitz-pill-correct">
+                <span className="pill-label">MATCH</span>
+                <span className="pill-value">+3s</span>
+              </div>
+
+              {/* Mistake Pill */}
+              <div className="blitz-pill blitz-pill-mistake">
+                <span className="pill-label">MISS</span>
+                <span className="pill-value">-5s</span>
+              </div>
             </div>
           </div>
 
-          {/* Single Action Button */}
-          <button 
-            onClick={startBlitzGame}
-            className="blitz-cta-btn"
-            style={{ width: '100%', maxWidth: '100%' }}
-          >
-            <Play size={20} fill="#000" /> Start Time Blitz
-          </button>
+          {/* Bottom Footer Section */}
+          <div style={{ width: '100%' }}>
+            <button 
+              onClick={startBlitzGame}
+              className="blitz-cta-btn"
+              style={{ width: '100%', maxWidth: '100%' }}
+            >
+              <Play size={20} fill="#000" /> Start Time Blitz
+            </button>
+          </div>
         </div>
       )}
 
