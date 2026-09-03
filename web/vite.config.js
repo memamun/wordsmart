@@ -7,5 +7,17 @@ export default defineConfig({
   server: {
     port: 3000,
     host: '0.0.0.0'
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          'vendor-motion': ['framer-motion'],
+          'vendor-ui': ['lucide-react', 'canvas-confetti']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 600
   }
 });

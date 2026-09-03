@@ -7,21 +7,23 @@ import { isViewFree } from './config/freemium.js';
 import Sidebar from './components/Sidebar.jsx';
 import Header from './components/Header.jsx';
 import Dashboard from './components/Dashboard.jsx';
-import LandingView from './components/LandingView.jsx';
-import FlashcardsView from './components/FlashcardsView.jsx';
-import ReviewSessionView from './components/ReviewSessionView.jsx';
-import StoriesView from './components/StoriesView.jsx';
-import QuizzesView from './components/QuizzesView.jsx';
-import VocabDrillsView from './components/VocabDrillsView.jsx';
-import QuickMatchView from './components/QuickMatchView.jsx';
-import AdvancedQuizzesView from './components/AdvancedQuizzesView.jsx';
-import TimeBlitzView from './components/TimeBlitzView.jsx';
-import SearchView from './components/SearchView.jsx';
-import LeaderboardView from './components/LeaderboardView.jsx';
-import SpecializedVocabView from './components/SpecializedVocabView.jsx';
 import WordDetailPanel from './components/WordDetailPanel.jsx';
-import HitParadesView from './components/HitParadesView.jsx';
-import AllQuizzesView from './components/AllQuizzesView.jsx';
+
+// Lazy-loaded views for optimal code-splitting and bundle performance
+const LandingView = React.lazy(() => import('./components/LandingView.jsx'));
+const FlashcardsView = React.lazy(() => import('./components/FlashcardsView.jsx'));
+const ReviewSessionView = React.lazy(() => import('./components/ReviewSessionView.jsx'));
+const StoriesView = React.lazy(() => import('./components/StoriesView.jsx'));
+const QuizzesView = React.lazy(() => import('./components/QuizzesView.jsx'));
+const VocabDrillsView = React.lazy(() => import('./components/VocabDrillsView.jsx'));
+const QuickMatchView = React.lazy(() => import('./components/QuickMatchView.jsx'));
+const AdvancedQuizzesView = React.lazy(() => import('./components/AdvancedQuizzesView.jsx'));
+const TimeBlitzView = React.lazy(() => import('./components/TimeBlitzView.jsx'));
+const SearchView = React.lazy(() => import('./components/SearchView.jsx'));
+const LeaderboardView = React.lazy(() => import('./components/LeaderboardView.jsx'));
+const SpecializedVocabView = React.lazy(() => import('./components/SpecializedVocabView.jsx'));
+const HitParadesView = React.lazy(() => import('./components/HitParadesView.jsx'));
+const AllQuizzesView = React.lazy(() => import('./components/AllQuizzesView.jsx'));
 import { useGameState } from './hooks/useGameState.js';
 import { useWordsData } from './hooks/useWordsData.js';
 import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield } from 'lucide-react';
@@ -298,9 +300,10 @@ export default function App() {
   }, [theme]);
 
   const renderActiveView = () => {
+    let content = null;
     switch (activeView) {
       case 'landing':
-        return (
+        content = (
           <LandingView
             setActiveView={gatedSetActiveView}
             selectedUnit={selectedUnit}
@@ -310,8 +313,9 @@ export default function App() {
             wordsData={wordsData}
           />
         );
+        break;
       case 'dashboard':
-        return (
+        content = (
           <Dashboard 
             state={state} 
             wordsData={wordsData} 
@@ -322,8 +326,9 @@ export default function App() {
             onGoogleSignIn={handleGoogleSignIn}
           />
         );
+        break;
       case 'flashcards':
-        return (
+        content = (
           <FlashcardsView 
             state={state} 
             wordsData={wordsData} 
@@ -332,22 +337,25 @@ export default function App() {
             setSelectedUnit={setSelectedUnit}
           />
         );
+        break;
       case 'review':
-        return (
+        content = (
           <ReviewSessionView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'stories':
-        return (
+        content = (
           <StoriesView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'quizzes':
-        return (
+        content = (
           <QuizzesView 
             state={state} 
             wordsData={wordsData} 
@@ -356,71 +364,81 @@ export default function App() {
             setSelectedUnit={setSelectedUnit}
           />
         );
+        break;
       case 'vocabdrills':
-        return (
+        content = (
           <VocabDrillsView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'quickmatch':
-        return (
+        content = (
           <QuickMatchView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'advanced':
-        return (
+        content = (
           <AdvancedQuizzesView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'timeblitz':
-        return (
+        content = (
           <TimeBlitzView 
             state={state} 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'search':
-        return (
+        content = (
           <SearchView 
             state={state}
             wordsData={wordsData} 
           />
         );
+        break;
       case 'specialized':
-        return (
+        content = (
           <SpecializedVocabView 
             state={state}
             wordsData={wordsData} 
           />
         );
+        break;
       case 'hitparades':
-        return (
+        content = (
           <HitParadesView 
             wordsData={wordsData} 
           />
         );
+        break;
       case 'allquizzes':
-        return (
+        content = (
           <AllQuizzesView 
             state={state} 
             wordsData={wordsData} 
             setActiveView={setActiveView}
           />
         );
+        break;
       case 'leaderboard':
-        return (
+        content = (
           <LeaderboardView 
             state={state} 
             user={user}
           />
         );
+        break;
       default:
-        return (
+        content = (
           <Dashboard 
             state={state} 
             wordsData={wordsData} 
@@ -429,7 +447,36 @@ export default function App() {
             setSelectedUnit={setSelectedUnit}
           />
         );
+        break;
     }
+
+    return (
+      <React.Suspense fallback={
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '40vh',
+          gap: '0.85rem',
+          color: 'var(--text-secondary)'
+        }}>
+          <div style={{
+            width: '28px',
+            height: '28px',
+            border: '3px solid var(--border-muted)',
+            borderTopColor: 'var(--theme-cyan)',
+            borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite'
+          }} />
+          <span style={{ fontFamily: 'var(--font-title)', fontWeight: '700', fontSize: '0.88rem', letterSpacing: '0.04em' }}>
+            LOADING VIEW...
+          </span>
+        </div>
+      }>
+        {content}
+      </React.Suspense>
+    );
   };
 
   if (wordsData.loading && wordsData.words.length === 0) {
