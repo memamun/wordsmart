@@ -1,34 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { 
   Award, 
-  HelpCircle, 
-  CheckCircle2, 
-  XCircle, 
   ArrowRight,
-  ArrowLeft, 
+  ArrowLeft,
   Sparkles, 
   Coins, 
   BookOpen, 
-  RefreshCw,
-  Eye,
-  Zap,
-  Target,
-  Shield,
   Trophy,
-  Star,
-  ChevronLeft,
-  ChevronRight,
-  Lightbulb
+  RefreshCw
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
 import { DetailPanelContext } from '../App';
-import QuizExplanationModal from './QuizExplanationModal';
-import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
+import QuizRunner from './QuizRunner.jsx';
 
 export default function QuizzesView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
   const { setDetailWord } = useContext(DetailPanelContext);
-  const [showExplanationModal, setShowExplanationModal] = useState(false);
   const levelWords = React.useMemo(() => {
     return wordsData.getWordsForLevel(state.unlockedLevel);
   }, [wordsData, state.unlockedLevel]);
@@ -44,19 +30,6 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
   // Quiz running state
   const [activeQuiz, setActiveQuiz] = useState(null); // null, 'qualification', 'unit_qualification', or a quiz object
   const [questions, setQuestions] = useState([]);
-  const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [score, setScore] = useState(0);
-  const [quizFinished, setQuizFinished] = useState(false);
-  const [notice, setNotice] = useState(null);
-  
-  // Hint states
-  const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(false);
-  const [disabledOptions, setDisabledOptions] = useState([]);
-  const [bengaliClueUsed, setBengaliClueUsed] = useState(false);
-  const [mnemonicUsed, setMnemonicUsed] = useState(false);
-  const [showHintPopover, setShowHintPopover] = useState(false);
 
   // Generate dynamic qualification quiz from words in this level / unit
   const generateQualificationQuiz = (isUnitOnly = false) => {
@@ -111,21 +84,12 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     });
 
     setQuestions(generatedQuestions);
-    setCurrentQIndex(0);
-    setScore(0);
-    setIsAnswered(false);
-    setSelectedOption(null);
-    setQuizFinished(false);
-    resetHints();
-    setShowExplanationModal(false);
     setActiveQuiz(isUnitOnly ? 'unit_qualification' : 'qualification');
   };
 
   // Start a preloaded MCQ quiz
   const startPreloadedQuiz = (quiz) => {
-    // Map JSON questions structure to our local format and shuffle options
     const formatted = quiz.questions.map((q) => {
-      // Find corresponding word in core vocabulary if possible
       const targetWord = wordsData.words.find(w => w.word.toUpperCase() === q.correct_answer || q.question.toLowerCase().includes(w.word.toLowerCase()));
       return {
         ...q,
@@ -137,98 +101,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
     });
 
     setQuestions(formatted);
-    setCurrentQIndex(0);
-    setScore(0);
-    setIsAnswered(false);
-    setSelectedOption(null);
-    setQuizFinished(false);
-    resetHints();
-    setShowExplanationModal(false);
     setActiveQuiz(quiz);
-  };
-
-  const resetHints = () => {
-    setFiftyFiftyUsed(false);
-    setDisabledOptions([]);
-    setBengaliClueUsed(false);
-    setMnemonicUsed(false);
-    setNotice(null);
-    setShowHintPopover(false);
-  };
-
-  const showNotice = (message) => {
-    setNotice(message);
-    window.setTimeout(() => setNotice(null), 2400);
-  };
-
-  // Hint shop purchases
-  const buyFiftyFifty = () => {
-    if (state.coins < 15) return showNotice('Not enough coins for 50/50. Complete more questions to earn coins.');
-    state.deductCoins(15);
-    setFiftyFiftyUsed(true);
-
-    const q = questions[currentQIndex];
-    const incorrect = q.options.filter(o => o !== q.correct_answer);
-    // Shuffle using Fisher-Yates and pick 2 to disable
-    const toDisable = shuffleArray(incorrect).slice(0, 2);
-    setDisabledOptions(toDisable);
-  };
-
-  const buyBengaliClue = () => {
-    if (state.coins < 10) return showNotice('Not enough coins for the Bengali clue.');
-    state.deductCoins(10);
-    setBengaliClueUsed(true);
-  };
-
-  const buyMnemonic = () => {
-    if (state.coins < 20) return showNotice('Not enough coins for the mnemonic hint.');
-    state.deductCoins(20);
-    setMnemonicUsed(true);
-  };
-
-  const handleAnswer = (option) => {
-    if (isAnswered) return;
-    setSelectedOption(option);
-    setIsAnswered(true);
-
-    const isCorrect = option === questions[currentQIndex].correct_answer;
-    if (isCorrect) {
-      playCorrectSound();
-      setScore((prev) => prev + 1);
-      confetti({
-        particleCount: 15,
-        spread: 25,
-        origin: { y: 0.8 }
-      });
-    } else {
-      playIncorrectSound();
-    }
-  };
-
-  const handleNext = () => {
-    setIsAnswered(false);
-    setSelectedOption(null);
-    setShowExplanationModal(false);
-    resetHints();
-
-    if (currentQIndex < questions.length - 1) {
-      setCurrentQIndex((prev) => prev + 1);
-    } else {
-      setQuizFinished(true);
-      // If it is qualification exam, record attempt in game state
-      if (activeQuiz === 'qualification') {
-        const percent = Math.round((score / questions.length) * 100);
-        state.recordQuizAttempt(state.unlockedLevel, percent);
-      } else if (activeQuiz === 'unit_qualification') {
-        // Unit Qualification Quiz awards solid bonus
-        state.addCoins(15);
-        state.addXp(80);
-      } else {
-        // Practice quiz gives small coin bonus
-        state.addCoins(5);
-        state.addXp(30);
-      }
-    }
   };
 
   if (wordsData.loading) {
@@ -574,343 +447,54 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
         </div>
       )}
 
-      {/* 2. ACTIVE QUIZ PLAY VIEW */}
-      {activeQuiz && !quizFinished && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {/* Quiz Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <div>
-              <span style={{ fontSize: '0.75rem', fontWeight: '700', color: (activeQuiz === 'qualification' || activeQuiz === 'unit_qualification') ? 'hsl(var(--secondary))' : 'hsl(var(--primary))' }}>
-                {activeQuiz === 'qualification' ? 'STAGE CUMULATIVE EXAM' : activeQuiz === 'unit_qualification' ? `UNIT ${state.unlockedLevel}.${selectedUnit} QUIZ` : 'PRACTICE QUIZ'}
-              </span>
-              <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)' }}>
-                Question {currentQIndex + 1} of {questions.length}
-              </h2>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'hsl(var(--coin))', fontWeight: '800', fontSize: '0.85rem' }}>
-                <Coins size={18} />
-                <span>{state.coins} Coins</span>
-              </div>
-
-              {/* Hint Shop Drawer Button */}
-              <button 
-                onClick={() => setShowHintPopover(prev => !prev)}
-                className="btn btn-secondary"
-                style={{ 
-                  padding: '0.35rem 0.75rem', 
-                  fontSize: '0.75rem', 
-                  borderRadius: '9999px',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.35rem',
-                  backgroundColor: showHintPopover ? 'var(--theme-yellow)' : 'var(--bg-surface-elevated)',
-                  color: showHintPopover ? '#000' : 'var(--text-primary)',
-                  boxShadow: showHintPopover ? 'var(--shadow-tiny)' : 'none',
-                  border: 'var(--border-thin)'
-                }}
-                title="Need a Hint?"
-              >
-                <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
-                <span>Need a Hint?</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Hint Shop Popover Drawer */}
-          {showHintPopover && (
-            <div className="animate-fade glass-panel" style={{
-              padding: '1rem',
-              border: 'var(--border-thick)',
-              boxShadow: 'var(--shadow-medium)',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: 'var(--bg-surface)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.75rem'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <Lightbulb size={14} color="var(--theme-bulb)" /> Available Hints
-                </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '700' }}>Use coins to unlock assistance</span>
-              </div>
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                <button 
-                  onClick={buyFiftyFifty}
-                  disabled={fiftyFiftyUsed || isAnswered || state.coins < 15}
-                  className={`quiz-hint-pill hint-5050 ${fiftyFiftyUsed ? 'used' : ''}`}
-                  style={{ flex: 1, minWidth: '110px' }}
-                >
-                  {fiftyFiftyUsed ? (
-                    <>
-                      <CheckCircle2 size={14} color="#000" />
-                      <span>50/50 Used</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles size={14} color="#000" />
-                      <span>50/50</span>
-                      <span className="hint-cost-pill">-15c</span>
-                    </>
-                  )}
-                </button>
-                <button 
-                  onClick={buyBengaliClue}
-                  disabled={bengaliClueUsed || isAnswered || state.coins < 10}
-                  className={`quiz-hint-pill hint-bengali ${bengaliClueUsed ? 'used' : ''}`}
-                  style={{ flex: 1, minWidth: '110px' }}
-                >
-                  {bengaliClueUsed ? (
-                    <>
-                      <CheckCircle2 size={14} color="#000" />
-                      <span>Bengali</span>
-                    </>
-                  ) : (
-                    <>
-                      <BookOpen size={14} color="#000" />
-                      <span>Bengali</span>
-                      <span className="hint-cost-pill">-10c</span>
-                    </>
-                  )}
-                </button>
-                <button 
-                  onClick={buyMnemonic}
-                  disabled={mnemonicUsed || isAnswered || state.coins < 20}
-                  className={`quiz-hint-pill hint-mnemonic ${mnemonicUsed ? 'used' : ''}`}
-                  style={{ flex: 1, minWidth: '110px' }}
-                >
-                  {mnemonicUsed ? (
-                    <>
-                      <CheckCircle2 size={14} color="#000" />
-                      <span>Mnemonic</span>
-                    </>
-                  ) : (
-                    <>
-                      <Lightbulb size={14} color="#000" />
-                      <span>Mnemonic</span>
-                      <span className="hint-cost-pill">-20c</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Progress Indicator */}
-          <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--border-muted)', borderRadius: '3px', overflow: 'hidden', border: 'var(--border-thin)', boxShadow: 'var(--shadow-tiny)' }}>
-            <div style={{
-              height: '100%',
-              width: `${((currentQIndex + 1) / questions.length) * 100}%`,
-              backgroundColor: (activeQuiz === 'qualification' || activeQuiz === 'unit_qualification') ? 'hsl(var(--secondary))' : 'hsl(var(--primary))',
-              transition: 'var(--transition-normal)'
-            }}></div>
-          </div>
-
-          {/* Question Card */}
-          <div style={{ 
-            padding: '2.25rem 2.5rem', 
-            background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
-            border: '3px solid #000000',
-            boxShadow: '6px 6px 0px #000000',
-            borderRadius: '20px'
-          }}>
-            <h3 style={{ fontSize: '1.35rem', color: 'var(--text-primary)', lineHeight: '1.55', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
-              {questions[currentQIndex]?.question}
-            </h3>
-          </div>
-
-          {/* Interactive Hints Output */}
-          {notice && (
-            <div role="status" aria-live="polite" className="card animate-fade" style={{ padding: '0.85rem 1rem', borderLeft: '3px solid hsl(var(--secondary))', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-              {notice}
-            </div>
-          )}
-          {(bengaliClueUsed || mnemonicUsed) && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {bengaliClueUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #18FFFF', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000' }}>
-                  <div style={{ fontSize: '0.7rem', color: '#18FFFF', fontWeight: '900' }}>BENGALI TRANSLATION CLUE</div>
-                  <p style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', marginTop: '0.15rem' }}>
-                    {questions[currentQIndex]?.bengali_clue}
-                  </p>
-                </div>
-              )}
-              {mnemonicUsed && (
-                <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #FFD54F', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000' }}>
-                  <div style={{ fontSize: '0.7rem', color: '#FFD54F', fontWeight: '900' }}>MEMORIZATION AID (MNEMONIC)</div>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: '0.15rem', lineHeight: '1.5', fontStyle: 'italic' }}>
-                    {questions[currentQIndex]?.mnemonic}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* MCQ Options */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-            {questions[currentQIndex]?.options.map((option, idx) => {
-              const isCorrect = option === questions[currentQIndex].correct_answer;
-              const isDisabled = disabledOptions.includes(option);
-              
-              let optClass = '';
-              if (isAnswered) {
-                if (isCorrect) optClass = 'correct';
-                else if (selectedOption === option) optClass = 'wrong';
-              }
-
-              const letterBadges = ['A', 'B', 'C', 'D'];
-              const letterFills = ['#18FFFF', '#E040FB', '#FFD54F', '#69F0AE'];
-
-              return (
-                <button
-                  key={idx}
-                  onClick={() => handleAnswer(option)}
-                  disabled={isAnswered || isDisabled}
-                  className={`mcq-option ${optClass}`}
-                  style={{
-                    opacity: isDisabled ? 0.3 : 1,
-                    pointerEvents: isDisabled ? 'none' : 'auto'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-                    <span style={{
-                      width: '34px',
-                      height: '34px',
-                      borderRadius: '10px',
-                      border: '2px solid #000000',
-                      backgroundColor: letterFills[idx % 4],
-                      color: idx % 4 === 0 || idx % 4 === 2 ? '#000000' : '#FFFFFF',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: '900',
-                      fontSize: '0.88rem',
-                      fontFamily: 'var(--font-title)',
-                      boxShadow: '2px 2px 0px #000000',
-                      flexShrink: 0
-                    }}>
-                      {letterBadges[idx % 4]}
-                    </span>
-                    <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
-                  </div>
-                  {isAnswered && isCorrect && <CheckCircle2 size={22} color="#000000" />}
-                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={22} color="#FFFFFF" />}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Next / Explanation Action Bar */}
-          {isAnswered && (() => {
-            const currentQ = questions[currentQIndex];
-            return (
-              <>
-                <div className="quiz-action-bar animate-fade">
-                  <button
-                    onClick={() => setShowExplanationModal(true)}
-                    className="quiz-btn-explanation"
-                    title="View full explanation in dialog"
-                  >
-                    <Lightbulb size={16} color="var(--theme-bulb)" />
-                    <span>Explanation</span>
-                  </button>
-
-                  <button 
-                    onClick={handleNext}
-                    className="quiz-btn-next"
-                  >
-                    <span>Next Question</span>
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-
-                {/* Explanation Modal / Dialog */}
-                <QuizExplanationModal
-                  isOpen={showExplanationModal}
-                  onClose={() => setShowExplanationModal(false)}
-                  question={currentQ?.question}
-                  correctAnswer={currentQ?.correct_answer}
-                  explanation={currentQ?.explanation}
-                  bengaliExplanation={currentQ?.bengali_clue}
-                />
-              </>
-            );
-          })()}
-        </div>
-      )}
-
-      {/* 3. QUIZ FINISHED CELEBRATION VIEW */}
-      {activeQuiz && quizFinished && (
-        <div className="glass-panel animate-fade" style={{
-          padding: '3rem',
-          textAlign: 'center',
-          background: 'linear-gradient(145deg, var(--bg-surface) 0%, hsla(var(--primary), 0.05) 100%)',
-          maxWidth: '550px',
-          margin: '2rem auto'
-        }}>
-          {activeQuiz === 'qualification' && score >= 7 ? (
-            <Award size={56} color="hsl(var(--secondary))" style={{ margin: '0 auto 1.5rem', display: 'block' }} />
-          ) : (
-            <CheckCircle2 size={56} color="hsl(var(--primary))" style={{ margin: '0 auto 1.5rem', display: 'block' }} />
-          )}
-
-          <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '0.5rem' }}>
-            Quiz Completed!
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
-            You scored <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>{score} out of {questions.length}</strong> ({Math.round((score / questions.length) * 100)}%).
-          </p>
-
-          {/* Qualification Exam result specific styling */}
-          {(activeQuiz === 'qualification' || activeQuiz === 'unit_qualification') && (
-            <div style={{
-              padding: '1.25rem',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: 'var(--bg-canvas)',
-              border: `1px solid ${score >= 7 ? 'hsla(var(--primary), 0.3)' : 'hsla(var(--danger), 0.3)'}`,
-              marginBottom: '2rem'
-            }}>
-              {score >= 7 ? (
-                <>
-                  <h4 style={{ color: 'hsl(var(--primary))', fontWeight: '700', marginBottom: '0.25rem' }}>🎉 QUIZ PASSED!</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                    {activeQuiz === 'qualification' 
-                      ? `Excellent! You qualified for the next prep level. Stage ${state.unlockedLevel} unlocked! You earned +150 XP and +30 Coins.`
-                      : `Great job! You passed the Unit ${state.unlockedLevel}.${selectedUnit || 1} study quiz. You earned +80 XP and +15 Coins!`}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h4 style={{ color: 'hsl(var(--danger))', fontWeight: '700', marginBottom: '0.25rem' }}>❌ DID NOT PASS</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                    You need to score at least <strong style={{ color: 'var(--text-primary)', fontWeight: '800' }}>70% (7/10)</strong> to pass. Review Unit {state.unlockedLevel}.{selectedUnit || 1} words and try again to solidify your retention!
-                  </p>
-                </>
-              )}
-            </div>
-          )}
-
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {/* 1. PASSING UNIT QUIZ NEXT STEPS */}
-            {activeQuiz === 'unit_qualification' && score >= 7 && (
-              <>
-                {(selectedUnit || 1) < 10 ? (
+      {/* 2. ACTIVE QUIZ PLAY VIEW (Powered by QuizRunner) */}
+      {activeQuiz && (
+        <QuizRunner
+          title={
+            activeQuiz === 'qualification'
+              ? 'Stage Cumulative Exam'
+              : activeQuiz === 'unit_qualification'
+              ? `Unit ${state.unlockedLevel}.${selectedUnit} Quiz`
+              : 'Practice Quiz'
+          }
+          subtitle={
+            typeof activeQuiz === 'object' ? activeQuiz.title : `Stage ${state.unlockedLevel}`
+          }
+          questions={questions}
+          state={state}
+          isQualification={activeQuiz === 'qualification' || activeQuiz === 'unit_qualification'}
+          passingScore={activeQuiz === 'qualification' ? 7 : 8}
+          onFinish={(finalScore, total) => {
+            if (activeQuiz === 'qualification') {
+              const percent = Math.round((finalScore / total) * 100);
+              state.recordQuizAttempt(state.unlockedLevel, percent);
+            } else if (activeQuiz === 'unit_qualification') {
+              state.addCoins(15);
+              state.addXp(80);
+            } else {
+              state.addCoins(5);
+              state.addXp(30);
+            }
+          }}
+          onQuit={() => setActiveQuiz(null)}
+          renderFinishActions={(finalScore, total, passed, handleRestart) => (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', marginTop: '0.5rem' }}>
+              {/* PASSING UNIT QUIZ NEXT STEPS */}
+              {activeQuiz === 'unit_qualification' && passed && (
+                (selectedUnit || 1) < 4 ? (
                   <>
                     <button
                       onClick={() => {
                         const nextU = (selectedUnit || 1) + 1;
                         if (setSelectedUnit) setSelectedUnit(nextU);
                         setActiveQuiz(null);
-                        setQuizFinished(false);
                         setActiveView('flashcards', nextU);
                       }}
                       className="btn btn-primary"
-                      style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
                     >
                       <BookOpen size={16} /> Unit {state.unlockedLevel}.{(selectedUnit || 1) + 1} Flashcards <ArrowRight size={16} />
                     </button>
-                    
                     <button
                       onClick={() => {
                         const nextU = (selectedUnit || 1) + 1;
@@ -918,7 +502,7 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                         generateQualificationQuiz(true);
                       }}
                       className="btn btn-accent"
-                      style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
                     >
                       <Sparkles size={16} /> Take Unit {state.unlockedLevel}.{(selectedUnit || 1) + 1} Quiz
                     </button>
@@ -927,69 +511,53 @@ export default function QuizzesView({ state, wordsData, setActiveView, selectedU
                   <button
                     onClick={() => generateQualificationQuiz(false)}
                     className="btn btn-accent"
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
                   >
                     <Trophy size={16} /> Stage {state.unlockedLevel} Qualification Exam <ArrowRight size={16} />
                   </button>
-                )}
-              </>
-            )}
+                )
+              )}
 
-            {/* 2. PASSING CUMULATIVE QUALIFICATION EXAM NEXT STEPS */}
-            {activeQuiz === 'qualification' && score >= 7 && (
-              <button
+              {/* PASSING CUMULATIVE QUALIFICATION EXAM */}
+              {activeQuiz === 'qualification' && passed && (
+                <button
+                  onClick={() => {
+                    if (setSelectedUnit) setSelectedUnit(1);
+                    setActiveQuiz(null);
+                    setActiveView('flashcards', 1);
+                  }}
+                  className="btn btn-primary"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
+                >
+                  <Sparkles size={16} /> Advance to Stage {state.unlockedLevel} (Unit {state.unlockedLevel}.1) <ArrowRight size={16} />
+                </button>
+              )}
+
+              {/* RETRY BUTTON */}
+              {!passed && (
+                <button 
+                  onClick={handleRestart}
+                  className="btn btn-primary"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
+                >
+                  <RefreshCw size={14} /> Retry Exam
+                </button>
+              )}
+
+              {/* RETURN TO ROADMAP */}
+              <button 
                 onClick={() => {
-                  if (setSelectedUnit) setSelectedUnit(1);
                   setActiveQuiz(null);
-                  setQuizFinished(false);
-                  setActiveView('flashcards', 1);
+                  setActiveView('dashboard');
                 }}
-                className="btn btn-primary"
-                style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
-              >
-                <Sparkles size={16} /> Advance to Stage {state.unlockedLevel} (Unit {state.unlockedLevel}.1) <ArrowRight size={16} />
-              </button>
-            )}
-
-            {/* RETRY BUTTONS */}
-            {activeQuiz === 'qualification' && score < 7 && (
-              <button 
-                onClick={() => generateQualificationQuiz(false)}
-                className="btn btn-primary"
-              >
-                <RefreshCw size={14} /> Retry Cumulative Exam
-              </button>
-            )}
-            {activeQuiz === 'unit_qualification' && (
-              <button 
-                onClick={() => generateQualificationQuiz(true)}
                 className="btn btn-secondary"
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem' }}
               >
-                <RefreshCw size={14} /> Retry Unit Quiz
+                Return to Roadmap
               </button>
-            )}
-            {activeQuiz !== 'qualification' && activeQuiz !== 'unit_qualification' && (
-              <button 
-                onClick={() => startPreloadedQuiz(activeQuiz)}
-                className="btn btn-primary"
-              >
-                <RefreshCw size={14} /> Practice Again
-              </button>
-            )}
-
-            {/* RETURN TO ROADMAP */}
-            <button 
-              onClick={() => {
-                setActiveQuiz(null);
-                setQuizFinished(false);
-                setActiveView('dashboard');
-              }}
-              className="btn btn-secondary"
-            >
-              Return to Roadmap
-            </button>
-          </div>
-        </div>
+            </div>
+          )}
+        />
       )}
     </div>
   );
