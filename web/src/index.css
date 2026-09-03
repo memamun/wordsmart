@@ -2593,5 +2593,46 @@ a:focus-visible,
   box-shadow: 2px 2px 0px #000000;
 }
 
+/* Responsive Mobile Blitz Layout - Fill vertical viewport nicely */
+@media (max-width: 768px) {
+  .timeblitz-view-container {
+    padding: 0.85rem !important;
+    padding-bottom: 80px !important;
+    min-height: calc(100dvh - 130px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blitz-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100dvh - 165px);
+    padding: 2rem 1.25rem !important;
+    gap: 1.5rem;
+  }
+
+  .blitz-play-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100dvh - 165px);
+    gap: 1rem;
+  }
+
+  .blitz-question-box {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  .blitz-cta-btn {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 1.15rem 1.5rem !important;
+  }
+}
+
+
 
 
