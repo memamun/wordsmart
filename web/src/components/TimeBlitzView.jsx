@@ -7,11 +7,14 @@ import {
   Play, 
   RefreshCw, 
   CheckCircle2, 
-  XCircle,
-  Award
+  XCircle, 
+  Award, 
+  ArrowLeft, 
+  AlertTriangle 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
+import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 
 const HIGH_SCORE_KEY = 'wordsmart_blitz_highscore';
 
@@ -25,6 +28,7 @@ export default function TimeBlitzView({ state, wordsData }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [timeChange, setTimeChange] = useState({ show: false, amount: 0 });
+  const [showQuitConfirm, setShowQuitConfirm] = useState(false);
   const [highScore, setHighScore] = useState(() => {
     try {
       return parseInt(localStorage.getItem(HIGH_SCORE_KEY) || '0', 10);
@@ -37,6 +41,18 @@ export default function TimeBlitzView({ state, wordsData }) {
   const timerRef = useRef(null);
   const feedbackTimeoutRef = useRef(null);
   const recentWordsRef = useRef([]);
+
+  // Synchronize active game state globally
+  useEffect(() => {
+    if (state?.setIsQuizActive) {
+      state.setIsQuizActive(isPlaying && !isGameOver);
+    }
+    return () => {
+      if (state?.setIsQuizActive) {
+        state.setIsQuizActive(false);
+      }
+    };
+  }, [isPlaying, isGameOver, state?.setIsQuizActive]);
 
   // Filter core vocabulary to only include words that have synonyms or antonyms
   const validWords = useMemo(() => {
@@ -54,16 +70,12 @@ export default function TimeBlitzView({ state, wordsData }) {
     // Filter out recently used words to prevent immediate repeats
     let availableWords = validWords.filter(w => !recentWordsRef.current.includes(w.word));
     if (availableWords.length === 0) {
-      availableWords = validWords; // Fallback if all words are marked as recent
+      availableWords = validWords;
     }
 
-    // Pick a random word from the available list
     const wordObj = availableWords[Math.floor(Math.random() * availableWords.length)];
-    
-    // Add to recent words list, keeping only the last 20 words
     recentWordsRef.current = [...recentWordsRef.current, wordObj.word].slice(-20);
     
-    // Choose relationship: synonym (0) or antonym (1)
     const isSynonym = wordObj.synonyms && wordObj.synonyms.length > 0 
       ? (wordObj.antonyms && wordObj.antonyms.length > 0 ? Math.random() > 0.5 : true) 
       : false;
@@ -92,45 +104,42 @@ export default function TimeBlitzView({ state, wordsData }) {
       }
     }
     
-    // If not enough distractors found, fallback to selecting distinct core words
     if (distractors.length < 3 && (wordsData?.words || []).length) {
       for (const w of wordsData.words) {
         if (!w || !w.word) continue;
         const dist = w.word.toUpperCase();
         if (dist !== correctAnswer && dist !== wordObj.word.toUpperCase() && !distractors.includes(dist)) {
           distractors.push(dist);
-          if (distractors.length === 3) break;
         }
+        if (distractors.length >= 3) break;
       }
     }
 
     const options = shuffleArray([correctAnswer, ...distractors]);
 
     setCurrentQuestion({
+      targetWord: wordObj.word,
       question: questionText,
-      options,
-      correct_answer: correctAnswer
+      correct_answer: correctAnswer,
+      options: options
     });
   };
 
   const startBlitzGame = () => {
-    if (feedbackTimeoutRef.current) {
-      clearTimeout(feedbackTimeoutRef.current);
-    }
-    setIsPlaying(true);
     setIsGameOver(false);
-    setTimeRemaining(60);
     setScore(0);
     setAnswerStreak(0);
+    setTimeRemaining(60);
     setSelectedOption(null);
     setIsAnswered(false);
-    setTimeChange({ show: false, amount: 0 });
+    setShowQuitConfirm(false);
     recentWordsRef.current = [];
     generateBlitzQuestion();
+    setIsPlaying(true);
   };
 
   const handleOptionClick = (option) => {
-    if (isAnswered) return; // Prevent double clicks
+    if (isAnswered) return;
     
     setIsAnswered(true);
     setSelectedOption(option);
@@ -138,9 +147,14 @@ export default function TimeBlitzView({ state, wordsData }) {
     const isCorrect = option === currentQuestion.correct_answer;
     
     if (isCorrect) {
+      playCorrectSound();
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate(25);
+      }
+
       setScore((prev) => prev + 10);
       setAnswerStreak((prev) => prev + 1);
-      setTimeRemaining((prev) => Math.min(prev + 3, 90)); // add 3s, max 90s
+      setTimeRemaining((prev) => Math.min(prev + 3, 90));
       setTimeChange({ show: true, amount: 3 });
       
       // Multiplier effect
@@ -156,31 +170,36 @@ export default function TimeBlitzView({ state, wordsData }) {
         });
       }
     } else {
+      playIncorrectSound();
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate([50, 30, 50]);
+      }
       setAnswerStreak(0);
-      setTimeRemaining((prev) => Math.max(prev - 5, 0)); // deduct 5s
+      setTimeRemaining((prev) => Math.max(prev - 5, 0));
       setTimeChange({ show: true, amount: -5 });
     }
 
-    // Delay generating next question to show feedback
     feedbackTimeoutRef.current = setTimeout(() => {
       setSelectedOption(null);
       setIsAnswered(false);
       setTimeChange({ show: false, amount: 0 });
       generateBlitzQuestion();
-    }, 600); // 600ms feedback duration
+    }, 600);
   };
 
-  // Timer loop
+  // Timer loop - automatically pauses when quit confirmation dialog is open
   useEffect(() => {
-    if (isPlaying && timeRemaining > 0) {
+    if (isPlaying && timeRemaining > 0 && !showQuitConfirm) {
       timerRef.current = setInterval(() => {
         setTimeRemaining((prev) => prev - 1);
       }, 1000);
     } else if (timeRemaining === 0 && isPlaying) {
-      // Game Over
       clearInterval(timerRef.current);
       setIsPlaying(false);
       setIsGameOver(true);
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate([80, 40, 80]);
+      }
       if (feedbackTimeoutRef.current) {
         clearTimeout(feedbackTimeoutRef.current);
       }
@@ -188,7 +207,6 @@ export default function TimeBlitzView({ state, wordsData }) {
       setIsAnswered(false);
       setTimeChange({ show: false, amount: 0 });
 
-      // Check for new High Score
       if (score > highScore) {
         setHighScore(score);
         try {
@@ -202,14 +220,13 @@ export default function TimeBlitzView({ state, wordsData }) {
         });
       }
 
-      // Final rewards
       const coinsEarned = Math.floor(score / 20);
       state.addCoins(coinsEarned);
       state.addXp(Math.floor(score / 2));
     }
 
     return () => clearInterval(timerRef.current);
-  }, [isPlaying, timeRemaining, score, highScore, state]);
+  }, [isPlaying, timeRemaining, showQuitConfirm, score, highScore, state]);
 
   // Clean up timer and feedback timeout on unmount
   useEffect(() => {
@@ -220,6 +237,17 @@ export default function TimeBlitzView({ state, wordsData }) {
       }
     };
   }, []);
+
+  const handleQuitBlitz = () => {
+    clearInterval(timerRef.current);
+    if (feedbackTimeoutRef.current) {
+      clearTimeout(feedbackTimeoutRef.current);
+    }
+    setShowQuitConfirm(false);
+    setIsPlaying(false);
+    setIsGameOver(false);
+    if (state?.setIsQuizActive) state.setIsQuizActive(false);
+  };
 
   return (
     <div style={{ padding: '1.5rem 1rem', maxWidth: '600px', margin: '0 auto' }} className="animate-fade timeblitz-view-container">
@@ -301,31 +329,50 @@ export default function TimeBlitzView({ state, wordsData }) {
             border: 'var(--border-thick)',
             boxShadow: 'var(--shadow-tiny)'
           }}>
-            {/* Timer */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', position: 'relative' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? 'var(--theme-red)' : 'var(--text-primary)' }}>
+            {/* Left: Timer + Quit */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button
+                onClick={() => setShowQuitConfirm(true)}
+                className="btn btn-secondary"
+                style={{
+                  padding: '0.3rem 0.65rem',
+                  fontSize: '0.75rem',
+                  fontWeight: '800',
+                  borderRadius: '9999px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  cursor: 'pointer'
+                }}
+                title="Quit Blitz Run"
+              >
+                <ArrowLeft size={13} />
+                <span>Quit</span>
+              </button>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? 'var(--theme-red)' : 'var(--text-primary)', position: 'relative' }}>
                 <Timer size={18} className={timeRemaining <= 10 ? 'animate-shake' : ''} />
                 <span style={{ fontSize: '1.3rem', fontFamily: 'var(--font-title)', fontWeight: '900' }}>
                   {timeRemaining}s
                 </span>
+
+                {/* Floating time feedback */}
+                {timeChange.show && (
+                  <span className="animate-float-fade-up" style={{
+                    position: 'absolute',
+                    left: '100%',
+                    marginLeft: '0.5rem',
+                    fontWeight: '900',
+                    fontSize: '0.95rem',
+                    color: timeChange.amount > 0 ? 'var(--theme-green)' : 'var(--theme-red)',
+                    textShadow: '1px 1px 0px #000',
+                    pointerEvents: 'none',
+                    zIndex: 10
+                  }}>
+                    {timeChange.amount > 0 ? `+${timeChange.amount}s` : `${timeChange.amount}s`}
+                  </span>
+                )}
               </div>
-              
-              {/* Floating time feedback */}
-              {timeChange.show && (
-                <span className="animate-float-fade-up" style={{
-                  position: 'absolute',
-                  left: '100%',
-                  marginLeft: '0.5rem',
-                  fontWeight: '900',
-                  fontSize: '0.95rem',
-                  color: timeChange.amount > 0 ? 'var(--theme-green)' : 'var(--theme-red)',
-                  textShadow: '1px 1px 0px #000',
-                  pointerEvents: 'none',
-                  zIndex: 10
-                }}>
-                  {timeChange.amount > 0 ? `+${timeChange.amount}s` : `${timeChange.amount}s`}
-                </span>
-              )}
             </div>
 
             {/* Answer Streak */}
@@ -380,14 +427,16 @@ export default function TimeBlitzView({ state, wordsData }) {
                     fontSize: '1rem',
                     fontWeight: '800',
                     display: 'flex',
-                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    minHeight: '48px'
+                    justifyContent: 'space-between',
+                    borderRadius: 'var(--radius-md)',
+                    border: 'var(--border-thin)',
+                    backgroundColor: 'var(--bg-surface)'
                   }}
                 >
                   <span>{option}</span>
-                  {isAnswered && isCorrect && <CheckCircle2 size={18} color="var(--theme-green)" />}
-                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={18} color="var(--theme-red)" />}
+                  {isAnswered && isCorrect && <CheckCircle2 size={18} color="hsl(var(--success))" />}
+                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={18} color="hsl(var(--danger))" />}
                 </button>
               );
             })}
@@ -395,28 +444,68 @@ export default function TimeBlitzView({ state, wordsData }) {
         </div>
       )}
 
-      {/* 3. GAME OVER OVERLAY */}
+      {/* 3. GAME OVER SCREEN */}
       {isGameOver && (
-        <div className="card animate-fade" style={{
+        <div className="card animate-scale-in" style={{
           padding: '2.5rem 1.5rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.08) 100%)',
+          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--primary), 0.08) 100%)',
           border: 'var(--border-thick)',
-          boxShadow: 'var(--shadow-medium)',
+          boxShadow: 'var(--shadow-large)',
           borderRadius: 'var(--radius-lg)'
         }}>
-          <Trophy size={48} color="var(--theme-yellow)" style={{ margin: '0 auto 1rem', display: 'block' }} />
-          <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+          <div style={{
+            width: '64px',
+            height: '64px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-tiny)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1rem',
+            color: 'hsl(var(--primary))'
+          }}>
+            <Award size={32} />
+          </div>
+
+          <h3 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
             Time's Up!
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.25rem', fontWeight: '700' }}>
-            Final Blitz Score: <strong style={{ color: 'hsl(var(--secondary))', fontSize: '1.2rem' }}>{score} PTS</strong>
+          </h3>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            Solid run! Keep training your fast recall.
           </p>
 
-          {/* Best Score Badge */}
           <div style={{
-            display: 'inline-flex',
-            flexDirection: 'column',
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1.5rem',
+            padding: '1.25rem',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: 'var(--border-thick)',
+            boxShadow: 'var(--shadow-medium)',
+            borderRadius: 'var(--radius-md)',
+            marginBottom: '1rem'
+          }}>
+            <div>
+              <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
+              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
+                {score}
+              </div>
+            </div>
+            <div style={{ width: '1px', backgroundColor: 'var(--border-muted)' }} />
+            <div>
+              <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
+              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+                x{answerStreak}
+              </div>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
             padding: '0.45rem 1.25rem',
             backgroundColor: 'var(--theme-yellow)',
@@ -464,6 +553,117 @@ export default function TimeBlitzView({ state, wordsData }) {
           >
             <RefreshCw size={16} color="#000" /> Replay Time Blitz
           </button>
+        </div>
+      )}
+
+      {/* Quit Blitz Confirmation Modal */}
+      {showQuitConfirm && (
+        <div 
+          className="animate-fade"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.25rem'
+          }}
+          onClick={() => setShowQuitConfirm(false)}
+        >
+          <div 
+            className="animate-scale-in"
+            style={{
+              backgroundColor: 'var(--bg-surface)',
+              border: '3px solid #000000',
+              boxShadow: '6px 6px 0px #000000',
+              borderRadius: '20px',
+              padding: '2rem 1.75rem',
+              maxWidth: '420px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              gap: '1.25rem'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--theme-yellow)',
+              border: '2.5px solid #000000',
+              boxShadow: '2.5px 2.5px 0px #000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#000000'
+            }}>
+              <AlertTriangle size={32} strokeWidth={2.5} />
+            </div>
+
+            <div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontFamily: 'var(--font-title)',
+                fontWeight: '900',
+                color: 'var(--text-primary)',
+                margin: '0 0 0.4rem 0'
+              }}>
+                Quit Time Blitz?
+              </h3>
+              <p style={{
+                fontSize: '0.92rem',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Your current blitz score and streak will end. Are you sure you want to quit?
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.75rem', width: '100%', marginTop: '0.5rem' }}>
+              <button
+                onClick={() => setShowQuitConfirm(false)}
+                className="btn btn-secondary"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Keep Blitzing
+              </button>
+
+              <button
+                onClick={handleQuitBlitz}
+                className="btn"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  backgroundColor: '#FF5252',
+                  color: '#FFFFFF',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Yes, Quit
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
