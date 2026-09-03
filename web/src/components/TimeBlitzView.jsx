@@ -10,9 +10,7 @@ import {
   XCircle, 
   Award, 
   ArrowLeft, 
-  AlertTriangle,
-  Flame,
-  Sparkles
+  AlertTriangle 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
@@ -249,19 +247,18 @@ export default function TimeBlitzView({ state, wordsData }) {
   };
 
   return (
-    <div className="animate-fade timeblitz-view-container" style={{ maxWidth: '860px', margin: '0 auto', width: '100%' }}>
-      {/* 1. START GAME SCREEN (Optimized Desktop Bento Grid + Mobile Responsive) */}
+    <div style={{ padding: '1.5rem 1rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade timeblitz-view-container">
+      {/* 1. START GAME SCREEN */}
       {!isPlaying && !isGameOver && (
-        <div className="blitz-card animate-slide-up" style={{ gap: '2rem' }}>
-          {/* Top Hero Section */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <div className="blitz-card timeblitz-start-card animate-slide-up">
+          <div className="timeblitz-start-hero">
             <div style={{
               width: '72px',
               height: '72px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 100%)',
               border: '2.5px solid #000000',
-              boxShadow: '3px 3px 0px #000000, 0 8px 20px rgba(255, 160, 0, 0.3)',
+              boxShadow: '3px 3px 0px #000000, 0 8px 16px rgba(255, 160, 0, 0.25)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -272,11 +269,11 @@ export default function TimeBlitzView({ state, wordsData }) {
             </div>
 
             <h2 style={{ 
-              fontSize: 'clamp(1.85rem, 4vw, 2.4rem)', 
+              fontSize: 'clamp(1.85rem, 5vw, 2.4rem)', 
               fontFamily: 'var(--font-title)', 
               fontWeight: '900', 
               textTransform: 'uppercase', 
-              marginBottom: '0.4rem', 
+              marginBottom: '0.5rem', 
               color: 'var(--text-primary)',
               letterSpacing: '-0.01em'
             }}>
@@ -285,133 +282,92 @@ export default function TimeBlitzView({ state, wordsData }) {
             <p style={{ 
               color: 'var(--text-secondary)', 
               fontSize: '1rem', 
-              maxWidth: '600px', 
+              maxWidth: '480px', 
               margin: '0 auto',
-              lineHeight: '1.6',
+              lineHeight: '1.55',
               fontWeight: '500'
             }}>
-              Test your rapid vocabulary recall. Race against the clock and answer before time runs out!
+              Test your rapid recall. Answer vocabulary synonyms and antonyms before time runs out.
             </p>
+
+            {highScore > 0 && (
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.4rem 0.95rem',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '2px solid var(--border-muted)',
+                borderRadius: '9999px',
+                marginTop: '1rem',
+                color: 'var(--text-secondary)',
+                fontSize: '0.85rem',
+                fontWeight: '800',
+                boxShadow: '2px 2px 0px var(--shadow-color)'
+              }}>
+                <Trophy size={16} color="var(--theme-yellow)" />
+                <span>Personal Best: <strong style={{ color: 'var(--theme-yellow)' }}>{highScore} PTS</strong></span>
+              </div>
+            )}
           </div>
 
-          {/* Middle Bento Grid: 2 Columns on Desktop, 1 Column on Mobile */}
-          <div className="blitz-middle-grid">
-            {/* Left Column: Rules & Streak Engine */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', height: '100%', justifyContent: 'space-between' }}>
-              {/* Quick Rules Pills */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '0.65rem',
-                width: '100%'
-              }}>
-                <div className="blitz-pill blitz-pill-neutral">
-                  <span className="pill-label">START TIME</span>
-                  <span className="pill-value">⏱️ 60s</span>
-                </div>
-                <div className="blitz-pill blitz-pill-correct">
-                  <span className="pill-label">CORRECT</span>
-                  <span className="pill-value">+3s</span>
-                </div>
-                <div className="blitz-pill blitz-pill-mistake">
-                  <span className="pill-label">MISTAKE</span>
-                  <span className="pill-value">-5s</span>
-                </div>
+          {/* Quick Rules Pills with Crisp High-Contrast Theme Colors */}
+          <div className="timeblitz-start-rules">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '0.85rem',
+              maxWidth: '520px',
+              margin: '0 auto'
+            }}>
+              {/* Start Pill */}
+              <div className="blitz-pill blitz-pill-neutral">
+                <span className="pill-label">START TIME</span>
+                <span className="pill-value">⏱️ 60s</span>
               </div>
 
-              {/* Streak Multipliers Callout */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.9rem 1.15rem',
-                borderRadius: '16px',
-                backgroundColor: 'rgba(var(--primary-rgb), 0.08)',
-                border: '1.5px dashed var(--border-muted)',
-                width: '100%',
-                textAlign: 'left'
-              }}>
-                <Flame size={24} color="hsl(var(--secondary))" style={{ flexShrink: 0 }} />
-                <span style={{ fontSize: '0.85rem', lineHeight: '1.45', color: 'var(--text-secondary)', fontWeight: '600' }}>
-                  Keep a streak of <strong>5+ correct</strong> to trigger <strong>Bonus Coins</strong> and <strong>XP Multipliers</strong>!
-                </span>
+              {/* Correct Pill */}
+              <div className="blitz-pill blitz-pill-correct">
+                <span className="pill-label">CORRECT</span>
+                <span className="pill-value">+3s</span>
+              </div>
+
+              {/* Mistake Pill */}
+              <div className="blitz-pill blitz-pill-mistake">
+                <span className="pill-label">MISTAKE</span>
+                <span className="pill-value">-5s</span>
               </div>
             </div>
 
-            {/* Right Column: Player Record & Rewards Intel */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', height: '100%', justifyContent: 'space-between' }}>
-              {/* High Score Record Showcase */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.95rem 1.25rem',
-                borderRadius: '16px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '2px solid var(--border-muted)',
-                boxShadow: '3px 3px 0px var(--shadow-color)',
-                width: '100%'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Trophy size={24} color="var(--theme-yellow)" />
-                  <div>
-                    <div style={{ fontSize: '0.68rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Player Record
-                    </div>
-                    <div style={{ fontSize: '0.92rem', fontWeight: '800', color: 'var(--text-primary)' }}>
-                      Personal Best
-                    </div>
-                  </div>
-                </div>
-                <span style={{ fontSize: '1.45rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
-                  {highScore > 0 ? `${highScore} PTS` : 'NO RECORD'}
-                </span>
-              </div>
-
-              {/* Rewards Conversion Rate Info */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-                padding: '0.85rem 1.15rem',
-                borderRadius: '16px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '2px solid var(--border-muted)',
-                boxShadow: '3px 3px 0px var(--shadow-color)',
-                width: '100%'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: '800', color: 'var(--text-secondary)' }}>
-                  <Coins size={16} color="hsl(var(--coin))" />
-                  <span>+1 Coin / 20 pts</span>
-                </div>
-                <div style={{ width: '1px', height: '22px', backgroundColor: 'var(--border-muted)' }} />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: '800', color: 'var(--text-secondary)' }}>
-                  <Zap size={16} color="hsl(var(--primary))" />
-                  <span>+1 XP / 2 pts</span>
-                </div>
-              </div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.35rem',
+              marginTop: '1rem',
+              fontSize: '0.82rem',
+              color: 'var(--text-muted)',
+              fontWeight: '700'
+            }}>
+              <Zap size={14} color="var(--theme-yellow)" fill="var(--theme-yellow)" />
+              <span>Chain correct answers to trigger multiplier bonuses!</span>
             </div>
           </div>
 
-          {/* Bottom Action Section */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.6rem' }}>
+          <div className="timeblitz-start-footer">
             <button 
               onClick={startBlitzGame}
               className="blitz-cta-btn"
-              style={{ minWidth: '320px' }}
             >
               <Play size={20} fill="#000" /> Start Time Blitz
             </button>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>
-              60 seconds • Rapid-fire questions • Instant feedback
-            </span>
           </div>
         </div>
       )}
 
       {/* 2. PLAYING GAME LOOP SCREEN */}
       {isPlaying && currentQuestion && (
-        <div className="blitz-play-container">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           {/* Game Stats HUD */}
           <div style={{
             display: 'flex',
@@ -503,19 +459,19 @@ export default function TimeBlitzView({ state, wordsData }) {
 
           {/* Rapid Question Board */}
           <div className="blitz-question-box">
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', backgroundColor: 'rgba(255, 179, 0, 0.15)', border: '1px solid rgba(255, 179, 0, 0.4)' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.5rem', padding: '0.2rem 0.65rem', borderRadius: '9999px', backgroundColor: 'rgba(255, 179, 0, 0.15)', border: '1px solid rgba(255, 179, 0, 0.4)' }}>
               <Zap size={14} color="#D97706" fill="#D97706" />
               <span style={{ fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: '900', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 RAPID TARGET
               </span>
             </div>
-            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.85rem)', color: 'var(--text-primary)', lineHeight: '1.4', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
+            <h2 style={{ fontSize: '1.65rem', color: 'var(--text-primary)', lineHeight: '1.4', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
               {currentQuestion.question}
             </h2>
           </div>
 
-          {/* MCQ Blitz Options */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', width: '100%' }}>
+          {/* MCQ Blitz Options - Uniform Letter Badges (A, B, C, D) & Neo-Brutalist Cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             {currentQuestion.options.map((option, idx) => {
               const isCorrect = option === currentQuestion.correct_answer;
               const isSelected = selectedOption === option;
@@ -539,7 +495,7 @@ export default function TimeBlitzView({ state, wordsData }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '1.1rem 1.25rem',
+                    padding: '1rem 1.25rem',
                     borderRadius: '16px',
                     border: '2.5px solid var(--border-muted)',
                     boxShadow: '4px 4px 0px var(--shadow-color)',
@@ -551,8 +507,8 @@ export default function TimeBlitzView({ state, wordsData }) {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
                     <span style={{
-                      width: '36px',
-                      height: '36px',
+                      width: '34px',
+                      height: '34px',
                       borderRadius: '10px',
                       border: '2px solid #000000',
                       backgroundColor: letterFills[idx % 4],
@@ -561,14 +517,14 @@ export default function TimeBlitzView({ state, wordsData }) {
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontWeight: '900',
-                      fontSize: '0.92rem',
+                      fontSize: '0.88rem',
                       fontFamily: 'var(--font-title)',
                       boxShadow: '2px 2px 0px #000000',
                       flexShrink: 0
                     }}>
                       {letterBadges[idx % 4]}
                     </span>
-                    <span style={{ fontSize: '1.1rem', fontWeight: '800' }}>{option}</span>
+                    <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
                   </div>
                   {isAnswered && isCorrect && <CheckCircle2 size={22} color="var(--quiz-correct-text)" />}
                   {isAnswered && isSelected && !isCorrect && <XCircle size={22} color="var(--quiz-incorrect-text)" />}
@@ -579,114 +535,112 @@ export default function TimeBlitzView({ state, wordsData }) {
         </div>
       )}
 
-      {/* 3. GAME OVER SCREEN (Bento Grid on Desktop) */}
+      {/* 3. GAME OVER SCREEN */}
       {isGameOver && (
-        <div className="blitz-card animate-scale-in" style={{ gap: '2rem' }}>
-          <div>
-            <div style={{
-              width: '72px',
-              height: '72px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 100%)',
-              border: '2.5px solid #000000',
-              boxShadow: '3px 3px 0px #000000',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 1.25rem',
-              color: '#000000'
-            }}>
-              <Award size={38} strokeWidth={2.5} />
-            </div>
-
-            <h3 style={{ fontSize: '2.2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
-              Time's Up!
-            </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-              Solid run! Keep training your rapid vocabulary recall.
-            </p>
+        <div className="blitz-card animate-scale-in">
+          <div style={{
+            width: '68px',
+            height: '68px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 100%)',
+            border: '2.5px solid #000000',
+            boxShadow: '3px 3px 0px #000000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1.25rem',
+            color: '#000000'
+          }}>
+            <Award size={36} strokeWidth={2.5} />
           </div>
 
-          <div className="blitz-middle-grid">
-            {/* Final Score & Streak Card */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              alignItems: 'center',
-              padding: '1.5rem',
-              backgroundColor: 'var(--bg-surface-elevated)',
-              border: '2px solid var(--border-muted)',
-              boxShadow: '4px 4px 0px var(--shadow-color)',
-              borderRadius: '16px',
-              width: '100%'
-            }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
-                <div style={{ fontSize: '2.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
-                  {score}
-                </div>
-              </div>
-              <div style={{ width: '2px', height: '50px', backgroundColor: 'var(--border-muted)' }} />
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
-                <div style={{ fontSize: '2.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
-                  x{answerStreak}
-                </div>
+          <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
+            Time's Up!
+          </h3>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.75rem' }}>
+            Solid run! Keep training your fast recall.
+          </p>
+
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1.5rem',
+            padding: '1.25rem',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: '2px solid var(--border-muted)',
+            boxShadow: '4px 4px 0px var(--shadow-color)',
+            borderRadius: '16px',
+            marginBottom: '1.25rem',
+            maxWidth: '420px',
+            margin: '0 auto 1.25rem'
+          }}>
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
+              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
+                {score}
               </div>
             </div>
-
-            {/* High Score & Rewards Card */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', width: '100%' }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '0.75rem 1.25rem',
-                backgroundColor: 'var(--theme-yellow)',
-                border: '2px solid #000000',
-                boxShadow: '3px 3px 0px #000000',
-                borderRadius: '14px',
-                width: '100%',
-                color: '#000000'
-              }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
-                <div style={{ fontSize: '1.45rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
-                  {highScore} PTS
-                </div>
-              </div>
-
-              <div style={{
-                padding: '1rem 1.25rem',
-                borderRadius: '16px',
-                backgroundColor: 'var(--bg-surface-elevated)',
-                border: '2px solid var(--border-muted)',
-                boxShadow: '4px 4px 0px var(--shadow-color)',
-                textAlign: 'left',
-                fontSize: '0.92rem',
-                lineHeight: '1.8',
-                width: '100%'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
-                  <span>Coins Earned:</span>
-                  <span style={{ color: 'hsl(var(--secondary))', fontWeight: '900' }}>+{Math.floor(score / 20)} Coins</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
-                  <span>XP Granted:</span>
-                  <span style={{ color: 'hsl(var(--primary))', fontWeight: '900' }}>+{Math.floor(score / 2)} XP</span>
-                </div>
-                {score === highScore && score > 0 && (
-                  <div style={{ color: 'var(--quiz-correct-text)', fontWeight: '900', marginTop: '0.4rem', textAlign: 'center', fontSize: '0.95rem' }}>
-                    🎉 NEW HIGH SCORE RECORD!
-                  </div>
-                )}
+            <div style={{ width: '2px', backgroundColor: 'var(--border-muted)' }} />
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
+              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+                x{answerStreak}
               </div>
             </div>
+          </div>
+
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '0.65rem 1.25rem',
+            backgroundColor: 'var(--theme-yellow)',
+            border: '2px solid #000000',
+            boxShadow: '3px 3px 0px #000000',
+            borderRadius: '14px',
+            marginBottom: '1.5rem',
+            maxWidth: '420px',
+            margin: '0 auto 1.5rem',
+            color: '#000000'
+          }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
+              {highScore} PTS
+            </div>
+          </div>
+
+          <div style={{
+            padding: '1.15rem 1.25rem',
+            borderRadius: '16px',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: '2px solid var(--border-muted)',
+            boxShadow: '4px 4px 0px var(--shadow-color)',
+            textAlign: 'left',
+            marginBottom: '1.75rem',
+            fontSize: '0.9rem',
+            lineHeight: '1.7',
+            maxWidth: '420px',
+            margin: '0 auto 1.75rem'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
+              <span>Coins Earned:</span>
+              <span style={{ color: 'hsl(var(--secondary))', fontWeight: '900' }}>+{Math.floor(score / 20)} Coins</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
+              <span>XP Granted:</span>
+              <span style={{ color: 'hsl(var(--primary))', fontWeight: '900' }}>+{Math.floor(score / 2)} XP</span>
+            </div>
+            {score === highScore && score > 0 && (
+              <div style={{ color: 'var(--quiz-correct-text)', fontWeight: '900', marginTop: '0.5rem', textAlign: 'center', fontSize: '0.95rem' }}>
+                🎉 NEW HIGH SCORE RECORD!
+              </div>
+            )}
           </div>
 
           <button 
             onClick={startBlitzGame}
             className="blitz-cta-btn"
-            style={{ minWidth: '320px', margin: '0 auto' }}
+            style={{ maxWidth: '420px' }}
           >
             <RefreshCw size={18} color="#000000" /> Replay Time Blitz
           </button>
