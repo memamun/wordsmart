@@ -215,13 +215,15 @@ export function useGameState() {
       // Calculate XP and Coin reward based on quality rating
       const xpGained = rating >= 3 ? 10 + rating : 2;
       const coinsGained = rating === 5 ? 2 : 0;
+      const newXp = prev.xp + xpGained;
+      const newCoins = prev.coins + coinsGained;
 
       const newProgress = {
         ...prev.wordProgress,
         [wordId]: result,
       };
 
-      // Recalculate achievement rules
+      // Recalculate achievement rules atomically
       const masteredCount = Object.values(newProgress).filter(p => p.status === 'mastered').length;
       const newAchievements = [...prev.achievements];
       if (masteredCount >= 10 && !newAchievements.includes('mastered_10')) {
@@ -230,20 +232,25 @@ export function useGameState() {
       if (masteredCount >= 50 && !newAchievements.includes('mastered_50')) {
         newAchievements.push('mastered_50');
       }
-
-      // We trigger local states update
-      setTimeout(() => {
-        addXp(xpGained);
-        if (coinsGained > 0) addCoins(coinsGained);
-      }, 0);
+      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
+        newAchievements.push('xp_1000');
+      }
+      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
+        newAchievements.push('xp_5000');
+      }
+      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
+        newAchievements.push('xp_10000');
+      }
 
       return {
         ...prev,
+        xp: newXp,
+        coins: newCoins,
         wordProgress: newProgress,
         achievements: newAchievements,
       };
     });
-  }, [addXp, addCoins]);
+  }, []);
 
   const toggleBookmark = useCallback((wordId) => {
     setState((prev) => {
@@ -259,7 +266,9 @@ export function useGameState() {
 
   const recordQuizAttempt = useCallback((levelId, scorePercent) => {
     const isPass = scorePercent >= 70; 
-    
+    const xpGained = isPass ? 150 : 30;
+    const coinsGained = isPass ? 30 : 5;
+
     setState((prev) => {
       const existing = prev.levelAttempts[levelId];
       const bestScore = Math.max(existing?.score || 0, scorePercent);
@@ -279,6 +288,8 @@ export function useGameState() {
         nextUnlocked = prev.unlockedLevel + 1;
       }
 
+      const newXp = prev.xp + xpGained;
+      const newCoins = prev.coins + coinsGained;
       const newAchievements = [...prev.achievements];
       if (isPass && !newAchievements.includes(`stage_${levelId}_passed`)) {
         newAchievements.push(`stage_${levelId}_passed`);
@@ -286,23 +297,26 @@ export function useGameState() {
       if (scorePercent === 100 && !newAchievements.includes('perfect_quiz')) {
         newAchievements.push('perfect_quiz');
       }
+      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
+        newAchievements.push('xp_1000');
+      }
+      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
+        newAchievements.push('xp_5000');
+      }
+      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
+        newAchievements.push('xp_10000');
+      }
 
       return {
         ...prev,
+        xp: newXp,
+        coins: newCoins,
         levelAttempts: updatedAttempts,
         unlockedLevel: nextUnlocked,
         achievements: newAchievements,
       };
     });
-
-    if (isPass) {
-      addXp(150);
-      addCoins(30);
-    } else {
-      addXp(30);
-      addCoins(5);
-    }
-  }, [addXp, addCoins]);
+  }, []);
 
   const markWordMastered = useCallback((wordId) => {
     setState((prev) => {
@@ -325,18 +339,35 @@ export function useGameState() {
         }
       };
 
-      // Award XP and Coins
-      setTimeout(() => {
-        addXp(15);
-        addCoins(2);
-      }, 0);
+      const newXp = prev.xp + 15;
+      const newCoins = prev.coins + 2;
+      const masteredCount = Object.values(newProgress).filter(p => p.status === 'mastered').length;
+      const newAchievements = [...prev.achievements];
+      if (masteredCount >= 10 && !newAchievements.includes('mastered_10')) {
+        newAchievements.push('mastered_10');
+      }
+      if (masteredCount >= 50 && !newAchievements.includes('mastered_50')) {
+        newAchievements.push('mastered_50');
+      }
+      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
+        newAchievements.push('xp_1000');
+      }
+      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
+        newAchievements.push('xp_5000');
+      }
+      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
+        newAchievements.push('xp_10000');
+      }
 
       return {
         ...prev,
-        wordProgress: newProgress
+        xp: newXp,
+        coins: newCoins,
+        wordProgress: newProgress,
+        achievements: newAchievements,
       };
     });
-  }, [addXp, addCoins]);
+  }, []);
 
   const markWordLearning = useCallback((wordId) => {
     setState((prev) => {
@@ -359,17 +390,26 @@ export function useGameState() {
         }
       };
 
-      // Award XP
-      setTimeout(() => {
-        addXp(5);
-      }, 0);
+      const newXp = prev.xp + 5;
+      const newAchievements = [...prev.achievements];
+      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
+        newAchievements.push('xp_1000');
+      }
+      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
+        newAchievements.push('xp_5000');
+      }
+      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
+        newAchievements.push('xp_10000');
+      }
 
       return {
         ...prev,
-        wordProgress: newProgress
+        xp: newXp,
+        wordProgress: newProgress,
+        achievements: newAchievements,
       };
     });
-  }, [addXp]);
+  }, []);
 
   const resetProgress = useCallback(() => {
     setState(DEFAULT_STATE);
