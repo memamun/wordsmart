@@ -30,13 +30,17 @@ export function useWordsData() {
           }
         };
 
-        // Core vocabulary is required — fail hard if missing
+        // 1. Core vocabulary is required — unblock initial UI immediately
         const vocabRes = await fetch('/data/core_vocabulary.json');
         if (!vocabRes.ok) throw new Error('Failed to fetch core vocabulary data');
         const vocabData = await vocabRes.json();
 
-        // Load the rest in parallel, gracefully falling back on failure
-        const [quizData, storyData, hitData, specData, vocabDrillsData, quickQuizzesData, advancedQuizzesData] = await Promise.all([
+        setWords(vocabData.words || []);
+        setError(null);
+        setLoading(false);
+
+        // 2. Load secondary quiz, drill, and story datasets in background
+        Promise.all([
           fetchJson('/data/mcq_quizzes.json', 'MCQ Quizzes'),
           fetchJson('/data/contextual_stories.json', 'Contextual Stories'),
           fetchJson('/data/hit_parades.json', 'Hit Parades'),
@@ -44,21 +48,18 @@ export function useWordsData() {
           fetchJson('/data/vocab_drills.json', 'Vocab Drills'),
           fetchJson('/data/quick_quizzes.json', 'Quick Quizzes'),
           fetchJson('/data/advanced_quizzes.json', 'Advanced Quizzes'),
-        ]);
-
-        setWords(vocabData.words || []);
-        setQuizzes(quizData?.quizzes || []);
-        setStories(storyData?.stories || []);
-        setHitParades(hitData || {});
-        setSpecializedVocab(specData?.chapters || []);
-        setVocabDrills(vocabDrillsData || []);
-        setQuickQuizzes(quickQuizzesData || []);
-        setAdvancedQuizzes(advancedQuizzesData || []);
-        setError(null);
+        ]).then(([quizData, storyData, hitData, specData, vocabDrillsData, quickQuizzesData, advancedQuizzesData]) => {
+          setQuizzes(quizData?.quizzes || []);
+          setStories(storyData?.stories || []);
+          setHitParades(hitData || {});
+          setSpecializedVocab(specData?.chapters || []);
+          setVocabDrills(vocabDrillsData || []);
+          setQuickQuizzes(quickQuizzesData || []);
+          setAdvancedQuizzes(advancedQuizzesData || []);
+        });
       } catch (err) {
         console.error('Error loading Wordsmart data:', err);
         setError(err.message);
-      } finally {
         setLoading(false);
       }
     }
