@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Award, 
   HelpCircle, 
@@ -9,9 +9,12 @@ import {
   RefreshCw,
   Sparkles,
   Lightbulb,
-  ArrowLeft
+  ArrowLeft,
+  BookOpen,
+  Shield
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { shuffleArray } from '../utils/shuffle.js';
 import QuizExplanationModal from './QuizExplanationModal';
 import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 
@@ -58,26 +61,29 @@ export default function QuizRunner({
 
   // Hint: 50/50
   const buyFiftyFifty = () => {
-    if (!currentQ || fiftyFiftyUsed) return;
-    if (state.coins < 10) return showNotice('Not enough coins for 50/50 hint (10 coins required).');
+    if (!currentQ || fiftyFiftyUsed || isAnswered) return;
+    if (state.coins < 15) return showNotice('Not enough coins for 50/50 hint (15 coins required).');
 
-    state.deductCoins(10);
+    state.deductCoins(15);
     setFiftyFiftyUsed(true);
 
     const wrongOptions = currentQ.options.filter(opt => opt !== currentQ.correct_answer);
-    const toDisable = wrongOptions.slice(0, 2);
+    const toDisable = shuffleArray(wrongOptions).slice(0, 2);
     setDisabledOptions(toDisable);
   };
 
   // Hint: Bengali Clue
   const buyBengaliClue = () => {
-    if (bengaliClueUsed) return;
+    if (bengaliClueUsed || isAnswered) return;
+    if (state.coins < 10) return showNotice('Not enough coins for Bengali clue (10 coins required).');
+
+    state.deductCoins(10);
     setBengaliClueUsed(true);
   };
 
   // Hint: Mnemonic Aid
   const buyMnemonic = () => {
-    if (mnemonicUsed) return;
+    if (mnemonicUsed || isAnswered) return;
     if (state.coins < 20) return showNotice('Not enough coins for Mnemonic hint (20 coins required).');
 
     state.deductCoins(20);
@@ -140,25 +146,25 @@ export default function QuizRunner({
 
     return (
       <div 
-        className="card animate-scale-in" 
+        className="glass-panel animate-fade" 
         style={{
-          maxWidth: '560px',
-          margin: '2rem auto',
+          padding: '3rem 2rem',
+          borderRadius: 'var(--radius-lg)',
+          border: 'var(--border-thick)',
+          boxShadow: 'var(--shadow-large)',
           textAlign: 'center',
-          padding: '2.5rem 2rem',
+          background: 'linear-gradient(145deg, var(--bg-surface) 0%, hsla(var(--primary), 0.05) 100%)',
+          maxWidth: '550px',
+          margin: '2rem auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '1.25rem',
-          borderRadius: '16px',
-          border: 'var(--border-thin)',
-          boxShadow: 'var(--shadow-medium)',
-          backgroundColor: 'var(--bg-surface)'
+          gap: '1.25rem'
         }}
       >
         <div style={{
-          width: '72px',
-          height: '72px',
+          width: '76px',
+          height: '76px',
           borderRadius: '50%',
           backgroundColor: passed ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
           color: passed ? '#10b981' : '#ef4444',
@@ -167,28 +173,27 @@ export default function QuizRunner({
           justifyContent: 'center',
           border: `2px solid ${passed ? '#10b981' : '#ef4444'}`
         }}>
-          {passed ? <Award size={38} /> : <XCircle size={38} />}
+          {passed ? <Award size={42} /> : <XCircle size={42} />}
         </div>
 
         <div>
-          <h2 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', margin: '0 0 0.4rem 0' }}>
+          <h2 style={{ fontSize: '1.85rem', fontFamily: 'var(--font-title)', fontWeight: '900', margin: '0 0 0.4rem 0' }}>
             {passed ? 'Quiz Completed!' : 'Keep Practicing!'}
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0 }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0, lineHeight: '1.5' }}>
             {isQualification 
-              ? (passed ? 'Congratulations! You met the qualification threshold.' : `You need at least ${passingScore}/${questions.length} to pass this stage.`)
-              : `You scored ${score} out of ${questions.length} questions.`}
+              ? (passed ? 'Congratulations! You qualified and mastered this unit.' : `You need at least ${passingScore}/${questions.length} to pass this exam.`)
+              : `You answered ${score} out of ${questions.length} questions correctly.`}
           </p>
         </div>
 
         <div style={{
-          padding: '1rem 1.75rem',
-          borderRadius: '12px',
-          backgroundColor: 'var(--bg-surface-elevated)',
-          border: 'var(--border-thin)',
           display: 'flex',
-          alignItems: 'center',
-          gap: '2rem'
+          gap: '2rem',
+          padding: '1rem 2rem',
+          backgroundColor: 'var(--bg-surface-elevated)',
+          borderRadius: 'var(--radius-md)',
+          border: 'var(--border-thin)'
         }}>
           <div>
             <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>SCORE</div>
@@ -196,7 +201,7 @@ export default function QuizRunner({
               {score} / {questions.length}
             </div>
           </div>
-          <div style={{ width: '1px', height: '36px', backgroundColor: 'var(--border-muted)' }} />
+          <div style={{ width: '1px', backgroundColor: 'var(--border-muted)' }} />
           <div>
             <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>ACCURACY</div>
             <div style={{ fontSize: '1.6rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: passed ? 'var(--theme-green)' : 'var(--theme-yellow)' }}>
@@ -233,25 +238,25 @@ export default function QuizRunner({
 
   // --- ACTIVE QUESTION STATE ---
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade">
-      {/* Top Header Bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade">
+      {/* 1. Quiz Header Bar */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div>
-          <span style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--theme-cyan)', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: '0.75rem', fontWeight: '700', color: isQualification ? 'hsl(var(--secondary))' : 'hsl(var(--primary))' }}>
             {title ? title.toUpperCase() : 'VOCABULARY QUIZ'} {subtitle ? `• ${subtitle.toUpperCase()}` : ''}
           </span>
-          <h2 style={{ fontSize: '1.45rem', fontFamily: 'var(--font-title)', margin: '0.15rem 0 0 0' }}>
+          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', margin: '0.15rem 0 0 0' }}>
             Question {currentQIndex + 1} of {questions.length}
           </h2>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--theme-yellow)', fontWeight: '800', fontSize: '0.85rem' }}>
-            <Coins size={17} />
-            <span>{state.coins}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'hsl(var(--coin))', fontWeight: '800', fontSize: '0.85rem' }}>
+            <Coins size={18} />
+            <span>{state.coins} Coins</span>
           </div>
 
-          {/* Hint Shop Toggle */}
+          {/* Hint Shop Drawer Button */}
           <button 
             onClick={() => setShowHintPopover(prev => !prev)}
             className="btn btn-secondary"
@@ -264,13 +269,16 @@ export default function QuizRunner({
               gap: '0.35rem',
               backgroundColor: showHintPopover ? 'var(--theme-yellow)' : 'var(--bg-surface-elevated)',
               color: showHintPopover ? '#000' : 'var(--text-primary)',
+              boxShadow: showHintPopover ? 'var(--shadow-tiny)' : 'none',
               border: 'var(--border-thin)'
             }}
+            title="Need a Hint?"
           >
-            <Lightbulb size={14} />
-            <span>Hints</span>
+            <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
+            <span>Need a Hint?</span>
           </button>
 
+          {/* Quit Button */}
           <button
             onClick={onQuit}
             className="btn-icon-hover"
@@ -293,279 +301,211 @@ export default function QuizRunner({
         </div>
       </div>
 
-      {/* Progress Track */}
-      <div style={{ width: '100%', height: '6px', backgroundColor: 'var(--border-muted)', borderRadius: '3px', overflow: 'hidden' }}>
-        <div 
-          style={{ 
-            height: '100%', 
-            width: `${((currentQIndex + 1) / questions.length) * 100}%`, 
-            backgroundColor: 'var(--theme-cyan)',
-            transition: 'width 0.3s ease'
-          }} 
-        />
+      {/* 2. Hint Shop Popover Drawer */}
+      {showHintPopover && (
+        <div className="animate-fade glass-panel" style={{
+          padding: '1rem',
+          border: 'var(--border-thick)',
+          boxShadow: 'var(--shadow-medium)',
+          borderRadius: 'var(--radius-md)',
+          backgroundColor: 'var(--bg-surface)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.75rem'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <Lightbulb size={14} color="var(--theme-bulb)" /> Available Hints
+            </span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '700' }}>Use coins to unlock assistance</span>
+          </div>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <button 
+              onClick={buyFiftyFifty}
+              disabled={fiftyFiftyUsed || isAnswered || state.coins < 15}
+              className={`quiz-hint-pill hint-5050 ${fiftyFiftyUsed ? 'used' : ''}`}
+              style={{ flex: 1, minWidth: '110px' }}
+            >
+              {fiftyFiftyUsed ? (
+                <>
+                  <CheckCircle2 size={14} color="#000" />
+                  <span>50/50 Used</span>
+                </>
+              ) : (
+                <>
+                  <Sparkles size={14} color="#000" />
+                  <span>50/50</span>
+                  <span className="hint-cost-pill">-15c</span>
+                </>
+              )}
+            </button>
+            <button 
+              onClick={buyBengaliClue}
+              disabled={bengaliClueUsed || isAnswered || state.coins < 10}
+              className={`quiz-hint-pill hint-bengali ${bengaliClueUsed ? 'used' : ''}`}
+              style={{ flex: 1, minWidth: '110px' }}
+            >
+              {bengaliClueUsed ? (
+                <>
+                  <CheckCircle2 size={14} color="#000" />
+                  <span>Bengali</span>
+                </>
+              ) : (
+                <>
+                  <BookOpen size={14} color="#000" />
+                  <span>Bengali</span>
+                  <span className="hint-cost-pill">-10c</span>
+                </>
+              )}
+            </button>
+            <button 
+              onClick={buyMnemonic}
+              disabled={mnemonicUsed || isAnswered || state.coins < 20}
+              className={`quiz-hint-pill hint-mnemonic ${mnemonicUsed ? 'used' : ''}`}
+              style={{ flex: 1, minWidth: '110px' }}
+            >
+              {mnemonicUsed ? (
+                <>
+                  <CheckCircle2 size={14} color="#000" />
+                  <span>Mnemonic</span>
+                </>
+              ) : (
+                <>
+                  <Lightbulb size={14} color="#000" />
+                  <span>Mnemonic</span>
+                  <span className="hint-cost-pill">-20c</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Progress Track */}
+      <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--border-muted)', borderRadius: '3px', overflow: 'hidden', border: 'var(--border-thin)', boxShadow: 'var(--shadow-tiny)' }}>
+        <div style={{
+          height: '100%',
+          width: `${((currentQIndex + 1) / questions.length) * 100}%`,
+          backgroundColor: isQualification ? 'hsl(var(--secondary))' : 'hsl(var(--primary))',
+          transition: 'var(--transition-normal)'
+        }}></div>
       </div>
 
-      {/* Notice Message Banner */}
+      {/* Notice Feedback Toast */}
       {notice && (
-        <div style={{
-          padding: '0.65rem 1rem',
-          borderRadius: '8px',
-          backgroundColor: 'rgba(239, 68, 68, 0.15)',
-          color: '#ef4444',
-          fontSize: '0.84rem',
-          fontWeight: '700',
-          border: '1px solid rgba(239, 68, 68, 0.3)'
-        }}>
+        <div role="status" aria-live="polite" className="card animate-fade" style={{ padding: '0.85rem 1rem', borderLeft: '3px solid hsl(var(--secondary))', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
           {notice}
         </div>
       )}
 
-      {/* Hint Popover Menu */}
-      {showHintPopover && (
-        <div 
-          className="animate-fade"
-          style={{
-            padding: '1rem',
-            borderRadius: '12px',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: 'var(--border-thin)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.65rem'
-          }}
-        >
-          <div style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--text-muted)' }}>
-            AVAILABLE LIFELINES
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.65rem' }}>
-            {/* 50/50 */}
-            <button
-              onClick={buyFiftyFifty}
-              disabled={fiftyFiftyUsed}
-              className="btn btn-secondary"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.55rem 0.85rem',
-                opacity: fiftyFiftyUsed ? 0.5 : 1,
-                fontSize: '0.8rem'
-              }}
-            >
-              <span>50/50 Lifeline</span>
-              <span style={{ fontWeight: '800', color: 'var(--theme-yellow)' }}>
-                {fiftyFiftyUsed ? 'Used' : '10 Coins'}
-              </span>
-            </button>
-
-            {/* Bengali Clue */}
-            <button
-              onClick={buyBengaliClue}
-              disabled={bengaliClueUsed}
-              className="btn btn-secondary"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.55rem 0.85rem',
-                opacity: bengaliClueUsed ? 0.5 : 1,
-                fontSize: '0.8rem'
-              }}
-            >
-              <span>Bengali Clue</span>
-              <span style={{ fontWeight: '800', color: 'var(--theme-green)' }}>
-                {bengaliClueUsed ? 'Active' : 'Free'}
-              </span>
-            </button>
-
-            {/* Mnemonic Aid */}
-            <button
-              onClick={buyMnemonic}
-              disabled={mnemonicUsed}
-              className="btn btn-secondary"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.55rem 0.85rem',
-                opacity: mnemonicUsed ? 0.5 : 1,
-                fontSize: '0.8rem'
-              }}
-            >
-              <span>Mnemonic Trick</span>
-              <span style={{ fontWeight: '800', color: 'var(--theme-yellow)' }}>
-                {mnemonicUsed ? 'Unlocked' : '20 Coins'}
-              </span>
-            </button>
-          </div>
+      {/* 4. Interactive Hints Output (Bengali & Mnemonic) */}
+      {(bengaliClueUsed || mnemonicUsed) && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {bengaliClueUsed && (
+            <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #18FFFF', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000', borderRadius: '12px' }}>
+              <div style={{ fontSize: '0.7rem', color: '#18FFFF', fontWeight: '900' }}>BENGALI TRANSLATION CLUE</div>
+              <p style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', marginTop: '0.15rem', margin: 0, fontFamily: 'var(--font-bengali)' }}>
+                {currentQ?.bengali_clue}
+              </p>
+            </div>
+          )}
+          {mnemonicUsed && (
+            <div className="card animate-fade" style={{ padding: '1rem', borderLeft: '3.5px solid #FFD54F', backgroundColor: 'var(--bg-surface-elevated)', border: '2px solid #000000', boxShadow: '3px 3px 0 #000000', borderRadius: '12px' }}>
+              <div style={{ fontSize: '0.7rem', color: '#FFD54F', fontWeight: '900' }}>MEMORIZATION AID (MNEMONIC)</div>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: '0.15rem', margin: 0, lineHeight: '1.5', fontStyle: 'italic' }}>
+                {currentQ?.mnemonic}
+              </p>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Clue Panels (if unlocked) */}
-      {bengaliClueUsed && currentQ.bengali_clue && (
-        <div style={{
-          padding: '0.75rem 1rem',
-          borderRadius: '10px',
-          backgroundColor: 'rgba(24, 255, 255, 0.08)',
-          border: '1px solid rgba(24, 255, 255, 0.25)',
-          color: 'var(--text-primary)',
-          fontSize: '0.88rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <span style={{ fontWeight: '800', color: 'var(--theme-cyan)' }}>বাংলা ইঙ্গিত:</span>
-          <span style={{ fontFamily: 'var(--font-bengali)', fontWeight: '600' }}>{currentQ.bengali_clue}</span>
-        </div>
-      )}
-
-      {mnemonicUsed && currentQ.mnemonic && (
-        <div style={{
-          padding: '0.75rem 1rem',
-          borderRadius: '10px',
-          backgroundColor: 'rgba(255, 215, 0, 0.08)',
-          border: '1px solid rgba(255, 215, 0, 0.25)',
-          color: 'var(--text-primary)',
-          fontSize: '0.88rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <Sparkles size={16} color="var(--theme-yellow)" />
-          <span style={{ fontWeight: '800', color: 'var(--theme-yellow)' }}>স্মৃতি কৌশল:</span>
-          <span>{currentQ.mnemonic}</span>
-        </div>
-      )}
-
-      {/* Question Card */}
-      <div 
-        className="card"
-        style={{
-          padding: '1.75rem',
-          borderRadius: '16px',
-          border: 'var(--border-thin)',
-          boxShadow: 'var(--shadow-tiny)',
-          backgroundColor: 'var(--bg-surface)'
-        }}
-      >
-        <p style={{
-          fontSize: '1.15rem',
-          lineHeight: '1.6',
-          fontWeight: '700',
-          color: 'var(--text-primary)',
-          margin: 0
-        }}>
-          {currentQ.question}
-        </p>
+      {/* 5. Neo-Brutalist Gradient Question Card */}
+      <div style={{ 
+        padding: '2.25rem 2.5rem', 
+        background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
+        border: '3px solid #000000',
+        boxShadow: '6px 6px 0px #000000',
+        borderRadius: '20px'
+      }}>
+        <h3 style={{ fontSize: '1.35rem', color: 'var(--text-primary)', lineHeight: '1.55', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
+          {currentQ?.question}
+        </h3>
       </div>
 
-      {/* MCQ Options List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        {currentQ.options.map((option, oIdx) => {
-          const letter = ['A', 'B', 'C', 'D'][oIdx];
-          const isSelected = selectedOption === option;
+      {/* 6. MCQ Options with Vibrant Color Badges */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+        {currentQ?.options.map((option, idx) => {
           const isCorrect = option === currentQ.correct_answer;
           const isDisabled = disabledOptions.includes(option);
+          const isSelected = selectedOption === option;
 
-          let optionStyle = {
-            padding: '1rem 1.25rem',
-            borderRadius: '12px',
-            border: 'var(--border-thin)',
-            backgroundColor: 'var(--bg-surface)',
-            color: 'var(--text-primary)',
-            cursor: isDisabled ? 'not-allowed' : (isAnswered ? 'default' : 'pointer'),
-            opacity: isDisabled ? 0.35 : 1,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            fontWeight: '600',
-            fontSize: '0.96rem',
-            transition: 'all 0.15s ease'
-          };
-
+          let optClass = '';
           if (isAnswered) {
-            if (isCorrect) {
-              optionStyle.borderColor = '#10b981';
-              optionStyle.backgroundColor = 'rgba(16, 185, 129, 0.12)';
-              optionStyle.color = '#10b981';
-            } else if (isSelected) {
-              optionStyle.borderColor = '#ef4444';
-              optionStyle.backgroundColor = 'rgba(239, 68, 68, 0.12)';
-              optionStyle.color = '#ef4444';
-            }
+            if (isCorrect) optClass = 'correct';
+            else if (isSelected) optClass = 'wrong';
           }
+
+          const letterBadges = ['A', 'B', 'C', 'D'];
+          const letterFills = ['#18FFFF', '#E040FB', '#FFD54F', '#69F0AE'];
 
           return (
             <button
-              key={oIdx}
+              key={idx}
               onClick={() => handleAnswer(option)}
-              disabled={isDisabled || isAnswered}
-              className="mcq-option"
-              style={optionStyle}
+              disabled={isAnswered || isDisabled}
+              className={`mcq-option ${optClass}`}
+              style={{
+                opacity: isDisabled ? 0.3 : 1,
+                pointerEvents: isDisabled ? 'none' : 'auto'
+              }}
             >
-              <span style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                backgroundColor: isAnswered && isCorrect 
-                  ? '#10b981' 
-                  : (isAnswered && isSelected ? '#ef4444' : 'var(--bg-surface-elevated)'),
-                color: isAnswered && (isCorrect || isSelected) ? '#ffffff' : 'var(--text-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: '800',
-                fontSize: '0.85rem',
-                border: 'var(--border-thin)',
-                flexShrink: 0
-              }}>
-                {letter}
-              </span>
-
-              <span style={{ flex: 1, textAlign: 'left', wordBreak: 'break-word' }}>
-                {option}
-              </span>
-
-              {isAnswered && isCorrect && <CheckCircle2 size={20} color="#10b981" />}
-              {isAnswered && isSelected && !isCorrect && <XCircle size={20} color="#ef4444" />}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+                <span style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '10px',
+                  border: '2px solid #000000',
+                  backgroundColor: letterFills[idx % 4],
+                  color: idx % 4 === 0 || idx % 4 === 2 ? '#000000' : '#FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: '900',
+                  fontSize: '0.88rem',
+                  fontFamily: 'var(--font-title)',
+                  boxShadow: '2px 2px 0px #000000',
+                  flexShrink: 0
+                }}>
+                  {letterBadges[idx % 4]}
+                </span>
+                <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
+              </div>
+              {isAnswered && isCorrect && <CheckCircle2 size={22} color="#000000" />}
+              {isAnswered && isSelected && !isCorrect && <XCircle size={22} color="#FFFFFF" />}
             </button>
           );
         })}
       </div>
 
-      {/* Bottom Action Bar */}
+      {/* 7. Next / Explanation Action Bar */}
       {isAnswered && (
-        <div 
-          className="animate-fade"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '1rem',
-            borderRadius: '14px',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: 'var(--border-thin)',
-            marginTop: '0.5rem',
-            gap: '1rem',
-            flexWrap: 'wrap'
-          }}
-        >
+        <div className="quiz-action-bar animate-fade">
           <button
             onClick={() => setShowExplanationModal(true)}
-            className="btn btn-secondary"
-            style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.85rem' }}
+            className="quiz-btn-explanation"
+            title="View full explanation in dialog"
           >
-            <HelpCircle size={16} />
-            <span>Why is this correct?</span>
+            <Lightbulb size={16} color="var(--theme-bulb)" />
+            <span>Explanation</span>
           </button>
 
-          <button
+          <button 
             onClick={handleNext}
-            className="btn btn-primary"
-            style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', padding: '0.65rem 1.5rem', fontWeight: '800' }}
+            className="quiz-btn-next"
           >
             <span>{currentQIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={18} />
           </button>
         </div>
       )}
@@ -573,9 +513,12 @@ export default function QuizRunner({
       {/* Explanation Modal */}
       {showExplanationModal && currentQ && (
         <QuizExplanationModal
-          question={currentQ}
           isOpen={showExplanationModal}
           onClose={() => setShowExplanationModal(false)}
+          question={currentQ?.question}
+          correctAnswer={currentQ?.correct_answer}
+          explanation={currentQ?.explanation}
+          bengaliExplanation={currentQ?.bengali_clue}
         />
       )}
     </div>
