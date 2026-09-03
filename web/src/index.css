@@ -2860,6 +2860,91 @@ a:focus-visible,
   box-shadow: 3px 3px 0px #000000;
 }
 
+/* ==========================================================================
+   Vocab Micro-Drills Redesign
+   ========================================================================== */
+
+.drill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+}
+
+.drill-card {
+  background: var(--bg-surface);
+  border: 2.5px solid var(--border-muted);
+  box-shadow: 5px 5px 0px var(--shadow-color);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.drill-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px var(--shadow-color);
+}
+
+.drill-card-header {
+  padding: 1.5rem 1.4rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drill-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000000;
+  box-shadow: 2.5px 2.5px 0px #000000;
+}
+
+.drill-card-body {
+  padding: 0 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.drill-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  font-weight: 900;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: all 0.15s ease;
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
+.drill-card:hover .drill-action-btn {
+  background: var(--theme-yellow);
+  color: #000000;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #000000;
+}
+
+
 
 
 
