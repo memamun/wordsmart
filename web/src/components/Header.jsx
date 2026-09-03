@@ -328,6 +328,15 @@ export default function Header({
           <span>{state.streak}d</span>
         </div>
 
+        {/* Mobile Coins Pill (Shown exclusively on mobile) */}
+        <div 
+          className="mobile-coins-pill"
+          title={`Coins: ${state.coins}`}
+        >
+          <Coins size={14} color="#000000" />
+          <span>{state.coins}</span>
+        </div>
+
         {/* Gamified Stats Header (Desktop Only) */}
         <div className="header-stats-container hide-mobile">
           {/* Streak Counter */}

@@ -265,9 +265,9 @@ export default function QuizRunner({
           </h2>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
-          {/* Coins counter */}
-          <div style={{ 
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+          {/* Coins counter: on desktop only (mobile uses top app header) */}
+          <div className="hide-mobile" style={{ 
             display: 'flex', 
             alignItems: 'center', 
             gap: '0.3rem', 
@@ -276,16 +276,16 @@ export default function QuizRunner({
             fontSize: '0.85rem'
           }}>
             <Coins size={16} />
-            <span>{state.coins}</span>
+            <span>{state.coins} Coins</span>
           </div>
 
-          {/* Hint Shop Drawer Button: icon only on mobile, text on desktop */}
+          {/* Hint Button: one-liner with text */}
           <button 
             onClick={() => setShowHintPopover(prev => !prev)}
             className="btn btn-secondary"
             style={{ 
-              padding: '0.35rem 0.65rem', 
-              fontSize: '0.75rem', 
+              padding: '0.35rem 0.75rem', 
+              fontSize: '0.78rem', 
               borderRadius: '9999px',
               display: 'flex', 
               alignItems: 'center', 
@@ -295,13 +295,16 @@ export default function QuizRunner({
               color: showHintPopover ? '#000' : 'var(--text-primary)',
               boxShadow: showHintPopover ? 'var(--shadow-tiny)' : 'none',
               border: 'var(--border-thin)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontWeight: '800',
+              fontFamily: 'var(--font-title)',
+              whiteSpace: 'nowrap'
             }}
             title="Need a Hint?"
             aria-label="Need a Hint?"
           >
-            <Lightbulb size={16} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
-            <span className="hide-mobile">Need a Hint?</span>
+            <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
+            <span>Hint</span>
           </button>
 
           {/* Quit Button: always visible with label */}
@@ -324,6 +327,7 @@ export default function QuizRunner({
               color: 'var(--text-secondary)',
               border: 'var(--border-thin)',
               cursor: 'pointer',
+              whiteSpace: 'nowrap',
               transition: 'all 0.15s ease'
             }}
           >
