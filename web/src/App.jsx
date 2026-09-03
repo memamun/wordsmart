@@ -26,7 +26,7 @@ const HitParadesView = React.lazy(() => import('./components/HitParadesView.jsx'
 const AllQuizzesView = React.lazy(() => import('./components/AllQuizzesView.jsx'));
 import { useGameState } from './hooks/useGameState.js';
 import { useWordsData } from './hooks/useWordsData.js';
-import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield } from 'lucide-react';
+import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield, AlertTriangle } from 'lucide-react';
 
 export const DetailPanelContext = createContext();
 
@@ -190,12 +190,20 @@ export default function App() {
 
   // Navigation History Stack for dynamic back button across submenus
   const [viewHistory, setViewHistory] = useState(['dashboard']);
+  const [pendingQuizExitNav, setPendingQuizExitNav] = useState(null);
 
   /**
    * Gated navigation: free views navigate immediately;
    * premium views show the AuthGateModal for guests.
    */
   const gatedSetActiveView = (viewId, unitNum) => {
+    // When a quiz is running, cannot move to another option without quit confirmation
+    if (state.isQuizActive && viewId !== activeView) {
+      setSidebarOpen(false);
+      setPendingQuizExitNav({ viewId, unitNum });
+      return;
+    }
+
     let targetUnit = unitNum;
     if (targetUnit === undefined) {
       targetUnit = (viewId === 'flashcards' && !user) ? 1 : selectedUnit;
@@ -222,6 +230,10 @@ export default function App() {
   };
 
   const handleBack = () => {
+    if (state.isQuizActive) {
+      setPendingQuizExitNav({ isBack: true });
+      return;
+    }
     if (viewHistory.length > 0) {
       const nextHistory = [...viewHistory];
       const prevView = nextHistory.pop();
@@ -717,6 +729,131 @@ export default function App() {
           }}
           onDismiss={() => setAuthGatePendingView(null)}
         />
+      )}
+
+      {/* Quiz Exit Confirmation Modal when attempting to navigate to another view/option */}
+      {pendingQuizExitNav && (
+        <div 
+          className="animate-fade"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.25rem'
+          }}
+          onClick={() => setPendingQuizExitNav(null)}
+        >
+          <div 
+            className="animate-scale-in"
+            style={{
+              backgroundColor: 'var(--bg-surface)',
+              border: '3px solid #000000',
+              boxShadow: '6px 6px 0px #000000',
+              borderRadius: '20px',
+              padding: '2rem 1.75rem',
+              maxWidth: '420px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              gap: '1.25rem'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--theme-yellow)',
+              border: '2.5px solid #000000',
+              boxShadow: '2.5px 2.5px 0px #000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#000000'
+            }}>
+              <AlertTriangle size={32} strokeWidth={2.5} />
+            </div>
+
+            <div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontFamily: 'var(--font-title)',
+                fontWeight: '900',
+                color: 'var(--text-primary)',
+                margin: '0 0 0.4rem 0'
+              }}>
+                Quiz in Progress
+              </h3>
+              <p style={{
+                fontSize: '0.92rem',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                You cannot move to another option while a quiz is running. Would you like to quit this quiz to leave?
+              </p>
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: '0.75rem',
+              width: '100%',
+              marginTop: '0.5rem'
+            }}>
+              <button
+                onClick={() => setPendingQuizExitNav(null)}
+                className="btn btn-secondary"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Keep Playing
+              </button>
+
+              <button
+                onClick={() => {
+                  const nav = pendingQuizExitNav;
+                  setPendingQuizExitNav(null);
+                  if (state.setIsQuizActive) state.setIsQuizActive(false);
+                  if (nav.isBack) {
+                    handleBack();
+                  } else if (nav.viewId) {
+                    gatedSetActiveView(nav.viewId, nav.unitNum);
+                  }
+                }}
+                className="btn"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  backgroundColor: '#FF5252',
+                  color: '#FFFFFF',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Quit & Leave
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Global Self-Destruct Dialog Modal (Creative Playful Design) */}

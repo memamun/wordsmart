@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Award, 
   HelpCircle, 
@@ -11,7 +11,8 @@ import {
   Lightbulb,
   ArrowLeft,
   BookOpen,
-  Shield
+  Shield,
+  AlertTriangle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
@@ -36,6 +37,30 @@ export default function QuizRunner({
   const [quizFinished, setQuizFinished] = useState(false);
   const [notice, setNotice] = useState(null);
   const [showExplanationModal, setShowExplanationModal] = useState(false);
+  const [showQuitConfirm, setShowQuitConfirm] = useState(false);
+
+  // Synchronize active quiz state globally
+  useEffect(() => {
+    if (state?.setIsQuizActive) {
+      state.setIsQuizActive(!quizFinished);
+    }
+    return () => {
+      if (state?.setIsQuizActive) {
+        state.setIsQuizActive(false);
+      }
+    };
+  }, [quizFinished, state?.setIsQuizActive]);
+
+  // Prevent accidental reload while quiz is running
+  useEffect(() => {
+    if (quizFinished) return;
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [quizFinished]);
 
   // Hint states
   const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(false);
@@ -294,9 +319,9 @@ export default function QuizRunner({
             <span>Hint</span>
           </button>
 
-          {/* Quit Button: always visible with label */}
+          {/* Quit Button: triggers confirmation dialog */}
           <button
-            onClick={onQuit}
+            onClick={() => setShowQuitConfirm(true)}
             className="btn btn-secondary"
             title="Quit Quiz"
             aria-label="Quit Quiz"
@@ -543,6 +568,126 @@ export default function QuizRunner({
           explanation={currentQ?.explanation}
           bengaliExplanation={currentQ?.bengali_clue}
         />
+      )}
+
+      {/* Quit Quiz Confirmation Dialog */}
+      {showQuitConfirm && (
+        <div 
+          className="animate-fade"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+            backdropFilter: 'blur(5px)',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.25rem'
+          }}
+          onClick={() => setShowQuitConfirm(false)}
+        >
+          <div 
+            className="animate-scale-in"
+            style={{
+              backgroundColor: 'var(--bg-surface)',
+              border: '3px solid #000000',
+              boxShadow: '6px 6px 0px #000000',
+              borderRadius: '20px',
+              padding: '2rem 1.75rem',
+              maxWidth: '420px',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              gap: '1.25rem'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--theme-yellow)',
+              border: '2.5px solid #000000',
+              boxShadow: '2.5px 2.5px 0px #000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#000000'
+            }}>
+              <AlertTriangle size={32} strokeWidth={2.5} />
+            </div>
+
+            <div>
+              <h3 style={{
+                fontSize: '1.4rem',
+                fontFamily: 'var(--font-title)',
+                fontWeight: '900',
+                color: 'var(--text-primary)',
+                margin: '0 0 0.4rem 0'
+              }}>
+                Quit Active Quiz?
+              </h3>
+              <p style={{
+                fontSize: '0.92rem',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.5',
+                margin: 0
+              }}>
+                Your current quiz progress will not be saved. Are you sure you want to quit and leave?
+              </p>
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: '0.75rem',
+              width: '100%',
+              marginTop: '0.5rem'
+            }}>
+              <button
+                onClick={() => setShowQuitConfirm(false)}
+                className="btn btn-secondary"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Resume Quiz
+              </button>
+
+              <button
+                onClick={() => {
+                  setShowQuitConfirm(false);
+                  if (state?.setIsQuizActive) state.setIsQuizActive(false);
+                  if (onQuit) onQuit();
+                }}
+                className="btn"
+                style={{
+                  flex: 1,
+                  padding: '0.75rem 1rem',
+                  fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
+                  borderRadius: '12px',
+                  backgroundColor: '#FF5252',
+                  color: '#FFFFFF',
+                  border: '2px solid #000000',
+                  boxShadow: '2px 2px 0px #000000',
+                  cursor: 'pointer'
+                }}
+              >
+                Yes, Quit
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

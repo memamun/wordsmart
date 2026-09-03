@@ -41,6 +41,8 @@ export function useGameState() {
     return DEFAULT_STATE;
   });
 
+  const [isQuizActive, setIsQuizActive] = useState(false);
+
   // Save to localStorage whenever state changes
   useEffect(() => {
     try {
@@ -474,6 +476,8 @@ export function useGameState() {
 
   return {
     ...state,
+    isQuizActive,
+    setIsQuizActive,
     masteredWordIds,
     learningWordIds,
     addXp,
