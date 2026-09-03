@@ -19,6 +19,7 @@ import { DetailPanelContext } from '../App';
 import { renderMarkdown } from '../utils/markdown';
 
 const ALPHABET = ['ALL', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+const PAGE_SIZE = 60;
 
 export default function SearchView({ state, wordsData }) {
   const { setDetailWord } = useContext(DetailPanelContext);
@@ -26,6 +27,12 @@ export default function SearchView({ state, wordsData }) {
   const [filterMode, setFilterMode] = useState('all'); // 'all', 'bookmarked', 'mastered', 'learning', 'hit_parades', 'beginner', 'intermediate', 'advanced'
   const [selectedLetter, setSelectedLetter] = useState('ALL');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Reset visibleCount whenever search query or filters change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [searchQuery, filterMode, selectedLetter]);
 
   const speakWord = (text, e) => {
     e.stopPropagation();
@@ -151,7 +158,9 @@ export default function SearchView({ state, wordsData }) {
               border: 'var(--border-thin)',
               letterSpacing: '0.02em'
             }}>
-              {filteredWords.length} / {totalWordsCount} WORDS
+              {filteredWords.length > visibleCount 
+                ? `${Math.min(visibleCount, filteredWords.length)} of ${filteredWords.length} Words` 
+                : `${filteredWords.length} / ${totalWordsCount} Words`}
             </span>
 
             {/* View Mode Toggle */}
@@ -352,7 +361,7 @@ export default function SearchView({ state, wordsData }) {
       ) : viewMode === 'grid' ? (
         /* GRID VIEW */
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))', gap: '1rem' }}>
-          {filteredWords.slice(0, 100).map((w) => {
+          {filteredWords.slice(0, visibleCount).map((w) => {
             const isBookmarked = (state.bookmarkedWordIds || []).includes(w.id);
 
             return (
@@ -505,7 +514,7 @@ export default function SearchView({ state, wordsData }) {
       ) : (
         /* LIST VIEW */
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-          {filteredWords.slice(0, 100).map((w) => {
+          {filteredWords.slice(0, visibleCount).map((w) => {
             const isBookmarked = (state.bookmarkedWordIds || []).includes(w.id);
 
             return (
@@ -591,6 +600,33 @@ export default function SearchView({ state, wordsData }) {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Load More Button when more results exist */}
+      {visibleCount < filteredWords.length && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', marginTop: '1.75rem' }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '700', fontFamily: 'var(--font-title)' }}>
+            SHOWING {Math.min(visibleCount, filteredWords.length)} OF {filteredWords.length} WORDS
+          </span>
+          <button
+            onClick={() => setVisibleCount(prev => prev + PAGE_SIZE)}
+            className="btn btn-secondary"
+            style={{
+              padding: '0.75rem 2rem',
+              fontWeight: '800',
+              fontFamily: 'var(--font-title)',
+              borderRadius: '12px',
+              border: '2.5px solid #000',
+              boxShadow: '3.5px 3.5px 0 #000',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
+            Load More Words ({filteredWords.length - visibleCount} remaining)
+          </button>
         </div>
       )}
     </div>
