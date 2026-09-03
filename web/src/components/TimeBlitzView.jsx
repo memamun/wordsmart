@@ -24,11 +24,11 @@ import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
 const HIGH_SCORE_KEY = 'wordsmart_blitz_highscore';
 
 const getBlitzRank = (score) => {
-  if (score >= 150) return { title: 'Vocabulary Legend', color: '#FFD54F' };
-  if (score >= 100) return { title: 'Speed Demon', color: '#00E676' };
-  if (score >= 50) return { title: 'Rapid Scholar', color: '#18FFFF' };
-  if (score > 0) return { title: 'Blitz Cadet', color: '#E040FB' };
-  return { title: 'Rookie Run', color: 'var(--text-muted)' };
+  if (score >= 150) return { title: 'Vocabulary Legend', className: 'blitz-rank-legend' };
+  if (score >= 100) return { title: 'Speed Demon', className: 'blitz-rank-speed-demon' };
+  if (score >= 50) return { title: 'Rapid Scholar', className: 'blitz-rank-rapid-scholar' };
+  if (score > 0) return { title: 'Blitz Cadet', className: 'blitz-rank-cadet' };
+  return { title: 'Rookie Run', className: 'blitz-rank-rookie' };
 };
 
 const BlitzHeroAnimation = () => {
@@ -452,15 +452,7 @@ export default function TimeBlitzView({ state, wordsData }) {
                 </div>
               </div>
 
-              <span style={{
-                fontSize: '0.75rem',
-                fontWeight: '900',
-                color: rank.color,
-                backgroundColor: 'rgba(0,0,0,0.25)',
-                padding: '0.3rem 0.7rem',
-                borderRadius: '9999px',
-                border: `1.5px solid ${rank.color}`
-              }}>
+              <span className={`blitz-rank-badge ${rank.className}`}>
                 {rank.title}
               </span>
             </div>

@@ -2653,6 +2653,72 @@ a:focus-visible,
   }
 }
 
+/* Blitz Rank Badges (High Contrast Theme-Aware) */
+.blitz-rank-badge {
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.32rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  white-space: nowrap;
+}
+
+.blitz-rank-speed-demon {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+  border: 1.5px solid #16a34a;
+}
+[data-theme='dark'] .blitz-rank-speed-demon {
+  background: rgba(0, 230, 118, 0.15);
+  color: #00E676;
+  border: 1.5px solid #00E676;
+}
+
+.blitz-rank-legend {
+  background: rgba(217, 119, 6, 0.12);
+  color: #b45309;
+  border: 1.5px solid #d97706;
+}
+[data-theme='dark'] .blitz-rank-legend {
+  background: rgba(255, 213, 79, 0.15);
+  color: #FFD54F;
+  border: 1.5px solid #FFD54F;
+}
+
+.blitz-rank-rapid-scholar {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0369a1;
+  border: 1.5px solid #0284c7;
+}
+[data-theme='dark'] .blitz-rank-rapid-scholar {
+  background: rgba(24, 255, 255, 0.15);
+  color: #18FFFF;
+  border: 1.5px solid #18FFFF;
+}
+
+.blitz-rank-cadet {
+  background: rgba(168, 85, 247, 0.12);
+  color: #7e22ce;
+  border: 1.5px solid #a855f7;
+}
+[data-theme='dark'] .blitz-rank-cadet {
+  background: rgba(224, 64, 251, 0.15);
+  color: #E040FB;
+  border: 1.5px solid #E040FB;
+}
+
+.blitz-rank-rookie {
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border-muted);
+}
+
+
 
 
 
