@@ -67,7 +67,6 @@ export default function TimeBlitzView({ state, wordsData }) {
   const generateBlitzQuestion = () => {
     if (validWords.length === 0) return;
 
-    // Filter out recently used words to prevent immediate repeats
     let availableWords = validWords.filter(w => !recentWordsRef.current.includes(w.word));
     if (availableWords.length === 0) {
       availableWords = validWords;
@@ -157,10 +156,8 @@ export default function TimeBlitzView({ state, wordsData }) {
       setTimeRemaining((prev) => Math.min(prev + 3, 90));
       setTimeChange({ show: true, amount: 3 });
       
-      // Multiplier effect
       state.addXp(2 * Math.min(answerStreak + 1, 5)); 
       
-      // Coins trigger on streak milestones
       if ((answerStreak + 1) % 5 === 0) {
         state.addCoins(5);
         confetti({
@@ -250,37 +247,37 @@ export default function TimeBlitzView({ state, wordsData }) {
   };
 
   return (
-    <div style={{ padding: '1.5rem 1rem', maxWidth: '600px', margin: '0 auto' }} className="animate-fade timeblitz-view-container">
+    <div style={{ padding: '1.5rem 1rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade timeblitz-view-container">
       {/* 1. START GAME SCREEN */}
       {!isPlaying && !isGameOver && (
-        <div className="card animate-slide-up" style={{
-          padding: '2.5rem 1.5rem',
+        <div style={{
+          padding: '3rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--secondary), 0.08) 100%)',
-          border: 'var(--border-thick)',
-          boxShadow: 'var(--shadow-medium)',
-          borderRadius: 'var(--radius-lg)'
-        }}>
+          background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
+          border: '3px solid #000000',
+          boxShadow: '6px 6px 0px #000000',
+          borderRadius: '20px'
+        }} className="animate-slide-up">
           <div style={{
             width: '64px',
             height: '64px',
             borderRadius: '50%',
             backgroundColor: 'var(--theme-yellow)',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-tiny)',
+            border: '2.5px solid #000000',
+            boxShadow: '2.5px 2.5px 0px #000000',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 1.25rem',
-            color: '#000'
+            color: '#000000'
           }}>
-            <Timer size={32} />
+            <Timer size={32} strokeWidth={2.5} />
           </div>
 
-          <h3 style={{ fontSize: '1.6rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
             Ready for Speed?
-          </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.75rem', maxWidth: '460px', margin: '0 auto 1.75rem' }}>
             Answer rapid-fire vocabulary synonyms and antonyms before time runs out.
           </p>
 
@@ -288,29 +285,41 @@ export default function TimeBlitzView({ state, wordsData }) {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '0.5rem',
-            marginBottom: '1.75rem'
+            gap: '0.75rem',
+            maxWidth: '460px',
+            margin: '0 auto 2rem'
           }}>
-            <div style={{ padding: '0.6rem 0.3rem', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontWeight: '800' }}>START</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: '900', color: 'var(--text-primary)' }}>⏱️ 60s</div>
+            <div style={{ padding: '0.75rem 0.5rem', backgroundColor: 'var(--bg-surface)', border: '2px solid #000', boxShadow: '2px 2px 0px #000', borderRadius: '12px', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: '800' }}>START</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '900', color: 'var(--text-primary)' }}>⏱️ 60s</div>
             </div>
-            <div style={{ padding: '0.6rem 0.3rem', backgroundColor: 'hsla(var(--success), 0.1)', border: 'var(--border-thin)', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.65rem', color: 'hsl(var(--success))', fontWeight: '800' }}>CORRECT</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: '900', color: 'hsl(var(--success))' }}>+3s</div>
+            <div style={{ padding: '0.75rem 0.5rem', backgroundColor: 'rgba(105, 240, 174, 0.25)', border: '2px solid #000', boxShadow: '2px 2px 0px #000', borderRadius: '12px', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.68rem', color: '#00E676', fontWeight: '800' }}>CORRECT</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#00E676' }}>+3s</div>
             </div>
-            <div style={{ padding: '0.6rem 0.3rem', backgroundColor: 'hsla(var(--danger), 0.1)', border: 'var(--border-thin)', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.65rem', color: 'var(--theme-red)', fontWeight: '800' }}>MISTAKE</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: '900', color: 'var(--theme-red)' }}>-5s</div>
+            <div style={{ padding: '0.75rem 0.5rem', backgroundColor: 'rgba(255, 82, 82, 0.25)', border: '2px solid #000', boxShadow: '2px 2px 0px #000', borderRadius: '12px', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.68rem', color: '#FF5252', fontWeight: '800' }}>MISTAKE</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: '900', color: '#FF5252' }}>-5s</div>
             </div>
           </div>
 
           <button 
             onClick={startBlitzGame}
             className="btn btn-primary"
-            style={{ width: '100%', padding: '0.9rem', fontSize: '1rem', background: 'var(--theme-yellow)', color: '#000', fontWeight: '900', boxShadow: 'var(--shadow-medium)' }}
+            style={{ 
+              maxWidth: '360px', 
+              width: '100%', 
+              padding: '1rem', 
+              fontSize: '1.1rem', 
+              background: 'var(--theme-yellow)', 
+              color: '#000', 
+              fontWeight: '900', 
+              border: '3px solid #000', 
+              boxShadow: '4px 4px 0px #000', 
+              borderRadius: '16px' 
+            }}
           >
-            <Play size={18} fill="#000" /> Start Time Blitz
+            <Play size={20} fill="#000" /> Start Time Blitz
           </button>
         </div>
       )}
@@ -318,16 +327,16 @@ export default function TimeBlitzView({ state, wordsData }) {
       {/* 2. PLAYING GAME LOOP SCREEN */}
       {isPlaying && currentQuestion && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          {/* Game Stats HUD */}
+          {/* Game Stats HUD - Neo-Brutalist styling matching QuizRunner */}
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0.75rem 1.25rem',
-            borderRadius: 'var(--radius-md)',
+            padding: '0.85rem 1.25rem',
+            borderRadius: '16px',
             backgroundColor: 'var(--bg-surface)',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-tiny)'
+            border: '3px solid #000000',
+            boxShadow: '4px 4px 0px #000000'
           }}>
             {/* Left: Timer + Quit */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -335,22 +344,29 @@ export default function TimeBlitzView({ state, wordsData }) {
                 onClick={() => setShowQuitConfirm(true)}
                 className="btn btn-secondary"
                 style={{
-                  padding: '0.3rem 0.65rem',
-                  fontSize: '0.75rem',
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.78rem',
                   fontWeight: '800',
+                  fontFamily: 'var(--font-title)',
                   borderRadius: '9999px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.25rem',
-                  cursor: 'pointer'
+                  gap: '0.3rem',
+                  backgroundColor: 'var(--bg-surface-elevated)',
+                  color: 'var(--text-secondary)',
+                  border: 'var(--border-thin)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.15s ease'
                 }}
                 title="Quit Blitz Run"
+                aria-label="Quit Blitz Run"
               >
-                <ArrowLeft size={13} />
+                <ArrowLeft size={14} />
                 <span>Quit</span>
               </button>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? 'var(--theme-red)' : 'var(--text-primary)', position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: timeRemaining <= 10 ? '#FF5252' : 'var(--text-primary)', position: 'relative' }}>
                 <Timer size={18} className={timeRemaining <= 10 ? 'animate-shake' : ''} />
                 <span style={{ fontSize: '1.3rem', fontFamily: 'var(--font-title)', fontWeight: '900' }}>
                   {timeRemaining}s
@@ -363,8 +379,8 @@ export default function TimeBlitzView({ state, wordsData }) {
                     left: '100%',
                     marginLeft: '0.5rem',
                     fontWeight: '900',
-                    fontSize: '0.95rem',
-                    color: timeChange.amount > 0 ? 'var(--theme-green)' : 'var(--theme-red)',
+                    fontSize: '1rem',
+                    color: timeChange.amount > 0 ? '#00E676' : '#FF5252',
                     textShadow: '1px 1px 0px #000',
                     pointerEvents: 'none',
                     zIndex: 10
@@ -375,46 +391,65 @@ export default function TimeBlitzView({ state, wordsData }) {
               </div>
             </div>
 
-            {/* Answer Streak */}
+            {/* Answer Streak Badge */}
             {answerStreak >= 2 && (
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.2rem 0.6rem', borderRadius: 'var(--radius-full)', backgroundColor: 'var(--theme-yellow)', color: '#000', fontWeight: '900', fontSize: '0.75rem', border: '1px solid #000' }}>
-                <Zap size={13} fill="#000" />
+              <div style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.25rem', 
+                padding: '0.25rem 0.65rem', 
+                borderRadius: '9999px', 
+                backgroundColor: 'var(--theme-yellow)', 
+                color: '#000000', 
+                fontWeight: '900', 
+                fontSize: '0.78rem', 
+                border: '2px solid #000000',
+                boxShadow: '2px 2px 0px #000000'
+              }}>
+                <Zap size={14} fill="#000000" />
                 <span>STREAK x{answerStreak}</span>
               </div>
             )}
 
-            {/* Score */}
-            <div style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '1.3rem', color: 'hsl(var(--secondary))' }}>
+            {/* Score Display */}
+            <div style={{ fontFamily: 'var(--font-title)', fontWeight: '900', fontSize: '1.3rem', color: 'var(--theme-yellow)' }}>
               {score} PTS
             </div>
           </div>
 
-          {/* Rapid Question Board */}
-          <div className="glass-panel" style={{
-            padding: '2rem 1.5rem',
-            textAlign: 'center',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-medium)',
-            borderRadius: 'var(--radius-md)'
+          {/* Rapid Question Board - Signature Neo-Brutalist Gradient Question Box */}
+          <div style={{
+            padding: '2.25rem 2.5rem',
+            background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
+            border: '3px solid #000000',
+            boxShadow: '6px 6px 0px #000000',
+            borderRadius: '20px'
           }}>
-            <span style={{ fontSize: '0.75rem', color: 'hsl(var(--secondary))', fontWeight: '900', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              ⚡ RAPID TARGET
-            </span>
-            <h2 style={{ fontSize: '1.85rem', color: 'var(--text-primary)', marginTop: '0.25rem', fontWeight: '900', fontFamily: 'var(--font-title)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
+              <Zap size={15} color="var(--theme-yellow)" fill="var(--theme-yellow)" />
+              <span style={{ fontSize: '0.75rem', color: 'var(--theme-yellow)', fontWeight: '900', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                RAPID TARGET
+              </span>
+            </div>
+            <h2 style={{ fontSize: '1.65rem', color: 'var(--text-primary)', lineHeight: '1.4', fontWeight: '900', fontFamily: 'var(--font-title)', margin: 0 }}>
               {currentQuestion.question}
             </h2>
           </div>
 
-          {/* MCQ Blitz Options */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+          {/* MCQ Blitz Options - Uniform Letter Badges (A, B, C, D) & Neo-Brutalist Cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
             {currentQuestion.options.map((option, idx) => {
               const isCorrect = option === currentQuestion.correct_answer;
-              
+              const isSelected = selectedOption === option;
+
               let optClass = '';
               if (isAnswered) {
                 if (isCorrect) optClass = 'correct';
-                else if (selectedOption === option) optClass = 'wrong';
+                else if (isSelected) optClass = 'wrong';
               }
+
+              const letterBadges = ['A', 'B', 'C', 'D'];
+              const letterFills = ['#18FFFF', '#E040FB', '#FFD54F', '#69F0AE'];
 
               return (
                 <button
@@ -422,21 +457,43 @@ export default function TimeBlitzView({ state, wordsData }) {
                   onClick={() => handleOptionClick(option)}
                   disabled={isAnswered}
                   className={`mcq-option ${optClass}`}
-                  style={{ 
-                    padding: '0.9rem 1.1rem',
-                    fontSize: '1rem',
-                    fontWeight: '800',
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    borderRadius: 'var(--radius-md)',
-                    border: 'var(--border-thin)',
-                    backgroundColor: 'var(--bg-surface)'
+                    padding: '1rem 1.25rem',
+                    borderRadius: '16px',
+                    border: '3px solid #000000',
+                    boxShadow: '4px 4px 0px #000000',
+                    backgroundColor: 'var(--bg-surface)',
+                    color: 'var(--text-primary)',
+                    cursor: isAnswered ? 'default' : 'pointer',
+                    transition: 'all 0.15s ease'
                   }}
                 >
-                  <span>{option}</span>
-                  {isAnswered && isCorrect && <CheckCircle2 size={18} color="hsl(var(--success))" />}
-                  {isAnswered && selectedOption === option && !isCorrect && <XCircle size={18} color="hsl(var(--danger))" />}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
+                    <span style={{
+                      width: '34px',
+                      height: '34px',
+                      borderRadius: '10px',
+                      border: '2px solid #000000',
+                      backgroundColor: letterFills[idx % 4],
+                      color: idx % 4 === 0 || idx % 4 === 2 ? '#000000' : '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: '900',
+                      fontSize: '0.88rem',
+                      fontFamily: 'var(--font-title)',
+                      boxShadow: '2px 2px 0px #000000',
+                      flexShrink: 0
+                    }}>
+                      {letterBadges[idx % 4]}
+                    </span>
+                    <span style={{ fontSize: '1.05rem', fontWeight: '800' }}>{option}</span>
+                  </div>
+                  {isAnswered && isCorrect && <CheckCircle2 size={22} color="#000000" />}
+                  {isAnswered && isSelected && !isCorrect && <XCircle size={22} color="#FFFFFF" />}
                 </button>
               );
             })}
@@ -446,34 +503,34 @@ export default function TimeBlitzView({ state, wordsData }) {
 
       {/* 3. GAME OVER SCREEN */}
       {isGameOver && (
-        <div className="card animate-scale-in" style={{
-          padding: '2.5rem 1.5rem',
+        <div style={{
+          padding: '3rem 2rem',
           textAlign: 'center',
-          background: 'linear-gradient(135deg, var(--bg-surface) 0%, hsla(var(--primary), 0.08) 100%)',
-          border: 'var(--border-thick)',
-          boxShadow: 'var(--shadow-large)',
-          borderRadius: 'var(--radius-lg)'
-        }}>
+          background: 'linear-gradient(135deg, rgba(224, 64, 251, 0.12) 0%, rgba(24, 255, 255, 0.1) 50%, var(--bg-surface) 100%)',
+          border: '3px solid #000000',
+          boxShadow: '6px 6px 0px #000000',
+          borderRadius: '20px'
+        }} className="animate-scale-in">
           <div style={{
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-tiny)',
+            backgroundColor: 'var(--theme-yellow)',
+            border: '2.5px solid #000000',
+            boxShadow: '2.5px 2.5px 0px #000000',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 1rem',
-            color: 'hsl(var(--primary))'
+            color: '#000000'
           }}>
-            <Award size={32} />
+            <Award size={34} strokeWidth={2.5} />
           </div>
 
-          <h3 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+          <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
             Time's Up!
           </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.75rem' }}>
             Solid run! Keep training your fast recall.
           </p>
 
@@ -482,22 +539,24 @@ export default function TimeBlitzView({ state, wordsData }) {
             justifyContent: 'center',
             gap: '1.5rem',
             padding: '1.25rem',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-medium)',
-            borderRadius: 'var(--radius-md)',
-            marginBottom: '1rem'
+            backgroundColor: 'var(--bg-surface)',
+            border: '3px solid #000000',
+            boxShadow: '4px 4px 0px #000000',
+            borderRadius: '16px',
+            marginBottom: '1.25rem',
+            maxWidth: '420px',
+            margin: '0 auto 1.25rem'
           }}>
             <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
+              <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
               <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
                 {score}
               </div>
             </div>
-            <div style={{ width: '1px', backgroundColor: 'var(--border-muted)' }} />
+            <div style={{ width: '2px', backgroundColor: '#000000' }} />
             <div>
-              <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
-              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
+              <div style={{ fontSize: '2.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--theme-yellow)' }}>
                 x{answerStreak}
               </div>
             </div>
@@ -507,29 +566,34 @@ export default function TimeBlitzView({ state, wordsData }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '0.45rem 1.25rem',
+            padding: '0.55rem 1.25rem',
             backgroundColor: 'var(--theme-yellow)',
-            border: 'var(--border-thick)',
-            boxShadow: 'var(--shadow-tiny)',
-            borderRadius: 'var(--radius-md)',
+            border: '2px solid #000000',
+            boxShadow: '3px 3px 0px #000000',
+            borderRadius: '14px',
             marginBottom: '1.5rem',
-            color: '#000'
+            maxWidth: '420px',
+            margin: '0 auto 1.5rem',
+            color: '#000000'
           }}>
-            <div style={{ fontSize: '0.65rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
-            <div style={{ fontSize: '1.35rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
+            <div style={{ fontSize: '0.7rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
               {highScore} PTS
             </div>
           </div>
 
           <div style={{
-            padding: '1rem 1.25rem',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'var(--bg-canvas)',
-            border: 'var(--border-thick)',
+            padding: '1.15rem 1.25rem',
+            borderRadius: '16px',
+            backgroundColor: 'var(--bg-surface)',
+            border: '3px solid #000000',
+            boxShadow: '4px 4px 0px #000000',
             textAlign: 'left',
             marginBottom: '1.75rem',
-            fontSize: '0.85rem',
-            lineHeight: '1.6'
+            fontSize: '0.9rem',
+            lineHeight: '1.7',
+            maxWidth: '420px',
+            margin: '0 auto 1.75rem'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
               <span>Coins Earned:</span>
@@ -540,7 +604,7 @@ export default function TimeBlitzView({ state, wordsData }) {
               <span style={{ color: 'hsl(var(--primary))', fontWeight: '900' }}>+{Math.floor(score / 2)} XP</span>
             </div>
             {score === highScore && score > 0 && (
-              <div style={{ color: 'var(--theme-green)', fontWeight: '900', marginTop: '0.5rem', textAlign: 'center', fontSize: '0.9rem' }}>
+              <div style={{ color: '#00E676', fontWeight: '900', marginTop: '0.5rem', textAlign: 'center', fontSize: '0.95rem' }}>
                 🎉 NEW HIGH SCORE RECORD!
               </div>
             )}
@@ -549,9 +613,20 @@ export default function TimeBlitzView({ state, wordsData }) {
           <button 
             onClick={startBlitzGame}
             className="btn btn-primary"
-            style={{ width: '100%', padding: '0.85rem', fontSize: '1rem', background: 'var(--theme-yellow)', color: '#000', fontWeight: '900', boxShadow: 'var(--shadow-medium)' }}
+            style={{ 
+              maxWidth: '420px', 
+              width: '100%', 
+              padding: '0.95rem', 
+              fontSize: '1.05rem', 
+              background: 'var(--theme-yellow)', 
+              color: '#000000', 
+              fontWeight: '900', 
+              border: '3px solid #000000', 
+              boxShadow: '4px 4px 0px #000000', 
+              borderRadius: '16px' 
+            }}
           >
-            <RefreshCw size={16} color="#000" /> Replay Time Blitz
+            <RefreshCw size={18} color="#000000" /> Replay Time Blitz
           </button>
         </div>
       )}
