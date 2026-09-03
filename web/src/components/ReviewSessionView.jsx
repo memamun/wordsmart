@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import WordDetailPanel from './WordDetailPanel';
+import { useSpeech } from '../hooks/useSpeech.js';
 
 export default function ReviewSessionView({ state, wordsData }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,15 +71,7 @@ export default function ReviewSessionView({ state, wordsData }) {
     x.set(0);
   }, [currentIndex]);
 
-  const speakWord = (text, e) => {
-    if (e && e.stopPropagation) e.stopPropagation();
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.85;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  const { speak: speakWord, isSpeaking } = useSpeech(0.85);
 
   const handleRate = (rating) => {
     if (!word) return;
@@ -367,16 +360,19 @@ export default function ReviewSessionView({ state, wordsData }) {
                       width: '32px',
                       height: '32px',
                       borderRadius: '50%',
-                      backgroundColor: 'hsla(var(--primary), 0.1)',
-                      border: '1px solid hsla(var(--primary), 0.2)',
+                      backgroundColor: isSpeaking ? 'hsla(var(--primary), 0.3)' : 'hsla(var(--primary), 0.1)',
+                      border: isSpeaking ? '2px solid hsl(var(--primary))' : '1px solid hsla(var(--primary), 0.2)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
-                      color: 'hsl(var(--primary))'
+                      color: 'hsl(var(--primary))',
+                      boxShadow: isSpeaking ? '0 0 10px hsla(var(--primary), 0.5)' : 'none',
+                      transform: isSpeaking ? 'scale(1.08)' : 'none',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    <Volume2 size={16} />
+                    <Volume2 size={16} style={{ animation: isSpeaking ? 'pulse 1s infinite' : 'none' }} />
                   </button>
                 </div>
               </div>

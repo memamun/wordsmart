@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { DetailPanelContext } from '../App';
 import { renderMarkdown } from '../utils/markdown';
+import { useSpeech } from '../hooks/useSpeech.js';
 
 const ALPHABET = ['ALL', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
 const PAGE_SIZE = 60;
@@ -34,14 +35,11 @@ export default function SearchView({ state, wordsData }) {
     setVisibleCount(PAGE_SIZE);
   }, [searchQuery, filterMode, selectedLetter]);
 
+  const { speak, isSpeaking, speakingText } = useSpeech(0.85);
+
   const speakWord = (text, e) => {
     e.stopPropagation();
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.85;
-      window.speechSynthesis.speak(utterance);
-    }
+    speak(text);
   };
 
   // Filter and search words list
@@ -429,17 +427,19 @@ export default function SearchView({ state, wordsData }) {
                       style={{ 
                         background: 'none', 
                         border: 'none', 
-                        color: 'var(--text-secondary)', 
+                        color: (isSpeaking && speakingText === w.word) ? 'var(--theme-cyan)' : 'var(--text-secondary)', 
                         cursor: 'pointer', 
                         padding: '0.35rem',
                         borderRadius: '6px',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        transform: (isSpeaking && speakingText === w.word) ? 'scale(1.15)' : 'none',
+                        transition: 'all 0.15s ease'
                       }}
                       className="btn-icon-hover"
                     >
-                      <Volume2 size={17} />
+                      <Volume2 size={17} style={{ animation: (isSpeaking && speakingText === w.word) ? 'pulse 1s infinite' : 'none' }} />
                     </button>
                     <button
                       onClick={() => state.toggleBookmark(w.id)}
@@ -583,9 +583,18 @@ export default function SearchView({ state, wordsData }) {
                     title={`Pronounce ${w.word}`}
                     aria-label={`Pronounce ${w.word}`}
                     className="btn-icon-hover"
-                    style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', padding: '0.3rem', borderRadius: '6px' }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: (isSpeaking && speakingText === w.word) ? 'var(--theme-cyan)' : 'var(--text-secondary)',
+                      cursor: 'pointer',
+                      padding: '0.3rem',
+                      borderRadius: '6px',
+                      transform: (isSpeaking && speakingText === w.word) ? 'scale(1.15)' : 'none',
+                      transition: 'all 0.15s ease'
+                    }}
                   >
-                    <Volume2 size={17} />
+                    <Volume2 size={17} style={{ animation: (isSpeaking && speakingText === w.word) ? 'pulse 1s infinite' : 'none' }} />
                   </button>
                   <button
                     onClick={() => state.toggleBookmark(w.id)}

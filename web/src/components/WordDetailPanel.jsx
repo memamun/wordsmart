@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { renderMarkdown, formatExampleText } from '../utils/markdown';
 import WordAiChatModal from './WordAiChatModal';
+import { useSpeech } from '../hooks/useSpeech.js';
 
 const SectionHeader = ({ icon, label, color }) => (
   <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.75rem' }}>
@@ -61,20 +62,7 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
     }
   };
 
-  // Speech synthesis
-  const speakWord = (text) => {
-    try {
-      if ('speechSynthesis' in window && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.85;
-        utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
-      }
-    } catch (err) {
-      console.warn('Speech synthesis unavailable:', err);
-    }
-  };
+  const { speak: speakWord, isSpeaking } = useSpeech(0.85);
 
   // Keyboard Shortcuts Listener
   useEffect(() => {
@@ -271,7 +259,7 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
               padding: '0.45rem 0.75rem',
               borderRadius: '9999px',
               border: 'var(--border-thin)',
-              backgroundColor: 'var(--theme-yellow)',
+              backgroundColor: isSpeaking ? 'var(--theme-green)' : 'var(--theme-yellow)',
               color: '#000000',
               cursor: 'pointer',
               display: 'flex',
@@ -281,13 +269,15 @@ export default function WordDetailPanel({ word, wordList = [], onClose, onSelect
               fontSize: '0.82rem',
               fontWeight: '900',
               fontFamily: 'var(--font-title)',
-              boxShadow: 'var(--shadow-tiny)',
+              boxShadow: isSpeaking ? '0 0 10px rgba(105, 240, 174, 0.5)' : 'var(--shadow-tiny)',
+              transform: isSpeaking ? 'scale(1.04)' : 'none',
+              transition: 'all 0.2s ease',
               flexShrink: 0
             }}
             className="btn-icon-hover"
           >
-            <Volume2 size={16} />
-            <span className="detail-header-label">Audio</span>
+            <Volume2 size={16} style={{ animation: isSpeaking ? 'pulse 1s infinite' : 'none' }} />
+            <span className="detail-header-label">{isSpeaking ? 'Playing...' : 'Audio'}</span>
           </button>
 
           {/* Bookmark Toggle */}

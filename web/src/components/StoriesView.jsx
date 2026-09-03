@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DetailPanelContext } from '../App';
+import { useSpeech } from '../hooks/useSpeech.js';
 
 export default function StoriesView({ state, wordsData }) {
   const { setDetailWord } = React.useContext(DetailPanelContext);
@@ -29,14 +30,7 @@ export default function StoriesView({ state, wordsData }) {
     setSelectedWord(null);
   };
 
-  const speakWord = (text) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.85;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  const { speak: speakWord, isSpeaking } = useSpeech(0.85);
 
   const highlightVocabulary = (text) => {
     if (!text) return '';
@@ -285,9 +279,18 @@ export default function StoriesView({ state, wordsData }) {
                 <button 
                   onClick={() => speakWord(selectedWord.word)}
                   className="min-touch"
-                  style={{ background: 'none', border: 'none', color: 'hsl(var(--primary))', cursor: 'pointer' }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: isSpeaking ? 'var(--theme-green)' : 'hsl(var(--primary))',
+                    cursor: 'pointer',
+                    transform: isSpeaking ? 'scale(1.15)' : 'none',
+                    transition: 'all 0.15s ease'
+                  }}
+                  title="Pronounce word"
+                  aria-label={`Pronounce ${selectedWord.word}`}
                 >
-                  <Volume2 size={20} />
+                  <Volume2 size={20} style={{ animation: isSpeaking ? 'pulse 1s infinite' : 'none' }} />
                 </button>
               </div>
 

@@ -32,6 +32,7 @@ import {
   Target,
   Sparkle
 } from 'lucide-react';
+import { useSpeech } from '../hooks/useSpeech.js';
 import { PREP_STAGES } from '../hooks/useGameState';
 
 function WelcomeDecoration() {
@@ -262,14 +263,12 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
     setSampleWordIndex((prev) => (prev + 1) % sampleWords.length);
   };
 
+  const { speak: speakWord, isSpeaking } = useSpeech(0.9);
+
   const handlePlayAudio = (e) => {
     e.stopPropagation();
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(currentSample.word);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
+    if (currentSample?.word) {
+      speakWord(currentSample.word);
     }
   };
 
@@ -791,7 +790,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
                   onClick={handlePlayAudio}
                   title="Pronounce"
                   style={{
-                    background: 'var(--bg-surface)',
+                    background: isSpeaking ? 'var(--theme-cyan)' : 'var(--bg-surface)',
                     border: 'var(--border-thin)',
                     borderRadius: '50%',
                     width: '34px',
@@ -799,11 +798,14 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--text-primary)',
-                    cursor: 'pointer'
+                    color: isSpeaking ? '#000000' : 'var(--text-primary)',
+                    cursor: 'pointer',
+                    transform: isSpeaking ? 'scale(1.1)' : 'none',
+                    boxShadow: isSpeaking ? '0 0 10px rgba(24, 255, 255, 0.5)' : 'none',
+                    transition: 'all 0.2s ease'
                   }}
                 >
-                  <Volume2 size={16} />
+                  <Volume2 size={16} style={{ animation: isSpeaking ? 'pulse 1s infinite' : 'none' }} />
                 </button>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800' }}>
                   {isFlipped ? 'CLICK TO SEE FRONT' : 'CLICK TO REVEAL MEANING ↻'}

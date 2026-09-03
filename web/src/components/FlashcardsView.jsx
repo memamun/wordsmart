@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DetailPanelContext } from '../App';
+import { useSpeech } from '../hooks/useSpeech.js';
 
 export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
   const { detailWord, setDetailWord } = useContext(DetailPanelContext);
@@ -111,22 +112,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [wordsData.loading, levelWords, flipped, currentIndex, word]);
 
-  // Speech synthesis pronunciation
-  const speakWord = (text, e) => {
-    if (e && e.stopPropagation) e.stopPropagation();
-    try {
-      if ('speechSynthesis' in window && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.85;
-        utterance.pitch = 1.0;
-        utterance.lang = 'en-US';
-        window.speechSynthesis.speak(utterance);
-      }
-    } catch (err) {
-      console.warn('Speech synthesis unavailable:', err);
-    }
-  };
+  const { speak: speakWord, isSpeaking } = useSpeech(0.85);
 
   const handleDragEnd = (event, info) => {
     if (info.offset.x > 120) {
@@ -396,17 +382,20 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                         width: '44px',
                         height: '44px',
                         borderRadius: '50%',
-                        backgroundColor: 'hsla(var(--primary), 0.1)',
-                        border: '1px solid hsla(var(--primary), 0.2)',
+                        backgroundColor: isSpeaking ? 'hsla(var(--primary), 0.3)' : 'hsla(var(--primary), 0.1)',
+                        border: isSpeaking ? '2px solid hsl(var(--primary))' : '1px solid hsla(var(--primary), 0.2)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         cursor: 'pointer',
-                        color: 'hsl(var(--primary))'
+                        color: 'hsl(var(--primary))',
+                        boxShadow: isSpeaking ? '0 0 12px hsla(var(--primary), 0.5)' : 'none',
+                        transform: isSpeaking ? 'scale(1.08)' : 'none',
+                        transition: 'all 0.2s ease'
                       }}
                       title="Listen Pronunciation"
                     >
-                      <Volume2 size={18} />
+                      <Volume2 size={18} style={{ animation: isSpeaking ? 'pulse 1s infinite' : 'none' }} />
                     </button>
                   </div>
                 </div>
