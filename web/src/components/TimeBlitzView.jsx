@@ -16,6 +16,7 @@ import {
   Target,
   Clock
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { shuffleArray } from '../utils/shuffle.js';
 import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
@@ -28,6 +29,106 @@ const getBlitzRank = (score) => {
   if (score >= 50) return { title: 'Rapid Scholar', color: '#18FFFF' };
   if (score > 0) return { title: 'Blitz Cadet', color: '#E040FB' };
   return { title: 'Rookie Run', color: 'var(--text-muted)' };
+};
+
+const BlitzHeroAnimation = () => {
+  return (
+    <div style={{ position: 'relative', width: '80px', height: '80px', margin: '0 auto 1.1rem' }}>
+      {/* Outer Rotating Glow Halo */}
+      <motion.div
+        animate={{ 
+          rotate: 360,
+          scale: [1, 1.08, 1],
+        }}
+        transition={{ 
+          rotate: { repeat: Infinity, duration: 10, ease: 'linear' },
+          scale: { repeat: Infinity, duration: 2.5, ease: 'easeInOut' }
+        }}
+        style={{
+          position: 'absolute',
+          inset: '-6px',
+          borderRadius: '50%',
+          background: 'conic-gradient(from 0deg, #FFD54F, #FF6D00, #00E5FF, #FFD54F)',
+          opacity: 0.65,
+          filter: 'blur(8px)',
+          zIndex: 0
+        }}
+      />
+
+      {/* Pulsing Floating Core Badge */}
+      <motion.div
+        animate={{ 
+          y: [0, -5, 0],
+        }}
+        transition={{ 
+          repeat: Infinity, 
+          duration: 2.2, 
+          ease: 'easeInOut' 
+        }}
+        style={{
+          position: 'relative',
+          width: '80px',
+          height: '80px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #FFD54F 0%, #FFA000 50%, #FF6D00 100%)',
+          border: '3px solid #000000',
+          boxShadow: '4px 4px 0px #000000, 0 10px 25px rgba(255, 160, 0, 0.35)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1,
+          color: '#000000'
+        }}
+      >
+        {/* Animated Stopwatch Icon with subtle ticking vibration */}
+        <motion.div
+          animate={{
+            rotate: [0, -10, 10, -6, 6, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 1.8,
+            ease: 'easeInOut',
+            repeatDelay: 1
+          }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Timer size={40} strokeWidth={2.5} />
+        </motion.div>
+
+        {/* Orbiting Lightning Spark Badge */}
+        <motion.div
+          animate={{
+            scale: [0.9, 1.2, 0.9],
+            rotate: [0, 15, -15, 0]
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 1.6,
+            ease: 'easeInOut'
+          }}
+          style={{
+            position: 'absolute',
+            bottom: '-3px',
+            right: '-3px',
+            width: '28px',
+            height: '28px',
+            borderRadius: '50%',
+            backgroundColor: '#00E5FF',
+            border: '2px solid #000000',
+            boxShadow: '2px 2px 0px #000000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#000000',
+            zIndex: 2
+          }}
+        >
+          <Zap size={15} fill="#000000" strokeWidth={2.5} />
+        </motion.div>
+      </motion.div>
+    </div>
+  );
 };
 
 export default function TimeBlitzView({ state, wordsData }) {
@@ -265,13 +366,15 @@ export default function TimeBlitzView({ state, wordsData }) {
       {/* 1. START GAME SCREEN: Compact Punchy Arcade Card */}
       {!isPlaying && !isGameOver && (
         <div className="blitz-arcade-card animate-slide-up">
-          {/* Top Header Section */}
+          {/* Top Header Section with Gamified Arcade Animation */}
           <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <BlitzHeroAnimation />
+
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.35rem',
-              padding: '0.3rem 0.8rem',
+              padding: '0.28rem 0.75rem',
               borderRadius: '9999px',
               backgroundColor: 'rgba(255, 213, 79, 0.2)',
               border: '1.5px solid var(--theme-yellow)',
@@ -280,7 +383,7 @@ export default function TimeBlitzView({ state, wordsData }) {
               fontWeight: '900',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
-              marginBottom: '0.65rem'
+              marginBottom: '0.5rem'
             }}>
               <Zap size={13} color="var(--theme-yellow)" fill="var(--theme-yellow)" />
               <span>60-Second Challenge</span>
