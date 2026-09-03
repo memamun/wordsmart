@@ -239,43 +239,74 @@ export default function QuizRunner({
   // --- ACTIVE QUESTION STATE ---
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '800px', margin: '0 auto' }} className="animate-fade">
-      {/* 1. Quiz Header Bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-        <div>
-          <span style={{ fontSize: '0.75rem', fontWeight: '700', color: isQualification ? 'hsl(var(--secondary))' : 'hsl(var(--primary))' }}>
+      {/* 1. Quiz Header Bar (Single-row responsive on mobile) */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem', width: '100%', flexWrap: 'nowrap' }}>
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <span style={{ 
+            fontSize: '0.72rem', 
+            fontWeight: '700', 
+            color: isQualification ? 'hsl(var(--secondary))' : 'hsl(var(--primary))',
+            display: 'block',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
+          }}>
             {title ? title.toUpperCase() : 'VOCABULARY QUIZ'} {subtitle ? `• ${subtitle.toUpperCase()}` : ''}
           </span>
-          <h2 style={{ fontSize: '1.5rem', fontFamily: 'var(--font-title)', margin: '0.15rem 0 0 0' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(1.05rem, 3.8vw, 1.5rem)', 
+            fontFamily: 'var(--font-title)', 
+            margin: '0.1rem 0 0 0', 
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}>
             Question {currentQIndex + 1} of {questions.length}
           </h2>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'hsl(var(--coin))', fontWeight: '800', fontSize: '0.85rem' }}>
-            <Coins size={18} />
-            <span>{state.coins} Coins</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
+          {/* Coins counter */}
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.25rem', 
+            color: 'hsl(var(--coin))', 
+            fontWeight: '800', 
+            fontSize: '0.82rem',
+            padding: '0.35rem 0.55rem',
+            borderRadius: '9999px',
+            backgroundColor: 'var(--bg-surface-elevated)',
+            border: 'var(--border-thin)'
+          }}>
+            <Coins size={15} />
+            <span>{state.coins}</span>
+            <span className="hide-mobile" style={{ marginLeft: '2px' }}>Coins</span>
           </div>
 
-          {/* Hint Shop Drawer Button */}
+          {/* Hint Shop Drawer Button: icon only on mobile */}
           <button 
             onClick={() => setShowHintPopover(prev => !prev)}
             className="btn btn-secondary"
             style={{ 
-              padding: '0.35rem 0.75rem', 
+              padding: '0.35rem 0.65rem', 
               fontSize: '0.75rem', 
               borderRadius: '9999px',
               display: 'flex', 
               alignItems: 'center', 
+              justifyContent: 'center',
               gap: '0.35rem',
               backgroundColor: showHintPopover ? 'var(--theme-yellow)' : 'var(--bg-surface-elevated)',
               color: showHintPopover ? '#000' : 'var(--text-primary)',
               boxShadow: showHintPopover ? 'var(--shadow-tiny)' : 'none',
-              border: 'var(--border-thin)'
+              border: 'var(--border-thin)',
+              cursor: 'pointer'
             }}
             title="Need a Hint?"
+            aria-label="Need a Hint?"
           >
-            <Lightbulb size={14} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
-            <span>Need a Hint?</span>
+            <Lightbulb size={15} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
+            <span className="hide-mobile">Need a Hint?</span>
           </button>
 
           {/* Quit Button */}
@@ -283,15 +314,17 @@ export default function QuizRunner({
             onClick={onQuit}
             className="btn btn-secondary"
             title="Quit Quiz"
+            aria-label="Quit Quiz"
             style={{
-              padding: '0.35rem 0.85rem',
+              padding: '0.35rem 0.65rem',
               fontSize: '0.78rem',
               fontWeight: '800',
               fontFamily: 'var(--font-title)',
               borderRadius: '9999px',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem',
+              justifyContent: 'center',
+              gap: '0.3rem',
               backgroundColor: 'var(--bg-surface-elevated)',
               color: 'var(--text-secondary)',
               border: 'var(--border-thin)',
@@ -300,7 +333,7 @@ export default function QuizRunner({
             }}
           >
             <ArrowLeft size={14} />
-            <span>Quit</span>
+            <span className="hide-mobile">Quit</span>
           </button>
         </div>
       </div>
