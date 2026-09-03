@@ -40,9 +40,9 @@ def load_keys():
                     if not openrouter_key:
                         openrouter_key = line.split("=", 1)[1].strip()
     if not groq_key:
-        groq_key = "REMOVED_SECRET"
+        groq_key = os.environ.get("GROQ_API_KEY", "")
     if not openrouter_key:
-        openrouter_key = "REMOVED_SECRET"
+        openrouter_key = os.environ.get("OPENROUTER_API_KEY", "")
         
     gemini_keys = list(dict.fromkeys([k for k in gemini_keys if k]))
     return gemini_keys, groq_key, openrouter_key
