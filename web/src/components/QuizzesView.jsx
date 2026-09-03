@@ -7,7 +7,11 @@ import {
   Coins, 
   BookOpen, 
   Trophy,
-  RefreshCw
+  RefreshCw,
+  Target,
+  Zap,
+  Shield,
+  Star
 } from 'lucide-react';
 import { shuffleArray } from '../utils/shuffle.js';
 import { DetailPanelContext } from '../App';
