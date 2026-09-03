@@ -2593,6 +2593,23 @@ a:focus-visible,
   box-shadow: 2px 2px 0px #000000;
 }
 
+/* Blitz Middle Bento Grid (Desktop 2-col, Mobile 1-col) */
+.blitz-middle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+@media (min-width: 680px) {
+  .blitz-middle-grid {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+}
+
+
 /* Responsive Mobile Blitz Layout - Fill vertical viewport nicely */
 @media (max-width: 768px) {
   .timeblitz-view-container {

@@ -249,12 +249,12 @@ export default function TimeBlitzView({ state, wordsData }) {
   };
 
   return (
-    <div className="animate-fade timeblitz-view-container" style={{ maxWidth: '800px', margin: '0 auto', width: '100%' }}>
-      {/* 1. START GAME SCREEN (Expanded Mobile Layout) */}
+    <div className="animate-fade timeblitz-view-container" style={{ maxWidth: '860px', margin: '0 auto', width: '100%' }}>
+      {/* 1. START GAME SCREEN (Optimized Desktop Bento Grid + Mobile Responsive) */}
       {!isPlaying && !isGameOver && (
-        <div className="blitz-card animate-slide-up">
-          {/* Top Section */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="blitz-card animate-slide-up" style={{ gap: '2rem' }}>
+          {/* Top Hero Section */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <div style={{
               width: '72px',
               height: '72px',
@@ -272,7 +272,7 @@ export default function TimeBlitzView({ state, wordsData }) {
             </div>
 
             <h2 style={{ 
-              fontSize: 'clamp(1.85rem, 5vw, 2.4rem)', 
+              fontSize: 'clamp(1.85rem, 4vw, 2.4rem)', 
               fontFamily: 'var(--font-title)', 
               fontWeight: '900', 
               textTransform: 'uppercase', 
@@ -284,97 +284,132 @@ export default function TimeBlitzView({ state, wordsData }) {
             </h2>
             <p style={{ 
               color: 'var(--text-secondary)', 
-              fontSize: '0.98rem', 
-              maxWidth: '520px', 
+              fontSize: '1rem', 
+              maxWidth: '600px', 
               margin: '0 auto',
-              lineHeight: '1.55',
+              lineHeight: '1.6',
               fontWeight: '500'
             }}>
               Test your rapid vocabulary recall. Race against the clock and answer before time runs out!
             </p>
           </div>
 
-          {/* Middle Section: Rules + Stats */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', maxWidth: '540px', margin: '0 auto' }}>
-            {/* Quick Rules Pills */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '0.75rem',
-              width: '100%'
-            }}>
-              <div className="blitz-pill blitz-pill-neutral">
-                <span className="pill-label">START TIME</span>
-                <span className="pill-value">⏱️ 60s</span>
+          {/* Middle Bento Grid: 2 Columns on Desktop, 1 Column on Mobile */}
+          <div className="blitz-middle-grid">
+            {/* Left Column: Rules & Streak Engine */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', height: '100%', justifyContent: 'space-between' }}>
+              {/* Quick Rules Pills */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '0.65rem',
+                width: '100%'
+              }}>
+                <div className="blitz-pill blitz-pill-neutral">
+                  <span className="pill-label">START TIME</span>
+                  <span className="pill-value">⏱️ 60s</span>
+                </div>
+                <div className="blitz-pill blitz-pill-correct">
+                  <span className="pill-label">CORRECT</span>
+                  <span className="pill-value">+3s</span>
+                </div>
+                <div className="blitz-pill blitz-pill-mistake">
+                  <span className="pill-label">MISTAKE</span>
+                  <span className="pill-value">-5s</span>
+                </div>
               </div>
-              <div className="blitz-pill blitz-pill-correct">
-                <span className="pill-label">CORRECT</span>
-                <span className="pill-value">+3s</span>
-              </div>
-              <div className="blitz-pill blitz-pill-mistake">
-                <span className="pill-label">MISTAKE</span>
-                <span className="pill-value">-5s</span>
-              </div>
-            </div>
 
-            {/* High Score Banner */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '0.85rem 1.25rem',
-              borderRadius: '16px',
-              backgroundColor: 'var(--bg-surface-elevated)',
-              border: '2px solid var(--border-muted)',
-              boxShadow: '3px 3px 0px var(--shadow-color)',
-              width: '100%'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Trophy size={20} color="var(--theme-yellow)" />
-                <span style={{ fontSize: '0.85rem', fontWeight: '800', color: 'var(--text-secondary)' }}>
-                  Personal Best Record
+              {/* Streak Multipliers Callout */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.9rem 1.15rem',
+                borderRadius: '16px',
+                backgroundColor: 'rgba(var(--primary-rgb), 0.08)',
+                border: '1.5px dashed var(--border-muted)',
+                width: '100%',
+                textAlign: 'left'
+              }}>
+                <Flame size={24} color="hsl(var(--secondary))" style={{ flexShrink: 0 }} />
+                <span style={{ fontSize: '0.85rem', lineHeight: '1.45', color: 'var(--text-secondary)', fontWeight: '600' }}>
+                  Keep a streak of <strong>5+ correct</strong> to trigger <strong>Bonus Coins</strong> and <strong>XP Multipliers</strong>!
                 </span>
               </div>
-              <span style={{ fontSize: '1.25rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
-                {highScore > 0 ? `${highScore} PTS` : 'NO RECORD'}
-              </span>
             </div>
 
-            {/* Streak Multiplier Tip Banner */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.85rem 1.25rem',
-              borderRadius: '16px',
-              backgroundColor: 'rgba(var(--primary-rgb), 0.08)',
-              border: '1.5px dashed var(--border-muted)',
-              width: '100%',
-              textAlign: 'left'
-            }}>
-              <Flame size={22} color="hsl(var(--secondary))" style={{ flexShrink: 0 }} />
-              <span style={{ fontSize: '0.84rem', lineHeight: '1.45', color: 'var(--text-secondary)', fontWeight: '600' }}>
-                Keep a streak of <strong>5+ correct</strong> to earn <strong>Bonus Coins</strong> and <strong>XP Multipliers</strong>!
-              </span>
+            {/* Right Column: Player Record & Rewards Intel */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', height: '100%', justifyContent: 'space-between' }}>
+              {/* High Score Record Showcase */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0.95rem 1.25rem',
+                borderRadius: '16px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '2px solid var(--border-muted)',
+                boxShadow: '3px 3px 0px var(--shadow-color)',
+                width: '100%'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <Trophy size={24} color="var(--theme-yellow)" />
+                  <div>
+                    <div style={{ fontSize: '0.68rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      Player Record
+                    </div>
+                    <div style={{ fontSize: '0.92rem', fontWeight: '800', color: 'var(--text-primary)' }}>
+                      Personal Best
+                    </div>
+                  </div>
+                </div>
+                <span style={{ fontSize: '1.45rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+                  {highScore > 0 ? `${highScore} PTS` : 'NO RECORD'}
+                </span>
+              </div>
+
+              {/* Rewards Conversion Rate Info */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                padding: '0.85rem 1.15rem',
+                borderRadius: '16px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '2px solid var(--border-muted)',
+                boxShadow: '3px 3px 0px var(--shadow-color)',
+                width: '100%'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: '800', color: 'var(--text-secondary)' }}>
+                  <Coins size={16} color="hsl(var(--coin))" />
+                  <span>+1 Coin / 20 pts</span>
+                </div>
+                <div style={{ width: '1px', height: '22px', backgroundColor: 'var(--border-muted)' }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', fontWeight: '800', color: 'var(--text-secondary)' }}>
+                  <Zap size={16} color="hsl(var(--primary))" />
+                  <span>+1 XP / 2 pts</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Bottom Action Section */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: '0.6rem' }}>
             <button 
               onClick={startBlitzGame}
               className="blitz-cta-btn"
+              style={{ minWidth: '320px' }}
             >
               <Play size={20} fill="#000" /> Start Time Blitz
             </button>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '600' }}>
+            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>
               60 seconds • Rapid-fire questions • Instant feedback
             </span>
           </div>
         </div>
       )}
 
-      {/* 2. PLAYING GAME LOOP SCREEN (Expanded Mobile Layout) */}
+      {/* 2. PLAYING GAME LOOP SCREEN */}
       {isPlaying && currentQuestion && (
         <div className="blitz-play-container">
           {/* Game Stats HUD */}
@@ -544,9 +579,9 @@ export default function TimeBlitzView({ state, wordsData }) {
         </div>
       )}
 
-      {/* 3. GAME OVER SCREEN (Expanded Mobile Layout) */}
+      {/* 3. GAME OVER SCREEN (Bento Grid on Desktop) */}
       {isGameOver && (
-        <div className="blitz-card animate-scale-in">
+        <div className="blitz-card animate-scale-in" style={{ gap: '2rem' }}>
           <div>
             <div style={{
               width: '72px',
@@ -564,90 +599,94 @@ export default function TimeBlitzView({ state, wordsData }) {
               <Award size={38} strokeWidth={2.5} />
             </div>
 
-            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
+            <h3 style={{ fontSize: '2.2rem', fontFamily: 'var(--font-title)', fontWeight: '900', textTransform: 'uppercase', marginBottom: '0.25rem', color: 'var(--text-primary)' }}>
               Time's Up!
             </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-              Solid run! Keep training your rapid recall.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
+              Solid run! Keep training your rapid vocabulary recall.
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '480px', width: '100%', margin: '0 auto' }}>
+          <div className="blitz-middle-grid">
+            {/* Final Score & Streak Card */}
             <div style={{
               display: 'flex',
-              justifyContent: 'center',
-              gap: '2rem',
-              padding: '1.25rem',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              padding: '1.5rem',
               backgroundColor: 'var(--bg-surface-elevated)',
               border: '2px solid var(--border-muted)',
               boxShadow: '4px 4px 0px var(--shadow-color)',
               borderRadius: '16px',
               width: '100%'
             }}>
-              <div>
-                <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
-                <div style={{ fontSize: '2.3rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)' }}>FINAL SCORE</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
                   {score}
                 </div>
               </div>
-              <div style={{ width: '2px', backgroundColor: 'var(--border-muted)' }} />
-              <div>
-                <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
-                <div style={{ fontSize: '2.3rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
+              <div style={{ width: '2px', height: '50px', backgroundColor: 'var(--border-muted)' }} />
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-muted)' }}>MAX STREAK</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))' }}>
                   x{answerStreak}
                 </div>
               </div>
             </div>
 
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '0.75rem 1.25rem',
-              backgroundColor: 'var(--theme-yellow)',
-              border: '2px solid #000000',
-              boxShadow: '3px 3px 0px #000000',
-              borderRadius: '14px',
-              width: '100%',
-              color: '#000000'
-            }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
-              <div style={{ fontSize: '1.45rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
-                {highScore} PTS
-              </div>
-            </div>
-
-            <div style={{
-              padding: '1.15rem 1.25rem',
-              borderRadius: '16px',
-              backgroundColor: 'var(--bg-surface-elevated)',
-              border: '2px solid var(--border-muted)',
-              boxShadow: '4px 4px 0px var(--shadow-color)',
-              textAlign: 'left',
-              fontSize: '0.92rem',
-              lineHeight: '1.8',
-              width: '100%'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
-                <span>Coins Earned:</span>
-                <span style={{ color: 'hsl(var(--secondary))', fontWeight: '900' }}>+{Math.floor(score / 20)} Coins</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
-                <span>XP Granted:</span>
-                <span style={{ color: 'hsl(var(--primary))', fontWeight: '900' }}>+{Math.floor(score / 2)} XP</span>
-              </div>
-              {score === highScore && score > 0 && (
-                <div style={{ color: 'var(--quiz-correct-text)', fontWeight: '900', marginTop: '0.5rem', textAlign: 'center', fontSize: '0.95rem' }}>
-                  🎉 NEW HIGH SCORE RECORD!
+            {/* High Score & Rewards Card */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', width: '100%' }}>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '0.75rem 1.25rem',
+                backgroundColor: 'var(--theme-yellow)',
+                border: '2px solid #000000',
+                boxShadow: '3px 3px 0px #000000',
+                borderRadius: '14px',
+                width: '100%',
+                color: '#000000'
+              }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.08em' }}>BEST SCORE</div>
+                <div style={{ fontSize: '1.45rem', fontWeight: '900', fontFamily: 'var(--font-title)', lineHeight: '1.1' }}>
+                  {highScore} PTS
                 </div>
-              )}
+              </div>
+
+              <div style={{
+                padding: '1rem 1.25rem',
+                borderRadius: '16px',
+                backgroundColor: 'var(--bg-surface-elevated)',
+                border: '2px solid var(--border-muted)',
+                boxShadow: '4px 4px 0px var(--shadow-color)',
+                textAlign: 'left',
+                fontSize: '0.92rem',
+                lineHeight: '1.8',
+                width: '100%'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
+                  <span>Coins Earned:</span>
+                  <span style={{ color: 'hsl(var(--secondary))', fontWeight: '900' }}>+{Math.floor(score / 20)} Coins</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '800' }}>
+                  <span>XP Granted:</span>
+                  <span style={{ color: 'hsl(var(--primary))', fontWeight: '900' }}>+{Math.floor(score / 2)} XP</span>
+                </div>
+                {score === highScore && score > 0 && (
+                  <div style={{ color: 'var(--quiz-correct-text)', fontWeight: '900', marginTop: '0.4rem', textAlign: 'center', fontSize: '0.95rem' }}>
+                    🎉 NEW HIGH SCORE RECORD!
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           <button 
             onClick={startBlitzGame}
             className="blitz-cta-btn"
-            style={{ maxWidth: '480px', width: '100%', margin: '0 auto' }}
+            style={{ minWidth: '320px', margin: '0 auto' }}
           >
             <RefreshCw size={18} color="#000000" /> Replay Time Blitz
           </button>
