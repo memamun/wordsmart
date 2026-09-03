@@ -266,19 +266,6 @@ export default function QuizRunner({
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-          {/* Coins counter: on desktop only (mobile uses top app header) */}
-          <div className="hide-mobile" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '0.3rem', 
-            color: 'hsl(var(--coin))', 
-            fontWeight: '800', 
-            fontSize: '0.85rem'
-          }}>
-            <Coins size={16} />
-            <span>{state.coins} Coins</span>
-          </div>
-
           {/* Hint Button: one-liner with text */}
           <button 
             onClick={() => setShowHintPopover(prev => !prev)}
