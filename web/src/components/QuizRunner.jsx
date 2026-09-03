@@ -265,26 +265,21 @@ export default function QuizRunner({
           </h2>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
           {/* Coins counter */}
           <div style={{ 
             display: 'flex', 
             alignItems: 'center', 
-            gap: '0.25rem', 
+            gap: '0.3rem', 
             color: 'hsl(var(--coin))', 
             fontWeight: '800', 
-            fontSize: '0.82rem',
-            padding: '0.35rem 0.55rem',
-            borderRadius: '9999px',
-            backgroundColor: 'var(--bg-surface-elevated)',
-            border: 'var(--border-thin)'
+            fontSize: '0.85rem'
           }}>
-            <Coins size={15} />
+            <Coins size={16} />
             <span>{state.coins}</span>
-            <span className="hide-mobile" style={{ marginLeft: '2px' }}>Coins</span>
           </div>
 
-          {/* Hint Shop Drawer Button: icon only on mobile */}
+          {/* Hint Shop Drawer Button: icon only on mobile, text on desktop */}
           <button 
             onClick={() => setShowHintPopover(prev => !prev)}
             className="btn btn-secondary"
@@ -305,18 +300,18 @@ export default function QuizRunner({
             title="Need a Hint?"
             aria-label="Need a Hint?"
           >
-            <Lightbulb size={15} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
+            <Lightbulb size={16} color={showHintPopover ? '#000' : 'var(--theme-bulb)'} />
             <span className="hide-mobile">Need a Hint?</span>
           </button>
 
-          {/* Quit Button */}
+          {/* Quit Button: always visible with label */}
           <button
             onClick={onQuit}
             className="btn btn-secondary"
             title="Quit Quiz"
             aria-label="Quit Quiz"
             style={{
-              padding: '0.35rem 0.65rem',
+              padding: '0.35rem 0.75rem',
               fontSize: '0.78rem',
               fontWeight: '800',
               fontFamily: 'var(--font-title)',
@@ -333,7 +328,7 @@ export default function QuizRunner({
             }}
           >
             <ArrowLeft size={14} />
-            <span className="hide-mobile">Quit</span>
+            <span>Quit</span>
           </button>
         </div>
       </div>
