@@ -225,6 +225,7 @@
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--bg-surface-elevated) transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -233,10 +234,12 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button, input, select {
   font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Animations */
@@ -1064,6 +1067,22 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   box-shadow: 4px 4px 0px #000000;
   letter-spacing: 0.01em;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  background-clip: padding-box;
+}
+
+.mcq-option:focus {
+  outline: none;
+}
+
+.mcq-option:focus-visible {
+  outline: 3px solid #18ffff !important;
+  outline-offset: 3px;
+  border-radius: 16px;
 }
 
 .mcq-option:hover:not(:disabled) {
@@ -1072,6 +1091,13 @@ h1, h2, h3, h4, h5 {
   border-color: #000000;
   transform: translate(-3px, -3px);
   box-shadow: 7px 7px 0px #000000;
+}
+
+.mcq-option:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000000;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme='dark'] .mcq-option:hover:not(:disabled) {
@@ -2060,6 +2086,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Final Polish: Keyboard Accessibility & Custom Scrollbars */
+button:focus,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
@@ -2067,6 +2094,7 @@ select:focus-visible,
 a:focus-visible,
 [tabindex="0"]:focus-visible {
   outline: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::-webkit-scrollbar {
@@ -2359,6 +2387,14 @@ a:focus-visible,
   text-align: left;
   transition: all 0.15s ease;
   width: 100%;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.chat-quiz-option:focus {
+  outline: none;
 }
 
 .chat-quiz-option:hover:not(:disabled) {
