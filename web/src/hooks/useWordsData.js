@@ -159,12 +159,14 @@ export function useWordsData() {
         if (preAuthored) {
           return {
             ...preAuthored,
+            answerKind: 'definition',
             question_number: idx + 1,
             wordId: wordObj.id,
             targetWord: wordObj
           };
         }
         return {
+          answerKind: 'definition',
           question_number: idx + 1,
           wordId: wordObj.id,
           question: `Which word matches the definition: "${wordObj.definition}"?`,
@@ -194,12 +196,14 @@ export function useWordsData() {
         if (preAuthored) {
           return {
             ...preAuthored,
+            answerKind: 'definition',
             question_number: idx + 1,
             wordId: wordObj.id,
             targetWord: wordObj
           };
         }
         return {
+          answerKind: 'definition',
           question_number: idx + 1,
           wordId: wordObj.id,
           question: `Which word matches the definition: "${wordObj.definition}"?`,

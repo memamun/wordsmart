@@ -1,7 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { auth, db, googleProvider } from './firebase.js';
+import { auth, googleProvider } from './firebase.js';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { resolveDetailWord } from './utils/detailWord.js';
+import ProgressSyncStatus from './components/ProgressSyncStatus.jsx';
 import AuthGateModal from './components/AuthGateModal.jsx';
 import { isViewFree } from './config/freemium.js';
 import Sidebar from './components/Sidebar.jsx';
@@ -41,65 +42,44 @@ const getInitialTheme = () => {
 };
 
 export default function App() {
-  const state = useGameState();
+  const [user, setUser] = useState(undefined);
+  const [initialNavigation, setInitialNavigation] = useState(null);
+  useEffect(() => onAuthStateChanged(auth, firebaseUser => {
+    setUser(firebaseUser || null);
+    if (!firebaseUser) setInitialNavigation(null);
+  }), []);
+  const signIn = async (viewId, unitNum) => {
+    setInitialNavigation({ viewId: viewId || 'dashboard', unitNum });
+    await signInWithPopup(auth, googleProvider);
+  };
+  if (user === undefined) return <div role="status" style={{ padding: '2rem' }}>Loading your account…</div>;
+  return <WordSmartApp key={user?.uid || 'guest'} user={user} signIn={signIn} initialNavigation={initialNavigation} />;
+}
+
+function WordSmartApp({ user, signIn, initialNavigation }) {
+  const authLoading = false;
+  const state = useGameState(user?.uid);
   const wordsData = useWordsData();
-  const [activeView, setActiveView] = useState(() => localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing');
-  const [selectedUnit, setSelectedUnit] = useState(1);
+  const [activeView, setActiveView] = useState(() => initialNavigation?.viewId || (localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing'));
+  const [selectedUnit, setSelectedUnit] = useState(() => Number(initialNavigation?.unitNum) || 1);
   const [selectedStage, setSelectedStage] = useState(() => state.unlockedLevel || 1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
   const [detailWordConfig, setDetailWordConfig] = useState(null);
 
   const openDetailWord = (wordOrConfig, list = null) => {
-    if (!wordOrConfig) {
-      setDetailWordConfig(null);
-      return;
-    }
-    if (wordOrConfig.word) {
-      setDetailWordConfig({
-        word: wordOrConfig.word,
-        list: wordOrConfig.list || list || wordsData.words || []
-      });
-    } else {
-      setDetailWordConfig({
-        word: wordOrConfig,
-        list: list || wordsData.words || []
-      });
-    }
+    setDetailWordConfig(resolveDetailWord(wordOrConfig, list, wordsData.words));
   };
 
   const detailWord = detailWordConfig?.word || null;
   const [theme, setTheme] = useState(getInitialTheme);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [user, setUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
   const [authGatePendingView, setAuthGatePendingView] = useState(null);
-
-  // Firebase Auth listener
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser || null);
-      setAuthLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
-
   const handleGoogleSignIn = async (pendingView, pendingUnit) => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      if (result.user) {
-        if (pendingView) {
-          setActiveView(pendingView);
-          setSidebarOpen(false);
-        }
-        if (pendingUnit !== undefined) {
-          setSelectedUnit(pendingUnit);
-        }
-      }
+      await signIn(pendingView, pendingUnit);
     } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user') {
-        console.error('Google sign-in failed:', err.message);
-      }
+      if (err.code !== 'auth/popup-closed-by-user') console.error('Google sign-in failed:', err.message);
     }
   };
 
@@ -112,84 +92,6 @@ export default function App() {
       // Catch sign-out error silently
     }
   };
-
-  // On sign-in, restore full cloud progress and analytics into local state
-  useEffect(() => {
-    if (!user || !db) return;
-    let isMounted = true;
-    async function restoreCloudProgress() {
-      try {
-        const progressRef = doc(db, 'users', user.uid, 'data', 'progress');
-        const progressSnap = await getDoc(progressRef);
-        if (progressSnap.exists() && isMounted) {
-          state.syncFromCloud(progressSnap.data());
-        } else {
-          // Fallback to top-level user doc for older format
-          const userRef = doc(db, 'users', user.uid);
-          const userSnap = await getDoc(userRef);
-          if (userSnap.exists() && isMounted) {
-            state.syncFromCloud(userSnap.data());
-          }
-        }
-      } catch (err) {
-        console.warn('Could not restore cloud progress:', err);
-      }
-    }
-    restoreCloudProgress();
-    return () => { isMounted = false; };
-  }, [user]);
-
-  // Sync logged-in user profile to Cloud Firestore for live global leaderboard
-  // and persist comprehensive learning analytics to 'users/{uid}/data/progress'
-  useEffect(() => {
-    if (!user || !db) return;
-    const timer = setTimeout(() => {
-      try {
-        // 1. Lightweight public leaderboard document
-        const userRef = doc(db, 'users', user.uid);
-        const leaderboardPayload = {
-          uid: user.uid,
-          displayName: user.displayName || 'WordSmart Learner',
-          photoURL: user.photoURL || null,
-          xp: Number(state.xp) || 0,
-          level: Number(state.unlockedLevel) || 1,
-          streak: Number(state.streak) || 0,
-          coins: Number(state.coins) || 0,
-          masteredWordsCount: state.masteredWordIds?.length || 0,
-          learningWordsCount: state.learningWordIds?.length || 0,
-          updatedAt: serverTimestamp()
-        };
-        setDoc(userRef, leaderboardPayload, { merge: true }).catch(() => {});
-
-        // 2. Comprehensive learning progress & analytics document
-        const progressRef = doc(db, 'users', user.uid, 'data', 'progress');
-        const progressPayload = {
-          xp: Number(state.xp) || 0,
-          coins: Number(state.coins) || 0,
-          unlockedLevel: Number(state.unlockedLevel) || 1,
-          streak: Number(state.streak) || 0,
-          bookmarkedWordIds: state.bookmarkedWordIds || [],
-          quizMasteredWordIds: state.quizMasteredWordIds || [],
-          levelAttempts: state.levelAttempts || {},
-          unitAttempts: state.unitAttempts || {},
-          wordProgress: state.wordProgress || {},
-          achievements: state.achievements || [],
-          lastActiveDate: state.lastActiveDate || null,
-          analytics: {
-            masteredCount: state.masteredWordIds?.length || 0,
-            learningCount: state.learningWordIds?.length || 0,
-            totalQuizzesAttempted: Object.keys(state.levelAttempts || {}).length + Object.keys(state.unitAttempts || {}).length,
-            updatedAt: serverTimestamp()
-          }
-        };
-        setDoc(progressRef, progressPayload, { merge: true }).catch(() => {});
-      } catch {
-        // Graceful catch for offline
-      }
-    }, 600);
-
-    return () => clearTimeout(timer);
-  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins, state.quizMasteredWordIds, state.wordProgress, state.levelAttempts, state.unitAttempts, state.bookmarkedWordIds]);
 
   // Navigation History Stack for dynamic back button across submenus
   const [viewHistory, setViewHistory] = useState(['dashboard']);
@@ -674,6 +576,7 @@ export default function App() {
       {/* Main Content Area */}
       <DetailPanelContext.Provider value={{ detailWord, setDetailWord: openDetailWord }}>
         <main className="main-content">
+          <ProgressSyncStatus state={state} user={user} />
           <Header 
             state={state} 
             wordsData={wordsData} 

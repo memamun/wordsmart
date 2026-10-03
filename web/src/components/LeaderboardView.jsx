@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Award, Flame, Star, Sparkles, Globe, UserCheck, Cloud, RefreshCw } from 'lucide-react';
-import { PREP_STAGES } from '../hooks/useGameState';
+import { Trophy, Flame, Sparkles, Cloud } from 'lucide-react';
 import { db } from '../firebase.js';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
-export default function LeaderboardView({ state, user }) {
+export default function LeaderboardView({ user }) {
   const [cloudUsers, setCloudUsers] = useState([]);
   const [isCloudActive, setIsCloudActive] = useState(false);
   const [loadingCloud, setLoadingCloud] = useState(true);
@@ -18,7 +17,7 @@ export default function LeaderboardView({ state, user }) {
 
     try {
       const q = query(
-        collection(db, 'users'),
+        collection(db, 'leaderboard'),
         orderBy('xp', 'desc'),
         limit(50)
       );
@@ -42,6 +41,8 @@ export default function LeaderboardView({ state, user }) {
         setIsCloudActive(true);
         setLoadingCloud(false);
       }, () => {
+        setIsCloudActive(false);
+        setCloudUsers([]);
         setLoadingCloud(false);
       });
 
@@ -51,42 +52,10 @@ export default function LeaderboardView({ state, user }) {
     }
   }, [user]);
 
-  const userName = user?.displayName ? `${user.displayName}` : 'You (WordSmart Learner)';
-
-  // Build local user entry
-  const userEntry = {
-    id: user?.uid || 'current_user',
-    name: user?.displayName ? `${user.displayName}` : 'You (WordSmart Learner)',
-    xp: Number(state.xp) || 0,
-    level: Number(state.unlockedLevel) || 1,
-    streak: Number(state.streak) || 0,
-    photoURL: user?.photoURL || null,
-    avatar: '🎓',
-    isUser: true
-  };
-
-  // Only actual real registered competitors from Firestore
-  let rawList = [...cloudUsers];
-
-  // If local user has earned XP or is signed in, ensure they appear in the live list
-  const userAlreadyInList = rawList.some(item => item.id === userEntry.id || (user?.uid && item.id === user.uid));
-  if (!userAlreadyInList && (user?.uid || state.xp > 0)) {
-    rawList.push(userEntry);
-  } else {
-    // Update existing user entry with live local state
-    rawList = rawList.map(item => {
-      if (item.id === userEntry.id || (user?.uid && item.id === user.uid)) {
-        return { ...item, ...userEntry, isUser: true };
-      }
-      return item;
-    });
-  }
-
-  // Sort descending by XP
-  const leaderboardList = rawList.sort((a, b) => b.xp - a.xp);
-
-  // Find user rank
-  const userRankIndex = leaderboardList.findIndex(item => item.isUser || item.id === userEntry.id) + 1;
+  // Never substitute editable local XP into a server-calculated ranking.
+  const leaderboardList = cloudUsers;
+  const userRankIndex = leaderboardList.findIndex(item => item.isUser) + 1;
+  const rankedXp = leaderboardList.find(item => item.isUser)?.xp || 0;
 
   return (
     <div style={{ padding: '2rem', maxWidth: '750px', margin: '0 auto' }} className="animate-fade leaderboard-view-container">
@@ -110,15 +79,15 @@ export default function LeaderboardView({ state, user }) {
               border: 'var(--border-thin)'
             }}>
               <Cloud size={12} color="#000" />
-              LIVE CLOUD
+              {loadingCloud ? 'LOADING' : isCloudActive ? 'LIVE CLOUD' : 'OFFLINE'}
             </span>
           </div>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginTop: '0.25rem' }}>
-            Compete with test takers nationwide. Earn XP through flashcards and quizzes to climb the podium!
+            Earn 10 ranked XP for each new word answered correctly in vocabulary quizzes. Personal study XP is tracked separately.
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800' }}>YOUR GLOBAL RANK</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800' }}>YOUR RANK IN TOP 50</div>
           <div style={{ fontSize: '1.5rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--primary))' }}>
             #{userRankIndex > 0 ? userRankIndex : '-'} <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '600' }}>of {leaderboardList.length}</span>
           </div>
@@ -126,7 +95,7 @@ export default function LeaderboardView({ state, user }) {
       </div>
 
       {/* Top Banner / Motivating quote */}
-      {leaderboardList.length > 0 && (
+      {userRankIndex > 0 && (
         <div className="glass-panel" style={{
           padding: '1.25rem 1.5rem',
           background: 'linear-gradient(135deg, hsla(var(--primary), 0.08) 0%, var(--bg-surface) 100%)',
@@ -163,7 +132,7 @@ export default function LeaderboardView({ state, user }) {
               ) : userRankIndex <= 3 && userRankIndex > 1 ? (
                 <span style={{ color: 'hsl(var(--secondary))' }}>🥇 Excellent work! You are on the podium in the Top 3!</span>
               ) : (
-                <span>You need <strong style={{ color: 'hsl(var(--primary))' }}>{((leaderboardList[userRankIndex - 2]?.xp || 0) - state.xp).toLocaleString()} XP</strong> to pass <strong>{leaderboardList[userRankIndex - 2]?.name}</strong>!</span>
+                <span>You need <strong style={{ color: 'hsl(var(--primary))' }}>{((leaderboardList[userRankIndex - 2]?.xp || 0) - rankedXp).toLocaleString()} XP</strong> to pass <strong>{leaderboardList[userRankIndex - 2]?.name}</strong>!</span>
               )}
             </p>
           </div>
@@ -182,16 +151,15 @@ export default function LeaderboardView({ state, user }) {
           <div style={{ textAlign: 'center' }}>
             <Trophy size={48} color="hsl(var(--secondary))" style={{ margin: '0 auto 1rem', display: 'block' }} />
             <h3 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-title)', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-              No Ranked Learners Yet
+              {loadingCloud ? 'Loading rankings…' : isCloudActive ? 'No Ranked Learners Yet' : 'Rankings unavailable'}
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '420px', margin: '0 auto' }}>
-              Sign in with your Google account and practice vocabulary quizzes or flashcards to be the first to claim the #1 spot on the global leaderboard!
+              {isCloudActive ? 'Complete vocabulary quizzes while signed in to earn ranked XP. Each word earns points once.' : 'Please check your connection and return to this page to try again.'}
             </p>
           </div>
         ) : (
           leaderboardList.map((competitor, index) => {
           const rank = index + 1;
-          const stage = PREP_STAGES.find(s => s.id === competitor.level) || PREP_STAGES[0];
           const isUser = competitor.isUser;
 
           return (
@@ -283,7 +251,7 @@ export default function LeaderboardView({ state, user }) {
                     )}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: isUser ? 'rgba(0, 0, 0, 0.75)' : 'var(--text-muted)', fontWeight: isUser ? '700' : '500' }}>
-                    Stage {competitor.level}: {stage.name}
+                    {Math.floor(competitor.xp / 10)} words answered correctly
                   </div>
                 </div>
               </div>
@@ -305,7 +273,7 @@ export default function LeaderboardView({ state, user }) {
                   }}>
                     {competitor.xp.toLocaleString()}
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: isUser ? 'rgba(0, 0, 0, 0.75)' : 'var(--text-muted)', fontWeight: '800' }}>XP</div>
+                  <div style={{ fontSize: '0.65rem', color: isUser ? 'rgba(0, 0, 0, 0.75)' : 'var(--text-muted)', fontWeight: '800' }}>RANKED XP</div>
                 </div>
               </div>
             </div>

@@ -87,6 +87,7 @@ function createQuestionsFromWords(selectedWords, allWords) {
     const options = shuffleArray([correctAnswer, ...distractors]);
 
     return {
+      answerKind: ['synonym', 'antonym', 'definition'][qType],
       question_number: index + 1,
       wordId: wordObj.id,
       question: questionText,

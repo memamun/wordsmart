@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Award, 
   HelpCircle, 
@@ -15,6 +15,8 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { auth } from '../firebase.js';
+import { submitRankedAnswers } from '../services/api.js';
 import { shuffleArray } from '../utils/shuffle.js';
 import QuizExplanationModal from './QuizExplanationModal';
 import { playCorrectSound, playIncorrectSound } from '../utils/sounds.js';
@@ -30,6 +32,34 @@ export default function QuizRunner({
   passingScore = 8,
   renderFinishActions = null
 }) {
+  const answersRef = useRef([]);
+  const rankingRequest = useRef(null);
+  const [rankedStatus, setRankedStatus] = useState(null);
+  const [rankedError, setRankedError] = useState(false);
+  useEffect(() => () => rankingRequest.current?.abort(), []);
+  const resetRanking = () => {
+    rankingRequest.current?.abort();
+    answersRef.current = [];
+    setRankedStatus(null);
+    setRankedError(false);
+  };
+  const saveRankedScore = async () => {
+    const answers = answersRef.current.filter(Boolean);
+    if (!auth.currentUser || !answers.length) return;
+    rankingRequest.current?.abort();
+    const controller = new AbortController();
+    rankingRequest.current = controller;
+    setRankedStatus('Submitting ranked answers…');
+    setRankedError(false);
+    try {
+      const result = await submitRankedAnswers(answers, controller.signal);
+      if (!controller.signal.aborted) setRankedStatus(`+${result.awardedXp} ranked XP · ${result.totalXp} total ranked XP`);
+    } catch (error) {
+      if (controller.signal.aborted) return;
+      setRankedStatus('Ranked score could not be saved. Your personal quiz progress is saved.');
+      setRankedError(true);
+    }
+  };
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -41,6 +71,7 @@ export default function QuizRunner({
 
   // Reset all quiz progress state whenever questions or title prop changes
   useEffect(() => {
+    resetRanking();
     setCurrentQIndex(0);
     setSelectedOption(null);
     setIsAnswered(false);
@@ -132,6 +163,9 @@ export default function QuizRunner({
     setSelectedOption(option);
     setIsAnswered(true);
 
+    if (currentQ.answerKind && (currentQ.wordId || currentQ.targetWord?.id)) {
+      answersRef.current[currentQIndex] = { wordId: currentQ.wordId || currentQ.targetWord.id, kind: currentQ.answerKind, answer: option };
+    }
     const isCorrect = option === currentQ.correct_answer;
     if (isCorrect) {
       playCorrectSound();
@@ -163,6 +197,7 @@ export default function QuizRunner({
       setCurrentQIndex(prev => prev + 1);
     } else {
       setQuizFinished(true);
+      saveRankedScore();
       if (onFinish) {
         onFinish(score + (selectedOption === currentQ.correct_answer ? 0 : 0), questions.length);
       }
@@ -170,6 +205,7 @@ export default function QuizRunner({
   };
 
   const handleRestart = () => {
+    resetRanking();
     setCurrentQIndex(0);
     setScore(0);
     setIsAnswered(false);
@@ -206,6 +242,10 @@ export default function QuizRunner({
           gap: '1.25rem'
         }}
       >
+        {rankedStatus && <div role="status">
+          <p>{rankedStatus}</p>
+          {rankedError && <button className="btn btn-secondary" onClick={saveRankedScore}>Retry ranked score</button>}
+        </div>}
         <div style={{
           width: '76px',
           height: '76px',
@@ -503,7 +543,10 @@ export default function QuizRunner({
       {/* 6. MCQ Options with Vibrant Color Badges */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
         {currentQ?.options.map((option, idx) => {
-          const isCorrect = option === currentQ.correct_answer;
+          if (currentQ.answerKind && (currentQ.wordId || currentQ.targetWord?.id)) {
+      answersRef.current[currentQIndex] = { wordId: currentQ.wordId || currentQ.targetWord.id, kind: currentQ.answerKind, answer: option };
+    }
+    const isCorrect = option === currentQ.correct_answer;
           const isDisabled = disabledOptions.includes(option);
           const isSelected = selectedOption === option;
 

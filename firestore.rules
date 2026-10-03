@@ -1,28 +1,48 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // User progress and profile for global leaderboard & cloud sync
-    match /users/{userId} {
-      // Leaderboard requires reading top users
+    function owner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    function validProgress() {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+          'xp', 'coins', 'streak', 'unlockedLevel', 'bookmarkedWordIds',
+          'quizMasteredWordIds', 'lastActiveDate', 'levelAttempts', 'unitAttempts',
+          'achievements', 'wordProgress', 'schemaVersion', 'revision', 'updatedAt'
+        ])
+        && d.schemaVersion == 3 && d.revision is int
+        && d.xp is int && d.xp >= 0 && d.xp <= 1000000000
+        && d.coins is int && d.coins >= 0 && d.coins <= 1000000000
+        && d.streak is int && d.streak >= 0 && d.streak <= 100000
+        && d.unlockedLevel is int && d.unlockedLevel >= 1 && d.unlockedLevel <= 8
+        && d.bookmarkedWordIds is list && d.bookmarkedWordIds.size() <= 2000
+        && d.quizMasteredWordIds is list && d.quizMasteredWordIds.size() <= 2000
+        && (d.lastActiveDate == null || (d.lastActiveDate is string && d.lastActiveDate.size() <= 40))
+        && d.levelAttempts is map && d.levelAttempts.size() <= 8
+        && d.unitAttempts is map && d.unitAttempts.size() <= 41
+        && d.achievements is list && d.achievements.size() <= 100
+        && d.wordProgress is map && d.wordProgress.size() <= 2000
+        && d.updatedAt == request.time;
+    }
+    // Legacy public leaderboard records are read-only. New ranks use the server-owned collection.
+    match /users/{uid} {
       allow read: if true;
-      
-      // Only authenticated users can write their own record
-      allow create, update: if request.auth != null 
-                            && request.auth.uid == userId
-                            && request.resource.data.uid == userId
-                            && request.resource.data.xp is number
-                            && request.resource.data.level is number
-                            && request.resource.data.streak is number;
-      
-      allow delete: if request.auth != null && request.auth.uid == userId;
-
-      // Allow authenticated user full access to their own analytics and learning progress subcollections
-      match /{allSubcollections=**} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow write: if false;
+      match /data/progress {
+        allow read: if owner(uid);
+        allow create: if owner(uid) && validProgress() && request.resource.data.revision == 1;
+        allow update: if owner(uid) && validProgress()
+          && request.resource.data.revision == resource.data.get('revision', 0) + 1;
+        // A reset is a versioned replacement, so stale devices cannot restore deleted progress.
+        allow delete: if false;
       }
     }
-    
-    // Default deny for all other collections
+    match /leaderboard/{uid} {
+      allow read: if true;
+      allow write: if false;
+    }
+    // Ranked progress, quotas, and all other server records are inaccessible to clients.
     match /{document=**} {
       allow read, write: if false;
     }

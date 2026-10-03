@@ -76,3 +76,7 @@ python3 scripts/validate_collocations.py
 *   **[ARCHITECTURE.md](docs/ARCHITECTURE.md):** Architectural design and separation of concerns.
 *   **[ROADMAP.md](docs/ROADMAP.md):** Completed and upcoming phases of development.
 *   **[CHANGELOG.md](docs/CHANGELOG.md):** Release history and modifications log.
+
+## Web application
+
+The React web app lives in `web/`. See [web reliability and backend setup](docs/web-reliability.md) for account-scoped progress, the authenticated AI tutor, ranked quiz scoring, tests, and deployment instructions.
