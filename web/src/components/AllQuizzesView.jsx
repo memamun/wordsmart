@@ -75,8 +75,8 @@ export default function AllQuizzesView({ state, wordsData, setActiveView }) {
           questions={questions}
           state={state}
           onFinish={() => {
-            state.addCoins(5);
-            state.addXp(30);
+            // Words answered correctly already award 10 XP via recordQuizWordMastered
+            state.addCoins(2);
           }}
           onQuit={() => setActiveQuiz(null)}
         />

@@ -167,9 +167,7 @@ export default function TimeBlitzView({ state, wordsData }) {
       setAnswerStreak((prev) => prev + 1);
       setTimeRemaining((prev) => Math.min(prev + 3, 90));
       setTimeChange({ show: true, amount: 3 });
-      
-      state.addXp(2 * Math.min(answerStreak + 1, 5)); 
-      
+
       if ((answerStreak + 1) % 5 === 0) {
         state.addCoins(5);
         confetti({
@@ -229,9 +227,9 @@ export default function TimeBlitzView({ state, wordsData }) {
         });
       }
 
-      const coinsEarned = Math.floor(score / 20);
+      const coinsEarned = Math.min(5, Math.floor(score / 50));
       state.addCoins(coinsEarned);
-      state.addXp(Math.floor(score / 2));
+      state.addXp(Math.min(15, Math.floor(score / 30)));
     }
 
     return () => clearInterval(timerRef.current);

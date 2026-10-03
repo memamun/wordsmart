@@ -6,6 +6,23 @@ import { useProgressStore } from './useProgressStore.js';
 import { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, calculateSM2 } from '../state/learning.js';
 export { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, getUnitsCountForStage } from '../state/learning.js';
 
+function computeXpAchievements(newXp, currentAchievements = []) {
+  const achievements = [...currentAchievements];
+  const milestones = [
+    { threshold: 500, id: 'xp_500' },
+    { threshold: 1000, id: 'xp_1000' },
+    { threshold: 2500, id: 'xp_2500' },
+    { threshold: 5000, id: 'xp_5000' },
+    { threshold: 10000, id: 'xp_10000' },
+  ];
+  for (const m of milestones) {
+    if (newXp >= m.threshold && !achievements.includes(m.id)) {
+      achievements.push(m.id);
+    }
+  }
+  return achievements;
+}
+
 export function useGameState(uid = null) {
   const { store, snapshot, retrySync } = useProgressStore(uid);
   const state = snapshot.progress;
@@ -18,24 +35,26 @@ export function useGameState(uid = null) {
   }, [snapshot.status]);
 
   const addXp = useCallback((amount) => {
+    if (!Number.isSafeInteger(amount) || amount <= 0) return;
     setState((prev) => {
       const newXp = prev.xp + amount;
-      
-      const newAchievements = [...prev.achievements];
-      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
-        newAchievements.push('xp_1000');
-      }
-      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
-        newAchievements.push('xp_5000');
-      }
-      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
-        newAchievements.push('xp_10000');
-      }
-
+      const newAchievements = computeXpAchievements(newXp, prev.achievements);
       return {
         ...prev,
         xp: newXp,
         achievements: newAchievements,
+      };
+    });
+  }, []);
+
+  const addAchievement = useCallback((achievementId) => {
+    if (!achievementId) return;
+    setState((prev) => {
+      const list = prev.achievements || [];
+      if (list.includes(achievementId)) return prev;
+      return {
+        ...prev,
+        achievements: [...list, achievementId],
       };
     });
   }, []);
@@ -120,10 +139,9 @@ export function useGameState(uid = null) {
 
       const result = calculateSM2(currentCard, rating, now);
       
-      // Calculate XP and Coin reward based on quality rating
-      const xpGained = rating >= 3 ? 10 + rating : 2;
-      const coinsGained = rating === 5 ? 2 : 0;
-      const newXp = prev.xp + xpGained;
+      // Flashcards are a self-study spaced repetition memory tool.
+      // XP is strictly reserved for verified quiz mastery (not passive card flipping).
+      const coinsGained = rating === 5 ? 1 : 0;
       const newCoins = prev.coins + coinsGained;
 
       const newProgress = {
@@ -140,19 +158,9 @@ export function useGameState(uid = null) {
       if (masteredCount >= 50 && !newAchievements.includes('mastered_50')) {
         newAchievements.push('mastered_50');
       }
-      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
-        newAchievements.push('xp_1000');
-      }
-      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
-        newAchievements.push('xp_5000');
-      }
-      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
-        newAchievements.push('xp_10000');
-      }
 
       return {
         ...prev,
-        xp: newXp,
         coins: newCoins,
         wordProgress: newProgress,
         achievements: newAchievements,
@@ -174,16 +182,34 @@ export function useGameState(uid = null) {
 
   const recordQuizAttempt = useCallback((levelId, scorePercent) => {
     const isPass = scorePercent >= 70; 
-    const xpGained = isPass ? 150 : 30;
-    const coinsGained = isPass ? 30 : 5;
 
     setState((prev) => {
-      const existing = prev.levelAttempts[levelId];
-      const bestScore = Math.max(existing?.score || 0, scorePercent);
-      const passed = existing?.passed || isPass;
+      const existing = prev.levelAttempts?.[levelId];
+      const previousBestScore = existing?.score || 0;
+      const wasAlreadyPassed = Boolean(existing?.passed);
+
+      let xpGained = 0;
+      let coinsGained = 0;
+
+      if (!wasAlreadyPassed && isPass) {
+        // First-time stage exam clearance milestone
+        const accuracyBonus = scorePercent === 100 ? 50 : scorePercent >= 90 ? 30 : 0;
+        xpGained = 120 + accuracyBonus;
+        coinsGained = 30;
+      } else if (wasAlreadyPassed && scorePercent > previousBestScore) {
+        // High score improvement on stage exam: reward accuracy bonus difference
+        const prevBonus = previousBestScore === 100 ? 50 : previousBestScore >= 90 ? 30 : 0;
+        const newBonus = scorePercent === 100 ? 50 : scorePercent >= 90 ? 30 : 0;
+        xpGained = Math.max(0, newBonus - prevBonus);
+        coinsGained = 10;
+      }
+      // Repetitions without score improvement or failed attempts grant 0 XP to prevent farming.
+
+      const bestScore = Math.max(previousBestScore, scorePercent);
+      const passed = wasAlreadyPassed || isPass;
 
       const updatedAttempts = {
-        ...prev.levelAttempts,
+        ...(prev.levelAttempts || {}),
         [levelId]: {
           score: bestScore,
           passed,
@@ -198,22 +224,14 @@ export function useGameState(uid = null) {
 
       const newXp = prev.xp + xpGained;
       const newCoins = prev.coins + coinsGained;
-      const newAchievements = [...prev.achievements];
+      let newAchievements = [...(prev.achievements || [])];
       if (isPass && !newAchievements.includes(`stage_${levelId}_passed`)) {
         newAchievements.push(`stage_${levelId}_passed`);
       }
       if (scorePercent === 100 && !newAchievements.includes('perfect_quiz')) {
         newAchievements.push('perfect_quiz');
       }
-      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
-        newAchievements.push('xp_1000');
-      }
-      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
-        newAchievements.push('xp_5000');
-      }
-      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
-        newAchievements.push('xp_10000');
-      }
+      newAchievements = computeXpAchievements(newXp, newAchievements);
 
       return {
         ...prev,
@@ -228,14 +246,32 @@ export function useGameState(uid = null) {
 
   const recordUnitQuizAttempt = useCallback((stageId, unitId, scorePercent) => {
     const isPass = scorePercent >= 70;
-    const xpGained = isPass ? 80 : 20;
-    const coinsGained = isPass ? 15 : 3;
 
     setState((prev) => {
       const key = `${stageId}.${unitId}`;
       const existing = prev.unitAttempts?.[key];
-      const bestScore = Math.max(existing?.score || 0, scorePercent);
-      const passed = existing?.passed || isPass;
+      const previousBestScore = existing?.score || 0;
+      const wasAlreadyPassed = Boolean(existing?.passed);
+
+      let xpGained = 0;
+      let coinsGained = 0;
+
+      if (!wasAlreadyPassed && isPass) {
+        // First-time unit quiz pass milestone
+        const accuracyBonus = scorePercent === 100 ? 25 : scorePercent >= 90 ? 15 : 0;
+        xpGained = 50 + accuracyBonus;
+        coinsGained = 15;
+      } else if (wasAlreadyPassed && scorePercent > previousBestScore) {
+        // High score improvement: award accuracy bonus difference
+        const prevBonus = previousBestScore === 100 ? 25 : previousBestScore >= 90 ? 15 : 0;
+        const newBonus = scorePercent === 100 ? 25 : scorePercent >= 90 ? 15 : 0;
+        xpGained = Math.max(0, newBonus - prevBonus);
+        coinsGained = 5;
+      }
+      // Repetitions without score improvement or failed attempts grant 0 XP.
+
+      const bestScore = Math.max(previousBestScore, scorePercent);
+      const passed = wasAlreadyPassed || isPass;
 
       const updatedUnitAttempts = {
         ...(prev.unitAttempts || {}),
@@ -248,10 +284,11 @@ export function useGameState(uid = null) {
 
       const newXp = prev.xp + xpGained;
       const newCoins = prev.coins + coinsGained;
-      const newAchievements = [...(prev.achievements || [])];
+      let newAchievements = [...(prev.achievements || [])];
       if (scorePercent === 100 && !newAchievements.includes('perfect_quiz')) {
         newAchievements.push('perfect_quiz');
       }
+      newAchievements = computeXpAchievements(newXp, newAchievements);
 
       return {
         ...prev,
@@ -292,7 +329,7 @@ export function useGameState(uid = null) {
       };
 
       const masteredCount = updatedList.length;
-      const newAchievements = [...(prev.achievements || [])];
+      let newAchievements = [...(prev.achievements || [])];
       if (masteredCount >= 10 && !newAchievements.includes('mastered_10')) {
         newAchievements.push('mastered_10');
       }
@@ -300,8 +337,13 @@ export function useGameState(uid = null) {
         newAchievements.push('mastered_50');
       }
 
+      // First-time word mastery reward: 10 XP per unique word answered correctly in a quiz
+      const newXp = prev.xp + 10;
+      newAchievements = computeXpAchievements(newXp, newAchievements);
+
       return {
         ...prev,
+        xp: newXp,
         quizMasteredWordIds: updatedList,
         wordProgress: newProgress,
         achievements: newAchievements,
@@ -332,23 +374,10 @@ export function useGameState(uid = null) {
         }
       };
 
-      const newXp = prev.xp + 5;
-      const newAchievements = [...prev.achievements];
-      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
-        newAchievements.push('xp_1000');
-      }
-      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
-        newAchievements.push('xp_5000');
-      }
-      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
-        newAchievements.push('xp_10000');
-      }
-
+      // Passive flashcard viewing / learning marks grant 0 XP
       return {
         ...prev,
-        xp: newXp,
         wordProgress: newProgress,
-        achievements: newAchievements,
       };
     });
   }, []);
@@ -396,6 +425,7 @@ export function useGameState(uid = null) {
     addXp,
     addCoins,
     deductCoins,
+    addAchievement,
     submitSM2Review,
     toggleBookmark,
     recordQuizAttempt,

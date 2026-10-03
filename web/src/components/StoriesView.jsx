@@ -87,11 +87,18 @@ export default function StoriesView({ state, wordsData }) {
   };
 
   const handleMarkAsRead = () => {
-    state.addXp(50);
-    state.addCoins(10);
+    const storyKey = `story_${activeStory?.id || (typeof activeStory?.title === 'string' ? activeStory.title.replace(/\s+/g, '_') : 'read')}`;
+    const alreadyRead = state?.achievements?.includes(storyKey);
+    if (!alreadyRead) {
+      state.addXp(10);
+      state.addCoins(5);
+      if (state.addAchievement) {
+        state.addAchievement(storyKey);
+      }
+    }
     confetti({
-      particleCount: 40,
-      spread: 60
+      particleCount: 30,
+      spread: 40
     });
     setActiveStory(null);
   };

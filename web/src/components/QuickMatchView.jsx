@@ -124,8 +124,15 @@ export default function QuickMatchView({ state, wordsData }) {
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
           navigator.vibrate([60, 40, 80, 40, 120]);
         }
-        state.addXp(100);
-        state.addCoins(25);
+        const matchKey = `quickmatch_${activeQuiz.id || (typeof activeQuiz.title === 'string' ? activeQuiz.title.replace(/\s+/g, '_') : 'set')}`;
+        const isFirstClear = !state?.achievements?.includes(matchKey);
+        if (isFirstClear) {
+          state.addXp(15);
+          state.addCoins(5);
+          if (state.addAchievement) state.addAchievement(matchKey);
+        } else {
+          state.addCoins(1);
+        }
         confetti({ particleCount: 50, spread: 60, colors: ['#000', '#FF5252', '#FFD740'] });
       }
     } else {

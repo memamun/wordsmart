@@ -48,8 +48,7 @@ export default function AnalogyView({ state, wordsData }) {
     const isCorrect = option === questions[currentQIndex].correct_answer;
     if (isCorrect) {
       setScore((prev) => prev + 1);
-      state.addXp(15); // Reward for correct analogy
-      state.addCoins(2); // Small coin award
+      state.addCoins(1);
       confetti({
         particleCount: 15,
         spread: 20,
@@ -66,10 +65,17 @@ export default function AnalogyView({ state, wordsData }) {
       setCurrentQIndex((prev) => prev + 1);
     } else {
       setQuizFinished(true);
-      // Perfect analogy score bonus
+      // Analogy set completion: award XP only on first full clear of stage set
       if (score === questions.length) {
-        state.addCoins(20);
-        state.addXp(100);
+        const analogyKey = `analogy_stage_${state.unlockedLevel || 1}`;
+        const isFirst = !state?.achievements?.includes(analogyKey);
+        if (isFirst) {
+          state.addXp(15);
+          state.addCoins(5);
+          if (state.addAchievement) state.addAchievement(analogyKey);
+        } else {
+          state.addCoins(2);
+        }
       }
     }
   };

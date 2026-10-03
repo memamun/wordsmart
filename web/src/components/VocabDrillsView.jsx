@@ -308,9 +308,13 @@ export default function VocabDrillsView({ state, wordsData }) {
           questions={questions}
           state={state}
           onFinish={(finalScore, total) => {
-            state.addXp(50);
-            if (finalScore === total) {
-              state.addCoins(10);
+            const drillKey = `drill_${activeDrillType}`;
+            const isFirst = !state?.achievements?.includes(drillKey);
+            const passed = total > 0 && finalScore >= Math.ceil(total * 0.7);
+            if (isFirst && passed) {
+              state.addXp(15);
+              state.addCoins(5);
+              if (state.addAchievement) state.addAchievement(drillKey);
             } else {
               state.addCoins(Math.max(1, Math.floor(finalScore / 2)));
             }

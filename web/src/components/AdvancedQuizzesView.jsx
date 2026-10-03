@@ -137,9 +137,16 @@ export default function AdvancedQuizzesView({ state, wordsData }) {
   };
 
   const handleQuizFinish = (score, total) => {
-    state?.addXp?.(score * 15);
-    if (score === total && total > 0) {
-      state?.addCoins?.(20);
+    const quizKey = `adv_${activeQuiz?.quiz_id}_${activeMode}`;
+    const isFirst = !state?.achievements?.includes(quizKey);
+    const passed = total > 0 && (score / total) >= 0.7;
+    if (isFirst && passed) {
+      const accuracyBonus = score === total ? 10 : 0;
+      state?.addXp?.(20 + accuracyBonus);
+      state?.addCoins?.(score === total ? 10 : 5);
+      if (state?.addAchievement) state.addAchievement(quizKey);
+    } else {
+      state?.addCoins?.(Math.max(1, Math.floor(score / 3)));
     }
   };
 

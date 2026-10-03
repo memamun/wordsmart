@@ -539,8 +539,8 @@ export default function QuizzesView({
                 state.recordUnitQuizAttempt(currentQuizStage, currentQuizUnit, percent);
               }
             } else {
-              state.addCoins(5);
-              state.addXp(30);
+              // Practice quiz completion: words answered correctly already award 10 XP via recordQuizWordMastered
+              state.addCoins(2);
             }
           }}
           onQuit={() => setActiveQuiz(null)}

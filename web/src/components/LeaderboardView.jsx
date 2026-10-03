@@ -40,7 +40,8 @@ export default function LeaderboardView({ state, user }) {
         limit(50)
       );
 
-      const unsubscribe = onSnapshot(q, (snapshot) => {
+      let unsubscribeLb = null;
+      const unsubscribeUsers = onSnapshot(q, (snapshot) => {
         const list = processSnapshot(snapshot);
         setCloudUsers(list);
         setIsCloudActive(true);
@@ -53,7 +54,7 @@ export default function LeaderboardView({ state, user }) {
           orderBy('xp', 'desc'),
           limit(50)
         );
-        onSnapshot(qLb, (lbSnap) => {
+        unsubscribeLb = onSnapshot(qLb, (lbSnap) => {
           const list = processSnapshot(lbSnap);
           setCloudUsers(list);
           setIsCloudActive(true);
@@ -65,27 +66,30 @@ export default function LeaderboardView({ state, user }) {
         });
       });
 
-      return () => unsubscribe();
+      return () => {
+        if (unsubscribeUsers) unsubscribeUsers();
+        if (unsubscribeLb) unsubscribeLb();
+      };
     } catch (err) {
       console.error("Leaderboard query error:", err);
       setLoadingCloud(false);
     }
   }, [user]);
 
-  // Build current user entry if user is signed in but not yet returned in the top 50
+  // Build current user entry if not yet returned in the top 50
   const userAlreadyInList = cloudUsers.some(item => item.isUser || (user?.uid && item.id === user.uid));
   let leaderboardList = [...cloudUsers];
 
-  if (!userAlreadyInList && user?.uid) {
+  if (!userAlreadyInList) {
     const userXp = Number(state?.xp) || 0;
     if (userXp > 0) {
       leaderboardList.push({
-        id: user.uid,
-        name: user.displayName || 'You (WordSmart Learner)',
+        id: user?.uid || 'local_user',
+        name: user?.displayName || 'You (WordSmart Learner)',
         xp: userXp,
         level: Number(state?.unlockedLevel) || 1,
         streak: Number(state?.streak) || 0,
-        photoURL: user.photoURL || null,
+        photoURL: user?.photoURL || null,
         isUser: true
       });
       leaderboardList.sort((a, b) => b.xp - a.xp);
