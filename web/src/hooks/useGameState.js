@@ -8,24 +8,89 @@ const DEFAULT_STATE = {
   coins: 100,
   unlockedLevel: 1,
   bookmarkedWordIds: [],
+  quizMasteredWordIds: [], // Word IDs mastered strictly through quiz completion
   lastActiveDate: null,
   levelAttempts: {}, 
+  unitAttempts: {},
   achievements: [], 
   wordProgress: {}, // e.g. { '1': { easinessFactor: 2.5, repetitionCount: 1, intervalDays: 1, nextReviewAt: '...', masteryScore: 20, status: 'learning' } }
 };
 
 export const PREP_STAGES = [
-  { id: 1, name: 'Beginner Foundations I', desc: 'Core beginner vocabulary foundations', xpRequired: 0 },
-  { id: 2, name: 'Beginner Foundations II', desc: 'Core beginner vocabulary mastery', xpRequired: 500 },
-  { id: 3, name: 'Beginner & Intermediate Bridge', desc: 'Transition into mid-tier vocabulary', xpRequired: 1200 },
-  { id: 4, name: 'Intermediate Core I', desc: 'Key intermediate-level words for verbal capacity', xpRequired: 2200 },
-  { id: 5, name: 'Intermediate Core II', desc: 'Expanding mid-tier vocabulary and usage precision', xpRequired: 3500 },
-  { id: 6, name: 'Intermediate & Advanced Bridge', desc: 'Build toward high-frequency advanced vocabulary', xpRequired: 5000 },
-  { id: 7, name: 'Advanced Mastery I', desc: 'Core advanced vocabulary and essay writing registers', xpRequired: 7000 },
-  { id: 8, name: 'Advanced Mastery II', desc: 'Expanding high-frequency advanced vocabulary', xpRequired: 9500 },
-  { id: 9, name: 'Advanced Mastery III', desc: 'High-level vocabulary and logical connection drills', xpRequired: 12500 },
-  { id: 10, name: 'Advanced Mastery IV', desc: 'Top-tier vocabulary mastery', xpRequired: 16000 },
+  { id: 1, name: 'Core Vocabulary Part 1', desc: 'Core vocabulary foundations (100 words • 5 units)', xpRequired: 0 },
+  { id: 2, name: 'Core Vocabulary Part 2', desc: 'Core vocabulary foundations (100 words • 5 units)', xpRequired: 600 },
+  { id: 3, name: 'Core Vocabulary Part 3', desc: 'Core vocabulary advancement (100 words • 5 units)', xpRequired: 1500 },
+  { id: 4, name: 'Core Vocabulary Part 4', desc: 'Core vocabulary advancement (100 words • 5 units)', xpRequired: 2700 },
+  { id: 5, name: 'Core Vocabulary Part 5', desc: 'Core vocabulary mastery (100 words • 5 units)', xpRequired: 4200 },
+  { id: 6, name: 'Core Vocabulary Part 6', desc: 'Core vocabulary mastery (100 words • 5 units)', xpRequired: 6000 },
+  { id: 7, name: 'Core Vocabulary Part 7', desc: 'Core vocabulary excellence (100 words • 5 units)', xpRequired: 8500 },
+  { id: 8, name: 'Core Vocabulary Part 8', desc: 'Core vocabulary final mastery (122 words • 6 units)', xpRequired: 11500 },
 ];
+
+/**
+ * Stages 1-7 contain 5 units (20 words each = 100 words).
+ * Stage 8 contains 6 units (5 of 20 words + final unit of 22 words = 122 words).
+ * Total: 41 units = 822 words across 8 stages.
+ */
+export function getUnitsCountForStage(stageId) {
+  return Number(stageId) === 8 ? 6 : 5;
+}
+
+/**
+ * Strict lock checking function:
+ * - A stage is locked if stageId > state.unlockedLevel.
+ * - In an unlocked stage, Unit 1 is always unlocked.
+ * - Unit N (N > 1) is unlocked ONLY if Unit N-1 quiz was passed (or if the stage was already completed).
+ * - Locked units cannot be used.
+ * - Once unlocked, a user can quiz them as many times as they want (even if completed before).
+ */
+export function checkIsUnitUnlocked(stageId, unitNum, state) {
+  if (!state) return false;
+  const sId = Number(stageId) || 1;
+  const uNum = Number(unitNum) || 1;
+  const currentUnlockedLevel = Number(state.unlockedLevel) || 1;
+  const maxUnits = getUnitsCountForStage(sId);
+
+  if (uNum > maxUnits) return false;
+
+  // Stages higher than unlockedLevel are strictly locked
+  if (sId > currentUnlockedLevel) return false;
+
+  // If this stage has already been qualified or user has advanced past it, all units are unlocked
+  if (state.levelAttempts?.[sId]?.passed || sId < currentUnlockedLevel) {
+    return true;
+  }
+
+  // Unit 1 in the active stage is always unlocked
+  if (uNum === 1) return true;
+
+  // Unit N is unlocked if Unit N-1 quiz was passed
+  const prevKey = `${sId}.${uNum - 1}`;
+  if (state.unitAttempts?.[prevKey]?.passed) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Checks if the Stage Cumulative Exam is unlocked:
+ * - Stage must not be locked.
+ * - If stage already qualified, it's unlocked (can retake anytime).
+ * - Otherwise, requires the final unit quiz of this stage to be passed.
+ */
+export function checkIsStageExamUnlocked(stageId, state) {
+  if (!state) return false;
+  const sId = Number(stageId) || 1;
+  const currentUnlockedLevel = Number(state.unlockedLevel) || 1;
+
+  if (sId > currentUnlockedLevel) return false;
+  if (state.levelAttempts?.[sId]?.passed || sId < currentUnlockedLevel) return true;
+
+  const finalUnit = getUnitsCountForStage(sId);
+  const finalUnitKey = `${sId}.${finalUnit}`;
+  return Boolean(state.unitAttempts?.[finalUnitKey]?.passed);
+}
 
 export function useGameState() {
   const [state, setState] = useState(() => {
@@ -286,7 +351,7 @@ export function useGameState() {
       };
 
       let nextUnlocked = prev.unlockedLevel;
-      if (isPass && levelId === prev.unlockedLevel && prev.unlockedLevel < 10) {
+      if (isPass && levelId === prev.unlockedLevel && prev.unlockedLevel < PREP_STAGES.length) {
         nextUnlocked = prev.unlockedLevel + 1;
       }
 
@@ -320,9 +385,53 @@ export function useGameState() {
     });
   }, []);
 
-  const markWordMastered = useCallback((wordId) => {
+  const recordUnitQuizAttempt = useCallback((stageId, unitId, scorePercent) => {
+    const isPass = scorePercent >= 70;
+    const xpGained = isPass ? 80 : 20;
+    const coinsGained = isPass ? 15 : 3;
+
     setState((prev) => {
-      const currentCard = prev.wordProgress[wordId] || {
+      const key = `${stageId}.${unitId}`;
+      const existing = prev.unitAttempts?.[key];
+      const bestScore = Math.max(existing?.score || 0, scorePercent);
+      const passed = existing?.passed || isPass;
+
+      const updatedUnitAttempts = {
+        ...(prev.unitAttempts || {}),
+        [key]: {
+          score: bestScore,
+          passed,
+          date: new Date().toISOString(),
+        },
+      };
+
+      const newXp = prev.xp + xpGained;
+      const newCoins = prev.coins + coinsGained;
+      const newAchievements = [...(prev.achievements || [])];
+      if (scorePercent === 100 && !newAchievements.includes('perfect_quiz')) {
+        newAchievements.push('perfect_quiz');
+      }
+
+      return {
+        ...prev,
+        xp: newXp,
+        coins: newCoins,
+        unitAttempts: updatedUnitAttempts,
+        achievements: newAchievements,
+      };
+    });
+  }, []);
+
+  const recordQuizWordMastered = useCallback((wordId) => {
+    const numId = Number(wordId);
+    if (!numId) return;
+
+    setState((prev) => {
+      const currentList = prev.quizMasteredWordIds || [];
+      if (currentList.includes(numId)) return prev;
+
+      const updatedList = [...currentList, numId];
+      const currentCard = prev.wordProgress[numId] || {
         easinessFactor: 2.5,
         repetitionCount: 0,
         intervalDays: 0,
@@ -330,46 +439,36 @@ export function useGameState() {
         masteryScore: 0,
         status: 'unlearned',
       };
-      
+
       const newProgress = {
         ...prev.wordProgress,
-        [wordId]: {
+        [numId]: {
           ...currentCard,
           status: 'mastered',
           masteryScore: 100,
-          repetitionCount: 4,
+          repetitionCount: Math.max(currentCard.repetitionCount || 0, 4),
         }
       };
 
-      const newXp = prev.xp + 15;
-      const newCoins = prev.coins + 2;
-      const masteredCount = Object.values(newProgress).filter(p => p.status === 'mastered').length;
-      const newAchievements = [...prev.achievements];
+      const masteredCount = updatedList.length;
+      const newAchievements = [...(prev.achievements || [])];
       if (masteredCount >= 10 && !newAchievements.includes('mastered_10')) {
         newAchievements.push('mastered_10');
       }
       if (masteredCount >= 50 && !newAchievements.includes('mastered_50')) {
         newAchievements.push('mastered_50');
       }
-      if (newXp >= 1000 && !newAchievements.includes('xp_1000')) {
-        newAchievements.push('xp_1000');
-      }
-      if (newXp >= 5000 && !newAchievements.includes('xp_5000')) {
-        newAchievements.push('xp_5000');
-      }
-      if (newXp >= 10000 && !newAchievements.includes('xp_10000')) {
-        newAchievements.push('xp_10000');
-      }
 
       return {
         ...prev,
-        xp: newXp,
-        coins: newCoins,
+        quizMasteredWordIds: updatedList,
         wordProgress: newProgress,
         achievements: newAchievements,
       };
     });
   }, []);
+
+  const markWordMastered = recordQuizWordMastered;
 
   const markWordLearning = useCallback((wordId) => {
     setState((prev) => {
@@ -419,6 +518,7 @@ export function useGameState() {
 
   const resetWordProgress = useCallback((wordIds) => {
     setState((prev) => {
+      const idsToRemove = new Set(wordIds.map(Number));
       const newProgress = { ...prev.wordProgress };
       wordIds.forEach(id => {
         if (newProgress[id]) {
@@ -432,15 +532,14 @@ export function useGameState() {
       });
       return {
         ...prev,
+        quizMasteredWordIds: (prev.quizMasteredWordIds || []).filter(id => !idsToRemove.has(id)),
         wordProgress: newProgress
       };
     });
   }, []);
 
-  // Backwards compatible helpers mapping wordProgress to lists
-  const masteredWordIds = Object.keys(state.wordProgress).filter(
-    (id) => state.wordProgress[id].status === 'mastered'
-  ).map(Number);
+  // Stage and word mastery is strictly measured by quizzes (not flashcard study)
+  const masteredWordIds = Array.from(new Set(state.quizMasteredWordIds || [])).map(Number);
   
   const learningWordIds = Object.keys(state.wordProgress).filter(
     (id) => state.wordProgress[id].status === 'learning' || state.wordProgress[id].status === 'reviewing' || state.wordProgress[id].status === 'relearning'
@@ -455,7 +554,9 @@ export function useGameState() {
       const mergedLevel = Math.max(Number(cloudData.unlockedLevel) || 1, Number(prev.unlockedLevel) || 1);
       const mergedStreak = Math.max(Number(cloudData.streak) || 0, Number(prev.streak) || 0);
       const mergedBookmarks = Array.from(new Set([...(prev.bookmarkedWordIds || []), ...(cloudData.bookmarkedWordIds || [])]));
+      const mergedQuizMastered = Array.from(new Set([...(prev.quizMasteredWordIds || []), ...(cloudData.quizMasteredWordIds || [])])).map(Number);
       const mergedLevelAttempts = { ...(cloudData.levelAttempts || {}), ...(prev.levelAttempts || {}) };
+      const mergedUnitAttempts = { ...(cloudData.unitAttempts || {}), ...(prev.unitAttempts || {}) };
       const mergedWordProgress = { ...(cloudData.wordProgress || {}), ...(prev.wordProgress || {}) };
       const mergedAchievements = Array.from(new Set([...(prev.achievements || []), ...(cloudData.achievements || [])]));
 
@@ -466,7 +567,9 @@ export function useGameState() {
         unlockedLevel: mergedLevel,
         streak: mergedStreak,
         bookmarkedWordIds: mergedBookmarks,
+        quizMasteredWordIds: mergedQuizMastered,
         levelAttempts: mergedLevelAttempts,
+        unitAttempts: mergedUnitAttempts,
         wordProgress: mergedWordProgress,
         achievements: mergedAchievements,
         lastActiveDate: cloudData.lastActiveDate || prev.lastActiveDate
@@ -486,6 +589,10 @@ export function useGameState() {
     submitSM2Review,
     toggleBookmark,
     recordQuizAttempt,
+    recordUnitQuizAttempt,
+    recordQuizWordMastered,
+    isUnitUnlocked: (stageId, unitNum) => checkIsUnitUnlocked(stageId, unitNum, state),
+    isStageExamUnlocked: (stageId) => checkIsStageExamUnlocked(stageId, state),
     resetProgress,
     resetWordProgress,
     markWordMastered,

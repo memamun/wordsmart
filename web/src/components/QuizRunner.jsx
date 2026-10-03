@@ -39,6 +39,18 @@ export default function QuizRunner({
   const [showExplanationModal, setShowExplanationModal] = useState(false);
   const [showQuitConfirm, setShowQuitConfirm] = useState(false);
 
+  // Reset all quiz progress state whenever questions or title prop changes
+  useEffect(() => {
+    setCurrentQIndex(0);
+    setSelectedOption(null);
+    setIsAnswered(false);
+    setScore(0);
+    setQuizFinished(false);
+    resetHints();
+    setShowExplanationModal(false);
+    setShowQuitConfirm(false);
+  }, [questions, title]);
+
   // Synchronize active quiz state globally
   useEffect(() => {
     if (state?.setIsQuizActive) {
@@ -124,6 +136,13 @@ export default function QuizRunner({
     if (isCorrect) {
       playCorrectSound();
       setScore(prev => prev + 1);
+
+      // Stage mastery is measured strictly by answering quiz questions correctly
+      const targetId = currentQ.wordId || currentQ.targetWord?.id;
+      if (targetId && state?.recordQuizWordMastered) {
+        state.recordQuizWordMastered(targetId);
+      }
+
       confetti({
         particleCount: 15,
         spread: 25,

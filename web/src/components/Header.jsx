@@ -16,13 +16,15 @@ import {
   Layers,
   ArrowLeft
 } from 'lucide-react';
-import { PREP_STAGES } from '../hooks/useGameState';
+import { PREP_STAGES, checkIsUnitUnlocked, getUnitsCountForStage } from '../hooks/useGameState';
 
 export default function Header({ 
   state, 
   wordsData, 
   selectedUnit, 
   setSelectedUnit, 
+  selectedStage, 
+  setSelectedStage,
   activeView, 
   setActiveView, 
   sidebarOpen, 
@@ -35,42 +37,34 @@ export default function Header({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
+  const currentStageId = selectedStage || state.unlockedLevel || 1;
+  const currentStage = PREP_STAGES.find(s => s.id === currentStageId) || PREP_STAGES[0];
+  const totalUnitsInStage = getUnitsCountForStage(currentStageId);
   
-  // Calculate unit-specific mastery progress
-  const levelWords = wordsData?.getWordsForLevel(state.unlockedLevel) || [];
-  const wordsPerUnit = levelWords.length ? Math.ceil(levelWords.length / 10) : 19;
-  
-  // Calculate stats for all 10 units in current level
+  // Calculate stats for all units in current stage
   const unitsMastery = [];
-  for (let u = 1; u <= 10; u++) {
-    const start = (u - 1) * wordsPerUnit;
-    const end = Math.min(u * wordsPerUnit, levelWords.length);
-    const unitWords = levelWords.slice(start, end);
+  for (let u = 1; u <= totalUnitsInStage; u++) {
+    const unitWords = wordsData?.getWordsForUnit(currentStageId, u) || [];
     const unitWordIds = unitWords.map(w => w.id);
     const masteredInUnit = (state.masteredWordIds || []).filter(id => unitWordIds.includes(id)).length;
     
-    let isUnlocked = true;
-    if (u > 1) {
-      const prevStart = (u - 2) * wordsPerUnit;
-      const prevEnd = Math.min((u - 1) * wordsPerUnit, levelWords.length);
-      const prevUnitWords = levelWords.slice(prevStart, prevEnd);
-      const prevUnitWordIds = prevUnitWords.map(w => w.id);
-      const prevMastered = (state.masteredWordIds || []).filter(id => prevUnitWordIds.includes(id)).length;
-      const prevPercent = prevUnitWords.length ? Math.round((prevMastered / prevUnitWords.length) * 100) : 0;
-      isUnlocked = prevPercent >= 70;
-    }
+    // Strict lock check based on quiz completion
+    const isUnlocked = checkIsUnitUnlocked(currentStageId, u, state);
+    const attempt = state.unitAttempts?.[`${currentStageId}.${u}`];
+    const isPassed = Boolean(attempt?.passed);
 
     unitsMastery.push({
       unitNumber: u,
       mastered: masteredInUnit,
       total: unitWords.length,
       isUnlocked,
+      isPassed,
+      score: attempt?.score || 0
     });
   }
 
-  const targetUnitNum = selectedUnit || unitsMastery.find(u => u.mastered < u.total)?.unitNumber || 1;
-  const currentUnitData = unitsMastery[targetUnitNum - 1] || { mastered: 0, total: 19, isUnlocked: true };
+  const targetUnitNum = selectedUnit || 1;
+  const currentUnitData = unitsMastery[targetUnitNum - 1] || { mastered: 0, total: 20, isUnlocked: true, isPassed: false, score: 0 };
 
   const unitMasteredCount = currentUnitData.mastered;
   const unitTotalWords = currentUnitData.total;
@@ -94,7 +88,7 @@ export default function Header({
   };
 
   const handleNextUnit = () => {
-    if (targetUnitNum < 10 && setSelectedUnit) {
+    if (targetUnitNum < totalUnitsInStage && setSelectedUnit) {
       const nextUnitData = unitsMastery[targetUnitNum];
       if (nextUnitData && nextUnitData.isUnlocked) {
         setSelectedUnit(targetUnitNum + 1);
@@ -190,8 +184,8 @@ export default function Header({
                   cursor: 'pointer'
                 }}
               >
-                <span className="hide-mobile">Unit {state.unlockedLevel}.{targetUnitNum}</span>
-                <span className="show-mobile-inline">S{state.unlockedLevel} • U{targetUnitNum}</span>
+                <span className="hide-mobile">Unit {currentStageId}.{targetUnitNum}</span>
+                <span className="show-mobile-inline">S{currentStageId} • U{targetUnitNum}</span>
                 <ChevronDown size={14} style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'none', transition: '0.2s ease' }} />
               </button>
 
@@ -213,28 +207,18 @@ export default function Header({
 
                 <button
                   onClick={handleNextUnit}
-                  disabled={targetUnitNum >= 10 || !unitsMastery[targetUnitNum]?.isUnlocked}
+                  disabled={targetUnitNum >= totalUnitsInStage || !unitsMastery[targetUnitNum]?.isUnlocked}
                   aria-label="Next Unit"
                   title="Next Unit"
                   className="unit-arrow-pill"
                   style={{
-                    cursor: (targetUnitNum >= 10 || !unitsMastery[targetUnitNum]?.isUnlocked) ? 'not-allowed' : 'pointer',
-                    opacity: (targetUnitNum >= 10 || !unitsMastery[targetUnitNum]?.isUnlocked) ? 0.4 : 1
+                    cursor: (targetUnitNum >= totalUnitsInStage || !unitsMastery[targetUnitNum]?.isUnlocked) ? 'not-allowed' : 'pointer',
+                    opacity: (targetUnitNum >= totalUnitsInStage || !unitsMastery[targetUnitNum]?.isUnlocked) ? 0.4 : 1
                   }}
                 >
                   <ChevronRight size={16} />
                 </button>
               </div>
-
-              {/* Desktop Progress Badge */}
-              <span className="unit-progress-pill hide-mobile" style={{ 
-                fontSize: '0.75rem', 
-                padding: '0.35rem 0.75rem', 
-                fontWeight: '900',
-                whiteSpace: 'nowrap'
-              }}>
-                {unitMasteredCount}/{unitTotalWords} mastered ({unitProgressPercent}%)
-              </span>
             </div>
 
             {/* Unit Quick Switcher Dropdown Popover */}
@@ -256,9 +240,9 @@ export default function Header({
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontFamily: 'var(--font-title)', fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <Layers size={14} color="hsl(var(--primary))" /> Select Unit (Stage {state.unlockedLevel})
+                    <Layers size={14} color="hsl(var(--primary))" /> Select Unit (Stage {currentStageId})
                   </span>
-                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>10 Units</span>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{totalUnitsInStage} Units</span>
                 </div>
 
                 <div style={{
@@ -269,22 +253,18 @@ export default function Header({
                   {unitsMastery.map(u => {
                     const isSelected = u.unitNumber === targetUnitNum;
                     const isUnlocked = u.isUnlocked;
-                    const uPercent = u.total ? Math.round((u.mastered / u.total) * 100) : 0;
 
                     return (
                       <button
                         key={u.unitNumber}
                         disabled={!isUnlocked}
-                        onClick={() => {
-                          if (setSelectedUnit) setSelectedUnit(u.unitNumber);
-                          setDropdownOpen(false);
-                        }}
+                        onClick={() => handleSelectUnitFromMenu(u.unitNumber)}
                         style={{
                           padding: '0.5rem 0.25rem',
                           borderRadius: 'var(--radius-sm)',
                           border: isSelected ? 'var(--border-thick)' : '1px solid var(--border-muted)',
-                          backgroundColor: isSelected ? 'var(--theme-cyan)' : isUnlocked ? 'var(--bg-surface-elevated)' : 'var(--bg-canvas)',
-                          color: isSelected ? '#000000' : isUnlocked ? 'var(--text-primary)' : 'var(--text-muted)',
+                          backgroundColor: isSelected ? 'var(--theme-cyan)' : u.isPassed ? 'var(--theme-green)' : isUnlocked ? 'var(--bg-surface-elevated)' : 'var(--bg-canvas)',
+                          color: (isSelected || u.isPassed) ? '#000000' : isUnlocked ? 'var(--text-primary)' : 'var(--text-muted)',
                           cursor: isUnlocked ? 'pointer' : 'not-allowed',
                           display: 'flex',
                           flexDirection: 'column',
@@ -296,7 +276,9 @@ export default function Header({
                         }}
                       >
                         <span>U{u.unitNumber}</span>
-                        <span style={{ fontSize: '0.6rem', opacity: 0.85 }}>{uPercent}%</span>
+                        <span style={{ fontSize: '0.6rem', opacity: 0.9 }}>
+                          {u.isPassed ? `${u.score}%` : isUnlocked ? 'READY' : 'LOCK'}
+                        </span>
                       </button>
                     );
                   })}

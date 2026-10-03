@@ -81,6 +81,7 @@ export default function Sidebar({
       title: "Core Path",
       items: [
         { id: 'dashboard', label: 'Prep Roadmap', icon: Compass },
+        { id: 'quizzes', label: 'Unit & Stage Quizzes', icon: Award },
         { id: 'flashcards', label: 'Flashcard Quest', icon: Layers },
         { id: 'review', label: 'SM-2 Review Deck', icon: Brain },
         { id: 'stories', label: 'Contextual Stories', icon: BookOpenCheck },
@@ -89,7 +90,6 @@ export default function Sidebar({
     {
       title: "Practice Arena",
       items: [
-        { id: 'quizzes', label: 'Qualification MCQs', icon: Award },
         { id: 'vocabdrills', label: 'Vocab Drills', icon: Zap },
         { id: 'quickmatch', label: 'Quick Match', icon: Puzzle },
         { id: 'advanced', label: 'Advanced Quizzes', icon: GraduationCap },

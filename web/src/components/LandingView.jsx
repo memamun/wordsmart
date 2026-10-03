@@ -290,7 +290,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
     },
     {
       q: "What examinations is this vocabulary aligned with?",
-      a: "The curriculum is specifically crafted for SASS, GRE, SAT, and competitive government / university exams. It includes 1,900+ high-frequency headwords, specialized idioms, foreign expressions, and grammar usage terms."
+      a: "The curriculum is specifically crafted for SASS, GRE, SAT, and competitive government / university exams. It includes 822 high-frequency main vocabulary words, specialized idioms, foreign expressions, and grammar usage terms."
     },
     {
       q: "Does WordSmart support offline and mobile devices?",
@@ -483,7 +483,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
               borderRadius: '999px',
               fontSize: '0.65rem',
               fontWeight: '900'
-            }}>1,900+ WORDS</span>
+            }}>822 WORDS</span>
           </div>
         </div>
 
@@ -527,7 +527,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
               textTransform: 'uppercase',
               lineHeight: '1.12'
             }}>
-              Master 1,900+ High-Frequency Words
+              Master 822 High-Frequency Words
             </h1>
 
             <p style={{ 
@@ -603,10 +603,10 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
             textAlign: 'center'
           }}>
             <div style={{ fontSize: '2rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'var(--theme-yellow)' }}>
-              1,900+
+              822
             </div>
             <div style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)', textTransform: 'uppercase', marginTop: '0.2rem' }}>
-              Curated Headwords
+              Main Headwords
             </div>
           </div>
 
@@ -1067,7 +1067,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
                   Instant Dictionary Search
                 </h3>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
-                  Lightning-fast phonetic and semantic search across all 1,900+ words with audio pronunciation and detail inspect panes.
+                  Lightning-fast phonetic and semantic search across all 822 words with audio pronunciation and detail inspect panes.
                 </p>
               </div>
             </WindowPanel>
@@ -1314,7 +1314,7 @@ export default function LandingView({ setActiveView, setSelectedUnit, user, onGo
               Ready to Expand Your Vocabulary?
             </h2>
             <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
-              Join thousands of candidates mastering 1,900+ words with spaced repetition. Start your Stage 1 Quest right now.
+              Join thousands of candidates mastering 822 words with spaced repetition. Start your Stage 1 Quest right now.
             </p>
             <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.5rem' }}>
               <button

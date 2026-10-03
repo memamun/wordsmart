@@ -28,7 +28,7 @@ import { useGameState } from './hooks/useGameState.js';
 import { useWordsData } from './hooks/useWordsData.js';
 import { AlertCircle, Compass, BookOpen, Award, Search, Menu, RotateCcw, Shield, AlertTriangle } from 'lucide-react';
 
-export const DetailPanelContext = createContext();
+export const DetailPanelContext = createContext({ detailWord: null, setDetailWord: () => {} });
 
 const getSystemTheme = () => {
   if (typeof window === 'undefined') return 'dark';
@@ -45,6 +45,7 @@ export default function App() {
   const wordsData = useWordsData();
   const [activeView, setActiveView] = useState(() => localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing');
   const [selectedUnit, setSelectedUnit] = useState(1);
+  const [selectedStage, setSelectedStage] = useState(() => state.unlockedLevel || 1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === 'true');
   const [detailWordConfig, setDetailWordConfig] = useState(null);
@@ -168,14 +169,16 @@ export default function App() {
           unlockedLevel: Number(state.unlockedLevel) || 1,
           streak: Number(state.streak) || 0,
           bookmarkedWordIds: state.bookmarkedWordIds || [],
+          quizMasteredWordIds: state.quizMasteredWordIds || [],
           levelAttempts: state.levelAttempts || {},
+          unitAttempts: state.unitAttempts || {},
           wordProgress: state.wordProgress || {},
           achievements: state.achievements || [],
           lastActiveDate: state.lastActiveDate || null,
           analytics: {
             masteredCount: state.masteredWordIds?.length || 0,
             learningCount: state.learningWordIds?.length || 0,
-            totalQuizzesAttempted: Object.keys(state.levelAttempts || {}).length,
+            totalQuizzesAttempted: Object.keys(state.levelAttempts || {}).length + Object.keys(state.unitAttempts || {}).length,
             updatedAt: serverTimestamp()
           }
         };
@@ -186,22 +189,27 @@ export default function App() {
     }, 600);
 
     return () => clearTimeout(timer);
-  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins, state.wordProgress, state.levelAttempts, state.bookmarkedWordIds]);
+  }, [user, state.xp, state.unlockedLevel, state.streak, state.coins, state.quizMasteredWordIds, state.wordProgress, state.levelAttempts, state.unitAttempts, state.bookmarkedWordIds]);
 
   // Navigation History Stack for dynamic back button across submenus
   const [viewHistory, setViewHistory] = useState(['dashboard']);
   const [pendingQuizExitNav, setPendingQuizExitNav] = useState(null);
+  const [quizAction, setQuizAction] = useState(null);
 
   /**
    * Gated navigation: free views navigate immediately;
    * premium views show the AuthGateModal for guests.
    */
-  const gatedSetActiveView = (viewId, unitNum) => {
+  const gatedSetActiveView = (viewId, unitNum, stageNum) => {
     // When a quiz is running, cannot move to another option without quit confirmation
     if (state.isQuizActive && viewId !== activeView) {
       setSidebarOpen(false);
-      setPendingQuizExitNav({ viewId, unitNum });
+      setPendingQuizExitNav({ viewId, unitNum, stageNum });
       return;
+    }
+
+    if (stageNum !== undefined && stageNum !== selectedStage) {
+      setSelectedStage(stageNum);
     }
 
     let targetUnit = unitNum;
@@ -213,10 +221,21 @@ export default function App() {
     }
 
     const isFreeFlashcards = viewId === 'flashcards' && targetUnit === 1;
+    const isFreeQuiz = viewId === 'quizzes' && (targetUnit === 1 || targetUnit === undefined);
     
-    if (isViewFree(viewId) || isFreeFlashcards || user) {
-      if (targetUnit !== selectedUnit) {
-        setSelectedUnit(targetUnit);
+    if (isViewFree(viewId) || isFreeFlashcards || isFreeQuiz || user) {
+      if (targetUnit !== undefined && !isNaN(Number(targetUnit)) && Number(targetUnit) !== selectedUnit) {
+        setSelectedUnit(Number(targetUnit));
+      }
+      if (viewId === 'quizzes') {
+        const activeStg = stageNum || selectedStage || state.unlockedLevel || 1;
+        if (unitNum === 'exam') {
+          setQuizAction({ type: 'exam', stage: activeStg, id: Date.now() });
+        } else if (unitNum !== undefined && unitNum !== null && !isNaN(Number(unitNum))) {
+          setQuizAction({ type: 'unit', unit: Number(unitNum), stage: activeStg, id: Date.now() });
+        } else {
+          setQuizAction(null);
+        }
       }
       if (viewId !== activeView) {
         setViewHistory(prev => [...prev, activeView]);
@@ -225,7 +244,7 @@ export default function App() {
       setSidebarOpen(false);
     } else {
       setSidebarOpen(false);
-      setAuthGatePendingView({ viewId, unitNum: targetUnit });
+      setAuthGatePendingView({ viewId, unitNum: targetUnit, stageNum });
     }
   };
 
@@ -334,6 +353,8 @@ export default function App() {
             setActiveView={gatedSetActiveView} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            selectedStage={selectedStage}
+            setSelectedStage={setSelectedStage}
             user={user}
             onGoogleSignIn={handleGoogleSignIn}
           />
@@ -344,9 +365,11 @@ export default function App() {
           <FlashcardsView 
             state={state} 
             wordsData={wordsData} 
-            setActiveView={gatedSetActiveView}
+            setActiveView={gatedSetActiveView} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            selectedStage={selectedStage}
+            setSelectedStage={setSelectedStage}
           />
         );
         break;
@@ -374,6 +397,10 @@ export default function App() {
             setActiveView={gatedSetActiveView}
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            selectedStage={selectedStage}
+            setSelectedStage={setSelectedStage}
+            quizAction={quizAction}
+            setQuizAction={setQuizAction}
           />
         );
         break;
@@ -652,6 +679,8 @@ export default function App() {
             wordsData={wordsData} 
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            selectedStage={selectedStage}
+            setSelectedStage={setSelectedStage}
             activeView={activeView}
             setActiveView={gatedSetActiveView}
             sidebarOpen={sidebarOpen}
@@ -832,7 +861,7 @@ export default function App() {
                   if (nav.isBack) {
                     handleBack();
                   } else if (nav.viewId) {
-                    gatedSetActiveView(nav.viewId, nav.unitNum);
+                    gatedSetActiveView(nav.viewId, nav.unitNum, nav.stageNum);
                   }
                 }}
                 className="btn"

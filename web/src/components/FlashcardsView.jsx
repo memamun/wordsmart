@@ -11,21 +11,26 @@ import {
   ChevronLeft,
   ChevronRight,
   HelpCircle,
-  Sparkles
+  Sparkles,
+  Lock
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DetailPanelContext } from '../App';
 import { useSpeech } from '../hooks/useSpeech.js';
+import { checkIsUnitUnlocked } from '../hooks/useGameState.js';
 
-export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit }) {
-  const { detailWord, setDetailWord } = useContext(DetailPanelContext);
+export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, selectedStage, setSelectedStage }) {
+  const context = useContext(DetailPanelContext) || {};
+  const detailWord = context.detailWord || null;
+  const setDetailWord = context.setDetailWord || (() => {});
   const revealMnemonic = detailWord !== null;
 
+  const currentStage = selectedStage || state.unlockedLevel || 1;
   const currentUnit = selectedUnit || 1;
 
   const levelWords = React.useMemo(() => {
-    return wordsData?.getWordsForUnit(state.unlockedLevel, currentUnit) || [];
-  }, [wordsData, state.unlockedLevel, currentUnit]);
+    return wordsData?.getWordsForUnit(currentStage, currentUnit) || [];
+  }, [wordsData, currentStage, currentUnit]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -70,15 +75,14 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   const triggerRate = async (direction, type) => {
     await animate(x, direction === 'right' ? 600 : -600, { duration: 0.25, ease: 'easeOut' });
-    if (type === 'mastered') {
-      state.markWordMastered(word.id);
+    // Flashcard study tracks learning/review progress; mastery is earned strictly via quizzes
+    state.markWordLearning(word.id);
+    if (type === 'know') {
       confetti({
         particleCount: 20,
         spread: 30,
         origin: { y: 0.8 }
       });
-    } else {
-      state.markWordLearning(word.id);
     }
     handleNext();
   };
@@ -99,7 +103,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
         triggerRate('left', 'study');
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        triggerRate('right', 'mastered');
+        triggerRate('right', 'know');
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
         e.preventDefault();
         if (flipped) {
@@ -116,7 +120,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   const handleDragEnd = (event, info) => {
     if (info.offset.x > 120) {
-      triggerRate('right', 'mastered');
+      triggerRate('right', 'know');
     } else if (info.offset.x < -120) {
       triggerRate('left', 'study');
     } else {
@@ -130,6 +134,48 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
         <div style={{ width: '40px', height: '40px', border: '3px solid var(--border-muted)', borderTopColor: 'hsl(var(--primary))', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
         <p style={{ color: 'var(--text-secondary)' }}>Loading vocabulary cards...</p>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
+
+  if (!checkIsUnitUnlocked(currentStage, currentUnit, state)) {
+    return (
+      <div style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px', margin: '0 auto' }} className="animate-fade">
+        <div style={{
+          width: '64px',
+          height: '64px',
+          borderRadius: 'var(--radius-md)',
+          background: 'var(--bg-surface-elevated)',
+          border: 'var(--border-thick)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 1.5rem',
+          color: 'var(--text-muted)'
+        }}>
+          <Lock size={32} />
+        </div>
+        <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
+          Unit {currentStage}.{currentUnit} is Locked
+        </h2>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '1.5rem' }}>
+          This unit is locked. Pass the Unit {currentStage}.{currentUnit - 1} assessment quiz with 70%+ to unlock it.
+        </p>
+        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+          <button 
+            onClick={() => setActiveView('quizzes', currentUnit - 1, currentStage)}
+            className="btn btn-primary"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+          >
+            <Award size={16} /> Take Unit {currentStage}.{currentUnit - 1} Quiz
+          </button>
+          <button 
+            onClick={() => setActiveView('dashboard')}
+            className="btn btn-secondary"
+          >
+            Roadmap
+          </button>
+        </div>
       </div>
     );
   }
@@ -224,40 +270,26 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             <Award size={32} color="#000" strokeWidth={2.5} />
           </div>
           <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
-            Unit {state.unlockedLevel}.{currentUnit} Vocab Mastered! 🎉
+            Unit {currentStage}.{currentUnit} Vocab Mastered! 🎉
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
-            Outstanding work! You have mastered all words in Unit {state.unlockedLevel}.{currentUnit}. Continue your learning momentum below!
+            Outstanding work! You have mastered all words in Unit {currentStage}.{currentUnit}. Continue your learning momentum below!
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button 
-              onClick={() => setActiveView('quizzes', currentUnit)}
+              onClick={() => setActiveView('quizzes', currentUnit, currentStage)}
               className="btn btn-primary"
-              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: '900', padding: '0.8rem 1.4rem' }}
             >
-              <HelpCircle size={16} /> Take Unit {state.unlockedLevel}.{currentUnit} Quiz
+              <HelpCircle size={16} /> Take Unit {currentStage}.{currentUnit} Quiz to Qualify <ArrowRight size={16} />
             </button>
 
-            {currentUnit < 10 && (
-              <button 
-                onClick={() => {
-                  if (setSelectedUnit) setSelectedUnit(currentUnit + 1);
-                }}
-                className="btn btn-accent"
-                style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
-              >
-                <Sparkles size={16} /> Start Unit {state.unlockedLevel}.{currentUnit + 1} Flashcards <ArrowRight size={16} />
-              </button>
-            )}
-
-            {currentUnit >= 10 && (
-              <button 
-                onClick={() => setActiveView('quizzes')}
-                className="btn btn-accent"
-              >
-                Stage {state.unlockedLevel} Qualification Exam <ArrowRight size={16} />
-              </button>
-            )}
+            <button 
+              onClick={() => setActiveView('dashboard')}
+              className="btn btn-secondary"
+            >
+              Return to Roadmap
+            </button>
 
             <button 
               onClick={() => state.resetWordProgress(levelWords.map(w => w.id))}
@@ -402,7 +434,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
                 {currentIndex < 3 && (
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem' }}>
-                    💡 Click card to flip | Swipe left/right to study/master
+                    💡 Click card to flip | Swipe left/right to study | Complete Unit Quiz to Master Words
                   </div>
                 )}
               </div>
@@ -432,7 +464,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                 {/* Bottom notification */}
                 {currentIndex < 3 && (
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
-                    💡 Click to flip back | Swipe left/right to study/master
+                    💡 Click to flip back | Swipe left/right to study | Complete Unit Quiz to Master Words
                   </div>
                 )}
 
@@ -451,11 +483,11 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
               Study Later
             </button>
             <button 
-              onClick={() => triggerRate('right', 'mastered')}
+              onClick={() => triggerRate('right', 'know')}
               className="btn btn-primary"
               style={{ flex: 1, padding: '0.85rem' }}
             >
-              <CheckCircle size={18} /> Mastered
+              <CheckCircle size={18} /> Got It
             </button>
           </div>
         </>

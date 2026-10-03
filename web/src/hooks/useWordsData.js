@@ -1,6 +1,21 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { shuffleArray } from '../utils/shuffle.js';
 
+// Deterministic pseudo-random shuffle to provide a diverse mix of words across all units (non-sequential)
+function seededShuffle(array, seed = 2026) {
+  const arr = [...array];
+  let s = seed;
+  const nextRandom = () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(nextRandom() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export function useWordsData() {
   const [words, setWords] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
@@ -30,12 +45,14 @@ export function useWordsData() {
           }
         };
 
-        // 1. Core vocabulary is required — unblock initial UI immediately
+        // 1. Core vocabulary is required: filter strictly to the 822 main vocabulary words
         const vocabRes = await fetch('/data/core_vocabulary.json');
         if (!vocabRes.ok) throw new Error('Failed to fetch core vocabulary data');
         const vocabData = await vocabRes.json();
 
-        setWords(vocabData.words || []);
+        // 822 main vocabulary words (excluding stub auxiliary synonyms/antonyms)
+        const mainVocabulary = (vocabData.words || []).filter(w => w.definition && w.id <= 822);
+        setWords(mainVocabulary);
         setError(null);
         setLoading(false);
 
@@ -67,71 +84,153 @@ export function useWordsData() {
     loadAllData();
   }, []);
 
-  // Partition the 822 core words into 10 levels (stages)
-  const wordsByLevel = useMemo(() => {
-    if (words.length === 0) return {};
-
-    // Simple deterministic string hashing function
-    const getHash = (str) => {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      return hash;
-    };
-
-    // Filter and shuffle deterministically within difficulty tiers
-    const beginnerWords = words
-      .filter(w => w.level === 'beginner')
-      .sort((a, b) => getHash(a.word) - getHash(b.word));
-      
-    const intermediateWords = words
-      .filter(w => w.level === 'intermediate')
-      .sort((a, b) => getHash(a.word) - getHash(b.word));
-      
-    const advancedWords = words
-      .filter(w => w.level === 'advanced')
-      .sort((a, b) => getHash(a.word) - getHash(b.word));
-
-    const coreWords = [...beginnerWords, ...intermediateWords, ...advancedWords];
-    if (coreWords.length === 0) return {};
-    
-    const partitioned = {};
-    const wordsPerLevel = Math.ceil(coreWords.length / 10); // ~83 words per level
-    
-    for (let i = 1; i <= 10; i++) {
-      const start = (i - 1) * wordsPerLevel;
-      const end = Math.min(i * wordsPerLevel, coreWords.length);
-      partitioned[i] = coreWords.slice(start, end);
+  // Partition 822 words into 41 units: units 0..39 have 20 words each; unit 40 has 22 words.
+  // Diverse, non-sequential word learning across the entire vocabulary.
+  const unitsData = useMemo(() => {
+    if (words.length === 0) return [];
+    const shuffled = seededShuffle(words, 2026);
+    const units = [];
+    for (let i = 0; i < 40; i++) {
+      units.push(shuffled.slice(i * 20, (i + 1) * 20));
     }
-    
-    return partitioned;
+    units.push(shuffled.slice(40 * 20)); // unit 40 (Unit 10.5) has 22 words
+    return units;
   }, [words]);
 
-  // Partition the 86 quizzes into 10 levels (~8-9 quizzes per level)
-  const quizzesByLevel = useMemo(() => {
-    if (quizzes.length === 0) return {};
-    
+  // Words partitioned by Stage (1 to 8): Stages 1-7 have 5 units (100 words), Stage 8 has 6 units (122 words)
+  const wordsByLevel = useMemo(() => {
+    if (unitsData.length === 0) return {};
     const partitioned = {};
-    const quizzesPerLevel = Math.ceil(quizzes.length / 10); // ~9 quizzes per level
-    
-    for (let i = 1; i <= 10; i++) {
-      const start = (i - 1) * quizzesPerLevel;
-      const end = Math.min(i * quizzesPerLevel, quizzes.length);
-      partitioned[i] = quizzes.slice(start, end);
+    for (let s = 1; s <= 8; s++) {
+      const unitCount = s === 8 ? 6 : 5;
+      const startGlobal = (s - 1) * 5;
+      const stageWords = [];
+      for (let u = 0; u < unitCount; u++) {
+        if (unitsData[startGlobal + u]) {
+          stageWords.push(...unitsData[startGlobal + u]);
+        }
+      }
+      partitioned[s] = stageWords;
     }
-    
     return partitioned;
+  }, [unitsData]);
+
+  // Helper to fetch words in a level/stage
+  const getWordsForLevel = useCallback((levelId) => {
+    return wordsByLevel[levelId] || [];
+  }, [wordsByLevel]);
+
+  // Helper to fetch words in a specific Unit (1 to 5/6) of a stage
+  const getWordsForUnit = useCallback((levelId, unitNumber) => {
+    if (unitsData.length === 0) return [];
+    const s = Math.max(1, Math.min(8, Number(levelId) || 1));
+    const maxUnits = s === 8 ? 6 : 5;
+    const u = Math.max(1, Math.min(maxUnits, Number(unitNumber) || 1));
+    const globalIndex = (s - 1) * 5 + (u - 1);
+    return unitsData[globalIndex] || [];
+  }, [unitsData]);
+
+  // Lookup map of pre-authored questions from mcq_quizzes.json by word
+  const questionByWord = useMemo(() => {
+    const map = new Map();
+    quizzes.forEach(quiz => {
+      (quiz.questions || []).forEach(q => {
+        if (q.correct_answer) {
+          map.set(q.correct_answer.toUpperCase(), q);
+        }
+      });
+    });
+    return map;
   }, [quizzes]);
 
-  // Partition the 86 stories into 10 levels (~8-9 stories per level)
+  // Construct Stage Practice Quizzes dynamically matching the exact words of that Stage's units
+  const getQuizzesForLevel = useCallback((levelId) => {
+    const s = Math.max(1, Math.min(8, Number(levelId) || 1));
+    const unitCount = s === 8 ? 6 : 5;
+    const stageQuizzes = [];
+
+    // Unit-by-unit practice quizzes
+    for (let u = 1; u <= unitCount; u++) {
+      const uWords = getWordsForUnit(s, u);
+      if (uWords.length === 0) continue;
+
+      const questions = uWords.map((wordObj, idx) => {
+        const preAuthored = questionByWord.get(wordObj.word.toUpperCase());
+        if (preAuthored) {
+          return {
+            ...preAuthored,
+            question_number: idx + 1,
+            wordId: wordObj.id,
+            targetWord: wordObj
+          };
+        }
+        return {
+          question_number: idx + 1,
+          wordId: wordObj.id,
+          question: `Which word matches the definition: "${wordObj.definition}"?`,
+          options: shuffleArray([wordObj.word.toUpperCase(), 'METICULOUS', 'LUCID', 'CANDID']),
+          correct_answer: wordObj.word.toUpperCase(),
+          explanation: `"${wordObj.word.toUpperCase()}" means: ${wordObj.definition}.`,
+          bengali_clue: wordObj.bengali_meaning || '',
+          mnemonic: wordObj.mnemonic || '',
+          targetWord: wordObj
+        };
+      });
+
+      stageQuizzes.push({
+        quiz_id: `stage_${s}_unit_${u}`,
+        title: `Unit ${s}.${u} Practice Quiz`,
+        total_questions: questions.length,
+        questions
+      });
+    }
+
+    // Comprehensive Stage practice quiz
+    const stageAllWords = getWordsForLevel(s);
+    if (stageAllWords.length > 0) {
+      const sampled = shuffleArray(stageAllWords).slice(0, 20);
+      const stageQuestions = sampled.map((wordObj, idx) => {
+        const preAuthored = questionByWord.get(wordObj.word.toUpperCase());
+        if (preAuthored) {
+          return {
+            ...preAuthored,
+            question_number: idx + 1,
+            wordId: wordObj.id,
+            targetWord: wordObj
+          };
+        }
+        return {
+          question_number: idx + 1,
+          wordId: wordObj.id,
+          question: `Which word matches the definition: "${wordObj.definition}"?`,
+          options: shuffleArray([wordObj.word.toUpperCase(), 'METICULOUS', 'LUCID', 'CANDID']),
+          correct_answer: wordObj.word.toUpperCase(),
+          explanation: `"${wordObj.word.toUpperCase()}" means: ${wordObj.definition}.`,
+          bengali_clue: wordObj.bengali_meaning || '',
+          mnemonic: wordObj.mnemonic || '',
+          targetWord: wordObj
+        };
+      });
+
+      stageQuizzes.push({
+        quiz_id: `stage_${s}_comprehensive`,
+        title: `Stage ${s} Comprehensive Drill`,
+        total_questions: stageQuestions.length,
+        questions: stageQuestions
+      });
+    }
+
+    return stageQuizzes;
+  }, [getWordsForUnit, getWordsForLevel, questionByWord]);
+
+  // Partition the 86 stories into 8 levels
   const storiesByLevel = useMemo(() => {
     if (stories.length === 0) return {};
     
     const partitioned = {};
-    const storiesPerLevel = Math.ceil(stories.length / 10);
+    const storiesPerLevel = Math.ceil(stories.length / 8);
     
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 8; i++) {
       const start = (i - 1) * storiesPerLevel;
       const end = Math.min(i * storiesPerLevel, stories.length);
       partitioned[i] = stories.slice(start, end);
@@ -139,28 +238,6 @@ export function useWordsData() {
     
     return partitioned;
   }, [stories]);
-
-  // Helper to fetch words in a level
-  const getWordsForLevel = useCallback((levelId) => {
-    return wordsByLevel[levelId] || [];
-  }, [wordsByLevel]);
-
-  // Helper to fetch words in a specific Unit (1 to 10) of a level
-  const getWordsForUnit = useCallback((levelId, unitNumber) => {
-    const levelWords = getWordsForLevel(levelId);
-    if (levelWords.length === 0) return [];
-    
-    // Divide the words list into 10 partitions
-    const wordsPerUnit = Math.ceil(levelWords.length / 10);
-    const start = (unitNumber - 1) * wordsPerUnit;
-    const end = Math.min(unitNumber * wordsPerUnit, levelWords.length);
-    return levelWords.slice(start, end);
-  }, [getWordsForLevel]);
-
-  // Helper to fetch quizzes in a level
-  const getQuizzesForLevel = useCallback((levelId) => {
-    return quizzesByLevel[levelId] || [];
-  }, [quizzesByLevel]);
 
   // Helper to fetch stories in a level
   const getStoriesForLevel = useCallback((levelId) => {

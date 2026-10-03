@@ -52,10 +52,7 @@ export default function SearchView({ state, wordsData }) {
     if (filterMode === 'bookmarked') {
       result = result.filter(w => (state.bookmarkedWordIds || []).includes(w.id));
     } else if (filterMode === 'mastered') {
-      result = result.filter(w => {
-        const prog = (state.wordProgress || {})[w.id];
-        return prog && prog.status === 'mastered';
-      });
+      result = result.filter(w => (state.masteredWordIds || []).includes(w.id));
     } else if (filterMode === 'learning') {
       result = result.filter(w => {
         const prog = (state.wordProgress || {})[w.id];
@@ -83,7 +80,7 @@ export default function SearchView({ state, wordsData }) {
     }
 
     return result;
-  }, [wordsData.words, wordsData.hitParades, searchQuery, filterMode, selectedLetter, state.bookmarkedWordIds, state.wordProgress]);
+  }, [wordsData.words, wordsData.hitParades, searchQuery, filterMode, selectedLetter, state.bookmarkedWordIds, state.wordProgress, state.masteredWordIds]);
 
   const handleOpenDetail = (word) => {
     if (setDetailWord) {
@@ -91,7 +88,7 @@ export default function SearchView({ state, wordsData }) {
     }
   };
 
-  const totalWordsCount = (wordsData.words || []).length || 1913;
+  const totalWordsCount = (wordsData.words || []).length || 822;
 
   return (
     <div style={{ maxWidth: '1080px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingBottom: '3rem' }} className="animate-fade search-view-container">
@@ -321,7 +318,7 @@ export default function SearchView({ state, wordsData }) {
           onClick={() => setFilterMode('mastered')}
           className={`filter-pill ${filterMode === 'mastered' ? 'active active-green' : ''}`}
         >
-          <Award size={13} /> Mastered ({Object.values(state.wordProgress || {}).filter(p => p.status === 'mastered').length})
+          <Award size={13} /> Mastered ({(state.masteredWordIds || []).length})
         </button>
         <button 
           onClick={() => setFilterMode('learning')}

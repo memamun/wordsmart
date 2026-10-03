@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Trophy, 
   BookOpen, 
@@ -18,9 +18,10 @@ import {
   Layers,
   ChevronRight,
   ChevronDown,
-  CheckCircle2
+  CheckCircle2,
+  RefreshCw
 } from 'lucide-react';
-import { PREP_STAGES } from '../hooks/useGameState';
+import { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, getUnitsCountForStage } from '../hooks/useGameState';
 
 function BlockMeter({ value, max, color }) {
   const blocksCount = 5;
@@ -96,45 +97,45 @@ function WindowPanel({ title, headerColor, shadowVar, className = '', style = {}
   );
 }
 
-export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, user, onGoogleSignIn }) {
+export default function Dashboard({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, selectedStage, setSelectedStage, user, onGoogleSignIn }) {
   const currentStage = PREP_STAGES.find(s => s.id === state.unlockedLevel) || PREP_STAGES[0];
-  const [activeStageFolder, setActiveStageFolder] = useState(() => state.unlockedLevel || 1);
+  const [activeStageFolder, setActiveStageFolder] = useState(() => selectedStage || state.unlockedLevel || 1);
   const [viewMode, setViewMode] = useState('folder'); // 'folder' (focused level folder) or 'all' (expanded tree)
+
+  useEffect(() => {
+    if (selectedStage) {
+      setActiveStageFolder(selectedStage);
+    }
+  }, [selectedStage]);
 
   // Stats calculations
   const totalMastered = state.masteredWordIds?.length || 0;
   const totalLearning = state.learningWordIds?.length || 0;
-  const totalWords = wordsData?.words?.length || 1913;
+  const totalWords = wordsData?.words?.length || 822;
   const masteryPercentage = totalWords > 0 
     ? Math.round((totalMastered / totalWords) * 100) 
     : 0;
 
-  // Calculate recommended next unit action
-  const levelWords = wordsData?.getWordsForLevel(state.unlockedLevel) || [];
-  const wordsPerUnit = levelWords.length ? Math.ceil(levelWords.length / 10) : 19;
-  
-  let recUnit = selectedUnit || 1;
-  let recType = 'flashcards';
+  // Calculate recommended next unit action - CENTERED AROUND QUIZZES
+  const currentStageTotalUnits = getUnitsCountForStage(state.unlockedLevel);
+  let recUnit = 1;
+  let recType = 'quiz';
 
-  for (let u = 1; u <= 10; u++) {
-    const start = (u - 1) * wordsPerUnit;
-    const end = Math.min(u * wordsPerUnit, levelWords.length);
-    const uWords = levelWords.slice(start, end);
-    const uWordIds = uWords.map(w => w.id);
-    const masteredInU = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
-    
-    if (masteredInU < uWords.length) {
+  for (let u = 1; u <= currentStageTotalUnits; u++) {
+    const isPassed = state.unitAttempts?.[`${state.unlockedLevel}.${u}`]?.passed;
+    if (!isPassed) {
       recUnit = u;
-      recType = 'flashcards';
+      recType = 'quiz';
       break;
-    } else if (u === 10 && masteredInU >= uWords.length) {
-      recUnit = 10;
+    } else if (u === currentStageTotalUnits && isPassed) {
+      recUnit = currentStageTotalUnits;
       recType = 'exam';
     }
   }
 
   // Calculate stage progress for a given stage
   const getStageStats = (stageId) => {
+    const totalUnits = getUnitsCountForStage(stageId);
     const sWords = wordsData?.getWordsForLevel(stageId) || [];
     const sWordIds = sWords.map(w => w.id);
     const sMastered = (state.masteredWordIds || []).filter(id => sWordIds.includes(id)).length;
@@ -143,16 +144,10 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
     const isActive = state.unlockedLevel === stageId;
     const isLocked = stageId > state.unlockedLevel;
 
-    // Count completed units
-    const sWordsPerUnit = sWords.length ? Math.ceil(sWords.length / 10) : 19;
+    // Count completed units via unit quiz passes
     let completedUnits = 0;
-    for (let u = 1; u <= 10; u++) {
-      const uStart = (u - 1) * sWordsPerUnit;
-      const uEnd = Math.min(u * sWordsPerUnit, sWords.length);
-      const uWords = sWords.slice(uStart, uEnd);
-      const uWordIds = uWords.map(w => w.id);
-      const mCount = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
-      if (uWords.length > 0 && mCount >= uWords.length) {
+    for (let u = 1; u <= totalUnits; u++) {
+      if (state.unitAttempts?.[`${stageId}.${u}`]?.passed) {
         completedUnits++;
       }
     }
@@ -165,7 +160,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
       isActive,
       isLocked,
       completedUnits,
-      totalUnits: 10
+      totalUnits
     };
   };
 
@@ -351,16 +346,16 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem', zIndex: 2 }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '800', letterSpacing: '0.05em' }}>PREP STAGE REACHED</div>
             <div style={{ fontSize: '1.75rem', fontWeight: '900', fontFamily: 'var(--font-title)', color: 'hsl(var(--secondary))', marginTop: '0.15rem' }}>
-              {state.unlockedLevel}/10
+              {state.unlockedLevel}/{PREP_STAGES.length}
             </div>
           </div>
-          <BlockMeter value={state.unlockedLevel} max={10} color="hsl(var(--secondary))" />
+          <BlockMeter value={state.unlockedLevel} max={PREP_STAGES.length} color="hsl(var(--secondary))" />
           <div style={{
             position: 'absolute',
             bottom: 0,
             left: 0,
             height: '4px',
-            width: `${(state.unlockedLevel / 10) * 100}%`,
+            width: `${(state.unlockedLevel / PREP_STAGES.length) * 100}%`,
             background: 'hsl(var(--secondary))',
             transition: 'width 1s ease'
           }} />
@@ -451,54 +446,56 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', fontWeight: '900', color: 'hsl(var(--secondary))', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              ⚡ RECOMMENDED NEXT STEP
+              ⚡ NEXT ASSESSMENT OBJECTIVE
             </div>
             <h3 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-title)', fontWeight: '900', color: 'var(--text-primary)', marginTop: '0.1rem' }}>
               {recType === 'exam' 
                 ? `Stage ${state.unlockedLevel} Cumulative Qualification Exam`
-                : `Stage ${state.unlockedLevel} • Unit ${state.unlockedLevel}.${recUnit} Vocabulary`}
+                : `Stage ${state.unlockedLevel} • Unit ${state.unlockedLevel}.${recUnit} Quiz`}
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
               {recType === 'exam' 
-                ? 'You completed all 10 units! Take the qualification exam to unlock the next stage.'
-                : `Master the next set of words in Unit ${state.unlockedLevel}.${recUnit} without interrupting your streak.`}
+                ? `All ${currentStageTotalUnits} units passed! Take the cumulative qualification exam to unlock the next stage.`
+                : `Score 70%+ on Unit ${state.unlockedLevel}.${recUnit} quiz to master this unit and unlock Unit ${state.unlockedLevel}.${Math.min(currentStageTotalUnits, recUnit + 1)}.`}
             </p>
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           {recType === 'exam' ? (
             <button
               onClick={() => {
-                if (setSelectedUnit) setSelectedUnit(10);
-                setActiveView('quizzes');
+                if (setSelectedStage) setSelectedStage(state.unlockedLevel);
+                setActiveView('quizzes', 'exam', state.unlockedLevel);
               }}
               className="btn btn-accent"
-              style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+              style={{ padding: '0.65rem 1.35rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
             >
-              Take Qualification Exam <ArrowRight size={16} />
+              <Trophy size={16} /> Take Qualification Exam <ArrowRight size={16} />
             </button>
           ) : (
             <>
               <button
                 onClick={() => {
+                  if (setSelectedStage) setSelectedStage(state.unlockedLevel);
                   if (setSelectedUnit) setSelectedUnit(recUnit);
-                  setActiveView('flashcards', recUnit);
+                  setActiveView('quizzes', recUnit, state.unlockedLevel);
                 }}
-                className="btn btn-primary"
-                style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+                className="btn btn-accent"
+                style={{ padding: '0.65rem 1.35rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
               >
-                <BookOpen size={16} /> Study Unit {state.unlockedLevel}.{recUnit}
+                <Sparkles size={16} /> Take Unit {state.unlockedLevel}.{recUnit} Quiz <ArrowRight size={16} />
               </button>
               <button
                 onClick={() => {
+                  if (setSelectedStage) setSelectedStage(state.unlockedLevel);
                   if (setSelectedUnit) setSelectedUnit(recUnit);
-                  setActiveView('quizzes', recUnit);
+                  setActiveView('flashcards', recUnit, state.unlockedLevel);
                 }}
                 className="btn btn-secondary"
-                style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+                style={{ padding: '0.65rem 1rem', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}
               >
-                <HelpCircle size={16} /> Quiz
+                <BookOpen size={16} /> Study Cards
               </button>
             </>
           )}
@@ -550,7 +547,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
               className={`filter-pill ${viewMode === 'all' ? 'active active-cyan' : ''}`}
               style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }}
             >
-              <Layers size={13} /> Expand All 10 Stages
+              <Layers size={13} /> Expand All {PREP_STAGES.length} Stages
             </button>
           </div>
         </div>
@@ -619,7 +616,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                   background: isSelected ? '#000' : 'var(--bg-surface-elevated)',
                   color: isSelected ? '#fff' : 'var(--text-muted)'
                 }}>
-                  {stats.completedUnits}/10
+                  {stats.completedUnits}/{stats.totalUnits}
                 </span>
               </button>
             );
@@ -704,30 +701,19 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                 gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
                 gap: '1rem'
               }}>
-                {Array.from({ length: 10 }).map((_, index) => {
+                {Array.from({ length: selectedStageStats.totalUnits }).map((_, index) => {
                   const unitNum = index + 1;
-                  const wordsPerU = selectedStageStats.words.length ? Math.ceil(selectedStageStats.words.length / 10) : 19;
-                  const uStart = (unitNum - 1) * wordsPerU;
-                  const uEnd = Math.min(unitNum * wordsPerU, selectedStageStats.words.length);
-                  const uWords = selectedStageStats.words.slice(uStart, uEnd);
+                  const uWords = wordsData?.getWordsForUnit(selectedStageData.id, unitNum) || [];
                   const uWordIds = uWords.map(w => w.id);
                   const masteredCount = (state.masteredWordIds || []).filter(id => uWordIds.includes(id)).length;
-                  const totalCount = uWords.length || 19;
+                  const totalCount = uWords.length || 20;
                   const unitPercent = totalCount ? Math.round((masteredCount / totalCount) * 100) : 0;
 
-                  // Unlocked check
-                  let isUnitUnlocked = true;
-                  if (unitNum > 1 && !selectedStageStats.isCompleted) {
-                    const prevStart = (unitNum - 2) * wordsPerU;
-                    const prevEnd = Math.min((unitNum - 1) * wordsPerU, selectedStageStats.words.length);
-                    const prevWords = selectedStageStats.words.slice(prevStart, prevEnd);
-                    const prevWordIds = prevWords.map(w => w.id);
-                    const prevMastered = (state.masteredWordIds || []).filter(id => prevWordIds.includes(id)).length;
-                    const prevPercent = prevWords.length ? Math.round((prevMastered / prevWords.length) * 100) : 0;
-                    isUnitUnlocked = prevPercent >= 70;
-                  }
-
-                  const isCurrentActive = isUnitUnlocked && masteredCount < totalCount && selectedStageStats.isActive;
+                  // Strict lock check
+                  const isUnitUnlocked = checkIsUnitUnlocked(selectedStageData.id, unitNum, state);
+                  const isUnitQuizPassed = state.unitAttempts?.[`${selectedStageData.id}.${unitNum}`]?.passed;
+                  const quizScore = state.unitAttempts?.[`${selectedStageData.id}.${unitNum}`]?.score;
+                  const isCurrentActive = isUnitUnlocked && !isUnitQuizPassed && selectedStageStats.isActive;
 
                   return (
                     <div
@@ -738,7 +724,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                         borderRadius: 'var(--radius-md)',
                         backgroundColor: isCurrentActive ? 'var(--bg-surface-elevated)' : isUnitUnlocked ? 'var(--bg-surface)' : 'var(--bg-canvas)',
                         boxShadow: isCurrentActive ? 'var(--shadow-medium)' : isUnitUnlocked ? 'var(--shadow-tiny)' : 'none',
-                        opacity: isUnitUnlocked ? 1 : 0.6,
+                        opacity: isUnitUnlocked ? 1 : 0.55,
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '0.75rem',
@@ -754,7 +740,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                           </span>
                           {isCurrentActive && (
                             <span style={{ fontSize: '0.65rem', color: 'hsl(var(--secondary))', fontWeight: '900' }}>
-                              ● CURRENT
+                              ● NEXT QUIZ
                             </span>
                           )}
                         </div>
@@ -763,24 +749,24 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                           fontWeight: '800',
                           padding: '0.15rem 0.4rem',
                           borderRadius: '4px',
-                          background: unitPercent === 100 ? 'var(--theme-green)' : 'var(--bg-surface-elevated)',
-                          color: unitPercent === 100 ? '#000' : 'var(--text-muted)'
+                          background: isUnitQuizPassed ? 'var(--theme-green)' : isUnitUnlocked ? 'var(--theme-cyan)' : 'var(--bg-surface-elevated)',
+                          color: isUnitQuizPassed ? '#000' : isUnitUnlocked ? '#000' : 'var(--text-muted)'
                         }}>
-                          {unitPercent === 100 ? 'MASTERED' : `${totalCount} words`}
+                          {isUnitQuizPassed ? `✓ QUIZ ${quizScore}%` : isUnitUnlocked ? 'READY' : 'LOCKED'}
                         </span>
                       </div>
 
                       {/* Mastery Bar */}
                       <div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.25rem', fontWeight: '700' }}>
-                          <span>Mastery</span>
-                          <span>{masteredCount}/{totalCount} ({unitPercent}%)</span>
+                          <span>Target Words</span>
+                          <span>{totalCount} words</span>
                         </div>
                         <div style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: 'var(--border-thin)', borderRadius: '4px', overflow: 'hidden' }}>
                           <div style={{
                             height: '100%',
-                            width: `${unitPercent}%`,
-                            backgroundColor: unitPercent >= 100 ? 'var(--theme-green)' : 'var(--theme-cyan)',
+                            width: isUnitQuizPassed ? '100%' : isUnitUnlocked ? '40%' : '0%',
+                            backgroundColor: isUnitQuizPassed ? 'var(--theme-green)' : 'var(--theme-cyan)',
                             transition: 'width 0.3s ease'
                           }} />
                         </div>
@@ -791,28 +777,35 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                         <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto', paddingTop: '0.25rem' }}>
                           <button
                             onClick={() => {
+                              if (setSelectedStage) setSelectedStage(selectedStageData.id);
                               if (setSelectedUnit) setSelectedUnit(unitNum);
-                              setActiveView('flashcards', unitNum);
+                              setActiveView('quizzes', unitNum, selectedStageData.id);
                             }}
-                            className="btn btn-primary"
-                            style={{ flex: 1, padding: '0.45rem', fontSize: '0.75rem', gap: '0.35rem' }}
+                            className={isUnitQuizPassed ? "btn btn-secondary" : "btn btn-primary"}
+                            style={{ flex: 1.3, padding: '0.45rem', fontSize: '0.75rem', gap: '0.35rem' }}
                           >
-                            <BookOpen size={13} /> Study
+                            {isUnitQuizPassed ? (
+                              <><RefreshCw size={12} /> Retake Quiz</>
+                            ) : (
+                              <><Sparkles size={12} /> Take Quiz</>
+                            )}
                           </button>
                           <button
                             onClick={() => {
+                              if (setSelectedStage) setSelectedStage(selectedStageData.id);
                               if (setSelectedUnit) setSelectedUnit(unitNum);
-                              setActiveView('quizzes', unitNum);
+                              setActiveView('flashcards', unitNum, selectedStageData.id);
                             }}
                             className="btn btn-secondary"
                             style={{ flex: 1, padding: '0.45rem', fontSize: '0.75rem', gap: '0.35rem' }}
+                            title="Study Flashcards"
                           >
-                            <Award size={13} /> Quiz
+                            <BookOpen size={12} /> Study
                           </button>
                         </div>
                       ) : (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: 'auto', paddingTop: '0.25rem' }}>
-                          <Lock size={12} /> Locked (Need 70% in Unit {selectedStageData.id}.{unitNum - 1})
+                          <Lock size={12} /> Locked (Pass Unit {selectedStageData.id}.{unitNum - 1} Quiz)
                         </div>
                       )}
                     </div>
@@ -859,16 +852,22 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      if (setSelectedUnit) setSelectedUnit(10);
-                      setActiveView('quizzes');
-                    }}
-                    className="btn btn-accent"
-                    style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
-                  >
-                    Launch Stage Exam <ArrowRight size={14} />
-                  </button>
+                  {checkIsStageExamUnlocked(selectedStageData.id, state) ? (
+                    <button
+                      onClick={() => {
+                        if (setSelectedStage) setSelectedStage(selectedStageData.id);
+                        setActiveView('quizzes', 'exam', selectedStageData.id);
+                      }}
+                      className="btn btn-accent"
+                      style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+                    >
+                      {state.levelAttempts?.[selectedStageData.id]?.passed ? 'Retake Stage Exam' : 'Launch Stage Exam'} <ArrowRight size={14} />
+                    </button>
+                  ) : (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-muted)', fontSize: '0.8rem', fontWeight: '800' }}>
+                      <Lock size={14} /> Locked (Pass Unit {selectedStageData.id}.{selectedStageStats.totalUnits} Quiz to Unlock)
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -923,7 +922,7 @@ export default function Dashboard({ state, wordsData, setActiveView, selectedUni
 
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)' }}>
-                          {stats.completedUnits}/10 Units ({stats.percent}%)
+                          {stats.completedUnits}/{stats.totalUnits} Units ({stats.percent}%)
                         </span>
                         {!stats.isLocked && (
                           <button
