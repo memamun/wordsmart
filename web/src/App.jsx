@@ -42,7 +42,8 @@ const getInitialTheme = () => {
 };
 
 export default function App() {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(() => auth.currentUser || undefined);
+  const wordsData = useWordsData();
   const [initialNavigation, setInitialNavigation] = useState(null);
   useEffect(() => onAuthStateChanged(auth, firebaseUser => {
     setUser(firebaseUser || null);
@@ -52,14 +53,11 @@ export default function App() {
     setInitialNavigation({ viewId: viewId || 'dashboard', unitNum });
     await signInWithPopup(auth, googleProvider);
   };
-  if (user === undefined) return <div role="status" style={{ padding: '2rem' }}>Loading your account…</div>;
-  return <WordSmartApp key={user?.uid || 'guest'} user={user} signIn={signIn} initialNavigation={initialNavigation} />;
+  return <WordSmartApp key={user?.uid || 'guest'} user={user || null} authLoading={user === undefined} wordsData={wordsData} signIn={signIn} initialNavigation={initialNavigation} />;
 }
 
-function WordSmartApp({ user, signIn, initialNavigation }) {
-  const authLoading = false;
+function WordSmartApp({ user, authLoading, wordsData, signIn, initialNavigation }) {
   const state = useGameState(user?.uid);
-  const wordsData = useWordsData();
   const [activeView, setActiveView] = useState(() => initialNavigation?.viewId || (localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing'));
   const [selectedUnit, setSelectedUnit] = useState(() => Number(initialNavigation?.unitNum) || 1);
   const [selectedStage, setSelectedStage] = useState(() => state.unlockedLevel || 1);

@@ -2,11 +2,11 @@
 
 ## Progress ownership and synchronization
 
-Browser progress is scoped to the authenticated Firebase UID, with a separate guest record. The old `wordsmart_gamestate_v2` record has no trustworthy owner and is preserved as guest progress. Signing out or switching accounts remounts the app's learning session. Importing guest progress requires an explicit action in the sync banner and backs up the previous account snapshot locally.
+Browser progress is scoped to the authenticated Firebase UID, with a separate guest record. The old `wordsmart_gamestate_v2` record has no trustworthy owner and is preserved as guest progress. Signing out or switching accounts remounts the app's learning session. Guest progress stays separate and is never imported automatically. The app renders while authentication initializes; account-specific learning state is remounted when the authenticated UID becomes available.
 
 Cloud progress is a complete snapshot at `users/{uid}/data/progress`, with `schemaVersion: 3` and an integer `revision`. A server read must finish before uploads are allowed. Saves use a Firestore transaction that compares the revision and replaces the complete document, including empty maps and arrays. This preserves coin spending, deleted bookmarks, and resets.
 
-Conflicting device edits require a choice between the cloud and local snapshots. Both are backed up under the account's `:conflict-backup` local-storage key before resolving. This policy deliberately avoids guessing how to combine coin balances or review schedules. It does not automatically merge simultaneous offline work. Failed saves remain dirty locally; retry or reconnect to synchronize. The transaction catches changes made by another device even when this tab has not refreshed its snapshot.
+Conflicting device edits require a choice between the cloud and local snapshots. Both are backed up under the account's `:conflict-backup` local-storage key before resolving. This policy deliberately avoids guessing how to combine coin balances or review schedules. It does not automatically merge simultaneous offline work. Routine restoration and saving run silently. Only errors and conflicts display a sync banner. Failed saves remain dirty locally; retry or reconnect to synchronize. The transaction catches changes made by another device even when this tab has not refreshed its snapshot.
 
 ## Tutor API and secrets
 

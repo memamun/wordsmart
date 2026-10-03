@@ -7,7 +7,7 @@ import { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, calculateSM
 export { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, getUnitsCountForStage } from '../state/learning.js';
 
 export function useGameState(uid = null) {
-  const { store, snapshot, retrySync, importGuestProgress } = useProgressStore(uid);
+  const { store, snapshot, retrySync } = useProgressStore(uid);
   const state = snapshot.progress;
   const setState = store.update;
   const [isQuizActive, setIsQuizActive] = useState(false);
@@ -412,6 +412,5 @@ export function useGameState(uid = null) {
     storageError: snapshot.storageError,
     resolveSyncConflict: store.resolveConflict,
     retrySync,
-    importGuestProgress,
   };
 }

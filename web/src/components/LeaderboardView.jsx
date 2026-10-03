@@ -3,7 +3,7 @@ import { Trophy, Flame, Sparkles, Cloud } from 'lucide-react';
 import { db } from '../firebase.js';
 import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 
-export default function LeaderboardView({ user }) {
+export default function LeaderboardView({ state, user }) {
   const [cloudUsers, setCloudUsers] = useState([]);
   const [isCloudActive, setIsCloudActive] = useState(false);
   const [loadingCloud, setLoadingCloud] = useState(true);
@@ -15,47 +15,85 @@ export default function LeaderboardView({ user }) {
       return;
     }
 
+    const processSnapshot = (snapshot) => {
+      const list = [];
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        list.push({
+          id: docSnap.id,
+          name: data.displayName || 'WordSmart Learner',
+          xp: Number(data.xp) || 0,
+          level: Number(data.level) || 1,
+          streak: Number(data.streak) || 0,
+          photoURL: data.photoURL || null,
+          isUser: Boolean(user?.uid && user.uid === docSnap.id)
+        });
+      });
+      return list;
+    };
+
     try {
+      // Query users collection where all learner rankings from Android and Web are aggregated
       const q = query(
-        collection(db, 'leaderboard'),
+        collection(db, 'users'),
         orderBy('xp', 'desc'),
         limit(50)
       );
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
-        const list = [];
-        snapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          list.push({
-            id: docSnap.id,
-            name: data.displayName || 'WordSmart Learner',
-            xp: Number(data.xp) || 0,
-            level: Number(data.level) || 1,
-            streak: Number(data.streak) || 0,
-            photoURL: data.photoURL || null,
-            isUser: user?.uid === docSnap.id
-          });
-        });
-
+        const list = processSnapshot(snapshot);
         setCloudUsers(list);
         setIsCloudActive(true);
         setLoadingCloud(false);
-      }, () => {
-        setIsCloudActive(false);
-        setCloudUsers([]);
-        setLoadingCloud(false);
+      }, (error) => {
+        console.warn("Firestore users query fallback to leaderboard:", error?.message);
+        // Fallback to leaderboard collection
+        const qLb = query(
+          collection(db, 'leaderboard'),
+          orderBy('xp', 'desc'),
+          limit(50)
+        );
+        onSnapshot(qLb, (lbSnap) => {
+          const list = processSnapshot(lbSnap);
+          setCloudUsers(list);
+          setIsCloudActive(true);
+          setLoadingCloud(false);
+        }, () => {
+          setIsCloudActive(false);
+          setCloudUsers([]);
+          setLoadingCloud(false);
+        });
       });
 
       return () => unsubscribe();
-    } catch {
+    } catch (err) {
+      console.error("Leaderboard query error:", err);
       setLoadingCloud(false);
     }
   }, [user]);
 
-  // Never substitute editable local XP into a server-calculated ranking.
-  const leaderboardList = cloudUsers;
+  // Build current user entry if user is signed in but not yet returned in the top 50
+  const userAlreadyInList = cloudUsers.some(item => item.isUser || (user?.uid && item.id === user.uid));
+  let leaderboardList = [...cloudUsers];
+
+  if (!userAlreadyInList && user?.uid) {
+    const userXp = Number(state?.xp) || 0;
+    if (userXp > 0) {
+      leaderboardList.push({
+        id: user.uid,
+        name: user.displayName || 'You (WordSmart Learner)',
+        xp: userXp,
+        level: Number(state?.unlockedLevel) || 1,
+        streak: Number(state?.streak) || 0,
+        photoURL: user.photoURL || null,
+        isUser: true
+      });
+      leaderboardList.sort((a, b) => b.xp - a.xp);
+    }
+  }
+
   const userRankIndex = leaderboardList.findIndex(item => item.isUser) + 1;
-  const rankedXp = leaderboardList.find(item => item.isUser)?.xp || 0;
+  const rankedXp = leaderboardList.find(item => item.isUser)?.xp || (Number(state?.xp) || 0);
 
   return (
     <div style={{ padding: '2rem', maxWidth: '750px', margin: '0 auto' }} className="animate-fade leaderboard-view-container">

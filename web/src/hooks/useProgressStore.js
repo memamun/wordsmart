@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore, useCallback } from 'react';
-import { createProgressStore, createSyncController, storageKey } from '../state/progress.js';
+import { createProgressStore, createSyncController } from '../state/progress.js';
 import { progressRemote } from '../services/progressRemote.js';
 
 export function useProgressStore(uid) {
@@ -27,11 +27,5 @@ export function useProgressStore(uid) {
   }, [uid, snapshot]);
 
   const retrySync = useCallback(() => controllerRef.current?.restore(), []);
-  const importGuestProgress = useCallback(() => {
-    const guest = createProgressStore(window.localStorage).getSnapshot();
-    // This is an explicit replacement, never an automatic sign-in merge.
-    window.localStorage.setItem(`${storageKey(uid)}:import-backup`, JSON.stringify(store.getSnapshot().progress));
-    store.update(guest.progress);
-  }, [store, uid]);
-  return { store, snapshot, retrySync, importGuestProgress };
+  return { store, snapshot, retrySync };
 }
