@@ -1,5 +1,7 @@
 # Caches and temporary directories
 archive/
+__pycache__/
+**/__pycache__/
 .collocations_cache.json
 .example_translation_cache.json
 .story_cache.json
@@ -47,3 +49,35 @@ functions/data/
 *-debug.log
 
 functions/.secret.local
+
+# Credentials, Keys, and Secrets
+*.pem
+*.key
+*.p12
+*.cer
+*.crt
+*.keystore
+*.jks
+*.secret
+*.secret.*
+*.token
+*credentials*.json
+*service-account*.json
+*serviceAccount*.json
+*-adminsdk-*.json
+
+# Android local properties and build caches
+local.properties
+**/local.properties
+.gradle/
+**/.gradle/
+
+# Debug and runtime logs
+*-debug.log
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db

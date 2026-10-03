@@ -1,8 +1,8 @@
 // ============================================================
 //  WordSmart Admin Panel — admin.js
 //  Firebase Web SDK v10 (modular CDN), no bundler
-//  Uses Firebase Auth Management REST API to list all users
-//  (requires admin ID token — server-side Auth SDK not needed)
+//  Uses local proxy server (port 3001) for full user management
+//  Start proxy: python3 admin/proxy.py
 // ============================================================
 
 import { initializeApp }
@@ -39,15 +39,21 @@ let currentView   = 'dashboard';
 const $       = (id) => document.getElementById(id);
 const el      = (tag, cls, html = '') => { const e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; };
 const fmt     = (n) => Number(n || 0).toLocaleString();
-const relDate = (str) => {
-  if (!str) return '—';
-  const d = new Date(str), diff = Math.floor((Date.now() - d) / 86400000);
+const relDate = (strOrMs) => {
+  if (!strOrMs) return '—';
+  const d = typeof strOrMs === 'number' ? new Date(strOrMs) : new Date(strOrMs);
+  if (isNaN(d.getTime())) return '—';
+  const diff = Math.floor((Date.now() - d.getTime()) / 86400000);
   if (diff === 0) return 'Today';
   if (diff === 1) return 'Yesterday';
   if (diff < 7)   return `${diff}d ago`;
   return d.toLocaleDateString();
 };
-const isRecent7 = (str) => str && (Date.now() - new Date(str)) < 7 * 86400000;
+const isRecent7 = (strOrMs) => {
+  if (!strOrMs) return false;
+  const d = typeof strOrMs === 'number' ? new Date(strOrMs) : new Date(strOrMs);
+  return !isNaN(d.getTime()) && (Date.now() - d.getTime()) < 7 * 86400000;
+};
 
 // ── Toast ────────────────────────────────────────────────────
 let toastTimer;
@@ -58,6 +64,89 @@ function showToast(msg, duration = 3500) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.add('hidden'), duration);
 }
+
+// ── Photo Modal (Lightbox) ───────────────────────────────────
+function getHighResPhoto(url) {
+  if (!url) return '';
+  if (url.includes('googleusercontent.com')) {
+    return url.replace(/=s\d+(-c)?/g, '=s400-c');
+  }
+  return url;
+}
+
+function openPhotoModal(photoUrl, name = 'User Photo', email = '') {
+  const modal    = $('photo-modal');
+  const img      = $('photo-modal-img');
+  const fallback = $('photo-modal-fallback');
+
+  $('photo-modal-name').textContent  = name || 'WordSmart Learner';
+  $('photo-modal-email').textContent = email || '';
+
+  const initials = (name || '?')
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(w => w[0].toUpperCase())
+    .join('') || '👤';
+
+  // If no photo URL is available, immediately show initials fallback
+  if (!photoUrl) {
+    img.classList.add('hidden');
+    img.src = '';
+    if (fallback) {
+      fallback.textContent = initials;
+      fallback.classList.remove('hidden');
+    }
+    modal.classList.remove('hidden');
+    return;
+  }
+
+  // Hide initials and prepare image
+  if (fallback) fallback.classList.add('hidden');
+  img.removeAttribute('alt');
+  img.classList.remove('hidden');
+  img.style.opacity = '0';
+
+  const proxyUrl = `${PROXY}/api/avatar?url=${encodeURIComponent(photoUrl)}`;
+  const directUrl = getHighResPhoto(photoUrl);
+
+  let triedDirect = false;
+
+  img.onload = () => {
+    img.style.opacity = '1';
+    img.classList.remove('hidden');
+    if (fallback) fallback.classList.add('hidden');
+  };
+
+  img.onerror = () => {
+    if (!triedDirect) {
+      triedDirect = true;
+      // Fallback: try direct Google high-res URL
+      img.src = directUrl;
+    } else {
+      // Both failed: show initials avatar
+      img.classList.add('hidden');
+      if (fallback) {
+        fallback.textContent = initials;
+        fallback.classList.remove('hidden');
+      }
+    }
+  };
+
+  // Primary: Load through proxy (bypasses Google's 429 referer block, provides crisp 400x400 image)
+  img.src = proxyUrl;
+  modal.classList.remove('hidden');
+}
+
+function closePhotoModal() {
+  $('photo-modal')?.classList.add('hidden');
+}
+
+$('photo-modal-close')?.addEventListener('click', closePhotoModal);
+$('photo-modal-overlay')?.addEventListener('click', closePhotoModal);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePhotoModal();
+});
 
 // ── Auth ─────────────────────────────────────────────────────
 onAuthStateChanged(auth, (user) => {
@@ -100,195 +189,100 @@ function switchView(view) {
 }
 $('refresh-btn').addEventListener('click', loadAllData);
 
-// ── Firebase Auth REST — list all users ───────────────────────
-// Uses the Identity Toolkit v1 accounts:query endpoint.
-// Requires a valid ID token from a user with "Firebase Authentication Admin" role
-// OR works via the admin SDK approach (we use the ID token with the project's API key).
-async function fetchAllAuthUsers() {
-  const user = auth.currentUser;
-  if (!user) throw new Error('Not signed in');
-  const idToken = await user.getIdToken(true);
+// ── Proxy helpers ─────────────────────────────────────────────
+const PROXY = 'http://localhost:3001';
+let proxyAvailable = null;
 
-  const allAuthUsers = [];
-  let nextPageToken = undefined;
-
-  do {
-    const body = { maxResults: 1000 };
-    if (nextPageToken) body.nextPageToken = nextPageToken;
-
-    const resp = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/projects/${PROJECT_ID}/accounts:query`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`,
-        },
-        body: JSON.stringify(body),
-      }
-    );
-
-    if (!resp.ok) {
-      // Fallback: try the accounts:batchGet approach
-      const errText = await resp.text();
-      console.warn('accounts:query failed:', errText);
-      throw new Error(`Auth REST error ${resp.status}`);
-    }
-
-    const data = await resp.json();
-    if (data.userInfo) allAuthUsers.push(...data.userInfo);
-    nextPageToken = data.nextPageToken;
-  } while (nextPageToken);
-
-  return allAuthUsers;
+async function checkProxy() {
+  if (proxyAvailable !== null) return proxyAvailable;
+  try {
+    const r = await fetch(`${PROXY}/api/health`, { signal: AbortSignal.timeout(2000) });
+    proxyAvailable = r.ok;
+  } catch { proxyAvailable = false; }
+  return proxyAvailable;
 }
 
-// Alternative: use the Firebase Auth download endpoint
-async function fetchAllAuthUsersV2() {
-  const user = auth.currentUser;
-  if (!user) throw new Error('Not signed in');
-  const idToken = await user.getIdToken(true);
+async function proxyGet(path) {
+  const r = await fetch(`${PROXY}${path}`);
+  if (!r.ok) throw new Error(`Proxy ${r.status}: ${await r.text()}`);
+  return r.json();
+}
 
-  const allAuthUsers = [];
-  let nextPageToken = undefined;
-
-  do {
-    let url = `https://identitytoolkit.googleapis.com/v1/projects/${PROJECT_ID}/accounts:batchGet?maxResults=1000`;
-    if (nextPageToken) url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
-
-    const resp = await fetch(url, {
-      headers: { 'Authorization': `Bearer ${idToken}` },
-    });
-
-    if (!resp.ok) {
-      const errText = await resp.text();
-      throw new Error(`Auth REST batchGet error ${resp.status}: ${errText.slice(0, 200)}`);
-    }
-
-    const data = await resp.json();
-    if (data.users) allAuthUsers.push(...data.users);
-    nextPageToken = data.nextPageToken;
-  } while (nextPageToken);
-
-  return allAuthUsers;
+async function proxyPost(path, body) {
+  const r = await fetch(`${PROXY}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) throw new Error(`Proxy ${r.status}: ${await r.text()}`);
+  return r.json();
 }
 
 // ── Load All Data ─────────────────────────────────────────────
 async function loadAllData() {
   ['stat-users-val','stat-xp-val','stat-level-val','stat-active-val','stat-coins-val','stat-mastered-val']
-    .forEach(id => $( id).textContent = '…');
-  showToast('🔄 Fetching all authenticated users…');
+    .forEach(id => $(id).textContent = '…');
 
-  // Step 1: Get all Auth users
-  let authUsers = [];
-  try {
-    authUsers = await fetchAllAuthUsersV2();
-    console.log(`✅ Fetched ${authUsers.length} Auth users`);
-  } catch (e) {
-    console.warn('batchGet failed, trying query:', e.message);
+  const hasProxy = await checkProxy();
+  let proxyResult = null;
+
+  if (hasProxy) {
+    showToast('🔄 Loading users…');
     try {
-      authUsers = await fetchAllAuthUsers();
-    } catch (e2) {
-      console.warn('Both Auth REST methods failed:', e2.message);
-      showToast('⚠️ Auth user list unavailable, loading Firestore only…');
+      proxyResult = await proxyGet('/api/users');
+    } catch (e) {
+      console.warn('Proxy fetch failed:', e.message);
+      proxyAvailable = false;
     }
   }
 
-  // Step 2: Get Firestore user docs
-  const firestoreMap = new Map();
-  try {
-    const snap = await getDocs(collection(db, 'users'));
-    snap.docs.forEach(d => firestoreMap.set(d.id, d.data()));
-  } catch (e) {
-    console.warn('Firestore users fetch failed:', e.message);
-  }
-
-  // Step 3: Merge Auth + Firestore
-  if (authUsers.length > 0) {
-    allUsers = authUsers.map(u => {
-      const fs   = firestoreMap.get(u.localId) || {};
-      const prog = {}; // progress fetched on demand in drawer
-      const provider = u.providerUserInfo?.[0]?.providerId || 'unknown';
-      return {
-        uid:          u.localId,
-        email:        u.email || u.providerUserInfo?.[0]?.email || '',
-        displayName:  u.displayName || fs.displayName || 'Unknown',
-        photoURL:     u.photoUrl || fs.photoURL || '',
-        createdAt:    u.createdAt ? new Date(Number(u.createdAt)).toISOString() : null,
-        lastSignIn:   u.lastLoginAt ? new Date(Number(u.lastLoginAt)).toISOString() : null,
-        lastRefresh:  u.lastRefreshAt || null,
-        disabled:     u.disabled || false,
-        provider,
-        emailVerified: u.emailVerified || false,
-        // Firestore data
-        xp:           Number(fs.xp ?? 0),
-        coins:        Number(fs.coins ?? 0),
-        level:        Number(fs.level ?? 1),
-        streak:       Number(fs.streak ?? 0),
-        mastered:     0,
-        lastActive:   fs.lastActiveDate || null,
-        achievements: [],
-        hasFirestore: firestoreMap.has(u.localId),
-        raw:          { auth: u, firestore: fs },
-      };
-    });
+  if (proxyResult && proxyResult.users && proxyResult.users.length > 0) {
+    allUsers = proxyResult.users;
+    showToast(`✅ Loaded ${allUsers.length} users`);
   } else {
-    // Auth REST not available — fall back to Firestore-only list
+    // Fallback: direct Firestore query
+    const firestoreMap = new Map();
+    try {
+      const snap = await getDocs(collection(db, 'users'));
+      snap.docs.forEach(d => firestoreMap.set(d.id, d.data()));
+    } catch (e) {
+      console.warn('Firestore users fetch failed:', e.message);
+    }
+
     allUsers = [...firestoreMap.entries()].map(([uid, fs]) => ({
-      uid, email: fs.email || '—', displayName: fs.displayName || 'Unknown',
-      photoURL: fs.photoURL || '', createdAt: null, lastSignIn: null,
-      disabled: false, provider: 'unknown', emailVerified: false,
-      xp: Number(fs.xp ?? 0), coins: Number(fs.coins ?? 0),
-      level: Number(fs.level ?? 1), streak: Number(fs.streak ?? 0),
-      mastered: 0, lastActive: fs.lastActiveDate || null,
-      achievements: [], hasFirestore: true, raw: { firestore: fs },
+      uid,
+      email: fs.email || '—',
+      displayName: fs.displayName || 'WordSmart Learner',
+      photoURL: fs.photoURL || '',
+      createdAt: null,
+      lastSignIn: null,
+      disabled: false,
+      provider: 'unknown',
+      emailVerified: false,
+      xp: Number(fs.xp ?? 0),
+      coins: Number(fs.coins ?? 0),
+      level: Number(fs.level ?? 1),
+      streak: Number(fs.streak ?? 0),
+      longestStreak: Number(fs.longestStreak ?? 0),
+      mastered: Array.isArray(fs.quizMasteredWordIds) ? fs.quizMasteredWordIds.length : (Number(fs.masteredWordsCount) || 0),
+      lastActive: fs.lastQuizDate || fs.updatedAt || null,
+      achievements: [],
+      raw: { firestore: fs },
     }));
-    showToast(`⚠️ Auth list unavailable — showing ${allUsers.length} Firestore users only`, 5000);
+
+    showToast(`✅ Loaded ${allUsers.length} users`);
   }
 
-  // Step 4: Fetch progress sub-docs in background for mastered count
-  fetchProgressBatch(allUsers.slice(0, 50)); // first 50 eagerly
-
+  // Sort by XP descending by default
   allUsers.sort((a, b) => b.xp - a.xp);
   filteredUsers = [...allUsers];
   $('users-count-badge').textContent = allUsers.length;
   $('user-count-label').textContent  = `${allUsers.length} users`;
 
   renderDashboard();
-  if (currentView === 'users')       renderUsersTable();
+  if (currentView === 'users')       applyFilters();
   if (currentView === 'leaderboard') loadLeaderboard();
   if (currentView === 'xp-tools')    renderXpEconomy();
-
-  showToast(`✅ Loaded ${allUsers.length} users (${firestoreMap.size} with Firestore data)`);
-}
-
-// Fetch progress sub-docs in background and update mastered counts
-async function fetchProgressBatch(users) {
-  const CHUNK = 10;
-  for (let i = 0; i < users.length; i += CHUNK) {
-    const chunk = users.slice(i, i + CHUNK);
-    await Promise.all(chunk.map(async (u) => {
-      try {
-        const snap = await getDocs(collection(db, 'users', u.uid, 'data'));
-        snap.docs.forEach(d => {
-          if (d.id === 'progress') {
-            const prog = d.data();
-            u.mastered     = Array.isArray(prog.quizMasteredWordIds) ? prog.quizMasteredWordIds.length : 0;
-            u.achievements = Array.isArray(prog.achievements) ? prog.achievements : [];
-            u.lastActive   = prog.lastActiveDate || u.lastActive;
-            u.streak       = Number(prog.streak ?? u.streak);
-            u.longestStreak = Number(prog.longestStreak ?? 0);
-            u.totalQuizAnswers    = Number(prog.totalQuizAnswers ?? 0);
-            u.totalCorrectAnswers = Number(prog.totalCorrectAnswers ?? 0);
-            u.xp     = Math.max(u.xp, Number(prog.xp ?? 0));
-            u.coins  = Math.max(u.coins, Number(prog.coins ?? 0));
-            u.level  = Math.max(u.level, Number(prog.unlockedLevel ?? prog.level ?? u.level));
-            u.progressLoaded = true;
-          }
-        });
-      } catch (_) {}
-    }));
-  }
 }
 
 // ── Dashboard ─────────────────────────────────────────────────
@@ -321,12 +315,21 @@ function renderDashboard() {
     const row = el('div', 'top-user-row');
     row.innerHTML = `
       <div class="rank-badge ${rankClass}">${i + 1}</div>
-      <img class="top-user-avatar" src="${u.photoURL}" onerror="this.style.display='none'" alt="" />
+      <img class="top-user-avatar" src="${u.photoURL}" onerror="this.style.display='none'" alt="" title="Click to view photo" />
       <div style="flex:1;min-width:0">
         <div class="top-user-name">${esc(u.displayName)}</div>
         <div class="xp-bar-outer"><div class="xp-bar-inner" style="width:${Math.round((u.xp/maxXp)*100)}%"></div></div>
       </div>
       <div class="top-user-xp">${fmt(u.xp)} XP</div>`;
+
+    const avatar = row.querySelector('.top-user-avatar');
+    if (avatar) {
+      avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPhotoModal(u.photoURL, u.displayName, u.email);
+      });
+    }
+
     row.addEventListener('click', () => openDrawer(u));
     list.appendChild(row);
   });
@@ -356,20 +359,27 @@ $('user-search').addEventListener('input', applyFilters);
 $('sort-select').addEventListener('change', applyFilters);
 
 function applyFilters() {
-  const q    = $('user-search').value.toLowerCase();
+  const q    = $('user-search').value.toLowerCase().trim();
   const sort = $('sort-select').value;
-  filteredUsers = allUsers.filter(u =>
-    u.displayName.toLowerCase().includes(q) ||
-    u.email.toLowerCase().includes(q) ||
-    u.uid.toLowerCase().includes(q)
-  );
+
+  filteredUsers = allUsers.filter(u => {
+    return !q || (
+      (u.displayName || '').toLowerCase().includes(q) ||
+      (u.email || '').toLowerCase().includes(q) ||
+      (u.uid || '').toLowerCase().includes(q)
+    );
+  });
+
   const [field, dir] = sort.split('-');
   filteredUsers.sort((a, b) => {
-    if (field === 'name') return dir === 'asc'
-      ? a.displayName.localeCompare(b.displayName)
-      : b.displayName.localeCompare(a.displayName);
-    return dir === 'desc' ? b[field] - a[field] : a[field] - b[field];
+    if (field === 'name') {
+      const na = a.displayName || '';
+      const nb = b.displayName || '';
+      return dir === 'asc' ? na.localeCompare(nb) : nb.localeCompare(na);
+    }
+    return dir === 'desc' ? (b[field] || 0) - (a[field] || 0) : (a[field] || 0) - (b[field] || 0);
   });
+
   $('user-count-label').textContent = `${filteredUsers.length} of ${allUsers.length} users`;
   renderUsersTable();
 }
@@ -382,18 +392,18 @@ function renderUsersTable() {
     return;
   }
   filteredUsers.forEach((u, i) => {
-    const providerIcon   = u.provider === 'google.com' ? '🔵' : u.provider === 'password' ? '📧' : '❓';
-    const disabledBadge  = u.disabled ? ' <span style="color:var(--danger);font-size:0.68rem;background:var(--danger-dim);padding:1px 5px;border-radius:3px">DISABLED</span>' : '';
-    const noFsBadge      = !u.hasFirestore ? ' <span style="color:var(--warning);font-size:0.68rem">no DB</span>' : '';
+    const providerIcon  = u.provider === 'google.com' ? '🔵' : u.provider === 'password' ? '📧' : '❓';
+    const disabledBadge = u.disabled ? ' <span style="color:var(--danger);font-size:0.68rem;background:var(--danger-dim);padding:1px 5px;border-radius:3px">DISABLED</span>' : '';
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="color:var(--text-muted);font-size:0.8rem">${i + 1}</td>
       <td>
         <div class="user-cell">
-          <img class="user-avatar-sm" src="${u.photoURL}" onerror="this.style.display='none'" alt="" />
+          <img class="user-avatar-sm" src="${u.photoURL}" onerror="this.style.display='none'" alt="" title="Click to view photo" />
           <div>
-            <div class="user-name-sm">${esc(u.displayName)}${disabledBadge}${noFsBadge}</div>
-            <div class="user-email-sm">${providerIcon} ${esc(u.email)}</div>
+            <div class="user-name-sm">${esc(u.displayName)}${disabledBadge}</div>
+            <div class="user-email-sm">${providerIcon} ${esc(u.email || 'No email')}</div>
           </div>
         </div>
       </td>
@@ -404,6 +414,15 @@ function renderUsersTable() {
       <td>${u.mastered}</td>
       <td><span class="date-val">${relDate(u.lastSignIn || u.lastActive)}</span></td>
       <td><button class="btn-detail">View</button></td>`;
+
+    const avatar = tr.querySelector('.user-avatar-sm');
+    if (avatar) {
+      avatar.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPhotoModal(u.photoURL, u.displayName, u.email);
+      });
+    }
+
     tr.querySelector('.btn-detail').addEventListener('click', () => openDrawer(u));
     tr.addEventListener('dblclick', () => openDrawer(u));
     tbody.appendChild(tr);
@@ -417,7 +436,7 @@ async function loadLeaderboard() {
   try {
     let sorted = [...allUsers].sort((a, b) => b.xp - a.xp);
     if (!sorted.length) {
-      const q  = query(collection(db, 'leaderboard'), orderBy('xp', 'desc'), limit(200));
+      const q  = query(collection(db, 'users'), orderBy('xp', 'desc'), limit(100));
       const sn = await getDocs(q);
       sorted   = sn.docs.map(d => ({ ...d.data(), uid: d.id }));
     }
@@ -428,11 +447,20 @@ async function loadLeaderboard() {
       const row = el('div', 'lb-row');
       row.innerHTML = `
         <div class="rank-badge ${rankClass}">${i + 1}</div>
-        <img class="lb-avatar" src="${u.photoURL||''}" onerror="this.style.display='none'" alt="" />
-        <div><div class="lb-name">${esc(u.displayName||u.name||'Unknown')}</div><div class="lb-uid">${(u.uid||'').slice(0,22)}…</div></div>
+        <img class="lb-avatar" src="${u.photoURL||''}" onerror="this.style.display='none'" alt="" title="Click to view photo" />
+        <div><div class="lb-name">${esc(u.displayName||u.name||'WordSmart Learner')}</div><div class="lb-uid">${(u.uid||'').slice(0,22)}…</div></div>
         <span class="lb-xp">${fmt(u.xp)} XP</span>
         <span class="level-badge">${u.level||1}</span>
         <span class="lb-streak">${u.streak||0}🔥</span>`;
+
+      const avatar = row.querySelector('.lb-avatar');
+      if (avatar) {
+        avatar.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openPhotoModal(u.photoURL, u.displayName || u.name, u.email);
+        });
+      }
+
       const found = allUsers.find(x => x.uid === u.uid);
       if (found) row.addEventListener('click', () => openDrawer(found));
       listEl.appendChild(row);
@@ -449,19 +477,16 @@ function renderXpEconomy() {
   const avgXp    = Math.round(totalXp / total);
   const maxXp    = [...allUsers].sort((a,b)=>b.xp-a.xp)[0]?.xp || 0;
   const zeroXp   = allUsers.filter(u => u.xp === 0).length;
-  const noFs     = allUsers.filter(u => !u.hasFirestore).length;
   const active7d = allUsers.filter(u => isRecent7(u.lastSignIn) || isRecent7(u.lastActive)).length;
 
   const container = $('xp-economy-stats');
   const stats = [
-    ['Total Auth Users',        allUsers.length,      '👥'],
-    ['Have Firestore Record',   `${total - noFs}`,    '📄'],
-    ['Auth Only (no DB)',        noFs,                 '⚠️'],
-    ['Total XP in System',      fmt(totalXp),         '⚡'],
-    ['Average XP per User',     fmt(avgXp),           '⚡'],
-    ['Top User XP',             fmt(maxXp),           '🏆'],
-    ['Users with 0 XP',        `${zeroXp} (${Math.round(zeroXp/total*100)}%)`, ''],
-    ['Active last 7 days',      `${active7d} (${Math.round(active7d/total*100)}%)`, '🔥'],
+    ['Total Registered Users', allUsers.length,                                    '👥'],
+    ['Active Last 7 Days',      `${active7d} (${Math.round(active7d/total*100)}%)`, '🔥'],
+    ['Total XP in System',      fmt(totalXp),                                       '⚡'],
+    ['Average XP per User',     fmt(avgXp),                                         '⚡'],
+    ['Top Learner XP',          fmt(maxXp),                                         '🏆'],
+    ['Users with 0 XP',         `${zeroXp} (${Math.round(zeroXp/total*100)}%)`,    '🌱'],
   ];
   container.innerHTML = stats.map(([label, val, icon]) => `
     <div class="eco-row">
@@ -479,19 +504,23 @@ $('reset-confirm-input').addEventListener('input', (e) => {
 });
 
 $('bulk-reset-btn').addEventListener('click', async () => {
-  if (!confirm('⚠️ Reset XP, coins, level, streak, quiz history for ALL users?')) return;
+  if (!confirm('⚠️ Reset XP, coins, level, streak, and quiz history for ALL users? This action is irreversible.')) return;
   const progress = $('reset-progress');
   progress.classList.remove('hidden');
   $('bulk-reset-btn').disabled = true;
   $('bulk-reset-btn').classList.remove('enabled');
 
-  const reset = { xp:0, coins:0, level:1, streak:0, longestStreak:0, quizMasteredWordIds:[], totalQuizAnswers:0, totalCorrectAnswers:0, lastQuizDate:null };
   let done = 0;
+  const hasProxy = await checkProxy();
+
   for (const u of allUsers) {
     progress.textContent = `🔄 Resetting… ${done}/${allUsers.length}`;
     try {
-      await setDoc(doc(db,'users',u.uid), {xp:0,coins:0,level:1,streak:0}, {merge:true});
-      await setDoc(doc(db,'users',u.uid,'data','progress'), reset, {merge:true});
+      if (hasProxy) {
+        await proxyPost('/api/reset', { uid: u.uid });
+      } else {
+        await setDoc(doc(db,'users',u.uid), {xp:0,coins:0,level:1,streak:0}, {merge:true});
+      }
     } catch (_) {}
     done++;
   }
@@ -504,10 +533,11 @@ $('bulk-reset-btn').addEventListener('click', async () => {
 // ── User Drawer ───────────────────────────────────────────────
 async function openDrawer(u) {
   selectedUser = u;
-  $('drawer-name').textContent  = u.displayName;
-  $('drawer-email').textContent = u.email;
+  $('drawer-name').textContent  = u.displayName || 'WordSmart Learner';
+  $('drawer-email').textContent = u.email || 'No email';
   $('drawer-uid').textContent   = u.uid;
   $('drawer-avatar').src        = u.photoURL || '';
+  $('drawer-avatar').title      = 'Click to view photo';
   $('d-xp').textContent         = fmt(u.xp);
   $('d-level').textContent      = u.level;
   $('d-coins').textContent      = fmt(u.coins);
@@ -519,7 +549,7 @@ async function openDrawer(u) {
   $('save-feedback').classList.add('hidden');
   $('user-drawer').classList.remove('hidden');
 
-  // Fetch progress if not already loaded
+  // Fetch progress subcollection if not already loaded
   if (!u.progressLoaded) {
     try {
       const snap = await getDocs(collection(db, 'users', u.uid, 'data'));
@@ -532,7 +562,6 @@ async function openDrawer(u) {
           u.totalQuizAnswers     = Number(p.totalQuizAnswers ?? 0);
           u.totalCorrectAnswers  = Number(p.totalCorrectAnswers ?? 0);
           u.progressLoaded       = true;
-          // Update stat header
           $('d-xp').textContent    = fmt(Math.max(u.xp, Number(p.xp??0)));
           $('d-streak').textContent = Math.max(u.streak, Number(p.streak??0));
         }
@@ -559,7 +588,6 @@ function renderDrawerBody(u) {
     ['Quiz Accuracy',      accuracy],
     ['Total Quiz Answers', fmt(u.totalQuizAnswers ?? 0)],
     ['Account Status',     u.disabled ? '🔴 Disabled' : '🟢 Active'],
-    ['Has Firestore',      u.hasFirestore ? '✅ Yes' : '❌ No (Auth only)'],
   ];
   fields.forEach(([label, val]) => {
     const d = el('div', 'detail-item');
@@ -577,13 +605,24 @@ function renderDrawerBody(u) {
     createdAt: u.createdAt, lastSignIn: u.lastSignIn,
     provider: u.provider, disabled: u.disabled, emailVerified: u.emailVerified,
     xp: u.xp, coins: u.coins, level: u.level, streak: u.streak,
-    mastered: u.mastered, hasFirestore: u.hasFirestore,
+    mastered: u.mastered,
   }, null, 2);
 }
 
 function closeDrawer() { $('user-drawer').classList.add('hidden'); selectedUser = null; }
 $('drawer-close').addEventListener('click', closeDrawer);
 $('drawer-overlay').addEventListener('click', closeDrawer);
+$('drawer-avatar')?.addEventListener('click', () => {
+  if (selectedUser) {
+    openPhotoModal(selectedUser.photoURL, selectedUser.displayName, selectedUser.email);
+  }
+});
+$('admin-avatar')?.addEventListener('click', () => {
+  const src = $('admin-avatar').src;
+  const name = $('admin-name').textContent;
+  const email = $('admin-email').textContent;
+  if (src) openPhotoModal(src, name, email);
+});
 $('copy-json-btn').addEventListener('click', () => {
   navigator.clipboard.writeText($('drawer-raw-json').textContent);
   showToast('📋 JSON copied!');
@@ -597,12 +636,24 @@ $('save-user-btn').addEventListener('click', async () => {
   const streak = parseInt($('edit-streak').value) || 0;
   const fb     = $('save-feedback');
   try {
-    await setDoc(doc(db,'users',selectedUser.uid), {xp,coins,level,streak}, {merge:true});
-    await setDoc(doc(db,'users',selectedUser.uid,'data','progress'), {xp,coins,streak,unlockedLevel:level}, {merge:true});
+    if (await checkProxy()) {
+      await proxyPost('/api/save-user', { uid: selectedUser.uid, xp, coins, level, streak });
+    } else {
+      await setDoc(doc(db,'users',selectedUser.uid), {xp,coins,level,streak}, {merge:true});
+      await setDoc(doc(db,'users',selectedUser.uid,'data','progress'), {xp,coins,streak,unlockedLevel:level}, {merge:true});
+    }
     fb.textContent = '✅ Saved!'; fb.className = 'feedback success'; fb.classList.remove('hidden');
     showToast('✅ User updated');
     const u = allUsers.find(x => x.uid === selectedUser.uid);
-    if (u) Object.assign(u, {xp,coins,level,streak});
+    if (u) {
+      Object.assign(u, {xp,coins,level,streak});
+      $('d-xp').textContent = fmt(xp);
+      $('d-coins').textContent = fmt(coins);
+      $('d-level').textContent = level;
+      $('d-streak').textContent = streak;
+      renderDrawerBody(u);
+      applyFilters();
+    }
     setTimeout(() => fb.classList.add('hidden'), 3000);
   } catch (e) {
     fb.textContent = '❌ Error: ' + e.message; fb.className = 'feedback error'; fb.classList.remove('hidden');
@@ -612,9 +663,13 @@ $('save-user-btn').addEventListener('click', async () => {
 $('reset-user-btn').addEventListener('click', async () => {
   if (!selectedUser || !confirm(`Reset ${selectedUser.displayName}?`)) return;
   try {
-    const reset = { xp:0, coins:0, level:1, streak:0, longestStreak:0, quizMasteredWordIds:[], totalQuizAnswers:0, totalCorrectAnswers:0 };
-    await setDoc(doc(db,'users',selectedUser.uid), {xp:0,coins:0,level:1,streak:0}, {merge:true});
-    await setDoc(doc(db,'users',selectedUser.uid,'data','progress'), reset, {merge:true});
+    if (await checkProxy()) {
+      await proxyPost('/api/reset', { uid: selectedUser.uid });
+    } else {
+      const reset = { xp:0, coins:0, level:1, streak:0, longestStreak:0, quizMasteredWordIds:[], totalQuizAnswers:0, totalCorrectAnswers:0 };
+      await setDoc(doc(db,'users',selectedUser.uid), {xp:0,coins:0,level:1,streak:0}, {merge:true});
+      await setDoc(doc(db,'users',selectedUser.uid,'data','progress'), reset, {merge:true});
+    }
     showToast(`✅ Reset ${selectedUser.displayName}`);
     closeDrawer();
     loadAllData();

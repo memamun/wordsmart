@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
   <title>WordSmart Admin Panel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +18,7 @@
       <div class="login-logo">
         <div class="logo-icon">⚡</div>
         <h1>WordSmart Admin</h1>
-        <p>Secure admin dashboard for managing your Firestore database</p>
+        <p>Secure admin dashboard for WordSmart</p>
       </div>
       <button id="google-login-btn" class="btn-google">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -57,7 +58,7 @@
       </div>
 
       <div class="nav-section">
-        <div class="nav-label">Database</div>
+        <div class="nav-label">Rankings & Tools</div>
         <button class="nav-item" data-view="leaderboard">
           <span class="nav-icon">🏆</span><span>Leaderboard</span>
         </button>
@@ -195,6 +196,7 @@
         <button class="drawer-close" id="drawer-close">✕</button>
       </div>
       <div class="drawer-body">
+
         <div class="drawer-stats">
           <div class="drawer-stat"><div class="drawer-stat-val" id="d-xp">—</div><div class="drawer-stat-label">XP</div></div>
           <div class="drawer-stat"><div class="drawer-stat-val" id="d-level">—</div><div class="drawer-stat-label">Level</div></div>
@@ -225,11 +227,27 @@
         </div>
         <div class="drawer-section">
           <div class="section-header-row">
-            <h4>Raw Firestore Data</h4>
+            <h4>Raw User Data</h4>
             <button id="copy-json-btn" class="btn-link">Copy JSON</button>
           </div>
           <pre id="drawer-raw-json" class="raw-json"></pre>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Expand Modal (Lightbox) -->
+  <div id="photo-modal" class="photo-modal hidden">
+    <div class="photo-modal-overlay" id="photo-modal-overlay"></div>
+    <div class="photo-modal-content">
+      <button class="photo-modal-close" id="photo-modal-close" title="Close">✕</button>
+      <div class="photo-modal-wrapper">
+        <img id="photo-modal-img" class="photo-modal-img" src="" alt="" referrerpolicy="no-referrer" />
+        <div id="photo-modal-fallback" class="photo-modal-fallback hidden"></div>
+      </div>
+      <div class="photo-modal-caption">
+        <h3 id="photo-modal-name">—</h3>
+        <p id="photo-modal-email">—</p>
       </div>
     </div>
   </div>
