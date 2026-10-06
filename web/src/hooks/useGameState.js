@@ -5,6 +5,7 @@ import { useProgressStore } from './useProgressStore.js';
 
 import { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, calculateSM2 } from '../state/learning.js';
 export { PREP_STAGES, checkIsUnitUnlocked, checkIsStageExamUnlocked, getUnitsCountForStage } from '../state/learning.js';
+import { getPlayerLevel, calculateEarnedBaseline } from '../state/rewards.js';
 
 function computeXpAchievements(newXp, currentAchievements = []) {
   const achievements = [...currentAchievements];
@@ -29,9 +30,27 @@ export function useGameState(uid = null) {
   const setState = store.update;
   const [isQuizActive, setIsQuizActive] = useState(false);
 
-  // Wait for restoration before recording today's activity against the correct snapshot.
+  // Wait for restoration before recording today's activity against the correct snapshot,
+  // and ensure user's earned XP and Coins match or exceed their baseline.
   useEffect(() => {
-    if (snapshot.status === 'ready' || snapshot.status === 'local') updateStreak();
+    if (snapshot.status === 'ready' || snapshot.status === 'local') {
+      updateStreak();
+      const baseline = calculateEarnedBaseline(state);
+      if (state.xp < baseline.minXp || state.coins < baseline.minCoins) {
+        setState((prev) => {
+          const b = calculateEarnedBaseline(prev);
+          const newXp = Math.max(prev.xp, b.minXp);
+          const newCoins = Math.max(prev.coins, b.minCoins);
+          const newAchievements = computeXpAchievements(newXp, prev.achievements);
+          return {
+            ...prev,
+            xp: newXp,
+            coins: newCoins,
+            achievements: newAchievements,
+          };
+        });
+      }
+    }
   }, [snapshot.status]);
 
   const addXp = useCallback((amount) => {
@@ -339,11 +358,13 @@ export function useGameState(uid = null) {
 
       // First-time word mastery reward: 10 XP per unique word answered correctly in a quiz
       const newXp = prev.xp + 10;
+      const newCoins = prev.coins + 2;
       newAchievements = computeXpAchievements(newXp, newAchievements);
 
       return {
         ...prev,
         xp: newXp,
+        coins: newCoins,
         quizMasteredWordIds: updatedList,
         wordProgress: newProgress,
         achievements: newAchievements,
@@ -408,16 +429,25 @@ export function useGameState(uid = null) {
     });
   }, []);
 
-  // Stage and word mastery is strictly measured by quizzes (not flashcard study)
-  const masteredWordIds = Array.from(new Set(state.quizMasteredWordIds || [])).map(Number);
+  // Word mastery includes quizMasteredWordIds and any active mastered wordProgress entries
+  const masteredWordIds = Array.from(new Set([
+    ...(state.quizMasteredWordIds || []),
+    ...Object.entries(state.wordProgress || {})
+      .filter(([, p]) => p?.status === 'mastered')
+      .map(([id]) => Number(id))
+  ])).filter(id => Number.isSafeInteger(id) && id > 0);
   
   const learningWordIds = Object.keys(state.wordProgress).filter(
     (id) => state.wordProgress[id].status === 'learning' || state.wordProgress[id].status === 'reviewing' || state.wordProgress[id].status === 'relearning'
   ).map(Number);
 
+  const playerLevelInfo = getPlayerLevel(state.xp);
 
   return {
     ...state,
+    playerLevelInfo,
+    playerLevel: playerLevelInfo.level,
+    league: playerLevelInfo.league,
     isQuizActive,
     setIsQuizActive,
     masteredWordIds,

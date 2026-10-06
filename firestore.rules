@@ -1,54 +1,160 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Admin UIDs — full read access across all user data
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: {uid} (Firebase Auth UID)
+    // Fields:
+    //   - uid: string (required) - user ID matching auth.uid
+    //   - displayName: string (optional, max 100 chars)
+    //   - photoURL: string (optional, max 1000 chars)
+    //   - email: string (optional, max 150 chars)
+    //   - xp: int (required, >= 0)
+    //   - coins: int (optional, >= 0)
+    //   - level: int (optional, 1-100)
+    //   - league: string (optional, max 30 chars)
+    //   - streak: int (optional, >= 0)
+    //   - longestStreak: int (optional, >= 0)
+    //   - masteredWordsCount: int (optional, >= 0)
+    //   - quizMasteredWordIds: list (optional, max 2000 items)
+    //   - updatedAt: timestamp | string | int (optional)
+    //
+    // Subcollection: users/{uid}/data/progress
+    // Document ID: progress
+    // Fields:
+    //   - xp, coins, streak, longestStreak, unlockedLevel, playerLevel
+    //   - bookmarkedWordIds, quizMasteredWordIds, lastActiveDate
+    //   - levelAttempts, unitAttempts, achievements, wordProgress
+    //   - schemaVersion, revision, updatedAt, league, analytics
+    //
+    // Collection: leaderboard
+    // Document ID: {uid}
+    // Fields:
+    //   - uid, displayName, photoURL, xp, level, league, streak, updatedAt
+    // ===============================================================
+
+    // Admin authorization — full read/write access across all collections
     function isAdmin() {
-      return request.auth != null && request.auth.uid in [
-        'mQkm2B0UawN77DvOzFR8E1bQhOy2'
-      ];
+      return request.auth != null && (
+        request.auth.uid in ['mQkm2B0UawN77DvOzFR8E1bQhOy2']
+        || (request.auth.token != null && request.auth.token.get('email', '') in ['a.a.mamun595@gmail.com'])
+      );
     }
+
     function owner(uid) {
       return request.auth != null && request.auth.uid == uid;
     }
+
+    function isValidUserRecord(d, uid) {
+      return d.uid == uid
+        && (!('xp' in d) || (d.xp is int && d.xp >= 0 && d.xp <= 1000000000))
+        && (!('coins' in d) || (d.coins is int && d.coins >= 0 && d.coins <= 1000000000))
+        && (!('level' in d) || (d.level is int && d.level >= 1 && d.level <= 100))
+        && (!('streak' in d) || (d.streak is int && d.streak >= 0 && d.streak <= 100000))
+        && (!('longestStreak' in d) || d.longestStreak == null || (d.longestStreak is int && d.longestStreak >= 0))
+        && (!('league' in d) || d.league == null || (d.league is string && d.league.size() <= 30))
+        && (!('displayName' in d) || d.displayName == null || (d.displayName is string && d.displayName.size() <= 100))
+        && (!('photoURL' in d) || d.photoURL == null || (d.photoURL is string && d.photoURL.size() <= 1000))
+        && (!('email' in d) || d.email == null || (d.email is string && d.email.size() <= 150))
+        && (!('masteredWordsCount' in d) || (d.masteredWordsCount is int && d.masteredWordsCount >= 0))
+        && (!('quizMasteredWordIds' in d) || (d.quizMasteredWordIds is list && d.quizMasteredWordIds.size() <= 2000))
+        && (!('updatedAt' in d) || d.updatedAt == request.time || d.updatedAt is timestamp || d.updatedAt is string || d.updatedAt is int);
+    }
+
+    function isValidLeaderboardRecord(d, uid) {
+      return d.uid == uid
+        && (!('xp' in d) || (d.xp is int && d.xp >= 0 && d.xp <= 1000000000))
+        && (!('level' in d) || (d.level is int && d.level >= 1 && d.level <= 100))
+        && (!('streak' in d) || (d.streak is int && d.streak >= 0 && d.streak <= 100000))
+        && (!('league' in d) || d.league == null || (d.league is string && d.league.size() <= 30))
+        && (!('displayName' in d) || d.displayName == null || (d.displayName is string && d.displayName.size() <= 100))
+        && (!('photoURL' in d) || d.photoURL == null || (d.photoURL is string && d.photoURL.size() <= 1000))
+        && (!('updatedAt' in d) || d.updatedAt == request.time || d.updatedAt is timestamp || d.updatedAt is string || d.updatedAt is int);
+    }
+
     function validProgress() {
       let d = request.resource.data;
       return d.keys().hasOnly([
-          'xp', 'coins', 'streak', 'unlockedLevel', 'bookmarkedWordIds',
-          'quizMasteredWordIds', 'lastActiveDate', 'levelAttempts', 'unitAttempts',
-          'achievements', 'wordProgress', 'schemaVersion', 'revision', 'updatedAt'
+          'xp', 'coins', 'streak', 'longestStreak', 'unlockedLevel', 'playerLevel',
+          'bookmarkedWordIds', 'quizMasteredWordIds', 'lastActiveDate', 'levelAttempts',
+          'unitAttempts', 'achievements', 'wordProgress', 'schemaVersion', 'revision', 'updatedAt',
+          'league', 'analytics'
         ])
-        && d.schemaVersion == 3 && d.revision is int
-        && d.xp is int && d.xp >= 0 && d.xp <= 1000000000
-        && d.coins is int && d.coins >= 0 && d.coins <= 1000000000
-        && d.streak is int && d.streak >= 0 && d.streak <= 100000
-        && d.unlockedLevel is int && d.unlockedLevel >= 1 && d.unlockedLevel <= 8
-        && d.bookmarkedWordIds is list && d.bookmarkedWordIds.size() <= 2000
-        && d.quizMasteredWordIds is list && d.quizMasteredWordIds.size() <= 2000
-        && (d.lastActiveDate == null || (d.lastActiveDate is string && d.lastActiveDate.size() <= 40))
-        && d.levelAttempts is map && d.levelAttempts.size() <= 8
-        && d.unitAttempts is map && d.unitAttempts.size() <= 41
-        && d.achievements is list && d.achievements.size() <= 100
-        && d.wordProgress is map && d.wordProgress.size() <= 2000
-        && d.updatedAt == request.time;
+        && (!('schemaVersion' in d) || d.schemaVersion is int)
+        && (!('revision' in d) || (d.revision is int && d.revision >= 0))
+        && (!('xp' in d) || (d.xp is int && d.xp >= 0 && d.xp <= 1000000000))
+        && (!('coins' in d) || (d.coins is int && d.coins >= 0 && d.coins <= 1000000000))
+        && (!('streak' in d) || (d.streak is int && d.streak >= 0 && d.streak <= 100000))
+        && (!('longestStreak' in d) || d.longestStreak == null || (d.longestStreak is int && d.longestStreak >= 0))
+        && (!('unlockedLevel' in d) || (d.unlockedLevel is int && d.unlockedLevel >= 1 && d.unlockedLevel <= 8))
+        && (!('playerLevel' in d) || d.playerLevel == null || (d.playerLevel is int && d.playerLevel >= 1 && d.playerLevel <= 100))
+        && (!('league' in d) || d.league == null || (d.league is string && d.league.size() <= 30))
+        && (!('bookmarkedWordIds' in d) || (d.bookmarkedWordIds is list && d.bookmarkedWordIds.size() <= 2000))
+        && (!('quizMasteredWordIds' in d) || (d.quizMasteredWordIds is list && d.quizMasteredWordIds.size() <= 2000))
+        && (!('lastActiveDate' in d) || d.lastActiveDate == null || (d.lastActiveDate is string && d.lastActiveDate.size() <= 40))
+        && (!('levelAttempts' in d) || (d.levelAttempts is map && d.levelAttempts.size() <= 30))
+        && (!('unitAttempts' in d) || (d.unitAttempts is map && d.unitAttempts.size() <= 100))
+        && (!('achievements' in d) || (d.achievements is list && d.achievements.size() <= 100))
+        && (!('wordProgress' in d) || (d.wordProgress is map && d.wordProgress.size() <= 2000))
+        && (!('analytics' in d) || d.analytics is map)
+        && (!('updatedAt' in d) || d.updatedAt == request.time || d.updatedAt is timestamp || d.updatedAt is string || d.updatedAt is int);
     }
-    // Legacy public leaderboard records are read-only. New ranks use the server-owned collection.
+
+    // Public user profiles & primary leaderboard records
     match /users/{uid} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if (owner(uid) && isValidUserRecord(request.resource.data, uid)) || isAdmin();
+      allow delete: if isAdmin();
+
+      // Granular private progress document
       match /data/progress {
         allow read: if owner(uid) || isAdmin();
-        allow create: if owner(uid) && validProgress() && request.resource.data.revision == 1;
-        allow update: if owner(uid) && validProgress()
-          && request.resource.data.revision == resource.data.get('revision', 0) + 1;
-        // A reset is a versioned replacement, so stale devices cannot restore deleted progress.
-        allow delete: if false;
+        allow create, update: if (owner(uid) && validProgress()) || isAdmin();
+        allow delete: if isAdmin();
+      }
+
+      // Legacy subcollection support for older Android / Web clients
+      match /{collectionName}/{docId} {
+        allow read: if owner(uid) || isAdmin();
+        allow write: if (owner(uid) && (collectionName in ['UserStats', 'LevelProgress', 'QuizAttempt', 'WordReview'])) || isAdmin();
       }
     }
+
+    // Real-time server and client synced leaderboard collection
     match /leaderboard/{uid} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if (owner(uid) && isValidLeaderboardRecord(request.resource.data, uid)) || isAdmin();
+      allow delete: if isAdmin();
     }
-    // Ranked progress, quotas, and all other server records are inaccessible to clients.
+
+    // Legacy publicLeaderboard support
+    match /publicLeaderboard/{uid} {
+      allow read: if true;
+      allow write: if (owner(uid) || isAdmin());
+    }
+
+    // Bug reports submission
+    match /bugReports/{reportId} {
+      allow create: if request.auth != null && request.resource.data.get('userId', '') == request.auth.uid;
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // User feedback & improvement suggestions
+    match /feedback/{feedbackId} {
+      allow create: if request.resource.data.keys().hasAll(['message', 'category', 'createdAt'])
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 3
+        && request.resource.data.message.size() <= 3000
+        && request.resource.data.category is string
+        && (!('rating' in request.resource.data) || (request.resource.data.rating is int && request.resource.data.rating >= 1 && request.resource.data.rating <= 5));
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Default deny for unmapped root paths
     match /{document=**} {
       allow read, write: if false;
     }

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Trophy, ArrowRight, Flame, Sparkles, Zap } from 'lucide-react';
+import { Trophy, ArrowRight, ArrowUpRight, Flame, Sparkles, Zap } from 'lucide-react';
 import { DetailPanelContext } from '../App';
 
 export default function HitParadesView({ wordsData }) {
@@ -210,10 +210,6 @@ export default function HitParadesView({ wordsData }) {
               <div 
                 key={index}
                 className="hit-parade-card"
-                style={{ 
-                  cursor: coreWord ? 'pointer' : 'default',
-                  borderLeft: `4px solid ${activeAccent}`
-                }}
                 onClick={() => {
                   if (coreWord) {
                     const coreWordsList = currentList
@@ -223,118 +219,65 @@ export default function HitParadesView({ wordsData }) {
                   }
                 }}
               >
-                {/* Header line: Rank, Word, Part of Speech, Pronunciation, and Subtle Arrow */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.55rem', flexWrap: 'wrap' }}>
-                      <span style={{
-                        fontSize: '0.8rem',
-                        fontWeight: '900',
-                        fontFamily: 'var(--font-title)',
-                        color: rank <= 3 ? activeAccent : 'var(--text-muted)',
-                        letterSpacing: '0.04em'
-                      }}>
-                        #{rank < 10 ? `0${rank}` : rank}
-                      </span>
-
-                      <h3 style={{ 
-                        fontSize: '1.35rem', 
-                        fontFamily: 'var(--font-title)', 
-                        fontWeight: '900', 
-                        color: 'var(--text-primary)', 
-                        margin: 0,
-                        letterSpacing: '-0.01em',
-                        lineHeight: 1.2
-                      }}>
-                        {item.word}
-                      </h3>
-
-                      {coreWord?.part_of_speech && (
-                        <span style={{ 
-                          fontSize: '0.82rem', 
-                          fontStyle: 'italic', 
-                          color: 'var(--text-muted)',
-                          fontWeight: '600'
-                        }}>
-                          ({coreWord.part_of_speech}.)
-                        </span>
-                      )}
-                    </div>
-
-                    {coreWord?.pronunciation && (
-                      <span style={{ 
-                        fontSize: '0.78rem', 
-                        fontFamily: 'monospace', 
-                        color: 'var(--text-muted)', 
-                        opacity: 0.85,
-                        letterSpacing: '0.02em'
-                      }}>
-                        /{coreWord.pronunciation}/
+                {/* Header row: Rank badge, Part of Speech, and Click/Action Indicator */}
+                <div className="hp-card-header">
+                  <div className="hp-card-meta">
+                    <span className={`hp-rank-badge ${rank <= 3 ? `top-${rank}` : ''}`}>
+                      {rank === 1 ? '🥇 #01' : rank === 2 ? '🥈 #02' : rank === 3 ? '🥉 #03' : `#${rank < 10 ? `0${rank}` : rank}`}
+                    </span>
+                    {coreWord?.part_of_speech && (
+                      <span className="hp-pos-badge">
+                        {coreWord.part_of_speech}
                       </span>
                     )}
                   </div>
 
                   {coreWord && (
-                    <ArrowRight 
-                      size={17} 
-                      color={activeAccent} 
-                      className="hit-parade-arrow" 
-                      style={{ opacity: 0.6, flexShrink: 0, marginTop: '0.25rem' }} 
-                    />
+                    <div className="hp-arrow-btn" aria-hidden="true" title="Open full card details">
+                      <ArrowUpRight size={15} />
+                    </div>
                   )}
                 </div>
 
-                {/* Bengali Meaning - Pure Typography without any nested card box */}
+                {/* Word Title & Pronunciation */}
+                <div className="hp-word-section">
+                  <h3 className="hp-word-title">
+                    {item.word}
+                  </h3>
+                  {coreWord?.pronunciation && (
+                    <span className="hp-phonetics">
+                      /{coreWord.pronunciation}/
+                    </span>
+                  )}
+                </div>
+
+                {/* Bengali Meaning */}
                 {coreWord?.bengali_meaning && (
-                  <div style={{
-                    fontSize: '1.05rem',
-                    fontWeight: '700',
-                    color: activeAccent,
-                    fontFamily: 'var(--font-bengali)',
-                    lineHeight: '1.35'
-                  }}>
+                  <div className="hp-bengali-meaning">
                     {coreWord.bengali_meaning}
                   </div>
                 )}
 
-                {/* Definition - Comfortable, legible reading typography */}
-                <p style={{ 
-                  fontSize: '0.92rem', 
-                  color: 'var(--text-secondary)', 
-                  lineHeight: '1.6', 
-                  margin: 0,
-                  fontWeight: '400'
-                }}>
+                {/* English Definition */}
+                <p className="hp-definition">
                   {item.definition || (coreWord && coreWord.definition) || "A key high-yield vocabulary word frequently tested on standardized exams."}
                 </p>
 
-                {/* Synonyms & Antonyms - Clean typographic list without cards */}
+                {/* Synonyms & Antonyms */}
                 {coreWord && ((coreWord.synonyms && coreWord.synonyms.length > 0) || (coreWord.antonyms && coreWord.antonyms.length > 0)) && (
-                  <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: '0.35rem', 
-                    fontSize: '0.82rem', 
-                    marginTop: 'auto',
-                    paddingTop: '0.65rem',
-                    borderTop: '1px dashed var(--border-muted)'
-                  }}>
+                  <div className="hp-rel-words">
                     {coreWord.synonyms && coreWord.synonyms.length > 0 && (
-                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: '800', color: 'var(--theme-green)', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                          Syn:
-                        </span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: '500', lineHeight: 1.4 }}>
+                      <div className="hp-rel-row">
+                        <span className="hp-chip syn">SYN</span>
+                        <span className="hp-rel-text">
                           {coreWord.synonyms.slice(0, 4).join(', ')}
                         </span>
                       </div>
                     )}
                     {coreWord.antonyms && coreWord.antonyms.length > 0 && (
-                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: '800', color: 'var(--theme-red)', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                          Ant:
-                        </span>
-                        <span style={{ color: 'var(--text-muted)', fontWeight: '500', lineHeight: 1.4 }}>
+                      <div className="hp-rel-row">
+                        <span className="hp-chip ant">ANT</span>
+                        <span className="hp-rel-text muted">
                           {coreWord.antonyms.slice(0, 3).join(', ')}
                         </span>
                       </div>

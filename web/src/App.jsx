@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar.jsx';
 import Header from './components/Header.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import WordDetailPanel from './components/WordDetailPanel.jsx';
+import FeedbackModal from './components/FeedbackModal.jsx';
 
 // Lazy-loaded views for optimal code-splitting and bundle performance
 const LandingView = React.lazy(() => import('./components/LandingView.jsx'));
@@ -58,7 +59,12 @@ export default function App() {
 
 function WordSmartApp({ user, authLoading, wordsData, signIn, initialNavigation }) {
   const state = useGameState(user?.uid);
-  const [activeView, setActiveView] = useState(() => initialNavigation?.viewId || (localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing'));
+  const [activeView, setActiveView] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view') || window.location.hash.replace('#', '');
+    if (viewParam) return viewParam;
+    return initialNavigation?.viewId || (localStorage.getItem('has_entered_app') ? 'dashboard' : 'landing');
+  });
   const [selectedUnit, setSelectedUnit] = useState(() => Number(initialNavigation?.unitNum) || 1);
   const [selectedStage, setSelectedStage] = useState(() => state.unlockedLevel || 1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -72,6 +78,7 @@ function WordSmartApp({ user, authLoading, wordsData, signIn, initialNavigation 
   const detailWord = detailWordConfig?.word || null;
   const [theme, setTheme] = useState(getInitialTheme);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [authGatePendingView, setAuthGatePendingView] = useState(null);
   const handleGoogleSignIn = async (pendingView, pendingUnit) => {
     try {
@@ -913,6 +920,33 @@ function WordSmartApp({ user, authLoading, wordsData, signIn, initialNavigation 
           </div>
         </>
       )}
+
+      {/* Floating Feedback Button */}
+      <button
+        onClick={() => setShowFeedbackModal(true)}
+        title="Give feedback & earn 50 coins!"
+        className="floating-feedback-btn"
+        aria-label="Give feedback on how we can improve WordSmart"
+      >
+        <span style={{ fontSize: '1rem', lineHeight: 1 }}>💬</span>
+        <span>Feedback</span>
+        <span className="floating-feedback-badge">
+          +50 🪙
+        </span>
+      </button>
+
+      {/* User Feedback Modal */}
+      <FeedbackModal
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+        user={user}
+        activeView={activeView}
+        onRewardCoins={(amount) => {
+          if (typeof state.addCoins === 'function') {
+            state.addCoins(amount);
+          }
+        }}
+      />
     </div>
   );
 }

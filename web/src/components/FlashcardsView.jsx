@@ -1,23 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { 
   Volume2, 
   Bookmark, 
   BookmarkCheck, 
-  Award,
-  ArrowRight,
-  CheckCircle,
-  AlertCircle,
-  ChevronLeft,
-  ChevronRight,
-  HelpCircle,
-  Sparkles,
-  Lock
+  Award, 
+  ArrowRight, 
+  CheckCircle, 
+  AlertCircle, 
+  ChevronLeft, 
+  ChevronRight, 
+  HelpCircle, 
+  Sparkles, 
+  Lock,
+  RotateCcw
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DetailPanelContext } from '../App';
 import { useSpeech } from '../hooks/useSpeech.js';
-import { checkIsUnitUnlocked } from '../hooks/useGameState.js';
+import { checkIsUnitUnlocked, getUnitsCountForStage } from '../state/learning.js';
 
 export default function FlashcardsView({ state, wordsData, setActiveView, selectedUnit, setSelectedUnit, selectedStage, setSelectedStage }) {
   const context = useContext(DetailPanelContext) || {};
@@ -27,6 +28,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   const currentStage = selectedStage || state.unlockedLevel || 1;
   const currentUnit = selectedUnit || 1;
+  const totalUnitsInStage = getUnitsCountForStage(currentStage);
 
   const levelWords = React.useMemo(() => {
     return wordsData?.getWordsForUnit(currentStage, currentUnit) || [];
@@ -34,8 +36,27 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [isRoundComplete, setIsRoundComplete] = useState(false);
+  const [filterUnmastered, setFilterUnmastered] = useState(false);
 
-  const word = levelWords[currentIndex];
+  // Compute mastered words for this unit
+  const masteredSet = React.useMemo(() => new Set(state.masteredWordIds || []), [state.masteredWordIds]);
+  const levelMasteredCount = React.useMemo(() => {
+    return levelWords.filter(w => masteredSet.has(w.id)).length;
+  }, [levelWords, masteredSet]);
+  
+  const levelProgressPercent = levelWords.length 
+    ? Math.round((levelMasteredCount / levelWords.length) * 100) 
+    : 0;
+
+  // Filtered list if reviewing only unmastered words
+  const displayedWords = React.useMemo(() => {
+    if (!filterUnmastered) return levelWords;
+    const unmastered = levelWords.filter(w => !masteredSet.has(w.id));
+    return unmastered.length > 0 ? unmastered : levelWords;
+  }, [levelWords, filterUnmastered, masteredSet]);
+
+  const word = displayedWords[currentIndex] || displayedWords[0];
 
   // Framer Motion Tinder values
   const x = useMotionValue(0);
@@ -48,12 +69,21 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   const likeScale = useTransform(x, [40, 120], [0.8, 1.2]);
   const nopeScale = useTransform(x, [-120, -40], [1.2, 0.8]);
 
-  // Reset animations when card index or unit changes
+  // Reset states when unit or stage changes
   useEffect(() => {
     setFlipped(false);
     setCurrentIndex(0);
+    setIsRoundComplete(false);
+    setFilterUnmastered(false);
     x.set(0);
-  }, [currentUnit]);
+  }, [currentUnit, currentStage]);
+
+  // Keep index within bounds if displayed list length changes
+  useEffect(() => {
+    if (currentIndex >= displayedWords.length && displayedWords.length > 0) {
+      setCurrentIndex(0);
+    }
+  }, [displayedWords.length]);
 
   useEffect(() => {
     setFlipped(false);
@@ -61,36 +91,66 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
   }, [currentIndex]);
 
   useEffect(() => {
-    if (detailWord) {
+    if (detailWord && word) {
       setDetailWord(word);
     }
   }, [word?.id]);
 
-  const handleNext = () => {
+  useEffect(() => {
+    if (levelProgressPercent >= 100) {
+      setDetailWord(null);
+    }
+  }, [levelProgressPercent]);
+
+  const handlePrevCard = () => {
+    if (currentIndex > 0) {
+      setFlipped(false);
+      setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  const handleNextCard = () => {
+    if (currentIndex < displayedWords.length - 1) {
+      setFlipped(false);
+      setCurrentIndex(prev => prev + 1);
+    }
+  };
+
+  const advanceAfterRate = () => {
     setFlipped(false);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (levelWords.length > 0 ? (prev + 1) % levelWords.length : 0));
-    }, 150);
+    x.set(0);
+    if (currentIndex >= displayedWords.length - 1) {
+      // Reached the end of the round!
+      setIsRoundComplete(true);
+    } else {
+      setCurrentIndex(prev => prev + 1);
+    }
   };
 
   const triggerRate = async (direction, type) => {
-    await animate(x, direction === 'right' ? 600 : -600, { duration: 0.25, ease: 'easeOut' });
-    // Flashcard study tracks learning/review progress; mastery is earned strictly via quizzes
-    state.markWordLearning(word.id);
+    if (!word) return;
+    await animate(x, direction === 'right' ? 600 : -600, { duration: 0.22, ease: 'easeOut' });
+    
     if (type === 'know') {
+      // Mark word mastered: increments mastered list, awards 10 XP & coins, and updates achievements
+      state.markWordMastered(word.id);
       confetti({
-        particleCount: 20,
-        spread: 30,
+        particleCount: 25,
+        spread: 45,
         origin: { y: 0.8 }
       });
+    } else {
+      // Mark word learning for future spaced review
+      state.markWordLearning(word.id);
     }
-    handleNext();
+
+    advanceAfterRate();
   };
 
   // Keyboard navigation listener
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (wordsData.loading || levelWords.length === 0) return;
+      if (wordsData.loading || displayedWords.length === 0 || isRoundComplete) return;
 
       const target = e.target;
       if (target?.closest?.('button, input, textarea, select, [contenteditable="true"]')) return;
@@ -114,7 +174,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [wordsData.loading, levelWords, flipped, currentIndex, word]);
+  }, [wordsData.loading, displayedWords, flipped, currentIndex, word, isRoundComplete]);
 
   const { speak: speakWord, isSpeaking } = useSpeech(0.85);
 
@@ -197,15 +257,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
     );
   }
 
-  // Count mastered words in this specific Unit
-  const levelMasteredCount = levelWords.filter(w => state.masteredWordIds.includes(w.id)).length;
-  const levelProgressPercent = Math.round((levelMasteredCount / levelWords.length) * 100);
-
-  useEffect(() => {
-    if (levelProgressPercent >= 100) {
-      setDetailWord(null);
-    }
-  }, [levelProgressPercent]);
+  const remainingCount = Math.max(0, levelWords.length - levelMasteredCount);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem', margin: '0 auto' }} className={`animate-fade flashcard-view-container ${revealMnemonic ? 'detail-open' : ''}`}>
@@ -231,8 +283,17 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
               boxShadow: 'var(--shadow-one)',
               textTransform: 'uppercase'
             }}>
-              {levelWords.length - levelMasteredCount} REMAINING
+              {remainingCount} REMAINING
             </span>
+            {filterUnmastered && (
+              <span style={{
+                fontSize: '0.68rem', fontWeight: '800', color: 'hsl(var(--primary))',
+                background: 'hsla(var(--primary), 0.12)', padding: '2px 8px',
+                borderRadius: '99px', border: '1px solid hsla(var(--primary), 0.3)'
+              }}>
+                FOCUSING UNMASTERED
+              </span>
+            )}
           </div>
           <span style={{ fontSize: '0.85rem', fontWeight: '800', color: 'var(--text-primary)', fontFamily: 'var(--font-title)' }}>
             {levelProgressPercent}%
@@ -248,7 +309,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
         </div>
       </div>
 
-      {/* Flashcard Content Area */}
+      {/* State A: All Words in Unit Mastered (100% Complete) */}
       {levelProgressPercent >= 100 ? (
         <div className="glass-panel animate-fade" style={{
           width: '100%',
@@ -273,7 +334,7 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             Unit {currentStage}.{currentUnit} Vocab Mastered! 🎉
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
-            Outstanding work! You have mastered all words in Unit {currentStage}.{currentUnit}. Continue your learning momentum below!
+            Outstanding work! You have mastered all {levelWords.length} words in Unit {currentStage}.{currentUnit}. Prove your mastery in the assessment quiz to qualify!
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button 
@@ -281,8 +342,23 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
               className="btn btn-primary"
               style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: '900', padding: '0.8rem 1.4rem' }}
             >
-              <HelpCircle size={16} /> Take Unit {currentStage}.{currentUnit} Quiz to Qualify <ArrowRight size={16} />
+              <HelpCircle size={16} /> Take Unit {currentStage}.{currentUnit} Quiz <ArrowRight size={16} />
             </button>
+
+            {currentUnit < totalUnitsInStage && (
+              <button 
+                onClick={() => {
+                  if (setSelectedUnit) setSelectedUnit(currentUnit + 1);
+                  setCurrentIndex(0);
+                  setIsRoundComplete(false);
+                  setFilterUnmastered(false);
+                }}
+                className="btn btn-accent"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+              >
+                <Sparkles size={16} /> Start Unit {currentStage}.{currentUnit + 1} Flashcards <ArrowRight size={16} />
+              </button>
+            )}
 
             <button 
               onClick={() => setActiveView('dashboard')}
@@ -292,14 +368,87 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             </button>
 
             <button 
-              onClick={() => state.resetWordProgress(levelWords.map(w => w.id))}
+              onClick={() => {
+                state.resetWordProgress(levelWords.map(w => w.id));
+                setCurrentIndex(0);
+                setIsRoundComplete(false);
+                setFilterUnmastered(false);
+              }}
+              className="btn btn-secondary"
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+            >
+              <RotateCcw size={15} /> Study Unit Again
+            </button>
+          </div>
+        </div>
+      ) : isRoundComplete ? (
+        /* State B: Round Complete (Finished reviewing all cards in the deck, with some left to master) */
+        <div className="glass-panel animate-fade" style={{
+          width: '100%',
+          padding: '2.5rem 2rem',
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{ height: '4px', background: 'linear-gradient(90deg, var(--theme-yellow), var(--theme-cyan))', position: 'absolute', top: 0, left: 0, right: 0 }} />
+          
+          <div style={{
+            width: '72px', height: '72px', borderRadius: 'var(--radius-md)',
+            background: 'linear-gradient(135deg, var(--theme-yellow), var(--theme-bulb))',
+            border: 'var(--border-thick)', boxShadow: 'var(--shadow-small)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            margin: '0 auto 1rem'
+          }}>
+            <Sparkles size={32} color="#000" strokeWidth={2.5} />
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-title)', marginBottom: '0.5rem' }}>
+            Unit Study Round Complete! 👏
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '520px', margin: '0 auto 1.5rem', lineHeight: '1.5' }}>
+            You reviewed all {levelWords.length} words in this unit. You have mastered <strong>{levelMasteredCount}</strong> words, with <strong>{remainingCount}</strong> remaining to master.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <button 
+              onClick={() => {
+                setFilterUnmastered(true);
+                setCurrentIndex(0);
+                setIsRoundComplete(false);
+              }}
+              className="btn btn-primary"
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: '900', padding: '0.8rem 1.4rem' }}
+            >
+              Review Remaining ({remainingCount}) Words <ArrowRight size={16} />
+            </button>
+
+            <button 
+              onClick={() => {
+                setFilterUnmastered(false);
+                setCurrentIndex(0);
+                setIsRoundComplete(false);
+              }}
+              className="btn btn-secondary"
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+            >
+              <RotateCcw size={15} /> Review All {levelWords.length} Cards
+            </button>
+
+            <button 
+              onClick={() => setActiveView('quizzes', currentUnit, currentStage)}
               className="btn btn-secondary"
             >
-              Study Unit Again
+              Take Unit Quiz
+            </button>
+
+            <button 
+              onClick={() => setActiveView('dashboard')}
+              className="btn btn-secondary"
+            >
+              Roadmap
             </button>
           </div>
         </div>
       ) : (
+        /* State C: Active Flashcard Deck */
         <>
           {/* Flashcard wrapper */}
           <motion.div 
@@ -376,38 +525,92 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             >
               {/* FRONT OF THE CARD */}
               <div className="flashcard-front">
-                {/* Top row actions */}
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
-                    CARD {currentIndex + 1} OF {levelWords.length}
-                  </span>
+                {/* Top row actions & Navigation arrows */}
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.25rem', left: 0, padding: '0 1.5rem', zIndex: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handlePrevCard(); }}
+                      disabled={currentIndex === 0}
+                      className="min-touch"
+                      style={{ 
+                        background: 'none', 
+                        border: 'none', 
+                        cursor: currentIndex === 0 ? 'default' : 'pointer', 
+                        color: currentIndex === 0 ? 'var(--border-thin)' : 'var(--text-muted)', 
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                      title="Previous Card"
+                    >
+                      <ChevronLeft size={18} />
+                    </button>
+                    <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+                      CARD {currentIndex + 1} OF {displayedWords.length}
+                    </span>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleNextCard(); }}
+                      disabled={currentIndex >= displayedWords.length - 1}
+                      className="min-touch"
+                      style={{ 
+                        background: 'none', 
+                        border: 'none', 
+                        cursor: currentIndex >= displayedWords.length - 1 ? 'default' : 'pointer', 
+                        color: currentIndex >= displayedWords.length - 1 ? 'var(--border-thin)' : 'var(--text-muted)', 
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                      title="Next Card"
+                    >
+                      <ChevronRight size={18} />
+                    </button>
+                  </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    {masteredSet.has(word?.id) && (
+                      <span style={{
+                        fontSize: '0.68rem',
+                        fontWeight: '800',
+                        padding: '0.15rem 0.5rem',
+                        borderRadius: '99px',
+                        backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                        color: '#10B981',
+                        border: '1px solid rgba(16, 185, 129, 0.3)',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '3px'
+                      }}>
+                        <CheckCircle size={10} /> Mastered
+                      </span>
+                    )}
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();
-                        state.toggleBookmark(word.id);
+                        if (word) state.toggleBookmark(word.id);
                       }}
                       className="min-touch"
-                      aria-label={state.bookmarkedWordIds.includes(word.id) ? 'Remove bookmark' : 'Bookmark word'}
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
+                      aria-label={state.bookmarkedWordIds.includes(word?.id) ? 'Remove bookmark' : 'Bookmark word'}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: state.bookmarkedWordIds.includes(word?.id) ? 'hsl(var(--secondary))' : 'var(--text-muted)' }}
                     >
-                      {state.bookmarkedWordIds.includes(word.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
+                      {state.bookmarkedWordIds.includes(word?.id) ? <BookmarkCheck size={22} fill="hsl(var(--secondary))" /> : <Bookmark size={22} />}
                     </button>
                   </div>
                 </div>
 
                 {/* Word details */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', margin: 'auto 0' }}>
-                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>{word.word.toUpperCase()}</h2>
+                  <h2 style={{ fontSize: '3rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>{word?.word.toUpperCase()}</h2>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <span style={{ fontStyle: 'italic', color: 'var(--text-secondary)', fontWeight: '500' }}>
-                      ({word.part_of_speech})
+                      ({word?.part_of_speech})
                     </span>
-                    <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>
-                      /{word.pronunciation}/
-                    </span>
+                    {word?.pronunciation && (
+                      <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                        /{word.pronunciation}/
+                      </span>
+                    )}
                     <button 
-                      onClick={(e) => speakWord(word.word, e)}
+                      onClick={(e) => speakWord(word?.word, e)}
                       className="min-touch"
                       aria-label="Listen to pronunciation"
                       style={{
@@ -432,43 +635,52 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
                   </div>
                 </div>
 
-                {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem' }}>
-                    💡 Click card to flip | Swipe left/right to study | Complete Unit Quiz to Master Words
-                  </div>
-                )}
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', position: 'absolute', bottom: '1.75rem' }}>
+                  💡 Click card to flip | Swipe right for Got It (+10 XP) | Swipe left for Study Later
+                </div>
               </div>
 
               {/* BACK OF THE CARD */}
               <div className="flashcard-back" style={{ position: 'relative', display: 'flex', flexDirection: 'column', height: '100%', padding: '2rem 1.5rem 1.5rem' }}>
                 {/* Top row actions */}
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.5rem', left: 0, padding: '0 2rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
-                    CARD {currentIndex + 1} OF {levelWords.length}
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'absolute', top: '1.25rem', left: 0, padding: '0 1.5rem' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>
+                    CARD {currentIndex + 1} OF {displayedWords.length}
                   </span>
+                  {masteredSet.has(word?.id) && (
+                    <span style={{
+                      fontSize: '0.68rem',
+                      fontWeight: '800',
+                      padding: '0.15rem 0.5rem',
+                      borderRadius: '99px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                      color: '#10B981',
+                      border: '1px solid rgba(16, 185, 129, 0.3)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '3px'
+                    }}>
+                      <CheckCircle size={10} /> Mastered
+                    </span>
+                  )}
                 </div>
 
                 {/* Back Contents (Centered like the front) with scroll support for long definitions */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', margin: 'auto 0', width: '100%', maxHeight: '250px', overflowY: 'auto', padding: '0.25rem 0.5rem' }} className="no-swipe">
-                  {word.bengali_meaning && (
+                  {word?.bengali_meaning && (
                     <div style={{ fontSize: '2.25rem', fontWeight: '700', color: 'hsl(var(--primary))', lineHeight: '1.3', fontFamily: 'var(--font-bengali)', textAlign: 'center' }}>
                       {word.bengali_meaning}
                     </div>
                   )}
 
                   <div style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: '1.45', fontWeight: '500', maxWidth: '90%', textAlign: 'center', margin: '0 auto' }}>
-                    {word.definition}
+                    {word?.definition}
                   </div>
                 </div>
 
-                {/* Bottom notification */}
-                {currentIndex < 3 && (
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', position: 'absolute', bottom: '2rem', left: 0, right: 0, textAlign: 'center' }}>
-                    💡 Click to flip back | Swipe left/right to study | Complete Unit Quiz to Master Words
-                  </div>
-                )}
-
-
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', position: 'absolute', bottom: '1.75rem', left: 0, right: 0, textAlign: 'center' }}>
+                  💡 Click to flip back | Swipe right for Got It (+10 XP) | Swipe left for Study Later
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -478,21 +690,20 @@ export default function FlashcardsView({ state, wordsData, setActiveView, select
             <button 
               onClick={() => triggerRate('left', 'study')}
               className="btn btn-secondary"
-              style={{ flex: 1, padding: '0.85rem' }}
+              style={{ flex: 1, padding: '0.85rem', fontWeight: '700' }}
             >
               Study Later
             </button>
             <button 
               onClick={() => triggerRate('right', 'know')}
               className="btn btn-primary"
-              style={{ flex: 1, padding: '0.85rem' }}
+              style={{ flex: 1, padding: '0.85rem', fontWeight: '800' }}
             >
-              <CheckCircle size={18} /> Got It
+              <CheckCircle size={18} /> Got It (+10 XP)
             </button>
           </div>
         </>
       )}
-
-      </div>
+    </div>
   );
 }
